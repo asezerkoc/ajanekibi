@@ -26,3 +26,17 @@ This project is **SKONSTART**, the owner's agency of AI agents. Keep its operati
 - Every task input is passed on every step (see `durum` in `calistir`), so a new `{placeholder}` in `tasks.yaml` must be added there and in `_ornek_girdiler`.
 - The designer reads skill files only through `SkillOkumaAraci`, which cannot leave `skills/`. Do not give agents a general file reader: it could read `.env`.
 - New agents are SKONSTART staff: mention the agency in their backstory, write everything in Turkish, and keep outputs directly usable so the owner can approve without extra work.
+
+## Running the agency for the owner in a cloud session
+
+The owner gives jobs in chat and approves in chat. `ANTHROPIC_API_KEY` comes from the cloud environment's variables (never from chat; never print it). Check it is set with `[ -n "$ANTHROPIC_API_KEY" ]` before running.
+
+1. Setup once per session: `uv tool install crewai` if `crewai` is missing, then `crewai install`.
+2. A job from the owner: `uv run run_crew "<the job, in the owner's words>" < /dev/null` (run it in the background; a job takes several minutes). With no terminal the result is saved as `teslimler/<date>-<name>.md` with status "ONAY BEKLİYOR", plus a `.json` with the full state.
+3. Show the owner the delivery: the post text, the animation plan and the quality control note from the `.md`. If the owner wants a video, save the designer's Remotion code under `video/src/sahneler/`, register it in `video/src/Root.tsx`, render it and send the file.
+4. The owner's answer:
+   - Approves → `uv run onayla teslimler/<file>.md`
+   - Wants changes → `uv run revize teslimler/<file>.md "<the owner's note>"`, then show the new version and ask again.
+5. Commit `teslimler/` and `hafiza/` after each approval so the team's memory survives the session, and push.
+
+Never approve on the owner's behalf. Running a job costs the owner money, so run one only when the owner gives a job.

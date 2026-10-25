@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import json
 import re
 import sys
 import warnings
@@ -97,12 +98,49 @@ def _teslim_metni(durum: dict, rapor: KaliteRaporu, onay_durumu: str) -> str:
     )
 
 
-def _kaydet(durum: dict, rapor: KaliteRaporu, onay_durumu: str) -> Path:
-    TESLIMLER.mkdir(parents=True, exist_ok=True)
-    kisa_ad = durum["gorev"].translate(str.maketrans("çğıöşüÇĞİÖŞÜ", "cgiosuCGIOSU")).lower()
-    kisa_ad = re.sub(r"[^a-z0-9]+", "-", kisa_ad)[:40].strip("-") or "is"
-    yol = TESLIMLER / f"{datetime.now():%Y-%m-%d-%H%M}-{kisa_ad}.md"
+def _kaydet(durum: dict, rapor: KaliteRaporu, onay_durumu: str, yol: Path | None = None) -> Path:
+    """Writes the delivery (.md for the owner) and its full state (.json, so it can be approved or revised later)."""
+    if yol is None:
+        TESLIMLER.mkdir(parents=True, exist_ok=True)
+        kisa_ad = durum["gorev"].translate(str.maketrans("çğıöşüÇĞİÖŞÜ", "cgiosuCGIOSU")).lower()
+        kisa_ad = re.sub(r"[^a-z0-9]+", "-", kisa_ad)[:40].strip("-") or "is"
+        yol = TESLIMLER / f"{datetime.now():%Y-%m-%d-%H%M}-{kisa_ad}.md"
     yol.write_text(_teslim_metni(durum, rapor, onay_durumu), encoding="utf-8")
+    yol.with_suffix(".json").write_text(
+        json.dumps({"durum": durum, "rapor": rapor.model_dump()}, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    return yol
+
+
+def _yukle(yol: Path) -> tuple[dict, KaliteRaporu]:
+    veri = json.loads(yol.with_suffix(".json").read_text(encoding="utf-8"))
+    return veri["durum"], KaliteRaporu.model_validate(veri["rapor"])
+
+
+def _gecmis() -> str:
+    # The team learns from what the owner approved and said before
+    return (
+        "Onaylanan son işler:\n" + (_oku(ONAYLANANLAR, 4000) or "Henüz yok.")
+        + "\n\nAjans sahibinin geri bildirimleri:\n" + (_oku(GERI_BILDIRIMLER, 4000) or "Henüz yok.")
+    )
+
+
+def _sahip_notunu_uygula(durum: dict, not_: str) -> KaliteRaporu:
+    """The owner's feedback is remembered and goes through quality control, which routes it to the right unit."""
+    _ekle(GERI_BILDIRIMLER, f"- {datetime.now():%Y-%m-%d} ({durum['gorev'][:60]}): {not_}\n")
+    durum["gecmis"] = _gecmis()
+    durum["sahip_notu"] = not_
+    return _kalite_dongusu(durum)
+
+
+def _onayla(durum: dict, rapor: KaliteRaporu, yol: Path | None = None) -> Path:
+    yol = _kaydet(durum, rapor, "ONAYLANDI", yol)
+    _ekle(
+        ONAYLANANLAR,
+        f"\n## {datetime.now():%Y-%m-%d} — {durum['gorev'][:80]}\n\n{durum['duzenlenmis_metin'][:600]}\n",
+    )
+    print(f"\nOnaylandı ve kaydedildi: {yol}")
     return yol
 
 
@@ -112,11 +150,7 @@ def calistir(gorev: str, etkilesimli: bool) -> Path:
         "gorev": gorev,
         "current_year": str(datetime.now().year),
         "profil": _oku(PROFIL),
-        # The team learns from what the owner approved and said before
-        "gecmis": (
-            "Onaylanan son işler:\n" + (_oku(ONAYLANANLAR, 4000) or "Henüz yok.")
-            + "\n\nAjans sahibinin geri bildirimleri:\n" + (_oku(GERI_BILDIRIMLER, 4000) or "Henüz yok.")
-        ),
+        "gecmis": _gecmis(),
         "arastirma": "",
         "metin": "",
         "duzenlenmis_metin": "",
@@ -144,17 +178,9 @@ def calistir(gorev: str, etkilesimli: bool) -> Path:
         ).strip()
         if not cevap:
             break
-        _ekle(GERI_BILDIRIMLER, f"- {datetime.now():%Y-%m-%d} ({gorev[:60]}): {cevap}\n")
-        durum["sahip_notu"] = cevap
-        rapor = _kalite_dongusu(durum)
+        rapor = _sahip_notunu_uygula(durum, cevap)
 
-    yol = _kaydet(durum, rapor, "ONAYLANDI")
-    _ekle(
-        ONAYLANANLAR,
-        f"\n## {datetime.now():%Y-%m-%d} — {gorev[:80]}\n\n{durum['duzenlenmis_metin'][:600]}\n",
-    )
-    print(f"\nOnaylandı ve kaydedildi: {yol}")
-    return yol
+    return _onayla(durum, rapor)
 
 
 def run():
@@ -179,6 +205,34 @@ def gunluk():
         return calistir(GUNLUK_GOREV, etkilesimli=False)
     except Exception as e:
         raise Exception(f"An error occurred while running the daily crew: {e}")
+
+
+def onayla():
+    """
+    Approve a delivery waiting in teslimler/: uv run onayla teslimler/<file>.md
+    """
+    if len(sys.argv) < 2:
+        raise Exception("Kullanım: uv run onayla teslimler/<dosya>.md")
+    yol = Path(sys.argv[1])
+    durum, rapor = _yukle(yol)
+    return _onayla(durum, rapor, yol)
+
+
+def revize():
+    """
+    Send a waiting delivery back with the owner's note: uv run revize teslimler/<file>.md "<note>"
+    """
+    if len(sys.argv) < 3:
+        raise Exception('Kullanım: uv run revize teslimler/<dosya>.md "ne değişsin"')
+    yol = Path(sys.argv[1])
+    durum, _ = _yukle(yol)
+    try:
+        rapor = _sahip_notunu_uygula(durum, " ".join(sys.argv[2:]).strip())
+    except Exception as e:
+        raise Exception(f"An error occurred while revising: {e}")
+    yol = _kaydet(durum, rapor, "ONAY BEKLİYOR", yol)
+    print(f"\nRevize edildi, onayını bekliyor: {yol}")
+    return yol
 
 
 def _ornek_girdiler() -> dict:

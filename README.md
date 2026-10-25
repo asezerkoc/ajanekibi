@@ -49,6 +49,17 @@ crewai run
 
 Bir iş, revizyonlarla birlikte 5-15 Claude çağrısı yapar. Ücret, Anthropic hesabındaki kullanıma göre ödenir.
 
+## Bekleyen bir işi onaylama ya da düzelttirme
+
+Ekip ekran başında kimse yokken çalıştıysa iş "ONAY BEKLİYOR" olarak `teslimler/` klasörüne kaydedilir:
+
+```sh
+uv run onayla teslimler/<dosya>.md                    # onayla
+uv run revize teslimler/<dosya>.md "renkler daha sıcak olsun"   # düzelttir
+```
+
+Claude Code bulut oturumunda bunları sohbetten yaparsın: işi yazarsın, Claude ekibi çalıştırıp sonucu gösterir, sen "onaylıyorum" ya da "şunu değiştir" dersin.
+
 ## Her gün kendi kendine çalışma
 
 `gunluk` komutu ekibe o günün gönderisini hazırlatır. Kimse ekran başında olmadığı için sonucu "ONAY BEKLİYOR" olarak `teslimler/` klasörüne bırakır. Sen sonra bakıp onaylarsın.
