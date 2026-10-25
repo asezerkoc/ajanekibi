@@ -29,7 +29,7 @@ This project is **SKONSTART**, the owner's agency of AI agents. Keep its operati
 
 ## Running the agency for the owner in a cloud session
 
-The owner gives jobs in chat and approves in chat. `ANTHROPIC_API_KEY` comes from the cloud environment's variables (never from chat; never print it). Check it is set with `[ -n "$ANTHROPIC_API_KEY" ]` before running.
+The owner gives jobs in chat and approves in chat. The key comes from the cloud environment's variables as `SKONSTART_API_KEY` (the cloud reserves `ANTHROPIC_API_KEY` for Claude Code itself; `ajan_ekibi/__init__.py` copies it over). Never take it from chat; never print it. Check it is set with `[ -n "$SKONSTART_API_KEY$ANTHROPIC_API_KEY" ]` before running.
 
 1. Setup once per session: `uv tool install crewai` if `crewai` is missing, then `crewai install`.
 2. A job from the owner: `uv run run_crew "<the job, in the owner's words>" < /dev/null` (run it in the background; a job takes several minutes). With no terminal the result is saved as `teslimler/<date>-<name>.md` with status "ONAY BEKLİYOR", plus a `.json` with the full state.
