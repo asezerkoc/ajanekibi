@@ -1,8 +1,17 @@
-# ajanekibi
+# SKONSTART
 
-[CrewAI](https://github.com/crewAIInc/crewAI) ile kurulmuş, Claude modelini kullanan bir yapay zekâ ajan ekibi.
+SKONSTART, yapay zekâ ajanlarından oluşan bir ajans. Ajanlar ajans sahibinin yerine çalışır ve düşünür. Sahip sadece işi verir, ekibin yaptığı işin sonucunu görür ve onaylar.
 
-Ekipteki ajanlar ve görevleri henüz belirlenmedi. Şu an içinde CrewAI'ın örnek ekibi var: bir araştırmacı ve bir raporlayıcı. Görevler verildiğinde bu örnek ajanların yerine gerçek ekip yazılacak.
+[CrewAI](https://github.com/crewAIInc/crewAI) ile kuruldu ve Claude modelini kullanıyor.
+
+## Nasıl çalışır
+
+1. **İşi verirsin:** `crewai run` komutunu çalıştırırsın ve ekibe vereceğin işi yazarsın.
+2. **Ekip çalışır:** ajanlar işi sırayla, birbirine devrederek yapar.
+3. **Onay verirsin:** son sonuç ekranda sana gösterilir. Boş bırakıp Enter'a basarsan onaylanmış olur. Bir düzeltme yazarsan ekip sonucu ona göre düzeltip tekrar sunar.
+4. **Teslim:** onaylanan sonuç `sonuc.md` dosyasına yazılır.
+
+Ekipteki ajanlar henüz belirlenmedi. Şu an içinde örnek bir ekip var: bir araştırmacı ve bir raporlayıcı. Ajansın gerçek çalışanları tanımlanınca onların yerini alacaklar.
 
 ## Kurulum
 
@@ -21,9 +30,10 @@ API anahtarı https://console.anthropic.com adresinden alınır. `.env` dosyası
 
 ```sh
 crewai run
+# SKONSTART - ekibe vereceğin iş: <işi buraya yaz>
 ```
 
-Ekibin girdileri (ör. `topic`) `src/ajan_ekibi/main.py` içindedir. Çıktı `report.md` dosyasına yazılır.
+Ekip işi bitirince sonucu gösterir ve onayını sorar. Onaylanan sonuç `sonuc.md` dosyasına yazılır.
 
 ## Model
 

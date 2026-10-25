@@ -5,7 +5,7 @@ from crewai.agents.agent_builder.base_agent import BaseAgent
 
 @CrewBase
 class AjanEkibi():
-    """AjanEkibi crew"""
+    """SKONSTART ajansı: sahibi işi verir, ekip yapar, son sonuç sahibinin onayına sunulur."""
 
     agents: list[BaseAgent]
     tasks: list[Task]
@@ -34,12 +34,14 @@ class AjanEkibi():
     def reporting_task(self) -> Task:
         return Task(
             config=self.tasks_config['reporting_task'], # type: ignore[index]
-            output_file='report.md'
+            output_file='sonuc.md',
+            # The owner reviews the final result: empty answer = approved, otherwise the feedback is applied
+            human_input=True
         )
 
     @crew
     def crew(self) -> Crew:
-        """Creates the AjanEkibi crew"""
+        """Creates the SKONSTART crew"""
         return Crew(
             agents=self.agents,
             tasks=self.tasks,

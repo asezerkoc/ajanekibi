@@ -11,10 +11,14 @@ warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
 def run():
     """
-    Run the crew.
+    Run the crew. The job comes from the command line or is asked for.
     """
+    gorev = " ".join(sys.argv[1:]).strip() or input("SKONSTART - ekibe vereceğin iş: ").strip()
+    if not gorev:
+        raise Exception("Bir iş yazmalısın.")
+
     inputs = {
-        'topic': 'AI LLMs',
+        'gorev': gorev,
         'current_year': str(datetime.now().year)
     }
 
@@ -29,7 +33,7 @@ def train():
     Train the crew for a given number of iterations.
     """
     inputs = {
-        "topic": "AI LLMs",
+        "gorev": "Yapay zekâ ajanları hakkında kısa bir rapor hazırla",
         'current_year': str(datetime.now().year)
     }
     try:
@@ -53,7 +57,7 @@ def test():
     Test the crew execution and returns the results.
     """
     inputs = {
-        "topic": "AI LLMs",
+        "gorev": "Yapay zekâ ajanları hakkında kısa bir rapor hazırla",
         "current_year": str(datetime.now().year)
     }
 
@@ -79,7 +83,7 @@ def run_with_trigger():
 
     inputs = {
         "crewai_trigger_payload": trigger_payload,
-        "topic": "",
+        "gorev": "",
         "current_year": ""
     }
 
