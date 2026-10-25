@@ -1,16 +1,127 @@
-# Example tasks (placeholders). Replace them with the SKONSTART team's tasks once the roles are defined.
-research_task:
+arastirma_gorevi:
   description: >
-    Şu iş için kapsamlı bir araştırma yap: {gorev}
-    İçinde bulunduğumuz yıl {current_year}; bilgilerin güncel olduğundan emin ol.
-  expected_output: >
-    İşle ilgili en önemli 10 bilgiyi içeren, Türkçe bir madde listesi
-  agent: researcher
+    İş: {gorev}
 
-reporting_task:
-  description: >
-    Araştırma sonuçlarını kullanarak şu işi tamamla: {gorev}
-    Sonuç, ajans sahibinin onayına sunulacak. Eksiksiz ve doğrudan kullanılabilir olsun.
+    Ajans profili:
+    {profil}
+
+    Ajansın geçmişi (onaylanan işler ve ajans sahibinin geri bildirimleri):
+    {gecmis}
+
+    Bu iş için araştırma yap. İçinde bulunduğumuz yıl {current_year}. İş bir konu
+    belirtmiyorsa ajans profilindeki konulardan, geçmişte işlenmemiş ve hedef kitle
+    için şu an en ilgi çekici olanı kendin seç ve neden seçtiğini yaz.
   expected_output: >
-    İşin tamamlanmış hali, Türkçe ve markdown biçiminde ('```' kullanmadan)
-  agent: reporting_analyst
+    Türkçe bir araştırma özeti: seçilen konu ve gerekçesi, hedef kitle için en
+    önemli 5-10 bilgi (doğrulanmamış olanlar işaretli), gönderi için 3 fikir önerisi.
+  agent: arastirmaci
+
+metin_gorevi:
+  description: >
+    İş: {gorev}
+
+    Ajans profili:
+    {profil}
+
+    Ajansın geçmişi:
+    {gecmis}
+
+    Araştırma:
+    {arastirma}
+
+    Revizyon notu (boşsa ilk yazımdır):
+    {revizyon_notu}
+
+    Araştırmaya dayanarak bir sosyal medya gönderisi metni yaz. Revizyon notu
+    varsa önceki metni bu nota göre yeniden yaz. Önceki metin:
+    {metin}
+  expected_output: >
+    Türkçe gönderi metni: dikkat çekici ilk cümle (kanca), ana metin, harekete
+    geçirici kapanış, 5-8 uygun hashtag. Ayrıca videoda ekrana yazılacak 3-5 kısa
+    cümle ("ekran metinleri").
+  agent: metin_yazari
+
+editor_gorevi:
+  description: >
+    İş: {gorev}
+
+    Ajans profili (özellikle hedef kitle ve marka sesi):
+    {profil}
+
+    Araştırma:
+    {arastirma}
+
+    Metin yazarının metni:
+    {metin}
+
+    Revizyon notu (boşsa ilk düzenlemedir):
+    {revizyon_notu}
+
+    Metni kontrol et ve hedef kitleye göre düzenle: yazım, dil bilgisi, akış, ton
+    ve araştırmayla tutarlılık. Revizyon notu varsa ona göre düzelt.
+  expected_output: >
+    Düzenlenmiş gönderi metninin son hâli (kanca, ana metin, kapanış, hashtag'ler,
+    ekran metinleri) ve altında "Editör notları" başlığıyla yapılan değişikliklerin
+    kısa listesi.
+  agent: editor
+
+grafik_gorevi:
+  description: >
+    İş: {gorev}
+
+    Ajans profili (özellikle görsel tarz):
+    {profil}
+
+    Editörün onayladığı metin:
+    {duzenlenmis_metin}
+
+    Revizyon notu (boşsa ilk tasarımdır):
+    {revizyon_notu}
+
+    Önceki tasarım (revizyonda bunu düzelt):
+    {grafik}
+
+    Metni ajansın görsel tarzında bir animasyona dönüştür. Önce
+    skills/remotion-effects/SKILL.md dosyasını oku, metne uyan 2-4 efekti seç ve
+    seçtiğin efektlerin referans dosyalarını oku. Dikey video (1080x1920, 30 fps,
+    15-30 saniye) tasarla.
+  expected_output: >
+    Türkçe bir tasarım teslimi:
+    1) Sahne planı: her sahnenin süresi (saniye), kullanılan efekt, ekrandaki yazı,
+    hareket ve ses önerisi.
+    2) Görsel üretme komutları: her sahne için İngilizce, tarzın özelliklerini
+    anlatan, stüdyo ya da sanatçı adı içermeyen bir komut.
+    3) Remotion kodu: kütüphanedeki bileşenleri kullanan, src/Video.tsx olarak
+    kaydedilebilecek tek bir kompozisyon (görseller public/ klasöründen
+    staticFile ile).
+  agent: grafiker
+
+kalite_gorevi:
+  description: >
+    İş: {gorev}
+
+    Ajans profili:
+    {profil}
+
+    Araştırma:
+    {arastirma}
+
+    Düzenlenmiş metin:
+    {duzenlenmis_metin}
+
+    Grafik tasarımı:
+    {grafik}
+
+    Ajans sahibinin notu (boşsa yoktur; varsa mutlaka uygulanmalı ve iş uygun
+    sayılmamalı):
+    {sahip_notu}
+
+    İşi kontrol et: hedef kitleye uygun mu, marka sesine uygun mu, bilgiler
+    araştırmayla tutarlı mı, görsel tarz ajansın tarzı mı, kod kütüphanedeki
+    bileşenleri mi kullanıyor? Uygunsa onayla. Uygun değilse sorunu düzeltebilecek
+    tek birimi seç ve somut revizyon notları yaz.
+  expected_output: >
+    Kalite raporu: uygun (true/false), revize_birimi (metin_yazari, editor,
+    grafiker ya da uygunsa yok) ve notlar (uygunsa kısa bir değerlendirme, değilse
+    neyin neden ve nasıl düzeltileceği).
+  agent: kalite_kontrol

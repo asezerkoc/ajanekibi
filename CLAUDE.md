@@ -19,6 +19,10 @@ Keep shared conventions in `AGENTS.md`; add Claude-specific notes under the impo
 This project is **SKONSTART**, the owner's agency of AI agents. Keep its operating model in every change:
 
 - The agents work and think in place of the owner. The owner only gives the job and approves the result.
-- The job comes in as the `gorev` input (`main.py` asks for it, or takes it from the command line). Every task text uses `{gorev}`.
-- The final task of the crew always has `human_input=True`, so the result is shown to the owner for approval before it is written to `sonuc.md`. Never remove this approval step.
+- The team: `arastirmaci` (research), `metin_yazari` (copy), `editor` (edits for the target audience), `grafiker` (Ghibli-inspired animation plans with the Remotion skill in `skills/remotion-effects/`), `kalite_kontrol` (checks the work and routes revisions).
+- The flow lives in `main.py` (`calistir`): research → copy → edit → design → quality control. Quality control returns a `KaliteRaporu`; code (not an agent) sends the work back to the unit it names, following `REVIZYON_ZINCIRI`, at most `MAKS_REVIZYON` times.
+- The owner always approves last. In a terminal, `calistir` shows the result and waits: Enter approves, any text is the owner's feedback and goes through quality control again. Without a terminal (`gunluk`, scheduled runs) the result is saved in `teslimler/` as "ONAY BEKLİYOR". Never remove or bypass this approval step.
+- The team learns from `hafiza/onaylananlar.md` and `hafiza/geri_bildirimler.md` (fed in as `{gecmis}`) and from the agency profile in `knowledge/ajans_profili.md` (fed in as `{profil}`). CrewAI memory and knowledge sources are not used because their default embedder needs an OpenAI key.
+- Every task input is passed on every step (see `durum` in `calistir`), so a new `{placeholder}` in `tasks.yaml` must be added there and in `_ornek_girdiler`.
+- The designer reads skill files only through `SkillOkumaAraci`, which cannot leave `skills/`. Do not give agents a general file reader: it could read `.env`.
 - New agents are SKONSTART staff: mention the agency in their backstory, write everything in Turkish, and keep outputs directly usable so the owner can approve without extra work.

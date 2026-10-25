@@ -11,6 +11,7 @@ dependencies = [
 [project.scripts]
 ajan_ekibi = "ajan_ekibi.main:run"
 run_crew = "ajan_ekibi.main:run"
+gunluk = "ajan_ekibi.main:gunluk"
 train = "ajan_ekibi.main:train"
 replay = "ajan_ekibi.main:replay"
 test = "ajan_ekibi.main:test"

@@ -1,17 +1,31 @@
 # SKONSTART
 
-SKONSTART, yapay zekâ ajanlarından oluşan bir ajans. Ajanlar ajans sahibinin yerine çalışır ve düşünür. Sahip sadece işi verir, ekibin yaptığı işin sonucunu görür ve onaylar.
+SKONSTART, yapay zekâ ajanlarından oluşan bir ajans. Ajanlar ajans sahibinin yerine çalışır ve düşünür. Sahip sadece işi verir, sonucu görür ve onaylar.
 
 [CrewAI](https://github.com/crewAIInc/crewAI) ile kuruldu ve Claude modelini kullanıyor.
 
+## Ekip
+
+| Ajan | Görevi |
+| --- | --- |
+| **Araştırmacı** | Verilen işi araştırır. İş konu belirtmiyorsa ajansın konularından, daha önce işlenmemiş olanı kendisi seçer. |
+| **Metin yazarı** | Araştırmaya dayanarak gönderi metnini yazar: kanca, ana metin, kapanış, hashtag'ler, videoda ekrana yazılacak cümleler. |
+| **Editör** | Metni dil, akış ve doğruluk açısından kontrol eder, hedef kitleye göre düzenler. |
+| **Grafiker** | Metni Ghibli-esinli, el çizimi havasında bir animasyona dönüştürür: sahne planı, görsel üretme komutları ve ajansın Remotion efekt kütüphanesiyle yazılmış video kodu. |
+| **Kalite kontrol** | İşin hedef kitleye ve ajansın tarzına uygun olup olmadığına bakar. Uygun değilse sorunu düzeltecek birime notlarıyla geri gönderir. Uygunsa sana sunar. |
+
 ## Nasıl çalışır
 
-1. **İşi verirsin:** `crewai run` komutunu çalıştırırsın ve ekibe vereceğin işi yazarsın.
-2. **Ekip çalışır:** ajanlar işi sırayla, birbirine devrederek yapar.
-3. **Onay verirsin:** son sonuç ekranda sana gösterilir. Boş bırakıp Enter'a basarsan onaylanmış olur. Bir düzeltme yazarsan ekip sonucu ona göre düzeltip tekrar sunar.
-4. **Teslim:** onaylanan sonuç `sonuc.md` dosyasına yazılır.
+1. **İşi verirsin:** `crewai run` komutunu çalıştırıp işi yazarsın. Boş bırakırsan ekip o günün gönderisini kendisi seçer.
+2. **Ekip çalışır:** araştırma → metin → editör → grafik → kalite kontrol.
+3. **Revizyon:** kalite kontrol beğenmezse işi ilgili birime geri gönderir. Metin sorunu metin yazarına, ton ve dil sorunu editöre, görsel sorunu grafikere gider. En fazla 3 tur revizyon yapılır.
+4. **Onay verirsin:** sonuç ekranda gösterilir. Enter'a basarsan onaylanır. Bir şey yazarsan bu senin notun olur, ekip düzeltip tekrar sunar.
+5. **Teslim:** sonuç `teslimler/` klasörüne kaydedilir.
+6. **Öğrenme:** onayladığın işler `hafiza/onaylananlar.md`'ye, notların `hafiza/geri_bildirimler.md`'ye yazılır. Ekip her işte bunları okur ve zamanla senin zevkini öğrenir.
 
-Ekipteki ajanlar henüz belirlenmedi. Şu an içinde örnek bir ekip var: bir araştırmacı ve bir raporlayıcı. Ajansın gerçek çalışanları tanımlanınca onların yerini alacaklar.
+## Önce bunu doldur
+
+`knowledge/ajans_profili.md` dosyası ekibin "beyni": ajansın ne yaptığı, konular, hedef kitle, marka sesi ve görsel tarz. Köşeli parantezli yerleri doldurmazsan ekip hedef kitleyi tahmin etmek zorunda kalır.
 
 ## Kurulum
 
@@ -30,22 +44,51 @@ API anahtarı https://console.anthropic.com adresinden alınır. `.env` dosyası
 
 ```sh
 crewai run
-# SKONSTART - ekibe vereceğin iş: <işi buraya yaz>
+# SKONSTART - ekibe vereceğin iş (boş bırakırsan günlük gönderi): <işi yaz>
 ```
 
-Ekip işi bitirince sonucu gösterir ve onayını sorar. Onaylanan sonuç `sonuc.md` dosyasına yazılır.
+Bir iş, revizyonlarla birlikte 5-15 Claude çağrısı yapar. Ücret, Anthropic hesabındaki kullanıma göre ödenir.
+
+## Her gün kendi kendine çalışma
+
+`gunluk` komutu ekibe o günün gönderisini hazırlatır. Kimse ekran başında olmadığı için sonucu "ONAY BEKLİYOR" olarak `teslimler/` klasörüne bırakır. Sen sonra bakıp onaylarsın.
+
+```sh
+uv run gunluk
+```
+
+Her sabah otomatik çalışması için bir zamanlayıcı gerekir. Mac veya Linux'ta `crontab -e` ile şunu ekle (her gün 09:00):
+
+```
+0 9 * * * cd /proje/yolu/ajanekibi && /usr/local/bin/uv run gunluk >> gunluk.log 2>&1
+```
+
+Bilgisayar kapalıyken de çalışsın istersen projeyi CrewAI'ın bulut hizmetine (CrewAI AMP) yükleyip orada zamanlama kurman gerekir.
+
+## Grafikerin çıktısı nasıl videoya dönüşür
+
+Grafiker resim ya da video dosyası üretmez. Üç şey teslim eder:
+
+1. **Sahne planı:** her sahnenin süresi, efekti ve ekranda yazacak metin.
+2. **Görsel komutları:** her sahnenin arka planı için, görsel üretme araçlarına (Midjourney, Ideogram, Flux vb.) yapıştırılacak İngilizce komutlar.
+3. **Remotion kodu:** `skills/remotion-effects/` kütüphanesindeki efektlerle yazılmış video kodu.
+
+Görselleri üretip Remotion projesinin `public/` klasörüne koyduktan sonra `npx remotion render` ile video çıkar.
 
 ## Model
 
-`.env` içindeki `MODEL` satırı tüm ajanların modelidir. Varsayılan `anthropic/claude-sonnet-5-5`. Daha ucuz ve hızlı bir model için `anthropic/claude-haiku-5-5`, en güçlüsü için `anthropic/claude-opus-5-5` yazabilirsin. Bir ajana ayrı model vermek için `agents.yaml` içinde o ajana `llm: anthropic/claude-haiku-5-5` ekle.
+`.env` içindeki `MODEL` satırı bütün ajanların modelidir. Varsayılan `anthropic/claude-sonnet-5-5`. Daha ucuz bir model için `anthropic/claude-haiku-5-5`, en güçlüsü için `anthropic/claude-opus-5-5` yaz. Bir ajana ayrı model vermek için `agents.yaml` içinde o ajana `llm: anthropic/claude-haiku-5-5` ekle.
 
 ## Proje yapısı
 
 | Dosya | Ne işe yarar |
 | --- | --- |
+| `knowledge/ajans_profili.md` | Ajansın konuları, hedef kitlesi, marka sesi, görsel tarzı |
 | `src/ajan_ekibi/config/agents.yaml` | Ajanlar: rol, hedef, geçmiş |
-| `src/ajan_ekibi/config/tasks.yaml` | Görevler: açıklama, beklenen çıktı, hangi ajan yapacak |
-| `src/ajan_ekibi/crew.py` | Ajanları ve görevleri ekip olarak birleştirir |
-| `src/ajan_ekibi/main.py` | Ekibi başlatır ve girdileri verir |
-| `src/ajan_ekibi/tools/` | Ajanlara verilecek özel araçlar |
-| `knowledge/` | Ajanların bilmesi gereken metinler |
+| `src/ajan_ekibi/config/tasks.yaml` | Her ajanın görevi ve teslim etmesi gereken çıktı |
+| `src/ajan_ekibi/crew.py` | Ajanları ve görevleri tanımlar; kalite raporunun biçimi |
+| `src/ajan_ekibi/main.py` | Çalışma akışı: revizyon döngüsü, onay, teslim, hafıza, günlük mod |
+| `src/ajan_ekibi/tools/custom_tool.py` | Grafikerin efekt kütüphanesini okuma aracı |
+| `skills/remotion-effects/` | 22 test edilmiş Remotion efekti |
+| `hafiza/` | Onaylanan işler ve geri bildirimler (ekibin öğrendikleri) |
+| `teslimler/` | Ekibin teslim ettiği işler |
