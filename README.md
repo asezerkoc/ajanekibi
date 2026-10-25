@@ -73,7 +73,16 @@ Grafiker resim ya da video dosyası üretmez. Üç şey teslim eder:
 2. **Görsel komutları:** her sahnenin arka planı için, görsel üretme araçlarına (Midjourney, Ideogram, Flux vb.) yapıştırılacak İngilizce komutlar.
 3. **Remotion kodu:** `skills/remotion-effects/` kütüphanesindeki efektlerle yazılmış video kodu.
 
-Görselleri üretip Remotion projesinin `public/` klasörüne koyduktan sonra `npx remotion render` ile video çıkar.
+Video stüdyosu `video/` klasöründe hazır: 22 efektin hepsi `video/src/effects/` altında kurulu. Örnek olarak `video/src/sahneler/Tanitim.tsx` içinde 18 saniyelik bir SKONSTART tanıtım videosu var.
+
+```sh
+cd video
+npm install                     # ilk seferde
+npm run dev                     # Remotion Studio: videoları tarayıcıda önizle
+npx remotion render src/index.ts Tanitim out/tanitim.mp4
+```
+
+Grafikerin kodunu `video/src/sahneler/` altına kaydet, `video/src/Root.tsx` içine bir `<Composition>` olarak ekle, görselleri `video/public/` klasörüne koy ve render et.
 
 ## Model
 
@@ -89,6 +98,7 @@ Görselleri üretip Remotion projesinin `public/` klasörüne koyduktan sonra `n
 | `src/ajan_ekibi/crew.py` | Ajanları ve görevleri tanımlar; kalite raporunun biçimi |
 | `src/ajan_ekibi/main.py` | Çalışma akışı: revizyon döngüsü, onay, teslim, hafıza, günlük mod |
 | `src/ajan_ekibi/tools/custom_tool.py` | Grafikerin efekt kütüphanesini okuma aracı |
-| `skills/remotion-effects/` | 22 test edilmiş Remotion efekti |
+| `skills/remotion-effects/` | 22 test edilmiş Remotion efekti (grafikerin başvuru kütüphanesi) |
+| `video/` | Remotion video stüdyosu: kurulu efektler ve sahneler |
 | `hafiza/` | Onaylanan işler ve geri bildirimler (ekibin öğrendikleri) |
 | `teslimler/` | Ekibin teslim ettiği işler |

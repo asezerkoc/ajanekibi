@@ -91,9 +91,10 @@ grafik_gorevi:
     hareket ve ses önerisi.
     2) Görsel üretme komutları: her sahne için İngilizce, tarzın özelliklerini
     anlatan, stüdyo ya da sanatçı adı içermeyen bir komut.
-    3) Remotion kodu: kütüphanedeki bileşenleri kullanan, src/Video.tsx olarak
-    kaydedilebilecek tek bir kompozisyon (görseller public/ klasöründen
-    staticFile ile).
+    3) Remotion kodu: ajansın video/ stüdyosunda video/src/sahneler/<KisaAd>.tsx
+    olarak kaydedilecek tek bir bileşen. Efektleri "../effects/<Bilesen>"
+    yolundan içe aktar (bütün efektler orada kurulu), görselleri
+    video/public/ klasöründen staticFile ile kullan.
   agent: grafiker
 
 kalite_gorevi:
