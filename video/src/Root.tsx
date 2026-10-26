@@ -2,6 +2,7 @@ import React from "react";
 import { Composition } from "remotion";
 import { Tanitim } from "./sahneler/Tanitim";
 import { CengizHan, FPS, TOPLAM_KARE } from "./sahneler/CengizHan";
+import { Kapak } from "./sahneler/Kapak";
 
 export const Root: React.FC = () => (
 	<>
@@ -15,5 +16,6 @@ export const Root: React.FC = () => (
 			height={1920}
 			defaultProps={{ sesler: true }}
 		/>
+		<Composition id="CengizHanKapak" component={Kapak} durationInFrames={1} fps={30} width={1080} height={1920} />
 	</>
 );

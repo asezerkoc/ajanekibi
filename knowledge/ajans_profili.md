@@ -6,6 +6,11 @@ Bu dosya ekibin "beyni". Bütün ajanlar her işte bunu okur. Köşeli parantez 
 
 [Ajansın ne yaptığını 2-3 cümleyle yaz.]
 
+## Sosyal medya
+
+- Instagram: **@pikseltarihim** (profil adı: "Piksel Tarih | Tarih Animasyon")
+- Reels kapakları videonun kendi katmanlarıyla yapılır: büyük başlık, alt başlık, altta logo ve @pikseltarihim; yazılar ortadaki 3:4 alanda kalır (profil ızgarası onu gösterir)
+
 ## Konular
 
 Ekibin günlük gönderilerde işleyeceği konular:
