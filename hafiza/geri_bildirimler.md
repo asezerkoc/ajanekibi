@@ -5,3 +5,6 @@
 - 2026-10-26 (Cengiz Han animasyonu): Ajans sahibi işi onayladı ve ekibi tebrik etti (64-bit piksel, 60 fps, sesle bire bir senkron).
 - 2026-10-26: Ajans sahibi 64-bit piksel sanatı animasyonu SKONSTART'ın kalıcı imza tarzı olarak belirledi; bundan sonra bütün animasyonlar bu tarzda yapılacak.
 - 2026-10-26: Ajansın kurallarını ajans sahibi belirler; kan ve savaş sahneleri gösterilebilir, ekip bunu kendi başına yasaklamaz. Görseller kodla çizilir; sahip istemedikçe ElevenLabs kullanılmaz.
+- 2026-10-26 (Timur serisi): Timur bölümü 3 videodan oluşan bir seri olacak; önce derin araştırma yapılır (doğrulanmış / tartışmalı / efsane ayrı). Detay istenir: Timur–Yıldırım mektupları, Sivas'ta gömülen (bir kronikçiye göre çoğu Ermeni) savunucular, İzmir kuşatması gibi sahnelik olaylar anlatılsın.
+- 2026-10-26 (Timur serisi): Her bölüm için bir animasyon; animasyon hikâyeyi sahne sahne, detaylı yansıtsın. Fizik kurallarına uyulsun. Kalite kontrol hataları iyice ayıklatsın, gerekirse defalarca revize ettirsin; sahibe yalnızca en son sonuç gösterilsin.
+- 2026-10-26 (Kayıp Mezar): Sahibin ChatGPT'de hazırladığı kapaklar videoya aynen (üstüne bir şey eklemeden) konur; son kapak olarak sahibin "Sence bulunmalı mı?" görseli kullanılacak.

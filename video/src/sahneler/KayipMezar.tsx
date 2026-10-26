@@ -141,10 +141,21 @@ const Yazi: React.FC<{ satirlar: string[]; sure: number; y?: number; boy?: numbe
   );
 };
 
+/* Sahibin hazırladığı son kapak (video/public/kayip-mezar-son-kapak.png) gelince true yapılır; görsel
+   olduğu gibi, üstüne yazı eklenmeden gösterilir (yazı ve logo zaten üstünde). */
+const SAHIBIN_KAPAGI = false;
+
 const Kapanis: React.FC = () => {
   const frame = useCurrentFrame();
   const giris = interpolate(frame, [0, sn(0.5)], [0, 1], { extrapolateRight: "clamp" });
   const nabiz = 1 + Math.round(Math.sin((frame / KM_FPS) * Math.PI * 2) * 2) / 100;
+  if (SAHIBIN_KAPAGI) {
+    return (
+      <AbsoluteFill style={{ opacity: giris, background: "#1a0806" }}>
+        <Img src={staticFile("kayip-mezar-son-kapak.png")} style={{ position: "absolute", left: 0, top: 0, width: W, height: H, objectFit: "cover" }} />
+      </AbsoluteFill>
+    );
+  }
   return (
     <AbsoluteFill style={{ opacity: giris, background: "#1a0806" }}>
       <Img src={staticFile("kapak-cengiz-arka.png")} style={{ ...PIKSEL, left: 0, top: 0, width: W, height: H }} />
