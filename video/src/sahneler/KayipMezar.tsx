@@ -11,11 +11,12 @@ import {
   useCurrentFrame,
 } from "remotion";
 
-/* "Kayıp Mezar": 18 sn'lik ara içerik (seslendirmesiz, ekran yazılı). Cengiz Han bölümünün 7. ve 8.
-   sahnelerini ve savaş kapağını kullanır; müzik paylaşırken Instagram'dan eklenir. */
+/* "Kayıp Mezar": ölüm sonrası hikâyesi, ~40 sn'lik ara içerik (seslendirmesiz, ekran yazılı). Cengiz Han
+   bölümünün sahnelerini ve savaş kapağını kullanır; müzik paylaşırken Instagram'dan eklenir. Kesin olmayan
+   anlatılar ekranda "denir / söylenir" diye işaretlenir. */
 
 export const KM_FPS = 60;
-export const KM_KARE = 18 * KM_FPS;
+
 const sn = (s: number) => Math.round(s * KM_FPS);
 
 const LATIN =
@@ -46,7 +47,7 @@ const snap = (v: number) => Math.round(v / 2) * 2;
 const Sahne: React.FC<{
   no: number;
   sure: number;
-  sprite: { w: number; h: number; adet: number; fps: number; x: number; taban: number };
+  sprite: { dosya?: string; w: number; h: number; adet: number; fps: number; x: number; taban: number; uzak?: boolean };
   kamera: number;
 }> = ({ no, sure, sprite, kamera }) => {
   const frame = useCurrentFrame();
@@ -56,14 +57,19 @@ const Sahne: React.FC<{
   const sw = sprite.w * 2;
   const sh = sprite.h * 2;
   const giris = interpolate(frame, [0, sn(0.5)], [0, 1], { extrapolateRight: "clamp" });
+  // Sprite tabanı zemin (ya da uzak ova) çizgisinde; bulunduğu katmanla aynı hızda kayar
+  const spriteDiv = (hiz: number) => (
+    <div style={{ position: "absolute", left: snap(sprite.x * 2 - sw / 2 + kam * hiz), top: sprite.taban * 2 - sh, width: sw, height: sh, overflow: "hidden" }}>
+      <Img src={staticFile(`sahne${no}-${sprite.dosya ?? "karakter"}.png`)} style={{ ...PIKSEL, left: -kare * sw, top: 0, width: sw * sprite.adet, height: sh }} />
+    </div>
+  );
   return (
     <AbsoluteFill style={{ opacity: giris, background: "#120806", overflow: "hidden" }}>
       <Img src={staticFile(`sahne${no}-gokyuzu.png`)} style={{ ...PIKSEL, left: snap(kam * 0.1), top: 0, width: W, height: H }} />
       <Img src={staticFile(`sahne${no}-uzak.png`)} style={{ ...PIKSEL, left: snap(kam * 0.3), top: 0, width: W, height: H }} />
+      {sprite.uzak ? spriteDiv(0.3) : null}
       <Img src={staticFile(`sahne${no}-orta.png`)} style={{ ...PIKSEL, left: snap(-270 + kam * 0.65), top: 0, width: 1620, height: H }} />
-      <div style={{ position: "absolute", left: snap(sprite.x * 2 - sw / 2 + kam * 0.65), top: sprite.taban * 2 - sh, width: sw, height: sh, overflow: "hidden" }}>
-        <Img src={staticFile(`sahne${no}-karakter.png`)} style={{ ...PIKSEL, left: -kare * sw, top: 0, width: sw * sprite.adet, height: sh }} />
-      </div>
+      {sprite.uzak ? null : spriteDiv(0.65)}
       <Img src={staticFile(`sahne${no}-on.png`)} style={{ ...PIKSEL, left: snap(-270 + kam * 1.25), top: 0, width: 1620, height: H }} />
       {/* yazı için üstte basamaklı koyulaşma */}
       {[0, 1, 2].map((i) => (
@@ -118,34 +124,92 @@ const Kapanis: React.FC = () => {
         src={staticFile("logo-pikseltarihim.png")}
         style={{ position: "absolute", left: W / 2 - 170, top: 300, width: 340, height: 340, transform: `scale(${nabiz})` }}
       />
-      <Yazi satirlar={["Hikâyenin tamamı", "profilde 👉", "@pikseltarihim"]} sure={sn(5)} y={760} boy={104} renk={ALTIN} />
+      <Yazi satirlar={["Sence bulunmalı mı? 🤔"]} sure={sn(6)} y={700} boy={112} renk={KREM} />
+      <Yazi satirlar={["Tüm hikâye profilde 👉", "@pikseltarihim"]} sure={sn(6)} y={860} boy={92} renk={ALTIN} />
     </AbsoluteFill>
   );
 };
 
-export const KayipMezar: React.FC = () => (
-  <AbsoluteFill style={{ background: "#120806" }}>
-    <Sequence from={0} durationInFrames={sn(6.6)}>
-      <Sahne no={7} sure={sn(6.6)} kamera={30} sprite={{ w: 192, h: 160, adet: 6, fps: 4, x: 270, taban: 600 }} />
-    </Sequence>
-    <Sequence from={sn(6.4)} durationInFrames={sn(6.8)}>
-      <Sahne no={8} sure={sn(6.8)} kamera={20} sprite={{ w: 140, h: 140, adet: 6, fps: 5, x: 236, taban: 640 }} />
-    </Sequence>
-    <Sequence from={sn(13)} durationInFrames={sn(5)}>
-      <Kapanis />
-    </Sequence>
+type Bolum = {
+  no: number;
+  kamera: number;
+  sprite: { dosya?: string; w: number; h: number; adet: number; fps: number; x: number; taban: number; uzak?: boolean };
+  yazilar: { satirlar: string[]; sure: number; boy?: number; renk?: string }[];
+};
 
-    <Sequence from={sn(0.3)} durationInFrames={sn(2.9)}>
-      <Yazi satirlar={["1227.", "Cengiz Han öldü."]} sure={sn(2.9)} boy={120} renk={ALTIN} />
-    </Sequence>
-    <Sequence from={sn(3.3)} durationInFrames={sn(3.2)}>
-      <Yazi satirlar={["Cenazesini görenlerin", "öldürüldüğü söylenir…"]} sure={sn(3.2)} />
-    </Sequence>
-    <Sequence from={sn(6.7)} durationInFrames={sn(3.2)}>
-      <Yazi satirlar={["Mezarın üstünden atlar", "sürülüp izler silindi,", "denir."]} sure={sn(3.2)} />
-    </Sequence>
-    <Sequence from={sn(10)} durationInFrames={sn(3)}>
-      <Yazi satirlar={["800 yıldır", "kimse bulamadı."]} sure={sn(3)} boy={120} renk={ALTIN} />
-    </Sequence>
-  </AbsoluteFill>
-);
+const BOLUMLER: Bolum[] = [
+  {
+    no: 6, kamera: 30, sprite: { w: 360, h: 120, adet: 8, fps: 5, x: 220, taban: 630 },
+    yazilar: [{ satirlar: ["Ağustos 1227."], sure: 2, boy: 124, renk: ALTIN }, { satirlar: ["Cengiz Han,", "Batı Xia seferindeyken", "öldü."], sure: 3.2 }],
+  },
+  {
+    no: 7, kamera: 24, sprite: { w: 192, h: 160, adet: 6, fps: 4, x: 270, taban: 600 },
+    yazilar: [{ satirlar: ["Ölümü bir süre", "ordudan gizlendi,", "denir."], sure: 4.4 }],
+  },
+  {
+    no: 3, kamera: 30, sprite: { dosya: "karakter2", w: 248, h: 68, adet: 6, fps: 4, x: 300, taban: 510, uzak: true },
+    yazilar: [
+      { satirlar: ["Cenaze kafilesi", "doğduğu bozkırlara", "yola çıktı…"], sure: 3.4 },
+      { satirlar: ["Yolda onları görenlerin", "öldürüldüğü", "söylenir."], sure: 3.6, renk: "#ff8a6a" },
+    ],
+  },
+  {
+    no: 8, kamera: 16, sprite: { w: 140, h: 140, adet: 6, fps: 5, x: 236, taban: 640 },
+    yazilar: [{ satirlar: ["Kutsal Burhan Haldun", "Dağı'nın eteklerine", "gömüldüğü düşünülüyor."], sure: 4.4 }],
+  },
+  {
+    no: 4, kamera: 40, sprite: { w: 340, h: 150, adet: 8, fps: 9, x: 300, taban: 630 },
+    yazilar: [{ satirlar: ["Mezarın üstünden", "yüzlerce at sürüldü,", "izler silindi, denir."], sure: 4.6 }],
+  },
+  {
+    no: 5, kamera: 24, sprite: { w: 160, h: 224, adet: 6, fps: 6, x: 270, taban: 600 },
+    yazilar: [
+      { satirlar: ["Bölge yüzyıllarca", "\"Büyük Yasak\" oldu."], sure: 2.6, renk: ALTIN },
+      { satirlar: ["Oraya girmek", "yasaktı."], sure: 2.4 },
+    ],
+  },
+  {
+    no: 8, kamera: -16, sprite: { w: 140, h: 140, adet: 6, fps: 5, x: 236, taban: 640 },
+    yazilar: [
+      { satirlar: ["Bugün uydularla", "bile aranıyor…"], sure: 2.6 },
+      { satirlar: ["Ama 800 yıldır", "bulunamadı."], sure: 2.8, boy: 116, renk: ALTIN },
+    ],
+  },
+];
+
+const ARA = 0.25; // sahneler arası örtüşme (çapraz geçiş)
+const SAHNE_SURELERI = BOLUMLER.map((b) => b.yazilar.reduce((t, y) => t + y.sure, 0) + 0.5);
+const KAPANIS = 6;
+export const KM_SURE = SAHNE_SURELERI.reduce((a, b) => a + b, 0) + KAPANIS;
+export const KM_KARE = Math.round(KM_SURE * KM_FPS);
+
+export const KayipMezar: React.FC = () => {
+  let t = 0;
+  const parcalar: React.ReactNode[] = [];
+  BOLUMLER.forEach((b, i) => {
+    const sure = SAHNE_SURELERI[i];
+    parcalar.push(
+      <Sequence key={`s${i}`} from={sn(t)} durationInFrames={sn(sure + ARA)}>
+        <Sahne no={b.no} sure={sn(sure + ARA)} kamera={b.kamera} sprite={b.sprite} />
+      </Sequence>,
+    );
+    let ty = t + 0.3;
+    b.yazilar.forEach((y, j) => {
+      parcalar.push(
+        <Sequence key={`y${i}-${j}`} from={sn(ty)} durationInFrames={sn(y.sure)}>
+          <Yazi satirlar={y.satirlar} sure={sn(y.sure)} boy={y.boy} renk={y.renk} />
+        </Sequence>,
+      );
+      ty += y.sure;
+    });
+    t += sure;
+  });
+  return (
+    <AbsoluteFill style={{ background: "#120806" }}>
+      {parcalar}
+      <Sequence from={sn(t)} durationInFrames={sn(KAPANIS)}>
+        <Kapanis />
+      </Sequence>
+    </AbsoluteFill>
+  );
+};
