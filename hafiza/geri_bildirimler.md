@@ -4,3 +4,4 @@
 - 2026-10-26 (Cengiz Han animasyonu): Seslendirme videoya bire bir uyumlu olsun; gerekirse video sesle aynı uzunlukta yapılsın.
 - 2026-10-26 (Cengiz Han animasyonu): Ajans sahibi işi onayladı ve ekibi tebrik etti (64-bit piksel, 60 fps, sesle bire bir senkron).
 - 2026-10-26: Ajans sahibi 64-bit piksel sanatı animasyonu SKONSTART'ın kalıcı imza tarzı olarak belirledi; bundan sonra bütün animasyonlar bu tarzda yapılacak.
+- 2026-10-26: Ajansın kurallarını ajans sahibi belirler; kan ve savaş sahneleri gösterilebilir, ekip bunu kendi başına yasaklamaz. Görseller kodla çizilir; sahip istemedikçe ElevenLabs kullanılmaz.

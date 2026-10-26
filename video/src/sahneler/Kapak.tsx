@@ -148,3 +148,20 @@ export const KapakPortre: React.FC = () => (
     <Yazi metin="Bozkırın Çocuğu" boy={100} y={1572} renk={ALTIN} kontur={7} />
   </AbsoluteFill>
 );
+
+/* Savaş kapağı (sahibin örneğine göre): atının üstünde kanlı kılıçlı Cengiz Han, kızıl gün batımı, ordu
+   (kapak-cengiz-arka.png). Logo sağ üstte koyu gökte, başlık altta; ikisi de ortadaki 3:4 alanda. */
+export const KapakSavas: React.FC = () => (
+  <AbsoluteFill style={{ background: "#1a0806", overflow: "hidden" }}>
+    <Img src={staticFile("kapak-cengiz-arka.png")} style={{ ...PIKSEL, left: 0, top: 0, width: W, height: H }} />
+    <Img
+      src={staticFile("logo-pikseltarihim.png")}
+      style={{ position: "absolute", left: 790, top: 262, width: 250, height: 250, filter: "drop-shadow(0 6px 0 rgba(20,8,4,0.8))" }}
+    />
+    {[0, 1, 2].map((i) => (
+      <div key={`a${i}`} style={{ position: "absolute", left: 0, top: 1290 + i * 30, width: W, height: 400 - i * 60, background: "rgba(20,8,4,0.22)" }} />
+    ))}
+    <Yazi metin="CENGİZ HAN" boy={210} y={1330} kontur={10} />
+    <Yazi metin="Bozkırın Çocuğu" boy={96} y={1545} renk={ALTIN} kontur={7} />
+  </AbsoluteFill>
+);

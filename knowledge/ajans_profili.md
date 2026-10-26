@@ -41,7 +41,7 @@ Görünüm
 - Figürlerin dışında 1 piksel koyu kontur, üst kenarında ışık, alt kenarında gölge
 - Titreşimli (dither) renk geçişli gökyüzü; sıcak, pastel ve doğal palet (altın saat, gün batımı, alacakaranlık)
 - Bol doğa: rüzgârda sallanan çimen, kabarık piksel bulutlar, dokulu ve derinlikli çayır
-- Sakin, nostaljik ve umut veren bir duygu; şiddet gösterilmez, bedel sembolle anlatılır
+- Sakin, nostaljik ya da destansı bir duygu; savaş ve şiddetin ne kadar gösterileceğine ajans sahibi karar verir (kan gösterilebilir)
 
 Hareket
 - 60 fps, akıcı; sahneler katmanlı: gökyüzü, uzak plan, orta plan, karakterler, ön plan ayrı katmanlar ve paralaks
