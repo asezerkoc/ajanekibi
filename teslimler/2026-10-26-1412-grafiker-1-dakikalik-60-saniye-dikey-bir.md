@@ -1,7 +1,7 @@
 # SKONSTART teslimi
 
 - **İş:** Grafiker 1 dakikalık (60 saniye) dikey bir animasyon hazırlasın. Konusu: Cengiz Han'ın hayatı, doğumundan ölümüne kadar, hikaye şeklinde anlatılsın.
-- **Tarih:** 2026-10-26 14:12
+- **Tarih:** 2026-10-26 15:05
 - **Durum:** ONAY BEKLİYOR
 - **Kalite kontrol:** uygun
 
@@ -73,99 +73,279 @@ Kahraman mı, yıkıcı mı? Belki de ikisinin gölgesinde geçen bir hayat.
 
 ## 🟢 Grafiker · Animasyon ve grafik
 
-# "Bozkırın Çocuğu": Cengiz Han'ın Hayatı (60 sn, 1080×1920, 30 fps), revize 2
+# "Bozkırın Çocuğu": Cengiz Han'ın Hayatı (60 sn, 1080×1920, 60 fps, 3600 kare), revize 4, Ghibli-esinli sulu boya
 
 ## Revizyon özeti
 
-| # | Not | Ne yaptım |
-|---|---|---|
-| 1 | Sahne 8 odağı altyazının altında kalıyordu | Taş yığını ve çiçek kadrajın %30 x, %62 y noktasına (≈ y 1190 px) taşındı. `PullBackReveal focusY` 62 oldu. Komuttaki "lower left foreground" ifadesi "left, in the middle ground" oldu. Tüm sahnelerde kadrajın alt çeyreği "önemli nesne yok" bölgesi olarak komutlara yazıldı. |
-| 2 | Tablo ile komut çelişiyordu | Karar: **boş eyerli at**. Tablo ve komut aynı. |
-| 3 | DoodleBoil açıklaması ile kod farklıydı | Kod `hold={2}` oldu, tek sabitten (`BOIL_HOLD`) okunuyor. Metin "iki karede bir" ile uyumlu. |
-| 4 | Doğrulama | **Bu ortamda Remotion render aracım yok, kareleri render edemedim.** Bu yüzden "render ettim, doğru çıktı" demiyorum. Kodu satır satır inceledim ve incelemede bulduğum üç gerçek hatayı düzelttim (aşağıda). Render komutlarını ve geçme ölçütlerini Bölüm 4'e yazdım. |
-| 5 | Altyazı çizgisi | `KineticCaptions` çizgi rengi için prop sunmuyor. Efekt dosyasına dokunmadan, sarmalayıcıda küçük bir CSS geçersiz kılma ile çizgi sıcak kahverengiye çekildi. |
+**Bu ortamda Remotion render aracım ve görsel üretme aracım yok.** Hiçbir kare render etmedim, hiçbir görsel üretmedim. Aşağıdaki geçme ölçütleri görsel olarak onaylanmış değildir. Kodu ve zemin hesaplarını satır satır inceledim.
 
-**İncelemede bulup düzelttiğim hatalar:**
-- **Yazı tipleri hiç yüklenmiyordu.** Önceki kod Caveat ve Montserrat adlarını yazıyordu ama yüklemiyordu. Render yedek fonta düşecekti. Şimdi `@remotion/google-fonts` ile yükleniyor. **`latin-ext` alt kümesi şart**, çünkü ğ, ş, İ, ı bu kümede.
-- **Türkçe büyük harf güvenliği.** `lang="tr"` tarayıcıya bağlıydı. Artık kelimeler `toLocaleUpperCase("tr-TR")` ile önceden büyütülüyor. Efektin `text-transform: uppercase` kuralı zaten büyük olan metne bir şey yapmaz. TEMÜÇİN ve BİLİNMİYOR bu şekilde doğru çıkar.
-- **Altyazı yazı boyutu.** `fontSize` 76'dan 72'ye indi. "MÜTTEFİKLERİYLE" gibi uzun kelimeler 1080 px genişlikte taşmasın diye.
+İşin başlığındaki "30 fps" ifadesini revizyon notundaki "60 fps ve 3600 kare" kararıyla çelişmesin diye uygulamadım. 60 fps kaldı.
+
+| # | Notun maddesi | Ne yaptım |
+|---|---|---|
+| 1a | Tarz profille çelişiyor | Bütün görsel komutlarını baştan yazdım. Hepsinde sulu boya ve guaj dokusu, kâğıt greni, yumuşak kenar, altın saat ışığı, pastel doğal palet ve sakin, nostaljik his var. Stüdyo ya da sanatçı adı geçmiyor. Her komutta ayrıca "no hard outlines, no pixelation" yazıyor. |
+| 1b | Piksel kalıntıları | `pixelated`, alfa eşikleyen `piksel-sert` filtresi, kare piksel çimen ve parçacıklar, 3 px ızgara yuvarlamaları ve dama dithering'i koddan çıktı. Yerlerine şunlar geldi: yumuşak, uçlu çimen yaprakları, radyal gradyanlı yuvarlak parçacıklar, gradyan gölge ve kâğıt dokusu katmanı. |
+| 1c | Yazı tipi | Ekran metni **Patrick Hand** (el yazısı). Altyazı **Nunito 800** (yumuşak, yuvarlak). İkisi de `latin` + `latin-ext` ile yükleniyor (ğ, ş, İ, ı). |
+| 2a | Zemin çizgisi | Her sahnede tek bir `zemin` (yakın zemin) tanımladım. Uzak zeminde duran nesneler için ayrıca `ufuk` var. Değerler kaynak pikselidir (ızgara birimi). |
+| 2b | Taban hizası | Sprite'lar artık merkezle değil tabanla konumlanıyor: `top = (tabanY − kareH) × ölçek`. Sprite sheet'lerde her karenin en alt satırı zemin satırıdır. Ayak, toynak, tekerlek, yurt ve kule tabanı o satıra değer. |
+| 2c | Çiçek ve taş | Sahne 8'de taş yığını ve çiçek aynı `zemin` çizgisine (y=640) oturuyor. |
+| 2d | Duman | Sahne 6'daki duman, şehir sprite'ının içine alındı. Şehir ve duman tek sheet'te: duman çatı hizasından çıkıyor, tabanı da şehirle aynı çizgide. Ayrı bir `karakter2` duman sprite'ı yok. |
+| 2e | Toz | Toz artık yerden doğuyor. Parçacıklar sprite'ın tabanında doğup yükselerek solar. Havada rastgele dolaşan toz yok. |
+| 2f | Alt çeyrek | Önceki tasarımda orta planın alt çeyreği şeffaftı, arkada gökyüzü görünüyordu. Bu da zemin hissini bozardı. Orta plan artık zemin üst kenarından görüntünün altına kadar opak. |
+| 2g | Ön plan otları | Ön plan otları yalnızca alt kenara kök salıyor. Eski komuttaki "sol ve sağ kenar" ifadesi otları yan kenarda havada bırakabilirdi, kaldırıldı. |
+| 3 | Render | Render edemedim. Bölüm 4'te kontrol edilecek kareler ve her karedeki taban y değerleri hazır. |
+
+**Korunanlar:** hikâye akışı, 5 ekran metni, CTA, sahne süreleri, 60 fps ve 3600 kare, 9:16 düzen, beş katmanlı paralaks, 0,6 sn çapraz solma, şiddet göstermeme ilkesi. `PullBackReveal`, `DoodleBoil` ve `KineticCaptions` dosyalarına dokunulmadı.
 
 ---
 
 ## 0. Tasarım özeti
 
-**Seçilen efektler (kütüphaneden, değiştirilmeden):**
+| Efekt | Nerede | Not |
+|---|---|---|
+| **PullBackReveal (20)** | Sahne 1: yurt detayından geniş bozkıra çekilme. Sahne 8: taş ve çiçekten sonsuz bozkıra çekilme. İçindeki çocuk, bütün paralaks yığınıdır. | Efekt dosyası değişmedi. Yüksek çözünürlüklü kaynak (4× üretim) gerekir. |
+| **DoodleBoil (09)** | Başlık, 5 ekran metni, Börte dönüş oku, kapanış çağrısı. | Titreşim `hold = FPS/15` = 4 kare. El yazısı ve dalgalı çizgi, yuvarlak uçlu. |
+| **KineticCaptions (19)** | Anlatıcıyla senkron kelime altyazısı. | Yazı tipi ve kontur CSS ile sarmalayıcıdan yumuşatıldı. Efekt dosyası değişmedi. |
 
-| Efekt | Nerede |
-|---|---|
-| **PullBackReveal (20)** | Açılışta yurt detayından geniş bozkıra çekilme. Kapanışta taş ve çiçekten sonsuz bozkıra çekilme. Hikâye kancayla kapanır. |
-| **DoodleBoil (09)** | Elle çizilmiş ekran metinleri, altı çizgileri, Börte dönüş oku, başlık ve kapanış çağrısı. Çizgiler **iki karede bir** (`hold={2}`) titreşir. |
-| **KineticCaptions (19)** | Anlatıcıyla senkron kelime altyazısı, sıcak kahverengi dış çizgiyle. |
+- **Kullanılmayanlar:** ZoomThroughCut ve WhipPan. Beyaz flaş ve sert geçiş, "ani geçiş yok" kuralına aykırı.
+- **Zaman:** `sn(s) = round(s × 60)`. Çapraz geçiş `FADE` = 36 kare.
+- **Hareket ilkeleri:** yumuşak ve yavaş. Gökyüzü ve uzak plan sürekli akar (4 ve 10 px/sn). Kamera sinüsle yumuşatılır.
 
-- **ZoomThroughCut ve WhipPan kullanılmadı.** Beyaz flaş ve sert geçiş "ani, sert geçiş yok" kuralına aykırı. Sahneler 18 karelik (0,6 sn) yumuşak çapraz geçişle birleşir.
-- **Sahne içi hareket:** Yavaş Ken-Burns, rüzgârda sallanan çimen ve süzülen polen/ateş böceği parçacıkları. Hepsi `random("tohum")` ile deterministik.
-- **Dikey uyarlama:** DoodleBoil SVG'si 1920×1080 viewBox'lı. Efekt değişmedi. Dikeyde ortalanıp 0,5625 ölçeğine iner. Çizimler `X()` ve `Y()` dönüştürücüleriyle ekran pikseline göre yerleşir. Satır içi `<svg>` öğesinin kırpma alanı viewBox değil öğenin kendi kutusu (1080×1920) olduğundan, viewBox dışındaki kenar boşluğu da çizilir.
+**Paralaks katsayıları:** gökyüzü 0,10, uzak 0,30, orta ve karakter 0,65, ön plan 1,25.
 
-**Dikey yerleşim bölgeleri (komutlar ve kod buna göre):**
+**Katman sırası (alttan üste):** gökyüzü → uzak → *uzak zemindeki sprite'lar* (kervan, şehir) → orta → *yakın zemindeki sprite'lar* → yerden doğan toz → ön plan.
+
+### Zemin çizgileri (ZEMIN_Y)
+
+Değerler kaynak ızgarası pikselidir. Sahne 1 ve 8'de ızgara 540×960, diğerlerinde 360×640. Ekran y değeri = ızgara y × ölçek (Sahne 1 ve 8'de ×2, diğerlerinde ×3).
+
+| Sahne | ZEMIN_Y (yakın) | Ekran y | UFUK_Y (uzak zemin) | Orta plan üst kenarı | Tabanı bu çizgiye oturan nesneler |
+|---|---|---|---|---|---|
+| 1 | 672 (%70) | 1344 | – | %52–58 | Yurt ve iki at (aynı sprite) |
+| 2 | 400 (%62,5) | 1200 | – | %52–58 | Yurt |
+| 3 | 400 | 1200 | 340 (%53) → ekran 1020 | %58–60 | Yürüyen aile (ZEMIN). Kervan tekerlekleri (UFUK) |
+| 4 | 420 (%65,6) | 1260 | – | %50–56 | Atlı kafile |
+| 5 | 400 | 1200 | – | %50–56 | Tuğ direği |
+| 6 | 420 | 1260 | 345 (%54) → ekran 1035 | %58–60 | Atlı kolonu (ZEMIN). Şehir ve duman (UFUK) |
+| 7 | 400 | 1200 | – | %52–58 | Boş eyerli at. Yaşlı ağacın gövde tabanı aynı çizgide |
+| 8 | 640 (%66,7) | 1280 | – | %52–58 | Taş yığını ve çiçek |
+
+Bütün odak nesneleri altyazı bandının (y≈1450) ve alt gölgenin (y≈1300'den başlar) üstünde kalır.
+
+**Zemin kuralları**
+1. Sprite sheet'te her karenin en alt satırı zemin satırıdır. Ayak, toynak, tekerlek, tuğ direği ve yurt tabanı o satıra değer. Gölge de en alttaki birkaç satıra sıkışık, ince bir şerittir.
+2. Orta plan, üst kenarından görüntünün altına kadar opaktır. Üst kenarın altındaki bölge boyalı çayırdır, şeffaf alan kalmaz.
+3. Uzak plan, tepe silüetinden %62'ye kadar opaktır. Orta planın üst kenarı bu bölgenin alt kısmını örter.
+4. Sahne 3 ve 6'da uzak plan %50–62 arasında **düz ve özelliksiz bir ova** taşır. Kervan ve şehir tabanları bu ovaya (UFUK_Y) oturur.
+5. Hareket eden sprite'ların tabanı yürüyüş boyunca aynı çizgide kalır. Yalnızca atların dörtnalındaki hafif zıplama sprite karelerinin içindedir.
+6. Duman yukarı çıkar. Toz yerden doğar, yükselir ve solar.
+7. Polen, ateş böceği ve yıldız sürekli hareket eden doğa ögeleridir. Hiçbiri sabit durmaz. Yıldızlar yalnızca gökte, üst %30'da.
+
+**Dikey yerleşim bölgeleri (değişmedi)**
 
 | Bölge | y (px) | İçerik |
 |---|---|---|
-| Üst gökyüzü | 0–640 | Ekran metni (y≈250–450), başlık (y≈330), CTA (y≈300–410). Görselde sakin gökyüzü. |
-| Odak bölgesi | 640–1400 | Hikâyenin ana nesneleri: yurt, aile, atlılar, tuğ, şehir, at, taş yığını. |
-| Altyazı bölgesi | ≈1450–1700 | KineticCaptions (alt boşluk 220 px). Alt gradyan bu bölgede başlar (y≈1420'den itibaren). Görselde önemli nesne yok. |
-| Çimen | >1760 | Rüzgârda sallanan çimen şeridi. |
+| Üst gökyüzü | 0–640 | Ekran metni (y≈250–450), başlık (y≈330), CTA (y≈300–410) |
+| Odak bölgesi | 640–1400 | Yurt, aile, atlılar, tuğ, şehir, at, taş yığını |
+| Altyazı bölgesi | ≈1450–1700 | KineticCaptions (alt boşluk 220 px). Alt gölge y≈1300'den başlar. |
+| Çimen | >1760 | Yumuşak, rüzgârda sallanan çimen şeridi |
 
 ---
 
 ## 1. Sahne planı
 
-Anlatıcı ≈ 2,4 kelime/sn (≈ 145 kelime/dk), toplam ≈ 130 kelime.
+Anlatıcı ≈ 2,4 kelime/sn. Toplam ≈ 130 kelime. Kareler 60 fps.
 
-| # | Süre | Kareler | Efekt | Ekrandaki yazı | Hareket | Ses |
+| # | Süre (sn) | Kareler | Efekt | Ekrandaki yazı | Hareket | Ses |
 |---|---|---|---|---|---|---|
-| 1 | 0,0–5,0 sn (5 sn) | 0–150 | **PullBackReveal** (yurt ×3,2 → geniş bozkır), DoodleBoil başlık, KineticCaptions | Başlık: "Bozkırın Çocuğu" (3,3. sn'de elle yazılmış gibi belirir). Altyazı: kanca cümlesi | Yurdun bacasından duman ve sıcak ışık. Kamera 3 sn'de yavaşça geri çekilir, −3° dönüşle yerine oturur. | Rüzgâr ambiyansı, tek uzun yaylı (morin khuur esintili) nota. Anlatıcı 0,3. sn'de başlar. |
-| 2 | 5,0–9,0 sn (4 sn) | 150–270 | DoodleBoil ekran metni, KineticCaptions, Ken-Burns | **"Yaklaşık 1162. / Bozkırda bir çocuk doğdu."** (altı çizili) | Yurt kapısındaki sıcak ışığa yavaş yakınlaşma, çimenler sallanır. | İnce çan, hafif bebek nefesi. Müzik açılır. |
-| 3 | 9,0–16,4 sn (7,4 sn) | 270–492 | DoodleBoil ekran metni, KineticCaptions, Ken-Burns (soldan sağa kayma) | **"Babasız, kabilesiz büyüdü."** | Rüzgârlı bozkırda yürüyen küçük aile. Uzaktaki kabile ufukta küçülür. Ton biraz serinler. | Rüzgâr güçlenir, tek enstrümanlı hüzünlü müzik. |
-| 4 | 16,4–25,0 sn (8,6 sn) | 492–750 | DoodleBoil (elle çizilmiş dönüş oku), KineticCaptions, Ken-Burns | Ekran metni yok (onaylı listede yok). Yalnızca ok ve altyazı | Atlılar sağdan sola, altın ışıkta eve döner. Ok ≈2 sn'de çizilir. Toz ve çimen akar. | Uzaktan yumuşak nal sesi, müzik umutla yükselir. |
-| 5 | 25,0–34,4 sn (9,4 sn) | 750–1032 | DoodleBoil ekran metni, KineticCaptions, Ken-Burns (yavaş yakınlaşma) | **"1206: “Cengiz Han” dediler."** | Kurultay vadisi: çadırlar, ortada beyaz tuğ, dalgalanan flamalar. Gün doğumu ışığı. | Uzak kalabalık mırıltısı. Müzik yükselir (en parlak an). |
-| 6 | 34,4–43,4 sn (9 sn) | 1032–1302 | DoodleBoil ekran metni, KineticCaptions, Ken-Burns (yavaş geri çekilme hissi) | **"Şehirler düştü. / Bedeli ağır oldu."** | Uzakta surlu şehir, ufukta ince duman sütunları. Tozlu kehribar gökyüzü, ağırbaşlı ton. Şiddet gösterilmez. | Müzik tek notaya iner, rüzgâr alçalır. |
-| 7 | 43,4–51,5 sn (8,1 sn) | 1302–1545 | DoodleBoil ekran metni, KineticCaptions, Ken-Burns | **"1227'de öldü. / Mezarı hâlâ bilinmiyor."** | Tepede, yaşlı bir ağacın altında **boş eyerli, sahipsiz bir at**. Alacakaranlık, lavanta ve amber gökyüzü. | Müzik sönümlenir. İnce çan veya tek yaylı nota. |
-| 8 | 51,5–60,0 sn (8,5 sn) | 1545–1800 | **PullBackReveal** (taş ve çiçek ×3 → sonsuz bozkır, odak %30 x, **%62 y**), DoodleBoil CTA, KineticCaptions | 56,2. sn'den itibaren **"Sıradaki karakter? / Timur mu, Attila mı?"** | Kamera geri çekilir, ilk yıldızlar belirir. Taş ve çiçek kadrajın orta bölgesinde (≈ y 1190), altyazının üstünde kalır. | Müzik son akoru çalar, rüzgâr sessizce biter. |
+| 1 | 0,0–5,0 (5) | 0–300 | **PullBackReveal** (yurt ×3,2 → geniş, 0,33. sn'de başlar, 3 sn sürer), DoodleBoil başlık, KineticCaptions | Başlık "Bozkırın Çocuğu" (3,35. sn'de belirir). Altyazı: kanca. | Yurt sprite'ında duman bacadan yukarı kıvrılır, atlar otlar. Bulutlar ve uzak tepeler yavaş akar. Polen süzülür. | Rüzgâr, tek uzun yaylı nota. Anlatıcı 0,3. sn'de başlar. |
+| 2 | 5,0–9,0 (4) | 300–540 | DoodleBoil, KineticCaptions, paralaks | **"Yaklaşık 1162. / Bozkırda bir çocuk doğdu."** (5,8–9,0 sn) | Yurt kapısında fener ışığı titrer, kapıda anne ve bebek silüeti. Kamera yavaşça sola kayar. | İnce çan, hafif bebek nefesi. Müzik açılır. |
+| 3 | 9,0–16,4 (7,4) | 540–984 | DoodleBoil, KineticCaptions, paralaks | **"Babasız, kabilesiz büyüdü."** (9,85–16,4 sn) | Anne ve üç çocuk yürür (ayakları yere basar, tabanları aynı çizgide). Ufuktaki ova üzerinde kabile kervanı uzaklaşıp sisle solar. Ayaklarının altından hafif toz kalkar. Serin ton. | Rüzgâr güçlenir, hüzünlü tek enstrüman. |
+| 4 | 16,4–25,0 (8,6) | 984–1500 | DoodleBoil (dalgalı dönüş oku, 17,35. sn'de çizilmeye başlar), KineticCaptions | Ekran metni yok. Yalnızca ok ve altyazı. | Atlılar sağdan sola ilerler, toynakları yere değer, arkalarında yerden toz kalkar. Arka planlar sağa akar. Şiddet yok. | Yumuşak nal sesi, müzik umutla yükselir. |
+| 5 | 25,0–34,4 (9,4) | 1500–2064 | DoodleBoil, KineticCaptions, paralaks | **"1206: “Cengiz Han” dediler."** (26,0–34,4 sn) | Kurultay vadisi. Ortadaki beyaz tuğ ve flamalar dalgalanır. Gün doğumu. | Uzak kalabalık, müzik en parlak anında. |
+| 6 | 34,4–43,4 (9) | 2064–2604 | DoodleBoil, KineticCaptions, paralaks | **"Şehirler düştü. / Bedeli ağır oldu."** (37,85–43,4 sn) | Atlı ve yük atı kolonu surlu şehre yürür. Şehrin çatılarından iki ince duman sütunu yükselir. Tozlu kehribar gökyüzü. Şiddet yok. | Müzik tek notaya iner, rüzgâr alçalır. |
+| 7 | 43,4–51,5 (8,1) | 2604–3090 | DoodleBoil, KineticCaptions, paralaks | **"1227'de öldü. / Mezarı hâlâ bilinmiyor."** (44,0–51,5 sn) | Yaşlı ağacın yanında **boş eyerli at** durur: kulak ve kuyruk kıpırdar. Ateş böcekleri süzülür. Alacakaranlık. | Müzik sönümlenir, ince çan. |
+| 8 | 51,5–60,0 (8,5) | 3090–3600 | **PullBackReveal** (taş ve çiçek ×3 → bozkır, odak **%30 x, %64 y**), DoodleBoil CTA, KineticCaptions | 56,2. sn'den itibaren **"Sıradaki karakter? / Timur mu, Attila mı?"** | Taşın yanında yerde duran çiçek rüzgârda sallanır. İlk yıldızlar yanıp söner. Taş ve çiçek tabanı y=1280'de, altyazının üstünde. | Son akor, rüzgâr sessizce biter. |
 
 **Notlar**
-- Uzun CTA sorusu ("Sence bir insanı tarihe geçiren şey…") 3,7 sn'lik kuyruğa sığmadığı için videoya konmadı, gönderi açıklamasında kalıyor. Videoda yalnızca Timur/Attila oylaması var.
-- Altyazı zamanlaması şimdilik pencereye kelime uzunluğuyla orantılı dağıtılıyor. Gerçek seslendirme gelince `ANLATIM` zamanlarını ya da kelime listesini Whisper zaman damgalarıyla değiştirin. `KineticCaptions` `{text, startMs, endMs}` bekler.
-- Sahne 8'de PullBackReveal 1669. karede biter ("Kahraman mı, yıkıcı mı?" altyazısı 1550–1687 arası). Taş ve çiçek artık altyazı ve gradyanın üstünde olduğundan son duygusal vuruş görünür kalır.
+- Sahne 8 çekilmesi 3078. karede başlar, 3338. karede biter.
+- Uzun CTA sorusu ("Sence bir insanı tarihe geçiren şey…") videoya konmadı, gönderi açıklamasında kalıyor.
+- Altyazı zamanlaması kelime uzunluğuna göre dağıtılıyor. Seslendirme gelince `ANLATIM` zamanlarını Whisper çıktısıyla değiştirin.
+
+### Sprite tablosu
+
+Sprite'lar tabanla konumlanır. `x` kare merkezidir (ızgara birimi). Dikey konum yalnızca zemin çizgisinden gelir.
+
+| Sahne | Sprite dosyası | Kare (ızgara px) × adet | fps | x (başlangıç→bitiş) | Taban çizgisi |
+|---|---|---|---|---|---|
+| 1 | `sahne1-karakter.png` | 144×144 × 8 | 8 | 367 → 367 (≈%68) | ZEMIN 672 |
+| 2 | `sahne2-karakter.png` | 96×96 × 6 | 6 | 180 → 180 | ZEMIN 400 |
+| 3 | `sahne3-karakter.png` (aile) | 64×40 × 8 | 8 | 70 → 250 | ZEMIN 400 |
+| 3 | `sahne3-karakter2.png` (kervan) | 120×32 × 6 | 4 | 250 → 170, opaklık 1→0,4 | UFUK 340 |
+| 4 | `sahne4-karakter.png` | 128×56 × 8 | 8 | 320 → 130 | ZEMIN 420 |
+| 5 | `sahne5-karakter.png` (tuğ) | 80×112 × 6 | 6 | 180 → 180 | ZEMIN 400 |
+| 6 | `sahne6-karakter.png` (kolon) | 144×48 × 8 | 8 | 20 → 170 | ZEMIN 420 |
+| 6 | `sahne6-karakter2.png` (şehir ve duman) | 144×120 × 8 | 4 | 252 → 252 | UFUK 345 |
+| 7 | `sahne7-karakter.png` (at) | 96×80 × 6 | 4 | 162 → 162 | ZEMIN 400 |
+| 8 | `sahne8-karakter.png` (çiçek) | 64×64 × 6 | 5 | 212 → 212 | ZEMIN 640 |
 
 ---
 
 ## 2. Görsel üretme komutları
 
-Hepsi dikey (9:16) ve **metinsiz**. Önerilen çözünürlük 2160×3840. Sahne 1 ve 8 ×3 yakınlaştığı için en yüksek çözünürlükte üretilmeli. Dosyalar `video/public/` altına kaydedilir. Her komut, altyazı bölgesi için alt çeyreği önemli detaydan arındırır.
+Hepsi 9:16 ya da sprite oranında, metinsiz. Stüdyo ya da sanatçı adı yok. Her katmanın komutu ayrı ve kendi içinde tamdır.
 
-**Sahne 1: `sahne1-bozkir-yurt.png`** (yurt, kadrajın %68 x, %62 y noktasında)
-> Vertical 9:16 hand-painted watercolor and gouache background painting of a vast Mongolian steppe at golden hour. A tiny round felt tent (ger) with a thin wisp of smoke from its chimney sits in the lower right third, at about 68% across and 62% down the frame, with a few grazing horses near it. Rolling hills in grass green and warm ochre, huge fluffy cumulus clouds in a soft sky blue and cream sky. The upper quarter of the image is calm open sky. The lowest quarter is only soft tall grass and a few tiny wildflowers, with no important details. Visible paper grain, soft brush strokes, hand-drawn animation background look, warm low sunlight, pastel natural palette, calm nostalgic hopeful mood. No text, no letters, no people close-up, no modern objects.
+**Üretim ve işleme notları**
+- **Dosya boyutu = ızgara × URET.** Sahne 2–7'de URET = 3, Sahne 1 ve 8'de URET = 4.
+  - Normal sahnelerde gökyüzü ve uzak 1080×1920, orta ve ön plan 1620×1920.
+  - Sahne 1 ve 8'de gökyüzü ve uzak 2160×3840, orta ve ön plan 3240×3840.
+  - Sprite kare boyutu = ızgara boyutu × URET.
+- Üretilen görseli bu boyuta ölçekleyin veya kırpın. Sprite sheet'te kare sınırları tam tutmalı, kareler arasında boşluk olmamalı.
+- Dikişsiz tile'larda sol ve sağ kenarın eşleştiğini yarım kaydırarak kontrol edin.
+- Aynı sahnenin katmanları ortak bir palet ve aynı ışık yönünü paylaşmalı.
+- Zemin hizası: orta planı, uzak planı ve sprite sheet'leri aşağıdaki komutlardaki yüzdelerle üretin. Sprite'ın alt satırı zemin satırıdır.
 
-**Sahne 2: `sahne2-dogum.png`**
-> Vertical 9:16 hand-painted watercolor and gouache illustration of the open doorway of a felt tent (ger) glowing with warm lantern light at dusk on a green steppe, the tent placed around 55% down the frame. A small silhouette of a mother holding a swaddled baby stands at the door, seen from a distance, with a few horses resting nearby. Soft golden-hour light, gentle wind in the grass, fluffy peach and cream clouds over a pastel blue sky. The upper quarter is calm open sky. The lowest quarter is only soft grass and tiny wildflowers, with no important details. Visible paper grain, soft brush strokes, hand-drawn animation background look, tender, warm, nostalgic mood. No text, no letters, no modern objects.
+### Sahne 1: yurt, altın saat (ızgara 540×960, URET 4, ZEMIN 672 = %70)
 
-**Sahne 3: `sahne3-yetim.png`**
-> Vertical 9:16 hand-painted watercolor and gouache scene of a woman and three small children walking together across a wide windy steppe, tall grass bending around them, seen from far away as small figures at about 60% down the frame. Far on the horizon a long line of tents and carts moves away from them, getting smaller. Late-afternoon golden light slightly cooler toward the sky, big soft cumulus clouds in blue and cream, pastel grass greens. The upper quarter is calm open sky. The lowest quarter is only soft swaying grass, with no important details. Visible paper grain, soft brush strokes, hand-drawn animation background look, quiet, resilient, gently melancholic but hopeful mood. No text, no letters, no modern objects.
+**`sahne1-gokyuzu.png`** (2160×3840)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm golden-hour light, pastel natural colors (grass green, sky blue, warm cream), calm nostalgic hopeful mood. Vertical 9:16 opaque sky only, no ground, no objects on the horizon. Golden-hour sky washed from soft sky blue at the top to cream and peach near the horizon, with big fluffy cumulus clouds painted in layered gouache. Upper quarter calm open sky. Seamless horizontal tile: left and right edges match exactly. No text, no letters, no hard outlines, no pixelation.
 
-**Sahne 4: `sahne4-borte-donus.png`**
-> Vertical 9:16 hand-painted watercolor and gouache painting of a small band of riders on horseback returning across a golden grassland from right to left, a woman riding safely among them, soft golden dust and long grass streaming behind the horses. The riders move along the horizon line at about 45% to 55% down the frame. A distant camp of round tents glows on the left horizon. Warm sunset light, fluffy clouds in peach, cream and sky blue, pastel grass greens. The upper third is calm open sky, with the horizon around 40% down. The lowest quarter is only soft grass and tiny flowers, with no important details. Visible paper grain, soft brush strokes, hand-drawn animation background look, joyful relief, hopeful mood. Peaceful, no weapons drawn, no text, no letters, no modern objects.
+**`sahne1-uzak.png`** (2160×3840, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm golden-hour light, pastel natural colors (grass green, sky blue, warm cream), calm nostalgic mood. Vertical 9:16, transparent background (PNG alpha). Only distant rolling steppe hills and a faint mountain ridge in hazy blue-green and warm ochre. The ridge silhouette lies between 35% and 52% of the height. Below the ridge the hills are fully opaque, filled with hazy green down to 62% of the height, so no gap shows behind the middle ground. Everything above the ridge is fully transparent. Seamless horizontal tile: left and right edges match exactly. No text, no letters, no hard outlines, no pixelation.
 
-**Sahne 5: `sahne5-kurultay.png`**
-> Vertical 9:16 hand-painted watercolor and gouache painting of a green valley at sunrise where many round felt tents are arranged in a wide circle around the middle of the frame, and hundreds of tiny figures gather around a tall standard of white horsetails in the center, at about 50% down the frame. Colorful pennants flutter softly, smoke rises from camp fires, surrounded by gentle hills. Warm golden sunrise light, big fluffy clouds in cream, pink and sky blue, pastel grass greens. The upper quarter is calm open sky. The lowest quarter is only soft grass and wildflowers, with no important details. Visible paper grain, soft brush strokes, hand-drawn animation background look, hopeful, ceremonial, warm mood. No text, no letters, no modern objects.
+**`sahne1-orta.png`** (3240×3840, şeffaf üst)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm golden-hour light, pastel natural colors (grass green, sky blue, warm cream), calm nostalgic mood. Transparent background above the ground (PNG alpha), 1.5 times wider than the visible frame. A grassy steppe meadow whose gently rolling top edge lies between 52% and 58% of the height; everything below that edge is fully opaque painted meadow, continuing to the bottom edge with no transparent area. A few flat rocks and a worn dirt path on the meadow, golden rim light on the grass. The ground line for objects is exactly at 70% of the height: keep a calm, flat, plain grassy strip there at about 68% across the visible frame for a tent sprite, but draw no tent. No people, no animals. No text, no letters, no hard outlines, no pixelation.
 
-**Sahne 6: `sahne6-sefer.png`**
-> Vertical 9:16 hand-painted watercolor and gouache painting of a long column of riders and pack horses crossing a vast dry grassland toward a distant walled city with towers and mountains on the horizon, the column and the city kept in the middle of the frame at about 45% to 60% down, thin columns of smoke rising far away. Sky in dusty amber, soft gold and muted blue with heavy rounded clouds, slightly hazy, light still warm but more subdued, grass in muted sage and ochre. The upper quarter is calm open sky. The lowest quarter is only dry grass, with no important details. Visible paper grain, soft brush strokes, hand-drawn animation background look, solemn, reflective, calm mood. No blood, no violence, no battle, no text, no letters, no modern objects.
+**`sahne1-karakter.png`** (sprite sheet, kare 576×576 ×8 → sheet 4608×576, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm golden-hour light, pastel natural colors, calm nostalgic mood. Sprite sheet: 8 frames in one horizontal row, each frame exactly 576x576 px, sheet 4608x576, transparent background (PNG alpha), no gaps, seamless loop. A small round felt tent (ger) with a chimney and a warm glowing doorway; a thin wisp of smoke rises from the chimney and curls upward, changing shape each frame; two horses graze next to it with slow head-bobbing and tail-swishing. GROUND RULE: the tent's bottom edge and all four hooves touch the very last pixel row of every frame, with a thin soft contact shadow squeezed into the last 12 rows; the tent never moves between frames; leave 20 px transparent margin on the left and right. Golden-hour light. No text, no letters, no hard outlines, no pixelation.
 
-**Sahne 7: `sahne7-bos-eyer.png`** (tablo ile aynı: boş eyerli at)
-> Vertical 9:16 hand-painted watercolor and gouache painting of a lone horse with an empty saddle and no rider standing on a grassy hill beneath a large old tree at twilight, the horse at about 55% down the frame, with the endless steppe stretching behind it. Sky in lavender, amber and soft sky blue with gentle clouds, last warm light on the grass, a few fireflies glowing. The upper quarter is calm open sky. The lowest quarter is only soft grass and small wildflowers, with no important details. Visible paper grain, soft brush strokes, hand-drawn animation background look, quiet, mysterious, peaceful and nostalgic mood. No text, no letters, no people, no modern objects.
+**`sahne1-on.png`** (3240×3840, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm golden-hour backlight, pastel natural colors, calm nostalgic mood. Transparent background (PNG alpha), 1.5 times wider than the visible frame. Only tall-grass tufts and a few tiny wildflowers in the bottom-left and bottom-right corners, every blade rooted on the very bottom edge of the image and rising at most 22% of the height. The whole center and everything else fully transparent; nothing at the sides in mid-height. Dark green and ochre with warm rim light. No text, no letters, no hard outlines, no pixelation.
 
-**Sahne 8: `sahne8-son-bozkir.png`** (taş yığını, kadrajın %30 x, **%62 y** noktasında)
-> Vertical 9:16 hand-painted watercolor and gouache painting of an endless empty steppe at the last light of day. On the left, in the middle ground, at about 30% across and 62% down the frame, a small pile of weathered stones with a single tiny wildflower beside it, surrounded by swaying tall grass. The lowest quarter of the image is only soft tall grass, with no important details. Huge fluffy cumulus clouds in cream, peach and soft lavender over a pastel blue sky, the first faint stars appearing, a warm glow along the horizon. The upper third is calm open sky. Visible paper grain, soft brush strokes, hand-drawn animation background look, peaceful, nostalgic, hopeful, mysterious mood. No text, no letters, no people, no modern objects.
+### Sahne 2: doğum (ızgara 360×640, URET 3, ZEMIN 400 = %62,5)
+
+**`sahne2-gokyuzu.png`** (1080×1920)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm dusk light, pastel natural colors (sky blue, peach, lavender, warm cream), calm nostalgic mood. Vertical 9:16 opaque dusk sky only, no ground. Soft watercolor washes of pastel blue, peach and lavender with fluffy clouds in cream and peach. Upper quarter calm open sky. Seamless horizontal tile: left and right edges match exactly. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne2-uzak.png`** (1080×1920, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm dusk light, pastel natural colors, calm nostalgic mood. Vertical 9:16, transparent background (PNG alpha). Distant dark-green and blue steppe hills with a few tiny round tents resting on the hill slopes. The ridge lies between 38% and 52% of the height, and the hills are fully opaque down to 62%; everything above the ridge is fully transparent. Seamless horizontal tile: left and right edges match exactly. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne2-orta.png`** (1620×1920, şeffaf üst)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm dusk light, pastel natural colors, calm nostalgic mood. Transparent above the ground (PNG alpha), 1.5 times wider than the visible frame. A green steppe knoll with swaying tall-grass strokes whose rolling top edge lies between 52% and 58% of the height; everything below that edge is fully opaque painted meadow down to the bottom edge. Two or three resting horses far to the left and right sides, their hooves on the meadow. The ground line is exactly at 62.5% of the height: leave the center of the visible frame there as a plain flat grassy strip for a tent sprite, but draw no tent. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne2-karakter.png`** (sprite sheet, kare 288×288 ×6 → sheet 1728×288, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm dusk light, pastel natural colors, calm nostalgic mood. Sprite sheet: 6 frames in one horizontal row, each frame exactly 288x288 px, sheet 1728x288, transparent background (PNG alpha), no gaps, seamless loop. An open felt-tent (ger) doorway glowing with warm lantern light that flickers softly between frames, a tiny silhouette of a mother holding a swaddled baby at the door, a thin chimney smoke wisp rising upward. GROUND RULE: the tent's bottom edge touches the very last pixel row of every frame with a thin soft contact shadow in the last 8 rows, and never moves between frames. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne2-on.png`** (1620×1920, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, warm dusk rim light, pastel natural colors, calm nostalgic mood. Transparent background (PNG alpha), 1.5 times wider than the visible frame. Only grass tufts and tiny wildflowers in the bottom-left and bottom-right corners, every blade rooted on the very bottom edge and rising at most 22% of the height; everything else fully transparent. Deep green with warm rim light. No text, no letters, no hard outlines, no pixelation.
+
+### Sahne 3: yetim kalan aile (ızgara 360×640, URET 3, ZEMIN 400, UFUK 340)
+
+**`sahne3-gokyuzu.png`** (1080×1920)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft late-afternoon golden light, pastel natural colors (sky blue, warm cream, soft gold), calm nostalgic mood. Vertical 9:16 opaque sky only, no ground. Late-afternoon sky, golden and low near the horizon, cooler blue toward the top, big gouache cumulus clouds in blue and cream. Upper quarter calm open sky. Seamless horizontal tile: left and right edges match exactly. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne3-uzak.png`** (1080×1920, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft cool afternoon light, pastel natural colors, calm nostalgic mood. Vertical 9:16, transparent background (PNG alpha). Pale windswept far hills in muted green and cream between 38% and 50% of the height, and below them a flat, plain, empty distant plain fully opaque from 50% to 62% of the height. The plain is uniform, with no rocks, grass tufts or features, so a caravan can stand on it at exactly 53% of the height. Everything above the hills is fully transparent. Seamless horizontal tile: left and right edges match exactly. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne3-orta.png`** (1620×1920, şeffaf üst)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, slightly cooler soft afternoon light, pastel natural colors, calm nostalgic mood. Transparent above the ground (PNG alpha), 1.5 times wider than the visible frame. Wide windy steppe meadow with tall grass bending in soft brush strokes, pastel grass greens. Its top edge lies between 58% and 60% of the height, and everything below is fully opaque painted meadow down to the bottom edge. The ground line is at 62.5% of the height: a plain lightly grassy strip there where walking figures will stand. No figures, no animals. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne3-karakter.png`** (sprite sheet, kare 192×120 ×8 → sheet 1536×120, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft cool afternoon light, pastel natural colors, calm nostalgic mood. Sprite sheet: 8 frames in one horizontal row, each frame exactly 192x120 px, sheet 1536x120, transparent background (PNG alpha), no gaps, seamless walk cycle. A woman and three small children walking together to the right, seen from far away as small figures, cloaks and hair blown by wind. GROUND RULE: in every frame the planted foot of each figure touches the very last pixel row, and the walk cycle keeps the bodies' height steady (no bouncing above the ground); soft thin contact shadows in the last 4 rows; one walk cycle equals about 22 grid units of travel so the feet do not slide. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne3-karakter2.png`** (sprite sheet, kare 360×96 ×6 → sheet 2160×96, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft hazy afternoon light, pastel natural colors, calm nostalgic mood. Sprite sheet: 6 frames in one horizontal row, each frame exactly 360x96 px, sheet 2160x96, transparent background (PNG alpha), no gaps, seamless loop. A tiny distant caravan of ox carts, oxen and folded tents moving slowly to the left, soft haze around it, wheels turning between frames. GROUND RULE: all wheel bottoms and hooves touch the very last pixel row of every frame, nothing hangs above the row; a thin soft contact shadow in the last 3 rows. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne3-on.png`** (1620×1920, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, cool soft rim light, pastel natural colors, calm nostalgic mood. Transparent background (PNG alpha), 1.5 times wider than the visible frame. Only tall dry-grass tufts in the bottom-left and bottom-right corners, every blade rooted on the very bottom edge and rising at most 22% of the height; everything else fully transparent. Green and ochre. No text, no letters, no hard outlines, no pixelation.
+
+### Sahne 4: Börte'nin dönüşü (ızgara 360×640, URET 3, ZEMIN 420 = %65,6)
+
+**`sahne4-gokyuzu.png`** (1080×1920)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm sunset light, pastel natural colors (peach, cream, sky blue), calm hopeful mood. Vertical 9:16 opaque sunset sky only, no ground. Soft washes of peach, cream and sky blue with fluffy painted clouds. Upper third calm open sky. Seamless horizontal tile: left and right edges match exactly. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne4-uzak.png`** (1080×1920, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm sunset light, pastel natural colors, calm hopeful mood. Vertical 9:16, transparent background (PNG alpha). Distant golden hills with tiny round tents glowing warmly on the ridge slope; ridge between 36% and 50% of the height, hills fully opaque down to 60%; everything above the ridge fully transparent. Seamless horizontal tile: left and right edges match exactly. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne4-orta.png`** (1620×1920, şeffaf üst)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm sunset light, pastel natural colors, calm hopeful mood. Transparent above the ground (PNG alpha), 1.5 times wider than the visible frame. Golden grassland whose gently rolling top edge lies between 50% and 56% of the height; everything below is fully opaque painted meadow down to the bottom edge, with grass streaming in the wind in pastel greens and warm gold. A faint trodden path crosses it. The ground line for horses is exactly at 65.6% of the height; keep a plain flat grassy strip there. No figures. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne4-karakter.png`** (sprite sheet, kare 384×168 ×8 → sheet 3072×168, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm sunset light, pastel natural colors, calm hopeful mood. Sprite sheet: 8 frames in one horizontal row, each frame exactly 384x168 px, sheet 3072x168, transparent background (PNG alpha), no gaps, seamless gentle gallop cycle. Five riders on horses riding to the left with a woman riding safely in the middle, soft golden dust trailing behind. Peaceful, no weapons drawn. GROUND RULE: in the contact frames the hooves touch the very last pixel row; in the flight frames the hooves rise at most 14 px above it and the body returns to the row in the next frame; the dust is born on the ground from the last rows and rises softly. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne4-on.png`** (1620×1920, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, warm sunset backlight, pastel natural colors, calm hopeful mood. Transparent background (PNG alpha), 1.5 times wider than the visible frame. Only golden grass tufts and tiny flowers in the bottom-left and bottom-right corners, every blade rooted on the very bottom edge and rising at most 22% of the height; everything else fully transparent. No text, no letters, no hard outlines, no pixelation.
+
+### Sahne 5: kurultay (ızgara 360×640, URET 3, ZEMIN 400)
+
+**`sahne5-gokyuzu.png`** (1080×1920)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm sunrise light, pastel natural colors (cream, pink, sky blue), calm hopeful mood. Vertical 9:16 opaque sunrise sky only, no ground. Soft washes of cream, pink and sky blue with big fluffy painted clouds. Upper quarter calm open sky. Seamless horizontal tile: left and right edges match exactly. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne5-uzak.png`** (1080×1920, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm sunrise glow, pastel natural colors, calm hopeful mood. Vertical 9:16, transparent background (PNG alpha). Gentle green hills ringing a valley, ridge between 34% and 48% of the height, hills fully opaque down to 60%; everything above the ridge fully transparent. Seamless horizontal tile: left and right edges match exactly. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne5-orta.png`** (1620×1920, şeffaf üst)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm sunrise light, pastel natural colors, calm hopeful mood. Transparent above the ground (PNG alpha), 1.5 times wider than the visible frame. A green valley floor whose gently rolling top edge lies between 50% and 56% of the height; everything below is fully opaque painted meadow down to the bottom edge. Many round felt tents arranged in a wide circle around the center, hundreds of tiny figures gathered, small campfire smoke columns rising upward. EVERY tent, figure and campfire stands on the ground with its bottom edge resting on painted grass and a small soft contact shadow; tents farther back sit higher on the meadow, nearer ones lower; nothing floats. The ground line is exactly at 62.5% of the height: keep the exact center of the visible frame there as a plain flat strip about 100 grid units wide for a tall standard sprite, with no tent in it. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne5-karakter.png`** (sprite sheet, kare 240×336 ×6 → sheet 1440×336, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm sunrise light, pastel natural colors, calm hopeful mood. Sprite sheet: 6 frames in one horizontal row, each frame exactly 240x336 px, sheet 1440x336, transparent background (PNG alpha), no gaps, seamless loop. A tall wooden pole with its foot planted in the ground, topped with a standard of white horsetail tassels, plus colorful pennants fluttering in the wind, a different wave shape in each frame. GROUND RULE: the pole's foot, with a small mound of earth and stones around it, sits exactly on the very last pixel row of every frame and never moves; only the pennants move. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne5-on.png`** (1620×1920, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, warm sunrise rim light, pastel natural colors, calm hopeful mood. Transparent background (PNG alpha), 1.5 times wider than the visible frame. Only grass tufts and wildflowers in the bottom-left and bottom-right corners, every blade rooted on the very bottom edge and rising at most 22% of the height; everything else fully transparent. No text, no letters, no hard outlines, no pixelation.
+
+### Sahne 6: sefer ve bedeli (ızgara 360×640, URET 3, ZEMIN 420, UFUK 345)
+
+**`sahne6-gokyuzu.png`** (1080×1920)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, subdued warm light, muted pastel palette (dusty amber, soft gold, muted blue), calm solemn mood. Vertical 9:16 opaque sky only, no ground. Dusty amber, soft gold and muted blue washes with heavy rounded painted clouds, slightly hazy. Upper quarter calm open sky. Seamless horizontal tile: left and right edges match exactly. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne6-uzak.png`** (1080×1920, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, subdued warm light, muted pastel palette, calm solemn mood. Vertical 9:16, transparent background (PNG alpha). Distant hazy mountains and dry hills in muted sage, ochre and slate blue between 34% and 50% of the height, and below them a flat, plain, empty distant plain fully opaque from 50% to 62%. The plain is uniform, with no rocks or tufts, so a city can stand on it at exactly 54% of the height. Everything above the hills fully transparent. Seamless horizontal tile: left and right edges match exactly. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne6-orta.png`** (1620×1920, şeffaf üst)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, subdued warm light, muted pastel palette, calm solemn mood. Transparent above the ground (PNG alpha), 1.5 times wider than the visible frame. Vast dry grassland in muted sage and ochre; its top edge lies between 58% and 60% of the height, and everything below is fully opaque painted grassland down to the bottom edge. The ground line is at 65.6% of the height: a plain flat strip there. No city here (the city is a separate sprite), no people, no fire, no battle, no destruction. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne6-karakter.png`** (sprite sheet, kare 432×144 ×8 → sheet 3456×144, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, subdued warm light, muted pastel palette, calm solemn mood. Sprite sheet: 8 frames in one horizontal row, each frame exactly 432x144 px, sheet 3456x144, transparent background (PNG alpha), no gaps, seamless walk cycle. A long column of riders and pack horses marching slowly to the right as small silhouettes, with a low soft dust cloud rising from the ground behind them. Solemn mood, no weapons drawn, no violence. GROUND RULE: hooves touch the very last pixel row in the contact frames; bodies stay at the same height; dust is born in the last rows and rises. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne6-karakter2.png`** (şehir ve duman, sprite sheet, kare 432×360 ×8 → sheet 3456×360, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, subdued warm light, muted pastel palette, calm solemn mood. Sprite sheet: 8 frames in one horizontal row, each frame exactly 432x360 px, sheet 3456x360, transparent background (PNG alpha), no gaps, seamless loop. A distant walled city with towers and rooftops in muted sage, ochre and warm stone, identical in every frame. Two thin columns of grey-amber smoke rise upward from the rooftops, each starting exactly at roof level, drifting gently, and changing shape each frame. GROUND RULE: the bottom of the city wall sits exactly on the very last pixel row of every frame and never moves; the smoke never starts above or below the roofs. No flames, no battle, no destruction, no people. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne6-on.png`** (1620×1920, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, subdued warm light, muted pastel palette, calm solemn mood. Transparent background (PNG alpha), 1.5 times wider than the visible frame. Only dry-grass tufts and a few small stones in the bottom-left and bottom-right corners, every tuft and stone resting on the very bottom edge and rising at most 20% of the height; everything else fully transparent. Muted sage and ochre. No text, no letters, no hard outlines, no pixelation.
+
+### Sahne 7: boş eyerli at (ızgara 360×640, URET 3, ZEMIN 400)
+
+**`sahne7-gokyuzu.png`** (1080×1920)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm twilight light, pastel natural colors (lavender, amber, soft sky blue), calm nostalgic mood. Vertical 9:16 opaque twilight sky only, no ground. Soft washes of lavender, amber and soft sky blue with gentle painted clouds and a few faint stars near the top. Upper quarter calm open sky. Seamless horizontal tile: left and right edges match exactly. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne7-uzak.png`** (1080×1920, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm twilight light, pastel natural colors, calm nostalgic mood. Vertical 9:16, transparent background (PNG alpha). An endless steppe horizon and faint ridges in violet-blue and amber with the last warm light on the ridge tops; ridges between 38% and 52% of the height, filled opaque down to 62%; everything above the ridges fully transparent. Seamless horizontal tile: left and right edges match exactly. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne7-orta.png`** (1620×1920, şeffaf üst)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm twilight light, pastel natural colors, calm nostalgic mood. Transparent above the ground (PNG alpha), 1.5 times wider than the visible frame. A grassy hill whose rolling top edge lies between 52% and 58% of the height; everything below is fully opaque painted meadow down to the bottom edge, with twilight light on the grass and a few small wildflowers. A large old tree on the left side of the visible frame: its trunk base, with the roots spreading into the grass, sits exactly at 62.5% of the height (the ground line), trunk centered about 20% across the visible frame, crown spreading about 80 grid units to each side. Leave the visible frame from about 32% to 70% across, at the 62.5% line, as a plain flat grassy strip for a horse sprite. No animals, no people. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne7-karakter.png`** (sprite sheet, kare 288×240 ×6 → sheet 1728×240, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm twilight light, pastel natural colors, calm nostalgic mood. Sprite sheet: 6 frames in one horizontal row, each frame exactly 288x240 px, sheet 1728x240, transparent background (PNG alpha), no gaps, seamless loop. A lone horse with an empty saddle and no rider, standing still on all four hooves, ears flicking and tail swishing between frames; a few glowing fireflies drift in the air beside it. GROUND RULE: all four hooves touch the very last pixel row in every frame and stay planted; thin soft contact shadow in the last 6 rows. Quiet, peaceful mood. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne7-on.png`** (1620×1920, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, violet twilight rim light, pastel natural colors, calm nostalgic mood. Transparent background (PNG alpha), 1.5 times wider than the visible frame. Only grass tufts and small wildflowers in the bottom-left and bottom-right corners, every blade rooted on the very bottom edge and rising at most 22% of the height; everything else fully transparent. Deep green with violet rim light. No text, no letters, no hard outlines, no pixelation.
+
+### Sahne 8: son bozkır (ızgara 540×960, URET 4, ZEMIN 640 = %66,7)
+
+**`sahne8-gokyuzu.png`** (2160×3840)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft last light of day, pastel natural colors (pastel blue, peach, lavender, cream), calm nostalgic hopeful mood. Vertical 9:16 opaque sky only, no ground. Last light of day: soft washes from pastel blue to peach to lavender, huge fluffy painted cumulus clouds in cream, peach and soft lavender, the first faint stars in the top third. Upper third calm open sky. Seamless horizontal tile: left and right edges match exactly. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne8-uzak.png`** (2160×3840, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft last light of day, pastel natural colors, calm nostalgic mood. Vertical 9:16, transparent background (PNG alpha). A faint distant ridge and a warm glow along the horizon in lavender and amber; ridge between 40% and 52% of the height, filled opaque down to 62%; everything above the ridge fully transparent. Seamless horizontal tile: left and right edges match exactly. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne8-orta.png`** (3240×3840, şeffaf üst)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft last light of day, pastel natural colors, calm nostalgic hopeful mood. Transparent above the ground (PNG alpha), 1.5 times wider than the visible frame. An endless empty steppe in dusk greens whose rolling top edge lies between 52% and 58% of the height; everything below is fully opaque painted meadow down to the bottom edge. A small pile of weathered stones surrounded by a little tall grass, about 50 grid units wide and at most 60 grid units tall, centered at 36.7% across the whole image (30% across the visible frame). The BOTTOM of the stone pile sits exactly on the ground line at 66.7% of the height (the same line where a flower sprite will stand about 50 grid units to its right, in a plain flat grassy gap). No flower (separate sprite), no people. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne8-karakter.png`** (sprite sheet, kare 256×256 ×6 → sheet 1536×256, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft last light of day, pastel natural colors, calm nostalgic mood. Sprite sheet: 6 frames in one horizontal row, each frame exactly 256x256 px, sheet 1536x256, transparent background (PNG alpha), no gaps, seamless loop. A single wildflower with two grass blades rooted in the ground, swaying gently in the wind. GROUND RULE: the stem base, with a tiny tuft of grass, sits at the center bottom of the frame touching the very last pixel row, at the same pixel in every frame; only the upper stem, petals and blades sway. No text, no letters, no hard outlines, no pixelation.
+
+**`sahne8-on.png`** (3240×3840, şeffaf)
+> Hand-painted watercolor and gouache texture, soft paper grain, painterly soft edges, gentle hand-drawn animation feel, soft warm rim light, pastel natural colors, calm nostalgic mood. Transparent background (PNG alpha), 1.5 times wider than the visible frame. Only tall-grass tufts in the bottom-left and bottom-right corners, every blade rooted on the very bottom edge and rising at most 22% of the height; everything else fully transparent. Dark green and lavender with a warm rim light. No text, no letters, no hard outlines, no pixelation.
 
 ---
 
@@ -173,9 +353,9 @@ Hepsi dikey (9:16) ve **metinsiz**. Önerilen çözünürlük 2160×3840. Sahne 
 
 **Kaydedilecek yer:** `video/src/sahneler/CengizHan.tsx`
 
-**Bağımlılık:** Yazı tipleri için `npx remotion add @remotion/google-fonts` (Remotion sürümüyle aynı sürüm). Bu paket kurulu değilse dosya derlenmez. Kurulamıyorsa Caveat-Bold ve Montserrat-Black dosyalarını `public/fonts/` altına koyup `FontFace` + `delayRender` ile yükleyin.
+**Bağımlılık:** `npx remotion add @remotion/google-fonts` (Remotion sürümüyle aynı sürüm). Kurulamazsa Patrick Hand ve Nunito dosyalarını `public/fonts/` altına koyup `FontFace` + `delayRender` ile yükleyin. `latin-ext` alt kümesi şart (ğ, ş, İ, ı). `â` zaten `latin` içinde.
 
-**Dış dosyalar** (`video/public/`): `sahne1-bozkir-yurt.png … sahne8-son-bozkir.png`. Ses açılırsa ayrıca `anlatim.mp3`, `muzik-bozkir.mp3`, `ruzgar.mp3`, `nal-sesi.mp3`, `kalabalik.mp3`.
+**Dış dosyalar** (`video/public/`): yukarıdaki komutlardaki tüm `sahneN-*.png` dosyaları. Ses açılırsa ayrıca `anlatim.mp3`, `muzik-bozkir.mp3`, `ruzgar.mp3`, `nal-sesi.mp3`, `kalabalik.mp3`.
 
 ```tsx
 import React from "react";
@@ -192,85 +372,167 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { loadFont as loadCaveat } from "@remotion/google-fonts/Caveat";
-import { loadFont as loadMontserrat } from "@remotion/google-fonts/Montserrat";
+import { loadFont as loadPatrick } from "@remotion/google-fonts/PatrickHand";
+import { loadFont as loadNunito } from "@remotion/google-fonts/Nunito";
 import { PullBackReveal } from "../effects/PullBackReveal";
 import { DoodleBoil } from "../effects/DoodleBoil";
 import { KineticCaptions } from "../effects/KineticCaptions";
 import type { CaptionWord } from "../effects/KineticCaptions";
 
 /* ------------------------------------------------------------------ */
-/*  Yazı tipleri. latin-ext şart: ğ, ş, İ, ı bu alt kümede.            */
-/*  loadFont, font yüklenene kadar render'ı bekletir (delayRender).    */
-/*  KineticCaptions "Montserrat" adını ister, o da burada yüklenir.    */
+/*  Yazı tipleri: el yazısı (ekran metni) ve yumuşak, yuvarlak (altyazı) */
+/*  latin-ext şart (ğ, ş, İ, ı). loadFont, yüklenene kadar render'ı     */
+/*  bekletir (delayRender).                                             */
 /* ------------------------------------------------------------------ */
-const caveat = loadCaveat("normal", {
-  weights: ["700"],
+const elYazisi = loadPatrick("normal", {
+  weights: ["400"],
   subsets: ["latin", "latin-ext"],
 });
-loadMontserrat("normal", {
-  weights: ["900"],
+const altyaziYazisi = loadNunito("normal", {
+  weights: ["800"],
   subsets: ["latin", "latin-ext"],
 });
+const EL_FONTU = `"${elYazisi.fontFamily}", "Caveat", cursive`;
+const ALTYAZI_FONTU = `"${altyaziYazisi.fontFamily}", "Nunito", sans-serif`;
 
 /* ------------------------------------------------------------------ */
-/*  Genel ayarlar: 1080x1920, 30 fps, 1800 kare (60 sn)                */
+/*  Genel ayarlar: 1080x1920, 60 fps, 3600 kare (60 sn)                */
+/*  Bütün süreler saniyeden türetilir: sn(s) = round(s * FPS).         */
 /* ------------------------------------------------------------------ */
+export const FPS = 60;
+export const TOPLAM_SN = 60;
+export const TOPLAM_KARE = TOPLAM_SN * FPS; // 3600
+const sn = (s: number) => Math.round(s * FPS);
+
 const W = 1080;
 const H = 1920;
-const FADE = 18; // sahneler arası yumuşak çapraz geçiş (0,6 sn)
-const BOIL_HOLD = 2; // DoodleBoil: iki karede bir titreşim
+const FADE = sn(0.6); // sahneler arası yumuşak çapraz geçiş (36 kare)
+const BOIL_HOLD = Math.round(FPS / 15); // DoodleBoil: saniyede 15 titreşim = 4 kare
 const CLAMP = {
   extrapolateLeft: "clamp" as const,
   extrapolateRight: "clamp" as const,
 };
 
-const YAZI_FONTU = `"${caveat.fontFamily}", "Patrick Hand", "Segoe Print", "Bradley Hand", cursive`;
+/* Paralaks katsayıları: gökyüzü en yavaş, ön plan en hızlı. */
+const HIZ = { gokyuzu: 0.1, uzak: 0.3, orta: 0.65, karakter: 0.65, on: 1.25 };
+/* Gökyüzü ve uzak planın sürekli akışı (ekran px / sn). */
+const AKIS = { gokyuzu: 4, uzak: 10 };
 
 /* DoodleBoil içindeki SVG 1920x1080 viewBox'lı. 1080x1920 ekranda 0,5625 ölçeğiyle
-   dikey ortalanır. X/Y, ekran pikselini (1080x1920) SVG koordinatına çevirir.
-   Satır içi svg'nin kırpma alanı öğenin kendi kutusudur (1080x1920), viewBox değil;
-   bu yüzden letterbox alanına da çizilebilir. */
+   dikey ortalanır. X/Y, ekran pikselini (1080x1920) SVG koordinatına çevirir. */
 const K = 1080 / 1920;
 const OFF = (1920 - 1080 * K) / 2;
 const X = (sx: number) => sx / K;
 const Y = (sy: number) => (sy - OFF) / K;
 
 /* ------------------------------------------------------------------ */
-/*  Sahne zaman çizelgesi (kare)                                       */
+/*  Sahne tanımları                                                    */
+/*  Konumlar "ızgara birimi"dir: 360x640 (ölçek 3) ya da 540x960       */
+/*  (ölçek 2). Sprite'lar TABANLA konumlanır:                          */
+/*     top = (tabanY - kareH) * ölçek                                  */
+/*  Taban, sahnenin zemin çizgisidir (zemin ya da ufuk).               */
 /* ------------------------------------------------------------------ */
+type OrtamModu = "polen" | "atesbocegi" | "yildiz" | "yok";
+
+type SpriteTanimi = {
+  /** "karakter" ya da "karakter2" → sahneN-karakter.png */
+  dosya: string;
+  /** Kare boyutu (ızgara birimi) ve kare sayısı. Sheet = yatay şerit. */
+  kareW: number;
+  kareH: number;
+  kare: number;
+  /** Sprite kare hızı (saniyede kare). */
+  fps: number;
+  /** Kare merkezinin yatay konumu: [başlangıç, bitiş]. Dikey konum zemin çizgisinden gelir. */
+  x: [number, number];
+  /** "zemin": yakın zemin (orta plan üstü). "ufuk": uzak ova (orta planın arkası). */
+  taban: "zemin" | "ufuk";
+  opaklik?: [number, number];
+};
+
 type SahneTanimi = {
-  baslangic: number;
-  bitis: number;
-  gorsel: string;
-  /** Ken-Burns: [başlangıç zoom, bitiş zoom, yatay kayma px, dikey kayma px] */
-  hareket: [number, number, number, number];
+  no: number;
+  bas: number; // saniye
+  bit: number; // saniye
+  /** Izgara genişliği: 360 (ölçek 3) ya da 540 (ölçek 2, yüksek çözünürlüklü). */
+  kaynakW: 360 | 540;
+  yon: 1 | -1;
+  kamera: [number, number];
+  /** Yakın zemin çizgisi (ızgara y). Yakın sprite'ların tabanı burada. */
+  zemin: number;
+  /** Uzak zemin çizgisi (ızgara y). Kervan ve şehir tabanı burada. */
+  ufuk?: number;
+  ortam: OrtamModu;
+  /** Yerden doğan toz: ilk sprite'ın tabanından çıkar. arka: tozun sprite'a göre tarafı. */
+  toz?: { arka: 1 | -1 };
+  spriteler: SpriteTanimi[];
+  pullBack?: { focusX: number; focusY: number; startScale: number; startAt: number; sure: number };
 };
 
 const SAHNELER: SahneTanimi[] = [
-  { baslangic: 0, bitis: 150, gorsel: "sahne1-bozkir-yurt.png", hareket: [1, 1, 0, 0] }, // PullBackReveal
-  { baslangic: 150, bitis: 270, gorsel: "sahne2-dogum.png", hareket: [1.06, 1.14, -10, 12] },
-  { baslangic: 270, bitis: 492, gorsel: "sahne3-yetim.png", hareket: [1.1, 1.08, -28, 0] },
-  { baslangic: 492, bitis: 750, gorsel: "sahne4-borte-donus.png", hareket: [1.07, 1.13, 26, -8] },
-  { baslangic: 750, bitis: 1032, gorsel: "sahne5-kurultay.png", hareket: [1.06, 1.15, 0, 14] },
-  { baslangic: 1032, bitis: 1302, gorsel: "sahne6-sefer.png", hareket: [1.14, 1.07, 20, 0] },
-  { baslangic: 1302, bitis: 1545, gorsel: "sahne7-bos-eyer.png", hareket: [1.06, 1.13, 0, -16] },
-  { baslangic: 1545, bitis: 1800, gorsel: "sahne8-son-bozkir.png", hareket: [1, 1, 0, 0] }, // PullBackReveal
+  {
+    no: 1, bas: 0, bit: 5, kaynakW: 540, yon: -1, kamera: [0, -30], zemin: 672, ortam: "polen",
+    pullBack: { focusX: 68, focusY: 62.5, startScale: 3.2, startAt: 1 / 3, sure: 3 },
+    spriteler: [{ dosya: "karakter", kareW: 144, kareH: 144, kare: 8, fps: 8, x: [367, 367], taban: "zemin" }],
+  },
+  {
+    no: 2, bas: 5, bit: 9, kaynakW: 360, yon: -1, kamera: [30, -30], zemin: 400, ortam: "polen",
+    spriteler: [{ dosya: "karakter", kareW: 96, kareH: 96, kare: 6, fps: 6, x: [180, 180], taban: "zemin" }],
+  },
+  {
+    no: 3, bas: 9, bit: 16.4, kaynakW: 360, yon: -1, kamera: [70, -70], zemin: 400, ufuk: 340, ortam: "yok",
+    toz: { arka: -1 },
+    spriteler: [
+      // Aile: yürüyüşte tabanı ZEMIN çizgisinde
+      { dosya: "karakter", kareW: 64, kareH: 40, kare: 8, fps: 8, x: [70, 250], taban: "zemin" },
+      // Kervan: tekerlekleri uzak ovada (UFUK)
+      { dosya: "karakter2", kareW: 120, kareH: 32, kare: 6, fps: 4, x: [250, 170], taban: "ufuk", opaklik: [1, 0.4] },
+    ],
+  },
+  {
+    no: 4, bas: 16.4, bit: 25, kaynakW: 360, yon: 1, kamera: [-70, 70], zemin: 420, ortam: "yok",
+    toz: { arka: 1 },
+    spriteler: [{ dosya: "karakter", kareW: 128, kareH: 56, kare: 8, fps: 8, x: [320, 130], taban: "zemin" }],
+  },
+  {
+    no: 5, bas: 25, bit: 34.4, kaynakW: 360, yon: 1, kamera: [-40, 40], zemin: 400, ortam: "polen",
+    spriteler: [{ dosya: "karakter", kareW: 80, kareH: 112, kare: 6, fps: 6, x: [180, 180], taban: "zemin" }],
+  },
+  {
+    no: 6, bas: 34.4, bit: 43.4, kaynakW: 360, yon: -1, kamera: [40, -40], zemin: 420, ufuk: 345, ortam: "yok",
+    toz: { arka: -1 },
+    spriteler: [
+      // Kolon: yakın zeminde
+      { dosya: "karakter", kareW: 144, kareH: 48, kare: 8, fps: 8, x: [20, 170], taban: "zemin" },
+      // Şehir ve duman: tek sprite, duman çatı hizasından çıkar, taban uzak ovada
+      { dosya: "karakter2", kareW: 144, kareH: 120, kare: 8, fps: 4, x: [252, 252], taban: "ufuk" },
+    ],
+  },
+  {
+    no: 7, bas: 43.4, bit: 51.5, kaynakW: 360, yon: -1, kamera: [20, -20], zemin: 400, ortam: "atesbocegi",
+    spriteler: [{ dosya: "karakter", kareW: 96, kareH: 80, kare: 6, fps: 4, x: [162, 162], taban: "zemin" }],
+  },
+  {
+    no: 8, bas: 51.5, bit: 60, kaynakW: 540, yon: -1, kamera: [0, 0], zemin: 640, ortam: "yildiz",
+    // Taş yığını (x≈162) ve çiçek (x=212) aynı zemin çizgisinde (y=640 → ekran 1280)
+    pullBack: { focusX: 30, focusY: 64, startScale: 3, startAt: 0.4, sure: 13 / 3 },
+    spriteler: [{ dosya: "karakter", kareW: 64, kareH: 64, kare: 6, fps: 5, x: [212, 212], taban: "zemin" }],
+  },
 ];
 
-/* Ekran metinleri (onaylı metindeki 5 ekran metni) */
-type EkranMetniTanimi = { from: number; sure: number; satirlar: string[] };
+/* Ekran metinleri (onaylı metindeki 5 ekran metni), saniye cinsinden */
+type EkranMetniTanimi = { bas: number; bit: number; satirlar: string[] };
 const EKRAN_METINLERI: EkranMetniTanimi[] = [
-  { from: 174, sure: 270 - 174, satirlar: ["Yaklaşık 1162.", "Bozkırda bir çocuk doğdu."] },
-  { from: 295, sure: 492 - 295, satirlar: ["Babasız, kabilesiz büyüdü."] },
-  { from: 780, sure: 1032 - 780, satirlar: ["1206: “Cengiz Han” dediler."] },
-  { from: 1135, sure: 1302 - 1135, satirlar: ["Şehirler düştü.", "Bedeli ağır oldu."] },
-  { from: 1320, sure: 1545 - 1320, satirlar: ["1227'de öldü.", "Mezarı hâlâ bilinmiyor."] },
+  { bas: 5.8, bit: 9.0, satirlar: ["Yaklaşık 1162.", "Bozkırda bir çocuk doğdu."] },
+  { bas: 9.85, bit: 16.4, satirlar: ["Babasız, kabilesiz büyüdü."] },
+  { bas: 26.0, bit: 34.4, satirlar: ["1206: “Cengiz Han” dediler."] },
+  { bas: 37.85, bit: 43.4, satirlar: ["Şehirler düştü.", "Bedeli ağır oldu."] },
+  { bas: 44.0, bit: 51.5, satirlar: ["1227'de öldü.", "Mezarı hâlâ bilinmiyor."] },
 ];
 
 /* ------------------------------------------------------------------ */
-/*  Anlatım ve altyazı zamanlaması                                     */
-/*  Gerçek seslendirme gelince bas/bit değerlerini güncelle.           */
+/*  Anlatım ve altyazı zamanlaması (saniye). Gerçek seslendirme gelince */
+/*  bas/bit değerlerini güncelle.                                      */
 /* ------------------------------------------------------------------ */
 const ANLATIM: { t: string; bas: number; bit: number }[] = [
   { t: "Elinde bir pıhtı kanla doğduğu söylenir. Mezarı ise hâlâ bulunamadı.", bas: 0.3, bit: 4.9 },
@@ -303,9 +565,8 @@ const ANLATIM: { t: string; bas: number; bit: number }[] = [
   { t: "Kahraman mı, yıkıcı mı? Belki de ikisinin gölgesinde geçen bir hayat.", bas: 51.65, bit: 56.25 },
 ];
 
-/* Her cümlenin süresi kelimelere uzunluklarına göre bölünür (rakamlar ve noktalama daha uzun okunur).
-   Metin Türkçe kurallarla önceden büyütülür (i→İ, ı→I). Efektin text-transform'u bundan sonra
-   zaten büyük olan metne dokunmaz, böylece TEMÜÇİN / BİLİNMİYOR tarayıcıdan bağımsız doğru çıkar. */
+/* Her cümlenin süresi kelimelere uzunluklarına göre bölünür. Metin Türkçe kurallarla
+   önceden büyütülür (i→İ, ı→I). KineticCaptions zaman olarak ms bekler. */
 const KELIMELER: CaptionWord[] = ANLATIM.flatMap((seg) => {
   const tokenlar = seg.t.split(/\s+/);
   const agirlik = tokenlar.map(
@@ -322,35 +583,166 @@ const KELIMELER: CaptionWord[] = ANLATIM.flatMap((seg) => {
 });
 
 /* ------------------------------------------------------------------ */
-/*  Yardımcı bileşenler                                                */
+/*  Paralaks katmanları                                                */
 /* ------------------------------------------------------------------ */
 
-/** Yavaş Ken-Burns: yumuşak yakınlaşma ve kayma. */
-const KenBurns: React.FC<{ src: string; sure: number; hareket: [number, number, number, number] }> = ({
-  src,
+/** Yatayda dikişsiz tekrarlanan katman (gökyüzü, uzak plan). */
+const TileKatman: React.FC<{ src: string; ofset: number }> = ({ src, ofset }) => {
+  const o = ((ofset % W) + W) % W;
+  const stil: React.CSSProperties = { width: W, height: H, flexShrink: 0, maxWidth: "none" };
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: 2 * W,
+        height: H,
+        display: "flex",
+        transform: `translateX(${o - W}px)`,
+      }}
+    >
+      <Img src={staticFile(src)} style={stil} />
+      <Img src={staticFile(src)} style={stil} />
+    </div>
+  );
+};
+
+/** Kadrajdan 1,5 kat geniş katman (orta, ön plan). Ekranda 1620 px, kayma ±270 px ile sınırlı. */
+const GENIS = Math.round(W * 1.5);
+const PAY = (GENIS - W) / 2;
+const GenisKatman: React.FC<{ src: string; ofset: number }> = ({ src, ofset }) => {
+  const o = Math.max(-PAY, Math.min(PAY, ofset));
+  return (
+    <Img
+      src={staticFile(src)}
+      style={{ position: "absolute", top: 0, left: -PAY + o, width: GENIS, height: H, maxWidth: "none" }}
+    />
+  );
+};
+
+/** Yatay şerit sprite sheet. Konumu TABANLA verilir: top = tabanY*ölçek - kareH*ölçek.
+    Konum 60 fps'te akıcı, kare değişimi sprite fps'inde. Dikey konum hiç değişmez. */
+const Sprite: React.FC<{
+  d: SpriteTanimi;
+  no: number;
+  olcek: number;
+  p: number;
+  ofsetX: number;
+  tabanY: number;
+  frame: number;
+}> = ({ d, no, olcek, p, ofsetX, tabanY, frame }) => {
+  const kare = Math.floor((frame / FPS) * d.fps) % d.kare;
+  const w = d.kareW * olcek;
+  const h = d.kareH * olcek;
+  const cx = interpolate(p, [0, 1], d.x) * olcek + ofsetX;
+  const left = Math.round(cx - w / 2);
+  const top = Math.round(tabanY * olcek - h); // kare tabanı = zemin çizgisi
+  const op = d.opaklik ? interpolate(p, [0, 1], d.opaklik) : 1;
+  return (
+    <div style={{ position: "absolute", left, top, width: w, height: h, overflow: "hidden", opacity: op }}>
+      <Img
+        src={staticFile(`sahne${no}-${d.dosya}.png`)}
+        style={{ position: "absolute", top: 0, left: -kare * w, width: d.kare * w, height: h, maxWidth: "none" }}
+      />
+    </div>
+  );
+};
+
+/** Yerden doğan toz: ilk sprite'ın tabanında doğar, yukarı yükselir, solar. Havada gezmez. */
+const Toz: React.FC<{ s: SahneTanimi; sure: number; olcek: number; ofsetX: number }> = ({
+  s,
   sure,
-  hareket,
+  olcek,
+  ofsetX,
 }) => {
   const frame = useCurrentFrame();
-  const p = interpolate(frame, [0, sure], [0, 1], { ...CLAMP, easing: Easing.inOut(Easing.sin) });
-  const [z0, z1, dx, dy] = hareket;
-  const scale = interpolate(p, [0, 1], [z0, z1]);
-  const tx = interpolate(p, [0, 1], [-dx, dx]);
-  const ty = interpolate(p, [0, 1], [-dy, dy]);
+  if (!s.toz) return null;
+  const t = frame / FPS;
+  const d = s.spriteler[0];
+  const zeminPx = s.zemin * olcek;
+  const adet = 16;
   return (
-    <AbsoluteFill style={{ overflow: "hidden", background: "#2a1a10" }}>
-      <Img
-        src={staticFile(src)}
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          transform: `translate(${tx}px, ${ty}px) scale(${scale})`,
-        }}
-      />
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%">
+        <defs>
+          <radialGradient id={`tozg-${s.no}`}>
+            <stop offset="0%" stopColor="rgb(236,208,160)" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="rgb(236,208,160)" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        {Array.from({ length: adet }).map((_, i) => {
+          const omur = 1.6 + random(`toz-${s.no}-o-${i}`) * 1.2;
+          const faz = t / omur + random(`toz-${s.no}-f-${i}`);
+          const k = Math.floor(faz);
+          const u = faz - k; // 0 = yerde doğar, 1 = solar
+          const tb = t - u * omur; // doğum anı
+          const p = Math.max(0, Math.min(1, tb / (sure / FPS)));
+          const rx = random(`toz-${s.no}-x-${i}-${k}`);
+          const ry = random(`toz-${s.no}-y-${i}-${k}`);
+          const cx = interpolate(p, [0, 1], d.x) * olcek + ofsetX;
+          const x = cx + s.toz!.arka * (rx * d.kareW * 0.5 * olcek + u * 36);
+          const yar = (14 + ry * 16) * (0.6 + u * 0.9);
+          const y = zeminPx - yar * 0.5 - u * (40 + ry * 70); // zeminden yukarı
+          const op = Math.sin(Math.PI * u) * 0.4;
+          return <circle key={i} cx={x} cy={y} r={yar} fill={`url(#tozg-${s.no})`} opacity={op} />;
+        })}
+      </svg>
     </AbsoluteFill>
   );
 };
+
+/** Bir sahnenin katmanları: gökyüzü, uzak, [uzak sprite'lar], orta, [yakın sprite'lar], toz, ön plan. */
+const ParalaksSahne: React.FC<{ s: SahneTanimi; sure: number }> = ({ s, sure }) => {
+  const frame = useCurrentFrame();
+  const t = frame / FPS;
+  const olcek = W / s.kaynakW; // 3 ya da 2
+  const pLin = interpolate(frame, [0, sure], [0, 1], CLAMP);
+  const pYumusak = interpolate(frame, [0, sure], [0, 1], { ...CLAMP, easing: Easing.inOut(Easing.sin) });
+  const kam = interpolate(pYumusak, [0, 1], s.kamera);
+  const dosya = (k: string) => `sahne${s.no}-${k}.png`;
+  const uzakSpr = s.spriteler.filter((d) => d.taban === "ufuk");
+  const yakinSpr = s.spriteler.filter((d) => d.taban === "zemin");
+  const tabanOf = (d: SpriteTanimi) => (d.taban === "ufuk" ? (s.ufuk as number) : s.zemin);
+
+  return (
+    <AbsoluteFill style={{ overflow: "hidden", background: "#3a2a1c" }}>
+      <TileKatman src={dosya("gokyuzu")} ofset={kam * HIZ.gokyuzu + s.yon * t * AKIS.gokyuzu} />
+      <TileKatman src={dosya("uzak")} ofset={kam * HIZ.uzak + s.yon * t * AKIS.uzak} />
+      {uzakSpr.map((d) => (
+        <Sprite
+          key={d.dosya}
+          d={d}
+          no={s.no}
+          olcek={olcek}
+          p={pLin}
+          ofsetX={kam * HIZ.uzak}
+          tabanY={tabanOf(d)}
+          frame={frame}
+        />
+      ))}
+      <GenisKatman src={dosya("orta")} ofset={kam * HIZ.orta} />
+      {yakinSpr.map((d) => (
+        <Sprite
+          key={d.dosya}
+          d={d}
+          no={s.no}
+          olcek={olcek}
+          p={pLin}
+          ofsetX={kam * HIZ.karakter}
+          tabanY={tabanOf(d)}
+          frame={frame}
+        />
+      ))}
+      <Toz s={s} sure={sure} olcek={olcek} ofsetX={kam * HIZ.karakter} />
+      <GenisKatman src={dosya("on")} ofset={kam * HIZ.on} />
+    </AbsoluteFill>
+  );
+};
+
+/* ------------------------------------------------------------------ */
+/*  Yardımcı bileşenler                                                */
+/* ------------------------------------------------------------------ */
 
 /** Sahne girişinde yumuşak çapraz geçiş (ilk sahne hariç). */
 const YumusakGiris: React.FC<{ aktif: boolean; children: React.ReactNode }> = ({ aktif, children }) => {
@@ -359,7 +751,81 @@ const YumusakGiris: React.FC<{ aktif: boolean; children: React.ReactNode }> = ({
   return <AbsoluteFill style={{ opacity }}>{children}</AbsoluteFill>;
 };
 
-/** El yazısı ekran metni: DoodleBoil ile titreşen yazı + elle çizilmiş altı çizgi. */
+/** Süzülen yumuşak parçacıklar: polen, ateş böceği, yıldız. Sürekli hareket eder, sahne
+    kenarlarında yumuşakça belirip solar. Yıldızlar yalnızca gökte (üst %30). */
+const ORTAM: Record<
+  Exclude<OrtamModu, "yok">,
+  { renk: string; adet: number; vx: number; vy: number; salim: number; y0: number; y1: number; yan: number; boy: [number, number] }
+> = {
+  polen: { renk: "255,238,170", adet: 22, vx: 12, vy: -8, salim: 22, y0: 0.28, y1: 0.8, yan: 0.35, boy: [5, 11] },
+  atesbocegi: { renk: "220,245,120", adet: 18, vx: 5, vy: -4, salim: 26, y0: 0.45, y1: 0.74, yan: 0.5, boy: [7, 14] },
+  yildiz: { renk: "255,246,208", adet: 26, vx: 0, vy: 0, salim: 0, y0: 0.02, y1: 0.3, yan: 0.4, boy: [4, 9] },
+};
+
+const Parcaciklar: React.FC<{ mod: OrtamModu }> = ({ mod }) => {
+  const frame = useCurrentFrame();
+  if (mod === "yok") return null;
+  const t = frame / FPS;
+  const m = ORTAM[mod];
+  const aralik = (m.y1 - m.y0) * H;
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%">
+        <defs>
+          <radialGradient id={`pg-${mod}`}>
+            <stop offset="0%" stopColor={`rgb(${m.renk})`} stopOpacity="1" />
+            <stop offset="45%" stopColor={`rgb(${m.renk})`} stopOpacity="0.55" />
+            <stop offset="100%" stopColor={`rgb(${m.renk})`} stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        {Array.from({ length: m.adet }).map((_, i) => {
+          const r1 = random(`pc-${mod}-x-${i}`);
+          const r2 = random(`pc-${mod}-y-${i}`);
+          const r3 = random(`pc-${mod}-s-${i}`);
+          const r4 = random(`pc-${mod}-f-${i}`);
+          const hizK = 0.6 + r3 * 0.8;
+          const x = (((r1 * W + t * m.vx * hizK) % W) + W) % W;
+          const yRel = (((r2 * aralik + t * m.vy * hizK) % aralik) + aralik) % aralik;
+          const y = m.y0 * H + yRel + Math.sin(t * 0.75 + r4 * 6.283) * m.salim;
+          const r = m.boy[0] + r3 * (m.boy[1] - m.boy[0]);
+          const fx = x / W;
+          const fy = yRel / aralik;
+          const env = Math.min(1, fx * 10, (1 - fx) * 10, fy * 6, (1 - fy) * 6);
+          const puls = 0.35 + 0.55 * (0.5 + 0.5 * Math.sin(2 * Math.PI * m.yan * t + r4 * 6.283));
+          return <circle key={i} cx={x} cy={y} r={r * 2} fill={`url(#pg-${mod})`} opacity={puls * env} />;
+        })}
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+/** Sahne içeriği: paralaks yığını (Sahne 1 ve 8'de PullBackReveal içinde) + ortam parçacıkları. */
+const SahneIcerigi: React.FC<{ s: SahneTanimi; sure: number }> = ({ s, sure }) => {
+  const yigin = <ParalaksSahne s={s} sure={sure} />;
+  return (
+    <AbsoluteFill>
+      {s.pullBack ? (
+        <PullBackReveal
+          focusX={s.pullBack.focusX}
+          focusY={s.pullBack.focusY}
+          startScale={s.pullBack.startScale}
+          startAt={sn(s.pullBack.startAt)}
+          duration={sn(s.pullBack.sure)}
+        >
+          {yigin}
+        </PullBackReveal>
+      ) : (
+        yigin
+      )}
+      <Parcaciklar mod={s.ortam} />
+    </AbsoluteFill>
+  );
+};
+
+const KONTUR_RENK = "#5a3a22";
+const GOLGE_RENK = "rgba(60,35,15,0.32)";
+
+/** Ekran metni: DoodleBoil ile titreşen el yazısı, yumuşak kontur ve dalgalı el çizimi altı çizgi. */
 const EkranMetni: React.FC<{
   satirlar: string[];
   sure: number;
@@ -367,198 +833,177 @@ const EkranMetni: React.FC<{
   topY?: number;
   lineH?: number;
   cikis?: boolean;
-}> = ({ satirlar, sure, fs = 72, topY = 250, lineH = 100, cikis = true }) => {
+}> = ({ satirlar, sure, fs = 84, topY = 250, lineH = 96, cikis = true }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const giris = spring({ frame, fps, config: { damping: 200 } });
-  const son = cikis ? interpolate(frame, [sure - 16, sure], [1, 0], CLAMP) : 1;
+  const son = cikis ? interpolate(frame, [sure - sn(0.5), sure], [1, 0], CLAMP) : 1;
+  const enUzun = Math.max(...satirlar.map((s) => s.length));
+  // Patrick Hand yaklaşık 0,5 em/harf tutar (tahmin). Metin 900 px'e sığacak biçimde küçülür.
+  const fsE = Math.min(fs, 900 / (enUzun * 0.5));
+  const genis = enUzun * fsE * 0.46;
   const yAlt = topY + (satirlar.length - 1) * lineH + 34;
-  const genis = Math.min(900, Math.max(...satirlar.map((s) => s.length)) * fs * 0.42);
+  const kayma = interpolate(giris, [0, 1], [18, 0]);
+
+  const ortak = {
+    textAnchor: "middle" as const,
+    fontFamily: EL_FONTU,
+    fontSize: fsE / K,
+    strokeLinejoin: "round" as const,
+  };
+  const a = 540 - genis / 2;
+  const b = 540 + genis / 2;
+  const dalga = `M ${X(a)} ${Y(yAlt)} Q ${X(a + genis / 4)} ${Y(yAlt - 12)} ${X(540)} ${Y(yAlt)} T ${X(b)} ${Y(yAlt)}`;
 
   return (
-    <AbsoluteFill
-      style={{
-        opacity: giris * son,
-        transform: `translateY(${interpolate(giris, [0, 1], [18, 0])}px)`,
-      }}
-    >
-      <DoodleBoil hold={BOIL_HOLD} amount={9} drawOn={36}>
+    <AbsoluteFill style={{ opacity: giris * son, transform: `translateY(${kayma}px)` }}>
+      <DoodleBoil hold={BOIL_HOLD} amount={6} drawOn={sn(1.2)}>
         {satirlar.map((s, i) => {
           const y = topY + i * lineH;
           return (
             <g key={i}>
               {/* yumuşak gölge */}
               <text
-                x={X(540 + 4)}
-                y={Y(y + 5)}
-                textAnchor="middle"
-                fontFamily={YAZI_FONTU}
-                fontWeight={700}
-                fontSize={fs / K}
-                fill="rgba(70,40,20,0.55)"
+                x={X(540)}
+                y={Y(y + 6)}
+                fill={GOLGE_RENK}
+                stroke={GOLGE_RENK}
+                strokeWidth={14 / K}
+                style={{ strokeDasharray: "none", paintOrder: "stroke" }}
+                {...ortak}
               >
                 {s}
               </text>
+              {/* sıcak kahve kontur + krem dolgu */}
               <text
                 x={X(540)}
                 y={Y(y)}
-                textAnchor="middle"
-                fontFamily={YAZI_FONTU}
-                fontWeight={700}
-                fontSize={fs / K}
                 fill="#fff3d4"
+                stroke={KONTUR_RENK}
+                strokeWidth={10 / K}
+                style={{ strokeDasharray: "none", paintOrder: "stroke" }}
+                {...ortak}
               >
                 {s}
               </text>
             </g>
           );
         })}
-        <path
-          d={`M ${X(540 - genis / 2)} ${Y(yAlt)} Q ${X(540)} ${Y(yAlt + 18)} ${X(540 + genis / 2)} ${Y(yAlt - 6)}`}
-          fill="none"
-          stroke="#f3b441"
-          strokeWidth={9 / K}
-          strokeLinecap="round"
-          pathLength={1}
-        />
+        {/* dalgalı altı çizgi: kahve kontur + amber fırça çizgisi */}
+        <path d={dalga} fill="none" stroke={KONTUR_RENK} strokeWidth={15 / K} strokeLinecap="round" pathLength={1} />
+        <path d={dalga} fill="none" stroke="#f3b441" strokeWidth={8 / K} strokeLinecap="round" pathLength={1} />
       </DoodleBoil>
     </AbsoluteFill>
   );
 };
 
-/** Sahne 4: Börte'yi geri getiren dönüş yolu, elle çizilmiş ok. */
+/** Sahne 4: Börte'yi geri getiren dönüş yolu, elle çizilmiş dalgalı ok. */
 const DonusOku: React.FC<{ sure: number }> = ({ sure }) => {
   const frame = useCurrentFrame();
-  const opacity = interpolate(frame, [sure - 20, sure], [1, 0], CLAMP);
+  const opacity = interpolate(frame, [sure - sn(0.65), sure], [1, 0], CLAMP);
+  const govde = `M ${X(930)} ${Y(640)} Q ${X(760)} ${Y(540)} ${X(560)} ${Y(630)} T ${X(230)} ${Y(620)}`;
+  const uc = `M ${X(285)} ${Y(588)} L ${X(230)} ${Y(620)} L ${X(272)} ${Y(668)}`;
+  const ortak = {
+    fill: "none",
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    pathLength: 1,
+  };
   return (
     <AbsoluteFill style={{ opacity }}>
-      <DoodleBoil hold={BOIL_HOLD} amount={8} drawOn={60}>
-        <path
-          d={`M ${X(930)} ${Y(640)} C ${X(740)} ${Y(520)} ${X(470)} ${Y(740)} ${X(230)} ${Y(600)}`}
-          fill="none"
-          stroke="#fff3d4"
-          strokeWidth={8 / K}
-          strokeLinecap="round"
-          pathLength={1}
-        />
-        <path
-          d={`M ${X(290)} ${Y(602)} L ${X(230)} ${Y(600)} L ${X(262)} ${Y(651)}`}
-          fill="none"
-          stroke="#fff3d4"
-          strokeWidth={8 / K}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          pathLength={1}
-        />
+      <DoodleBoil hold={BOIL_HOLD} amount={6} drawOn={sn(2)}>
+        <path d={govde} stroke={KONTUR_RENK} strokeWidth={16 / K} {...ortak} />
+        <path d={uc} stroke={KONTUR_RENK} strokeWidth={16 / K} {...ortak} />
+        <path d={govde} stroke="#fff3d4" strokeWidth={9 / K} {...ortak} />
+        <path d={uc} stroke="#fff3d4" strokeWidth={9 / K} {...ortak} />
       </DoodleBoil>
     </AbsoluteFill>
   );
 };
 
-/** Rüzgârda sallanan çimen (en altta, ince bir şerit, y>1760). Altyazı bölgesinin (≈1450–1700) altında kalır. */
+/** Rüzgârda sallanan yumuşak çimen şeridi. Yapraklar ekranın alt kenarına kök salar (y = H). */
+const CIMEN_RENKLERI = ["#5b8a47", "#6f9a4a", "#8fb85f", "#a9c874"];
 const Cimen: React.FC = () => {
   const frame = useCurrentFrame();
-  const renkler = ["#4f7a35", "#6f9a45", "#93b457", "#b9c46a"];
-  const adet = 46;
+  const t = frame / FPS;
+  const adet = 44;
+  const yollar = CIMEN_RENKLERI.map(() => "");
+
+  for (let i = 0; i < adet; i++) {
+    const r1 = random(`cimen-x-${i}`);
+    const r2 = random(`cimen-h-${i}`);
+    const r3 = random(`cimen-p-${i}`);
+    const r4 = random(`cimen-c-${i}`);
+    const x0 = (i / adet) * (W + 60) - 30 + r1 * 24;
+    const boy = 70 + r2 * 100; // 70–170 px
+    const gen = 7 + r3 * 6; // taban yarı genişliği
+    const w = 30 / (26 + r3 * 22); // açısal hız (rad/sn)
+    const sal = Math.sin(t * w + r3 * 6.283) * (14 + r2 * 14);
+    const ci = Math.floor(r4 * CIMEN_RENKLERI.length);
+    // Uçlu, yumuşak yaprak: kök ekranın alt kenarında
+    yollar[ci] +=
+      `M${x0 - gen} ${H} Q${x0 - gen * 0.5 + sal * 0.3} ${H - boy * 0.55} ${x0 + sal} ${H - boy} ` +
+      `Q${x0 + gen * 0.5 + sal * 0.5} ${H - boy * 0.5} ${x0 + gen} ${H}Z`;
+  }
+
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%">
-        {Array.from({ length: adet }).map((_, i) => {
-          const r1 = random(`cimen-x-${i}`);
-          const r2 = random(`cimen-h-${i}`);
-          const r3 = random(`cimen-p-${i}`);
-          const r4 = random(`cimen-c-${i}`);
-          const x = (i / adet) * (W + 60) - 30 + r1 * 20;
-          const h = 70 + r2 * 90;
-          const sal = Math.sin(frame / (26 + r3 * 22) + r3 * 6.28) * (14 + r2 * 12);
-          const renk = renkler[Math.floor(r4 * renkler.length)];
-          return (
-            <path
-              key={i}
-              d={`M${x - 7} ${H} Q${x - 2 + sal * 0.35} ${H - h * 0.55} ${x + sal} ${H - h} Q${x + 4 + sal * 0.35} ${H - h * 0.5} ${x + 7} ${H} Z`}
-              fill={renk}
-              opacity={0.88}
-            />
-          );
-        })}
+        {yollar.map((d, i) => (
+          <path key={i} d={d} fill={CIMEN_RENKLERI[i]} opacity={0.93} style={{ filter: "blur(0.6px)" }} />
+        ))}
       </svg>
     </AbsoluteFill>
   );
 };
 
-/** Süzülen polen ve ateş böceği parçacıkları. */
-const Parcaciklar: React.FC = () => {
-  const frame = useCurrentFrame();
-  return (
-    <AbsoluteFill style={{ pointerEvents: "none" }}>
-      {Array.from({ length: 28 }).map((_, i) => {
-        const r1 = random(`pc-x-${i}`);
-        const r2 = random(`pc-y-${i}`);
-        const r3 = random(`pc-s-${i}`);
-        const r4 = random(`pc-f-${i}`);
-        const hiz = 0.3 + r3 * 0.5;
-        const x = (r1 * W + frame * hiz) % W;
-        const y = (((r2 * H - frame * (0.2 + r3 * 0.3)) % H) + H) % H + Math.sin(frame / 40 + r4 * 6.28) * 24;
-        const boyut = 4 + r3 * 7;
-        const parilti = 0.25 + 0.3 * (0.5 + 0.5 * Math.sin(frame / 18 + r4 * 6.28));
-        return (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              left: x,
-              top: y,
-              width: boyut,
-              height: boyut,
-              borderRadius: "50%",
-              background: "#fff1b8",
-              opacity: parilti,
-              boxShadow: "0 0 14px 5px rgba(255,226,150,0.55)",
-            }}
-          />
-        );
-      })}
-    </AbsoluteFill>
-  );
-};
-
-/** Sıcak ışık, kağıt dokusu, kenar kararması. Üstte ve altta yumuşak gölge (alt gölge ≈ y>1420, altyazı okunurluğu için). */
-const SulubotyaKatmani: React.FC = () => (
-  <AbsoluteFill style={{ pointerEvents: "none" }}>
-    <AbsoluteFill style={{ background: "rgba(255,200,120,0.10)", mixBlendMode: "soft-light" }} />
+/** Yumuşak, sıcak gradyan gölge: üstte hafif, altta altyazı okunurluğu için y≈1300'den başlar.
+    Üzerine sıcak altın saat parıltısı biner. */
+const SicakGolge: React.FC = () => (
+  <>
     <AbsoluteFill
       style={{
+        pointerEvents: "none",
         background:
-          "radial-gradient(ellipse at 50% 45%, rgba(255,214,140,0) 45%, rgba(90,50,30,0.38) 100%)",
-        mixBlendMode: "multiply",
+          "linear-gradient(to bottom, rgba(50,28,14,0.30) 0px, rgba(50,28,14,0.12) 380px, rgba(50,28,14,0) 620px, rgba(50,28,14,0) 1300px, rgba(50,28,14,0.28) 1480px, rgba(50,28,14,0.5) 1920px)",
       }}
     />
     <AbsoluteFill
       style={{
-        background: "linear-gradient(180deg, rgba(70,40,25,0.36) 0%, rgba(70,40,25,0) 28%)",
+        pointerEvents: "none",
+        mixBlendMode: "screen",
+        background: "radial-gradient(ellipse at 80% 18%, rgba(255,214,140,0.26), rgba(255,214,140,0) 60%)",
       }}
     />
-    <AbsoluteFill
-      style={{
-        background: "linear-gradient(0deg, rgba(50,30,20,0.46) 0%, rgba(50,30,20,0) 26%)",
-      }}
-    />
-    <svg width="100%" height="100%" style={{ position: "absolute", inset: 0, opacity: 0.14, mixBlendMode: "multiply" }}>
-      <filter id="kagit-dokusu">
-        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed={7} />
-        <feColorMatrix type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.42  0 0 0 0 0.30  0 0 0 0.9 0" />
+  </>
+);
+
+/** Sulu boya kâğıdı greni: sabit (kareden kareye değişmez), düşük opaklık. Render yavaşlarsa
+    bu katmanı bir PNG'ye çevirip <Img> olarak kullanın. */
+const KagitDokusu: React.FC = () => (
+  <AbsoluteFill style={{ pointerEvents: "none", mixBlendMode: "multiply", opacity: 0.2 }}>
+    <svg width="100%" height="100%">
+      <filter id="kagit-gren">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves={3} seed={7} stitchTiles="stitch" />
+        <feColorMatrix type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.42  0 0 0 0 0.3  0 0 0 0.9 0" />
       </filter>
-      <rect width="100%" height="100%" filter="url(#kagit-dokusu)" />
+      <rect width="100%" height="100%" filter="url(#kagit-gren)" />
     </svg>
   </AbsoluteFill>
 );
 
-/* KineticCaptions'ın dış çizgisi efektin içinde siyaha sabit ve prop sunmuyor.
-   Efekt dosyasına dokunmadan, sarmalayıcı altındaki kelime span'larında sıcak kahverengiye çekiyoruz. */
+/* KineticCaptions içindeki yazı tipi, kontur ve gölge efekt dosyasında sabit. Efekt dosyasına
+   dokunmadan sarmalayıcıdan CSS ile yumuşak, sıcak stile çekiyoruz: Nunito 800, kahve kontur,
+   yumuşak gölge. */
 const ALTYAZI_CSS = `
+.altyazi-sicak div {
+  font-family: ${ALTYAZI_FONTU} !important;
+  font-weight: 800 !important;
+}
 .altyazi-sicak span {
-  -webkit-text-stroke-color: #5a3418 !important;
-  text-shadow: 0 6px 0 rgba(70, 38, 16, 0.38) !important;
+  -webkit-text-stroke: 7px #4a2e1a !important;
+  paint-order: stroke fill !important;
+  text-shadow: 0 5px 12px rgba(60,35,15,0.5) !important;
 }
 `;
 
@@ -571,114 +1016,93 @@ export type CengizHanProps = {
 };
 
 export const CengizHan: React.FC<CengizHanProps> = ({ sesler = false }) => {
+  const baslikBas = sn(3.35);
+  const ctaBas = sn(56.2);
+  const okBas = sn(17.35);
+  const okBit = sn(25);
+
   return (
-    <AbsoluteFill style={{ background: "#2a1a10" }}>
-      {/* 1) Sahneler */}
+    <AbsoluteFill style={{ background: "#3a2a1c" }}>
+      {/* 1) Sahneler: beş katmanlı paralaks, çapraz solmayla bağlı */}
       {SAHNELER.map((s, i) => {
-        const from = i === 0 ? 0 : s.baslangic - FADE;
-        const dur = s.bitis - from;
-        const sureSahne = s.bitis - s.baslangic;
-
-        let icerik: React.ReactNode;
-        if (i === 0) {
-          // Açılış: yurt detayından geniş bozkıra çekilme
-          icerik = (
-            <PullBackReveal focusX={68} focusY={62} startScale={3.2} startAt={10} duration={90}>
-              <Img
-                src={staticFile(s.gorsel)}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </PullBackReveal>
-          );
-        } else if (i === SAHNELER.length - 1) {
-          // Kapanış: taş ve çiçekten (kadrajın %30 x, %62 y noktası) sonsuz bozkıra çekilme.
-          // Odak y=62 → taş ≈ y 1190 px, altyazı (≈1450–1700) ve alt gradyanın (y>1420) üstünde.
-          icerik = (
-            <PullBackReveal focusX={30} focusY={62} startScale={3} startAt={12} duration={130}>
-              <Img
-                src={staticFile(s.gorsel)}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </PullBackReveal>
-          );
-        } else {
-          icerik = <KenBurns src={s.gorsel} sure={sureSahne + FADE} hareket={s.hareket} />;
-        }
-
+        const from = i === 0 ? 0 : sn(s.bas) - FADE;
+        const dur = sn(s.bit) - from;
         return (
-          <Sequence key={i} from={from} durationInFrames={dur}>
-            <YumusakGiris aktif={i !== 0}>{icerik}</YumusakGiris>
+          <Sequence key={s.no} from={from} durationInFrames={dur}>
+            <YumusakGiris aktif={i !== 0}>
+              <SahneIcerigi s={s} sure={dur} />
+            </YumusakGiris>
           </Sequence>
         );
       })}
 
-      {/* 2) Sulu boya ışığı, doku, kenar kararması */}
-      <SulubotyaKatmani />
+      {/* 2) Sıcak gradyan gölge ve altın saat parıltısı */}
+      <SicakGolge />
 
-      {/* 3) Yaşayan detaylar: parçacıklar ve çimen */}
-      <Parcaciklar />
+      {/* 3) Yumuşak çimen */}
       <Cimen />
 
-      {/* 4) Elle çizilmiş yazı ve çizimler (DoodleBoil) */}
-      {/* Başlık: PullBackReveal bittikten sonra */}
-      <Sequence from={100} durationInFrames={50} layout="none">
-        <EkranMetni satirlar={["Bozkırın Çocuğu"]} sure={50} fs={112} topY={330} />
+      {/* 4) Sulu boya kâğıdı greni (yazıların altında, görüntünün üstünde) */}
+      <KagitDokusu />
+
+      {/* 5) Elle çizilmiş yazı ve çizimler (DoodleBoil) */}
+      <Sequence from={baslikBas} durationInFrames={sn(5) - baslikBas} layout="none">
+        <EkranMetni satirlar={["Bozkırın Çocuğu"]} sure={sn(5) - baslikBas} fs={110} topY={330} />
       </Sequence>
 
       {EKRAN_METINLERI.map((m, i) => (
-        <Sequence key={i} from={m.from} durationInFrames={m.sure} layout="none">
-          <EkranMetni satirlar={m.satirlar} sure={m.sure} />
+        <Sequence key={i} from={sn(m.bas)} durationInFrames={sn(m.bit) - sn(m.bas)} layout="none">
+          <EkranMetni satirlar={m.satirlar} sure={sn(m.bit) - sn(m.bas)} />
         </Sequence>
       ))}
 
       {/* Sahne 4: Börte'nin dönüş yolu */}
-      <Sequence from={520} durationInFrames={230} layout="none">
-        <DonusOku sure={230} />
+      <Sequence from={okBas} durationInFrames={okBit - okBas} layout="none">
+        <DonusOku sure={okBit - okBas} />
       </Sequence>
 
-      {/* Kapanış çağrısı: 56,2. sn'den itibaren, anlatım bittikten sonra */}
-      <Sequence from={1686} durationInFrames={114} layout="none">
+      {/* Kapanış çağrısı: 56,2. sn'den videonun sonuna */}
+      <Sequence from={ctaBas} durationInFrames={TOPLAM_KARE - ctaBas} layout="none">
         <EkranMetni
           satirlar={["Sıradaki karakter?", "Timur mu, Attila mı?"]}
-          sure={114}
-          fs={84}
+          sure={TOPLAM_KARE - ctaBas}
+          fs={88}
           topY={300}
-          lineH={110}
+          lineH={104}
           cikis={false}
         />
       </Sequence>
 
-      {/* 5) Altyazı: kelimeler Türkçe kurallarla önceden büyütüldü, lang="tr" ek güvence.
-             Dış çizgi rengi sıcak kahverengi (ALTYAZI_CSS). */}
+      {/* 6) Altyazı: kelimeler Türkçe kurallarla önceden büyütüldü, lang="tr" ek güvence. */}
       <div className="altyazi-sicak" lang="tr" style={{ position: "absolute", inset: 0 }}>
         <style>{ALTYAZI_CSS}</style>
         <KineticCaptions words={KELIMELER} perPage={3} highlight="#ffd479" fontSize={72} />
       </div>
 
-      {/* 6) Ses (isteğe bağlı) */}
+      {/* 7) Ses (isteğe bağlı). Fade zamanları saniyeden türetilir. */}
       {sesler ? (
         <>
           <Audio src={staticFile("anlatim.mp3")} />
           <Audio
             src={staticFile("muzik-bozkir.mp3")}
             loop
-            volume={(f) => interpolate(f, [0, 45, 1700, 1800], [0, 0.22, 0.22, 0], CLAMP)}
+            volume={(f) => interpolate(f, [0, sn(0.75), sn(56.67), sn(60)], [0, 0.22, 0.22, 0], CLAMP)}
           />
           <Audio
             src={staticFile("ruzgar.mp3")}
             loop
-            volume={(f) => interpolate(f, [0, 30, 1740, 1800], [0, 0.18, 0.18, 0], CLAMP)}
+            volume={(f) => interpolate(f, [0, sn(0.5), sn(58), sn(60)], [0, 0.18, 0.18, 0], CLAMP)}
           />
-          <Sequence from={492} durationInFrames={258}>
+          <Sequence from={sn(16.4)} durationInFrames={sn(8.6)}>
             <Audio
               src={staticFile("nal-sesi.mp3")}
-              volume={(f) => interpolate(f, [0, 40, 200, 258], [0, 0.18, 0.18, 0], CLAMP)}
+              volume={(f) => interpolate(f, [0, sn(1.33), sn(6.67), sn(8.6)], [0, 0.18, 0.18, 0], CLAMP)}
             />
           </Sequence>
-          <Sequence from={750} durationInFrames={200}>
+          <Sequence from={sn(25)} durationInFrames={sn(6.67)}>
             <Audio
               src={staticFile("kalabalik.mp3")}
-              volume={(f) => interpolate(f, [0, 30, 150, 200], [0, 0.16, 0.16, 0], CLAMP)}
+              volume={(f) => interpolate(f, [0, sn(1), sn(5), sn(6.67)], [0, 0.16, 0.16, 0], CLAMP)}
             />
           </Sequence>
         </>
@@ -694,8 +1118,8 @@ export const CengizHan: React.FC<CengizHanProps> = ({ sesler = false }) => {
 <Composition
   id="CengizHan"
   component={CengizHan}
-  durationInFrames={1800}
-  fps={30}
+  durationInFrames={3600}
+  fps={60}
   width={1080}
   height={1920}
   defaultProps={{ sesler: false }}
@@ -706,20 +1130,32 @@ export const CengizHan: React.FC<CengizHanProps> = ({ sesler = false }) => {
 
 ## 4. Doğrulama durumu ve kare kontrolü
 
-**Durum (açık söylüyorum):** Bu ortamda Remotion render aracım yok. Hiçbir kareyi render etmedim ve aşağıdaki "geçme ölçütleri" **henüz görsel olarak onaylanmış değil**. Kodu ve yerleşim hesaplarını inceledim (aşağıdaki tablo). Render sonucu farklı çıkarsa gerçek görüntü esas alınmalı.
+**Durum:** Bu ortamda Remotion render aracım yok. Hiçbir kareyi render etmedim ve hiçbir görsel üretmedim. Aşağıdaki ölçütler **henüz görsel olarak onaylanmış değildir**. Render sonucu farklı çıkarsa gerçek görüntü esas alınmalıdır.
 
-**Kod incelemesiyle çıkan sonuçlar:**
+**Kod incelemesiyle çıkan sonuçlar**
 
 | Kontrol | İnceleme sonucu |
 |---|---|
-| Ekran metni × altyazı çakışması | Ekran metni y≈250–450 (başlık ≈330–400, CTA ≈300–410). Altyazı ≈1450–1700. Aralarında ≥1000 px boşluk var, çakışma beklenmiyor. |
-| Çimen / alt gradyan × altyazı | Çimen y>1760 (en uzun kenar 160 px). Altyazı tabanı y=1700. Gradyan y>1420'den başlar ve altyazının arkasında okunurluk sağlar. Gradyan önemli nesneyi kapatmaz, çünkü komutlarda alt çeyrek boş bırakıldı. |
-| Sahne 8 odak nesnesi | %62 y ≈ 1190 px, gradyanın (1420) ve altyazının (≈1450) üstünde. PullBackReveal 1669. karede biter. |
-| Yazı tipleri | Caveat 700 ve Montserrat 900 artık yükleniyor (`latin` + `latin-ext`). Görsel teyit bekliyor. |
-| DoodleBoil dikey ölçek | Ölçek 0,5625, dikey ortalı. Hesaplar `X()`/`Y()` ile uyumlu. Metin genişlikleri (≤ ≈750 px) 1080'e sığar. Görsel teyit bekliyor. |
-| Türkçe büyük harf | Kelimeler `toLocaleUpperCase("tr-TR")` ile büyütülüyor, beklenen çıktı TEMÜÇİN'Dİ, BİLİNMİYOR, HÂLÂ. Görsel teyit bekliyor. |
-| Altyazı genişliği | Montserrat Black büyük harfle geniş. En uzun kelime (MÜTTEFİKLERİYLE) 72 px'te yaklaşık 760 px tutar ve sığar. 3 kelimelik sayfa en kötü 3 satıra çıkabilir (üst sınır ≈ y 1450). Görsel teyit bekliyor. |
-| Çizgi rengi | `.altyazi-sicak span` kuralı `!important` ile satır içi `WebkitTextStroke` rengini geçersiz kılar. Efekt dosyası değişmedi. |
+| fps ve süre | `fps={60}`, `durationInFrames={3600}`. Sahne sınırları 0, 300, 540, 984, 1500, 2064, 2604, 3090, 3600. Hepsi `sn()` ile saniyeden türüyor. |
+| Sprite tabanı | Her sprite `top = round(tabanY × ölçek − kareH × ölçek)` ile konumlanıyor. Dikey konum sahne boyunca değişmiyor. Yürüyen ve koşan sprite'lar aynı çizgide kalıyor. |
+| Zemin ve altyazı | Ekran taban y'leri: Sahne 1 → 1344, 2 → 1200, 3 aile → 1200 ve kervan → 1020, 4 → 1260, 5 → 1200, 6 kolon → 1260 ve şehir → 1035, 7 → 1200, 8 → 1280. Hepsi altyazı bandının (≈1450) ve alt gölgenin (≈1300) üstünde. |
+| Toz | `Toz` parçacıkları sprite tabanında (`s.zemin × ölçek`) doğar, yukarı yükselir, solar. Zemin çizgisinin altına yalnızca yarıçapın yarısı kadar iner (yumuşak toz bulutu). |
+| Duman | Sahne 6 dumanı, şehir sprite'ının içinde, çatı hizasından çıkıyor. Şehir tabanı UFUK 345'te. |
+| Çiçek ve taş | Her ikisi de ZEMIN 640 çizgisinde. Çiçek x=212, taş x≈162. Aradaki boşluk komutta tanımlı. |
+| Çimen | Yapraklar `y = H`'den (ekran altı) başlıyor. Yan kenarda havada kalan ot yok. |
+| Alt çeyrek | Komutlarda orta plan üst kenardan görüntü altına kadar opak. Gökyüzünün alttan görünmesi sorunu kalktı. |
+| Piksel kalıntıları | `pixelated`, `piksel-sert` filtresi, `crispEdges`, 3 px yuvarlama ve dama deseni kodda yok. |
+| Yazı tipi | Patrick Hand (400) ve Nunito (800), `latin` + `latin-ext`. Paket adı (`PatrickHand`, `Nunito`) ve ğ, ş, İ, ı, â kapsaması **henüz teyit edilmedi**. Derleme hatası olursa yerel `FontFace` yoluna dönün. |
+| DoodleBoil ve kontur | Ekran metninin konturu `strokeDasharray: none` ile korunuyor. Aksi halde DoodleBoil'in çizilme efekti konturu kesik gösterirdi. Altı çizgi `pathLength={1}` ile çiziliyor. |
+| Yazı genişliği | Ekran metni 900 px'e sığacak biçimde `0,5 em/harf` tahminiyle küçülüyor. Bu tahmin teyit bekliyor. Altyazıda en uzun kelime MÜTTEFİKLERİYLE 72 px'te ≈ 650 px tutar, sığmalı. |
+| Türkçe büyük harf | Kelimeler `toLocaleUpperCase("tr-TR")` ile büyütülüyor. Beklenen çıktı TEMÜÇİN'Dİ, BİLİNMİYOR, HÂLÂ. |
+| Kâğıt dokusu | `feTurbulence` sabit seed'li, kareden kareye değişmiyor. Render yavaşlarsa dokuyu PNG'ye çevirin. |
+| Eksik dosya | Bir PNG eksikse `Img` render'ı durdurur. Önce bütün dosyalar `public/` altında olmalı. |
+
+**Bilinen sınırlar**
+- **Atlı kafile ve ayak kayması (Sahne 4):** Sahne boyunca kafile yaklaşık 20 birim/sn ilerliyor, sprite döngüsü saniyede 1 tur. Gerçek bir dörtnalın adımından kısa. Bu yüzden Sahne 4'ün atları yavaş, sakin bir tırıs ya da canter olarak çizilmeli. Orta plan çizgisinde belirgin işaretler (taş, ot öbeği) olmamalı. Render'da kayma görünürse sprite'ın x yolunu kısaltın ya da sprite fps'ini düşürün.
+- **Aile yürüyüşü (Sahne 3):** Bir yürüme döngüsü ≈ 22 birimlik ilerlemeye denk geliyor (komutta da yazıyor). Kayma varsa x aralığını daraltın.
+- **PullBackReveal:** Dosyaya dokunulmadı. Çekilme sırasında sabit −3° dönüş vardır. Bu, yumuşak sulu boya dokusunda görünmez. Yine de ilk render'da kenarlarda siyah boşluk olup olmadığına bakın.
 
 **Render komutu** (her kare için `N` yerine sayıyı yazın):
 
@@ -727,35 +1163,40 @@ export const CengizHan: React.FC<CengizHanProps> = ({ sesler = false }) => {
 npx remotion still src/index.ts CengizHan out/k-N.png --frame=N
 ```
 
-Kareler: **20, 120, 200, 600, 800, 1200, 1400, 1560, 1650, 1720**
+Kareler: **40, 240, 400, 760, 1200, 1600, 2400, 2800, 3120, 3300, 3440**
 
-| Kare | Neye bakılır |
-|---|---|
-| 20 | PullBackReveal ortasında yurt görünür mü, görüntü bulanık mı? Bulanıksa `startScale` 2,5 yapın. |
-| 120 | Başlık "Bozkırın Çocuğu" okunuyor mu, ğ ve ç doğru mu? Altyazıdan ayrı mı? |
-| 200 | "Yaklaşık 1162." ve altı çizgisi. Caveat gerçekten yüklendi mi (yedek yazı tipi değil)? |
-| 600 | Börte oku çiziliyor mu, hangi kenarda duruyor, atlılarla çakışıyor mu? |
-| 800 | "1206: “Cengiz Han” dediler." tek satıra sığıyor mu? |
-| 1200 | "Şehirler düştü. / Bedeli ağır oldu." iki satır ve altı çizgi. |
-| 1400 | "Mezarı hâlâ bilinmiyor." â karakteri ve altyazıda BİLİNMİYOR'daki İ. |
-| 1560 | Sahne 8 başı: taş yığını ve çiçek altyazı bandının üstünde mi? |
-| 1650 | Çekilme bitmek üzere. Taş ve çiçek hâlâ altyazı ve gradyanın üstünde ve görünür mü? |
-| 1720 | CTA üstte, altyazı altta, birbirine binmiyor mu? Çimen altyazıyı kapatıyor mu? |
+| Kare | Sahne | Neye bakılır |
+|---|---|---|
+| 40 | 1 (çekilme sürüyor) | Yurt ve iki atın tabanı y≈1344'te zemine oturuyor mu? Boyalı görünüm, kâğıt grenin düzgünlüğü. Katman kenarı, tile dikişi görünüyor mu? Siyah kenar yok mu? |
+| 240 | 1 | Başlık "Bozkırın Çocuğu" okunuyor mu? ğ, ç, ı doğru mu, Patrick Hand mı? Kontur yumuşak mı? Altyazıdan ayrı mı? |
+| 400 | 2 | "Yaklaşık 1162." ve dalgalı altı çizgi. Yurt tabanı y≈1200'de çayıra oturuyor mu? Duman bacadan yukarı mı çıkıyor? |
+| 760 | 3 | Aile tabanı y≈1200'de ve ayaklar yere basıyor mu? Kervan tekerlekleri y≈1020'de uzak ovada mı? Toz ayaklardan yükseliyor mu? |
+| 1200 | 4 | Dönüş oku çiziliyor mu, atlılarla çakışmıyor mu? Toynaklar y≈1260'a değiyor mu, toz yerden mi kalkıyor? |
+| 1600 | 5 | "1206: “Cengiz Han” dediler." tek satıra sığıyor mu? Tuğ direği tabanı y≈1200'de yerde mi? Çadırlar zeminde mi? |
+| 2400 | 6 | "Şehirler düştü. / Bedeli ağır oldu." iki satır ve altı çizgi. Şehir tabanı y≈1035'te, duman çatılardan mı çıkıyor? Kolon tabanı y≈1260'ta mı? Şiddet öğesi yok mu? |
+| 2800 | 7 | "Mezarı hâlâ bilinmiyor." Â karakteri ve altyazıda BİLİNMİYOR'daki İ. At tabanı y≈1200'de, ağaç gövdesi aynı çizgide mi? |
+| 3120 | 8 (çekilme sürüyor) | Taş yığını ve çiçek altyazı bandının üstünde mi? Çiçek ve taş aynı çizgide mi? |
+| 3300 | 8 | Çekilme bitmek üzere (3338'de biter). Taş ve çiçek tabanı y≈1280'de mi? Yıldızlar sadece gökte mi? |
+| 3440 | 8 | CTA üstte, altyazı altta, birbirine binmiyor mu? Çimen altyazıyı kapatıyor mu? |
 
-**Her kare için ortak ölçütler:**
-- Altyazı kahverengi çizgili ve okunur mu? Ekran metni ile üst üste binmiyor mu?
-- Montserrat Black (kalın, geniş) ve Caveat (el yazısı) göründü mü?
-- Altyazıda TEMÜÇİN ve BİLİNMİYOR yazıyor mu (İ doğru, I değil)?
+**Her kare için ortak ölçütler**
+- **Zemin teması:** Karedeki hiçbir nesne (yurt, at, insan, tuğ, kule, ağaç, taş, çiçek) zeminin üstünde havada kalmamalı, zemine gömülmemeli.
+- **Tarz:** Kenarlar yumuşak ve boyalı, kâğıt grenli. Sert piksel ya da bulanık "dijital" görünüm olmamalı.
+- **Katman ayrımı:** Tile dikişi, geniş katman kenarı ve sprite karesi kırpması görünmemeli.
+- **Okunurluk:** Altyazı bandı (≈y 1450–1700) okunur, ekran metniyle üst üste binmiyor.
+- **Türkçe:** TEMÜÇİN ve BİLİNMİYOR yazıyor (İ doğru, I değil).
 
-**Doğrulama sonrası:** Kare 1560/1650'de odak nesnesi hâlâ yüksek ya da alçak duruyorsa, önce `focusY` değerini, sonra görsel komutundaki %62 konumunu birlikte ayarlayın. İkisi aynı noktayı göstermeli.
+**Ek kontrol (video üzerinde):** Çapraz solma sırasında iki sahnenin zemin çizgileri farklıdır. Geçiş 0,6 sn olduğu için bu normaldir, uzun sürerse rahatsız eder. Hareketli önizlemede sprite adımlarının akıcılığına ve kamera hareketinin takılmamasına bakın.
 
-**Ses.** Seslendirme 60 sn'yi aşmamalı. Anlatım ≈ 56,3 sn'de bitmeli (hız ≈ 1,05–1,1×). Dosya hazır olunca `ANLATIM` zamanlarını ve `sesler` prop'unu güncelleyin.
+**Ses:** Seslendirme 60 sn'yi aşmamalı. Anlatım ≈ 56,3 sn'de bitmeli. Dosya hazır olunca `ANLATIM` zamanlarını ve `sesler` prop'unu güncelleyin.
 
-**Doğruluk.** Tarihler (1162, 1206, 1227) ve Yam'ın kuruluşu yayından önce *Moğolların Gizli Tarihi* veya Britannica ile doğrulanmalı. Videoda şiddet ve ölü sayısı gösterilmez. Sahne 6 bedeli tozlu gökyüzü ve uzak duman sütunlarıyla sakin bir dille anlatır.
+**Doğruluk:** Tarihler (1162, 1206, 1227) ve Yam'ın kuruluşu yayından önce *Moğolların Gizli Tarihi* veya Britannica ile doğrulanmalı. Videoda şiddet ve ölü sayısı gösterilmez. Sahne 6 bedeli tozlu gökyüzü ve şehir çatılarından yükselen ince duman sütunlarıyla sakin bir dille anlatır.
+
+**Doğrulama sonrası:** Kare 3120 ve 3300'de odak nesnesi hâlâ yüksek ya da alçak duruyorsa önce `focusY` değerini, sonra `sahne8-orta.png` ve `sahne8-karakter.png` konumlarını (SAHNELER'deki `x` ve `zemin`) birlikte ayarlayın. İkisi aynı noktayı göstermeli. Sahne 1 için de aynı kural geçerli.
 
 ## 🔴 Kalite Kontrol · Kalite kontrol notu
 
-Onaylandı. Hedef kitle: 18-35 yaş, tarih ve hikâye meraklısı, Reels/Shorts/TikTok için 1080×1920 dikey, 30 fps, tam 60 sn (1800 kare). Ajans profili boş olduğundan kitle ve marka sesi araştırmadaki varsayımlara göre değerlendirildi. Sakin anlatıcı tonu, 'sen' diline yakın dil, şiddetsiz ve dengeli anlatım ile Timur/Attila çağrısı bu varsayımla uyumlu. İçerik tutarlılığı: 8 sahne düzenlenmiş metinle birebir örtüşüyor. Tarihler ('yaklaşık 1162', 1206, 1227) ve ifadeler ('söylenir', Yam'ı kurdu, yazıyı benimsedi, ardıllarının döneminde) araştırmayla tutarlı. Ölüm nedeni, ölü sayısı, unvan anlamı ve Cuci tartışması verilmemiş. Seferler tozlu gökyüzü ve uzak duman sütunlarıyla sembolik anlatılmış, kan ve savaş yok. 5 ekran metni onaylı listeyle aynı. Anlatım zamanlaması (≈56,3 sn'de biter) ile sahne ve CTA zamanlaması (56,2. sn) uyumlu. Görsel tarz: tüm komutlar sulu boya/guaj dokusu, el boyaması arka plan, altın saat ışığı, pastel doğal palet, rüzgârda sallanan çimen ve kabarık bulutları istiyor. Komutlarda stüdyo ya da sanatçı adı yok ve görseller metinsiz. Hareketler yavaş Ken-Burns ve 18 karelik (0,6 sn) çapraz geçişle sağlanmış. Sert geçişli ZoomThroughCut ve WhipPan bilerek kullanılmamış. Dikey yerleşim (üstte ekran metni, ortada odak bölgesi, altta altyazı) çakışmasız planlanmış. Revizyon 2'deki tüm notlar giderilmiş: sahne 8 odağı y≈1190'a alınmış, boş eyerli at kararı tablo ve komutta aynı, DoodleBoil hold=2 tek sabitten okunuyor, Türkçe büyük harf ve latin-ext yazı tipi sorunları çözülmüş. Kod: PullBackReveal, DoodleBoil ve KineticCaptions kütüphaneden, dosyalarına dokunmadan kullanılmış. Altyazı çizgi rengi yalnızca sarmalayıcıda CSS ile değiştirilmiş. Ken-Burns, çimen, parçacık ve sulu boya katmanı kütüphane dışı basit yardımcı bileşenler ve tarza hizmet ediyor. Yayın öncesi dikkat: (1) Grafiker render alamadığını açıkça belirtmiş. Bölüm 4'teki 10 kare (20, 120, 200, 600, 800, 1200, 1400, 1560, 1650, 1720) render edilip görsel teyit alınmalı. Özellikle yazı tiplerinin gerçekten yüklenmesi, DoodleBoil metinlerinin dikeyde ortalanması, altyazı çizgi rengi, TEMÜÇİN ve BİLİNMİYOR'daki İ, sahne 8'de taş yığınının altyazı üstünde kalması kontrol edilmeli. (2) Seslendirme gelince ANLATIM zamanları ya da Whisper zaman damgaları güncellenmeli, anlatım 60 sn'yi aşmamalı. (3) Tarihler ve Yam bilgisi yayından önce Moğolların Gizli Tarihi veya Britannica ile doğrulanmalı. (4) Ajans profili doldurulunca ton ve platform varsayımı yeniden gözden geçirilmeli.
+ONAY. Hedef kitle ve marka sesi: Ajans profili boş olduğundan 18-35 yaş, tarih meraklısı Türkçe kitle ve dikey 9:16 Reels/Shorts/TikTok varsayımı korunmuş. Anlatıcı tonu sakin, dengeli ve abartısız; kan ve şiddet gösterilmiyor. Profil dolunca ton gözden geçirilmeli. Araştırma tutarlılığı: Metin, editörün düzeltmeleriyle uyumlu. Efsane olarak 'söylenir' ifadesi, 'yaklaşık 1162', Börte'nin kaçırılma sırası, 1206, 1227, 'yazıyı benimsedi', 'mezarı bilinmiyor' ve 'ardıllarının döneminde' ifadeleri araştırma özetiyle örtüşüyor. Ölü sayısı, Cuci tartışması, ölüm nedeni ve unvan anlamı verilmemiş. 5 ekran metni onaylı metinle birebir. Görsel tarz: Tüm komutlar sulu boya ve guaj dokulu, altın saat ışıklı, pastel ve doğal paletli, sakin ve nostaljik; stüdyo veya sanatçı adı yok. Piksel kalıntıları temizlenmiş, geçişler 0,6 sn'lik yumuşak çapraz solma. Sahne 6'nın soluk paleti bedel temasına uygun ve kabul edilebilir. Kütüphane: PullBackReveal (Sahne 1 ve 8), DoodleBoil (başlık, ekran metinleri, dönüş oku, CTA) ve KineticCaptions (altyazı) kullanılıyor; efekt dosyalarına dokunulmamış. ZoomThroughCut ve WhipPan, ani geçiş kuralına aykırı oldukları için bilerek dışarıda bırakılmış. Fizik ve zemin: Her sahnede yakın zemin (ZEMIN) ve gerekirse uzak ova (UFUK) çizgisi tanımlı. Sprite'lar merkezle değil tabanla konumlanıyor (top = tabanY×ölçek − kareH×ölçek), dikey konum sahne boyunca değişmiyor. Yurt, aile, at, tuğ, şehir, kervan, taş ve çiçek tabanları sahnelerinin çizgilerine oturuyor. Kervan ve şehir, orta planın üst kenarının üstünde kalan düz uzak ovada duruyor. Duman şehir sprite'ının içinde ve çatı hizasından çıkıyor. Toz yerden doğup yükseliyor. Çimen ve ön plan otları yalnızca alt kenara kök salıyor. Orta plan üst kenardan görüntü altına kadar opak, alttan gökyüzü görünmüyor. Havada duran nesne tespit edilmedi: polen, ateş böceği ve yıldızlar zaten süzülen veya titreyen doğa öğeleri ve yıldızlar yalnızca gökte. Tüm odak nesneleri altyazı bandının (y≈1450) ve alt gölgenin (y≈1300) üstünde. Sprite ölçüleri (ızgara × URET) komutlardaki piksel boyutlarıyla tutarlı. Yayın öncesi şartlar: (1) Grafiker render ve görsel üretim aracı olmadığını açıkça bildirmiş. Sahne komutlarından PNG'ler üretildikten sonra, raporun 4. bölümündeki 11 kare (40, 240, 400, 760, 1200, 1600, 2400, 2800, 3120, 3300, 3440) render edilip zemin teması, tabanların y değerleri, siyah kenar, tile dikişi ve altyazı çakışması görsel olarak doğrulanmalı. (2) Sahne 8 çekilmesinde PullBackReveal'in dönüşünün sonda sıfırlandığı ve zemin çizgisinin yatay kaldığı kontrol edilmeli. (3) Sahne 4 atlarının ve Sahne 3 ailesinin adım/kayma uyumu hareketli önizlemede bakılmalı. (4) Patrick Hand ve Nunito paket adları ile ğ, ş, İ, ı kapsaması ve ekran metni genişlik tahmini teyit edilmeli. (5) Seslendirme gelince ANLATIM zamanları Whisper çıktısıyla güncellenmeli ve anlatım 60 sn'yi aşmamalı. Metin ≈2,6 kelime/sn ile hızlı sayılır. (6) Tarihler (1162, 1206, 1227) ve Yam, Moğolların Gizli Tarihi veya Britannica ile doğrulanmalı.
 
 ## 🔵 Araştırmacı · Araştırma
 

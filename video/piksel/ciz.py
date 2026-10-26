@@ -155,6 +155,32 @@ def zemin_y(zemin: list[int], x: float, genislik: float = 0) -> int:
     return max(zemin[x0:x1 + 1]) if x1 >= x0 else zemin[int(min(W - 1, max(0, x)))]
 
 
+class FizikHatasi(ValueError):
+    pass
+
+
+def duz_zemin(zemin: list[int], x0: int, x1: int, ad: str, tolerans: int = 4) -> int:
+    """Fizik denetimi: yapılar ancak düz zemine kurulur. Ayak izi boyunca zemin toleranstan
+    fazla iniş çıkış yapıyorsa (sarp sırt, tepe yamacı) çizmeyi reddeder; yoksa tabanı verir."""
+    parca = zemin[max(0, x0):min(W, x1 + 1)]
+    if not parca:
+        raise FizikHatasi(f"{ad}: tuvalin dışında (x {x0}-{x1})")
+    fark = max(parca) - min(parca)
+    if fark > tolerans:
+        raise FizikHatasi(f"{ad}: zemin düz değil (x {x0}-{x1} arasında {fark} piksel iniş çıkış), "
+                          f"havada ya da yamaca gömülü görünür; daha düz bir yer seç")
+    return max(parca)
+
+
+def temel(img, zemin: list[int], x0: int, x1: int, y: int, renk: str):
+    """Yapının altını zemine bağlayan toprak dolgu: taban ile zemin arasında boşluk kalmaz,
+    kenarlarda yumuşak bir set gibi zemine iner."""
+    d = ImageDraw.Draw(img)
+    for x in range(max(0, x0 - 3), min(W, x1 + 4)):
+        if zemin[x] < y + 1:
+            d.line([x, zemin[x], x, y + 1], fill=hex2(renk))
+
+
 def temas_golgesi(img, x, y, genislik, renk="#1a2410", alfa=110):
     for dx in range(-int(genislik / 2), int(genislik / 2) + 1):
         if abs(dx) < genislik / 2 - 1 or (x + dx + y) % 2 == 0:
@@ -192,9 +218,9 @@ def yurt(img, x, zemin, s=1.0, keçe="#efe4cc", golge="#c9b996", kapi="#c8552c",
     """Moğol yurdu (ger): silindir keçe duvar, alçak kubbe çatı, turuncu kapı, tepe halkası."""
     d = ImageDraw.Draw(img)
     gen = int(26 * s)
-    y = zemin_y(zemin, x, gen)
     duvar_h, cati_h = int(10 * s), int(8 * s)
     x0, x1 = x - gen // 2, x + gen // 2
+    y = duz_zemin(zemin, x0, x1, "yurt", tolerans=max(3, int(2 * s)))
     temas_golgesi(img, x, y, gen + 4)
     # duvar
     d.rectangle([x0, y - duvar_h, x1, y - 1], fill=hex2(keçe), outline=hex2(KOYU))
@@ -351,10 +377,12 @@ def tug(img, x, zemin, s=1.0):
                 piksel(img, x + dx, tepe + 2 + i, hex2("#f4f0e6" if dx < w - 1 else "#c8c0b0"))
 
 
-def sehir(img, x0, x1, zemin, s=1.0, duvar="#a88a6a", golge="#7a6048"):
-    """Uzak surlu şehir: mazgallı duvar, kuleler, kapı. Tabanı zemine oturur."""
+def sehir(img, x0, x1, zemin, s=1.0, duvar="#a88a6a", golge="#7a6048", toprak="#7a8a52"):
+    """Uzak surlu şehir: mazgallı duvar, kuleler, kapı. Yalnızca düz ovaya kurulur, tabanı
+    toprak setle zemine bağlanır."""
     d = ImageDraw.Draw(img)
-    y = max(zemin[max(0, x0):min(W, x1)])
+    y = duz_zemin(zemin, x0 - int(6 * s), x1 + int(6 * s), "şehir", tolerans=max(3, int(3 * s)))
+    temel(img, zemin, x0, x1, y, toprak)
 
     def u(v):
         return max(1, int(v * s))
