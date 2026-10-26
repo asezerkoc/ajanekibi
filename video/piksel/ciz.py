@@ -1,7 +1,7 @@
-"""SKONSTART piksel sanatı çizim aracı (32-bit oyun tarzı).
+"""SKONSTART piksel sanatı çizim aracı (64-bit oyun tarzı: ince piksel, bol detay).
 
-Her şey küçük bir tuvale (270x480) piksel piksel çizilir ve en sonda en yakın komşu
-yöntemiyle 4 kat büyütülür (1080x1920). Kenar yumuşatma yoktur: pikseller keskin kalır.
+Her şey bir tuvale (540x960) piksel piksel çizilir ve en sonda en yakın komşu
+yöntemiyle 2 kat büyütülür (1080x1920). Kenar yumuşatma yoktur: pikseller keskin kalır.
 
 Fizik kuralı: zemine basan her nesne, çizildiği tepenin zemin çizgisine (zemin listesi)
 oturtulur ve altına bir temas gölgesi çizilir. Havada duran nesne olmaz.
@@ -13,8 +13,10 @@ import random
 
 from PIL import Image, ImageDraw
 
-W, H = 270, 480
-OLCEK = 4
+W, H = 540, 960
+OLCEK = 2
+
+BANT = 20  # arazinin renk bantlarının yüksekliği (piksel)
 
 BAYER = [[0, 8, 2, 10], [12, 4, 14, 6], [3, 11, 1, 9], [15, 7, 13, 5]]
 
@@ -130,8 +132,8 @@ def arazi(img, zemin: list[int], renkler: list[str], kenar: str | None = None, d
     for x in range(W):
         for y in range(zemin[x], H):
             d = y - zemin[x]
-            i = min(len(ramp) - 1, d // 10)
-            f = (d % 10) / 10
+            i = min(len(ramp) - 1, d // BANT)
+            f = (d % BANT) / BANT
             if i < len(ramp) - 1 and f > 0.6 and (BAYER[y % 4][x % 4] + 0.5) / 16 < (f - 0.6) * 2.5:
                 i += 1
             img.putpixel((x, y), ramp[i])
@@ -142,7 +144,7 @@ def arazi(img, zemin: list[int], renkler: list[str], kenar: str | None = None, d
         for _ in range(W * 2):
             x = rnd.randrange(W)
             y = rnd.randrange(zemin[x] + 3, H)
-            renk = ramp[max(0, min(len(ramp) - 1, (y - zemin[x]) // 10 - 1))]
+            renk = ramp[max(0, min(len(ramp) - 1, (y - zemin[x]) // BANT - 1))]
             piksel(img, x, y, renk)
             piksel(img, x + 1, y, renk)
 
@@ -202,7 +204,15 @@ def yurt(img, x, zemin, s=1.0, keçe="#efe4cc", golge="#c9b996", kapi="#c8552c",
         d.line([x0 + 1, by, x1 - 1, by], fill=hex2("#8a5a3a"))
     # çatı (alçak kubbe)
     d.chord([x0 - 1, y - duvar_h - cati_h, x1 + 1, y - duvar_h + cati_h], 180, 360, fill=hex2(keçe), outline=hex2(KOYU))
-    d.chord([x + gen // 6, y - duvar_h - cati_h + 2, x1, y - duvar_h + cati_h - 2], 270, 360, fill=hex2(golge))
+    # çatının sağ yarısı gölgede: kubbe eğrisini izleyen dikey şeritler
+    for cx in range(x + gen // 5, x1 + 1):
+        t = (cx - x) / (gen / 2 + 1)
+        tepe = y - duvar_h - int(cati_h * math.sqrt(max(0, 1 - t * t)))
+        d.line([cx, tepe + 2, cx, y - duvar_h - 1], fill=hex2(golge))
+    # çatı direkleri (uni): tepe halkasından saçağa ışınlar
+    for i in range(1, 6):
+        ux = x0 + i * gen // 6
+        d.line([x, y - duvar_h - cati_h + 2, ux, y - duvar_h - 1], fill=hex2(_ac(golge, -0.08)))
     d.line([x0, y - duvar_h, x1, y - duvar_h], fill=hex2(KOYU))
     # tepe halkası (toono)
     d.rectangle([x - max(1, int(2 * s)), y - duvar_h - cati_h, x + max(1, int(2 * s)), y - duvar_h - cati_h + 1], fill=hex2("#8a5a3a"))
@@ -341,18 +351,23 @@ def tug(img, x, zemin, s=1.0):
                 piksel(img, x + dx, tepe + 2 + i, hex2("#f4f0e6" if dx < w - 1 else "#c8c0b0"))
 
 
-def sehir(img, x0, x1, zemin, duvar="#a88a6a", golge="#7a6048"):
+def sehir(img, x0, x1, zemin, s=1.0, duvar="#a88a6a", golge="#7a6048"):
     """Uzak surlu şehir: mazgallı duvar, kuleler, kapı. Tabanı zemine oturur."""
     d = ImageDraw.Draw(img)
     y = max(zemin[max(0, x0):min(W, x1)])
-    d.rectangle([x0, y - 14, x1, y], fill=hex2(duvar))
-    for mx in range(x0, x1, 4):
-        d.rectangle([mx, y - 16, mx + 1, y - 14], fill=hex2(duvar))
+
+    def u(v):
+        return max(1, int(v * s))
+
+    d.rectangle([x0, y - u(14), x1, y], fill=hex2(duvar))
+    for mx in range(x0, x1, u(4)):
+        d.rectangle([mx, y - u(16), mx + u(1), y - u(14)], fill=hex2(duvar))
     for kx in range(x0, x1 + 1, (x1 - x0) // 3):
-        d.rectangle([kx - 4, y - 24, kx + 4, y], fill=hex2(golge))
-        d.polygon([(kx - 5, y - 24), (kx, y - 31), (kx + 5, y - 24)], fill=hex2("#6a3a2a"))
+        d.rectangle([kx - u(4), y - u(24), kx + u(4), y], fill=hex2(golge))
+        d.polygon([(kx - u(5), y - u(24)), (kx, y - u(31)), (kx + u(5), y - u(24))], fill=hex2("#6a3a2a"))
+        d.rectangle([kx - u(1), y - u(20), kx + u(1) - 1, y - u(17)], fill=hex2("#3a2a1e"))  # mazgal penceresi
     gx = (x0 + x1) // 2
-    d.rectangle([gx - 3, y - 8, gx + 3, y], fill=hex2("#3a2a1e"))
+    d.rectangle([gx - u(3), y - u(8), gx + u(3), y], fill=hex2("#3a2a1e"))
     d.line([x0, y, x1, y], fill=hex2(golge))
 
 
@@ -378,6 +393,34 @@ def taslar(img, x, zemin, s=1.0, cicek=True):
         for dx, dy in ((0, -1), (-1, 0), (1, 0), (0, 1)):
             piksel(img, cx + dx, cy - int(8 * s) + dy, hex2("#f4d24a"))
         piksel(img, cx, cy - int(8 * s), hex2("#c8552c"))
+
+
+def figur(img, ciz_fn, *args, kontur="#24160e", f_isik=0.18, f_golge=0.22, **kwargs):
+    """Figürü ayrı bir katmanda çizer, sonra 64-bit oyun figürü gibi işler: dışına 1 piksel
+    koyu kontur, üst kenarlarına ışık, alt kenarlarına gölge. Sonra sahneye bindirir.
+    Çizim fonksiyonunun döndürdüğü değeri (ör. yurdun baca noktası) geri verir."""
+    katman = yeni()
+    sonuc = ciz_fn(katman, *args, **kwargs)
+    px = katman.load()
+    dolu = lambda x, y: 0 <= x < W and 0 <= y < H and px[x, y][3] > 200
+    kutu = katman.getbbox()
+    if kutu:
+        x0, y0, x1, y1 = kutu
+        isle = {}
+        for y in range(max(0, y0 - 1), min(H, y1 + 1)):
+            for x in range(max(0, x0 - 1), min(W, x1 + 1)):
+                if dolu(x, y):
+                    r, g, b, a = px[x, y]
+                    if not dolu(x, y - 1) or not dolu(x - 1, y - 1) and dolu(x - 1, y):
+                        isle[(x, y)] = tuple(int(c + (255 - c) * f_isik) for c in (r, g, b)) + (a,)
+                    elif not dolu(x, y + 1) or not dolu(x + 2, y):
+                        isle[(x, y)] = tuple(int(c * (1 - f_golge)) for c in (r, g, b)) + (a,)
+                elif px[x, y][3] < 60 and any(dolu(x + dx, y + dy) for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))):
+                    isle[(x, y)] = hex2(kontur)
+        for (x, y), renk in isle.items():
+            px[x, y] = renk
+    img.alpha_composite(katman)
+    return sonuc
 
 
 def _ac(h: str, t: float) -> str:
