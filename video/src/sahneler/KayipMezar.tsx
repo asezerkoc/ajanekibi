@@ -43,6 +43,7 @@ const KAHVE = "#2a1408";
 const ALTIN = "#ffd479";
 const PIKSEL: React.CSSProperties = { imageRendering: "pixelated", position: "absolute", maxWidth: "none" };
 const snap = (v: number) => v; // alt piksel kaydırma: takılmasız, akıcı
+const YAKIN = 1.5;
 
 /* Yatayda dikişsiz tekrar eden katman (gökyüzü, uzak plan): iki kopya yan yana, kayma W'ye göre sarılır. */
 const Tekrar: React.FC<{ src: string; x: number }> = ({ src, x }) => {
@@ -56,34 +57,49 @@ const Tekrar: React.FC<{ src: string; x: number }> = ({ src, x }) => {
 };
 
 /* Bir sahnenin katmanları, yavaş paralaks kaymasıyla; sprite kendi kare hızında oynar ve tabanı zemin çizgisinde. */
+type Spr = { dosya?: string; w: number; h: number; adet: number; fps: number; x: number | [number, number]; taban: number; uzak?: boolean };
+
 const Sahne: React.FC<{
   no: number;
   sure: number;
-  sprite: { dosya?: string; w: number; h: number; adet: number; fps: number; x: number; taban: number; uzak?: boolean };
+  sprite?: Spr;
   kamera: number;
-}> = ({ no, sure, sprite, kamera }) => {
+  uydu?: boolean;
+}> = ({ no, sure, sprite, kamera, uydu }) => {
   const frame = useCurrentFrame();
   const p = interpolate(frame, [0, sure], [-1, 1], { easing: Easing.inOut(Easing.sin) });
   const akis = (frame / KM_FPS) * 14; // gökyüzü ve uzak planın sürekli akışı (px/sn)
   const kam = p * kamera;
-  const kare = Math.floor((frame / KM_FPS) * sprite.fps) % sprite.adet;
-  const sw = sprite.w * 2;
-  const sh = sprite.h * 2;
+  const kare = sprite ? Math.floor((frame / KM_FPS) * sprite.fps) % sprite.adet : 0;
+  const sw = sprite ? sprite.w * 2 : 0;
+  const sh = sprite ? sprite.h * 2 : 0;
+  // yürüyen alay ve sürü ekranda gerçekten ilerler (x: [başlangıç, bitiş])
+  const sx = sprite ? (Array.isArray(sprite.x) ? interpolate(frame, [0, sure], sprite.x) : sprite.x) : 0;
   const giris = interpolate(frame, [0, sn(0.5)], [0, 1], { extrapolateRight: "clamp" });
   // Sprite tabanı zemin (ya da uzak ova) çizgisinde; bulunduğu katmanla aynı hızda kayar
-  const spriteDiv = (hiz: number, ek = 0) => (
-    <div style={{ position: "absolute", left: snap(sprite.x * 2 - sw / 2 + kam * hiz + ek), top: sprite.taban * 2 - sh, width: sw, height: sh, overflow: "hidden" }}>
+  const spriteDiv = (hiz: number, ek = 0) =>
+    !sprite ? null : (
+    <div style={{ position: "absolute", left: snap(sx * 2 - sw / 2 + kam * hiz + ek), top: sprite.taban * 2 - sh, width: sw, height: sh, overflow: "hidden" }}>
       <Img src={staticFile(`sahne${no}-${sprite.dosya ?? "karakter"}.png`)} style={{ ...PIKSEL, left: -kare * sw, top: 0, width: sw * sprite.adet, height: sh }} />
     </div>
   );
   return (
     <AbsoluteFill style={{ opacity: giris, background: "#120806", overflow: "hidden" }}>
+      {/* Sahne 1,5 kat yakın çekilir: bütün katmanlar aynı oranda büyür (piksel boyu tutarlı), figürler kadrajı doldurur */}
+      <AbsoluteFill style={{ transform: `scale(${YAKIN})`, transformOrigin: "50% 66%" }}>
       <Tekrar src={`sahne${no}-gokyuzu.png`} x={kam * 0.1 - akis * 0.5} />
+      {uydu ? (
+        <Img
+          src={staticFile("uydu.png")}
+          style={{ ...PIKSEL, left: interpolate(frame, [0, sure], [-160, W + 40]), top: 640 + interpolate(frame, [0, sure], [0, -80]), width: 120, height: 48 }}
+        />
+      ) : null}
       <Tekrar src={`sahne${no}-uzak.png`} x={kam * 0.3 - akis} />
-      {sprite.uzak ? spriteDiv(0.3, -akis) : null}
+      {sprite?.uzak ? spriteDiv(0.3, -akis) : null}
       <Img src={staticFile(`sahne${no}-orta.png`)} style={{ ...PIKSEL, left: snap(-270 + kam * 0.65), top: 0, width: 1620, height: H }} />
-      {sprite.uzak ? null : spriteDiv(0.65)}
+      {sprite?.uzak ? null : spriteDiv(0.65)}
       <Img src={staticFile(`sahne${no}-on.png`)} style={{ ...PIKSEL, left: snap(-270 + kam * 1.25), top: 0, width: 1620, height: H }} />
+      </AbsoluteFill>
       {/* yazı için üstte basamaklı koyulaşma */}
       {[0, 1, 2].map((i) => (
         <div key={i} style={{ position: "absolute", left: 0, top: 0, width: W, height: 760 - i * 160, background: "rgba(10,4,2,0.18)" }} />
@@ -146,46 +162,50 @@ const Kapanis: React.FC = () => {
 type Bolum = {
   no: number;
   kamera: number;
-  sprite: { dosya?: string; w: number; h: number; adet: number; fps: number; x: number; taban: number; uzak?: boolean };
+  sprite?: Spr;
+  uydu?: boolean;
   yazilar: { satirlar: string[]; sure: number; boy?: number; renk?: string }[];
 };
 
+/* Her bölümün görseli anlatılan olayı gösterir (olay örgüsü): ordugâh → cenaze alayı → kutsal dağ →
+   at sürüsü → Büyük Yasak → uydular. */
 const BOLUMLER: Bolum[] = [
   {
-    no: 6, kamera: 60, sprite: { w: 360, h: 120, adet: 24, fps: 15, x: 220, taban: 630 },
-    yazilar: [{ satirlar: ["Ağustos 1227."], sure: 2, boy: 124, renk: ALTIN }, { satirlar: ["Cengiz Han,", "Batı Xia seferindeyken", "öldü."], sure: 3.2 }],
-  },
-  {
-    no: 7, kamera: 50, sprite: { w: 192, h: 160, adet: 24, fps: 16, x: 270, taban: 600 },
-    yazilar: [{ satirlar: ["Ölümü bir süre", "ordudan gizlendi,", "denir."], sure: 4.4 }],
-  },
-  {
-    no: 3, kamera: 60, sprite: { dosya: "karakter2", w: 248, h: 68, adet: 24, fps: 16, x: 300, taban: 510, uzak: true },
+    no: 11, kamera: 40, sprite: { w: 270, h: 170, adet: 24, fps: 18, x: 270, taban: 625 },
     yazilar: [
-      { satirlar: ["Cenaze kafilesi", "doğduğu bozkırlara", "yola çıktı…"], sure: 3.4 },
-      { satirlar: ["Yolda onları görenlerin", "öldürüldüğü", "söylenir."], sure: 3.6, renk: "#ff8a6a" },
+      { satirlar: ["Ağustos 1227."], sure: 2, boy: 124, renk: ALTIN },
+      { satirlar: ["Cengiz Han,", "Batı Xia seferindeyken", "öldü."], sure: 3.2 },
+      { satirlar: ["Ölümü bir süre", "ordudan gizlendi,", "denir."], sure: 3.4 },
     ],
   },
   {
-    no: 8, kamera: 36, sprite: { w: 140, h: 140, adet: 24, fps: 20, x: 236, taban: 640 },
-    yazilar: [{ satirlar: ["Kutsal Burhan Haldun", "Dağı'nın eteklerine", "gömüldüğü düşünülüyor."], sure: 4.4 }],
+    no: 12, kamera: 30, sprite: { w: 540, h: 150, adet: 24, fps: 18, x: [430, 180], taban: 640 },
+    yazilar: [{ satirlar: ["Cenaze kafilesi", "doğduğu bozkırlara", "yola çıktı…"], sure: 4.4 }],
   },
   {
-    no: 4, kamera: 70, sprite: { w: 340, h: 150, adet: 24, fps: 18, x: 300, taban: 630 },
-    yazilar: [{ satirlar: ["Mezarın üstünden", "yüzlerce at sürüldü,", "izler silindi, denir."], sure: 4.6 }],
+    no: 13, kamera: 30, sprite: { w: 540, h: 150, adet: 24, fps: 18, x: [380, 140], taban: 640 },
+    yazilar: [{ satirlar: ["Yolda onları görenlerin", "öldürüldüğü", "söylenir."], sure: 4.4, renk: "#ff8a6a" }],
   },
   {
-    no: 5, kamera: 50, sprite: { w: 160, h: 224, adet: 24, fps: 24, x: 270, taban: 600 },
+    no: 14, kamera: 36, sprite: { w: 400, h: 150, adet: 24, fps: 12, x: 270, taban: 630 },
+    yazilar: [{ satirlar: ["Kutsal Burhan Haldun", "Dağı'nın eteklerine", "gömüldüğü düşünülüyor."], sure: 4.6 }],
+  },
+  {
+    no: 15, kamera: 60, sprite: { w: 540, h: 140, adet: 24, fps: 30, x: [520, 60], taban: 640 },
+    yazilar: [{ satirlar: ["Mezarın üstünden", "yüzlerce at sürüldü,", "izler silindi, denir."], sure: 4.8 }],
+  },
+  {
+    no: 16, kamera: 36, sprite: { w: 360, h: 170, adet: 24, fps: 16, x: 270, taban: 630 },
     yazilar: [
-      { satirlar: ["Bölge yüzyıllarca", "\"Büyük Yasak\" oldu."], sure: 2.6, renk: ALTIN },
+      { satirlar: ["Bölge yüzyıllarca", "\"Büyük Yasak\" oldu."], sure: 2.8, renk: ALTIN },
       { satirlar: ["Oraya girmek", "yasaktı."], sure: 2.4 },
     ],
   },
   {
-    no: 8, kamera: -36, sprite: { w: 140, h: 140, adet: 24, fps: 20, x: 236, taban: 640 },
+    no: 17, kamera: -30, uydu: true,
     yazilar: [
-      { satirlar: ["Bugün uydularla", "bile aranıyor…"], sure: 2.6 },
-      { satirlar: ["Ama 800 yıldır", "bulunamadı."], sure: 2.8, boy: 116, renk: ALTIN },
+      { satirlar: ["Bugün uydularla", "bile aranıyor…"], sure: 2.8 },
+      { satirlar: ["Ama 800 yıldır", "bulunamadı."], sure: 3.0, boy: 116, renk: ALTIN },
     ],
   },
 ];
@@ -203,7 +223,7 @@ export const KayipMezar: React.FC = () => {
     const sure = SAHNE_SURELERI[i];
     parcalar.push(
       <Sequence key={`s${i}`} from={sn(t)} durationInFrames={sn(sure + ARA)}>
-        <Sahne no={b.no} sure={sn(sure + ARA)} kamera={b.kamera} sprite={b.sprite} />
+        <Sahne no={b.no} sure={sn(sure + ARA)} kamera={b.kamera} sprite={b.sprite} uydu={b.uydu} />
       </Sequence>,
     );
     let ty = t + 0.3;
