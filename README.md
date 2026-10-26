@@ -11,7 +11,7 @@ SKONSTART, yapay zekâ ajanlarından oluşan bir ajans. Ajanlar ajans sahibinin 
 | **Araştırmacı** | Verilen işi araştırır. İş konu belirtmiyorsa ajansın konularından, daha önce işlenmemiş olanı kendisi seçer. |
 | **Metin yazarı** | Araştırmaya dayanarak gönderi metnini yazar: kanca, ana metin, kapanış, hashtag'ler, videoda ekrana yazılacak cümleler. |
 | **Editör** | Metni dil, akış ve doğruluk açısından kontrol eder, hedef kitleye göre düzenler. |
-| **Grafiker** | Metni Ghibli-esinli, el çizimi havasında bir animasyona dönüştürür: sahne planı, görsel üretme komutları ve ajansın Remotion efekt kütüphanesiyle yazılmış video kodu. |
+| **Grafiker** | Metni ajansın imza tarzında, 64-bit piksel sanatı bir animasyona dönüştürür (60 fps, katmanlı): sahne planı, görsel üretme komutları ve ajansın Remotion efekt kütüphanesiyle yazılmış video kodu. |
 | **Kalite kontrol** | İşin hedef kitleye ve ajansın tarzına uygun olup olmadığına bakar. Uygun değilse sorunu düzeltecek birime notlarıyla geri gönderir. Uygunsa sana sunar. |
 
 ## Nasıl çalışır

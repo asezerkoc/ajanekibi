@@ -3,3 +3,4 @@
 - 2026-10-26 (Grafiker 1 dakikalık (60 saniye) dikey bir animasyon hazırla): Bit sayısını 64 yap: 32-bit yerine 64-bit piksel sanatı (daha ince piksel, daha fazla detay; görseller 540x960 tuvalde çizilip 2 kat büyütülerek 1080x1920 oluyor). Figürler biraz daha büyük olsun. Arkadaki binalar havada duruyordu: şehir ve bütün yapılar düz zemine, ovaya otursun, dağ sırtına ya da yamaca konmasın.
 - 2026-10-26 (Cengiz Han animasyonu): Seslendirme videoya bire bir uyumlu olsun; gerekirse video sesle aynı uzunlukta yapılsın.
 - 2026-10-26 (Cengiz Han animasyonu): Ajans sahibi işi onayladı ve ekibi tebrik etti (64-bit piksel, 60 fps, sesle bire bir senkron).
+- 2026-10-26: Ajans sahibi 64-bit piksel sanatı animasyonu SKONSTART'ın kalıcı imza tarzı olarak belirledi; bundan sonra bütün animasyonlar bu tarzda yapılacak.

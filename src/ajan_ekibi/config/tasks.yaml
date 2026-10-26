@@ -83,7 +83,7 @@ grafik_gorevi:
 
     Metni ajansın görsel tarzında bir animasyona dönüştür. Önce
     skills/remotion-effects/SKILL.md dosyasını oku, metne uyan 2-4 efekti seç ve
-    seçtiğin efektlerin referans dosyalarını oku. Dikey video (1080x1920, 30 fps)
+    seçtiğin efektlerin referans dosyalarını oku. Ajansın imza tarzında (64-bit piksel sanatı) dikey video (1080x1920, 60 fps)
     tasarla. Süre işte belirtilmişse o süreye uy, belirtilmemişse 15-30 saniye yap.
 
     Fizik kurallarına uy: çadırlar, binalar, insanlar, atlar ve her nesne zemine
