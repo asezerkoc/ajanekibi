@@ -7,7 +7,7 @@ import warnings
 from datetime import datetime
 from pathlib import Path
 
-from ajan_ekibi.crew import AjanEkibi, KaliteRaporu
+from ajan_ekibi.crew import AJAN_RENKLERI, GOREV_BIRIMI, AjanEkibi, KaliteRaporu, etiket
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
@@ -47,11 +47,13 @@ def _ekle(yol: Path, metin: str) -> None:
 
 
 def _adim(gorev_adi: str, durum: dict) -> str:
+    print(f"\n{etiket(GOREV_BIRIMI[gorev_adi], renkli=sys.stdout.isatty())} çalışıyor...\n")
     sonuc = AjanEkibi().tek_gorev(gorev_adi).kickoff(inputs=durum)
     return sonuc.raw
 
 
 def _kalite(durum: dict) -> KaliteRaporu:
+    print(f"\n{etiket('kalite_kontrol', renkli=sys.stdout.isatty())} çalışıyor...\n")
     sonuc = AjanEkibi().tek_gorev("kalite_gorevi").kickoff(inputs=durum)
     rapor = sonuc.pydantic
     if not isinstance(rapor, KaliteRaporu):
@@ -77,7 +79,7 @@ def _kalite_dongusu(durum: dict) -> KaliteRaporu:
             return rapor
         if tur == MAKS_REVIZYON:
             break
-        print(f"\n[Kalite kontrol] Revizyon {tur + 1}: {rapor.revize_birimi} -> {rapor.notlar}\n")
+        print(f"\n{etiket('kalite_kontrol')} Revizyon {tur + 1}: {etiket(rapor.revize_birimi)} -> {rapor.notlar}\n")
         durum["revizyon_notu"] = rapor.notlar
         _zinciri_calistir(REVIZYON_ZINCIRI[rapor.revize_birimi], durum)
         durum["revizyon_notu"] = ""
@@ -91,10 +93,10 @@ def _teslim_metni(durum: dict, rapor: KaliteRaporu, onay_durumu: str) -> str:
         f"- **Tarih:** {datetime.now():%Y-%m-%d %H:%M}\n"
         f"- **Durum:** {onay_durumu}\n"
         f"- **Kalite kontrol:** {'uygun' if rapor.uygun else 'revizyon sınırına ulaşıldı, son notlar aşağıda'}\n\n"
-        f"## Gönderi metni\n\n{durum['duzenlenmis_metin']}\n\n"
-        f"## Animasyon ve grafik\n\n{durum['grafik']}\n\n"
-        f"## Kalite kontrol notu\n\n{rapor.notlar}\n\n"
-        f"## Araştırma\n\n{durum['arastirma']}\n"
+        f"## {etiket('editor')} · Gönderi metni\n\n{durum['duzenlenmis_metin']}\n\n"
+        f"## {etiket('grafiker')} · Animasyon ve grafik\n\n{durum['grafik']}\n\n"
+        f"## {etiket('kalite_kontrol')} · Kalite kontrol notu\n\n{rapor.notlar}\n\n"
+        f"## {etiket('arastirmaci')} · Araştırma\n\n{durum['arastirma']}\n"
     )
 
 
@@ -233,6 +235,30 @@ def revize():
     yol = _kaydet(durum, rapor, "ONAY BEKLİYOR", yol)
     print(f"\nRevize edildi, onayını bekliyor: {yol}")
     return yol
+
+
+def tanis():
+    """
+    Each agent introduces itself and its job to the owner: uv run tanis
+    """
+    ekip = AjanEkibi()
+    akis = " → ".join(etiket(b) for b in AJAN_RENKLERI) + " → ajans sahibinin onayı"
+    satirlar = ["# SKONSTART ekibi\n", f"**İş akışı:** {akis}\n"]
+    for birim, r in AJAN_RENKLERI.items():
+        ajan = getattr(ekip, birim)()
+        cevap = ajan.kickoff(
+            "Ajans sahibine kendini tanıt. Türkçe, en fazla 5 cümle: kimsin, ekipte "
+            "hangi adımdan sorumlusun, işi kimden alıp kime veriyorsun ve sahibin "
+            f"senden ne bekleyebileceği. Ekibin iş akışı: {akis}. Kalite kontrol "
+            "uygun bulmadığı işi metin yazarına, editöre ya da grafikere geri "
+            f"gönderir. Ekipteki renk kodun {r['renk']} ({r['hex']})."
+        ).raw.strip()
+        print(f"\n{etiket(birim, renkli=sys.stdout.isatty())} ({r['renk']} {r['hex']})\n{cevap}\n")
+        satirlar.append(f"## {etiket(birim)} · {r['renk']} `{r['hex']}`\n\n{cevap}\n")
+    yol = KOK / "ekip" / "tanisma.md"
+    yol.parent.mkdir(parents=True, exist_ok=True)
+    yol.write_text("\n".join(satirlar), encoding="utf-8")
+    print(f"Tanışma kaydedildi: {yol}")
 
 
 def _ornek_girdiler() -> dict:

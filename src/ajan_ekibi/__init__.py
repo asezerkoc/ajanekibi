@@ -4,3 +4,6 @@ import os
 # owner can store the agency's key as SKONSTART_API_KEY instead.
 if not os.environ.get("ANTHROPIC_API_KEY") and os.environ.get("SKONSTART_API_KEY"):
     os.environ["ANTHROPIC_API_KEY"] = os.environ["SKONSTART_API_KEY"]
+
+# Without a .env (cloud sessions) CrewAI would fall back to OpenAI; the agency runs on Claude
+os.environ.setdefault("MODEL", "anthropic/claude-sonnet-5-5")
