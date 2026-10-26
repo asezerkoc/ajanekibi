@@ -16,6 +16,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { PullBackReveal } from "../effects/PullBackReveal";
+import * as ZAMAN from "./CengizHanZaman";
 import { DoodleBoil } from "../effects/DoodleBoil";
 import { KineticCaptions } from "../effects/KineticCaptions";
 import type { CaptionWord } from "../effects/KineticCaptions";
@@ -51,8 +52,9 @@ const YAZI_FONTU = `"Jersey 10", monospace`;
 /*  Bütün süreler saniyeden türetilir: sn(s) = round(s * FPS).         */
 /* ------------------------------------------------------------------ */
 export const FPS = 60;
-export const TOPLAM_SN = 60;
-export const TOPLAM_KARE = TOPLAM_SN * FPS; // 3600
+/* Süre seslendirmeden gelir (video/ses/hizala.py → CengizHanZaman.ts): konuşma + kapanış sorusu */
+export const TOPLAM_SN = ZAMAN.TOPLAM_SN;
+export const TOPLAM_KARE = Math.round(TOPLAM_SN * FPS);
 const sn = (s: number) => Math.round(s * FPS);
 
 const W = 1080;
@@ -187,50 +189,26 @@ const SAHNELER: SahneTanimi[] = [
   },
 ];
 
+/* Her sahne kendi paragrafı okunduğu sürece ekranda kalır (ölçülen zamanlar). */
+SAHNELER.forEach((s, i) => {
+  s.bas = ZAMAN.SAHNE_ZAMANLARI[i][0];
+  s.bit = ZAMAN.SAHNE_ZAMANLARI[i][1];
+});
+
 /* Ekran metinleri (onaylı metindeki 5 ekran metni), saniye cinsinden */
 type EkranMetniTanimi = { bas: number; bit: number; satirlar: string[] };
-const EKRAN_METINLERI: EkranMetniTanimi[] = [
-  { bas: 5.8, bit: 9.0, satirlar: ["Yaklaşık 1162.", "Bozkırda bir çocuk doğdu."] },
-  { bas: 9.85, bit: 16.4, satirlar: ["Babasız,", "kabilesiz büyüdü."] },
-  { bas: 26.0, bit: 34.4, satirlar: ["1206:", "“Cengiz Han” dediler."] },
-  { bas: 37.85, bit: 43.4, satirlar: ["Şehirler düştü.", "Bedeli ağır oldu."] },
-  { bas: 44.0, bit: 47.4, satirlar: ["1227'de öldü.", "Mezarı hâlâ bilinmiyor."] }, // anlatımdaki cümleyle biter
-];
+const EKRAN_METINLERI: EkranMetniTanimi[] = ZAMAN.EKRAN_METNI_ZAMANLARI.map((m) => ({
+  bas: m.bas,
+  bit: m.bit,
+  satirlar: [...m.satirlar],
+}));
 
 /* ------------------------------------------------------------------ */
 /*  Anlatım ve altyazı zamanlaması (saniye). Gerçek seslendirme gelince */
 /*  bas/bit değerlerini güncelle.                                      */
 /* ------------------------------------------------------------------ */
-const ANLATIM: { t: string; bas: number; bit: number }[] = [
-  { t: "Elinde bir pıhtı kanla doğduğu söylenir. Mezarı ise hâlâ bulunamadı.", bas: 0.3, bit: 4.9 },
-  { t: "Yaklaşık 1162. Moğol bozkırında bir çocuk doğdu. Adı Temüçin'di.", bas: 5.15, bit: 8.9 },
-  {
-    t: "Daha çocukken babasını kaybetti. Kabilesi ailesini yüzüstü bıraktı. Annesi Hö'elün, çocuklarını bozkırın en zor günlerinde ayakta tuttu.",
-    bas: 9.15,
-    bit: 16.25,
-  },
-  {
-    t: "Temüçin her yenilgiden bir ders çıkardı. Eşi Börte kaçırılınca müttefikleriyle birlikte onu geri aldı. Bu olay, yükselişinin dönüm noktası sayılır.",
-    bas: 16.5,
-    bit: 24.8,
-  },
-  {
-    t: "1206'da boylar bir araya geldi ve ona “Cengiz Han” dediler. Terfiyi soya değil yeteneğe bağladı, yazıyı benimsedi, Yam adlı ulak ağını kurdu.",
-    bas: 25.05,
-    bit: 34.25,
-  },
-  {
-    t: "Sonra orduları Çin'den Orta Asya'ya yürüdü. Şehirler düştü. Bu yürüyüş geride çok ağır bir bedel de bıraktı. Hikâyenin o yüzünü unutmamak gerek.",
-    bas: 34.5,
-    bit: 43.25,
-  },
-  {
-    t: "1227'de seferdeyken öldü. Mezarı hâlâ bilinmiyor. Bozkırın çocuğunun attığı temel, ardıllarının döneminde tarihin en büyük bitişik kara imparatorluğuna dönüştü.",
-    bas: 43.5,
-    bit: 51.4,
-  },
-  { t: "Kahraman mı, yıkıcı mı? Belki de ikisinin gölgesinde geçen bir hayat.", bas: 51.65, bit: 56.25 },
-];
+/* Cümle cümle, seslendirmeden ölçülen başlangıç ve bitişler. Kelimeler cümle içinde uzunluklarına göre dağılır. */
+const ANLATIM: { t: string; bas: number; bit: number }[] = ZAMAN.ANLATIM.map((a) => ({ t: a.t, bas: a.bas, bit: a.bit }));
 
 /* Her cümlenin süresi kelimelere uzunluklarına göre bölünür. Metin Türkçe kurallarla
    önceden büyütülür (i→İ, ı→I). KineticCaptions zaman olarak ms bekler. */
@@ -698,10 +676,11 @@ export type CengizHanProps = {
 };
 
 export const CengizHan: React.FC<CengizHanProps> = ({ sesler = false }) => {
-  const baslikBas = sn(3.35);
-  const ctaBas = sn(56.2);
-  const okBas = sn(17.35);
-  const okBit = sn(25);
+  const baslikBas = sn(ZAMAN.BASLIK_BAS);
+  const baslikBit = sn(ZAMAN.SAHNE_ZAMANLARI[0][1]);
+  const ctaBas = sn(ZAMAN.CTA_BAS);
+  const okBas = sn(ZAMAN.OK_BAS);
+  const okBit = sn(ZAMAN.SAHNE_ZAMANLARI[3][1]);
 
   return (
     <AbsoluteFill style={{ background: "#3a2a1c" }}>
@@ -728,8 +707,8 @@ export const CengizHan: React.FC<CengizHanProps> = ({ sesler = false }) => {
       <Cimen />
 
       {/* 4) Elle çizilmiş piksel yazı ve çizimler (DoodleBoil) */}
-      <Sequence from={baslikBas} durationInFrames={sn(5) - baslikBas} layout="none">
-        <EkranMetni satirlar={["Bozkırın Çocuğu"]} sure={sn(5) - baslikBas} fs={110} topY={330} />
+      <Sequence from={baslikBas} durationInFrames={baslikBit - baslikBas} layout="none">
+        <EkranMetni satirlar={["Bozkırın Çocuğu"]} sure={baslikBit - baslikBas} fs={110} topY={330} />
       </Sequence>
 
       {EKRAN_METINLERI.map((m, i) => (
@@ -757,37 +736,11 @@ export const CengizHan: React.FC<CengizHanProps> = ({ sesler = false }) => {
 
       {/* 5) Altyazı: kelimeler Türkçe kurallarla önceden büyütüldü, lang="tr" ek güvence. */}
       <div className="altyazi-sicak" lang="tr" style={{ position: "absolute", inset: 0, transform: "translateY(-100px)" }}>
-        <KineticCaptions words={KELIMELER} perPage={3} highlight="#ffd479" fontSize={68} />
+        <KineticCaptions words={KELIMELER} perPage={3} highlight="#ffd479" fontSize={68} onlyVisible popFrom={0.85} />
       </div>
 
-      {/* 6) Ses (isteğe bağlı). Fade zamanları saniyeden türetilir. */}
-      {sesler ? (
-        <>
-          <Audio src={staticFile("anlatim.mp3")} />
-          <Audio
-            src={staticFile("muzik-bozkir.mp3")}
-            loop
-            volume={(f) => interpolate(f, [0, sn(0.75), sn(56.67), sn(60)], [0, 0.22, 0.22, 0], CLAMP)}
-          />
-          <Audio
-            src={staticFile("ruzgar.mp3")}
-            loop
-            volume={(f) => interpolate(f, [0, sn(0.5), sn(58), sn(60)], [0, 0.18, 0.18, 0], CLAMP)}
-          />
-          <Sequence from={sn(16.4)} durationInFrames={sn(8.6)}>
-            <Audio
-              src={staticFile("nal-sesi.mp3")}
-              volume={(f) => interpolate(f, [0, sn(1.33), sn(6.67), sn(8.6)], [0, 0.18, 0.18, 0], CLAMP)}
-            />
-          </Sequence>
-          <Sequence from={sn(25)} durationInFrames={sn(6.67)}>
-            <Audio
-              src={staticFile("kalabalik.mp3")}
-              volume={(f) => interpolate(f, [0, sn(1), sn(5), sn(6.67)], [0, 0.16, 0.16, 0], CLAMP)}
-            />
-          </Sequence>
-        </>
-      ) : null}
+      {/* 6) Seslendirme. Müzik paylaşırken Instagram'ın kütüphanesinden eklenir (telif güvenli). */}
+      {sesler ? <Audio src={staticFile("anlatim.mp3")} /> : null}
     </AbsoluteFill>
   );
 };

@@ -1,9 +1,9 @@
 # SKONSTART teslimi
 
 - **İş:** Grafiker 1 dakikalık (60 saniye) dikey bir animasyon hazırlasın. Konusu: Cengiz Han'ın hayatı, doğumundan ölümüne kadar, hikaye şeklinde anlatılsın.
-- **Tarih:** 2026-10-26 16:22
+- **Tarih:** 2026-10-26 17:16
 - **Durum:** ONAY BEKLİYOR
-- **Kalite kontrol:** uygun
+- **Kalite kontrol:** revizyon sınırına ulaşıldı, son notlar aşağıda
 
 ## 🟣 Editör · Gönderi metni
 
@@ -1254,13 +1254,51 @@ Kareler: **40, 240, 400, 760, 1200, 1600, 2400, 2800, 3120, 3300, 3440**
 
 ## 🔴 Kalite Kontrol · Kalite kontrol notu
 
-Gelen 10 kareye tek tek baktım (0120, 0250, 0420, 0760, 1240, 1800, 2350, 2880, 3200, 3500). Gelen karelerde işi geri çevirecek bir sorun görmedim. Kontrol sonuçları: FİZİK: Yurt, atlar, aile, öküz arabaları, atlı kafile, tuğ ve çadırlar, şehir, ağaç, boş eyerli at, taş yığını ve çiçek zemine oturuyor. Havada duran ya da zemine gömülen nesne yok. Kare 3200'de taş yığını ile çiçek aynı zemin çizgisinde. Kare 1240'ta atlılar sola gidiyor, ok da sola gösteriyor, yön tutarlı. Kare 2350'de şehir düz ovada duruyor, iki ince duman sütunu surların ve kubbelerin hizasından yükseliyor. Şiddet ya da yıkım görüntüsü yok. TARZ: Tüm sahneler aynı 64-bit piksel sanatı dilinde. Altın saat, gün batımı, alacakaranlık ve yıldızlı gece geçişleri pastel ve doğal renklerle tutarlı. Bozkır, bulut ve rüzgârda sallanan çimen korunmuş. Sahne akışı sakin ve nostaljik, ani geçiş yok. YAZI: Ekran metinleri ve altyazılar okunuyor, kesilmiyor, üst üste binmiyor. Türkçe harfler doğru: Çocuğu, doğdu, büyüdü, Şehirler, düştü, ağır, Sıradaki, mı, TERFİYİ, MÜTTEFİKLERİYLE, AİLESİNİ, YÜZÜSTÜ, ARDILLARININ. Dotsuz ve noktalı İ/I ayrımı doğru. Altyazı bandı çimenin üstünde, ekran metni üst gökyüzünde, birbirini kapatmıyorlar. HİKÂYE: Her kare, sahne planındaki anına ve altyazı zamanlamasına uyuyor: kanca (0120, 0250), doğum (0420), yetim kalma (0760), Börte'nin dönüşü ve ok (1240), 1206 kurultay ve tuğ (1800), şehirler ve bedeli (2350), mezar ve boş eyerli at (2880), Kahraman mı yıkıcı mı ve taş ile çiçek (3200), kapanış çağrısı Timur mu Attila mı (3500). Zorunlu olmayan küçük gözlemler (yayını engellemez, bir sonraki turda bakılabilir): 1) Kare 3200'de taş yığınının sol alt kenarında yatay, kırık çizgi artıkları var, muhtemelen PullBackReveal'ın dönüşünden. Yarım piksel ya da dönüş açısı kontrol edilsin. 2) Kare 3200 ve 3500'de çiçek ve taşlar, gökyüzündeki bulutlardan daha ince pikselli görünüyor. Sprite'ları aynı piksel boyutunda ve aynı palette üretmek tutarlılığı artırır. 3) Kare 2880'de 'ARDILLARININ' vurgu kelimesi komşu kelimelerden küçük görünüyor. Altyazı ölçeği kontrol edilebilir. 4) Kare 0420'de anne ve bebek silüeti kapı açıklığı yerine kapının sol tarafında, yurt duvarı üzerinde görünüyor. Silüeti kapı ışığının içine almak okunurluğu artırır. 5) Uzak ova şeridinin üst kenarı birkaç karede (0250, 0760, 1800, 3500) tüm genişlikte düz ve sert bir çizgi olarak görünüyor. Kenara hafif dalgalanma verilebilir. Yalnızca bu 10 kareyi gördüm, kareler arası hareketi ve sprite adımlarını değerlendiremedim.
+GENEL: Metin ve Türkçe harfler (ç, ğ, ı, İ, ö, ş, ü, â) doğru. Altyazılar sahne akışıyla uyumlu. 64-bit piksel tarzı ve Ghibli esinli sıcak palet tutarlı. Zemin fiziği tamam: karelerde havada duran ya da zemine gömülü nesne görmedim. Yurt, at, aile, kervan, tuğ, şehir, ağaç, taş ve çiçek zemine oturuyor. Ajans sahibinin 'figürler büyük olsun' notu ise karşılanmıyor. 60 fps ve sesle senkron hareket durağan karelerden doğrulanamaz, bunu değerlendirmedim.
+
+SORUN 1, FİGÜR BOYUTU (ana ret nedeni):
+- kare-0960 (Sahne 3): anne ve üç çocuk kadraj genişliğinin yaklaşık %15'i, yüksekliğinin %4–5'i kadar. Kervan daha da küçük. Alt yarı bomboş koyu çimen.
+- kare-2100 (Sahne 5): çadırlar ve kalabalık figürler çok küçük, kadrajın yaklaşık %2'si. Tuğ da küçük. Çadır sırası sol ve sağ kenarda kesiliyor.
+- kare-1590 (Sahne 4): atlı kafile küçük, sadece orta bantta. Aşağıda büyük boş zemin var.
+- kare-2820 (Sahne 6): kolon sol alt köşede küçük ve kenarda kesik.
+- kare-0276 (Sahne 1 sonu): yurt ve atlar küçük.
+Çözüm: Sahne 3, 4, 5, 6 ve Sahne 1'in çekilme sonrası halinde ana figür ve sprite'ları en az 1,5–2 kat büyütün (aile ve atlılar kadraj genişliğinin en az %40–50'si). Taban çizgileri (ZEMIN/UFUK) aynı kalsın. Bu yüzden sprite'ları yeniden çizin ve kodda boyutları artırın. Yalnızca ölçek artırmak yetmez, pikseller tutarlı kalmalı. Çadır sırasını Sahne 5'te daha az ve daha büyük çadırla kurun, kenarda kesilmesin. Kadrajın alt %35'i (altyazı bandının üstü) boş kalıyor, figürleri o alana taşıyıp daha büyük çizerek kompozisyonu dengeleyin.
+
+SORUN 2, UZAK OVA BANDI:
+- kare-4080 (x≈0–540, y≈480–590) ve kare-4410 (x≈540–620, y≈540–612): düz, koyu yeşil dikdörtgen bir bant görünüyor. Alt kenarı keskin yatay çizgi ve köşeli basamakla bitiyor, orta plan tepesiyle doğal birleşmiyor.
+- kare-0276 ve kare-0510 (y≈1555–1600 civarı): benzer düz bant ve sert alt kenar var.
+Çözüm: uzak ova şeridinin alt kenarını orta plan tepesinin altına yedirin ya da kenarı dither'la yumuşatıp orta plan üst çizgisiyle örtüştürün.
+
+SORUN 3, KÜÇÜK GÖRSEL TUTARSIZLIKLAR:
+- kare-4080 (Sahne 8, çekilme sürerken): gökyüzündeki dither deseni iri mozaik gibi görünüyor, pikseller katmanlar arası eşit boyutta değil. Taş yığınının sol alt kenarında hafif yatay çizgi kırıntıları var. Çekilme ölçeğini tam sayı adımlara yakın tutun ya da sahneyi sprite ölçeğinde yeniden çizin.
+- kare-0276 (başlık) ve kare-2820 (ekran metni): altı çizgi yazının yalnızca bir kısmını kapsıyor (başlıkta yaklaşık %60). Bu çizim animasyonunun bitmemiş hali olabilir. Metin tam göründüğünde çizgi tüm yazıyı kapsamalı, bunu doğrulayın. Çizgi genişliği hesabını (0,5 em/harf) gerçek yazı genişliğiyle eşleştirin.
+
+KORUNACAKLAR: kare-0510, kare-3450 ve kare-4410'daki ekran metinleri okunaklı. Sahne 7 (boş eyerli at, ağaç ve ateş böcekleri) iyi, atmosfer güçlü. Sahne 6 şehri ve duman sütunları şiddet göstermeden bedeli anlatıyor. CTA 'Sıradaki karakter? Timur mu, Attila mı?' net okunuyor.
 
 ## 🔴 Kalite Kontrol · Görsel kontrol (render edilen kareler)
 
-**Karar:** uygun
+**Karar:** UYGUN DEĞİL, düzeltecek birim: 🟢 Grafiker
 
-Gelen 10 kareye tek tek baktım (0120, 0250, 0420, 0760, 1240, 1800, 2350, 2880, 3200, 3500). Gelen karelerde işi geri çevirecek bir sorun görmedim. Kontrol sonuçları: FİZİK: Yurt, atlar, aile, öküz arabaları, atlı kafile, tuğ ve çadırlar, şehir, ağaç, boş eyerli at, taş yığını ve çiçek zemine oturuyor. Havada duran ya da zemine gömülen nesne yok. Kare 3200'de taş yığını ile çiçek aynı zemin çizgisinde. Kare 1240'ta atlılar sola gidiyor, ok da sola gösteriyor, yön tutarlı. Kare 2350'de şehir düz ovada duruyor, iki ince duman sütunu surların ve kubbelerin hizasından yükseliyor. Şiddet ya da yıkım görüntüsü yok. TARZ: Tüm sahneler aynı 64-bit piksel sanatı dilinde. Altın saat, gün batımı, alacakaranlık ve yıldızlı gece geçişleri pastel ve doğal renklerle tutarlı. Bozkır, bulut ve rüzgârda sallanan çimen korunmuş. Sahne akışı sakin ve nostaljik, ani geçiş yok. YAZI: Ekran metinleri ve altyazılar okunuyor, kesilmiyor, üst üste binmiyor. Türkçe harfler doğru: Çocuğu, doğdu, büyüdü, Şehirler, düştü, ağır, Sıradaki, mı, TERFİYİ, MÜTTEFİKLERİYLE, AİLESİNİ, YÜZÜSTÜ, ARDILLARININ. Dotsuz ve noktalı İ/I ayrımı doğru. Altyazı bandı çimenin üstünde, ekran metni üst gökyüzünde, birbirini kapatmıyorlar. HİKÂYE: Her kare, sahne planındaki anına ve altyazı zamanlamasına uyuyor: kanca (0120, 0250), doğum (0420), yetim kalma (0760), Börte'nin dönüşü ve ok (1240), 1206 kurultay ve tuğ (1800), şehirler ve bedeli (2350), mezar ve boş eyerli at (2880), Kahraman mı yıkıcı mı ve taş ile çiçek (3200), kapanış çağrısı Timur mu Attila mı (3500). Zorunlu olmayan küçük gözlemler (yayını engellemez, bir sonraki turda bakılabilir): 1) Kare 3200'de taş yığınının sol alt kenarında yatay, kırık çizgi artıkları var, muhtemelen PullBackReveal'ın dönüşünden. Yarım piksel ya da dönüş açısı kontrol edilsin. 2) Kare 3200 ve 3500'de çiçek ve taşlar, gökyüzündeki bulutlardan daha ince pikselli görünüyor. Sprite'ları aynı piksel boyutunda ve aynı palette üretmek tutarlılığı artırır. 3) Kare 2880'de 'ARDILLARININ' vurgu kelimesi komşu kelimelerden küçük görünüyor. Altyazı ölçeği kontrol edilebilir. 4) Kare 0420'de anne ve bebek silüeti kapı açıklığı yerine kapının sol tarafında, yurt duvarı üzerinde görünüyor. Silüeti kapı ışığının içine almak okunurluğu artırır. 5) Uzak ova şeridinin üst kenarı birkaç karede (0250, 0760, 1800, 3500) tüm genişlikte düz ve sert bir çizgi olarak görünüyor. Kenara hafif dalgalanma verilebilir. Yalnızca bu 10 kareyi gördüm, kareler arası hareketi ve sprite adımlarını değerlendiremedim.
+GENEL: Metin ve Türkçe harfler (ç, ğ, ı, İ, ö, ş, ü, â) doğru. Altyazılar sahne akışıyla uyumlu. 64-bit piksel tarzı ve Ghibli esinli sıcak palet tutarlı. Zemin fiziği tamam: karelerde havada duran ya da zemine gömülü nesne görmedim. Yurt, at, aile, kervan, tuğ, şehir, ağaç, taş ve çiçek zemine oturuyor. Ajans sahibinin 'figürler büyük olsun' notu ise karşılanmıyor. 60 fps ve sesle senkron hareket durağan karelerden doğrulanamaz, bunu değerlendirmedim.
+
+SORUN 1, FİGÜR BOYUTU (ana ret nedeni):
+- kare-0960 (Sahne 3): anne ve üç çocuk kadraj genişliğinin yaklaşık %15'i, yüksekliğinin %4–5'i kadar. Kervan daha da küçük. Alt yarı bomboş koyu çimen.
+- kare-2100 (Sahne 5): çadırlar ve kalabalık figürler çok küçük, kadrajın yaklaşık %2'si. Tuğ da küçük. Çadır sırası sol ve sağ kenarda kesiliyor.
+- kare-1590 (Sahne 4): atlı kafile küçük, sadece orta bantta. Aşağıda büyük boş zemin var.
+- kare-2820 (Sahne 6): kolon sol alt köşede küçük ve kenarda kesik.
+- kare-0276 (Sahne 1 sonu): yurt ve atlar küçük.
+Çözüm: Sahne 3, 4, 5, 6 ve Sahne 1'in çekilme sonrası halinde ana figür ve sprite'ları en az 1,5–2 kat büyütün (aile ve atlılar kadraj genişliğinin en az %40–50'si). Taban çizgileri (ZEMIN/UFUK) aynı kalsın. Bu yüzden sprite'ları yeniden çizin ve kodda boyutları artırın. Yalnızca ölçek artırmak yetmez, pikseller tutarlı kalmalı. Çadır sırasını Sahne 5'te daha az ve daha büyük çadırla kurun, kenarda kesilmesin. Kadrajın alt %35'i (altyazı bandının üstü) boş kalıyor, figürleri o alana taşıyıp daha büyük çizerek kompozisyonu dengeleyin.
+
+SORUN 2, UZAK OVA BANDI:
+- kare-4080 (x≈0–540, y≈480–590) ve kare-4410 (x≈540–620, y≈540–612): düz, koyu yeşil dikdörtgen bir bant görünüyor. Alt kenarı keskin yatay çizgi ve köşeli basamakla bitiyor, orta plan tepesiyle doğal birleşmiyor.
+- kare-0276 ve kare-0510 (y≈1555–1600 civarı): benzer düz bant ve sert alt kenar var.
+Çözüm: uzak ova şeridinin alt kenarını orta plan tepesinin altına yedirin ya da kenarı dither'la yumuşatıp orta plan üst çizgisiyle örtüştürün.
+
+SORUN 3, KÜÇÜK GÖRSEL TUTARSIZLIKLAR:
+- kare-4080 (Sahne 8, çekilme sürerken): gökyüzündeki dither deseni iri mozaik gibi görünüyor, pikseller katmanlar arası eşit boyutta değil. Taş yığınının sol alt kenarında hafif yatay çizgi kırıntıları var. Çekilme ölçeğini tam sayı adımlara yakın tutun ya da sahneyi sprite ölçeğinde yeniden çizin.
+- kare-0276 (başlık) ve kare-2820 (ekran metni): altı çizgi yazının yalnızca bir kısmını kapsıyor (başlıkta yaklaşık %60). Bu çizim animasyonunun bitmemiş hali olabilir. Metin tam göründüğünde çizgi tüm yazıyı kapsamalı, bunu doğrulayın. Çizgi genişliği hesabını (0,5 em/harf) gerçek yazı genişliğiyle eşleştirin.
+
+KORUNACAKLAR: kare-0510, kare-3450 ve kare-4410'daki ekran metinleri okunaklı. Sahne 7 (boş eyerli at, ağaç ve ateş böcekleri) iyi, atmosfer güçlü. Sahne 6 şehri ve duman sütunları şiddet göstermeden bedeli anlatıyor. CTA 'Sıradaki karakter? Timur mu, Attila mı?' net okunuyor.
 
 ## 🔵 Araştırmacı · Araştırma
 

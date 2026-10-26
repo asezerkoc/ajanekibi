@@ -267,7 +267,7 @@ def sahne5():
     onp = on(5, ["#3f702e", "#5a903e", "#8a8a3a"], "#f0f0a0")
 
     def kare(t, z, i):
-        figur(t, tug, 70, z, 3.1, faz=i / 6)
+        figur(t, tug, 70, z, 2.2, faz=i / 6)  # yurdun ~2 katı boyunda (tuğ direği birkaç metre)
 
     sp = sprite(5, "karakter", 160, 224, 6, kare)
     onizleme(5, gk, uz, ort, onp, [(sp, 160, 270, 600, "zemin")])

@@ -1,7 +1,7 @@
 import React from "react";
 import { Composition } from "remotion";
 import { Tanitim } from "./sahneler/Tanitim";
-import { CengizHan } from "./sahneler/CengizHan";
+import { CengizHan, FPS, TOPLAM_KARE } from "./sahneler/CengizHan";
 
 export const Root: React.FC = () => (
 	<>
@@ -9,11 +9,11 @@ export const Root: React.FC = () => (
 		<Composition
 			id="CengizHan"
 			component={CengizHan}
-			durationInFrames={3600}
-			fps={60}
+			durationInFrames={TOPLAM_KARE}
+			fps={FPS}
 			width={1080}
 			height={1920}
-			defaultProps={{ sesler: false }}
+			defaultProps={{ sesler: true }}
 		/>
 	</>
 );
