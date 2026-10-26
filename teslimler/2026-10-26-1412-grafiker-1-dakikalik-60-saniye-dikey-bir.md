@@ -1,8 +1,8 @@
 # SKONSTART teslimi
 
 - **İş:** Grafiker 1 dakikalık (60 saniye) dikey bir animasyon hazırlasın. Konusu: Cengiz Han'ın hayatı, doğumundan ölümüne kadar, hikaye şeklinde anlatılsın.
-- **Tarih:** 2026-10-26 17:16
-- **Durum:** ONAY BEKLİYOR
+- **Tarih:** 2026-10-26 17:27
+- **Durum:** ONAYLANDI
 - **Kalite kontrol:** revizyon sınırına ulaşıldı, son notlar aşağıda
 
 ## 🟣 Editör · Gönderi metni
