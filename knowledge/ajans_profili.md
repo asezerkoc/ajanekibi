@@ -9,6 +9,7 @@ Bu dosya ekibin "beyni". Bütün ajanlar her işte bunu okur. Köşeli parantez 
 ## Sosyal medya
 
 - Instagram: **@pikseltarihim** (profil adı: "Piksel Tarih | Tarih Animasyon")
+- Videolar Instagram'a + → REELS sekmesinden yüklenir (Gönderi sekmesi kare kırpar; gerekirse önizlemedeki ⤢ ile tam boyut)
 - Reels kapakları videonun kendi katmanlarıyla yapılır: büyük başlık, alt başlık, altta logo ve @pikseltarihim; yazılar ortadaki 3:4 alanda kalır (profil ızgarası onu gösterir)
 
 ## Konular
