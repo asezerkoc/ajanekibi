@@ -444,8 +444,10 @@ def orta_asya_sehri(img, x0, x1, zemin, s=1.0, tohum=1, kerpic="#c8a878", golge=
         d.rectangle([mx_, y - u(16), mx_ + u(2), y - u(14)], fill=hex2(kerpic))
     # yuvarlak burçlar: duvardan biraz yüksek, tepesi düz ve mazgallı
     for bx in [x0, x0 + (x1 - x0) // 3, x0 + 2 * (x1 - x0) // 3, x1]:
-        d.rounded_rectangle([bx - u(5), y - u(20), bx + u(5), y - 1], radius=u(3), fill=hex2(_ac(kerpic, -0.04)))
-        d.rectangle([bx + u(1), y - u(20), bx + u(5), y - 1], fill=hex2(golge))
+        d.rectangle([bx - u(5), y - u(18), bx + u(5), y - 1], fill=hex2(_ac(kerpic, -0.04)))  # tabanı düz, zemine oturur
+        d.chord([bx - u(5), y - u(21), bx + u(5), y - u(15)], 180, 360, fill=hex2(_ac(kerpic, -0.04)))
+        d.rectangle([bx + u(1), y - u(18), bx + u(5), y - 1], fill=hex2(golge))
+        d.line([bx - u(5), y - 1, bx + u(5), y - 1], fill=hex2(_ac(golge, -0.2)))  # taban satırı
         for m in range(-u(5), u(5), u(3)):
             d.rectangle([bx + m, y - u(22), bx + m + u(1), y - u(20)], fill=hex2(_ac(kerpic, -0.04)))
     gx = (x0 + x1) // 2
@@ -454,6 +456,23 @@ def orta_asya_sehri(img, x0, x1, zemin, s=1.0, tohum=1, kerpic="#c8a878", golge=
     d.rectangle([gx - u(3), y - u(8), gx + u(3), y - 1], fill=hex2("#3a2a1e"))
     temas_golgesi(img, (x0 + x1) // 2, y, x1 - x0 + 10, alfa=90)
     return damlar
+
+
+def piksel_ok(img, x0, x1, y, kavis=10, kalinlik=4, renk="#fff3d4", kontur="#3a2414"):
+    """Sağdan sola giden piksel ok: basamaklı yay gövde ve net '<' ucu, koyu konturlu."""
+    d = ImageDraw.Draw(img)
+    noktalar = []
+    for x in range(x1, x0 - 1, -1):
+        u = (x1 - x) / max(1, x1 - x0)
+        noktalar.append((x, int(round(y - kavis * math.sin(math.pi * u) - 4 * u))))
+    uc_x, uc_y = noktalar[-1]
+    bas = kalinlik * 4
+    for kat, (renk_, ek) in enumerate(((kontur, 2), (renk, 0))):
+        for x, yy in noktalar[:-bas // 2]:
+            d.rectangle([x, yy - kalinlik // 2 - ek, x, yy + kalinlik // 2 + ek], fill=hex2(renk_))
+        d.polygon([(uc_x - ek * 2, uc_y), (uc_x + bas + ek, uc_y - bas + 1 - ek * 2), (uc_x + bas + ek, uc_y + bas - 1 + ek * 2)],
+                  fill=hex2(renk_))
+    return (uc_x, uc_y)
 
 
 def tug(img, x, zemin, s=1.0, faz=0.0, flamalar=("#c8552c", "#3a6aa8", "#e0b040")):
@@ -750,33 +769,32 @@ def taslar(img, x, zemin, s=1.0, cicek=False):
 
 
 def cicek(img, x, zemin, s=1.0, faz=0.0, renk="#f4d24a", orta="#c8552c"):
-    """Tek kır çiçeği ve iki çimen yaprağı: sap dibi zemine sabit, üstü rüzgârda salınır."""
+    """Tek kır çiçeği: kalın sap, dolu yapraklar ve dolu taç yaprakları (taşlarla aynı dolu piksel dili).
+    Sap dibi zemine sabit; üst kısmı rüzgârda salınır."""
+    d = ImageDraw.Draw(img)
     y = zemin_y(zemin, x, 2)
-    temas_golgesi(img, x, y, 8 * s, alfa=80)
-    boy = int(14 * s)
-    sal = math.sin(faz * 2 * math.pi) * 3 * s
-    son = (x, y)
-    for i in range(boy):
-        t = i / boy
-        px_ = x + sal * t * t
-        piksel(img, px_, y - 1 - i, hex2("#3f6b2a"))
-        if s > 1.5:
-            piksel(img, px_ + 1, y - 1 - i, hex2("#4a7a32"))
-        son = (px_, y - 1 - i)
-    for yon, uz in ((-1, 9), (1, 7)):  # çimen yaprakları
-        for i in range(int(uz * s)):
-            t = i / (uz * s)
-            piksel(img, x + yon * (t * 4 * s) + sal * t * 0.6, y - 1 - i, hex2("#5a8f36"))
-    cx, cy = son
-    r = max(2, int(2.6 * s))
-    for k in range(5):
-        a = k / 5 * 2 * math.pi + faz
-        for rr in range(r):
-            piksel(img, cx + math.cos(a) * (rr + 1.5), cy + math.sin(a) * (rr + 1.5) * 0.8, hex2(renk if rr < r - 1 else _ac(renk, -0.15)))
-    for dx in range(-1, 2):
-        for dy in range(-1, 2):
-            if abs(dx) + abs(dy) < 2:
-                piksel(img, cx + dx, cy + dy, hex2(orta))
+    temas_golgesi(img, x, y, 10 * s, alfa=90)
+    boy = int(13 * s)
+    sal = math.sin(faz * 2 * math.pi) * 2.5 * s
+    kal = max(2, int(0.7 * s))
+    yol = [(x + sal * (i / boy) ** 2, y - 1 - i) for i in range(boy)]
+    for px_, py_ in yol:
+        d.rectangle([int(px_) - kal // 2, py_, int(px_) + (kal - 1) // 2, py_], fill=hex2("#4a8a32"))
+        piksel(img, int(px_) + (kal - 1) // 2, py_, hex2("#6aaa44"))
+    for yon, yuk, uz in ((-1, 0.25, 5.5), (1, 0.45, 4.5)):  # dolu yapraklar
+        tx, ty = yol[int(boy * yuk)]
+        uc = (tx + yon * uz * s + sal * 0.3, ty - 2.5 * s)
+        d.polygon([(tx, ty), (tx + yon * uz * s * 0.5, ty - 2.2 * s), uc, (tx + yon * uz * s * 0.55, ty - 0.4 * s)], fill=hex2("#5a9a3a"))
+        d.line([(tx, ty), uc], fill=hex2("#3f7a2a"))
+    cx, cy = yol[-1]
+    r = 2.3 * s
+    for k in range(6):  # dolu taç yaprakları
+        a = k / 6 * 2 * math.pi + faz * 0.6
+        px_, py_ = cx + math.cos(a) * r, cy + math.sin(a) * r * 0.85
+        d.ellipse([px_ - 1.5 * s, py_ - 1.2 * s, px_ + 1.5 * s, py_ + 1.2 * s], fill=hex2(renk))
+        d.ellipse([px_ - 0.8 * s, py_ - 0.9 * s, px_ + 0.4 * s, py_ + 0.1 * s], fill=hex2(_ac(renk, 0.35)))
+    d.ellipse([cx - 1.3 * s, cy - 1.3 * s, cx + 1.3 * s, cy + 1.3 * s], fill=hex2(orta))
+    piksel(img, cx - 0.4 * s, cy - 0.4 * s, hex2(_ac(orta, 0.4)))
 
 
 # ---------------------------------------------------------------- figür işleme

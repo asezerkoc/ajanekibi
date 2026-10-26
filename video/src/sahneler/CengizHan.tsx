@@ -133,22 +133,22 @@ type SahneTanimi = {
 
 const SAHNELER: SahneTanimi[] = [
   {
-    // Yurt ve iki at: 192x192, tabanı y=640 (ekranda 1280)
+    // Yurt ve iki at: 300x192 (atlar yurttan ayrı), tabanı y=640 (ekranda 1280)
     no: 1, bas: 0, bit: 5, yon: -1, kamera: [0, -30], zemin: 640, ortam: "polen",
     pullBack: { focusX: 68, focusY: 60, startScale: 3.2, startAt: 1 / 3, sure: 3 },
-    spriteler: [{ dosya: "karakter", kareW: 192, kareH: 192, kare: 8, fps: 8, x: [367, 367], taban: "zemin" }],
+    spriteler: [{ dosya: "karakter", kareW: 300, kareH: 192, kare: 8, fps: 8, x: [367, 367], taban: "zemin" }],
   },
   {
-    // Yurt, anne ve bebek: 192x192, tabanı y=600 (1200)
+    // Yurt, anne ve bebek: 256x256 (büyütüldü), tabanı y=600 (1200)
     no: 2, bas: 5, bit: 9, yon: -1, kamera: [30, -30], zemin: 600, ortam: "polen",
-    spriteler: [{ dosya: "karakter", kareW: 192, kareH: 192, kare: 6, fps: 6, x: [270, 270], taban: "zemin" }],
+    spriteler: [{ dosya: "karakter", kareW: 256, kareH: 256, kare: 6, fps: 6, x: [270, 270], taban: "zemin" }],
   },
   {
     no: 3, bas: 9, bit: 16.4, yon: -1, kamera: [70, -70], zemin: 600, ufuk: 510, ortam: "yok",
     toz: { arka: -1 },
     spriteler: [
-      // Aile: 216x135 (sahibin isteğiyle 1,5 kat büyük), ZEMIN. 36 birim/sn, döngü 8 kare / 6 fps = 1,33 sn = 48 birim adım (kayma yok)
-      { dosya: "karakter", kareW: 216, kareH: 135, kare: 8, fps: 6, x: [90, 378], taban: "zemin" },
+      // Aile: 270x170 (sahibin isteğiyle büyütüldü), ZEMIN. 36 birim/sn, döngü 8 kare / 6 fps = 1,33 sn = 48 birim adım (kayma yok)
+      { dosya: "karakter", kareW: 270, kareH: 170, kare: 8, fps: 6, x: [90, 378], taban: "zemin" },
       // Kervan: 248x68, tekerlekleri uzak düz ovada (UFUK)
       { dosya: "karakter2", kareW: 248, kareH: 68, kare: 6, fps: 4, x: [375, 255], taban: "ufuk", opaklik: [1, 0.4] },
     ],
@@ -183,7 +183,7 @@ const SAHNELER: SahneTanimi[] = [
     no: 8, bas: 51.5, bit: 60, yon: -1, kamera: [0, 0], zemin: 640, ortam: "yildiz",
     // Taş yığını (x≈162, orta planda) ve çiçek (x=236) aynı zemin çizgisinde (y=640 → ekran 1280)
     pullBack: { focusX: 30, focusY: 62, startScale: 3, startAt: 0.4, sure: 13 / 3 },
-    spriteler: [{ dosya: "karakter", kareW: 88, kareH: 88, kare: 6, fps: 5, x: [236, 236], taban: "zemin" }],
+    spriteler: [{ dosya: "karakter", kareW: 140, kareH: 140, kare: 6, fps: 5, x: [236, 236], taban: "zemin" }],
   },
 ];
 
@@ -194,7 +194,7 @@ const EKRAN_METINLERI: EkranMetniTanimi[] = [
   { bas: 9.85, bit: 16.4, satirlar: ["Babasız,", "kabilesiz büyüdü."] },
   { bas: 26.0, bit: 34.4, satirlar: ["1206:", "“Cengiz Han” dediler."] },
   { bas: 37.85, bit: 43.4, satirlar: ["Şehirler düştü.", "Bedeli ağır oldu."] },
-  { bas: 44.0, bit: 51.5, satirlar: ["1227'de öldü.", "Mezarı hâlâ bilinmiyor."] },
+  { bas: 44.0, bit: 47.4, satirlar: ["1227'de öldü.", "Mezarı hâlâ bilinmiyor."] }, // anlatımdaki cümleyle biter
 ];
 
 /* ------------------------------------------------------------------ */
@@ -596,38 +596,16 @@ const EkranMetni: React.FC<{
   );
 };
 
-/** Sahne 4: Börte'yi geri getiren dönüş yolu. Basamaklı (piksel) ok, sert köşeler. Statik geometri. */
-const OK_GOVDE: [number, number][] = (() => {
-  const pts: [number, number][] = [];
-  for (let x = 930; x >= 230; x -= 28) {
-    const u = (930 - x) / 700;
-    // Atlıların hemen üstünde (atlı tepesi ekranda ≈1060), onların yolunu izler; gökyüzünde asılı kalmaz
-    const y = 1000 - 20 * u - 50 * Math.sin(Math.PI * u);
-    pts.push([x, Math.round(y / 8) * 8]);
-  }
-  return pts;
-})();
-const OK_GOVDE_D = basamak(OK_GOVDE);
-const OK_UC_D =
-  basamak([[230, 980], [274, 936], [318, 892]]) + " " + basamak([[230, 980], [274, 1024], [318, 1068]]);
-
+/* Börte'nin dönüş oku: atlıların hemen üstünde, sağdan sola giden piksel ok (sahne4-ok.png, tam kare
+   saydam katman). Titreşimli çizim piksel kenarlarını bozduğu için görsel kullanılır; sağdan sola açılarak
+   belirir, sonda solar. */
 const DonusOku: React.FC<{ sure: number }> = ({ sure }) => {
   const frame = useCurrentFrame();
+  const acilma = interpolate(frame, [0, sn(2)], [0, 100], { ...CLAMP, easing: Easing.inOut(Easing.sin) });
   const opacity = interpolate(frame, [sure - sn(0.65), sure], [1, 0], CLAMP);
-  const ortak = {
-    fill: "none",
-    strokeLinecap: "butt" as const,
-    strokeLinejoin: "miter" as const,
-    pathLength: 1,
-  };
   return (
-    <AbsoluteFill style={{ opacity }}>
-      <DoodleBoil hold={BOIL_HOLD} amount={BOIL_MIKTAR} drawOn={sn(2)}>
-        <path d={OK_GOVDE_D} stroke={KONTUR_RENK} strokeWidth={26 / K} {...ortak} />
-        <path d={OK_UC_D} stroke={KONTUR_RENK} strokeWidth={26 / K} {...ortak} />
-        <path d={OK_GOVDE_D} stroke="#fff3d4" strokeWidth={16 / K} {...ortak} />
-        <path d={OK_UC_D} stroke="#fff3d4" strokeWidth={16 / K} {...ortak} />
-      </DoodleBoil>
+    <AbsoluteFill style={{ opacity, clipPath: `inset(0 0 0 ${snap((100 - acilma) * (W / 100))}px)` }}>
+      <Img src={staticFile("sahne4-ok.png")} style={{ width: W, height: H, ...PIKSEL_STIL }} />
     </AbsoluteFill>
   );
 };
@@ -778,7 +756,7 @@ export const CengizHan: React.FC<CengizHanProps> = ({ sesler = false }) => {
       </Sequence>
 
       {/* 5) Altyazı: kelimeler Türkçe kurallarla önceden büyütüldü, lang="tr" ek güvence. */}
-      <div className="altyazi-sicak" lang="tr" style={{ position: "absolute", inset: 0 }}>
+      <div className="altyazi-sicak" lang="tr" style={{ position: "absolute", inset: 0, transform: "translateY(-100px)" }}>
         <KineticCaptions words={KELIMELER} perPage={3} highlight="#ffd479" fontSize={68} />
       </div>
 

@@ -18,7 +18,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 from ciz import (W, H, KOYU, _ac, _esik, agac, arazi, at, bulut, buyut, cayir_dokusu, cicek, cicekler, cimen_tutamlari, duman, duzle,  # noqa: E402
-                 figur, gradyan, gunes, hex2, insan, kagni, okuz, orta_asya_sehri, patika, piksel, sirt, sprite_sayfasi,
+                 figur, gradyan, gunes, hex2, insan, kagni, okuz, orta_asya_sehri, patika, piksel, piksel_ok, sirt, sprite_sayfasi,
                  taban_denetimi, taslar, tug, yeni, yildizlar, yurt)
 
 GW = 810  # orta ve ön plan genişliği
@@ -161,14 +161,14 @@ def sahne1():
 
     def kare(t, z, i):
         f = i / 8
-        baca = figur(t, yurt, 106, z, 4.2, isik=True)
-        duman(t, baca[0], baca[1], 108, 1, faz=f, ruzgar=0.3, genislik=1.4)
-        figur(t, at, 36, z, 2.5, 1, dur=True, bas=0.8 + 0.2 * math.sin(f * 2 * math.pi), kuyruk=math.sin(f * 4 * math.pi))
-        figur(t, at, 166, z, 2.1, -1, "#c8a070", "#5a3a22", dur=True, bas=0.55 + 0.45 * math.sin(f * 2 * math.pi + 1.5),
+        baca = figur(t, yurt, 150, z, 3.8, isik=True)  # yurt ile atlar arasında en az 20 px boşluk
+        duman(t, baca[0], baca[1], 115, 1, faz=f, ruzgar=0.3, genislik=1.4)
+        figur(t, at, 34, z, 2.3, 1, dur=True, bas=0.8 + 0.2 * math.sin(f * 2 * math.pi), kuyruk=math.sin(f * 4 * math.pi))
+        figur(t, at, 247, z, 2.0, 1, "#c8a070", "#5a3a22", dur=True, bas=0.55 + 0.45 * math.sin(f * 2 * math.pi + 1.5),
               kuyruk=math.sin(f * 4 * math.pi + 1))
 
-    sp = sprite(1, "karakter", 192, 192, 8, kare)
-    onizleme(1, gk, uz, ort, onp, [(sp, 192, 367, 640, "zemin")])
+    sp = sprite(1, "karakter", 300, 192, 8, kare)
+    onizleme(1, gk, uz, ort, onp, [(sp, 300, 367, 640, "zemin")])
 
 
 def sahne2():
@@ -177,7 +177,7 @@ def sahne2():
     uz = uzak(2, ["#5a6a98", "#4a5a88"], ["#4a7a6a", "#3f6a5e"], ["#6a8a5a", "#5a7a4e", "#4a6a42"])
 
     def atlar(img, z):
-        for x, s, yon, renk in ((70, 2.0, 1, "#6b3f24"), (130, 1.7, 1, "#c8a070"), (720, 1.9, -1, "#4a2e1e")):
+        for x, s, yon, renk in ((205, 2.0, 1, "#6b3f24"), (262, 1.7, 1, "#c8a070"), (625, 1.9, -1, "#4a2e1e")):
             figur(img, at, x, duz(600), s, yon, renk, dur=True, bas=0.9)
 
     ort = orta(2, (505, 555), ["#5a8a40", "#4a7a36", "#3f6b2e", "#355a28", "#2a4a20"], "#8ab858", ekle=atlar)
@@ -186,12 +186,12 @@ def sahne2():
     def kare(t, z, i):
         f = i / 6
         guc = 0.75 + 0.25 * math.sin(f * 2 * math.pi * 2) * math.sin(f * 2 * math.pi + 0.7)
-        baca = figur(t, yurt, 110, z, 4.4, isik=True, isik_gucu=guc)
-        duman(t, baca[0], baca[1], 105, 2, faz=f, ruzgar=-0.25, genislik=1.3)
-        figur(t, insan, 82, z, 4.7, "#7a3a4a", bebek=True, kadin=True, yon=1)  # kapının hemen solunda
+        baca = figur(t, yurt, 150, z, 5.6, isik=True, isik_gucu=guc)
+        duman(t, baca[0], baca[1], 140, 2, faz=f, ruzgar=-0.25, genislik=1.5)
+        figur(t, insan, 108, z, 3.3, "#7a3a4a", bebek=True, kadin=True, yon=1)  # kapının solunda; boyu kapıdan biraz uzun
 
-    sp = sprite(2, "karakter", 192, 192, 6, kare)
-    onizleme(2, gk, uz, ort, onp, [(sp, 192, 270, 600, "zemin")])
+    sp = sprite(2, "karakter", 256, 256, 6, kare)
+    onizleme(2, gk, uz, ort, onp, [(sp, 256, 270, 600, "zemin")])
 
 
 def sahne3():
@@ -203,11 +203,11 @@ def sahne3():
 
     def aile(t, z, i):
         f = i / 8
-        figur(t, insan, 50, z, 5.0, "#6a4a5a", kadin=True, adim=f, ruzgar=1.0)
-        for j, (x, s, renk) in enumerate(((106, 3.2, "#4a6a8a"), (145, 2.9, "#8a5a3a"), (182, 2.4, "#5a7a4a"))):
+        figur(t, insan, 62, z, 4.0, "#6a4a5a", kadin=True, adim=f, ruzgar=1.0)  # ölçek: insan = at boyunun ~%68'i
+        for j, (x, s, renk) in enumerate(((122, 2.9, "#4a6a8a"), (160, 2.6, "#8a5a3a"), (194, 2.3, "#5a7a4a"))):
             figur(t, insan, x, z, s, renk, adim=(f + 0.3 * (j + 1)) % 1, ruzgar=1.0)
 
-    sp1 = sprite(3, "karakter", 216, 135, 8, aile)
+    sp1 = sprite(3, "karakter", 270, 170, 8, aile)
 
     def kervan(t, z, i):
         f = i / 6
@@ -216,7 +216,7 @@ def sahne3():
             figur(t, kagni, kx, z, 1.5, -1, faz=f)
 
     sp2 = sprite(3, "karakter2", 248, 68, 6, kervan)
-    onizleme(3, gk, uz, ort, onp, [(sp2, 248, 375, 510, "ufuk"), (sp1, 216, 90, 600, "zemin")])
+    onizleme(3, gk, uz, ort, onp, [(sp2, 248, 375, 510, "ufuk"), (sp1, 270, 90, 600, "zemin")])
 
 
 def sahne4():
@@ -234,6 +234,10 @@ def sahne4():
                                                     (45, "#5a3a24", "#4a4a7a", False))):
             figur(t, at, x, z, 3.1, -1, renk, binici=deel, binici_kadin=kadin, faz=(f + j * 0.37) % 1, adim=0.45)
 
+    ok = yeni()
+    piksel_ok(ok, 115, 465, 496, kavis=14, kalinlik=4)
+    kaydet(ok, "sahne4-ok.png")
+
     sp = sprite(4, "karakter", 340, 150, 8, kafile)
     onizleme(4, gk, uz, ort, onp, [(sp, 340, 510 - 170, 630, "zemin")])
 
@@ -246,19 +250,18 @@ def sahne5():
     def kamp(img, z):
         zemin = duz(600)
         rnd = random.Random(5)
-        merkez = PAY + 270
-        for x in (40, 110, 180, 250, 320) + (490, 560, 630, 700, 770):
-            if abs(x - merkez) < 80:
-                continue
-            baca = figur(img, yurt, x, zemin, 2.0, keçe=rnd.choice(("#efe4cc", "#e8dcc0", "#f4ecd8")))
-        for x in (75, 145, 215, 285, 525, 595, 665, 735):
-            figur(img, insan, x + rnd.randint(-8, 8), zemin, rnd.uniform(1.6, 2.0), rnd.choice(("#3a5a8a", "#7a2e3e", "#5a6a3a", "#8a5a3a")),
-                  kadin=rnd.random() < 0.4, yon=1 if x < merkez else -1)
-        for x in (145, 665):
-            d_y = 600
+        merkez = PAY + 270  # tuğ burada (sprite); flamaları sağa doğru ~75 px uzanır
+        for x, s in ((60, 2.0), (172, 2.2), (240, 2.7), (305, 1.9), (505, 1.8), (568, 2.6), (636, 2.0), (760, 2.2)):
+            figur(img, yurt, x, zemin, s, keçe=rnd.choice(("#efe4cc", "#e8dcc0", "#f4ecd8")))
+        renkler = ("#3a5a8a", "#7a2e3e", "#5a6a3a", "#8a5a3a", "#4a4a7a", "#9a6a2a")
+        # tuğun iki yanında toplanan boylar (sağda flamaların altından uzak)
+        for x in (338, 349, 360, 371, 382, 488, 499, 510, 521, 532, 543) + (205, 272, 337 - 60, 600, 470 + 130):
+            figur(img, insan, x + rnd.randint(-3, 3), zemin, rnd.uniform(1.5, 1.9), rnd.choice(renkler),
+                  kadin=rnd.random() < 0.35, yon=1 if x < merkez else -1)
+        for x in (205, 600):
             for k, renk in enumerate(("#e8a040", "#f8d070", "#c8552c")):
-                piksel(img, x + k - 1, d_y - 2 - k % 2, hex2(renk))
-            duman(img, x, d_y - 4, 90, x, faz=0.0, ruzgar=0.1, genislik=0.9)
+                piksel(img, x + k - 1 + 14, 598 - k % 2, hex2(renk))
+            duman(img, x + 14, 596, 90, x, faz=0.0, ruzgar=0.1, genislik=0.9)
 
     ort = orta(5, (480, 518), ["#7ab050", "#6aa046", "#5a903e", "#4a8036", "#3f702e"], "#b0e070", ekle=kamp)
     onp = on(5, ["#3f702e", "#5a903e", "#8a8a3a"], "#f0f0a0")
@@ -272,7 +275,7 @@ def sahne5():
 
 def sahne6():
     gk = gokyuzu(6, ["#6a7088", "#8a8488", "#b09a80", "#c8a878", "#d8b880", "#e0c890"], (150, 380, 18, ["#f8e8c0", "#e8c890"]),
-                 [(380, 300, 46), (120, 290, 40), (330, 360, 32)], ("#e8d8c0", "#c8b098", "#9a8478"))
+                 [(380, 300, 46), (120, 290, 40), (470, 60, 30)], ("#e8d8c0", "#c8b098", "#9a8478"))
     uz = uzak(6, ["#8a90a0", "#7a8090"], ["#a8a07a", "#98906c"], ["#b0a478", "#a0966c", "#908860"], dag_y=(326, 410))
     ort = orta(6, (557, 576), ["#a8a478", "#98966c", "#888860", "#787a54", "#686a48"], "#c8c08a")
     onp = on(6, ["#787a54", "#988a5a", "#6a6a48"], "#e8d8a0", boy=190)
@@ -289,7 +292,11 @@ def sahne6():
 
     def sehir_kare(t, z, i):
         damlar = figur(t, orta_asya_sehri, 22, 274, z, 3.0, tohum=6)
-        secilen = [damlar[2], damlar[-3]]
+        # kubbe ve minareden uzak damlar: duman görünür dam çizgisinden çıksın
+        w_ = 274 - 22
+        engeller = [22 + w_ * 0.35, 22 + w_ * 0.68, 22 + w_ * 0.52]
+        acik = [dm for dm in damlar if min(abs(dm[0] - e) for e in engeller) > 34]
+        secilen = [acik[1], acik[-2]]
         for k, (dx, dy) in enumerate(secilen):
             duman(t, dx, dy, min(dy - 4, 150), 6 + k * 3, faz=(i / 8 + k * 0.5) % 1, renk="#6a6058", ruzgar=0.2, genislik=1.8)
 
@@ -332,16 +339,16 @@ def sahne8():
     uz = uzak(8, ["#7a6a98", "#6a5a88"], ["#8a7a8a", "#7a6a7a"], ["#5a6a5a", "#4e5e50", "#445446"], dag_y=(384, 440), tepe_y=455)
 
     def tas_ekle(img, z):
-        figur(img, taslar, PAY + 162, duz(640), 2.7)
+        figur(img, taslar, PAY + 162, duz(640), 3.5)
 
     ort = orta(8, (500, 557), ["#4a6a44", "#405e3c", "#365234", "#2e462e", "#263c28"], "#7a9a70", ekle=tas_ekle)
     onp = on(8, ["#263c28", "#365234", "#5a4a6a"], "#c8a8d8")
 
     def kare(t, z, i):
-        figur(t, cicek, 44, z, 3.4, faz=i / 6)
+        figur(t, cicek, 70, z, 5.4, faz=i / 6, renk="#ffe25a", orta="#e0602c", kontur="#3a2a14")
 
-    sp = sprite(8, "karakter", 88, 88, 6, kare)
-    onizleme(8, gk, uz, ort, onp, [(sp, 88, 236, 640, "zemin")])
+    sp = sprite(8, "karakter", 140, 140, 6, kare)
+    onizleme(8, gk, uz, ort, onp, [(sp, 140, 236, 640, "zemin")])
 
 
 if __name__ == "__main__":
