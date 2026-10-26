@@ -112,3 +112,39 @@ export const Kapak: React.FC = () => {
     </AbsoluteFill>
   );
 };
+
+/* Portreli kapak: kılıcını kaldırmış Cengiz Han (cengiz-portre.png), gün batımı sahnesinin önünde.
+   Kılıç üst bölgede yer kapladığı için sayfa adı üstte, başlık altta; hepsi ortadaki 3:4 alanda. */
+export const KapakPortre: React.FC = () => (
+  <AbsoluteFill style={{ background: "#2a1a10", overflow: "hidden" }}>
+    <Img src={staticFile("sahne4-gokyuzu.png")} style={{ ...PIKSEL, left: 0, top: 0, width: W, height: H }} />
+    <Img src={staticFile("sahne4-uzak.png")} style={{ ...PIKSEL, left: 0, top: 0, width: W, height: H }} />
+    <Img src={staticFile("sahne4-orta.png")} style={{ ...PIKSEL, left: -270, top: 0, width: 1620, height: H }} />
+    <Img src={staticFile("cengiz-portre.png")} style={{ ...PIKSEL, left: 0, top: 0, width: W, height: H }} />
+
+    {[0, 1, 2].map((i) => (
+      <div key={`a${i}`} style={{ position: "absolute", left: 0, bottom: 0, width: W, height: 720 - i * 150, background: "rgba(30,18,10,0.2)" }} />
+    ))}
+    <div style={{ position: "absolute", left: 0, top: 0, width: W, height: 360, background: "rgba(30,18,10,0.22)" }} />
+
+    <div style={{ position: "absolute", top: 262, left: 0, width: W, display: "flex", justifyContent: "center", alignItems: "center", gap: 18 }}>
+      <Img src={staticFile("logo-profil.png")} style={{ width: 84, height: 84, imageRendering: "pixelated" }} />
+      <div
+        style={{
+          fontFamily: '"Jersey 10", monospace',
+          fontSize: 64,
+          color: KREM,
+          WebkitTextStroke: `5px ${KAHVE}`,
+          paintOrder: "stroke fill",
+          textShadow: `0 5px 0 ${KAHVE}`,
+        }}
+      >
+        @pikseltarihim
+      </div>
+    </div>
+
+    <Yazi metin="1. BÖLÜM" boy={64} y={1290} renk={ALTIN} kontur={6} />
+    <Yazi metin="CENGİZ HAN" boy={210} y={1360} kontur={10} />
+    <Yazi metin="Bozkırın Çocuğu" boy={100} y={1572} renk={ALTIN} kontur={7} />
+  </AbsoluteFill>
+);
