@@ -20,6 +20,8 @@ from ciz import (H, W, _ac, _esik, arazi, at, buyut, duman, figur, gradyan, gune
                  yurt)
 
 UFUK = 580  # ova çizgisi (ızgara y)
+# Börk kürkünün renkleri (gündüz kapağı açık renk kürk kullanır)
+BORK = {"kenar": "#4a3628", "tel": ("#8a7058", "#2e2018", "#6a5444"), "tuy": ("#1a1210", "#3a2e28")}
 
 
 def gokyuzu(img):
@@ -225,13 +227,13 @@ def han(img, cx, cy, s):
     poli([(-18, -36), (-14, -52), (0, -58), (14, -52), (18, -36)], "#5a2a18")
     for k in range(-14, 15, 7):
         cizgi([(k * 0.4, -57), (k, -37)], "#c8962a", 0.6)
-    elips(-29, -31, 29, -13, "#4a3628")
+    elips(-29, -31, 29, -13, BORK["kenar"])
     for x in range(-27, 28, 2):
-        cizgi([(x, -30 + abs(x) * 0.05 + (x % 3)), (x + 1, -14 - (x % 2))], "#8a7058" if x % 6 == 0 else ("#2e2018" if x % 4 else "#6a5444"), 0.6)
+        cizgi([(x, -30 + abs(x) * 0.05 + (x % 3)), (x + 1, -14 - (x % 2))], BORK["tel"][0] if x % 6 == 0 else (BORK["tel"][1] if x % 4 else BORK["tel"][2]), 0.6)
     cizgi([(0, -58), (0, -68)], "#e0b040", 1.4)
     elips(-3, -66, 3, -60, "#e0b040")
     for i in range(12):
-        cizgi([(0, -68), (-4 - i * 0.8, -76 + i * 0.6), (-12 - i * 1.4, -70 + i * 1.6)], "#1a1210" if i % 3 else "#3a2e28", 0.7)
+        cizgi([(0, -68), (-4 - i * 0.8, -76 + i * 0.6), (-12 - i * 1.4, -70 + i * 1.6)], BORK["tuy"][0] if i % 3 else BORK["tuy"][1], 0.7)
     # kılıçlı kol: aşağıda, kılıç çapraz iner
     poli([(-56, 50), (-84, 70), (-90, 120), (-64, 150), (-50, 140), (-66, 112), (-58, 78)], "#3a2418")
     for y in range(76, 140, 8):

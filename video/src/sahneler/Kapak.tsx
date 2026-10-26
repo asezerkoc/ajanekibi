@@ -165,3 +165,14 @@ export const KapakSavas: React.FC = () => (
     <Yazi metin="Bozkırın Çocuğu" boy={96} y={1545} renk={ALTIN} kontur={7} />
   </AbsoluteFill>
 );
+
+/* Gündüz kapağı (sahibin örneğine göre): yazısız; yalnızca altta Piksel Tarihim logosu. */
+export const KapakGunduz: React.FC = () => (
+  <AbsoluteFill style={{ background: "#1a3e8a", overflow: "hidden" }}>
+    <Img src={staticFile("kapak-cengiz-gunduz.png")} style={{ ...PIKSEL, left: 0, top: 0, width: W, height: H }} />
+    <Img
+      src={staticFile("logo-pikseltarihim.png")}
+      style={{ position: "absolute", left: W / 2 - 165, top: 1560, width: 330, height: 330, filter: "drop-shadow(0 8px 0 rgba(20,8,4,0.75))" }}
+    />
+  </AbsoluteFill>
+);
