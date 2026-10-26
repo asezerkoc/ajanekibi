@@ -9,8 +9,8 @@ export const Root: React.FC = () => (
 		<Composition
 			id="CengizHan"
 			component={CengizHan}
-			durationInFrames={1800}
-			fps={30}
+			durationInFrames={3600}
+			fps={60}
 			width={1080}
 			height={1920}
 			defaultProps={{ sesler: false }}
