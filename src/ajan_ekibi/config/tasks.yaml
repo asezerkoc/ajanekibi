@@ -85,6 +85,12 @@ grafik_gorevi:
     skills/remotion-effects/SKILL.md dosyasını oku, metne uyan 2-4 efekti seç ve
     seçtiğin efektlerin referans dosyalarını oku. Dikey video (1080x1920, 30 fps)
     tasarla. Süre işte belirtilmişse o süreye uy, belirtilmemişse 15-30 saniye yap.
+
+    Fizik kurallarına uy: çadırlar, binalar, insanlar, atlar ve her nesne zemine
+    oturur; havada asılı duran hiçbir şey olmaz. Görsel komutlarında ve kodda her
+    nesnenin zemin çizgisini belirt; katmanları üst üste koyarken nesnenin tabanını
+    o katmanın zeminine hizala. Hareketler yerçekimine, ağırlığa ve yöne uygun olsun
+    (atlar koşarken bacakları yere değer, toz yerden kalkar, duman yukarı çıkar).
   expected_output: >
     Türkçe bir tasarım teslimi:
     1) Sahne planı: her sahnenin süresi (saniye), kullanılan efekt, ekrandaki yazı,
@@ -119,7 +125,10 @@ kalite_gorevi:
 
     İşi kontrol et: hedef kitleye uygun mu, marka sesine uygun mu, bilgiler
     araştırmayla tutarlı mı, görsel tarz ajansın tarzı mı, kod kütüphanedeki
-    bileşenleri mi kullanıyor? Uygunsa onayla. Uygun değilse sorunu düzeltebilecek
+    bileşenleri mi kullanıyor? Fizik kurallarına uyuyor mu: her nesne (çadır, bina,
+    insan, at) zemine oturuyor mu, havada duran bir şey var mı, katmanlarda
+    nesnelerin tabanı zemin çizgisine hizalı mı, hareketler yerçekimine uygun mu?
+    Havada duran tek bir nesne bile varsa iş uygun değildir. Uygunsa onayla. Uygun değilse sorunu düzeltebilecek
     tek birimi seç ve somut revizyon notları yaz.
   expected_output: >
     Kalite raporu: uygun (true/false), revize_birimi (metin_yazari, editor,
