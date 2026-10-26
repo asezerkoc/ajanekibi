@@ -83,8 +83,8 @@ grafik_gorevi:
 
     Metni ajansın görsel tarzında bir animasyona dönüştür. Önce
     skills/remotion-effects/SKILL.md dosyasını oku, metne uyan 2-4 efekti seç ve
-    seçtiğin efektlerin referans dosyalarını oku. Dikey video (1080x1920, 30 fps,
-    15-30 saniye) tasarla.
+    seçtiğin efektlerin referans dosyalarını oku. Dikey video (1080x1920, 30 fps)
+    tasarla. Süre işte belirtilmişse o süreye uy, belirtilmemişse 15-30 saniye yap.
   expected_output: >
     Türkçe bir tasarım teslimi:
     1) Sahne planı: her sahnenin süresi (saniye), kullanılan efekt, ekrandaki yazı,
