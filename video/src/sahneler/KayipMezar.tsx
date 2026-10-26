@@ -1,6 +1,7 @@
 import React from "react";
 import {
   AbsoluteFill,
+  Easing,
   Img,
   Sequence,
   cancelRender,
@@ -41,7 +42,18 @@ const KREM = "#fff3d4";
 const KAHVE = "#2a1408";
 const ALTIN = "#ffd479";
 const PIKSEL: React.CSSProperties = { imageRendering: "pixelated", position: "absolute", maxWidth: "none" };
-const snap = (v: number) => Math.round(v / 2) * 2;
+const snap = (v: number) => v; // alt piksel kaydırma: takılmasız, akıcı
+
+/* Yatayda dikişsiz tekrar eden katman (gökyüzü, uzak plan): iki kopya yan yana, kayma W'ye göre sarılır. */
+const Tekrar: React.FC<{ src: string; x: number }> = ({ src, x }) => {
+  const o = ((x % W) + W) % W;
+  return (
+    <div style={{ position: "absolute", left: 0, top: 0, width: 2 * W, height: H, transform: `translateX(${o - W}px)` }}>
+      <Img src={staticFile(src)} style={{ ...PIKSEL, left: 0, top: 0, width: W, height: H }} />
+      <Img src={staticFile(src)} style={{ ...PIKSEL, left: W, top: 0, width: W, height: H }} />
+    </div>
+  );
+};
 
 /* Bir sahnenin katmanları, yavaş paralaks kaymasıyla; sprite kendi kare hızında oynar ve tabanı zemin çizgisinde. */
 const Sahne: React.FC<{
@@ -51,23 +63,24 @@ const Sahne: React.FC<{
   kamera: number;
 }> = ({ no, sure, sprite, kamera }) => {
   const frame = useCurrentFrame();
-  const p = interpolate(frame, [0, sure], [-1, 1]);
+  const p = interpolate(frame, [0, sure], [-1, 1], { easing: Easing.inOut(Easing.sin) });
+  const akis = (frame / KM_FPS) * 14; // gökyüzü ve uzak planın sürekli akışı (px/sn)
   const kam = p * kamera;
   const kare = Math.floor((frame / KM_FPS) * sprite.fps) % sprite.adet;
   const sw = sprite.w * 2;
   const sh = sprite.h * 2;
   const giris = interpolate(frame, [0, sn(0.5)], [0, 1], { extrapolateRight: "clamp" });
   // Sprite tabanı zemin (ya da uzak ova) çizgisinde; bulunduğu katmanla aynı hızda kayar
-  const spriteDiv = (hiz: number) => (
-    <div style={{ position: "absolute", left: snap(sprite.x * 2 - sw / 2 + kam * hiz), top: sprite.taban * 2 - sh, width: sw, height: sh, overflow: "hidden" }}>
+  const spriteDiv = (hiz: number, ek = 0) => (
+    <div style={{ position: "absolute", left: snap(sprite.x * 2 - sw / 2 + kam * hiz + ek), top: sprite.taban * 2 - sh, width: sw, height: sh, overflow: "hidden" }}>
       <Img src={staticFile(`sahne${no}-${sprite.dosya ?? "karakter"}.png`)} style={{ ...PIKSEL, left: -kare * sw, top: 0, width: sw * sprite.adet, height: sh }} />
     </div>
   );
   return (
     <AbsoluteFill style={{ opacity: giris, background: "#120806", overflow: "hidden" }}>
-      <Img src={staticFile(`sahne${no}-gokyuzu.png`)} style={{ ...PIKSEL, left: snap(kam * 0.1), top: 0, width: W, height: H }} />
-      <Img src={staticFile(`sahne${no}-uzak.png`)} style={{ ...PIKSEL, left: snap(kam * 0.3), top: 0, width: W, height: H }} />
-      {sprite.uzak ? spriteDiv(0.3) : null}
+      <Tekrar src={`sahne${no}-gokyuzu.png`} x={kam * 0.1 - akis * 0.5} />
+      <Tekrar src={`sahne${no}-uzak.png`} x={kam * 0.3 - akis} />
+      {sprite.uzak ? spriteDiv(0.3, -akis) : null}
       <Img src={staticFile(`sahne${no}-orta.png`)} style={{ ...PIKSEL, left: snap(-270 + kam * 0.65), top: 0, width: 1620, height: H }} />
       {sprite.uzak ? null : spriteDiv(0.65)}
       <Img src={staticFile(`sahne${no}-on.png`)} style={{ ...PIKSEL, left: snap(-270 + kam * 1.25), top: 0, width: 1620, height: H }} />
@@ -139,37 +152,37 @@ type Bolum = {
 
 const BOLUMLER: Bolum[] = [
   {
-    no: 6, kamera: 30, sprite: { w: 360, h: 120, adet: 8, fps: 5, x: 220, taban: 630 },
+    no: 6, kamera: 60, sprite: { w: 360, h: 120, adet: 24, fps: 15, x: 220, taban: 630 },
     yazilar: [{ satirlar: ["Ağustos 1227."], sure: 2, boy: 124, renk: ALTIN }, { satirlar: ["Cengiz Han,", "Batı Xia seferindeyken", "öldü."], sure: 3.2 }],
   },
   {
-    no: 7, kamera: 24, sprite: { w: 192, h: 160, adet: 6, fps: 4, x: 270, taban: 600 },
+    no: 7, kamera: 50, sprite: { w: 192, h: 160, adet: 24, fps: 16, x: 270, taban: 600 },
     yazilar: [{ satirlar: ["Ölümü bir süre", "ordudan gizlendi,", "denir."], sure: 4.4 }],
   },
   {
-    no: 3, kamera: 30, sprite: { dosya: "karakter2", w: 248, h: 68, adet: 6, fps: 4, x: 300, taban: 510, uzak: true },
+    no: 3, kamera: 60, sprite: { dosya: "karakter2", w: 248, h: 68, adet: 24, fps: 16, x: 300, taban: 510, uzak: true },
     yazilar: [
       { satirlar: ["Cenaze kafilesi", "doğduğu bozkırlara", "yola çıktı…"], sure: 3.4 },
       { satirlar: ["Yolda onları görenlerin", "öldürüldüğü", "söylenir."], sure: 3.6, renk: "#ff8a6a" },
     ],
   },
   {
-    no: 8, kamera: 16, sprite: { w: 140, h: 140, adet: 6, fps: 5, x: 236, taban: 640 },
+    no: 8, kamera: 36, sprite: { w: 140, h: 140, adet: 24, fps: 20, x: 236, taban: 640 },
     yazilar: [{ satirlar: ["Kutsal Burhan Haldun", "Dağı'nın eteklerine", "gömüldüğü düşünülüyor."], sure: 4.4 }],
   },
   {
-    no: 4, kamera: 40, sprite: { w: 340, h: 150, adet: 8, fps: 9, x: 300, taban: 630 },
+    no: 4, kamera: 70, sprite: { w: 340, h: 150, adet: 24, fps: 18, x: 300, taban: 630 },
     yazilar: [{ satirlar: ["Mezarın üstünden", "yüzlerce at sürüldü,", "izler silindi, denir."], sure: 4.6 }],
   },
   {
-    no: 5, kamera: 24, sprite: { w: 160, h: 224, adet: 6, fps: 6, x: 270, taban: 600 },
+    no: 5, kamera: 50, sprite: { w: 160, h: 224, adet: 24, fps: 24, x: 270, taban: 600 },
     yazilar: [
       { satirlar: ["Bölge yüzyıllarca", "\"Büyük Yasak\" oldu."], sure: 2.6, renk: ALTIN },
       { satirlar: ["Oraya girmek", "yasaktı."], sure: 2.4 },
     ],
   },
   {
-    no: 8, kamera: -16, sprite: { w: 140, h: 140, adet: 6, fps: 5, x: 236, taban: 640 },
+    no: 8, kamera: -36, sprite: { w: 140, h: 140, adet: 24, fps: 20, x: 236, taban: 640 },
     yazilar: [
       { satirlar: ["Bugün uydularla", "bile aranıyor…"], sure: 2.6 },
       { satirlar: ["Ama 800 yıldır", "bulunamadı."], sure: 2.8, boy: 116, renk: ALTIN },

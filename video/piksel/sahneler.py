@@ -22,6 +22,7 @@ from ciz import (W, H, KOYU, _ac, _esik, agac, arazi, at, bulut, buyut, cayir_do
                  taban_denetimi, taslar, tug, yeni, yildizlar, yurt)
 
 GW = 810  # orta ve ön plan genişliği
+KARE = 24  # her animasyon döngüsünün kare sayısı (akıcı hareket için ara pozlar)
 PAY = (GW - W) // 2  # görünen kadrajın orta plandaki başlangıcı (135)
 
 CIKTI = Path(sys.argv[sys.argv.index("--cikti") + 1]) if "--cikti" in sys.argv else Path(__file__).parents[1] / "public"
@@ -160,14 +161,14 @@ def sahne1():
     onp = on(1, ["#3f6b2a", "#5a8f36", "#8a7a3a"], "#d8e070")
 
     def kare(t, z, i):
-        f = i / 8
+        f = i / KARE
         baca = figur(t, yurt, 150, z, 3.8, isik=True)  # yurt ile atlar arasında en az 20 px boşluk
         duman(t, baca[0], baca[1], 115, 1, faz=f, ruzgar=0.3, genislik=1.4)
         figur(t, at, 34, z, 2.3, 1, dur=True, bas=0.8 + 0.2 * math.sin(f * 2 * math.pi), kuyruk=math.sin(f * 4 * math.pi))
         figur(t, at, 247, z, 2.0, 1, "#c8a070", "#5a3a22", dur=True, bas=0.55 + 0.45 * math.sin(f * 2 * math.pi + 1.5),
               kuyruk=math.sin(f * 4 * math.pi + 1))
 
-    sp = sprite(1, "karakter", 300, 192, 8, kare)
+    sp = sprite(1, "karakter", 300, 192, KARE, kare)
     onizleme(1, gk, uz, ort, onp, [(sp, 300, 367, 640, "zemin")])
 
 
@@ -184,13 +185,13 @@ def sahne2():
     onp = on(2, ["#2a4a20", "#3f6b2a", "#6a5a3a"], "#e8b888")
 
     def kare(t, z, i):
-        f = i / 6
+        f = i / KARE
         guc = 0.75 + 0.25 * math.sin(f * 2 * math.pi * 2) * math.sin(f * 2 * math.pi + 0.7)
         baca = figur(t, yurt, 150, z, 5.6, isik=True, isik_gucu=guc)
         duman(t, baca[0], baca[1], 140, 2, faz=f, ruzgar=-0.25, genislik=1.5)
         figur(t, insan, 108, z, 3.3, "#7a3a4a", bebek=True, kadin=True, yon=1)  # kapının solunda; boyu kapıdan biraz uzun
 
-    sp = sprite(2, "karakter", 256, 256, 6, kare)
+    sp = sprite(2, "karakter", 256, 256, KARE, kare)
     onizleme(2, gk, uz, ort, onp, [(sp, 256, 270, 600, "zemin")])
 
 
@@ -202,20 +203,20 @@ def sahne3():
     onp = on(3, ["#5a6a36", "#8a8a4a", "#a89a5a"], "#e8e0a0")
 
     def aile(t, z, i):
-        f = i / 8
+        f = i / KARE
         figur(t, insan, 62, z, 4.0, "#6a4a5a", kadin=True, adim=f, ruzgar=1.0)  # ölçek: insan = at boyunun ~%68'i
         for j, (x, s, renk) in enumerate(((122, 2.9, "#4a6a8a"), (160, 2.6, "#8a5a3a"), (194, 2.3, "#5a7a4a"))):
             figur(t, insan, x, z, s, renk, adim=(f + 0.3 * (j + 1)) % 1, ruzgar=1.0)
 
-    sp1 = sprite(3, "karakter", 270, 170, 8, aile)
+    sp1 = sprite(3, "karakter", 270, 170, KARE, aile)
 
     def kervan(t, z, i):
-        f = i / 6
+        f = i / KARE
         for ox, kx in ((34, 80), (150, 196)):
             figur(t, okuz, ox, z, 1.5, -1, "#6a5040", faz=f)
             figur(t, kagni, kx, z, 1.5, -1, faz=f)
 
-    sp2 = sprite(3, "karakter2", 248, 68, 6, kervan)
+    sp2 = sprite(3, "karakter2", 248, 68, KARE, kervan)
     onizleme(3, gk, uz, ort, onp, [(sp2, 248, 375, 510, "ufuk"), (sp1, 270, 90, 600, "zemin")])
 
 
@@ -228,7 +229,7 @@ def sahne4():
     onp = on(4, ["#8a8a3a", "#a89a4a", "#6a6a2e"], "#f8e098")
 
     def kafile(t, z, i):
-        f = i / 8
+        f = i / KARE
         for j, (x, renk, deel, kadin) in enumerate(((295, "#6b3f24", "#3a5a8a", False), (232, "#4a2e1e", "#7a2e3e", False),
                                                     (170, "#d8d0c0", "#9a2e3e", True), (107, "#8a5a34", "#5a6a3a", False),
                                                     (45, "#5a3a24", "#4a4a7a", False))):
@@ -238,7 +239,7 @@ def sahne4():
     piksel_ok(ok, 115, 465, 496, kavis=14, kalinlik=4)
     kaydet(ok, "sahne4-ok.png")
 
-    sp = sprite(4, "karakter", 340, 150, 8, kafile)
+    sp = sprite(4, "karakter", 340, 150, KARE, kafile)
     onizleme(4, gk, uz, ort, onp, [(sp, 340, 510 - 170, 630, "zemin")])
 
 
@@ -267,9 +268,9 @@ def sahne5():
     onp = on(5, ["#3f702e", "#5a903e", "#8a8a3a"], "#f0f0a0")
 
     def kare(t, z, i):
-        figur(t, tug, 70, z, 2.2, faz=i / 6)  # yurdun ~2 katı boyunda (tuğ direği birkaç metre)
+        figur(t, tug, 70, z, 2.2, faz=i / KARE)  # yurdun ~2 katı boyunda (tuğ direği birkaç metre)
 
-    sp = sprite(5, "karakter", 160, 224, 6, kare)
+    sp = sprite(5, "karakter", 160, 224, KARE, kare)
     onizleme(5, gk, uz, ort, onp, [(sp, 160, 270, 600, "zemin")])
 
 
@@ -281,14 +282,14 @@ def sahne6():
     onp = on(6, ["#787a54", "#988a5a", "#6a6a48"], "#e8d8a0", boy=190)
 
     def kolon(t, z, i):
-        f = i / 8
+        f = i / KARE
         for j, x in enumerate((320, 262, 205, 148, 90, 32)):
             yuk = j % 2 == 1
             figur(t, at, x, z, 2.4, 1, ("#5a3a24", "#8a6a4a", "#4a2e1e", "#7a5a3a", "#6b3f24", "#9a7a5a")[j],
                   binici=None if yuk else ("#5a4a3a", "#4a4a5a", "#6a3a2e")[j // 2], yuk="#a89070" if yuk else None,
                   faz=(f + j * 0.29) % 1, adim=0.35)
 
-    sp1 = sprite(6, "karakter", 360, 120, 8, kolon)
+    sp1 = sprite(6, "karakter", 360, 120, KARE, kolon)
 
     def sehir_kare(t, z, i):
         damlar = figur(t, orta_asya_sehri, 22, 274, z, 3.0, tohum=6)
@@ -298,9 +299,9 @@ def sahne6():
         acik = [dm for dm in damlar if min(abs(dm[0] - e) for e in engeller) > 34]
         secilen = [acik[1], acik[-2]]
         for k, (dx, dy) in enumerate(secilen):
-            duman(t, dx, dy, min(dy - 4, 150), 6 + k * 3, faz=(i / 8 + k * 0.5) % 1, renk="#6a6058", ruzgar=0.2, genislik=1.8)
+            duman(t, dx, dy, min(dy - 4, 150), 6 + k * 3, faz=(i / KARE + k * 0.5) % 1, renk="#6a6058", ruzgar=0.2, genislik=1.8)
 
-    sp2 = sprite(6, "karakter2", 296, 248, 8, sehir_kare)
+    sp2 = sprite(6, "karakter2", 296, 248, KARE, sehir_kare)
     onizleme(6, gk, uz, ort, onp, [(sp2, 296, 378, 518, "ufuk"), (sp1, 360, 10 + 180, 630, "zemin")])
 
 
@@ -316,7 +317,7 @@ def sahne7():
     onp = on(7, ["#203226", "#2e4632", "#4a3a5a"], "#a888c8")
 
     def kare(t, z, i):
-        f = i / 6
+        f = i / KARE
         figur(t, at, 86, z, 4.6, 1, "#5a3a2a", "#1e140e", eyer=True, dur=True, bas=0.1,
               kulak=math.sin(f * 2 * math.pi) * 1.2, kuyruk=math.sin(f * 2 * math.pi + 0.8) * 1.5)
         rnd = random.Random(70)
@@ -329,7 +330,7 @@ def sahne7():
             for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
                 piksel(t, fx + dx, fy + dy, hex2("#f8e070", int(60 * parlak)))
 
-    sp = sprite(7, "karakter", 192, 160, 6, kare)
+    sp = sprite(7, "karakter", 192, 160, KARE, kare)
     onizleme(7, gk, uz, ort, onp, [(sp, 192, 270, 600, "zemin")])
 
 
@@ -345,9 +346,9 @@ def sahne8():
     onp = on(8, ["#263c28", "#365234", "#5a4a6a"], "#c8a8d8")
 
     def kare(t, z, i):
-        figur(t, cicek, 70, z, 5.4, faz=i / 6, renk="#ffe25a", orta="#e0602c", kontur="#3a2a14")
+        figur(t, cicek, 70, z, 5.4, faz=i / KARE, renk="#ffe25a", orta="#e0602c", kontur="#3a2a14")
 
-    sp = sprite(8, "karakter", 140, 140, 6, kare)
+    sp = sprite(8, "karakter", 140, 140, KARE, kare)
     onizleme(8, gk, uz, ort, onp, [(sp, 140, 236, 640, "zemin")])
 
 

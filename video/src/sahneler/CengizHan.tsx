@@ -65,7 +65,9 @@ const OLCEK = 2;
 /* Konum yuvarlama adımı (ekran px). 2 = ızgara pikseline oturur. 1 yapılırsa kaydırma
    daha akıcı olur, ama katmanlar arası piksel ızgarası kayar. */
 const SNAP = 2;
-const snap = (v: number) => Math.round(v / SNAP) * SNAP;
+/* Kaydırma alt piksel hassasiyetinde: tam piksele yuvarlamak yavaş kaymalarda takılma gibi görünüyordu.
+   Görseller yine pixelated çizilir, pikseller keskin kalır. */
+const snap = (v: number) => v;
 /* Çimen ve parçacık blokları (ekran px) = 2x2 ızgara pikseli. */
 const BLOK = 4;
 const PIKSEL_STIL: React.CSSProperties = { imageRendering: "pixelated" };
@@ -138,54 +140,54 @@ const SAHNELER: SahneTanimi[] = [
     // Yurt ve iki at: 300x192 (atlar yurttan ayrı), tabanı y=640 (ekranda 1280)
     no: 1, bas: 0, bit: 5, yon: -1, kamera: [0, -30], zemin: 640, ortam: "polen",
     pullBack: { focusX: 68, focusY: 60, startScale: 3.2, startAt: 1 / 3, sure: 3 },
-    spriteler: [{ dosya: "karakter", kareW: 300, kareH: 192, kare: 8, fps: 8, x: [367, 367], taban: "zemin" }],
+    spriteler: [{ dosya: "karakter", kareW: 300, kareH: 192, kare: 24, fps: 24, x: [367, 367], taban: "zemin" }],
   },
   {
     // Yurt, anne ve bebek: 256x256 (büyütüldü), tabanı y=600 (1200)
     no: 2, bas: 5, bit: 9, yon: -1, kamera: [30, -30], zemin: 600, ortam: "polen",
-    spriteler: [{ dosya: "karakter", kareW: 256, kareH: 256, kare: 6, fps: 6, x: [270, 270], taban: "zemin" }],
+    spriteler: [{ dosya: "karakter", kareW: 256, kareH: 256, kare: 24, fps: 24, x: [270, 270], taban: "zemin" }],
   },
   {
     no: 3, bas: 9, bit: 16.4, yon: -1, kamera: [70, -70], zemin: 600, ufuk: 510, ortam: "yok",
     toz: { arka: -1 },
     spriteler: [
       // Aile: 270x170 (sahibin isteğiyle büyütüldü), ZEMIN. 36 birim/sn, döngü 8 kare / 6 fps = 1,33 sn = 48 birim adım (kayma yok)
-      { dosya: "karakter", kareW: 270, kareH: 170, kare: 8, fps: 6, x: [90, 378], taban: "zemin" },
+      { dosya: "karakter", kareW: 270, kareH: 170, kare: 24, fps: 18, x: [90, 378], taban: "zemin" },
       // Kervan: 248x68, tekerlekleri uzak düz ovada (UFUK)
-      { dosya: "karakter2", kareW: 248, kareH: 68, kare: 6, fps: 4, x: [375, 255], taban: "ufuk", opaklik: [1, 0.4] },
+      { dosya: "karakter2", kareW: 248, kareH: 68, kare: 24, fps: 16, x: [375, 255], taban: "ufuk", opaklik: [1, 0.4] },
     ],
   },
   {
     // Atlı kafile: 340x150 (1,25 kat büyük), ZEMIN. 36 birim/sn, döngü 1,33 sn = 48 birim (sakin tırıs)
     no: 4, bas: 16.4, bit: 25, yon: 1, kamera: [-70, 70], zemin: 630, ortam: "yok",
     toz: { arka: 1 },
-    spriteler: [{ dosya: "karakter", kareW: 340, kareH: 150, kare: 8, fps: 6, x: [510, 179], taban: "zemin" }],
+    spriteler: [{ dosya: "karakter", kareW: 340, kareH: 150, kare: 24, fps: 18, x: [510, 179], taban: "zemin" }],
   },
   {
     // Tuğ: 160x224, ZEMIN. Çadırlar orta planda, hepsi aynı düz ZEMIN satırında
     no: 5, bas: 25, bit: 34.4, yon: 1, kamera: [-40, 40], zemin: 600, ortam: "polen",
-    spriteler: [{ dosya: "karakter", kareW: 160, kareH: 224, kare: 6, fps: 6, x: [270, 270], taban: "zemin" }],
+    spriteler: [{ dosya: "karakter", kareW: 160, kareH: 224, kare: 24, fps: 24, x: [270, 270], taban: "zemin" }],
   },
   {
     no: 6, bas: 34.4, bit: 43.4, yon: -1, kamera: [40, -40], zemin: 630, ufuk: 518, ortam: "yok",
     toz: { arka: -1 },
     spriteler: [
       // Kolon: 360x120 (1,25 kat büyük), ZEMIN. 30 birim/sn, döngü 8 kare / 5 fps = 1,6 sn = 48 birim
-      { dosya: "karakter", kareW: 360, kareH: 120, kare: 8, fps: 5, x: [10, 298], taban: "zemin" },
+      { dosya: "karakter", kareW: 360, kareH: 120, kare: 24, fps: 15, x: [10, 298], taban: "zemin" },
       // Şehir ve duman: 296x248, tek sprite, duman çatı hizasından çıkar, taban uzak düz ovada (UFUK)
-      { dosya: "karakter2", kareW: 296, kareH: 248, kare: 8, fps: 4, x: [378, 378], taban: "ufuk" },
+      { dosya: "karakter2", kareW: 296, kareH: 248, kare: 24, fps: 12, x: [378, 378], taban: "ufuk" },
     ],
   },
   {
     // Boş eyerli at: 192x160, ZEMIN. Ağacın gövde tabanı aynı çizgide (orta planda)
     no: 7, bas: 43.4, bit: 51.5, yon: -1, kamera: [20, -20], zemin: 600, ortam: "atesbocegi",
-    spriteler: [{ dosya: "karakter", kareW: 192, kareH: 160, kare: 6, fps: 4, x: [270, 270], taban: "zemin" }],
+    spriteler: [{ dosya: "karakter", kareW: 192, kareH: 160, kare: 24, fps: 16, x: [270, 270], taban: "zemin" }],
   },
   {
     no: 8, bas: 51.5, bit: 60, yon: -1, kamera: [0, 0], zemin: 640, ortam: "yildiz",
     // Taş yığını (x≈162, orta planda) ve çiçek (x=236) aynı zemin çizgisinde (y=640 → ekran 1280)
     pullBack: { focusX: 30, focusY: 62, startScale: 3, startAt: 0.4, sure: 13 / 3 },
-    spriteler: [{ dosya: "karakter", kareW: 140, kareH: 140, kare: 6, fps: 5, x: [236, 236], taban: "zemin" }],
+    spriteler: [{ dosya: "karakter", kareW: 140, kareH: 140, kare: 24, fps: 20, x: [236, 236], taban: "zemin" }],
   },
 ];
 
