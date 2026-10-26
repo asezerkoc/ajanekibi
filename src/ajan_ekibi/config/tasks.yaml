@@ -135,3 +135,37 @@ kalite_gorevi:
     grafiker ya da uygunsa yok) ve notlar (uygunsa kısa bir değerlendirme, değilse
     neyin neden ve nasıl düzeltileceği).
   agent: kalite_kontrol
+
+gorsel_kontrol_gorevi:
+  description: >
+    İş: {gorev}
+
+    Ajans profili:
+    {profil}
+
+    Düzenlenmiş metin:
+    {duzenlenmis_metin}
+
+    Grafikerin tasarımı (sahne planı ve kod):
+    {grafik}
+
+    Ajans sahibinin notu (boşsa yoktur; varsa mutlaka uygulanmış olmalı):
+    {sahip_notu}
+
+    Sana bu videonun render edilmiş kareleri resim olarak verildi. Her kareye tek
+    tek bak ve videoyu ajans sahibi izliyormuş gibi değerlendir:
+    - Fizik: her nesne (çadır, bina, insan, at, taş) zemine oturuyor mu? Havada
+      duran, zeminden kopuk, yanlış ölçekte ya da yanlış yöne bakan bir şey var mı?
+    - Tarz: görseller istenen tarzda mı (ajans sahibinin notu varsa o tarz), kalite
+      ve detay yeterli mi, sahneler birbiriyle tutarlı mı?
+    - Yazı: ekran metinleri ve altyazılar okunuyor mu, kesiliyor ya da üst üste
+      biniyor mu, Türkçe harfler (ç, ğ, ı, İ, ö, ş, ü, â) doğru mu?
+    - Hikaye: kare, sahne planındaki anına uyuyor mu?
+    Gördüğün bir sorunu hangi karede ve kadrajın neresinde gördüğünle yaz. Görmediğin
+    bir şeyi tahmin etme. Tek bir nesne havada duruyorsa ya da yazı okunmuyorsa iş
+    uygun değildir.
+  expected_output: >
+    Kalite raporu: uygun (true/false), revize_birimi (görsel ve kod sorunlarında
+    grafiker, metin sorunlarında metin_yazari ya da editor, uygunsa yok) ve notlar
+    (her sorun için kare, yer, sorun ve nasıl düzeltileceği; uygunsa kısa bir
+    değerlendirme).

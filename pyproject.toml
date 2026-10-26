@@ -5,7 +5,7 @@ description = "CrewAI ile Claude tabanlı yapay zekâ ajan ekibi"
 authors = [{ name = "asezerkoc" }]
 requires-python = ">=3.10,<3.14"
 dependencies = [
-    "crewai[tools,anthropic]>=1.15.30,<2.0.0"
+    "crewai[tools,anthropic,file-processing]>=1.15.30,<2.0.0"
 ]
 
 [project.scripts]
@@ -15,6 +15,7 @@ gunluk = "ajan_ekibi.main:gunluk"
 onayla = "ajan_ekibi.main:onayla"
 revize = "ajan_ekibi.main:revize"
 tanis = "ajan_ekibi.main:tanis"
+gorsel_kontrol = "ajan_ekibi.main:gorsel_kontrol"
 train = "ajan_ekibi.main:train"
 replay = "ajan_ekibi.main:replay"
 test = "ajan_ekibi.main:test"

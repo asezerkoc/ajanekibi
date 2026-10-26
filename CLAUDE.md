@@ -35,6 +35,7 @@ The owner gives jobs in chat and approves in chat. The key comes from the cloud 
 1. Setup once per session: `uv tool install crewai` if `crewai` is missing, then `crewai install`.
 2. A job from the owner: `uv run run_crew "<the job, in the owner's words>" < /dev/null` (run it in the background; a job takes several minutes). With no terminal the result is saved as `teslimler/<date>-<name>.md` with status "ONAY BEKLİYOR", plus a `.json` with the full state.
 3. Show the owner the delivery: the post text, the animation plan and the quality control note from the `.md`. If the owner wants a video, save the designer's Remotion code under `video/src/sahneler/`, register it in `video/src/Root.tsx`, render it and send the file.
+   - Quality control must see the video before the owner does: render 6-12 frames across the scenes (`npx remotion still ... --frame=N`) into one folder and run `uv run gorsel_kontrol teslimler/<file>.md <folder>`. It writes its verdict into the delivery. If it is not "uygun", fix it (new images, or `uv run revize` with its notes) and check again; never send a video it rejected. Headless Chrome here can't reach Google Fonts: keep fonts in `video/public/fonts/`.
 4. The owner's answer:
    - Approves → `uv run onayla teslimler/<file>.md`
    - Wants changes → `uv run revize teslimler/<file>.md "<the owner's note>"`, then show the new version and ask again.

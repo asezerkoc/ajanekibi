@@ -7,6 +7,15 @@ from pydantic import BaseModel, Field
 
 from ajan_ekibi.tools.custom_tool import SkillOkumaAraci
 
+# crewai 1.15.30 only recognises Claude 3 and 4 as vision models; Claude 5 sees images too,
+# and quality control needs that to look at rendered frames (gorsel_kontrol)
+from crewai.llms.providers.anthropic.completion import AnthropicCompletion
+
+_eski_multimodal = AnthropicCompletion.supports_multimodal
+AnthropicCompletion.supports_multimodal = lambda self: (  # type: ignore[method-assign]
+    _eski_multimodal(self) or "claude-" in self.model.lower() and "-5" in self.model.lower()
+)
+
 
 # Each unit's visual color code: shown in the terminal while it works and on the deliveries
 AJAN_RENKLERI = {
@@ -23,6 +32,7 @@ GOREV_BIRIMI = {
     "editor_gorevi": "editor",
     "grafik_gorevi": "grafiker",
     "kalite_gorevi": "kalite_kontrol",
+    "gorsel_kontrol_gorevi": "kalite_kontrol",
 }
 
 
@@ -114,6 +124,14 @@ class AjanEkibi():
     def kalite_gorevi(self) -> Task:
         return Task(
             config=self.tasks_config['kalite_gorevi'], # type: ignore[index]
+            output_pydantic=KaliteRaporu
+        )
+
+    # Not a @task: it needs rendered frames, so it is run on its own by main.gorsel_kontrol
+    def gorsel_kontrol_gorevi(self) -> Task:
+        return Task(
+            config=self.tasks_config['gorsel_kontrol_gorevi'], # type: ignore[index]
+            agent=self.kalite_kontrol(),
             output_pydantic=KaliteRaporu
         )
 
