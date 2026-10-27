@@ -1176,9 +1176,10 @@ def tabut(img, x, zemin, s=1.0, acik=True):
         d.ellipse([x - int(6.6 * s), ic + int(2.2 * s), x - int(5.4 * s), ic + int(3.2 * s)], fill=hex2("#e8d890"))
         d.line([x + int(3 * s), ic - int(1 * s), x + int(13 * s), ic - int(1.4 * s)], fill=kg, width=max(1, int(0.8 * s)))  # sol bacak düz
         # sağ bacak (önde): dizden belirgin eğri, kısa kalmış (aksaklık)
-        d.line([x + int(3 * s), ic + int(1 * s), x + int(7 * s), ic + int(3 * s), x + int(11 * s), ic + int(1.2 * s)], fill=k,
-               width=max(1, int(0.9 * s)))
-        d.ellipse([x + int(6.2 * s), ic + int(2.2 * s), x + int(7.8 * s), ic + int(3.8 * s)], fill=k)  # diz eklemi
+        d.line([x + int(3 * s), ic + int(1 * s), x + int(6.5 * s), ic + int(3.4 * s), x + int(9.5 * s), ic + int(1.6 * s)], fill=k,
+               width=max(2, int(1.2 * s)))  # sağ bacak: kalın, kısa ve dizden keskin bükük
+        d.ellipse([x + int(5.4 * s), ic + int(2.4 * s), x + int(7.6 * s), ic + int(4.4 * s)], fill=hex2("#fff4c0"))  # diz eklemi: parlak (aksaklığın izi)
+        d.ellipse([x + int(5.9 * s), ic + int(2.9 * s), x + int(7.1 * s), ic + int(3.9 * s)], fill=hex2("#e8d890"))
         for ex_, ey_ in ((x + int(13 * s), ic - int(1.4 * s)), (x + int(11 * s), ic + int(1.2 * s))):
             d.line([ex_, ey_, ex_ + int(1.5 * s), ey_], fill=k, width=max(1, int(0.6 * s)))  # ayak kemikleri
     else:
@@ -1348,6 +1349,13 @@ def sahne53():
         for j, x in enumerate((296, 324)):  # Kastilyalı elçiler (Clavijo) sofraya oturur
             figur(t, oturan, x, z, 2.8, ("#1a1a2a", "#3a1a1a")[j], "sapka", "#1a1a1a", "#3a2a1a", yon=-1, el="kase")
         figur(t, kisi, 176, z, 2.7, "#5a3a6a", "takke", "#2a5a3a", "#2a1a12", yon=1, silah="yay", kol=0.4 + 0.2 * math.sin(f * 25))  # müzisyen
+        # uzun alçak sofra (hân): oturanların önünde, ayakları zemine basar; üstünde örtü ve yemekler
+        for ax in (190, 262, 332):
+            d.rectangle([ax - 2, y - 9, ax + 2, y - 1], fill=hex2("#4a2a16"))
+        d.rectangle([184, y - 13, 338, y - 9], fill=hex2("#6a4428"), outline=hex2("#2a1408"))
+        d.rectangle([186, y - 15, 336, y - 13], fill=hex2("#e8dcc0"))
+        for k in range(11):
+            d.ellipse([189 + k * 13, y - 20, 198 + k * 13, y - 15], fill=hex2(("#c8a040", "#e8e0d0", "#8a3a1a", "#6aa040")[k % 4]), outline=hex2("#5a3a1a"))
         figur(t, kisi, 342, z, 2.7, "#3a5a4a", "takke", "#e8e0d0", None, yon=-1, kol=0.5)  # tepsili hizmetkâr: tepsi elinde
         d.rectangle([323, y - 34, 341, y - 32], fill=hex2("#e0b040"))  # tepsi
         for k in range(3):
@@ -1638,14 +1646,13 @@ def sahne60():
         f = i / KARE
         figur(t, tabut, 240, z, 2.4, True)  # mezar sandığı: yaklaşık 1,7 insan boyu
         dd = ImageDraw.Draw(t)
-        dd.rectangle([140, z[0] - 32, 182, z[0] - 1], fill=hex2("#3a3028"), outline=hex2("#5a5048"))  # yan mezar nişi: taş çerçeve
-        dd.rectangle([145, z[0] - 27, 177, z[0] - 1], fill=hex2("#141008"))
-        temas_golgesi(t, 161, z[0], 24)  # Uluğ Bey'in ayrı duran kafatası: nişin içinde, zemine oturur
-        dd.ellipse([150, z[0] - 19, 172, z[0] - 1], fill=hex2("#e8e0c8"), outline=hex2("#4a4030"))
-        dd.ellipse([154, z[0] - 13, 159, z[0] - 8], fill=hex2("#2a2018"))
-        dd.ellipse([163, z[0] - 13, 168, z[0] - 8], fill=hex2("#2a2018"))
-        dd.polygon([(160, z[0] - 8), (162, z[0] - 5), (158, z[0] - 5)], fill=hex2("#2a2018"))
-        dd.line([154, z[0] - 3, 168, z[0] - 3], fill=hex2("#4a4030"))
+        dd.rectangle([150, z[0] - 20, 174, z[0] - 1], fill=hex2("#3a3028"), outline=hex2("#5a5048"))  # yan mezar nişi: taş çerçeve
+        dd.rectangle([153, z[0] - 17, 171, z[0] - 1], fill=hex2("#141008"))
+        temas_golgesi(t, 162, z[0], 12)  # Uluğ Bey'in ayrı duran kafatası: iskeletin kafatasıyla aynı boyda, nişin zeminine oturur
+        dd.ellipse([156, z[0] - 11, 168, z[0] - 1], fill=hex2("#e8e0c8"), outline=hex2("#4a4030"))
+        dd.rectangle([158, z[0] - 7, 160, z[0] - 5], fill=hex2("#2a2018"))
+        dd.rectangle([164, z[0] - 7, 166, z[0] - 5], fill=hex2("#2a2018"))
+        dd.line([159, z[0] - 3, 165, z[0] - 3], fill=hex2("#4a4030"))
         figur(t, lamba, 132, z, 2.2, f)
         figur(t, kisi, 196, z, 2.7, "#5a5a4a", "kasket", "#3a3a32", "#5a4a3a", yon=1, diz=True)  # Gerasimov diz çökmüş, sandığa eğik
         figur(t, kisi, 286, z, 2.7, "#e8e4dc", None, None, None, yon=-1, kol=0.2, kemer=None)
@@ -1812,12 +1819,12 @@ def sahne64():
         for x in range(10, 800, 34):
             figur(img, agac_kavak, x, zemin, 1.3 + (x % 3) * 0.1)
 
-    orta(64, (526, 560), ["#8a7a6a", "#7a6a5c", "#6a5a50", "#5a4c44", "#4a3e38"], "#b8a890", ekle=meydan)
+    orta(64, (526, 560), ["#5a4e46", "#4e443c", "#443a34", "#3a322c", "#302a26"], "#8a7a6a", ekle=meydan)  # meydan koyu: heykel öne çıkar
     on(64, ["#3a602a", "#5a8038", "#6a6a3a"], "#c8d888")
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, heykel, 250, z, 3.4, tunc="#4a6a5a")
+        figur(t, heykel, 250, z, 3.4, tunc="#9aaab0")  # açık patina: yeşil tepelerden ayrılır
         # 'Marx'ın yerinde': eski Marx büstünün hatırası, kendi taş kaidesinde aynı zemine oturur; tek alfa ile silik ama bütün
         d = ImageDraw.Draw(t)
         alfa = 215

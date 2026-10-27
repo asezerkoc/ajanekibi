@@ -701,18 +701,24 @@ def heykel(img, x, zemin, s=1.0, tunc="#5a6a4a"):
     d.rectangle([x - int(17 * s), y - int(6 * s), x + int(17 * s), y - 1], fill=hex2("#5a5458"))
     d.rectangle([x - int(14 * s), y - int(26 * s), x + int(14 * s), y - int(6 * s)], fill=hex2("#7a7478"))
     d.line([x - int(14 * s), y - int(26 * s), x + int(14 * s), y - int(26 * s)], fill=hex2("#9a949a"))
-    d.rectangle([x - int(11 * s), y - int(22 * s), x + int(11 * s), y - int(10 * s)], fill=hex2("#c8a040"), outline=hex2("#5a3a10"))  # yazı levhası
-    from PIL import Image, ImageFont  # levhada yazıt iki satır, doğal genişlikte: GÜÇ / ADALETTEDİR (araştırmada doğrulanacak madde)
-    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", max(7, int(2.4 * s)))
+    d.rectangle([x - int(13 * s), y - int(23 * s), x + int(13 * s), y - int(9 * s)], fill=hex2("#c8a040"), outline=hex2("#5a3a10"))  # yazı levhası
+    from PIL import Image, ImageFont  # levhada yazıt iki satır, harf aralığı açık: GÜÇ / ADALETTEDİR (araştırmada doğrulanacak madde)
+    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", max(8, int(2.7 * s)))
     for k, ad in enumerate(("GÜÇ", "ADALETTEDİR")):
-        w = int(d.textlength(ad, font=font)) + 2
-        h = int(3.4 * s) + 2
+        aralik = 1
+        harfler = [(c, int(d.textlength(c, font=font))) for c in ad]
+        w = sum(hw for _, hw in harfler) + aralik * (len(ad) - 1) + 2
+        h = int(3.8 * s) + 2
         yazi = Image.new("L", (w, h))
-        ImageDraw.Draw(yazi).text((1, 0), ad, font=font, fill=255)
+        yd = ImageDraw.Draw(yazi)
+        cx = 1
+        for c, hw in harfler:
+            yd.text((cx, 0), c, font=font, fill=255)
+            cx += hw + aralik
         for yy in range(h):
             for xx in range(w):
                 if yazi.getpixel((xx, yy)) > 60:
-                    piksel(img, x - w // 2 + xx, y - int(21.5 * s) + k * int(5.5 * s) + yy, hex2("#2a140a"))
+                    piksel(img, x - w // 2 + xx, y - int(22.5 * s) + k * int(6.2 * s) + yy, hex2("#2a140a"))
     zem = [y - int(26 * s)] * img.width
     # tunç atlı: at ve binici aynı yöne (sağa) bakar, binici sağ elini heykel duruşuyla kaldırmış
     atli(img, x, zem, s * 0.9, 1, 0.0, tunc, _ac(tunc, -0.3), tunc, "migfer", _ac(tunc, -0.2), None, None, kol=0.9, dur=True)
