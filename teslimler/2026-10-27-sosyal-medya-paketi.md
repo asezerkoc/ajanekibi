@@ -117,7 +117,7 @@ Videolarda seslendirme yok. Ekran yazılarıyla anlaşılıyorlar. Müziği payl
 ## Paylaşım takvimi önerisi
 
 - **Kayıp Mezar:** 27 Ekim'de yayınlandı.
-- **Bugün 20:00:** Timur Bölüm 1
+- **Yayınlandı (27 Ekim):** Timur Bölüm 1
 - **Yarın 20:00:** Timur Bölüm 2
 - **Ertesi gün 20:00:** Timur Bölüm 3
 
