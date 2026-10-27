@@ -1,9 +1,9 @@
 # SKONSTART teslimi
 
 - **İş:** Piksel Tarihim Timur serisi BÖLÜM 2/3 'İki Yıldırım' (1370-1403). Ajansın imza tarzında (64-bit piksel sanatı, 60 fps, katmanlı paralaks, fizik kurallarına uygun: her şey zemine basar, ölçek tutarlı) 1080x1920 dikey Reels animasyonu. Süre 60-75 sn. Sahne sahne hikâyeyi birebir yansıtan detaylı animasyon planı, ekran yazıları ve 130-150 kelimelik seslendirme metni hazırla. Tartışmalı bilgiler 'rivayete göre / kaynaklara göre', efsaneler 'efsaneye göre' diye işaretlensin; sayıları kesin gibi yazma. Ajans araştırması: reports/Timur üç bölümlük seri araştırması.md. Sahneler sırasıyla: 1) Hızlı montaj: Toktamış'ın ihaneti ve Altın Orda'nın yenilmesi (1391, 1395), İsfahan 1387 kafa kuleleri, Delhi 1398 savaş filleri; 'Teslim olan şehir yaşadı, direnen şehir kule oldu'. 2) Kara Yusuf ve Ahmed Celayir Yıldırım Bayezid'e sığınır; Timur teslimlerini ister. 3) Mektup düellosu: Timur 4, Bayezid 4 mektup; kaynaklarda geçen 'Ey ihtiyar köpek' ve 'savaşa gelmeyip kaçanın karısı üç talakla boş olsun' yemini (Osmanlı mecmualarında korunan mektuplara göre). 4) Sivas Ağustos 1400: 18 gün kuşatma, surların altına kazılan lağımlar, yakılan destek kirişleri, 'kan dökülmeyecek' sözüyle teslim; Osmanlı garnizonunun, bir kronikçiye göre çoğu Ermeni olan 3.000-4.000 savunucusu diri diri gömüldü. 5) Ankara 28 Temmuz 1402 Çubuk Ovası: Timur Çubuk Çayı'nı bentle keser, Osmanlı ordusu susuz kalır; Tatarlar savaş ortasında saf değiştirir; Stefan Lazareviç'in Sırp zırhlı süvarisi üç kez hücum eder. 6) Bayezid dağlarda kuşatılıp esir düşer; ilk kez bir Osmanlı hükümdarı esir. 7) Timur'un ziyafetinde Despina Hatun'un şarap sunduğu rivayet edilir. 8) İzmir Aralık 1402: Rodos Şövalyeleri'nin Aziz Petrus kalesi; liman ağzı taşla doldurulur, mancınıklar, komutan Alfaro gemiyle kaçar, rivayete göre yardım gemilerine kesik başlar fırlatılır; Bayezid'in yıllarca alamadığı kale iki haftada düşer. 9) Demir kafes efsanesi ve gerçeği (kafesli tahtırevan); Bayezid 8 Mart 1403 Akşehir'de esirken ölür. Kapanış kancası: 'Yıldırım'ı yenen adam artık yaklaşık 68 yaşındaydı; göz kapakları düşmüştü, bacağını sürüyordu. Ama hâlâ bir hedefi vardı: Çin.' Bölüm 3'ü takip et çağrısı.
-- **Tarih:** 2026-10-27 07:41
-- **Durum:** ONAYLANDI
-- **Kalite kontrol:** uygun
+- **Tarih:** 2026-10-27 08:57
+- **Durum:** ONAY BEKLİYOR
+- **Kalite kontrol:** revizyon sınırına ulaşıldı, son notlar aşağıda
 
 ## 🟣 Editör · Gönderi metni
 
@@ -196,55 +196,53 @@ Ses gelince sahne süreleri sese hizalanır.
 
 ## 🔴 Kalite Kontrol · Kalite kontrol notu
 
-Değerlendirme: verilen 12 kareye (00396, 00561, 00756, 01260, 01758, 02153, 02615, 02897, 03707, 03888, 04206, 04469) tek tek baktım. Engelleyici sorun görmedim. Havada duran nesne, okunmayan yazı, kesilen yazı ya da bozuk Türkçe harf yok. Karelerde görmediğim sahneler hakkında hüküm vermedim. Toplam süre kare 4469'da yaklaşık 74,5 sn, 60-75 sn aralığında ama üst sınıra yakın. Seslendirme eklenince 75 sn'yi aşmamasına dikkat edilmeli.
+Değerlendirme yalnızca verilen 12 kareye dayanır (00060, 00156, 00738, 01321, 01904, 02487, 03069, 03652, 04235, 04818, 05401, 05533). Sahne 32, 33, 34, 40, 41, 44 ve 46 bu karelerde görünmüyor, revizyondan sonra tekrar kontrol edilmeli. Sorunların hepsi görsel ve kod tarafında, metin ve seslendirme tarafında hata görmedim.
 
-Kare kare:
-- 00396 (Delhi): Filler, atlılar ve okçular zemine basıyor. Fil omzu at omzunun yaklaşık 1,7 katı, ölçek doğru. Arkadaki kale surları perspektifle küçük. Yazı “…Delhi'de filler (1398).” okunuyor.
-- 00561 (Teslim olan şehir / direnen şehir): Sol şehirde pazar ve çocuklar, sağda zemine oturan kafatası kuleleri, duman ve kargalar var. Yazı net.
-- 00756 (Sığınma): Otağ, nöbetçi, Bayezid, diz çökmüş iki kişi ve at aynı zemin çizgisinde. Dört satır yazı okunuyor.
-- 01260 (Mektup): Otağ, mektup tutan Bayezid ve mızraklı yeniçeri zeminde. Dört satırlık yazıdaki “” tırnakları ve ç/ş/ı harfleri doğru.
-- 01758 (Sivas): Kırmızı tonlu gökyüzü uygun, ağır ve karanlık. Sur düz zeminde, çukur ve nöbetçiler zeminde. Kan yok. Yazı okunuyor.
-- 02153 (Ankara bent): Bent ve işçi zeminde, su bentin gerisinde, kaplı askerler kuru yatakta. Yazı doğru.
-- 02615 (Bayezid esir): Atlılar Bayezid'i çevreliyor, dağlar yalnızca uzak planda. Ölçek tutarlı.
-- 02897 (Ziyafet): Timur, Despina ve Bayezid halıya oturuyor. Yazıda “Rivayete göre” işareti var.
-- 03707 (Akşehir): Yatak, mum ve nöbetçi zeminde. Yazı net, tarih doğru (8 Mart 1403).
-- 03888 (Yaşlı Timur): Göz kapakları düşük, sakal ağarmış. Kanca cümlesi aynen yazılmış.
-- 04206 (Final): Timur ve tuğ taşıyan asker zeminde, “hâlâ” şapkalı yazılmış. Yazı okunuyor.
-- 04469 (Kapanış kartı): Logo, “Timur · 2/3 · İki Yıldırım”, “Bölüm 3'ü kaçırma · Takip et”, @pikseltarihim ve “Piksel Tarih | Tarih Animasyon” okunuyor.
+1) [KRİTİK] Kare 00060, açılış/kapak, tüm kadraj: Kapak boyalı, yumuşak geçişli, yüksek çözünürlüklü bir illüstrasyon. Kenar yumuşatma, gerçekçi yüz portreleri, parlayan yıldırım ve ışık patlaması var. Ajansın imza tarzı olan 64-bit piksel sanatıyla (540x960 ızgara, keskin piksel, bulanıklık yok) hiçbir ilgisi yok. Kapağı videonun kendi piksel katmanlarıyla yeniden kurun. Timur ve Bayezid pikselden büyük profil sprite'ları olsun, gökyüzü dither'lı, yıldırım piksel çizgi olsun. Başlık ve alt başlık Jersey 10 olsun; şu an başka bir yazı tipi kullanılmış.
+   - Sağdaki Osmanlı askerlerinin kırmızı bayraklarında modern Türk bayrağı gibi hilal-yıldız var. 1402 için anakronik, kaldırın. Osmanlı için kırmızı-yeşil palette düz flama kullanın.
+   - Altta yalnızca logo yazısı var, @pikseltarihim yok. Plana göre alt başlık tek satırda 'Timur & Bayezid · 1370-1403 · Bölüm 2/3' olmalı. Şimdi '2. BÖLÜM' ayrı ve en üstte duruyor, ortadaki 3:4 alanının dışına taşıyor olabilir. Başlık, alt başlık ve bölüm bilgisini ortadaki 3:4 alanda toplayın.
 
-Genel: 64-bit piksel tarzı, dither gökyüzü, katmanlı paralaks ve palet sahneler arasında tutarlı. Yazılar üstte aynı yükseklikte (y≈300 px civarı) duruyor ve Reels alt arayüzüyle çakışmıyor. Bulut yazı alanına girmiyor. Tartışmalı bilgiler yazıda “mecmualara göre / kaynaklara göre / bir kronikçiye göre / anlatılara göre / rivayete göre / efsaneye göre” ile işaretli, sayılar kesin yazılmamış.
+2) Kare 00156, sahne 31, ekran ortası ve alt yarı: Plan 'iki ordu çarpışır' diyor, kadrajda ise iki ayrı atlı sırası aralarında boşlukla duruyor. Çarpışma, toz ve kalabalık hissi yok. Atlılar sol ve sağ kenarda kesiliyor. Sprite'ları iki sıra derinliğinde çoğaltın, ortada temas ve toz ekleyin, kenarlardan kesmeyin. Gökyüzü planlanan 'kızıl akşam' yerine soluk gri-mavi, altın saat paletine çekin.
 
-Küçük, engelleyici olmayan öneriler (isteğe bağlı):
-1. Kare 03707, sol alt: Arka duvarın zemine bastığı çizgi y≈628, kapı kemerinin tabanı ise y≈707. Kapı odanın içinde duran serbest bir kemer gibi okunuyor. Kapı tabanı duvar çizgisine alınırsa ya da duvar-zemin çizgisi 707'ye indirilirse perspektif tutarlı olur. Odadaki uzun gotik pencereler “sade oda” tarifinden biraz gösterişli, pencereler küçültülebilir.
-2. Kare 02153, üst yazı bandı: İkinci satır (“Osmanlı susuz kaldı.”) açık bej zemin üstünde kalıyor, kontrast orta düzeyde. Yazı konturu ya da gölgesi biraz koyulaştırılabilir.
-3. Kare 00396, sağ üst-orta: Kale surunun arkasındaki açık renkli yarım daire (güneş mi kubbe mi) belirsiz. Kubbeyse kubbe olarak, güneşse sıcak tonlu çizilirse okunurluğu artar.
+3) Genel tarz, kareler 00156, 00738, 01321, 01904, 02487, 03069, 04235: Kadrajın alt %35-40'ı detaysız tek tip çimen dokusu. Ön plan katmanı yok: çalı, taş, çiçek, öne gelen sallanan çimen, paralaks bantları yok. Palet donuk ve gri-zeytin. 'Sıcak, pastel, bol detay' tarzından uzak. Figürler küçük (kare 00738 solda şehirdeki insanlar ve kare 02487 askerler kadrajın yaklaşık %6-9'u). Ajans kuralı 'figürler kadrajda büyük ve okunur'. Ön planı detaylandırın, paleti sıcaklaştırın, ana figürleri büyütün (özellikle sahne 30 solundaki pazar ve çocuklar).
+
+4) Kare 02487, sahne 38, sağ alt: 'Çatlak kuru dere yatağı' çimenin üstüne yapıştırılmış açık renkli, düz kenarlı eğik bir şerit gibi duruyor, havada duran bir kalas gibi okunuyor. Su bentin solunda, yatak ise bentin sağında ve önünde olduğu için mantıksal bağ yok. Yatağı bentin hemen altından başlayan, çukur ve kıvrımlı bir kanal olarak çizin. Kenarları çimene gömülsün, içinde çatlak dokusu olsun, askerler çukurun içinde dursun.
+
+5) Kare 03069, sahne 39, tüm kadraj: Bu karede ekran yazısı yok, yalnızca seri etiketi var. Plandaki 'Tatarlar saf değiştirdi' ve 'Anlatılara göre Sırp süvarisi üç kez hücum etti' yazıları ya hiç gelmiyor ya da zamanlaması sesten kaymış. Sesle eşleştirin. Plandaki geride filler, toz ve oklar görünmüyor. Sırp ve Timurlu atlılar tek sırada yan yana, hücum ve çarpışma okunmuyor. Her hücumda toz ve kamera sarsıntısı ekleyin, geriye fil ve ok katmanı koyun.
+
+6) Kare 05401, sahne 45, ekran yazısı (y≈1270): Videonun kanca kelimesi 'ÇİN.' koyu mor dağın önünde donuk altın-kahve renkte, kontrastı düşük, güçlükle okunuyor. Fade sırasında olabilir, tam opaklıkta kontrolü yapın. Açık krem/beyaz yapın ve koyu kontur ekleyin, diğer yazılarla aynı parlaklıkta olsun. Aynı karede 'Ama hâlâ bir hedefi vardı:' satırı yok, 'hâlâ' (â) yazısının net göründüğünü de doğrulayın.
+
+7) Kareler 00156 ve 03069, ekranın üst orta bölümü: Bulutların alt kenarı seri etiketine ('PİKSEL TARİHİM · TİMUR 2/3') neredeyse değiyor (etiketin sağ ucunda). Ajans kuralı 'yazı bandına bulut gelmez'. Bulut katmanını yazı bandının (etiket ve ana yazı) altında kalacak veya üstünden geçecek şekilde y bakımından sınırlayın.
+
+8) Süre: Kare numaraları 60 fps varsayımıyla kapanış kartı (05533) yaklaşık 92. saniyeye denk geliyor. Hedef 60-75 sn. Gerçek video süresini ses dosyasıyla doğrulayın. Aşıyorsa seslendirme temposunu hızlandırın, sahne arası boşlukları kısaltın. Sahne planındaki süreler 70 sn'ye göre yazılmıştı.
+
+Olumlu: Zemin hizası yaklaşık %66'da tutarlı. Yazılar üstte ve bire bir seslendirmeyle eşleşiyor, Türkçe harfler (ç, ğ, ı, İ, ö, ş, ü) doğru ve okunaklı. Etiketler ('mecmualara göre', 'Bir kronikçiye göre', 'Efsaneye göre') yazının içinde. Sahne 54'te Timur'un düşük göz kapakları ve ağarmış sakalı yerinde. Kapanış kartı (05533) eksiksiz. Kare 03652 İzmir/ziyafet arası yumuşak çapraz geçiş, kural dışı değil. Kare 01904'te kapı dibindeki alev ve yukarı çıkan duman, kare 04235'te kafesli tahtırevan ve kare 05401'de zeminde sürtünme izi ve tuğ doğru çizilmiş. Yukarıdaki maddeler düzeltilip 12 kare yeniden render edildiğinde yeniden kontrol edeceğim.
 
 ## 🔴 Kalite Kontrol · Görsel kontrol (render edilen kareler)
 
-**Karar:** uygun
+**Karar:** UYGUN DEĞİL, düzeltecek birim: 🟢 Grafiker
 
-Değerlendirme: verilen 12 kareye (00396, 00561, 00756, 01260, 01758, 02153, 02615, 02897, 03707, 03888, 04206, 04469) tek tek baktım. Engelleyici sorun görmedim. Havada duran nesne, okunmayan yazı, kesilen yazı ya da bozuk Türkçe harf yok. Karelerde görmediğim sahneler hakkında hüküm vermedim. Toplam süre kare 4469'da yaklaşık 74,5 sn, 60-75 sn aralığında ama üst sınıra yakın. Seslendirme eklenince 75 sn'yi aşmamasına dikkat edilmeli.
+Değerlendirme yalnızca verilen 12 kareye dayanır (00060, 00156, 00738, 01321, 01904, 02487, 03069, 03652, 04235, 04818, 05401, 05533). Sahne 32, 33, 34, 40, 41, 44 ve 46 bu karelerde görünmüyor, revizyondan sonra tekrar kontrol edilmeli. Sorunların hepsi görsel ve kod tarafında, metin ve seslendirme tarafında hata görmedim.
 
-Kare kare:
-- 00396 (Delhi): Filler, atlılar ve okçular zemine basıyor. Fil omzu at omzunun yaklaşık 1,7 katı, ölçek doğru. Arkadaki kale surları perspektifle küçük. Yazı “…Delhi'de filler (1398).” okunuyor.
-- 00561 (Teslim olan şehir / direnen şehir): Sol şehirde pazar ve çocuklar, sağda zemine oturan kafatası kuleleri, duman ve kargalar var. Yazı net.
-- 00756 (Sığınma): Otağ, nöbetçi, Bayezid, diz çökmüş iki kişi ve at aynı zemin çizgisinde. Dört satır yazı okunuyor.
-- 01260 (Mektup): Otağ, mektup tutan Bayezid ve mızraklı yeniçeri zeminde. Dört satırlık yazıdaki “” tırnakları ve ç/ş/ı harfleri doğru.
-- 01758 (Sivas): Kırmızı tonlu gökyüzü uygun, ağır ve karanlık. Sur düz zeminde, çukur ve nöbetçiler zeminde. Kan yok. Yazı okunuyor.
-- 02153 (Ankara bent): Bent ve işçi zeminde, su bentin gerisinde, kaplı askerler kuru yatakta. Yazı doğru.
-- 02615 (Bayezid esir): Atlılar Bayezid'i çevreliyor, dağlar yalnızca uzak planda. Ölçek tutarlı.
-- 02897 (Ziyafet): Timur, Despina ve Bayezid halıya oturuyor. Yazıda “Rivayete göre” işareti var.
-- 03707 (Akşehir): Yatak, mum ve nöbetçi zeminde. Yazı net, tarih doğru (8 Mart 1403).
-- 03888 (Yaşlı Timur): Göz kapakları düşük, sakal ağarmış. Kanca cümlesi aynen yazılmış.
-- 04206 (Final): Timur ve tuğ taşıyan asker zeminde, “hâlâ” şapkalı yazılmış. Yazı okunuyor.
-- 04469 (Kapanış kartı): Logo, “Timur · 2/3 · İki Yıldırım”, “Bölüm 3'ü kaçırma · Takip et”, @pikseltarihim ve “Piksel Tarih | Tarih Animasyon” okunuyor.
+1) [KRİTİK] Kare 00060, açılış/kapak, tüm kadraj: Kapak boyalı, yumuşak geçişli, yüksek çözünürlüklü bir illüstrasyon. Kenar yumuşatma, gerçekçi yüz portreleri, parlayan yıldırım ve ışık patlaması var. Ajansın imza tarzı olan 64-bit piksel sanatıyla (540x960 ızgara, keskin piksel, bulanıklık yok) hiçbir ilgisi yok. Kapağı videonun kendi piksel katmanlarıyla yeniden kurun. Timur ve Bayezid pikselden büyük profil sprite'ları olsun, gökyüzü dither'lı, yıldırım piksel çizgi olsun. Başlık ve alt başlık Jersey 10 olsun; şu an başka bir yazı tipi kullanılmış.
+   - Sağdaki Osmanlı askerlerinin kırmızı bayraklarında modern Türk bayrağı gibi hilal-yıldız var. 1402 için anakronik, kaldırın. Osmanlı için kırmızı-yeşil palette düz flama kullanın.
+   - Altta yalnızca logo yazısı var, @pikseltarihim yok. Plana göre alt başlık tek satırda 'Timur & Bayezid · 1370-1403 · Bölüm 2/3' olmalı. Şimdi '2. BÖLÜM' ayrı ve en üstte duruyor, ortadaki 3:4 alanının dışına taşıyor olabilir. Başlık, alt başlık ve bölüm bilgisini ortadaki 3:4 alanda toplayın.
 
-Genel: 64-bit piksel tarzı, dither gökyüzü, katmanlı paralaks ve palet sahneler arasında tutarlı. Yazılar üstte aynı yükseklikte (y≈300 px civarı) duruyor ve Reels alt arayüzüyle çakışmıyor. Bulut yazı alanına girmiyor. Tartışmalı bilgiler yazıda “mecmualara göre / kaynaklara göre / bir kronikçiye göre / anlatılara göre / rivayete göre / efsaneye göre” ile işaretli, sayılar kesin yazılmamış.
+2) Kare 00156, sahne 31, ekran ortası ve alt yarı: Plan 'iki ordu çarpışır' diyor, kadrajda ise iki ayrı atlı sırası aralarında boşlukla duruyor. Çarpışma, toz ve kalabalık hissi yok. Atlılar sol ve sağ kenarda kesiliyor. Sprite'ları iki sıra derinliğinde çoğaltın, ortada temas ve toz ekleyin, kenarlardan kesmeyin. Gökyüzü planlanan 'kızıl akşam' yerine soluk gri-mavi, altın saat paletine çekin.
 
-Küçük, engelleyici olmayan öneriler (isteğe bağlı):
-1. Kare 03707, sol alt: Arka duvarın zemine bastığı çizgi y≈628, kapı kemerinin tabanı ise y≈707. Kapı odanın içinde duran serbest bir kemer gibi okunuyor. Kapı tabanı duvar çizgisine alınırsa ya da duvar-zemin çizgisi 707'ye indirilirse perspektif tutarlı olur. Odadaki uzun gotik pencereler “sade oda” tarifinden biraz gösterişli, pencereler küçültülebilir.
-2. Kare 02153, üst yazı bandı: İkinci satır (“Osmanlı susuz kaldı.”) açık bej zemin üstünde kalıyor, kontrast orta düzeyde. Yazı konturu ya da gölgesi biraz koyulaştırılabilir.
-3. Kare 00396, sağ üst-orta: Kale surunun arkasındaki açık renkli yarım daire (güneş mi kubbe mi) belirsiz. Kubbeyse kubbe olarak, güneşse sıcak tonlu çizilirse okunurluğu artar.
+3) Genel tarz, kareler 00156, 00738, 01321, 01904, 02487, 03069, 04235: Kadrajın alt %35-40'ı detaysız tek tip çimen dokusu. Ön plan katmanı yok: çalı, taş, çiçek, öne gelen sallanan çimen, paralaks bantları yok. Palet donuk ve gri-zeytin. 'Sıcak, pastel, bol detay' tarzından uzak. Figürler küçük (kare 00738 solda şehirdeki insanlar ve kare 02487 askerler kadrajın yaklaşık %6-9'u). Ajans kuralı 'figürler kadrajda büyük ve okunur'. Ön planı detaylandırın, paleti sıcaklaştırın, ana figürleri büyütün (özellikle sahne 30 solundaki pazar ve çocuklar).
+
+4) Kare 02487, sahne 38, sağ alt: 'Çatlak kuru dere yatağı' çimenin üstüne yapıştırılmış açık renkli, düz kenarlı eğik bir şerit gibi duruyor, havada duran bir kalas gibi okunuyor. Su bentin solunda, yatak ise bentin sağında ve önünde olduğu için mantıksal bağ yok. Yatağı bentin hemen altından başlayan, çukur ve kıvrımlı bir kanal olarak çizin. Kenarları çimene gömülsün, içinde çatlak dokusu olsun, askerler çukurun içinde dursun.
+
+5) Kare 03069, sahne 39, tüm kadraj: Bu karede ekran yazısı yok, yalnızca seri etiketi var. Plandaki 'Tatarlar saf değiştirdi' ve 'Anlatılara göre Sırp süvarisi üç kez hücum etti' yazıları ya hiç gelmiyor ya da zamanlaması sesten kaymış. Sesle eşleştirin. Plandaki geride filler, toz ve oklar görünmüyor. Sırp ve Timurlu atlılar tek sırada yan yana, hücum ve çarpışma okunmuyor. Her hücumda toz ve kamera sarsıntısı ekleyin, geriye fil ve ok katmanı koyun.
+
+6) Kare 05401, sahne 45, ekran yazısı (y≈1270): Videonun kanca kelimesi 'ÇİN.' koyu mor dağın önünde donuk altın-kahve renkte, kontrastı düşük, güçlükle okunuyor. Fade sırasında olabilir, tam opaklıkta kontrolü yapın. Açık krem/beyaz yapın ve koyu kontur ekleyin, diğer yazılarla aynı parlaklıkta olsun. Aynı karede 'Ama hâlâ bir hedefi vardı:' satırı yok, 'hâlâ' (â) yazısının net göründüğünü de doğrulayın.
+
+7) Kareler 00156 ve 03069, ekranın üst orta bölümü: Bulutların alt kenarı seri etiketine ('PİKSEL TARİHİM · TİMUR 2/3') neredeyse değiyor (etiketin sağ ucunda). Ajans kuralı 'yazı bandına bulut gelmez'. Bulut katmanını yazı bandının (etiket ve ana yazı) altında kalacak veya üstünden geçecek şekilde y bakımından sınırlayın.
+
+8) Süre: Kare numaraları 60 fps varsayımıyla kapanış kartı (05533) yaklaşık 92. saniyeye denk geliyor. Hedef 60-75 sn. Gerçek video süresini ses dosyasıyla doğrulayın. Aşıyorsa seslendirme temposunu hızlandırın, sahne arası boşlukları kısaltın. Sahne planındaki süreler 70 sn'ye göre yazılmıştı.
+
+Olumlu: Zemin hizası yaklaşık %66'da tutarlı. Yazılar üstte ve bire bir seslendirmeyle eşleşiyor, Türkçe harfler (ç, ğ, ı, İ, ö, ş, ü) doğru ve okunaklı. Etiketler ('mecmualara göre', 'Bir kronikçiye göre', 'Efsaneye göre') yazının içinde. Sahne 54'te Timur'un düşük göz kapakları ve ağarmış sakalı yerinde. Kapanış kartı (05533) eksiksiz. Kare 03652 İzmir/ziyafet arası yumuşak çapraz geçiş, kural dışı değil. Kare 01904'te kapı dibindeki alev ve yukarı çıkan duman, kare 04235'te kafesli tahtırevan ve kare 05401'de zeminde sürtünme izi ve tuğ doğru çizilmiş. Yukarıdaki maddeler düzeltilip 12 kare yeniden render edildiğinde yeniden kontrol edeceğim.
 
 ## 🔵 Araştırmacı · Araştırma
 

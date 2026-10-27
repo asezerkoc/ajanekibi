@@ -1,9 +1,9 @@
 # SKONSTART teslimi
 
 - **İş:** Piksel Tarihim Timur serisi BÖLÜM 1/3 'Topal Kurt' (1336-1370). Ajansın imza tarzında (64-bit piksel sanatı, 60 fps, katmanlı paralaks, fizik kurallarına uygun: her şey zemine basar, ölçek tutarlı) 1080x1920 dikey Reels animasyonu. Süre 60-75 sn. Sahne sahne hikâyeyi birebir yansıtan detaylı animasyon planı, ekran yazıları ve 130-150 kelimelik seslendirme metni hazırla. Tartışmalı bilgiler 'rivayete göre / kaynaklara göre', efsaneler 'efsaneye göre' diye işaretlensin; sayıları kesin gibi yazma. Ajans araştırması: reports/Timur üç bölümlük seri araştırması.md. Sahneler sırasıyla: 1) Keş, Hoca Ilgar köyü, 8 Nisan 1336 doğum (kroniklere göre; gerçek yaşı belki daha büyük), Barlas emiri Taragay'ın oğlu. 2) Bozkırda at ve koyun yağmalayan genç çete reisi. 3) 1360 Moğol hanı Tuğluk Timur istilası; amcası Hacı Barlas kaçar, Timur istilacıya bağlanıp Keş'in başına geçer. 4) Emir Hüseyin'le ittifak, kız kardeşi Olcay Türkan'la düğün (y.1362). 5) Sistan 1363-64: sağ dizine ve sağ eline iki ok, artık Aksak Timur (1941'de iskelette doğrulandı; düşmanı İbn Arapşah koyun çalarken vurulduğunu yazar). 6) 1365 Çamur Savaşı: sağanak, çamura saplanan atlar, keçe örtülü Moğollar, yenilgi. 7) Semerkant'ı halk milisi Serbedarlar savunur, Moğol atlarında salgın, Moğollar çekilir. 8) 1370 Belh kuşatması: Hüseyin canı bağışlanacak sözüyle teslim olur, sonra öldürülür (rivayete göre kan davası güden Keyhüsrev). 9) Cengiz soyundan Saray Mülk Hatun'la evlenip Gürkan (hanın damadı) unvanı; tahta kukla han Soyurgatmış, kendisi Emir kalır. Kapanış kancası: 'Dünyanın yarısını fethedecekti ama ölene kadar kendine han diyemedi. Otuz yıl sonra batıda bir sultan ona şöyle yazacaktı: Ey ihtiyar köpek…' Bölüm 2'yi takip et çağrısı.
-- **Tarih:** 2026-10-27 07:41
-- **Durum:** ONAYLANDI
-- **Kalite kontrol:** uygun
+- **Tarih:** 2026-10-27 08:57
+- **Durum:** ONAY BEKLİYOR
+- **Kalite kontrol:** revizyon sınırına ulaşıldı, son notlar aşağıda
 
 ## 🟣 Editör · Gönderi metni
 
@@ -152,13 +152,61 @@ Ses gelince sahne süreleri sese hizalanır.
 
 ## 🔴 Kalite Kontrol · Kalite kontrol notu
 
-Kontrol edilen 13 kare (00245, 00666, 00852, 01332, 01848, 02051, 02627, 02831, 03311, 03713, 04245 ve ilgili sahneler) ajans standartlarına ve sahne planına uygun. Fizik: Çadır, yurt, bina, insan, at, koyun, ateş ve meşalelerin hiçbiri havada durmuyor. Hepsi zemine oturuyor; uzak plandaki sur, yurt, selvi ve kalabalık perspektife uygun daha küçük çizilmiş. İnsan boyu at boyunun yaklaşık %65-70'i. Yurt kapıları insandan alçak. Tarz: 64-bit piksel sanatı, keskin kenarlar, dither'lı gökyüzü ve ince çimen dokusu tüm sahnelerde tutarlı. Palet sahneye göre doğru değişiyor: şafak, bozkır altını, sarı çöl, gece düğünü, yağmurlu karanlık, meşaleli kızıl Belh gecesi. Yazı: Jersey 10 ile üstte, tüm Türkçe harfler (ç, ğ, ı, İ, ö, ş, ü) doğru ve okunur. Metinler kesilmiyor, üst üste binmiyor, üstte seri etiketi var, alt altyazı bandı yok. Kapanış kartı doğru: logo, Timur · 1/3 · Topal Kurt, Bölüm 2'yi takip et, @pikseltarihim. Hikâye: Kareler plana uyuyor. Sahne 21'de beşik ve bebek, 22'de dörtnala çete ve koyunlar, 23'te Moğol atlıları ve sur, 24'te ateş ve yurtlar, 25'te saplanmış oklarla diz çökmüş Timur ve sağdaki kayalıkta okçu, 26'da çamurda atlar ve sağdan gelen Moğollar, 27'de Serbedarlar ve yere düşmüş at, 28'de meşaleli muhafızlar ve Hüseyin, 29'da Soyurgatmış'ın ipli kukla oturuşu, 34'te ulak var. Tartışmalı bilgilerde kaynaklara göre, rivayete göre ve düşman anlatısı işaretleri ekranda mevcut. Zorunlu düzeltme yok. İsteğe bağlı, engelleyici olmayan öneriler (grafiker): 1) Kare 02627'de yere düşmüş atın silüeti sağ kenarda kesiliyor ve sol uçtaki ince çıkıntı bacak mı mızrak mı belli olmuyor; at biraz sola alınıp kafası ve bacakları net çizilirse daha okunur olur. 2) Kare 02051'de alçak koyu bulut üst etiketle ilk satır arasına denk geliyor; okunurluk bozulmuyor ama bulut yazı bandının biraz yukarısına kaydırılabilir. 3) Kare 01332'de Hüseyin sağ kenarda hafifçe kırpılıyor; grup birkaç piksel sola alınabilir. 4) Keş, Semerkant ve Belh aynı sur ve kubbe sprite'ını kullanıyor; Semerkant'a farklı bir silüet verilebilir. Bu karelerde görünmeyen şeyler (Hacı Barlas'ın kaçışı, mektup parşömeni, Semerkant'ın ilk yazı kartı) değerlendirilemedi, tahmin edilmedi.
+Sorunlar tamamen görsel ve animasyon kaynaklı, bu yüzden grafikere gidiyor. Metin ve seslendirme ayrı kalem olarak sorunlu değil. Türkçe karakterler (ç, ğ, ı, İ, ö, ş, ü) tüm karelerde doğru çıkıyor. Dither gökyüzü, seri etiketi ve kapanış kartı genel olarak iyi.
+
+1) Kare 00060 (açılış/kapak, tüm kadraj): Boyalı, yumuşak geçişli bir illüstrasyon. Piksel ızgarasına ve keskin kenar kuralına uymuyor, sonraki piksel sahnelerle tutarsız. 'TOPAL KURT' başlığı Jersey 10 değil ve altta @pikseltarihim yok. Düzeltme: Kapak da aynı 540x960 ızgarada 2 kat büyütülmüş piksel katmanlarıyla çizilsin. Büyük başlık, alt başlık, alta logo ve @pikseltarihim Jersey 10 ile yazılsın. Yazılar ortadaki 3:4 alanda kalsın.
+
+2) Kare 00156 (Sahne 21): Ölçek tutmuyor. Sağ alttaki otlayan at insandan daha alçak (at sırtı yaklaşık 75 px, insan yaklaşık 85 px); insan atın %65-70'i olmalı, atı büyüt. İki selvi insanların iki katı boyunda ama tabanları (y≈615) insanların ayak hizasının (y≈700) çok üstünde. Uzak plan sayılamayacak kadar büyük oldukları için havada duruyormuş gibi görünüyor. Selvileri küçült ya da tabanlarını görünür zemine oturt. Sağdaki kerpiç ev tek ve yarım kesik, sol yurt yarım kadrajda; plandaki 'arkada kerpiç evler' eksik. Gökyüzü şafak değil donuk mor-gri, sıcak pastel şafak paleti kullan.
+
+3) Kare 00722 (Sahne 22): 'Bozkırda çete kurdu.' yazısı gri ve gri-mavi gökte düşük kontrastlı, tam opak beyaz yap. Çetenin soldaki atlıları kadrajdan kesik, koyunlar sağ kenarda yarım. Çete ve sürü okunmuyor; atlıları ve sürüyü kadraja sığdır, koyun sayısını artır.
+
+4) Kare 01288 (Sahne 23): Yazı 'Amcası Hacı Barlas kaçtı.' diyor ama kadrajda kaçan Hacı Barlas yok. Sağda mızrakları Timur'a dönük Moğol atlıları ve Timur tek başına duruyor. Barlas'ın dörtnala surdan uzaklaşması yazıyla aynı anda gösterilmeli. Sağdaki iki Moğol atı üst üste biniyor ve sağ kenardan kesik. Yazı burada da gri ve düşük kontrast.
+
+5) Kare 01855 (Sahne 25): Sol at yarım kesik, sağdaki kaya setin üstünde tek okçu görünüyor ve gerisi kesik. Timur'un dizindeki ve koldaki oklar çok küçük, yaralanma okunmuyor. Okları büyüt, okçuları ve atı kadraja al. Pembe-kırmızı 'sağ dizine, sağ koluna.' satırı kum zeminde zayıf, kontrastını artır.
+
+6) Kare 02421 (Sahne 26): Timur, Moğol atlarının ön ayağına yapışık duruyor; üst üste biniyorlar. Moğol atlısı sağ kenarda kesik. Keçe örtü ayırt edilmiyor, Moğollar düz gri-beyaz görünüyor; örtüyü belirgin dokuyla çiz. Yağmur çizgileri çok ince ve soluk, sağanak hissi zayıf; yoğunlaştır. Timur'un topallayarak çekilişi bu karede belli değil.
+
+7) Kare 02987 (Sahne 27): Yerdeki ölü at at gibi okunmuyor; bacaklar sola ince çubuk gibi uzanıyor ve silüet garip. Yan yatan, dört bacağı ve başı belli bir at çiz. Sağdaki çekilen Moğol atlıları çok küçük, üst üste ve sağ kenardan kesik; 'çekilen ordu' okunmuyor, daha büyük ve ayrık çiz.
+
+8) Kare 03553 (Sahne 28): Plan Hüseyin'in kapıdan çıkmasını söylüyor ama kapı sağ kenarda kesik, Hüseyin kapıdan uzakta, muhafızların arasında ortada duruyor. Çıkışı kapının önünde göster. Meşale alevleri var ama etraftaki zemini ve figürleri aydınlatmıyor; ışık ekle.
+
+9) Kare 04120 (Sahne 29): Saray Mülk Hatun (beyaz) ve Timur çadırın ön köşelerine yarı gömülü, duvarla kesişiyor. Çadırın iki yanındaki küçük kalabalık çatı hizasında asılı gibi duruyor. Figürleri çadırın önüne, zemine açıkça bastır; kalabalığı zemin gölgesi ve daha aşağı konumla oturt.
+
+10) Kareler 04686 / 05253 (Sahne 34 ve geçiş): Ulağın arkasındaki yurtlar ulak kadar büyük, perspektif tutmuyor; uzaktaki yurtları küçült. Plandaki parşömen mektup bu karede görünmüyor. Karede ulağın elinde küçük bir kâğıt var ama 'Ey ihtiyar köpek…' parşömeni açık değil. 05253'teki çapraz geçişte kapanış yazıları ulağın ve atın üstüne biniyor; geçiş süresini kısalt ya da arka planı sadeleştir. Kare 05385 (kapanış kartı) temiz ve okunuyor.
+
+11) Süre: Kare numaraları 60 fps'e göre okunursa son kare 5385 yaklaşık 90 sn eder. Bu, 60-75 sn sınırını aşıyor. Sahne sürelerini sesle birlikte kontrol et, toplamı 75 sn'nin altına çek.
+
+12) Genel: Her sahnede kadrajın alt %40'ı boş çim, figürler küçük ve detay az. Figürler kadrajda büyük ve okunur olmalı; figürleri ve sahne öğelerini büyüt, ön plana çim, taş ve detay ekle. Sahne 24 (düğün) örneklenen karelerde yoktu, değerlendirilemedi; yeniden render sonrası tüm sahneler tekrar kontrol edilecek.
 
 ## 🔴 Kalite Kontrol · Görsel kontrol (render edilen kareler)
 
-**Karar:** uygun
+**Karar:** UYGUN DEĞİL, düzeltecek birim: 🟢 Grafiker
 
-Kontrol edilen 13 kare (00245, 00666, 00852, 01332, 01848, 02051, 02627, 02831, 03311, 03713, 04245 ve ilgili sahneler) ajans standartlarına ve sahne planına uygun. Fizik: Çadır, yurt, bina, insan, at, koyun, ateş ve meşalelerin hiçbiri havada durmuyor. Hepsi zemine oturuyor; uzak plandaki sur, yurt, selvi ve kalabalık perspektife uygun daha küçük çizilmiş. İnsan boyu at boyunun yaklaşık %65-70'i. Yurt kapıları insandan alçak. Tarz: 64-bit piksel sanatı, keskin kenarlar, dither'lı gökyüzü ve ince çimen dokusu tüm sahnelerde tutarlı. Palet sahneye göre doğru değişiyor: şafak, bozkır altını, sarı çöl, gece düğünü, yağmurlu karanlık, meşaleli kızıl Belh gecesi. Yazı: Jersey 10 ile üstte, tüm Türkçe harfler (ç, ğ, ı, İ, ö, ş, ü) doğru ve okunur. Metinler kesilmiyor, üst üste binmiyor, üstte seri etiketi var, alt altyazı bandı yok. Kapanış kartı doğru: logo, Timur · 1/3 · Topal Kurt, Bölüm 2'yi takip et, @pikseltarihim. Hikâye: Kareler plana uyuyor. Sahne 21'de beşik ve bebek, 22'de dörtnala çete ve koyunlar, 23'te Moğol atlıları ve sur, 24'te ateş ve yurtlar, 25'te saplanmış oklarla diz çökmüş Timur ve sağdaki kayalıkta okçu, 26'da çamurda atlar ve sağdan gelen Moğollar, 27'de Serbedarlar ve yere düşmüş at, 28'de meşaleli muhafızlar ve Hüseyin, 29'da Soyurgatmış'ın ipli kukla oturuşu, 34'te ulak var. Tartışmalı bilgilerde kaynaklara göre, rivayete göre ve düşman anlatısı işaretleri ekranda mevcut. Zorunlu düzeltme yok. İsteğe bağlı, engelleyici olmayan öneriler (grafiker): 1) Kare 02627'de yere düşmüş atın silüeti sağ kenarda kesiliyor ve sol uçtaki ince çıkıntı bacak mı mızrak mı belli olmuyor; at biraz sola alınıp kafası ve bacakları net çizilirse daha okunur olur. 2) Kare 02051'de alçak koyu bulut üst etiketle ilk satır arasına denk geliyor; okunurluk bozulmuyor ama bulut yazı bandının biraz yukarısına kaydırılabilir. 3) Kare 01332'de Hüseyin sağ kenarda hafifçe kırpılıyor; grup birkaç piksel sola alınabilir. 4) Keş, Semerkant ve Belh aynı sur ve kubbe sprite'ını kullanıyor; Semerkant'a farklı bir silüet verilebilir. Bu karelerde görünmeyen şeyler (Hacı Barlas'ın kaçışı, mektup parşömeni, Semerkant'ın ilk yazı kartı) değerlendirilemedi, tahmin edilmedi.
+Sorunlar tamamen görsel ve animasyon kaynaklı, bu yüzden grafikere gidiyor. Metin ve seslendirme ayrı kalem olarak sorunlu değil. Türkçe karakterler (ç, ğ, ı, İ, ö, ş, ü) tüm karelerde doğru çıkıyor. Dither gökyüzü, seri etiketi ve kapanış kartı genel olarak iyi.
+
+1) Kare 00060 (açılış/kapak, tüm kadraj): Boyalı, yumuşak geçişli bir illüstrasyon. Piksel ızgarasına ve keskin kenar kuralına uymuyor, sonraki piksel sahnelerle tutarsız. 'TOPAL KURT' başlığı Jersey 10 değil ve altta @pikseltarihim yok. Düzeltme: Kapak da aynı 540x960 ızgarada 2 kat büyütülmüş piksel katmanlarıyla çizilsin. Büyük başlık, alt başlık, alta logo ve @pikseltarihim Jersey 10 ile yazılsın. Yazılar ortadaki 3:4 alanda kalsın.
+
+2) Kare 00156 (Sahne 21): Ölçek tutmuyor. Sağ alttaki otlayan at insandan daha alçak (at sırtı yaklaşık 75 px, insan yaklaşık 85 px); insan atın %65-70'i olmalı, atı büyüt. İki selvi insanların iki katı boyunda ama tabanları (y≈615) insanların ayak hizasının (y≈700) çok üstünde. Uzak plan sayılamayacak kadar büyük oldukları için havada duruyormuş gibi görünüyor. Selvileri küçült ya da tabanlarını görünür zemine oturt. Sağdaki kerpiç ev tek ve yarım kesik, sol yurt yarım kadrajda; plandaki 'arkada kerpiç evler' eksik. Gökyüzü şafak değil donuk mor-gri, sıcak pastel şafak paleti kullan.
+
+3) Kare 00722 (Sahne 22): 'Bozkırda çete kurdu.' yazısı gri ve gri-mavi gökte düşük kontrastlı, tam opak beyaz yap. Çetenin soldaki atlıları kadrajdan kesik, koyunlar sağ kenarda yarım. Çete ve sürü okunmuyor; atlıları ve sürüyü kadraja sığdır, koyun sayısını artır.
+
+4) Kare 01288 (Sahne 23): Yazı 'Amcası Hacı Barlas kaçtı.' diyor ama kadrajda kaçan Hacı Barlas yok. Sağda mızrakları Timur'a dönük Moğol atlıları ve Timur tek başına duruyor. Barlas'ın dörtnala surdan uzaklaşması yazıyla aynı anda gösterilmeli. Sağdaki iki Moğol atı üst üste biniyor ve sağ kenardan kesik. Yazı burada da gri ve düşük kontrast.
+
+5) Kare 01855 (Sahne 25): Sol at yarım kesik, sağdaki kaya setin üstünde tek okçu görünüyor ve gerisi kesik. Timur'un dizindeki ve koldaki oklar çok küçük, yaralanma okunmuyor. Okları büyüt, okçuları ve atı kadraja al. Pembe-kırmızı 'sağ dizine, sağ koluna.' satırı kum zeminde zayıf, kontrastını artır.
+
+6) Kare 02421 (Sahne 26): Timur, Moğol atlarının ön ayağına yapışık duruyor; üst üste biniyorlar. Moğol atlısı sağ kenarda kesik. Keçe örtü ayırt edilmiyor, Moğollar düz gri-beyaz görünüyor; örtüyü belirgin dokuyla çiz. Yağmur çizgileri çok ince ve soluk, sağanak hissi zayıf; yoğunlaştır. Timur'un topallayarak çekilişi bu karede belli değil.
+
+7) Kare 02987 (Sahne 27): Yerdeki ölü at at gibi okunmuyor; bacaklar sola ince çubuk gibi uzanıyor ve silüet garip. Yan yatan, dört bacağı ve başı belli bir at çiz. Sağdaki çekilen Moğol atlıları çok küçük, üst üste ve sağ kenardan kesik; 'çekilen ordu' okunmuyor, daha büyük ve ayrık çiz.
+
+8) Kare 03553 (Sahne 28): Plan Hüseyin'in kapıdan çıkmasını söylüyor ama kapı sağ kenarda kesik, Hüseyin kapıdan uzakta, muhafızların arasında ortada duruyor. Çıkışı kapının önünde göster. Meşale alevleri var ama etraftaki zemini ve figürleri aydınlatmıyor; ışık ekle.
+
+9) Kare 04120 (Sahne 29): Saray Mülk Hatun (beyaz) ve Timur çadırın ön köşelerine yarı gömülü, duvarla kesişiyor. Çadırın iki yanındaki küçük kalabalık çatı hizasında asılı gibi duruyor. Figürleri çadırın önüne, zemine açıkça bastır; kalabalığı zemin gölgesi ve daha aşağı konumla oturt.
+
+10) Kareler 04686 / 05253 (Sahne 34 ve geçiş): Ulağın arkasındaki yurtlar ulak kadar büyük, perspektif tutmuyor; uzaktaki yurtları küçült. Plandaki parşömen mektup bu karede görünmüyor. Karede ulağın elinde küçük bir kâğıt var ama 'Ey ihtiyar köpek…' parşömeni açık değil. 05253'teki çapraz geçişte kapanış yazıları ulağın ve atın üstüne biniyor; geçiş süresini kısalt ya da arka planı sadeleştir. Kare 05385 (kapanış kartı) temiz ve okunuyor.
+
+11) Süre: Kare numaraları 60 fps'e göre okunursa son kare 5385 yaklaşık 90 sn eder. Bu, 60-75 sn sınırını aşıyor. Sahne sürelerini sesle birlikte kontrol et, toplamı 75 sn'nin altına çek.
+
+12) Genel: Her sahnede kadrajın alt %40'ı boş çim, figürler küçük ve detay az. Figürler kadrajda büyük ve okunur olmalı; figürleri ve sahne öğelerini büyüt, ön plana çim, taş ve detay ekle. Sahne 24 (düğün) örneklenen karelerde yoktu, değerlendirilemedi; yeniden render sonrası tüm sahneler tekrar kontrol edilecek.
 
 ## 🔵 Araştırmacı · Araştırma
 
