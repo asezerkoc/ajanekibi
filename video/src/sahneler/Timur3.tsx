@@ -14,7 +14,7 @@ export const TIMUR3: Seri = {
       ],
     },
     {
-      no: 52, yakin: 2.0, sprite: { w: 480, h: 200, fps: 12, x: 270, taban: 632 },
+      no: 52, yakin: 2.0, kamera: 10, sprite: { w: 480, h: 200, fps: 12, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Clavijo'ya göre", "filler taş taşıdı;", "Timur alçak kapıyı yıktırdı."], sure: 3.0 },
         { satirlar: ["Rivayete göre aceleyle", "yapılan kubbeden", "tuğlalar düştü."], sure: 2.8, renk: ALTIN },
@@ -49,14 +49,14 @@ export const TIMUR3: Seri = {
       yazilar: [{ satirlar: ["abanoz tabutla", "Gür-i Emir'e ulaştı."], sure: 2.4, renk: ALTIN }],
     },
     {
-      no: 59, yakin: 2.3, kamera: 10, sprite: { w: 400, h: 320, fps: 10, x: 270, taban: 634 },
+      no: 59, yakin: 2.4, kamera: 10, sprite: { w: 400, h: 320, fps: 10, x: 270, taban: 634 },
       yazilar: [
         { satirlar: ["Yeşim taşını Uluğ Bey", "1425'te getirdi;"], sure: 2.2, renk: ALTIN },
         { satirlar: ["Nadir Şah 1740'ta götürdü;", "rivayete göre kırıldı,", "geri verildi."], sure: 3.0 },
       ],
     },
     {
-      no: 60, yakin: 2.2, kamera: 10, sprite: { w: 460, h: 170, fps: 10, x: 270, taban: 634 },
+      no: 60, yakin: 2.4, kamera: 10, sprite: { w: 460, h: 170, fps: 10, x: 270, taban: 634 },
       yazilar: [
         { satirlar: ["Haziran 1941:", "Gerasimov mezarı açtı."], sure: 2.4, renk: ALTIN },
         { satirlar: ["Topal sağ bacak,", "yaralı sağ kol;"], sure: 2.0 },
@@ -64,7 +64,7 @@ export const TIMUR3: Seri = {
       ],
     },
     {
-      no: 61, yakin: 2.3, kamera: 10, sprite: { w: 420, h: 160, fps: 10, x: 270, taban: 632 },
+      no: 61, yakin: 2.4, kamera: 10, sprite: { w: 420, h: 160, fps: 10, x: 270, taban: 632 },
       yazilar: [{ satirlar: ["Efsaneye göre yaşlılar", "Kayumov'u lanetle uyardı;"], sure: 2.8 }],
     },
     {
@@ -79,7 +79,7 @@ export const TIMUR3: Seri = {
       ],
     },
     {
-      no: 64, yakin: 2.0, sprite: { w: 420, h: 200, fps: 10, x: 230, taban: 632 },
+      no: 64, yakin: 2.1, sprite: { w: 420, h: 200, fps: 10, x: 230, taban: 632 },
       yazilar: [
         { satirlar: ["Taşkent'te, Marx'ın yerinde", "atlı Timur:"], sure: 2.4 },
         { satirlar: ["“Güç adalettedir.”"], sure: 2.0, boy: 110, renk: ALTIN },
@@ -88,7 +88,7 @@ export const TIMUR3: Seri = {
   ],
   kapanis: {
     satirlar: ["Efsaneye göre mezarı", "açılınca savaş başladı,", "yeniden gömülünce", "savaşın yönü döndü.", "Tesadüf mü?"],
-    sonraki: "Sıradaki kim olsun?",
+    sonraki: "Seriyi takip et",
     sure: 4.5,
     arka: 58,
     gece: true,

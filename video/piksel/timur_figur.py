@@ -658,26 +658,28 @@ def bibi_hanim(img, x, zemin, s=1.0, mavi="#2a8ac8", tugla="#c8a878", iskele=Tru
     temas_golgesi(img, x + int(6 * s), y, 90 * s)
     # kubbeli ana yapı: taç kapıdan ayrı, sağda kendi kasnağı üstünde (soğan kubbe)
     d.rectangle([x + int(22 * s), y - int(50 * s), x + int(48 * s), y - 1], fill=hex2(tugla))
-    d.rectangle([x + int(24 * s), y - int(56 * s), x + int(46 * s), y - int(50 * s)], fill=hex2(_ac(tugla, 0.08)))  # kasnak
+    d.rectangle([x + int(26 * s), y - int(60 * s), x + int(44 * s), y - int(50 * s)], fill=hex2(_ac(tugla, 0.08)))  # tambur
+    d.rectangle([x + int(24 * s), y - int(62 * s), x + int(46 * s), y - int(60 * s)], fill=hex2(mavi))  # kasnak bileziği
     for k in range(3):
-        d.line([x + int(24 * s), y - int((52 + k * 1.6) * s), x + int(46 * s), y - int((52 + k * 1.6) * s)], fill=hex2(mavi))
-    d.ellipse([x + int(23 * s), y - int(80 * s), x + int(47 * s), y - int(50 * s)], fill=hex2(mavi))
-    d.polygon([(x + int(35 * s), y - int(80 * s)), (x + int(33 * s), y - int(76 * s)), (x + int(37 * s), y - int(76 * s))], fill=hex2(_ac(mavi, 0.3)))
-    for k in range(-10, 11, 4):  # kubbe dilimleri
-        d.line([x + int(35 * s) + int(k * s), y - int(78 * s), x + int(35 * s) + int(k * 1.15 * s), y - int(52 * s)], fill=hex2(_ac(mavi, -0.2)))
-    d.rectangle([x - int(22 * s), y - int(74 * s), x + int(10 * s), y - 1], fill=hex2(_ac(tugla, 0.06)))  # pištak (taç kapı)
-    d.rectangle([x - int(22 * s), y - int(74 * s), x + int(10 * s), y - int(70 * s)], fill=hex2(mavi))
-    for k in range(4):
-        d.line([x - int(22 * s), y - int((60 - k * 12) * s), x + int(10 * s), y - int((60 - k * 12) * s)], fill=hex2(_ac(mavi, 0.1)))
-    d.rectangle([x - int(14 * s), y - int(62 * s), x + int(2 * s), y - int(24 * s)], fill=hex2(_ac(mavi, -0.15)))  # çini niş
-    d.chord([x - int(14 * s), y - int(70 * s), x + int(2 * s), y - int(54 * s)], 180, 360, fill=hex2(_ac(mavi, -0.15)))
+        d.line([x + int(26 * s), y - int((52 + k * 2.4) * s), x + int(44 * s), y - int((52 + k * 2.4) * s)], fill=hex2(mavi))
+    d.ellipse([x + int(21 * s), y - int(86 * s), x + int(49 * s), y - int(56 * s)], fill=hex2(mavi))  # soğan kubbe tamburdan geniş
+    d.polygon([(x + int(35 * s), y - int(88 * s)), (x + int(33 * s), y - int(83 * s)), (x + int(37 * s), y - int(83 * s))], fill=hex2(_ac(mavi, 0.3)))
+    for k in range(-12, 13, 4):  # kubbe dilimleri
+        d.line([x + int(35 * s) + int(k * s), y - int(84 * s), x + int(35 * s) + int(k * 1.15 * s), y - int(58 * s)], fill=hex2(_ac(mavi, -0.2)))
+    # taç kapı (pištak): anlatıya uygun 'alçak' kapı, atlı Timur'un boyundan biraz alçak
+    d.rectangle([x - int(22 * s), y - int(40 * s), x + int(10 * s), y - 1], fill=hex2(_ac(tugla, 0.06)))
+    d.rectangle([x - int(22 * s), y - int(40 * s), x + int(10 * s), y - int(36 * s)], fill=hex2(mavi))
+    for k in range(2):
+        d.line([x - int(22 * s), y - int((30 - k * 8) * s), x + int(10 * s), y - int((30 - k * 8) * s)], fill=hex2(_ac(mavi, 0.1)))
+    d.rectangle([x - int(14 * s), y - int(32 * s), x + int(2 * s), y - int(22 * s)], fill=hex2(_ac(mavi, -0.15)))  # çini niş
+    d.chord([x - int(14 * s), y - int(36 * s), x + int(2 * s), y - int(28 * s)], 180, 360, fill=hex2(_ac(mavi, -0.15)))
     # Timur'un 'alçak' bulduğu kapı: açıklık insan boyundan biraz alçak
     d.chord([x - int(10 * s), y - int(20 * s), x + int(2 * s), y - int(10 * s)], 180, 360, fill=hex2("#1a3a5a"))
     d.rectangle([x - int(10 * s), y - int(15 * s), x + int(2 * s), y - 1], fill=hex2("#1a3a5a"))
     for mx in (-25, 13):  # köşe kuleleri
         cx = x + int(mx * s)
-        d.rectangle([cx - int(3 * s), y - int(80 * s), cx + int(3 * s), y - 1], fill=hex2(tugla))
-        for k in range(5):
+        d.rectangle([cx - int(3 * s), y - int(46 * s), cx + int(3 * s), y - 1], fill=hex2(tugla))
+        for k in range(3):
             d.line([cx - int(3 * s), y - int((12 + k * 13) * s), cx + int(3 * s), y - int((12 + k * 13) * s)], fill=hex2(mavi), width=_u(1.2, s))
     if catlak > 0:
         cx, cy = x + int(35 * s), y - int(79 * s)
@@ -686,22 +688,34 @@ def bibi_hanim(img, x, zemin, s=1.0, mavi="#2a8ac8", tugla="#c8a878", iskele=Tru
     if iskele:
         ah = hex2("#8a6a3a")
         for ix in range(-26, 16, 6):
-            d.line([x + int(ix * s), y - 1, x + int(ix * s), y - int(56 * s)], fill=ah)
-        for iy in range(8, 57, 12):
+            d.line([x + int(ix * s), y - 1, x + int(ix * s), y - int(44 * s)], fill=ah)
+        for iy in range(8, 45, 12):
             d.line([x - int(26 * s), y - int(iy * s), x + int(14 * s), y - int(iy * s)], fill=ah)
 
 
 def heykel(img, x, zemin, s=1.0, tunc="#5a6a4a"):
     """Taşkent'teki atlı Emir Timur heykeli: granit kaide düz zemine oturur, üstünde tunç atlı."""
     d = ImageDraw.Draw(img)
-    y = duz_zemin(zemin, x - int(16 * s), x + int(16 * s), "heykel", tolerans=max(3, int(2 * s)))
+    y = duz_zemin(zemin, x - int(17 * s), x + int(17 * s), "heykel", tolerans=max(3, int(2 * s)))
     temas_golgesi(img, x, y, 36 * s)
-    d.rectangle([x - int(16 * s), y - int(6 * s), x + int(16 * s), y - 1], fill=hex2("#5a5458"))
-    d.rectangle([x - int(12 * s), y - int(26 * s), x + int(12 * s), y - int(6 * s)], fill=hex2("#7a7478"))
-    d.line([x - int(12 * s), y - int(26 * s), x + int(12 * s), y - int(26 * s)], fill=hex2("#9a949a"))
-    d.rectangle([x - int(8 * s), y - int(18 * s), x + int(8 * s), y - int(14 * s)], fill=hex2("#c8a040"))  # yazı levhası
+    d.rectangle([x - int(17 * s), y - int(6 * s), x + int(17 * s), y - 1], fill=hex2("#5a5458"))
+    d.rectangle([x - int(14 * s), y - int(26 * s), x + int(14 * s), y - int(6 * s)], fill=hex2("#7a7478"))
+    d.line([x - int(14 * s), y - int(26 * s), x + int(14 * s), y - int(26 * s)], fill=hex2("#9a949a"))
+    d.rectangle([x - int(11 * s), y - int(22 * s), x + int(11 * s), y - int(10 * s)], fill=hex2("#c8a040"), outline=hex2("#5a3a10"))  # yazı levhası
+    from PIL import Image, ImageFont  # levhada yazıt iki satır, doğal genişlikte: GÜÇ / ADALETTEDİR (araştırmada doğrulanacak madde)
+    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", max(7, int(2.4 * s)))
+    for k, ad in enumerate(("GÜÇ", "ADALETTEDİR")):
+        w = int(d.textlength(ad, font=font)) + 2
+        h = int(3.4 * s) + 2
+        yazi = Image.new("L", (w, h))
+        ImageDraw.Draw(yazi).text((1, 0), ad, font=font, fill=255)
+        for yy in range(h):
+            for xx in range(w):
+                if yazi.getpixel((xx, yy)) > 60:
+                    piksel(img, x - w // 2 + xx, y - int(21.5 * s) + k * int(5.5 * s) + yy, hex2("#2a140a"))
     zem = [y - int(26 * s)] * img.width
-    atli(img, x, zem, s * 0.9, 1, 0.0, tunc, _ac(tunc, -0.3), tunc, "sorguc", _ac(tunc, -0.2), None, None, dur=True)
+    # tunç atlı: at ve binici aynı yöne (sağa) bakar, binici sağ elini heykel duruşuyla kaldırmış
+    atli(img, x, zem, s * 0.9, 1, 0.0, tunc, _ac(tunc, -0.3), tunc, "migfer", _ac(tunc, -0.2), None, None, kol=0.9, dur=True)
     # ön ayakları kalkık at hissi için yükseltilmiş kol: elde kılıç değil, açık el (adalet)
 
 

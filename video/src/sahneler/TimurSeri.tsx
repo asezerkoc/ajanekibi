@@ -221,8 +221,8 @@ const Kapanis: React.FC<{ satirlar: string[]; sonraki: string; arka: number; gec
     <AbsoluteFill style={{ opacity: giris, background: gece ? "#060a1e" : "#1a0806" }}>
       <AbsoluteFill
         style={{
-          filter: gece ? "brightness(0.5) saturate(0.7)" : "brightness(0.45)",
-          transform: gece ? "translateY(170px) scale(1.6)" : "scale(1.6)", // gece kartında kubbe silüeti yazının altına iner
+          filter: gece ? "brightness(0.55) saturate(0.8)" : "brightness(0.45)",
+          transform: gece ? "translateY(640px) scale(1.6)" : "scale(1.6)", // gece kartında kubbe silüeti yazının altına iner
           transformOrigin: "50% 66%",
         }}
       >
@@ -232,7 +232,7 @@ const Kapanis: React.FC<{ satirlar: string[]; sonraki: string; arka: number; gec
       </AbsoluteFill>
       {gece ? (
         <>
-          <AbsoluteFill style={{ background: "#0a1440", mixBlendMode: "multiply", opacity: 0.75 }} />
+          <AbsoluteFill style={{ background: "#0a1440", mixBlendMode: "multiply", opacity: 0.55 }} />
           {YILDIZLAR.map((y, k) => (
             <div
               key={k}

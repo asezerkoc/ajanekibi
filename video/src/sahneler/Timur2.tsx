@@ -20,11 +20,11 @@ export const TIMUR2: Seri = {
       yazilar: [{ satirlar: ["…Delhi'de filler (1398)."], sure: 1.8 }],
     },
     {
-      no: 30, yakin: 1.9, kamera: -240, sprite: { w: 520, h: 170, fps: 12, x: 262, taban: 632 },
+      no: 30, yakin: 1.8, kamera: 40, sprite: { w: 520, h: 170, fps: 12, x: 245, taban: 632 },
       yazilar: [{ satirlar: ["Teslim olan şehir yaşadı,", "direnen şehir kule oldu."], sure: 2.7, renk: ALTIN, boy: 72 }],
     },
     {
-      no: 46, yakin: 1.9, kamera: 20, sprite: { w: 360, h: 170, fps: 12, x: 270, taban: 632 },
+      no: 46, yakin: 1.8, kamera: 10, sprite: { w: 360, h: 170, fps: 12, x: 262, taban: 632 },
       yazilar: [{ satirlar: ["Kara Yusuf ile", "Ahmed Celayir,", "Yıldırım Bayezid'e", "sığındı."], sure: 2.8 }],
     },
     {
@@ -52,7 +52,7 @@ export const TIMUR2: Seri = {
       ],
     },
     {
-      no: 38, yakin: 2.0, sprite: { w: 520, h: 166, fps: 10, x: 230, taban: 648 },
+      no: 38, yakin: 2.0, sprite: { w: 520, h: 172, fps: 10, x: 230, taban: 654 },
       yazilar: [
         { satirlar: ["Ankara, 28 Temmuz 1402."], sure: 1.8, renk: ALTIN },
         { satirlar: ["Kaynaklara göre çay kesildi,", "Osmanlı susuz kaldı."], sure: 2.6, boy: 72 },
