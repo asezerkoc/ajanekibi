@@ -122,3 +122,29 @@ Videolarda seslendirme yok. Ekran yazılarıyla anlaşılıyorlar. Müziği payl
 - **Ertesi gün 20:00:** Timur Bölüm 3
 
 Her bölümün ilk yorumuna "Önceki bölüm profilde 👉" yaz. Üç bölümü profilde bir **Seri** ya da Öne Çıkan altında topla.
+
+---
+
+## 5) TikTok · Cengiz Han · Bölüm 1 "Bozkırın Çocuğu" · 75 sn (sesli)
+
+**Video:** `teslimler/video/pikseltarihim-cengiz-han-reels-40mb.mp4` (1080×1920, H.264/AAC; filigransız yerel yükleme)
+
+**Hesap kurulumu (ilk kez):** kullanıcı adı @pikseltarihim · ad "Piksel Tarihim" · profil fotoğrafı `video/public/logo-profil.png` · biyo: "Tarihi 64-bit piksel animasyonla anlatıyoruz 🎮⚔️ Her hafta yeni bölüm · Instagram: @pikseltarihim" · kategori: Eğitim.
+
+**Açıklama (TikTok):**
+
+> Elinde bir pıhtı kanla doğduğu söylenir. Mezarı ise hâlâ bulunamadı. 🏹
+>
+> Bölüm 1: Bozkırın Çocuğu. Babasız büyüyen Temüçin'den tarihin en büyük kara imparatorluğunu kuran Cengiz Han'a. Kahraman mı, yıkıcı mı?
+>
+> Bölüm 2 "Kayıp Mezar" profilde 👉 Sıradaki seri: Timur ⚔️
+>
+> ⚠️ "Söylenir" diye geçenler rivayettir. Eğitim amaçlı tarih anlatımı.
+>
+> #cengizhan #tarih #tarihbilgisi #pixelart #türktarihi
+
+**Sabitlenecek ilk yorum:** "Sence kahraman mı, yıkıcı mı? 👇 Bölüm 2 (Kayıp Mezar) profilde."
+
+**Yükleme ayarları:** kapak = videonun ilk karesi (portreli kapak) · ses: orijinal ses, üstüne müzik ekleme (anlatım var) · Playlist: "Cengiz Han" (Bölüm 1 + Kayıp Mezar) · yorumlar ve Duet/Stitch açık · "İçerik eğitim amaçlı" etiketi varsa işaretle · saat 20:00–22:00.
+
+**Sonraki gün:** Kayıp Mezar'ı da TikTok'a aynı şekilde yükle (açıklama 1. bölümde, etiket seti: #cengizhan #tarih #pixelart #kayıpmezar #pikseltarihim), Playlist'e ekle.
