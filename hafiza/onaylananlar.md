@@ -84,3 +84,4 @@ düşmeye başladı.
 
 - 2026-10-27: TikTok hesabı açıldı (@pikseltarihim). İlk video Cengiz Han Bölüm 1, ertesi gün Kayıp Mezar; sonra her Reels'e TikTok sürümü standart eklenir (5 etiket, playlist, HD yükleme).
 - 2026-10-27: Timur 1/3 "Topal Kurt" Instagram'da yayınlandı. Sırada Timur 2 (yarın), Timur 3 (ertesi gün).
+- 2026-10-27: TikTok (@pikseltarihim) ilk video yayınlandı: Cengiz Han Bölüm 1. Sırada Kayıp Mezar (playlist "Cengiz Han").
