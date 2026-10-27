@@ -8,7 +8,19 @@ Tartışmalı bilgiler metnin içinde işaretli: **kroniklere göre**, **kaynakl
 
 ---
 
-## Timur · Bölüm 1/3 · "Topal Kurt" (149 kelime, yaklaşık 65 sn)
+## Timur · Kısaltılmış sesli sürüm metinleri (27 Ekim 2026, ~125 kelime, Reels 90 sn sınırı için)
+
+Sahibin kararıyla metinler 90 sn altına inmek için kısaltıldı; videolardaki ekran yazıları bu metinlerle bire bir aynı. Kaynak etiketleri korundu.
+
+**Bölüm 1/3 · "Topal Kurt" (125 kelime):** Kroniklere göre 1336'da Hoca Ilgar köyünde Taragay'ın oğlu doğdu. Yaşı belki daha büyük. Bozkırda çete kurdu; kaynaklara göre at ve koyun yağmalıyordu. 1360'ta Moğol hanı Tuğluk Timur saldırdı. Amcası kaçtı; Timur istilacıya bağlanıp Keş'in başına geçti. Emir Hüseyin'le ittifak kurup kız kardeşiyle evlendi. Sistan'da iki ok yedi: sağ dizine, sağ koluna. Artık Aksak Timur'du. İbn Arapşah koyun çalarken vurulduğunu yazar; düşman anlatısı. 1365 Çamur Savaşı: sağanak, saplanan atlar. Timur yenildi. Semerkant'ı Serbedarlar savundu; kaynaklara göre at salgını Moğolları çekilmeye zorladı. 1370'te Belh'te Hüseyin, canı bağışlanacak sözüyle teslim oldu; sonra öldürüldü. Timur'un rolü tartışmalı. Cengiz soyundan Saray Mülk Hatun'la evlenip Gürkan, han damadı oldu; tahta kukla han oturttu. Dünyanın yarısını fethedecekti ama kendine han diyemedi. Otuz yıl sonra bir sultan ona şöyle yazacaktı: Ey ihtiyar köpek…
+
+**Bölüm 2/3 · "İki Yıldırım" (124 kelime):** Toktamış ihanet etti, Altın Orda yenildi. İsfahan'da kafa kuleleri, Delhi'de filler. Teslim olan şehir yaşadı, direnen şehir kule oldu. Kara Yusuf ile Ahmed Celayir Bayezid'e sığındı; Timur teslimlerini istedi. Mektuplarda, mecmualara göre, "Ey ihtiyar köpek" ve "kaçanın karısı üç talakla boş olsun" geçer. Sivas, 1400: lağımlar, "kan dökülmeyecek" sözü. Bir kronikçiye göre savunucular diri diri gömüldü. Ankara, 28 Temmuz 1402. Kaynaklara göre çay kesildi, Osmanlı susuz kaldı. Tatarlar saf değiştirdi. Bayezid esir düştü; ilk esir Osmanlı hükümdarı. Rivayete göre ziyafette Despina Hatun şarap sundu. İzmir kalesi iki haftada düştü; rivayete göre gemilere kesik başlar fırlatıldı. Efsaneye göre Bayezid demir kafeste taşındı; muhtemelen kafesli tahtırevandı. 1403'te Akşehir'de esirken öldü. Yıldırım'ı yenen adam 68 yaşındaydı; göz kapakları düşmüştü, bacağını sürüyordu. Ama hâlâ bir hedefi vardı: Çin.
+
+**Bölüm 3/3 · "Lanetli Mezar" (121 kelime + kapanış):** Kaynaklara göre Semerkant çevresinde Bağdat, Dımaşk, Şiraz, Mısır köyleri vardı; fethedilen şehirlerin ustaları getirildi. Clavijo'ya göre filler taş taşıdı; Timur alçak kapıyı yıktırdı. Rivayete göre kubbeden tuğlalar düştü. 1404'te Clavijo Kânigil'de şölendeydi. Timur yaşlıydı, göz kapakları düşmüştü. Kasım 1404: ordu karda Çin'e yürüdü. Şubat 1405, Otrar: ateşli hastalık. Rivayete göre hekimler buzla tedavi etti; Timur öldü. Abanoz tabutla Gür-i Emir'e ulaştı. Yeşim taşını Uluğ Bey getirdi; Nadir Şah götürdü, rivayete göre kırıldı, geri verildi. Haziran 1941: Gerasimov mezarı açtı. Topal sağ bacak, yaralı sağ kol; yanda, kaynaklara göre, Uluğ Bey'in kesik başı. Efsaneye göre yaşlılar Kayumov'u lanetle uyardı; 22 Haziran'da Almanya SSCB'ye saldırdı. Kasım 1942: yeniden defin; efsaneye göre halk Stalingrad zaferini buna bağlar. Taşkent'te Marx'ın yerinde atlı Timur: Güç adalettedir. Efsaneye göre mezar açılınca savaş başladı, kapanınca yön döndü. Tesadüf mü?
+
+---
+
+## (Eski, uzun sürüm) Timur · Bölüm 1/3 · "Topal Kurt" (149 kelime, yaklaşık 65 sn)
 
 1. Kroniklere göre 8 Nisan 1336'da Hoca Ilgar köyünde Taragay'ın oğlu doğdu. Yaşı belki daha büyük.
 2. Bozkırda çete kurdu. Kaynaklara göre at ve koyun yağmalıyordu.

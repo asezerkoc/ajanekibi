@@ -11,87 +11,101 @@ export const TIMUR3: Seri = {
     {
       no: 51, yakin: 2.1, kamera: 50, sprite: { w: 380, h: 180, fps: 14, x: [220, 300], taban: 632 },
       yazilar: [
-        { satirlar: ["Kaynaklara göre Semerkant", "çevresinde Bağdat, Dımaşk,", "Şiraz, Mısır köyleri vardı;"], sure: 6.64, renk: ALTIN },
-        { satirlar: ["fethedilen şehirlerin", "ustaları getirildi."], sure: 2.30 },
+        { satirlar: ["Kaynaklara göre Semerkant", "çevresinde Bağdat, Dımaşk,", "Şiraz, Mısır köyleri vardı;"], sure: 6.56, renk: ALTIN },
+        { satirlar: ["fethedilen şehirlerin", "ustaları getirildi."], sure: 2.37 },
       ],
     },
     {
       no: 52, yakin: 2.0, kamera: 10, sprite: { w: 480, h: 200, fps: 12, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Clavijo'ya göre", "filler taş taşıdı;", "Timur alçak kapıyı yıktırdı."], sure: 5.37 },
-        { satirlar: ["Rivayete göre aceleyle", "yapılan kubbeden", "tuğlalar düştü."], sure: 3.54, renk: ALTIN },
+        { satirlar: ["Clavijo'ya göre filler taş taşıdı;", "Timur alçak kapıyı yıktırdı."], sure: 5.37 },
+        { satirlar: ["Rivayete göre kubbeden", "tuğlalar düştü."], sure: 2.62, renk: ALTIN },
       ],
     },
     {
       no: 53, yakin: 2.0, sprite: { w: 420, h: 190, fps: 14, x: 275, taban: 632 },
-      yazilar: [{ satirlar: ["1404'te Clavijo", "Kânigil çayırında şölendeydi."], sure: 4.50, renk: ALTIN }],
+      yazilar: [
+        { satirlar: ["1404'te Clavijo", "Kânigil'de şölendeydi."], sure: 4.43, renk: ALTIN },
+      ],
     },
     {
       no: 54, yakin: 2.3, kamera: 10, sprite: { w: 270, h: 200, fps: 10, x: 270, taban: 632 },
-      yazilar: [{ satirlar: ["Timur yaşlıydı,", "göz kapakları düşmüştü."], sure: 2.05 }],
+      yazilar: [
+        { satirlar: ["Timur yaşlıydı,", "göz kapakları düşmüştü."], sure: 2.47 },
+      ],
     },
     {
       no: 55, yakin: 2.2, hava: 24, kamera: 50, sprite: { w: 420, h: 170, fps: 16, x: [220, 300], taban: 632 },
-      yazilar: [{ satirlar: ["Kasım 1404:", "ordu karda Çin'e yürüdü."], sure: 3.58, renk: ALTIN }],
+      yazilar: [
+        { satirlar: ["Kasım 1404:", "ordu karda Çin'e yürüdü."], sure: 3.71, renk: ALTIN },
+      ],
     },
     {
       no: 56, yakin: 2.3, kamera: 20, sprite: { w: 380, h: 140, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Şubat 1405, Otrar:", "ateşli hastalık."], sure: 4.17 },
-        { satirlar: ["Rivayete göre hekimler", "buzla tedavi", "etmeye çalıştı;"], sure: 4.93 },
+        { satirlar: ["Şubat 1405, Otrar:", "ateşli hastalık."], sure: 4.20 },
+        { satirlar: ["Rivayete göre hekimler", "buzla tedavi etti;"], sure: 3.39 },
         { satirlar: ["Timur öldü."], sure: 0.90, boy: 120, renk: KIZIL },
       ],
     },
     {
       no: 57, yakin: 2.2, hava: 24, kamera: 50, sprite: { w: 400, h: 160, fps: 12, x: [230, 290], taban: 632 },
-      yazilar: [{ satirlar: ["Kaynaklara göre", "misk ve gülsuyuyla", "tahnit edildi;"], sure: 2.75 }],
+      yazilar: [
+        { satirlar: ["Abanoz tabutla"], sure: 0.90 },
+      ],
     },
     {
       no: 58, yakin: 1.8, hava: 20, sprite: { w: 520, h: 150, fps: 10, x: 270, taban: 634 },
-      yazilar: [{ satirlar: ["abanoz tabutla", "Gür-i Emir'e ulaştı."], sure: 1.85, renk: ALTIN }],
+      yazilar: [
+        { satirlar: ["Gür-i Emir'e ulaştı."], sure: 0.94, renk: ALTIN },
+      ],
     },
     {
       no: 59, yakin: 2.4, kamera: 10, sprite: { w: 400, h: 320, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Yeşim taşını Uluğ Bey", "1425'te getirdi;"], sure: 4.56, renk: ALTIN },
-        { satirlar: ["Nadir Şah 1740'ta götürdü;", "rivayete göre kırıldı,", "geri verildi."], sure: 5.66 },
+        { satirlar: ["Yeşim taşını Uluğ Bey getirdi;"], sure: 2.39, renk: ALTIN },
+        { satirlar: ["Nadir Şah götürdü; rivayete göre", "kırıldı, geri verildi."], sure: 3.27 },
       ],
     },
     {
       no: 60, yakin: 2.4, kamera: 10, sprite: { w: 460, h: 170, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Haziran 1941:", "Gerasimov mezarı açtı."], sure: 4.27, renk: ALTIN },
-        { satirlar: ["Topal sağ bacak,", "yaralı sağ kol;"], sure: 2.27 },
-        { satirlar: ["yanda, kaynaklara göre,", "Uluğ Bey'in kesik başı."], sure: 2.91, renk: KIZIL },
+        { satirlar: ["Haziran 1941:", "Gerasimov mezarı açtı."], sure: 4.93, renk: ALTIN },
+        { satirlar: ["Topal sağ bacak,", "yaralı sağ kol;"], sure: 1.93 },
+        { satirlar: ["yanda, kaynaklara göre,", "Uluğ Bey'in kesik başı."], sure: 3.15, renk: KIZIL },
       ],
     },
     {
       no: 61, yakin: 2.4, kamera: 10, sprite: { w: 420, h: 160, fps: 10, x: 270, taban: 632 },
-      yazilar: [{ satirlar: ["Efsaneye göre yaşlılar", "Kayumov'u lanetle uyardı;"], sure: 3.27 }],
+      yazilar: [
+        { satirlar: ["Efsaneye göre yaşlılar", "Kayumov'u lanetle uyardı;"], sure: 3.77 },
+      ],
     },
     {
       no: 62, yakin: 2.1, sarsinti: 3, kamera: 60, sprite: { w: 480, h: 120, fps: 20, x: [210, 320], taban: 632 },
-      yazilar: [{ satirlar: ["22 Haziran'da Almanya", "SSCB'ye saldırdı."], sure: 3.15, renk: KIZIL }],
+      yazilar: [
+        { satirlar: ["22 Haziran'da Almanya", "SSCB'ye saldırdı."], sure: 3.20, renk: KIZIL },
+      ],
     },
     {
       no: 63, yakin: 2.0, hava: 20, sprite: { w: 500, h: 160, fps: 12, x: [250, 280], taban: 634 },
       yazilar: [
-        { satirlar: ["Kasım 1942:", "İslami törenle yeniden defin;"], sure: 4.42 },
-        { satirlar: ["efsaneye göre halk", "Stalingrad zaferini", "buna bağlar."], sure: 3.37, renk: ALTIN },
+        { satirlar: ["Kasım 1942: yeniden defin;"], sure: 3.42 },
+        { satirlar: ["efsaneye göre halk", "Stalingrad zaferini", "buna bağlar."], sure: 3.95, renk: ALTIN },
       ],
     },
     {
       no: 64, yakin: 2.1, sprite: { w: 420, h: 200, fps: 10, x: 230, taban: 632 },
       yazilar: [
-        { satirlar: ["Taşkent'te, Marx'ın yerinde", "atlı Timur:"], sure: 3.10 },
-        { satirlar: ["“Güç adalettedir.”"], sure: 1.36, boy: 110, renk: ALTIN },
+        { satirlar: ["Taşkent'te Marx'ın yerinde", "atlı Timur:"], sure: 2.44 },
+        { satirlar: ["“Güç adalettedir.”"], sure: 1.33, boy: 110, renk: ALTIN },
       ],
     },
   ],
   kapanis: {
-    satirlar: ["Efsaneye göre mezarı", "açılınca savaş başladı,", "yeniden gömülünce", "savaşın yönü döndü.", "Tesadüf mü?"],
+    satirlar: ["Efsaneye göre mezar açılınca", "savaş başladı,", "kapanınca yön döndü.", "Tesadüf mü?"],
     sonraki: "Seriyi takip et",
-    sure: 9.5,
+    sure: 7.2,
     arka: 58,
     gece: true,
   },
