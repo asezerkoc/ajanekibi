@@ -39,7 +39,7 @@ const H = 1920;
 const KREM = "#fff3d4";
 const KAHVE = "#2a1408";
 export const ALTIN = "#ffd479";
-export const KIZIL = "#ff8a6a";
+export const KIZIL = "#ffa486";
 const PIKSEL: React.CSSProperties = { imageRendering: "pixelated", position: "absolute", maxWidth: "none" };
 
 const Tekrar: React.FC<{ src: string; x: number }> = ({ src, x }) => {
@@ -89,7 +89,7 @@ const Sahne: React.FC<{ b: Bolum; sure: number }> = ({ b, sure }) => {
     <AbsoluteFill style={{ opacity: giris, background: "#120806", overflow: "hidden" }}>
       <AbsoluteFill
         style={{
-          transform: `translate(${sars}px, ${-sars / 2}px) scale(${zum})`,
+          transform: `translate(${sars}px, ${-sars / 2}px) scale(${zum})`, // zemin kadrajın %66 hizasında: Reels alt arayüzünün üstünde kalır
           transformOrigin: `${(sx / 540) * 100}% ${((taban - 12) / 960) * 100}%`,
         }}
       >
@@ -138,10 +138,13 @@ const Yazi: React.FC<{ satirlar: string[]; sure: number; y?: number; boy?: numbe
   const frame = useCurrentFrame();
   const op = interpolate(frame, [0, sn(0.3), sure - sn(0.3), sure], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const kay = interpolate(frame, [0, sn(0.3)], [24, 0], { extrapolateRight: "clamp" });
+  // her satır tek satırda kalır: en uzun satır kenarlarda %6 boşluk bırakacak boya sığdırılır (Jersey 10 ≈ 0,46 em/harf)
+  const enUzun = Math.max(...satirlar.map((s) => s.length));
+  const sigan = Math.min(boy, Math.floor((W - 130) / (enUzun * 0.46)));
   return (
-    <div style={{ position: "absolute", top: y + kay, left: 40, width: W - 80, textAlign: "center", opacity: op }}>
+    <div style={{ position: "absolute", top: y + kay, left: 0, width: W, textAlign: "center", opacity: op }}>
       {satirlar.map((s, i) => (
-        <div key={i} style={yaziStil(boy, i === satirlar.length - 1 ? renk : KREM)}>
+        <div key={i} style={{ ...yaziStil(sigan, i === satirlar.length - 1 ? renk : KREM), whiteSpace: "nowrap" }}>
           {s}
         </div>
       ))}
@@ -154,33 +157,33 @@ const Mektup: React.FC<{ metin: string[]; imza: string; sure: number }> = ({ met
   const frame = useCurrentFrame();
   const ac = interpolate(frame, [0, sn(0.5)], [0, 1], { extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
   const kapan = interpolate(frame, [sure - sn(0.4), sure], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const harf = Math.floor(interpolate(frame, [sn(0.4), sure * 0.7], [0, metin.join(" ").length], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
+  const harf = Math.floor(interpolate(frame, [sn(0.2), sure * 0.35], [0, metin.join(" ").length], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
   let kalan = harf;
   return (
     <div
       style={{
         position: "absolute",
-        left: 110,
-        top: 560,
-        width: 860,
-        height: 760 * ac,
+        left: 300,
+        top: 600,
+        width: 480,
+        height: 412 * ac,
         opacity: kapan,
         overflow: "hidden",
       }}
     >
-      <Img src={staticFile("parsomen.png")} style={{ ...PIKSEL, left: 0, top: 0, width: 860, height: 760 }} />
-      <div style={{ position: "absolute", left: 90, top: 110, width: 680 }}>
+      <Img src={staticFile("parsomen.png")} style={{ ...PIKSEL, left: 0, top: 0, width: 480, height: 412 }} />
+      <div style={{ position: "absolute", left: 30, top: 50, width: 420 }}>
         {metin.map((s, i) => {
           const goster = s.slice(0, Math.max(0, kalan));
           kalan -= s.length + 1;
           return (
-            <div key={i} style={{ fontFamily: '"Jersey 10", monospace', fontSize: 66, lineHeight: 1.15, color: "#3a1e0c", textAlign: "center" }}>
+            <div key={i} style={{ fontFamily: '"Jersey 10", monospace', fontSize: Math.min(s.startsWith("“") ? 66 : 52, Math.floor(410 / (s.length * 0.46))), lineHeight: 1.12, whiteSpace: "nowrap", color: s.startsWith("“") ? "#7a1208" : "#3a1e0c", textAlign: "center" }}>
               {goster || " "}
             </div>
           );
         })}
       </div>
-      <div style={{ position: "absolute", left: 0, top: 600, width: 860, textAlign: "center", fontFamily: '"Jersey 10", monospace', fontSize: 54, color: "#8a1a10" }}>
+      <div style={{ position: "absolute", left: 0, top: 312, width: 480, textAlign: "center", fontFamily: '"Jersey 10", monospace', fontSize: 34, color: "#8a1a10" }}>
         {kalan > -2 ? imza : ""}
       </div>
     </div>
@@ -209,15 +212,16 @@ const Kapanis: React.FC<{ satirlar: string[]; sonraki: string; arka: number }> =
           </div>
         ))}
       </div>
-      <div style={{ position: "absolute", top: 1330, left: 30, width: W - 60, textAlign: "center" }}>
-        <div style={yaziStil(80, ALTIN)}>{sonraki}</div>
-        <div style={yaziStil(72, KREM)}>Takip et 👉 @pikseltarihim</div>
+      <div style={{ position: "absolute", top: 1180, left: 30, width: W - 60, textAlign: "center" }}>
+        <div style={yaziStil(104, ALTIN)}>{sonraki}</div>
+        <div style={yaziStil(88, KREM)}>@pikseltarihim</div>
+        <div style={yaziStil(60, KREM)}>Piksel Tarih | Tarih Animasyon</div>
       </div>
     </AbsoluteFill>
   );
 };
 
-export type Seri = { bolumler: Bolum[]; kapanis: { satirlar: string[]; sonraki: string; sure: number; arka: number } };
+export type Seri = { etiket: string; bolumler: Bolum[]; kapanis: { satirlar: string[]; sonraki: string; sure: number; arka: number } };
 
 const ARA = 0.25;
 export const seriSure = (s: Seri) => s.bolumler.reduce((t, b) => t + b.yazilar.reduce((a, y) => a + y.sure, 0) + 0.5, 0) + s.kapanis.sure;
@@ -234,8 +238,8 @@ export const SeriVideo: React.FC<{ seri: Seri }> = ({ seri }) => {
     );
     if (b.mektup) {
       parcalar.push(
-        <Sequence key={`m${i}`} from={sn(t + 0.2)} durationInFrames={sn(sure - 0.2)}>
-          <Mektup metin={b.mektup.metin} imza={b.mektup.imza} sure={sn(sure - 0.2)} />
+        <Sequence key={`m${i}`} from={sn(t + sure * 0.3)} durationInFrames={sn(sure * 0.7)}>
+          <Mektup metin={b.mektup.metin} imza={b.mektup.imza} sure={sn(sure * 0.7)} />
         </Sequence>,
       );
     }
@@ -253,6 +257,12 @@ export const SeriVideo: React.FC<{ seri: Seri }> = ({ seri }) => {
   return (
     <AbsoluteFill style={{ background: "#120806" }}>
       {parcalar}
+      <Sequence from={0} durationInFrames={sn(t)}>
+        <div style={{ position: "absolute", top: 150, left: 0, width: W, textAlign: "center", fontFamily: '"Jersey 10", monospace', fontSize: 46,
+          color: ALTIN, WebkitTextStroke: `5px ${KAHVE}`, paintOrder: "stroke fill", letterSpacing: 4 }}>
+          {seri.etiket}
+        </div>
+      </Sequence>
       <Sequence from={sn(t)} durationInFrames={sn(seri.kapanis.sure)}>
         <Kapanis satirlar={seri.kapanis.satirlar} sonraki={seri.kapanis.sonraki} arka={seri.kapanis.arka} />
       </Sequence>

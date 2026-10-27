@@ -84,13 +84,13 @@ def kisi(img, x, zemin, s=1.0, govde="#3a5a8a", bas="bork", bas_renk="#5a3a22", 
     gv = hex2(govde)
     koyu = hex2(_ac(govde, -0.3))
     kalca = y - int(5 * s) - 0
-    if diz:  # bir diz yerde, öbür ayak önde düz basar
+    if diz:  # iki diz yerde (saygıyla diz çökme): uyluklar öne iner, baldırlar yerde arkaya uzanır
         kalca = y - int(3 * s)
-        d.line([x, kalca, x - int(2.5 * s) * yon, y - 1], fill=koyu, width=_u(1.4, s))
-        d.line([x - int(2.5 * s) * yon, y - 1, x - int(4.5 * s) * yon, y - 1], fill=koyu, width=_u(1, s))
-        d.line([x, kalca, x + int(2.5 * s) * yon, kalca], fill=hex2("#4a3a2a"), width=_u(1.4, s))
-        d.line([x + int(2.5 * s) * yon, kalca, x + int(2.5 * s) * yon, y - 1], fill=hex2("#4a3a2a"), width=_u(1.4, s))
-        d.line([x + int(2.5 * s) * yon, y - 1, x + int(3.6 * s) * yon, y - 1], fill=hex2(KOYU))
+        for k, renk in ((0, koyu), (1, hex2("#4a3a2a"))):
+            diz_x = x + int((2 + k * 0.6) * s) * yon
+            d.line([x, kalca, diz_x, y - 1], fill=renk, width=_u(1.4, s))
+            d.line([diz_x, y - 1, x - int(3 * s) * yon, y - 1], fill=renk, width=_u(1.2, s))
+        d.line([x - int(3 * s) * yon, y - 1, x - int(4 * s) * yon, y - 1], fill=hex2(KOYU))
     else:
         if adim is None:
             ayaklar = [(x - int(1.2 * s), y - 1), (x + int(1.2 * s), y - 1)]
@@ -152,10 +152,12 @@ def kisi(img, x, zemin, s=1.0, govde="#3a5a8a", bas="bork", bas_renk="#5a3a22", 
     elif silah == "mektup":
         d.rectangle([ex - int(1.5 * s), ey - int(2 * s), ex + int(1.5 * s), ey + int(1 * s)], fill=hex2("#f0e0b0"), outline=hex2("#8a6a3a"))
         piksel(img, ex, ey, hex2("#c8302a"))
-    elif silah == "mesale":
-        d.line([ex, ey + int(1 * s), ex, ey - int(6 * s)], fill=hex2("#4a2a16"), width=_u(0.8, s))
+    elif silah == "mesale":  # elde tutulan meşale: sap elden öne-yukarı çıkar, alev sapın ucunda
+        uc = (ex + int(2 * s) * yon, ey - int(7 * s))
+        d.line([ex, ey + int(1.5 * s), *uc], fill=hex2("#5a3216"), width=_u(1, s))
+        d.rectangle([uc[0] - _u(0.8, s), uc[1], uc[0] + _u(0.8, s), uc[1] + _u(1.2, s)], fill=hex2("#3a2010"))
         for r, renk in ((2.6, "#e8601c"), (1.6, "#f8a030"), (0.8, "#fff0a0")):
-            d.polygon([(ex - r * s * 0.5, ey - 6 * s), (ex, ey - 6 * s - r * s * 1.6), (ex + r * s * 0.5, ey - 6 * s)], fill=hex2(renk))
+            d.polygon([(uc[0] - r * s * 0.5, uc[1]), (uc[0], uc[1] - r * s * 1.6), (uc[0] + r * s * 0.5, uc[1])], fill=hex2(renk))
     elif silah == "yay":
         d.arc([ex - int(2 * s), ey - int(6 * s), ex + int(2 * s), ey + int(6 * s)], 270 if yon > 0 else 90, 90 if yon > 0 else 270,
               fill=hex2("#6a3a1a"), width=_u(0.7, s))
@@ -452,7 +454,7 @@ def tank(img, x, zemin, s=1.0, yon=1, faz=0.0, renk="#5a5e58"):
     d.rectangle([cx - _u(0.2, s), cy - _u(1.4, s), cx + _u(0.2, s), cy + _u(1.4, s)], fill=hex2("#101010"))
 
 
-def gemi(img, x, su_y, s=1.0, yon=1, faz=0.0, govde="#5a3a22", yelken="#e8e0d0", hac=True):
+def gemi(img, x, su_y, s=1.0, yon=1, faz=0.0, govde="#5a3a22", yelken="#b8281e", hac=True):
     """Kadırga: gövde su çizgisine oturur (alt kısmı suya batık), dalgayla hafifçe iner kalkar."""
     d = ImageDraw.Draw(img)
     y = su_y + int(math.sin(faz * 2 * math.pi) * 0.8 * s)
@@ -467,9 +469,9 @@ def gemi(img, x, su_y, s=1.0, yon=1, faz=0.0, govde="#5a3a22", yelken="#e8e0d0",
     sis = math.sin(faz * 2 * math.pi) * 1.2 * s
     d.polygon([(x - int(10 * s), y - int(27 * s)), (x + int(10 * s), y - int(27 * s)), (x + int(11 * s) + sis, y - int(10 * s)),
                (x - int(9 * s) + sis, y - int(10 * s))], fill=hex2(yelken))
-    if hac:  # Rodos Şövalyeleri: beyaz üstüne kırmızı haç
-        d.rectangle([x - _u(1, s) + int(sis * 0.5), y - int(23 * s), x + _u(1, s) + int(sis * 0.5), y - int(13 * s)], fill=hex2("#c8302a"))
-        d.rectangle([x - int(5 * s) + int(sis * 0.5), y - int(19 * s), x + int(5 * s) + int(sis * 0.5), y - int(17 * s)], fill=hex2("#c8302a"))
+    if hac:  # Rodos Şövalyeleri (Hospitalier): kırmızı yelken üstüne beyaz haç
+        d.rectangle([x - _u(1, s) + int(sis * 0.5), y - int(23 * s), x + _u(1, s) + int(sis * 0.5), y - int(13 * s)], fill=hex2("#f4f0e6"))
+        d.rectangle([x - int(5 * s) + int(sis * 0.5), y - int(19 * s), x + int(5 * s) + int(sis * 0.5), y - int(17 * s)], fill=hex2("#f4f0e6"))
 
 
 def mancinik(img, x, zemin, s=1.0, yon=1, faz=0.0, tas_x=None):

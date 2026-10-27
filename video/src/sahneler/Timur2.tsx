@@ -1,116 +1,114 @@
 import React from "react";
 import { ALTIN, KIZIL, Seri, SeriVideo, T_FPS, seriSure } from "./TimurSeri";
 
-/* Timur 2. bölüm "İki Yıldırım" (1370-1403). Mektup replikleri Osmanlı mecmualarındaki metinlerden
-   (Daş 2004); sahihlikleri tartışmalı olduğu için "kaynaklara göre" diye verilir. */
+/* Timur 2. bölüm "İki Yıldırım" (1370-1403). Ekran yazıları ekibin onaylı seslendirme metniyle (150 kelime)
+   bire birdir. Mektup replikleri Osmanlı mecmualarındaki metinlerden (Daş 2004); sahihlikleri tartışmalı
+   olduğu için "mecmualara göre" diye verilir. Ses gelince süreler sese hizalanır. */
 export const TIMUR2: Seri = {
+  etiket: "PİKSEL TARİHİM · TİMUR 2/3",
   bolumler: [
     {
-      no: 31, yakin: 2.12, sarsinti: 2, sprite: { w: 520, h: 160, fps: 24, x: 270, taban: 632 },
+      no: 31, yakin: 1.9, sarsinti: 2, sprite: { w: 520, h: 160, fps: 24, x: 270, taban: 632 },
+      yazilar: [{ satirlar: ["Toktamış ihanet etti,", "Altın Orda yenildi."], sure: 2.5, renk: ALTIN }],
+    },
+    {
+      no: 32, yakin: 1.9, sprite: { w: 520, h: 170, fps: 12, x: 270, taban: 632 },
+      yazilar: [{ satirlar: ["İsfahan'da kafa kuleleri…"], sure: 1.9, renk: KIZIL }],
+    },
+    {
+      no: 33, yakin: 1.9, sarsinti: 2, sprite: { w: 520, h: 200, fps: 18, x: 270, taban: 632 },
+      yazilar: [{ satirlar: ["…Delhi'de filler (1398)."], sure: 1.8 }],
+    },
+    {
+      no: 30, yakin: 1.7, kamera: -300, sprite: { w: 520, h: 170, fps: 12, x: 270, taban: 632 },
+      yazilar: [{ satirlar: ["Teslim olan şehir yaşadı,", "direnen şehir kule oldu."], sure: 2.7, renk: ALTIN }],
+    },
+    {
+      no: 35, yakin: 2.2, sprite: { w: 320, h: 190, fps: 12, x: 250, taban: 632 },
+      yazilar: [{ satirlar: ["Kara Yusuf ile Ahmed Celayir,", "Yıldırım Bayezid'e sığındı."], sure: 2.8 }],
+    },
+    {
+      no: 34, yakin: 2.4, kamera: 70, sprite: { w: 260, h: 140, fps: 30, x: [330, 210], taban: 632 },
+      mektup: { metin: ["Kara Yusuf ile", "Ahmed Celayir'i", "bana teslim et!"], imza: "— Timur (özetle)" },
+      yazilar: [{ satirlar: ["Timur teslimlerini istedi."], sure: 2.6, renk: ALTIN }],
+    },
+    {
+      no: 35, yakin: 2.2, sprite: { w: 320, h: 190, fps: 12, x: 250, taban: 632 },
+      mektup: { metin: ["“Ey ihtiyar köpek…”", "Savaşa gelmeyip kaçanın", "karısı üç talakla", "boş olsun!"], imza: "— mecmualara göre" },
       yazilar: [
-        { satirlar: ["Otuz yıl boyunca", "durmadı."], sure: 2.2, renk: ALTIN },
-        { satirlar: ["Sığınağı olduğu Toktamış", "ona döndü; Altın Orda", "iki kez ezildi."], sure: 3.2 },
+        { satirlar: ["Mektuplarda, mecmualara göre,"], sure: 1.8 },
+        { satirlar: ["“Ey ihtiyar köpek” ve", "“kaçanın karısı üç talakla", "boş olsun” geçer."], sure: 3.2, renk: ALTIN },
       ],
     },
     {
-      no: 32, yakin: 2.25, sprite: { w: 520, h: 170, fps: 12, x: 270, taban: 632 },
+      no: 36, yakin: 1.6, sprite: { w: 520, h: 200, fps: 14, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["İsfahan, 1387:", "isyan eden şehir…"], sure: 2.4, renk: ALTIN },
-        { satirlar: ["…kafatası kuleleri", "ile cezalandırıldı."], sure: 2.6, renk: KIZIL },
-        { satirlar: ["Teslim olan şehir yaşadı,", "direnen şehir kule oldu."], sure: 2.8 },
+        { satirlar: ["Sivas, Ağustos 1400:", "lağımlar, yakılan kirişler,"], sure: 2.5, renk: ALTIN },
+        { satirlar: ["“kan dökülmeyecek” sözü."], sure: 1.8 },
       ],
     },
     {
-      no: 33, yakin: 2.12, sarsinti: 2, sprite: { w: 520, h: 200, fps: 18, x: 270, taban: 632 },
+      no: 37, yakin: 2.1, sprite: { w: 520, h: 204, fps: 12, x: 260, taban: 668 },
       yazilar: [
-        { satirlar: ["Delhi, 1398:", "savaş fillerine karşı…"], sure: 2.6, renk: ALTIN },
-        { satirlar: ["…şehir düştü."], sure: 1.8, boy: 110 },
+        { satirlar: ["Bir kronikçiye göre savunucular", "diri diri gömüldü."], sure: 2.8, renk: KIZIL },
+        { satirlar: ["3-4 bin kadar; çoğu Ermeni."], sure: 1.6, boy: 76 },
       ],
     },
     {
-      no: 34, yakin: 2.38, kamera: 70, sprite: { w: 260, h: 140, fps: 30, x: [330, 200], taban: 632 },
-      mektup: { metin: ["Kara Yusuf ile", "Ahmed Celâyir'i", "bana teslim et!"], imza: "— Timur (özetle)" },
+      no: 38, yakin: 1.9, sprite: { w: 520, h: 150, fps: 10, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Kaçaklar Yıldırım", "Bayezid'e sığındı."], sure: 2.6 },
-        { satirlar: ["Timur teslim edilmelerini", "istedi."], sure: 2.8, renk: ALTIN },
+        { satirlar: ["Ankara, 28 Temmuz 1402."], sure: 1.8, renk: ALTIN },
+        { satirlar: ["Kaynaklara göre çay kesildi,", "Osmanlı susuz kaldı."], sure: 2.6 },
       ],
     },
     {
-      no: 35, yakin: 2.38, sprite: { w: 320, h: 190, fps: 12, x: 270, taban: 632 },
-      mektup: { metin: ["\"Ey ihtiyar köpek…\"", "", "Savaşa gelmeyip kaçanın", "karısı üç talakla", "boş olsun!"], imza: "— mecmualarda Bayezid'e atfedilen mektup" },
+      no: 39, yakin: 1.7, sarsinti: 3, sprite: { w: 520, h: 170, fps: 26, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Bayezid reddetti."], sure: 1.8, renk: ALTIN },
-        { satirlar: ["İki hükümdar dörder", "mektup yazdı."], sure: 2.6 },
-        { satirlar: ["Kaynaklara göre", "hakaretler havada uçuştu."], sure: 2.8, boy: 80 },
+        { satirlar: ["Tatarlar saf değiştirdi."], sure: 1.7, renk: ALTIN },
+        { satirlar: ["Anlatılara göre Sırp süvarisi", "üç kez hücum etti."], sure: 2.6 },
       ],
     },
     {
-      no: 36, yakin: 2.12, sprite: { w: 520, h: 200, fps: 14, x: 270, taban: 632 },
+      no: 40, yakin: 2.0, sprite: { w: 520, h: 170, fps: 12, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Sivas, Ağustos 1400.", "18 gün kuşatma."], sure: 2.8, renk: ALTIN },
-        { satirlar: ["Lağımcılar surun altını", "oydu, kirişleri yaktı."], sure: 2.8 },
+        { satirlar: ["Bayezid dağlarda kuşatılıp", "esir düştü;"], sure: 2.2 },
+        { satirlar: ["ilk esir Osmanlı hükümdarı."], sure: 1.8, renk: KIZIL },
       ],
     },
     {
-      no: 37, yakin: 2.38, sprite: { w: 520, h: 170, fps: 12, x: 260, taban: 634 },
+      no: 41, yakin: 2.0, sprite: { w: 520, h: 220, fps: 12, x: 270, taban: 632 },
+      yazilar: [{ satirlar: ["Rivayete göre ziyafette", "Despina Hatun şarap sundu."], sure: 2.6, renk: ALTIN }],
+    },
+    {
+      no: 42, yakin: 1.7, sprite: { w: 520, h: 200, fps: 14, x: 260, taban: 632 },
       yazilar: [
-        { satirlar: ["Şehir \"kan dökülmeyecek\"", "sözüyle teslim oldu."], sure: 2.8 },
-        { satirlar: ["Timur sözünü tuttu:", "kan dökmedi."], sure: 2.4, renk: ALTIN },
-        { satirlar: ["3-4 bin savunucu", "diri diri gömüldü."], sure: 2.6, boy: 104, renk: KIZIL },
-        { satirlar: ["Bir kronikçiye göre", "çoğu Ermeni askerdi."], sure: 2.4, boy: 76 },
+        { satirlar: ["Bayezid'in yıllarca alamadığı", "İzmir kalesi iki haftada düştü."], sure: 3.0, renk: ALTIN },
+        { satirlar: ["Rivayete göre gemilere", "kesik başlar fırlatıldı."], sure: 2.4 },
       ],
     },
     {
-      no: 38, yakin: 2.25, sprite: { w: 380, h: 150, fps: 10, x: 230, taban: 632 },
+      no: 43, yakin: 2.0, kamera: 50, sprite: { w: 520, h: 170, fps: 14, x: [240, 290], taban: 632 },
       yazilar: [
-        { satirlar: ["Ankara, 28 Temmuz 1402."], sure: 2.2, renk: ALTIN },
-        { satirlar: ["Timur, Çubuk Çayı'nı", "bentle kesti."], sure: 2.6 },
-        { satirlar: ["Osmanlı ordusu savaşa", "susuz girdi."], sure: 2.6, renk: KIZIL },
+        { satirlar: ["Efsaneye göre Bayezid", "demir kafeste taşındı;"], sure: 2.2 },
+        { satirlar: ["muhtemelen kafesli", "tahtırevandı."], sure: 1.8, renk: ALTIN },
+        { satirlar: ["Bayezid, 8 Mart 1403'te", "Akşehir'de esirken öldü."], sure: 2.6, renk: KIZIL },
       ],
     },
     {
-      no: 39, yakin: 2.12, sarsinti: 3, sprite: { w: 520, h: 170, fps: 26, x: 270, taban: 632 },
+      no: 54, yakin: 2.6, kamera: 20, sprite: { w: 270, h: 160, fps: 10, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Sırp şövalyeleri üç kez", "hücum etti…"], sure: 2.6 },
-        { satirlar: ["…ama Tatarlar savaşın", "ortasında saf değiştirdi."], sure: 2.8, renk: ALTIN },
-      ],
-    },
-    {
-      no: 40, yakin: 2.25, sprite: { w: 520, h: 170, fps: 12, x: 270, taban: 632 },
-      yazilar: [
-        { satirlar: ["Bayezid dağlara kaçtı,", "kuşatıldı…"], sure: 2.6 },
-        { satirlar: ["Bir Osmanlı padişahı", "ilk kez esir düştü."], sure: 2.8, renk: KIZIL },
-      ],
-    },
-    {
-      no: 41, yakin: 2.25, sprite: { w: 520, h: 200, fps: 12, x: 270, taban: 632 },
-      yazilar: [
-        { satirlar: ["Rivayete göre Timur'un", "ziyafetinde…"], sure: 2.6, boy: 84 },
-        { satirlar: ["…eşi Despina'ya", "şarap sundurdu."], sure: 2.6, renk: ALTIN },
-      ],
-    },
-    {
-      no: 42, yakin: 2.25, sprite: { w: 520, h: 200, fps: 14, x: 260, taban: 632 },
-      yazilar: [
-        { satirlar: ["İzmir, Aralık 1402:", "Rodos Şövalyeleri'nin kalesi."], sure: 2.8, renk: ALTIN },
-        { satirlar: ["Liman ağzı taşla", "dolduruldu."], sure: 2.4 },
-        { satirlar: ["Bayezid'in yıllarca alamadığı", "kale iki haftada düştü."], sure: 3.0, renk: ALTIN },
-      ],
-    },
-    {
-      no: 43, yakin: 2.25, kamera: 50, sprite: { w: 520, h: 170, fps: 14, x: [230, 300], taban: 632 },
-      yazilar: [
-        { satirlar: ["\"Demir kafes\" bir efsane."], sure: 2.4, renk: ALTIN },
-        { satirlar: ["Gerçeği büyük olasılıkla", "kafesli bir tahtırevandı."], sure: 2.8 },
-        { satirlar: ["Bayezid, 8 Mart 1403'te", "Akşehir'de esirken öldü."], sure: 3.0, renk: KIZIL },
+        { satirlar: ["Yıldırım'ı yenen adam artık", "yaklaşık 68 yaşındaydı;"], sure: 2.4 },
+        { satirlar: ["göz kapakları düşmüştü,", "bacağını sürüyordu."], sure: 2.2 },
+        { satirlar: ["Ama hâlâ bir hedefi vardı:"], sure: 1.6 },
+        { satirlar: ["ÇİN."], sure: 1.3, boy: 150, renk: ALTIN },
       ],
     },
   ],
   kapanis: {
-    satirlar: ["Yıldırım'ı yenen adam", "artık yaklaşık 68 yaşındaydı.", "Bacağını sürüyordu.", "Ama hâlâ bir hedefi vardı:", "ÇİN."],
-    sonraki: "Bölüm 3: Lanetli Mezar",
-    sure: 6,
-    arka: 39,
+    satirlar: ["Timur · 2/3 · İki Yıldırım"],
+    sonraki: "Bölüm 3'ü kaçırma · Takip et",
+    sure: 3.0,
+    arka: 55,
   },
 };
 

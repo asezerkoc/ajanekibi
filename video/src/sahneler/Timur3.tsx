@@ -4,6 +4,7 @@ import { ALTIN, KIZIL, Seri, SeriVideo, T_FPS, seriSure } from "./TimurSeri";
 /* Timur 3. bölüm "Lanetli Mezar" (1404-1942). Lanet yazıtı ve Stalingrad bağlantısı efsanedir;
    ekranda öyle işaretlenir. Ölüm günü kaynaklarda farklı olduğu için "Şubat 1405" denir. */
 export const TIMUR3: Seri = {
+  etiket: "PİKSEL TARİHİM · TİMUR 3/3",
   bolumler: [
     {
       no: 51, yakin: 2.25, kamera: 50, sprite: { w: 380, h: 180, fps: 14, x: [220, 300], taban: 632 },
