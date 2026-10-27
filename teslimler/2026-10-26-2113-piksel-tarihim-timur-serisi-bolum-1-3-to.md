@@ -1,8 +1,8 @@
 # SKONSTART teslimi
 
 - **İş:** Piksel Tarihim Timur serisi BÖLÜM 1/3 'Topal Kurt' (1336-1370). Ajansın imza tarzında (64-bit piksel sanatı, 60 fps, katmanlı paralaks, fizik kurallarına uygun: her şey zemine basar, ölçek tutarlı) 1080x1920 dikey Reels animasyonu. Süre 60-75 sn. Sahne sahne hikâyeyi birebir yansıtan detaylı animasyon planı, ekran yazıları ve 130-150 kelimelik seslendirme metni hazırla. Tartışmalı bilgiler 'rivayete göre / kaynaklara göre', efsaneler 'efsaneye göre' diye işaretlensin; sayıları kesin gibi yazma. Ajans araştırması: reports/Timur üç bölümlük seri araştırması.md. Sahneler sırasıyla: 1) Keş, Hoca Ilgar köyü, 8 Nisan 1336 doğum (kroniklere göre; gerçek yaşı belki daha büyük), Barlas emiri Taragay'ın oğlu. 2) Bozkırda at ve koyun yağmalayan genç çete reisi. 3) 1360 Moğol hanı Tuğluk Timur istilası; amcası Hacı Barlas kaçar, Timur istilacıya bağlanıp Keş'in başına geçer. 4) Emir Hüseyin'le ittifak, kız kardeşi Olcay Türkan'la düğün (y.1362). 5) Sistan 1363-64: sağ dizine ve sağ eline iki ok, artık Aksak Timur (1941'de iskelette doğrulandı; düşmanı İbn Arapşah koyun çalarken vurulduğunu yazar). 6) 1365 Çamur Savaşı: sağanak, çamura saplanan atlar, keçe örtülü Moğollar, yenilgi. 7) Semerkant'ı halk milisi Serbedarlar savunur, Moğol atlarında salgın, Moğollar çekilir. 8) 1370 Belh kuşatması: Hüseyin canı bağışlanacak sözüyle teslim olur, sonra öldürülür (rivayete göre kan davası güden Keyhüsrev). 9) Cengiz soyundan Saray Mülk Hatun'la evlenip Gürkan (hanın damadı) unvanı; tahta kukla han Soyurgatmış, kendisi Emir kalır. Kapanış kancası: 'Dünyanın yarısını fethedecekti ama ölene kadar kendine han diyemedi. Otuz yıl sonra batıda bir sultan ona şöyle yazacaktı: Ey ihtiyar köpek…' Bölüm 2'yi takip et çağrısı.
-- **Tarih:** 2026-10-26 21:52
-- **Durum:** ONAY BEKLİYOR
+- **Tarih:** 2026-10-27 07:41
+- **Durum:** ONAYLANDI
 - **Kalite kontrol:** uygun
 
 ## 🟣 Editör · Gönderi metni

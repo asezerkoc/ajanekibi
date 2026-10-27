@@ -1,8 +1,8 @@
 # SKONSTART teslimi
 
 - **İş:** Piksel Tarihim Timur serisi BÖLÜM 3/3 'Lanetli Mezar' (1404-1942). Ajansın imza tarzında (64-bit piksel sanatı, 60 fps, katmanlı paralaks, fizik kurallarına uygun: her şey zemine basar, ölçek tutarlı) 1080x1920 dikey Reels animasyonu. Süre 60-75 sn. Sahne sahne hikâyeyi birebir yansıtan detaylı animasyon planı, ekran yazıları ve 130-150 kelimelik seslendirme metni hazırla. Tartışmalı bilgiler 'rivayete göre / kaynaklara göre', efsaneler 'efsaneye göre' diye işaretlensin; sayıları kesin gibi yazma. Ajans araştırması: reports/Timur üç bölümlük seri araştırması.md. (Sahneler: araştırma raporundaki Bölüm 3 planı, 1404 Semerkant'tan 1942 yeniden definine ve Taşkent heykeline.)
-- **Tarih:** 2026-10-27 06:43
-- **Durum:** ONAY BEKLİYOR
+- **Tarih:** 2026-10-27 07:41
+- **Durum:** ONAYLANDI
 - **Kalite kontrol:** uygun
 
 ## 🟣 Editör · Gönderi metni

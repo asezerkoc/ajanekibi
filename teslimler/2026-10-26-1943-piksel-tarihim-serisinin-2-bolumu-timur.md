@@ -2,7 +2,7 @@
 
 - **İş:** Piksel Tarihim serisinin 2. bölümü: Timur'un hayatı, doğumundan ölümüne kadar, hikâye şeklinde. 60-75 saniyelik dikey Reels animasyonu, ajansın imza tarzında (64-bit piksel sanatı, 60 fps, figürler büyük ve zemine oturuyor). Bir önceki bölüm Cengiz Han'dı; Timur'u ona bağlayan güçlü bir kanca ile başla. Anlatım metni seslendirilecek (yaklaşık 130-150 kelime). Sonunda izleyiciye sıradaki karakteri soran bir soru olsun.
 - **Tarih:** 2026-10-26 19:43
-- **Durum:** ONAY BEKLİYOR
+- **Durum:** GEÇERSİZ (taslak; yerine 2026-10-26-2137 ve 2229 numaralı onaylı teslimler geçti)
 - **Kalite kontrol:** uygun
 
 ## 🟣 Editör · Gönderi metni

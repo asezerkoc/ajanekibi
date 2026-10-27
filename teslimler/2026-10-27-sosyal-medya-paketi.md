@@ -1,6 +1,6 @@
 # SKONSTART · Sosyal medya paketi (27 Ekim 2026 sabahı)
 
-**Durum: ONAY BEKLİYOR.** Hiçbiri paylaşılmadı ve sahip adına onaylanmadı.
+**Durum: ONAYLANDI (27 Ekim 2026, sahip).** Hiçbiri paylaşılmadı ve sahip adına onaylanmadı.
 
 Videolar `teslimler/video/` klasöründe: 1080x1920, 60 fps, Instagram'a hazır. Hepsi **+ → REELS** sekmesinden yüklenir; Gönderi sekmesi videoyu kare kırpar.
 

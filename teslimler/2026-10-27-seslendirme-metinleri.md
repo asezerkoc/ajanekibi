@@ -1,6 +1,6 @@
 # SKONSTART · Video metinleri (27 Ekim 2026 sabahı)
 
-**Durum: ONAY BEKLİYOR.**
+**Durum: ONAYLANDI (27 Ekim 2026, sahip).**
 
 Bunlar seslendirme metinleri. Videolardaki ekran yazıları bu metinlerle bire bir aynı. Dört metin de ElevenLabs'te sahibin seçtiği "Roger - Laid-Back, Casual, Resonant" sesiyle (eleven_v4) seslendirildi; sesler `teslimler/ses/` altında (her biri iki deneme, videolarda take1 kullanıldı), sahne süreleri `video/ses/hizala_seri.py` ile sese bire bir hizalandı.
 
