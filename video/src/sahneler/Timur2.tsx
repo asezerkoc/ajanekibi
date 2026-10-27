@@ -20,7 +20,7 @@ export const TIMUR2: Seri = {
       yazilar: [{ satirlar: ["…Delhi'de filler (1398)."], sure: 1.8 }],
     },
     {
-      no: 30, yakin: 1.7, kamera: -300, sprite: { w: 520, h: 170, fps: 12, x: 270, taban: 632 },
+      no: 30, yakin: 1.7, kamera: -260, sprite: { w: 520, h: 170, fps: 12, x: 262, taban: 632 },
       yazilar: [{ satirlar: ["Teslim olan şehir yaşadı,", "direnen şehir kule oldu."], sure: 2.7, renk: ALTIN }],
     },
     {
@@ -41,21 +41,21 @@ export const TIMUR2: Seri = {
       ],
     },
     {
-      no: 36, yakin: 1.6, sprite: { w: 520, h: 200, fps: 14, x: 270, taban: 632 },
+      no: 36, yakin: 2.1, sprite: { w: 520, h: 200, fps: 14, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Sivas, Ağustos 1400:", "lağımlar, yakılan kirişler,"], sure: 2.5, renk: ALTIN },
         { satirlar: ["“kan dökülmeyecek” sözü."], sure: 1.8 },
       ],
     },
     {
-      no: 37, yakin: 2.1, sprite: { w: 520, h: 204, fps: 12, x: 260, taban: 668 },
+      no: 37, yakin: 1.9, sprite: { w: 520, h: 204, fps: 12, x: 262, taban: 668 },
       yazilar: [
         { satirlar: ["Bir kronikçiye göre savunucular", "diri diri gömüldü."], sure: 2.8, renk: KIZIL },
         { satirlar: ["3-4 bin kadar; çoğu Ermeni."], sure: 1.6, boy: 76 },
       ],
     },
     {
-      no: 38, yakin: 1.9, sprite: { w: 520, h: 150, fps: 10, x: 270, taban: 632 },
+      no: 38, yakin: 2.2, sprite: { w: 520, h: 150, fps: 10, x: 245, taban: 632 },
       yazilar: [
         { satirlar: ["Ankara, 28 Temmuz 1402."], sure: 1.8, renk: ALTIN },
         { satirlar: ["Kaynaklara göre çay kesildi,", "Osmanlı susuz kaldı."], sure: 2.6 },
@@ -80,7 +80,7 @@ export const TIMUR2: Seri = {
       yazilar: [{ satirlar: ["Rivayete göre ziyafette", "Despina Hatun şarap sundu."], sure: 2.6, renk: ALTIN }],
     },
     {
-      no: 42, yakin: 1.7, sprite: { w: 520, h: 200, fps: 14, x: 260, taban: 632 },
+      no: 42, yakin: 1.9, sprite: { w: 520, h: 200, fps: 14, x: 262, taban: 632 },
       yazilar: [
         { satirlar: ["Bayezid'in yıllarca alamadığı", "İzmir kalesi iki haftada düştü."], sure: 3.0, renk: ALTIN },
         { satirlar: ["Rivayete göre gemilere", "kesik başlar fırlatıldı."], sure: 2.4 },

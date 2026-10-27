@@ -49,8 +49,9 @@ def _baslik(d, img, x, bas_y, r, s, yon, tur, renk):
         d.rectangle([x - r - 1, bas_y - r - _u(0.6, s), x + r + 1, bas_y - r + _u(0.1, s)], fill=hex2("#e0b040"))
         tx = x - _u(0.6, s) * yon
         tepe = bas_y - r - _u(2.2, s)
-        for i in range(_u(3.2, s)):
-            piksel(img, tx - (i * i // _u(4, s)) * yon, tepe - i, hex2("#f4f0e6"))
+        for i in range(min(_u(3.2, s), 9)):
+            piksel(img, tx - (i * i // 12) * yon, tepe - i, hex2("#f4f0e6"))
+            piksel(img, tx - (i * i // 12) * yon + 1, tepe - i, hex2("#d8d0c0"))
         piksel(img, x, bas_y - r - _u(1.6, s), hex2("#c8302a"))
     elif tur == "tac":
         d.rectangle([x - r, bas_y - r - _u(2, s), x + r, bas_y - r + _u(0.4, s)], fill=hex2("#e0b040"))
@@ -278,7 +279,8 @@ def atli(img, x, zemin, s=1.0, yon=1, faz=0.0, at_renk="#6b3f24", yele="#2b1a12"
     if cul:  # atın sırtından dizlerine inen örtü
         d.polygon([(x - int(11 * s), govde_y - int(7 * s)), (x + int(9 * s), govde_y - int(7 * s)), (x + int(10 * s), govde_y + int(2 * s)),
                    (x - int(12 * s), govde_y + int(2 * s))], fill=hex2(cul))
-        for i in range(-11, 10, 3):
+        for i in range(-10, 9, 3):  # çul kıvrımları
+            d.line([x + int(i * s), govde_y - int(6 * s), x + int((i + 0.6) * s), govde_y + int(2 * s)], fill=hex2(_ac(cul, -0.22)))
             piksel(img, x + int(i * s), govde_y + int(2 * s), hex2(_ac(cul, -0.3)))
     sy = govde_y - int(8 * s)
     sek = 0 if dur else int(round(math.sin(faz * 4 * math.pi) * 0.5 * s))
@@ -306,9 +308,9 @@ def atli(img, x, zemin, s=1.0, yon=1, faz=0.0, at_renk="#6b3f24", yele="#2b1a12"
         d.line([ex - int(6 * s) * yon, ey + int(1 * s), *uc], fill=hex2("#6a4a2a"), width=_u(0.7, s))
         d.polygon([(uc[0], uc[1] - _u(1, s)), (uc[0] + int(3 * s) * yon, uc[1]), (uc[0], uc[1] + _u(1, s))], fill=hex2("#c8ccd0"))
         if bayrak:
-            for i in range(int(5 * s)):
+            for i in range(int(8 * s)):
                 dal = math.sin(faz * 2 * math.pi + i / 2) * 0.8 * s
-                for k in range(int(2 * s)):
+                for k in range(int(3 * s)):
                     piksel(img, uc[0] - int(1 * s) * yon - i * yon, uc[1] + k + dal + 1, hex2(bayrak))
     elif silah == "yay":
         d.arc([ex - int(2 * s), ey - int(6 * s), ex + int(2 * s), ey + int(6 * s)], 270 if yon > 0 else 90, 90 if yon > 0 else 270,
@@ -467,8 +469,10 @@ def gemi(img, x, su_y, s=1.0, yon=1, faz=0.0, govde="#5a3a22", yelken="#b8281e",
         d.line([kx, y - int(3 * s), kx - int(2 * s) + a, y + int(3 * s)], fill=hex2("#3a2418"))
     d.line([x, y - int(6 * s), x, y - int(30 * s)], fill=hex2("#4a2a16"), width=_u(1, s))
     sis = math.sin(faz * 2 * math.pi) * 1.2 * s
-    d.polygon([(x - int(10 * s), y - int(27 * s)), (x + int(10 * s), y - int(27 * s)), (x + int(11 * s) + sis, y - int(10 * s)),
-               (x - int(9 * s) + sis, y - int(10 * s))], fill=hex2(yelken))
+    d.polygon([(x - int(10 * s), y - int(27 * s)), (x + int(10 * s), y - int(27 * s)), (x + int(11 * s) + sis, y - int(8 * s)),
+               (x - int(9 * s) + sis, y - int(8 * s))], fill=hex2(yelken))
+    d.line([x - int(9 * s) + sis, y - int(8 * s), x - int(12 * s), y - int(6 * s)], fill=hex2("#3a2418"))  # yelken halatları gövdeye
+    d.line([x + int(11 * s) + sis, y - int(8 * s), x + int(13 * s), y - int(6 * s)], fill=hex2("#3a2418"))
     if hac:  # Rodos Şövalyeleri (Hospitalier): kırmızı yelken üstüne beyaz haç
         d.rectangle([x - _u(1, s) + int(sis * 0.5), y - int(23 * s), x + _u(1, s) + int(sis * 0.5), y - int(13 * s)], fill=hex2("#f4f0e6"))
         d.rectangle([x - int(5 * s) + int(sis * 0.5), y - int(19 * s), x + int(5 * s) + int(sis * 0.5), y - int(17 * s)], fill=hex2("#f4f0e6"))

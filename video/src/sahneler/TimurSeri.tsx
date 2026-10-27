@@ -152,41 +152,37 @@ const Yazi: React.FC<{ satirlar: string[]; sure: number; y?: number; boy?: numbe
   );
 };
 
-/* Parşömen mektup: sahnenin önüne açılır; satırlar sırayla yazılır, altta mühür ve imza. */
+/* Parşömen mektup: sahneden ayrı, tam ekran bir mektup çekimi (sahne kararır, parşömen ekranı kaplar); satırlar sırayla
+   yazılır ve sahnenin üçte birinde tamamlanır; altta kaynak notu, sağ altta mühür. */
 const Mektup: React.FC<{ metin: string[]; imza: string; sure: number }> = ({ metin, imza, sure }) => {
   const frame = useCurrentFrame();
-  const ac = interpolate(frame, [0, sn(0.5)], [0, 1], { extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
+  const ac = interpolate(frame, [0, sn(0.4)], [0, 1], { extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
   const kapan = interpolate(frame, [sure - sn(0.4), sure], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const harf = Math.floor(interpolate(frame, [sn(0.2), sure * 0.35], [0, metin.join(" ").length], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
+  const harf = Math.floor(interpolate(frame, [sn(0.3), sure * 0.4], [0, metin.join(" ").length], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
   let kalan = harf;
   return (
-    <div
-      style={{
-        position: "absolute",
-        left: 300,
-        top: 600,
-        width: 480,
-        height: 412 * ac,
-        opacity: kapan,
-        overflow: "hidden",
-      }}
-    >
-      <Img src={staticFile("parsomen.png")} style={{ ...PIKSEL, left: 0, top: 0, width: 480, height: 412 }} />
-      <div style={{ position: "absolute", left: 30, top: 50, width: 420 }}>
-        {metin.map((s, i) => {
-          const goster = s.slice(0, Math.max(0, kalan));
-          kalan -= s.length + 1;
-          return (
-            <div key={i} style={{ fontFamily: '"Jersey 10", monospace', fontSize: Math.min(s.startsWith("“") ? 66 : 52, Math.floor(410 / (s.length * 0.46))), lineHeight: 1.12, whiteSpace: "nowrap", color: s.startsWith("“") ? "#7a1208" : "#3a1e0c", textAlign: "center" }}>
-              {goster || " "}
-            </div>
-          );
-        })}
+    <AbsoluteFill style={{ opacity: kapan }}>
+      <AbsoluteFill style={{ background: `rgba(14,6,2,${0.88 * ac})` }} />
+      <div style={{ position: "absolute", left: 70, top: 560, width: 940, height: 820 * ac, overflow: "hidden" }}>
+        <Img src={staticFile("parsomen.png")} style={{ ...PIKSEL, left: 0, top: 0, width: 940, height: 820 }} />
+        <div style={{ position: "absolute", left: 70, top: 110, width: 800 }}>
+          {metin.map((s, i) => {
+            const goster = s.slice(0, Math.max(0, kalan));
+            kalan -= s.length + 1;
+            const boy = Math.min(s.startsWith("“") ? 104 : 80, Math.floor(780 / (Math.max(1, s.length) * 0.46)));
+            return (
+              <div key={i} style={{ fontFamily: '"Jersey 10", monospace', fontSize: boy, lineHeight: 1.12, whiteSpace: "nowrap", textAlign: "center",
+                color: s.startsWith("“") ? "#7a1208" : "#3a1e0c" }}>
+                {goster || "\u00a0"}
+              </div>
+            );
+          })}
+        </div>
+        <div style={{ position: "absolute", left: 60, top: 600, width: 560, textAlign: "left", fontFamily: '"Jersey 10", monospace', fontSize: 48, color: "#8a1a10" }}>
+          {kalan > -2 ? imza : ""}
+        </div>
       </div>
-      <div style={{ position: "absolute", left: 0, top: 312, width: 480, textAlign: "center", fontFamily: '"Jersey 10", monospace', fontSize: 34, color: "#8a1a10" }}>
-        {kalan > -2 ? imza : ""}
-      </div>
-    </div>
+    </AbsoluteFill>
   );
 };
 
@@ -207,13 +203,13 @@ const Kapanis: React.FC<{ satirlar: string[]; sonraki: string; arka: number }> =
       />
       <div style={{ position: "absolute", top: 650, left: 30, width: W - 60, textAlign: "center" }}>
         {satirlar.map((s, i) => (
-          <div key={i} style={yaziStil(78, i === satirlar.length - 1 ? ALTIN : KREM)}>
+          <div key={i} style={{ ...yaziStil(Math.min(78, Math.floor((W - 120) / (s.length * 0.46))), i === satirlar.length - 1 ? ALTIN : KREM), whiteSpace: "nowrap" }}>
             {s}
           </div>
         ))}
       </div>
       <div style={{ position: "absolute", top: 1180, left: 30, width: W - 60, textAlign: "center" }}>
-        <div style={yaziStil(104, ALTIN)}>{sonraki}</div>
+        <div style={{ ...yaziStil(Math.min(104, Math.floor((W - 200) / (sonraki.length * 0.46))), ALTIN), whiteSpace: "nowrap" }}>{sonraki}</div>
         <div style={yaziStil(88, KREM)}>@pikseltarihim</div>
         <div style={yaziStil(60, KREM)}>Piksel Tarih | Tarih Animasyon</div>
       </div>
