@@ -12,19 +12,19 @@ Videolarda seslendirme yok. Ekran yazılarıyla anlaşılıyorlar. Müziği payl
 
 **Reels kapağı:** Senin ChatGPT'de hazırladığın kapak.
 
-**Son kapak:** Senin "Sence bulunmalı mı? 🤔" görselin. Dosya bana ulaşmadı. Sohbete dosya olarak tekrar gönderirsen videonun son karesine olduğu gibi eklerim; kod hazır.
+**Son kapak:** Senin "Sence bulunmalı mı? 🤔" görselin; videonun son 6 saniyesinde olduğu gibi yer alıyor (onaylı). Video sesli, 39 sn.
 
 **Açıklama:**
 
 > 800 yıldır kimse bulamadı. 🏹
 >
-> Cengiz Han 1227'de öldü. Ölümü bir süre ordudan gizlendi, cenaze kafilesi doğduğu bozkırlara yola çıktı… Yolda kafileyi görenlerin öldürüldüğü söylenir. Mezarının üstünden yüzlerce at sürülüp izlerin silindiği anlatılır. Bölge yüzyıllarca "Büyük Yasak" oldu.
+> Cengiz Han 1227'de öldü. Ölümü bir süre ordudan gizlendi, cenaze kafilesi doğduğu bozkırlara yola çıktı… Yolda kafileyi görenlerin öldürüldüğü söylenir. Mezarın üstünden yüzlerce at sürülüp izlerin silindiği anlatılır. Bölge yüzyıllarca "Büyük Yasak" oldu; oraya girmek yasaktı.
 >
 > Bugün uydularla bile aranıyor. Ama hâlâ yok.
 >
 > 👉 Sence bulunmalı mı, yoksa öyle kalmalı mı? Yorumlara yaz!
 >
-> 📌 Cengiz Han'ın hayatı profilde: @pikseltarihim
+> 📌 Cengiz Han'ın hayatı profilde. Sıradaki seri: Timur ⚔️
 > ⚠️ "Söylenir / denir" diye geçenler rivayettir.
 
 **Etiketler:**
