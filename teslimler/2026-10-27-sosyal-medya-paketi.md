@@ -148,3 +148,13 @@ Her bölümün ilk yorumuna "Önceki bölüm profilde 👉" yaz. Üç bölümü 
 **Yükleme ayarları:** kapak = videonun ilk karesi (portreli kapak) · ses: orijinal ses, üstüne müzik ekleme (anlatım var) · Playlist: "Cengiz Han" (Bölüm 1 + Kayıp Mezar) · yorumlar ve Duet/Stitch açık · "İçerik eğitim amaçlı" etiketi varsa işaretle · saat 20:00–22:00.
 
 **Sonraki gün:** Kayıp Mezar'ı da TikTok'a aynı şekilde yükle (açıklama 1. bölümde, etiket seti: #cengizhan #tarih #pixelart #kayıpmezar #pikseltarihim), Playlist'e ekle.
+
+---
+
+## Yükleme kalitesi (netlik) kuralı
+
+Platformlar her videoyu yeniden sıkıştırır; piksel sanatında keskin kenarlar bulanıklaşır. Bundan sonra:
+- Yükleme için **4K sürümleri** kullanılır: `teslimler/video/4k/*-4k.mp4` (2160×3840, 60 fps, ~38 Mbps, piksel korunarak 2× büyütülmüş). 20/40 MB sürümler yalnızca sohbette paylaşmak içindir.
+- Instagram: Ayarlar → Veri kullanımı ve medya kalitesi → "En yüksek kalitede yükle" açık; Wi-Fi'de yükle.
+- TikTok: yükleme ekranında "HD olarak yükle" açık; Wi-Fi'de yükle.
+- Dosya telefona WhatsApp/Telegram ile değil AirDrop, Drive ya da kabloyla aktarılır.

@@ -8,3 +8,6 @@
 - 2026-10-26 (Timur serisi): Timur bölümü 3 videodan oluşan bir seri olacak; önce derin araştırma yapılır (doğrulanmış / tartışmalı / efsane ayrı). Detay istenir: Timur–Yıldırım mektupları, Sivas'ta gömülen (bir kronikçiye göre çoğu Ermeni) savunucular, İzmir kuşatması gibi sahnelik olaylar anlatılsın.
 - 2026-10-26 (Timur serisi): Her bölüm için bir animasyon; animasyon hikâyeyi sahne sahne, detaylı yansıtsın. Fizik kurallarına uyulsun. Kalite kontrol hataları iyice ayıklatsın, gerekirse defalarca revize ettirsin; sahibe yalnızca en son sonuç gösterilsin.
 - 2026-10-26 (Kayıp Mezar): Sahibin ChatGPT'de hazırladığı kapaklar videoya aynen (üstüne bir şey eklemeden) konur; son kapak olarak sahibin "Sence bulunmalı mı?" görseli kullanılacak.
+
+## 27 Ekim 2026 · Netlik
+- Sahip yüklenen videolarda netlik kaybı fark etti. Sebep platform sıkıştırması + sohbet boyutu sürümlerinin yüklenmesi. Kural: yayın dosyaları 4K dikey (2160×3840, nearest 2× büyütme, CRF 16, ~38 Mbps) olarak teslim edilir; render.sh çıktısından 4K türetilir. Grafiker yeni işlerde 4K sürümünü de üretir.
