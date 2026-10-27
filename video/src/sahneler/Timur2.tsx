@@ -29,12 +29,10 @@ export const TIMUR2: Seri = {
     },
     {
       no: 34, yakin: 2.4, kamera: 70, sprite: { w: 260, h: 140, fps: 30, x: [330, 210], taban: 632 },
-      mektup: { metin: ["Kara Yusuf ile", "Ahmed Celayir'i", "bana teslim et!"], imza: "— Timur (özetle)" },
       yazilar: [{ satirlar: ["Timur teslimlerini istedi."], sure: 2.6, renk: ALTIN }],
     },
     {
       no: 35, yakin: 2.2, sprite: { w: 320, h: 190, fps: 12, x: 250, taban: 632 },
-      mektup: { metin: ["“Ey ihtiyar köpek…”", "Savaşa gelmeyip kaçanın", "karısı üç talakla", "boş olsun!"], imza: "— mecmualara göre" },
       yazilar: [
         { satirlar: ["Mektuplarda, mecmualara göre,"], sure: 1.8 },
         { satirlar: ["“Ey ihtiyar köpek” ve", "“kaçanın karısı üç talakla", "boş olsun” geçer."], sure: 3.2, renk: ALTIN },
@@ -76,7 +74,7 @@ export const TIMUR2: Seri = {
       ],
     },
     {
-      no: 41, yakin: 2.0, sprite: { w: 520, h: 220, fps: 12, x: 270, taban: 632 },
+      no: 41, yakin: 2.4, sprite: { w: 520, h: 220, fps: 12, x: 270, taban: 632 },
       yazilar: [{ satirlar: ["Rivayete göre ziyafette", "Despina Hatun şarap sundu."], sure: 2.6, renk: ALTIN }],
     },
     {
@@ -94,11 +92,11 @@ export const TIMUR2: Seri = {
       ],
     },
     {
-      no: 44, yakin: 2.2, kamera: 20, sprite: { w: 400, h: 140, fps: 8, x: 270, taban: 634 },
+      no: 44, yakin: 2.6, kamera: 20, sprite: { w: 400, h: 140, fps: 8, x: 270, taban: 634 },
       yazilar: [{ satirlar: ["Bayezid, 8 Mart 1403'te", "Akşehir'de esirken öldü."], sure: 2.6, renk: KIZIL }],
     },
     {
-      no: 54, yakin: 3.6, kamera: 10, odakY: 574, sprite: { w: 270, h: 160, fps: 10, x: 270, taban: 632 },
+      no: 54, yakin: 2.1, kamera: 10, sprite: { w: 270, h: 200, fps: 10, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Yıldırım'ı yenen adam artık", "yaklaşık 68 yaşındaydı;"], sure: 2.4 },
         { satirlar: ["göz kapakları düşmüştü,", "bacağını sürüyordu."], sure: 2.2 },

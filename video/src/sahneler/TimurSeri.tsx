@@ -139,6 +139,23 @@ const Yazi: React.FC<{ satirlar: string[]; sure: number; y?: number; boy?: numbe
   const frame = useCurrentFrame();
   const op = interpolate(frame, [0, sn(0.3), sure - sn(0.3), sure], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const kay = interpolate(frame, [0, sn(0.3)], [24, 0], { extrapolateRight: "clamp" });
+  // uzun satırlar kelime sınırından 24 harfi aşmayacak biçimde bölünür; böylece yazı boyu sahneden sahneye aynı kalır
+  if (satirlar.some((s) => s.length > 24)) {
+    // bütün metin kelime sınırından, satır uzunlukları dengeli olacak biçimde yeniden dizilir (en çok 24 harf)
+    const kelimeler = satirlar.join(" ").split(" ");
+    const toplam = kelimeler.join(" ").length;
+    const hedef = Math.min(24, Math.ceil(toplam / Math.ceil(toplam / 24)) + 2);
+    const yeni: string[] = [];
+    let satir = "";
+    for (const k of kelimeler) {
+      if (satir && (satir + " " + k).length > hedef) {
+        yeni.push(satir);
+        satir = k;
+      } else satir = satir ? satir + " " + k : k;
+    }
+    if (satir) yeni.push(satir);
+    satirlar = yeni;
+  }
   // her satır tek satırda kalır: en uzun satır kenarlarda %6 boşluk bırakacak boya sığdırılır (Jersey 10 ≈ 0,46 em/harf)
   const enUzun = Math.max(...satirlar.map((s) => s.length));
   const sigan = Math.min(boy, Math.floor((W - 130) / (enUzun * 0.46)));

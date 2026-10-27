@@ -25,7 +25,7 @@ export const TIMUR3: Seri = {
       yazilar: [{ satirlar: ["1404'te Clavijo", "Kânigil çayırında şölendeydi."], sure: 2.6, renk: ALTIN }],
     },
     {
-      no: 54, yakin: 3.6, kamera: 10, odakY: 574, sprite: { w: 270, h: 160, fps: 10, x: 270, taban: 632 },
+      no: 54, yakin: 2.1, kamera: 10, sprite: { w: 270, h: 200, fps: 10, x: 270, taban: 632 },
       yazilar: [{ satirlar: ["Timur yaşlıydı,", "göz kapakları düşmüştü."], sure: 2.4 }],
     },
     {
