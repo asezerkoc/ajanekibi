@@ -143,7 +143,7 @@ const Yazi: React.FC<{ satirlar: string[]; sure: number; y?: number; boy?: numbe
 
 /* Sahibin hazırladığı son kapak (video/public/kayip-mezar-son-kapak.png) gelince true yapılır; görsel
    olduğu gibi, üstüne yazı eklenmeden gösterilir (yazı ve logo zaten üstünde). */
-const SAHIBIN_KAPAGI = false;
+const SAHIBIN_KAPAGI = true;
 
 const Kapanis: React.FC = () => {
   const frame = useCurrentFrame();
