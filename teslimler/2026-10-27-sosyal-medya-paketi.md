@@ -34,7 +34,7 @@ Videolarda seslendirme yok. Ekran yazılarıyla anlaşılıyorlar. Müziği payl
 
 ---
 
-## 2) Timur · Bölüm 1/3 · "Topal Kurt" (1336–1370) · 89 sn (sesli)
+## 2) Timur · Bölüm 1/3 · "Topal Kurt" (1336–1370) · 78 sn (sesli, kapaklı)
 
 **Video:** `teslimler/video/pikseltarihim-timur-1-topal-kurt.mp4`
 
@@ -60,7 +60,7 @@ Videolarda seslendirme yok. Ekran yazılarıyla anlaşılıyorlar. Müziği payl
 
 ---
 
-## 3) Timur · Bölüm 2/3 · "İki Yıldırım" (1370–1403) · 91 sn (sesli)
+## 3) Timur · Bölüm 2/3 · "İki Yıldırım" (1370–1403) · 80 sn (sesli, kapaklı)
 
 **Video:** `teslimler/video/pikseltarihim-timur-2-iki-yildirim.mp4`
 
@@ -88,7 +88,7 @@ Videolarda seslendirme yok. Ekran yazılarıyla anlaşılıyorlar. Müziği payl
 
 ---
 
-## 4) Timur · Bölüm 3/3 · "Lanetli Mezar" (1404–1942) · 97 sn (sesli)
+## 4) Timur · Bölüm 3/3 · "Lanetli Mezar" (1404–1942) · 88 sn (sesli, kapaklı)
 
 **Video:** `teslimler/video/pikseltarihim-timur-3-lanetli-mezar.mp4`
 
