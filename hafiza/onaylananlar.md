@@ -74,3 +74,9 @@ düşmeye başladı.
 - Seslendirme: sahibin seçtiği ElevenLabs sesi **"Roger - Laid-Back, Casual, Resonant"** (voice id CwhRBWXzGAHq8TQ4Fs17), model eleven_v4. Bundan sonraki bölümlerde de bu ses kullanılacak. Sesler `teslimler/ses/`, hizalama `video/ses/hizala_seri.py`.
 - Sosyal medya paketi ve seslendirme metinleri onaylandı.
 - Ders: Roger Türkçeyi yavaş okuyor (150 kelime ≈ 85-95 sn). Reels 90 sn sınırı için metinler 120-130 kelimede tutulmalı.
+
+## 27 Ekim 2026 · Sahibin final onayı (kapaklı, kısa metinli sesli sürümler + açıklamalar)
+- Timur 1-3 final: sahibin ChatGPT kapakları başta 2 sn (olduğu gibi), Roger sesi, ~125 kelimelik kısa metinler; 78 / 80 / 88 sn. Videolar ve gönderi açıklamaları/etiketleri onaylandı.
+- Kayıp Mezar 39 sn sesli sürüm ve açıklaması onaylandı.
+- Ders: sahibin verdiği kapaklar kalite kontrolün piksel kuralından muaftır; süre sınırı Reels için 90 sn.
+- İş bitim raporu: teslimler/2026-10-27-is-bitim-raporu.html
