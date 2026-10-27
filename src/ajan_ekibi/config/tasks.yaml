@@ -82,9 +82,13 @@ grafik_gorevi:
     {grafik}
 
     Metni ajansın görsel tarzında bir animasyona dönüştür. Önce
-    skills/remotion-effects/SKILL.md dosyasını oku, metne uyan 2-4 efekti seç ve
-    seçtiğin efektlerin referans dosyalarını oku. Ajansın imza tarzında (64-bit piksel sanatı) dikey video (1080x1920, 60 fps)
-    tasarla. Süre işte belirtilmişse o süreye uy, belirtilmemişse 15-30 saniye yap.
+    skills/piksel-sahne/SKILL.md dosyasını oku; sonra
+    skills/piksel-sahne/references/sahne-katalogu.md içinden her sahneye en yakın
+    örnekleri, skills/piksel-sahne/references/fonksiyonlar.md içinden kullanacağın
+    figür ve yapı fonksiyonlarını, skills/piksel-sahne/references/sahne-tarifi.md
+    içinden teslim şablonunu oku. Ajansın imza tarzında (64-bit piksel sanatı)
+    dikey video (1080x1920, 60 fps) tasarla. Süre işte belirtilmişse o süreye uy,
+    belirtilmemişse 15-30 saniye yap; Reels için toplam 90 saniyeyi aşma.
 
     Fizik kurallarına uy: çadırlar, binalar, insanlar, atlar ve her nesne zemine
     oturur; havada asılı duran hiçbir şey olmaz. Görsel komutlarında ve kodda her
@@ -92,15 +96,20 @@ grafik_gorevi:
     o katmanın zeminine hizala. Hareketler yerçekimine, ağırlığa ve yöne uygun olsun
     (atlar koşarken bacakları yere değer, toz yerden kalkar, duman yukarı çıkar).
   expected_output: >
-    Türkçe bir tasarım teslimi:
-    1) Sahne planı: her sahnenin süresi (saniye), kullanılan efekt, ekrandaki yazı,
-    hareket ve ses önerisi.
-    2) Görsel üretme komutları: her sahne için İngilizce, tarzın özelliklerini
-    anlatan, stüdyo ya da sanatçı adı içermeyen bir komut.
-    3) Remotion kodu: ajansın video/ stüdyosunda video/src/sahneler/<KisaAd>.tsx
-    olarak kaydedilecek tek bir bileşen. Efektleri "../effects/<Bilesen>"
-    yolundan içe aktar (bütün efektler orada kurulu), görselleri
-    video/public/ klasöründen staticFile ile kullan.
+    Türkçe bir tasarım teslimi (skills/piksel-sahne/references/sahne-tarifi.md
+    şablonunda):
+    1) Sahne planı: her sahnenin numarası (ajans genelinde benzersiz, yeni seri
+    71'den başlar), süresi (saniye), konusu, zemin çizgileri, hareket, kamera
+    (yakin/kamera) ve ses önerisi; ekrandaki yazılar.
+    2) Her sahne için sahneNN() Python tarifi: yalnızca fonksiyon referansındaki
+    fonksiyonlarla, katmanlar (gokyuzu/uzak/orta/on ya da ic_mekan) + kare(t, z, i)
+    + sprite(...) kalıbında; hepsi tek bir video/piksel/<seri>.py dosyasına girecek
+    biçimde, import satırlarıyla.
+    3) Seri nesnesi (TSX): etiket, kapak (ajans sahibi verdiyse), bolumler[] (her
+    Bolum: no, yakin, kamera, sprite {w,h,fps,x,taban}, hava/sarsinti gerekiyorsa,
+    yazilar[]) ve kapanis; video/src/sahneler/<Seri>.tsx olarak kaydedilecek.
+    4) Varsa "yeni figür isteği": kütüphanede olmayan figürün adı, boyu, zemine
+    nasıl bastığı, hangi sahnede gerektiği.
   agent: grafiker
 
 kalite_gorevi:
@@ -124,8 +133,10 @@ kalite_gorevi:
     {sahip_notu}
 
     İşi kontrol et: hedef kitleye uygun mu, marka sesine uygun mu, bilgiler
-    araştırmayla tutarlı mı, görsel tarz ajansın tarzı mı, kod kütüphanedeki
-    bileşenleri mi kullanıyor? Fizik kurallarına uyuyor mu: her nesne (çadır, bina,
+    araştırmayla tutarlı mı, görsel tarz ajansın tarzı mı, sahne tarifleri yalnızca
+    skills/piksel-sahne/references/fonksiyonlar.md içindeki fonksiyonları mı
+    kullanıyor (uydurulmuş fonksiyon varsa iş uygun değildir), her sahnenin bir
+    sprite tabanı ve zemin çizgisi yazılı mı? Fizik kurallarına uyuyor mu: her nesne (çadır, bina,
     insan, at) zemine oturuyor mu, havada duran bir şey var mı, katmanlarda
     nesnelerin tabanı zemin çizgisine hizalı mı, hareketler yerçekimine uygun mu?
     Havada duran tek bir nesne bile varsa iş uygun değildir. Uygunsa onayla. Uygun değilse sorunu düzeltebilecek

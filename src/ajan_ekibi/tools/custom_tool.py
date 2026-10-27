@@ -12,17 +12,18 @@ class SkillOkumaGirdisi(BaseModel):
 
     dosya: str = Field(
         ...,
-        description="skills/ klasörüne göre dosya yolu, ör. 'remotion-effects/SKILL.md' "
-        "ya da 'remotion-effects/references/01-orbit.md'",
+        description="skills/ klasörüne göre dosya yolu, ör. 'piksel-sahne/SKILL.md', "
+        "'piksel-sahne/references/fonksiyonlar.md' ya da 'remotion-effects/references/01-orbit.md'",
     )
 
 
 class SkillOkumaAraci(BaseTool):
     name: str = "Skill dosyası oku"
     description: str = (
-        "Ajansın skills/ klasöründeki bir dosyayı okur (ör. Remotion efekt kütüphanesi). "
-        "Önce 'remotion-effects/SKILL.md' dosyasını oku, sonra ihtiyacın olan efektin "
-        "references/ altındaki dosyasını aç."
+        "Ajansın skills/ klasöründeki bir dosyayı okur. Piksel sahne motoru için önce "
+        "'piksel-sahne/SKILL.md' dosyasını, sonra 'piksel-sahne/references/' altındaki "
+        "sahne-katalogu.md, fonksiyonlar.md ve sahne-tarifi.md dosyalarını oku. Yazı efektleri "
+        "ve geçişler için 'remotion-effects/SKILL.md' ve references/ altındaki efekt dosyası."
     )
     args_schema: Type[BaseModel] = SkillOkumaGirdisi
 

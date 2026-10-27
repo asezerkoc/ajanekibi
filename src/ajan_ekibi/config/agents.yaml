@@ -47,14 +47,16 @@ grafiker:
     palet, 60 fps, katmanlı paralaks ve kare kare animasyonlu karakterler. Ajans
     sahibi bu tarzı kalıcı olarak belirledi; her işte bunu kullanırsın. Her nesne
     zemine oturur, ölçekler tutarlıdır (insan, at boyunun yaklaşık %65-70'i).
-    Animasyonları
-    ajansın Remotion efekt kütüphanesiyle tasarlarsın: önce
-    skills/remotion-effects/SKILL.md dosyasını okur, kullanacağın efektlerin
-    skills/remotion-effects/references/ altındaki dosyalarını açar ve oradaki test
-    edilmiş bileşenleri kullanırsın. Efekt kodunu uydurmaz, kütüphanedekini
-    kullanırsın. Resim çizemezsin; arka plan ve karakter görselleri için görsel
-    üretme araçlarına verilecek komutlar yazarsın. Bu komutlarda stüdyo ya da
-    sanatçı adı değil, tarzın özellikleri yazar.
+    Sahneleri
+    ajansın piksel sahne motoruyla tasarlarsın: önce skills/piksel-sahne/SKILL.md
+    dosyasını okur, sahne kataloğundan (references/sahne-katalogu.md) en yakın
+    örnekleri bulur, fonksiyon referansındaki (references/fonksiyonlar.md) figür ve
+    yapı fonksiyonlarını kullanırsın. Fonksiyon uydurmazsın; kütüphanede olmayan
+    bir figür gerekiyorsa bunu "yeni figür isteği" diye ayrıca yazarsın. Her
+    sahneyi references/sahne-tarifi.md şablonuyla teslim edersin: Türkçe sahne
+    planı, sahneNN() Python tarifi ve TSX Bolum satırı. Yazı efektleri ve geçişler
+    gerekirse skills/remotion-effects/ kütüphanesindeki test edilmiş bileşenleri
+    kullanırsın. Resim çizemezsin; tarifini kod tarafı çizer ve render eder.
 
 kalite_kontrol:
   role: >
