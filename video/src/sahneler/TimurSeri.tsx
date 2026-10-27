@@ -273,12 +273,15 @@ const Kapanis: React.FC<{ satirlar: string[]; sonraki: string; arka: number; gec
 export type Seri = {
   etiket: string;
   ses?: string; // public/ altındaki seslendirme (hizala_seri.py üretir)
+  kapak?: string; // sahibin hazırladığı açılış kapağı (public/, 1080x1920, olduğu gibi gösterilir)
   bolumler: Bolum[];
   kapanis: { satirlar: string[]; sonraki: string; sure: number; arka: number; gece?: boolean };
 };
 
 const ARA = 0.25;
-export const seriSure = (s: Seri) => s.bolumler.reduce((t, b) => t + b.yazilar.reduce((a, y) => a + y.sure, 0) + 0.5, 0) + s.kapanis.sure;
+export const KAPAK_SURE = 2.0; // açılış kapağı ekranda kalır, sonra anlatım başlar
+export const seriSure = (s: Seri) =>
+  s.bolumler.reduce((t, b) => t + b.yazilar.reduce((a, y) => a + y.sure, 0) + 0.5, 0) + s.kapanis.sure + (s.kapak ? KAPAK_SURE : 0);
 
 export const SeriVideo: React.FC<{ seri: Seri }> = ({ seri }) => {
   let t = 0;
@@ -308,18 +311,26 @@ export const SeriVideo: React.FC<{ seri: Seri }> = ({ seri }) => {
     });
     t += sure;
   });
+  const kapak = seri.kapak ? sn(KAPAK_SURE) : 0;
   return (
     <AbsoluteFill style={{ background: "#120806" }}>
-      {seri.ses ? <Audio src={staticFile(seri.ses)} /> : null}
-      {parcalar}
-      <Sequence from={0} durationInFrames={sn(t)}>
-        <div style={{ position: "absolute", top: 150, left: 0, width: W, textAlign: "center", fontFamily: '"Jersey 10", monospace', fontSize: 46,
-          color: ALTIN, WebkitTextStroke: `5px ${KAHVE}`, paintOrder: "stroke fill", letterSpacing: 4 }}>
-          {seri.etiket}
-        </div>
-      </Sequence>
-      <Sequence from={sn(t)} durationInFrames={sn(seri.kapanis.sure)}>
-        <Kapanis satirlar={seri.kapanis.satirlar} sonraki={seri.kapanis.sonraki} arka={seri.kapanis.arka} gece={seri.kapanis.gece} />
+      {seri.kapak ? (
+        <Sequence from={0} durationInFrames={kapak}>
+          <Img src={staticFile(seri.kapak)} style={{ position: "absolute", left: 0, top: 0, width: W, height: H }} />
+        </Sequence>
+      ) : null}
+      <Sequence from={kapak} durationInFrames={sn(t + seri.kapanis.sure)}>
+        {seri.ses ? <Audio src={staticFile(seri.ses)} /> : null}
+        {parcalar}
+        <Sequence from={0} durationInFrames={sn(t)}>
+          <div style={{ position: "absolute", top: 150, left: 0, width: W, textAlign: "center", fontFamily: '"Jersey 10", monospace', fontSize: 46,
+            color: ALTIN, WebkitTextStroke: `5px ${KAHVE}`, paintOrder: "stroke fill", letterSpacing: 4 }}>
+            {seri.etiket}
+          </div>
+        </Sequence>
+        <Sequence from={sn(t)} durationInFrames={sn(seri.kapanis.sure)}>
+          <Kapanis satirlar={seri.kapanis.satirlar} sonraki={seri.kapanis.sonraki} arka={seri.kapanis.arka} gece={seri.kapanis.gece} />
+        </Sequence>
       </Sequence>
     </AbsoluteFill>
   );

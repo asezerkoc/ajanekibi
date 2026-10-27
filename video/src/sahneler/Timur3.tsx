@@ -6,6 +6,7 @@ import { ALTIN, KIZIL, Seri, SeriVideo, T_FPS, seriSure } from "./TimurSeri";
 export const TIMUR3: Seri = {
   etiket: "PİKSEL TARİHİM · TİMUR 3/3",
   ses: "timur-3-anlatim.mp3",
+  kapak: "timur-3-kapak.png",
   bolumler: [
     {
       no: 51, yakin: 2.1, kamera: 50, sprite: { w: 380, h: 180, fps: 14, x: [220, 300], taban: 632 },
