@@ -63,10 +63,38 @@ metin_gorevi:
     "rivayete göre" / "kaynaklar ayrışıyor" diye açıkça işaretleyerek kullan.
     Revizyon notu varsa önceki metni bu nota göre yeniden yaz. Önceki metin:
     {metin}
+
+    İlgi çekicilik kuralları (ajans sahibinin kararı; uymayan metin reddedilir):
+    1) Tek hikâye, tek soru: videoyu tek bir soru etrafında kur ("İki ok onu
+       nasıl dünya fatihi yaptı?"). Bir hayatın tamamını bir videoya sığdırma;
+       araştırmadaki en çarpıcı olayı seç, gerisini at ya da sonraki bölüme bırak.
+    2) Kanca formülü (ilk 3 saniye): bilgi verme, açık döngü kur. Cevabı en
+       sona sakla. Örnek: "Bu adamın mezarını açtıkları gün 4 milyon asker sınırı
+       geçti." Yıl, yer, doğum bilgisiyle açma.
+    3) Yapı: 0-3 sn kanca → 3-15 sn "neden umursamalısın" (bedel, tehlike) →
+       ortada bir "ama" dönüşü (beklenmeyen karar, yenilgi, ihanet) → sonda
+       kancanın cevabı + izleyiciye soru. Her 10 saniyede yeni bir merak.
+    4) Şimdiki zaman ve sahne: geçmiş zaman özeti değil, an. "1363, Sistan çölü.
+       Timur koyun çalıyor. Setin üstünden iki ok geliyor."
+    5) Çatışma, karar, bedel: ne istedi, neyi göze aldı, nerede kaybedecekti.
+       "Yenildi" değil, "neredeyse bitmişti".
+    6) Somut detay: "sağ dizine ok" değil, "ok dizine saplandı, bir daha düzgün
+       yürüyemedi; 600 yıl sonra iskeletinde hâlâ görünüyordu."
+    7) Bir bilgi, bir duygu: her cümle ya şaşırtır ya ürpertir ya güldürür.
+       Yalnızca bilgilendiren cümleyi sil.
+    8) Doğrudan hitap: "Sen olsan ne yapardın?", "Bunu bilmiyordun." Belgesel
+       tonu değil, karşısındakine anlatan biri.
+    9) Etiket ekonomisi: "kaynaklara göre / rivayete göre" bir kere ve zekice
+       ("Düşmanları bunu koyun çalarken yediğini yazar"). Her cümlede tekrarlama;
+       tartışmalı bilgi ayrıca açıklama metninde uyarıyla verilir.
+    10) Seslendirme ölçüsü: 90 sn Reels için 110-130 kelime; kısa cümleler,
+        her cümle ekranda bir satır olabilsin.
   expected_output: >
-    Türkçe gönderi metni: dikkat çekici ilk cümle (kanca), ana metin, harekete
-    geçirici kapanış, 5-8 uygun hashtag. Ayrıca videoda ekrana yazılacak 3-5 kısa
-    cümle ("ekran metinleri").
+    Türkçe gönderi metni: 1) seslendirme metni (110-130 kelime; kanca, bedel,
+    "ama" dönüşü, cevap, soru) ve metnin cevapladığı tek soru; 2) ekran
+    metinleri (her biri en çok 30 harflik 1-3 satır, seslendirmeyle bire bir);
+    3) gönderi açıklaması (kanca, kısa gövde, harekete geçirici kapanış,
+    tartışmalı bilgi uyarısı), 5-8 uygun hashtag, sabitlenecek ilk yorum.
   agent: metin_yazari
 
 editor_gorevi:
@@ -87,10 +115,25 @@ editor_gorevi:
 
     Metni kontrol et ve hedef kitleye göre düzenle: yazım, dil bilgisi, akış, ton
     ve araştırmayla tutarlılık. Revizyon notu varsa ona göre düzelt.
+
+    İlgi denetimi (ajans sahibinin kararı: "içerik basit kalıyor, seyirciyi
+    çekmiyor"). Şu sorulara "hayır" çıkıyorsa metni düzelt, düzelmiyorsa metin
+    yazarına geri gönder:
+    - İlk cümle bir açık döngü mü (cevabı sonda mı), yoksa yıl/yer bilgisi mi?
+    - Video tek bir soru etrafında mı, yoksa kronolojik olay listesi mi?
+    - Ortada bir "ama" dönüşü, bir çatışma ve bedel var mı?
+    - Her 10 saniyede (yaklaşık her 25 kelimede) yeni bir merak var mı?
+    - Şimdiki zaman ve sahne mi, geçmiş zaman özeti mi?
+    - Yalnızca bilgi veren, duygu taşımayan cümle kaldı mı? Sil.
+    - İzleyiciye doğrudan hitap var mı; sonda soru var mı?
+    - "Kaynaklara göre / rivayete göre" birden fazla mı? Teke indir, kalanını
+      açıklama metnindeki uyarıya taşı.
+    - Araştırmanın "KAYNAKSIZ" listesinden bilgi girmiş mi? Çıkar.
   expected_output: >
-    Düzenlenmiş gönderi metninin son hâli (kanca, ana metin, kapanış, hashtag'ler,
-    ekran metinleri) ve altında "Editör notları" başlığıyla yapılan değişikliklerin
-    kısa listesi.
+    Düzenlenmiş gönderi metninin son hâli (seslendirme metni, ekran metinleri,
+    gönderi açıklaması, hashtag'ler, ilk yorum) ve altında "Editör notları"
+    başlığıyla yapılan değişikliklerin kısa listesi; ayrıca "İlgi denetimi"
+    satırı: kanca, tek soru, dönüş, merak sıklığı, hitap için geçti/düzeltildi.
   agent: editor
 
 grafik_gorevi:
