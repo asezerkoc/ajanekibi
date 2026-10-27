@@ -11,3 +11,4 @@
 
 ## 27 Ekim 2026 · Netlik
 - Sahip yüklenen videolarda netlik kaybı fark etti. Sebep platform sıkıştırması + sohbet boyutu sürümlerinin yüklenmesi. Kural: yayın dosyaları 4K dikey (2160×3840, nearest 2× büyütme, CRF 16, ~38 Mbps) olarak teslim edilir; render.sh çıktısından 4K türetilir. Grafiker yeni işlerde 4K sürümünü de üretir.
+- 2026-10-27 (ekip kuralı): Araştırmacı derin araştırma yapar: her iddia iki bağımsız kaynak + tarih + yer; birincil/ikincil kaynak ayrı; çelişenler "Tartışmalı" başlığında; kaynağı bulunamayan bilgi "KAYNAKSIZ: metne girmesin" listesine, metin yazarı onu kullanmaz. Yüzeysel 5-10 maddelik özet yerine katmanlı rapor (zaman çizelgesi, kişiler, mekânlar, rakamlar, efsane/gerçek, kanca adayları).

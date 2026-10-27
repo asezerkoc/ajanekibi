@@ -8,12 +8,37 @@ arastirma_gorevi:
     Ajansın geçmişi (onaylanan işler ve ajans sahibinin geri bildirimleri):
     {gecmis}
 
-    Bu iş için araştırma yap. İçinde bulunduğumuz yıl {current_year}. İş bir konu
-    belirtmiyorsa ajans profilindeki konulardan, geçmişte işlenmemiş ve hedef kitle
-    için şu an en ilgi çekici olanı kendin seç ve neden seçtiğini yaz.
+    Bu iş için derin bir araştırma yap. İçinde bulunduğumuz yıl {current_year}. İş
+    bir konu belirtmiyorsa ajans profilindeki konulardan, geçmişte işlenmemiş ve
+    hedef kitle için şu an en ilgi çekici olanı kendin seç ve neden seçtiğini yaz.
+
+    Derin araştırma kuralları:
+    - Her iddia için en az iki bağımsız kaynak yaz; iddianın tarihini ve yerini
+      belirt. Tek kaynaklı bilgi "tek kaynak" diye işaretlenir.
+    - Kaynakları ikiye ayır: birincil (dönem kronikleri, belgeler, yazıtlar, kazı
+      ve arşiv raporları) ve ikincil (akademik makale, kitap, ansiklopedi). Her
+      kaynağın yazarını/adını ve dönemini yaz; düşman ya da taraflı anlatıları
+      ("düşman kaynağı", "saray tarihçisi") belirt.
+    - Kaynaklar çelişiyorsa bilgiyi ana metne koyma; "Tartışmalı" başlığı altında
+      her kaynağın ne dediğini yan yana ver.
+    - "Doğrulanmalı" deyip bırakma: kaynağı bulana kadar ara. Bulamadığın bilgiyi
+      "KAYNAKSIZ: metne girmesin" listesine al; o listedeki hiçbir bilgi gönderiye
+      giremez.
+    - Uydurma kaynak yazma. Emin olmadığın bir eseri ya da yazarı kaynak gösterme.
   expected_output: >
-    Türkçe bir araştırma özeti: seçilen konu ve gerekçesi, hedef kitle için en
-    önemli 5-10 bilgi (doğrulanmamış olanlar işaretli), gönderi için 3 fikir önerisi.
+    Türkçe, katmanlı bir araştırma raporu:
+    1) Konu ve gerekçe (iş konu vermediyse neden bu konu).
+    2) Zaman çizelgesi: tarih – yer – olay – kaynaklar (her satırda en az iki).
+    3) Kişiler: kim, rolü, kaderi; kaynaklarıyla.
+    4) Mekânlar: yer, o dönemdeki durumu, bugünkü karşılığı.
+    5) Rakamlar: ordu, nüfus, mesafe, para gibi sayılar; hangi kaynak hangi
+    rakamı veriyor.
+    6) Efsane ve gerçek: halk arasında anlatılanlar ile belgelerin söylediği.
+    7) Tartışmalı noktalar: çelişen kaynaklar yan yana.
+    8) Kaynakça: birincil ve ikincil ayrı listeler.
+    9) KAYNAKSIZ: metne girmesin (bulunamayan bilgiler).
+    10) Kanca adayı olgular: metin yazarı için en çarpıcı 5-8 gerçek, her biri
+    kaynaklı; gönderi için 3 fikir önerisi.
   agent: arastirmaci
 
 metin_gorevi:
@@ -32,8 +57,11 @@ metin_gorevi:
     Revizyon notu (boşsa ilk yazımdır):
     {revizyon_notu}
 
-    Araştırmaya dayanarak bir sosyal medya gönderisi metni yaz. Revizyon notu
-    varsa önceki metni bu nota göre yeniden yaz. Önceki metin:
+    Araştırmaya dayanarak bir sosyal medya gönderisi metni yaz. Yalnızca
+    araştırmada kaynaklı olan bilgileri kullan; "KAYNAKSIZ: metne girmesin"
+    listesindeki ve "Tartışmalı" başlığındaki bilgileri ya hiç kullanma ya da
+    "rivayete göre" / "kaynaklar ayrışıyor" diye açıkça işaretleyerek kullan.
+    Revizyon notu varsa önceki metni bu nota göre yeniden yaz. Önceki metin:
     {metin}
   expected_output: >
     Türkçe gönderi metni: dikkat çekici ilk cümle (kanca), ana metin, harekete
@@ -133,7 +161,9 @@ kalite_gorevi:
     {sahip_notu}
 
     İşi kontrol et: hedef kitleye uygun mu, marka sesine uygun mu, bilgiler
-    araştırmayla tutarlı mı, görsel tarz ajansın tarzı mı, sahne tarifleri yalnızca
+    araştırmayla tutarlı mı, metinde araştırmanın "KAYNAKSIZ: metne girmesin"
+    listesinden ya da işaretlenmemiş tartışmalı bir bilgi var mı (varsa iş uygun
+    değildir, metin yazarına döner), görsel tarz ajansın tarzı mı, sahne tarifleri yalnızca
     skills/piksel-sahne/references/fonksiyonlar.md içindeki fonksiyonları mı
     kullanıyor (uydurulmuş fonksiyon varsa iş uygun değildir), her sahnenin bir
     sprite tabanı ve zemin çizgisi yazılı mı? Fizik kurallarına uyuyor mu: her nesne (çadır, bina,
