@@ -81,3 +81,5 @@ düşmeye başladı.
 - Ders: sahibin verdiği kapaklar kalite kontrolün piksel kuralından muaftır; süre sınırı Reels için 90 sn.
 - İş bitim raporu: teslimler/2026-10-27-is-bitim-raporu.html
 - Kayıp Mezar 27 Ekim 2026'da @pikseltarihim'de yayınlandı (sahip bildirdi).
+
+- 2026-10-27: TikTok hesabı açıldı (@pikseltarihim). İlk video Cengiz Han Bölüm 1, ertesi gün Kayıp Mezar; sonra her Reels'e TikTok sürümü standart eklenir (5 etiket, playlist, HD yükleme).

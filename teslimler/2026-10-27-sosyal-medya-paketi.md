@@ -127,7 +127,7 @@ Her bölümün ilk yorumuna "Önceki bölüm profilde 👉" yaz. Üç bölümü 
 
 ## 5) TikTok · Cengiz Han · Bölüm 1 "Bozkırın Çocuğu" · 75 sn (sesli)
 
-**Video:** `teslimler/video/pikseltarihim-cengiz-han-reels-40mb.mp4` (1080×1920, H.264/AAC; filigransız yerel yükleme)
+**Video:** `teslimler/video/4k/pikseltarihim-cengiz-han-reels-4k.mp4` (2160×3840, 60 fps; 40 MB sürümü yalnızca sohbet için) · **Hesap açıldı: 27 Ekim 2026.**
 
 **Hesap kurulumu (ilk kez):** kullanıcı adı @pikseltarihim · ad "Piksel Tarihim" · profil fotoğrafı `video/public/logo-profil.png` · biyo: "Tarihi 64-bit piksel animasyonla anlatıyoruz 🎮⚔️ Her hafta yeni bölüm · Instagram: @pikseltarihim" · kategori: Eğitim.
 
