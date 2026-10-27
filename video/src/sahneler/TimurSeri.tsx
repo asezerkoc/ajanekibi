@@ -1,6 +1,7 @@
 import React from "react";
 import {
   AbsoluteFill,
+  Audio,
   Easing,
   Img,
   Sequence,
@@ -271,6 +272,7 @@ const Kapanis: React.FC<{ satirlar: string[]; sonraki: string; arka: number; gec
 
 export type Seri = {
   etiket: string;
+  ses?: string; // public/ altındaki seslendirme (hizala_seri.py üretir)
   bolumler: Bolum[];
   kapanis: { satirlar: string[]; sonraki: string; sure: number; arka: number; gece?: boolean };
 };
@@ -308,6 +310,7 @@ export const SeriVideo: React.FC<{ seri: Seri }> = ({ seri }) => {
   });
   return (
     <AbsoluteFill style={{ background: "#120806" }}>
+      {seri.ses ? <Audio src={staticFile(seri.ses)} /> : null}
       {parcalar}
       <Sequence from={0} durationInFrames={sn(t)}>
         <div style={{ position: "absolute", top: 150, left: 0, width: W, textAlign: "center", fontFamily: '"Jersey 10", monospace', fontSize: 46,

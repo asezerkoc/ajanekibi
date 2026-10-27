@@ -1,6 +1,7 @@
 import React from "react";
 import {
   AbsoluteFill,
+  Audio,
   Easing,
   Img,
   Sequence,
@@ -184,39 +185,39 @@ const BOLUMLER: Bolum[] = [
   {
     no: 11, kamera: 40, sprite: { w: 270, h: 170, adet: 24, fps: 18, x: 270, taban: 625 },
     yazilar: [
-      { satirlar: ["Ağustos 1227."], sure: 2, boy: 124, renk: ALTIN },
-      { satirlar: ["Cengiz Han,", "Batı Xia seferindeyken", "öldü."], sure: 3.2 },
-      { satirlar: ["Ölümü bir süre", "ordudan gizlendi,", "denir."], sure: 3.4 },
+      { satirlar: ["Ağustos 1227."], sure: 2.37, boy: 124, renk: ALTIN },
+      { satirlar: ["Cengiz Han,", "Batı Xia seferindeyken", "öldü."], sure: 2.75 },
+      { satirlar: ["Ölümü bir süre", "ordudan gizlendi,", "denir."], sure: 2.13 },
     ],
   },
   {
     no: 12, kamera: 30, sprite: { w: 540, h: 150, adet: 24, fps: 18, x: [430, 180], taban: 640 },
-    yazilar: [{ satirlar: ["Cenaze kafilesi", "doğduğu bozkırlara", "yola çıktı…"], sure: 4.4 }],
+    yazilar: [{ satirlar: ["Cenaze kafilesi", "doğduğu bozkırlara", "yola çıktı…"], sure: 2.41 }],
   },
   {
     no: 13, kamera: 30, sprite: { w: 540, h: 150, adet: 24, fps: 18, x: [380, 140], taban: 640 },
-    yazilar: [{ satirlar: ["Yolda onları görenlerin", "öldürüldüğü", "söylenir."], sure: 4.4, renk: "#ff8a6a" }],
+    yazilar: [{ satirlar: ["Yolda onları görenlerin", "öldürüldüğü", "söylenir."], sure: 3.13, renk: "#ff8a6a" }],
   },
   {
     no: 14, kamera: 36, sprite: { w: 400, h: 150, adet: 24, fps: 12, x: 270, taban: 630 },
-    yazilar: [{ satirlar: ["Kutsal Burhan Haldun", "Dağı'nın eteklerine", "gömüldüğü düşünülüyor."], sure: 4.6 }],
+    yazilar: [{ satirlar: ["Kutsal Burhan Haldun", "Dağı'nın eteklerine", "gömüldüğü düşünülüyor."], sure: 3.11 }],
   },
   {
     no: 15, kamera: 60, sprite: { w: 540, h: 140, adet: 24, fps: 30, x: [520, 60], taban: 640 },
-    yazilar: [{ satirlar: ["Mezarın üstünden", "yüzlerce at sürüldü,", "izler silindi, denir."], sure: 4.8 }],
+    yazilar: [{ satirlar: ["Mezarın üstünden", "yüzlerce at sürüldü,", "izler silindi, denir."], sure: 3.95 }],
   },
   {
     no: 16, kamera: 36, sprite: { w: 360, h: 170, adet: 24, fps: 16, x: 270, taban: 630 },
     yazilar: [
-      { satirlar: ["Bölge yüzyıllarca", "\"Büyük Yasak\" oldu."], sure: 2.8, renk: ALTIN },
-      { satirlar: ["Oraya girmek", "yasaktı."], sure: 2.4 },
+      { satirlar: ["Bölge yüzyıllarca", "\"Büyük Yasak\" oldu."], sure: 2.25, renk: ALTIN },
+      { satirlar: ["Oraya girmek", "yasaktı."], sure: 0.90 },
     ],
   },
   {
     no: 17, kamera: -30, uydu: true,
     yazilar: [
-      { satirlar: ["Bugün uydularla", "bile aranıyor…"], sure: 2.8 },
-      { satirlar: ["Ama 800 yıldır", "bulunamadı."], sure: 3.0, boy: 116, renk: ALTIN },
+      { satirlar: ["Bugün uydularla", "bile aranıyor…"], sure: 2.22 },
+      { satirlar: ["Ama 800 yıldır", "bulunamadı."], sure: 2.22, boy: 116, renk: ALTIN },
     ],
   },
 ];
@@ -250,6 +251,7 @@ export const KayipMezar: React.FC = () => {
   });
   return (
     <AbsoluteFill style={{ background: "#120806" }}>
+      <Audio src={staticFile("kayip-mezar-anlatim.mp3")} />
       {parcalar}
       <Sequence from={sn(t)} durationInFrames={sn(KAPANIS)}>
         <Kapanis />
