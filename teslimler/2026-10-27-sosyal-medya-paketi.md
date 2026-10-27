@@ -116,9 +116,9 @@ Videolarda seslendirme yok. Ekran yazılarıyla anlaşılıyorlar. Müziği payl
 
 ## Paylaşım takvimi önerisi
 
-- **Bugün:** Kayıp Mezar (Cengiz Han'ın devamı)
-- **Yarın 20:00:** Timur Bölüm 1
-- **Ertesi gün 20:00:** Timur Bölüm 2
-- **Üçüncü gün 20:00:** Timur Bölüm 3
+- **Kayıp Mezar:** 27 Ekim'de yayınlandı.
+- **Bugün 20:00:** Timur Bölüm 1
+- **Yarın 20:00:** Timur Bölüm 2
+- **Ertesi gün 20:00:** Timur Bölüm 3
 
 Her bölümün ilk yorumuna "Önceki bölüm profilde 👉" yaz. Üç bölümü profilde bir **Seri** ya da Öne Çıkan altında topla.

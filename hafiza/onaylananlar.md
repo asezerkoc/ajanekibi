@@ -80,3 +80,4 @@ düşmeye başladı.
 - Kayıp Mezar 39 sn sesli sürüm ve açıklaması onaylandı.
 - Ders: sahibin verdiği kapaklar kalite kontrolün piksel kuralından muaftır; süre sınırı Reels için 90 sn.
 - İş bitim raporu: teslimler/2026-10-27-is-bitim-raporu.html
+- Kayıp Mezar 27 Ekim 2026'da @pikseltarihim'de yayınlandı (sahip bildirdi).
