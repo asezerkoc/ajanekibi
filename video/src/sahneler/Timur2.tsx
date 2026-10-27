@@ -10,96 +10,96 @@ export const TIMUR2: Seri = {
   bolumler: [
     {
       no: 31, yakin: 1.9, sarsinti: 2, sprite: { w: 520, h: 160, fps: 24, x: 270, taban: 632 },
-      yazilar: [{ satirlar: ["Toktamış ihanet etti,", "Altın Orda yenildi."], sure: 2.19, renk: ALTIN }],
+      yazilar: [{ satirlar: ["Toktamış ihanet etti,", "Altın Orda yenildi."], sure: 2.49, renk: ALTIN }],
     },
     {
       no: 32, yakin: 1.9, sprite: { w: 520, h: 170, fps: 12, x: 270, taban: 632 },
-      yazilar: [{ satirlar: ["İsfahan'da kafa kuleleri…"], sure: 1.05, renk: KIZIL }],
+      yazilar: [{ satirlar: ["İsfahan'da kafa kuleleri…"], sure: 1.35, renk: KIZIL }],
     },
     {
       no: 33, yakin: 1.9, sarsinti: 2, sprite: { w: 520, h: 200, fps: 18, x: [285, 245], taban: 632 },
-      yazilar: [{ satirlar: ["…Delhi'de filler (1398)."], sure: 2.11 }],
+      yazilar: [{ satirlar: ["…Delhi'de filler (1398)."], sure: 2.41 }],
     },
     {
       no: 30, yakin: 1.8, kamera: 40, sprite: { w: 520, h: 170, fps: 12, x: 245, taban: 632 },
-      yazilar: [{ satirlar: ["Teslim olan şehir yaşadı,", "direnen şehir kule oldu."], sure: 2.54, renk: ALTIN, boy: 72 }],
+      yazilar: [{ satirlar: ["Teslim olan şehir yaşadı,", "direnen şehir kule oldu."], sure: 2.84, renk: ALTIN, boy: 72 }],
     },
     {
       no: 46, yakin: 1.8, kamera: 10, sprite: { w: 360, h: 170, fps: 12, x: 262, taban: 632 },
-      yazilar: [{ satirlar: ["Kara Yusuf ile", "Ahmed Celayir,", "Yıldırım Bayezid'e", "sığındı."], sure: 3.50 }],
+      yazilar: [{ satirlar: ["Kara Yusuf ile", "Ahmed Celayir,", "Yıldırım Bayezid'e", "sığındı."], sure: 3.80 }],
     },
     {
       no: 34, yakin: 2.4, kamera: 70, sprite: { w: 260, h: 140, fps: 30, x: [330, 210], taban: 632 },
-      yazilar: [{ satirlar: ["Timur teslimlerini istedi."], sure: 1.25, renk: ALTIN }],
+      yazilar: [{ satirlar: ["Timur teslimlerini istedi."], sure: 1.55, renk: ALTIN }],
     },
     {
       no: 35, yakin: 2.2, sprite: { w: 320, h: 190, fps: 12, x: 250, taban: 632 },
       yazilar: [
-        { satirlar: ["Mektuplarda, mecmualara göre,", "“Ey ihtiyar köpek” ve", "“kaçanın karısı üç talakla", "boş olsun” geçer."], sure: 5.97, renk: ALTIN, boy: 66 },
+        { satirlar: ["Mektuplarda, mecmualara göre,", "“Ey ihtiyar köpek” ve", "“kaçanın karısı üç talakla", "boş olsun” geçer."], sure: 6.27, renk: ALTIN, boy: 66 },
       ],
     },
     {
       no: 36, yakin: 2.1, sprite: { w: 520, h: 200, fps: 14, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Sivas, Ağustos 1400:", "lağımlar, yakılan kirişler,"], sure: 4.84, renk: ALTIN },
-        { satirlar: ["“kan dökülmeyecek” sözü."], sure: 0.90 },
+        { satirlar: ["“kan dökülmeyecek” sözü."], sure: 1.17 },
       ],
     },
     {
       no: 37, yakin: 1.9, sprite: { w: 520, h: 204, fps: 12, x: 262, taban: 668 },
       yazilar: [
         { satirlar: ["Bir kronikçiye göre", "savunucular", "diri diri gömüldü."], sure: 3.78, renk: KIZIL },
-        { satirlar: ["3-4 bin kadar; çoğu Ermeni."], sure: 1.67, boy: 76 },
+        { satirlar: ["3-4 bin kadar; çoğu Ermeni."], sure: 1.97, boy: 76 },
       ],
     },
     {
       no: 38, yakin: 2.0, sprite: { w: 520, h: 172, fps: 10, x: 230, taban: 654 },
       yazilar: [
         { satirlar: ["Ankara, 28 Temmuz 1402."], sure: 3.70, renk: ALTIN },
-        { satirlar: ["Kaynaklara göre çay kesildi,", "Osmanlı susuz kaldı."], sure: 2.81, boy: 72 },
+        { satirlar: ["Kaynaklara göre çay kesildi,", "Osmanlı susuz kaldı."], sure: 3.11, boy: 72 },
       ],
     },
     {
       no: 39, yakin: 1.7, sarsinti: 3, sprite: { w: 520, h: 170, fps: 26, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Tatarlar saf değiştirdi."], sure: 1.84, renk: ALTIN },
-        { satirlar: ["Anlatılara göre Sırp süvarisi", "üç kez hücum etti."], sure: 2.26 },
+        { satirlar: ["Anlatılara göre Sırp süvarisi", "üç kez hücum etti."], sure: 2.56 },
       ],
     },
     {
       no: 40, yakin: 2.0, sprite: { w: 520, h: 170, fps: 12, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Bayezid dağlarda kuşatılıp", "esir düştü;"], sure: 2.88 },
-        { satirlar: ["ilk esir Osmanlı hükümdarı."], sure: 1.68, renk: KIZIL },
+        { satirlar: ["ilk esir Osmanlı hükümdarı."], sure: 1.98, renk: KIZIL },
       ],
     },
     {
       no: 41, yakin: 2.4, sprite: { w: 520, h: 220, fps: 12, x: 270, taban: 632 },
-      yazilar: [{ satirlar: ["Rivayete göre ziyafette", "Despina Hatun şarap sundu."], sure: 3.34, renk: ALTIN }],
+      yazilar: [{ satirlar: ["Rivayete göre ziyafette", "Despina Hatun şarap sundu."], sure: 3.64, renk: ALTIN }],
     },
     {
       no: 42, yakin: 1.9, sprite: { w: 520, h: 200, fps: 14, x: 262, taban: 632 },
       yazilar: [
         { satirlar: ["Bayezid'in yıllarca alamadığı", "İzmir kalesi iki haftada düştü."], sure: 4.51, renk: ALTIN },
-        { satirlar: ["Rivayete göre gemilere", "kesik başlar fırlatıldı."], sure: 2.79 },
+        { satirlar: ["Rivayete göre gemilere", "kesik başlar fırlatıldı."], sure: 3.09 },
       ],
     },
     {
       no: 43, yakin: 2.0, kamera: 50, sprite: { w: 520, h: 170, fps: 14, x: [240, 290], taban: 632 },
       yazilar: [
         { satirlar: ["Efsaneye göre Bayezid", "demir kafeste taşındı;"], sure: 3.27 },
-        { satirlar: ["muhtemelen kafesli", "tahtırevandı."], sure: 1.59, renk: ALTIN },
+        { satirlar: ["muhtemelen kafesli", "tahtırevandı."], sure: 1.89, renk: ALTIN },
       ],
     },
     {
       no: 44, yakin: 2.0, kamera: 0, sprite: { w: 400, h: 140, fps: 8, x: 270, taban: 634 },
-      yazilar: [{ satirlar: ["Bayezid, 8 Mart 1403'te", "Akşehir'de esirken öldü."], sure: 4.33, renk: KIZIL }],
+      yazilar: [{ satirlar: ["Bayezid, 8 Mart 1403'te", "Akşehir'de esirken öldü."], sure: 4.63, renk: KIZIL }],
     },
     {
       no: 54, yakin: 2.0, kamera: 10, sprite: { w: 270, h: 200, fps: 10, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Yıldırım'ı yenen adam artık", "yaklaşık 68 yaşındaydı;"], sure: 3.92 },
-        { satirlar: ["göz kapakları düşmüştü,"], sure: 1.51 },
+        { satirlar: ["göz kapakları düşmüştü,"], sure: 1.81 },
       ],
     },
     {

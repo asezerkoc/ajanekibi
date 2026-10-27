@@ -2,7 +2,7 @@
 
 **Durum: ONAY BEKLİYOR.**
 
-Bunlar seslendirme metinleri. Videolardaki ekran yazıları bu metinlerle bire bir aynı. ElevenLabs sitesinde seslendirip MP3'ü bana gönderirsen sahne sürelerini sese birebir hizalarım. Seslendirme yapmazsan videolar ekran yazısı ve Instagram müziğiyle de yayınlanabilir.
+Bunlar seslendirme metinleri. Videolardaki ekran yazıları bu metinlerle bire bir aynı. Dört metin de ElevenLabs'te sahibin seçtiği "Roger - Laid-Back, Casual, Resonant" sesiyle (eleven_v4) seslendirildi; sesler `teslimler/ses/` altında (her biri iki deneme, videolarda take1 kullanıldı), sahne süreleri `video/ses/hizala_seri.py` ile sese bire bir hizalandı.
 
 Tartışmalı bilgiler metnin içinde işaretli: **kroniklere göre**, **kaynaklara göre** ya da **rivayete göre**. Efsaneler **efsaneye göre** diye geçiyor.
 

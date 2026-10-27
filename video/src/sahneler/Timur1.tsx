@@ -13,14 +13,14 @@ export const TIMUR1: Seri = {
       yazilar: [
         { satirlar: ["Kroniklere göre", "8 Nisan 1336'da…"], sure: 3.55, renk: ALTIN },
         { satirlar: ["…Hoca Ilgar köyünde", "Taragay'ın oğlu doğdu."], sure: 3.01 },
-        { satirlar: ["Yaşı belki daha büyük."], sure: 0.90, boy: 80 },
+        { satirlar: ["Yaşı belki daha büyük."], sure: 1.20, boy: 80 },
       ],
     },
     {
       no: 22, yakin: 2.1, kamera: 50, sprite: { w: 420, h: 150, fps: 30, x: [200, 320], taban: 632 },
       yazilar: [
         { satirlar: ["Bozkırda çete kurdu."], sure: 1.64 },
-        { satirlar: ["Kaynaklara göre at ve", "koyun yağmalıyordu."], sure: 2.26, renk: ALTIN },
+        { satirlar: ["Kaynaklara göre at ve", "koyun yağmalıyordu."], sure: 2.56, renk: ALTIN },
       ],
     },
     {
@@ -28,13 +28,13 @@ export const TIMUR1: Seri = {
       yazilar: [
         { satirlar: ["1360'ta Moğol hanı", "Tuğluk Timur saldırdı."], sure: 4.58, renk: ALTIN },
         { satirlar: ["Amcası Hacı Barlas kaçtı."], sure: 1.85 },
-        { satirlar: ["Timur istilacıya bağlanıp", "Keş'in başına geçti."], sure: 2.62 },
+        { satirlar: ["Timur istilacıya bağlanıp", "Keş'in başına geçti."], sure: 2.92 },
       ],
     },
     {
       no: 24, yakin: 2.1, sprite: { w: 460, h: 170, fps: 16, x: 262, taban: 630 },
       yazilar: [
-        { satirlar: ["Emir Hüseyin'le ittifak kurup", "kız kardeşi Olcay Türkan'la", "evlendi."], sure: 4.02, renk: ALTIN },
+        { satirlar: ["Emir Hüseyin'le ittifak kurup", "kız kardeşi Olcay Türkan'la", "evlendi."], sure: 4.32, renk: ALTIN },
       ],
     },
     {
@@ -42,7 +42,7 @@ export const TIMUR1: Seri = {
       yazilar: [
         { satirlar: ["Sistan'da iki ok yedi:", "sağ dizine, sağ koluna."], sure: 2.88, renk: KIZIL },
         { satirlar: ["Artık", "Aksak Timur'du."], sure: 2.01, boy: 110, renk: ALTIN },
-        { satirlar: ["İbn Arapşah koyun çalarken", "vurulduğunu yazar;", "düşman anlatısı."], sure: 3.68, boy: 80 },
+        { satirlar: ["İbn Arapşah koyun çalarken", "vurulduğunu yazar;", "düşman anlatısı."], sure: 3.98, boy: 80 },
       ],
     },
     {
@@ -57,7 +57,7 @@ export const TIMUR1: Seri = {
       no: 27, yakin: 2.1, sprite: { w: 520, h: 160, fps: 16, x: 260, taban: 634 },
       yazilar: [
         { satirlar: ["Semerkant'ı halk milisi", "Serbedarlar savundu."], sure: 3.58 },
-        { satirlar: ["Kaynaklara göre atlarda salgın", "çıkınca Moğollar çekildi."], sure: 3.25, renk: ALTIN },
+        { satirlar: ["Kaynaklara göre atlarda salgın", "çıkınca Moğollar çekildi."], sure: 3.55, renk: ALTIN },
       ],
     },
     {
@@ -65,14 +65,14 @@ export const TIMUR1: Seri = {
       yazilar: [
         { satirlar: ["1370'te Belh'te Hüseyin,", "canı bağışlanacak sözüyle", "teslim oldu;"], sure: 5.69, renk: ALTIN },
         { satirlar: ["sonra öldürüldü."], sure: 0.90, boy: 110, renk: KIZIL },
-        { satirlar: ["Rivayete göre katil Keyhüsrev'di.", "Timur'un rolü tartışmalı."], sure: 3.69, boy: 80 },
+        { satirlar: ["Rivayete göre katil Keyhüsrev'di.", "Timur'un rolü tartışmalı."], sure: 3.99, boy: 80 },
       ],
     },
     {
       no: 29, yakin: 2.3, sprite: { w: 400, h: 200, fps: 14, x: 230, taban: 632 },
       yazilar: [
         { satirlar: ["Cengiz soyundan Saray Mülk", "Hatun'la evlenip Gürkan,", "han damadı oldu."], sure: 4.86 },
-        { satirlar: ["Tahta kukla han Soyurgatmış'ı", "oturttu, kendisi Emir kaldı."], sure: 3.66, renk: ALTIN },
+        { satirlar: ["Tahta kukla han Soyurgatmış'ı", "oturttu, kendisi Emir kaldı."], sure: 3.96, renk: ALTIN },
       ],
     },
     {

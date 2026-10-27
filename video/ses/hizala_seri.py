@@ -18,7 +18,7 @@ from pathlib import Path
 
 KOK = Path(__file__).resolve().parents[1]
 BAS_PAYI = 0.3  # ilk yazı ve konuşma videonun bu saniyesinde başlar
-SAHNE_ARASI = 0.5 + 0.3  # bir sahnenin son yazısı bitince sonraki sahnenin ilk yazısı 0,8 sn sonra başlar
+SAHNE_ARASI = 0.5  # sahne süresi = yazı süreleri + 0,5; yazılar 0,3 sn geç başlar, dolayısıyla son yazı bitince sonraki sahnenin ilk yazısı 0,5 sn sonra başlar
 EN_KISA = 0.9
 
 
