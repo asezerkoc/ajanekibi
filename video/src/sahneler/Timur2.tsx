@@ -91,11 +91,14 @@ export const TIMUR2: Seri = {
       yazilar: [
         { satirlar: ["Efsaneye göre Bayezid", "demir kafeste taşındı;"], sure: 2.2 },
         { satirlar: ["muhtemelen kafesli", "tahtırevandı."], sure: 1.8, renk: ALTIN },
-        { satirlar: ["Bayezid, 8 Mart 1403'te", "Akşehir'de esirken öldü."], sure: 2.6, renk: KIZIL },
       ],
     },
     {
-      no: 54, yakin: 2.6, kamera: 20, sprite: { w: 270, h: 160, fps: 10, x: 270, taban: 632 },
+      no: 44, yakin: 2.2, kamera: 20, sprite: { w: 400, h: 140, fps: 8, x: 270, taban: 634 },
+      yazilar: [{ satirlar: ["Bayezid, 8 Mart 1403'te", "Akşehir'de esirken öldü."], sure: 2.6, renk: KIZIL }],
+    },
+    {
+      no: 54, yakin: 3.6, kamera: 10, odakY: 574, sprite: { w: 270, h: 160, fps: 10, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Yıldırım'ı yenen adam artık", "yaklaşık 68 yaşındaydı;"], sure: 2.4 },
         { satirlar: ["göz kapakları düşmüştü,", "bacağını sürüyordu."], sure: 2.2 },

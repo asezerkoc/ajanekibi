@@ -25,7 +25,7 @@ export const TIMUR3: Seri = {
       yazilar: [{ satirlar: ["1404'te Clavijo", "Kânigil çayırında şölendeydi."], sure: 2.6, renk: ALTIN }],
     },
     {
-      no: 54, yakin: 2.6, kamera: 20, sprite: { w: 270, h: 160, fps: 10, x: 270, taban: 632 },
+      no: 54, yakin: 3.6, kamera: 10, odakY: 574, sprite: { w: 270, h: 160, fps: 10, x: 270, taban: 632 },
       yazilar: [{ satirlar: ["Timur yaşlıydı,", "göz kapakları düşmüştü."], sure: 2.4 }],
     },
     {
@@ -81,16 +81,16 @@ export const TIMUR3: Seri = {
     {
       no: 64, yakin: 1.8, sprite: { w: 420, h: 200, fps: 10, x: 230, taban: 632 },
       yazilar: [
-        { satirlar: ["Taşkent'te,", "Marx'ın yerinde atlı Timur:"], sure: 2.4 },
+        { satirlar: ["Taşkent'te, Marx'ın yerinde", "atlı Timur:"], sure: 2.4 },
         { satirlar: ["“Güç adalettedir.”"], sure: 2.0, boy: 110, renk: ALTIN },
       ],
     },
   ],
   kapanis: {
-    satirlar: ["Efsaneye göre", "mezarı açılınca savaş başladı,", "yeniden gömülünce", "savaşın yönü döndü.", "Tesadüf mü? 🤔"],
+    satirlar: ["Efsaneye göre mezarı", "açılınca savaş başladı,", "yeniden gömülünce", "savaşın yönü döndü.", "Tesadüf mü?"],
     sonraki: "Sıradaki kim olsun?",
     sure: 4.5,
-    arka: 58,
+    arka: 41,
   },
 };
 

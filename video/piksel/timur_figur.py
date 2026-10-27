@@ -621,7 +621,7 @@ def gur_i_emir(img, x, zemin, s=1.0, mavi="#2a7ab8", tugla="#c8a878"):
     for i in range(-11, 12, 2):
         piksel(img, x + int(i * s), y - int(39 * s), hex2("#f4ecd8"))
     # dilimli kubbe: dikey koyu/açık dilimler, sağda gölge, solda ışık
-    kub = [x - int(14 * s), y - int(70 * s), x + int(14 * s), y - int(42 * s)]
+    kub = [x - int(14 * s), y - int(72 * s), x + int(14 * s), y - int(42 * s)]
     cx_, cy_, rx, ry = x, (kub[1] + kub[3]) / 2, (kub[2] - kub[0]) / 2, (kub[3] - kub[1]) / 2
     for py_ in range(kub[1], kub[3] + 1):
         for px_ in range(kub[0], kub[2] + 1):
@@ -634,6 +634,8 @@ def gur_i_emir(img, x, zemin, s=1.0, mavi="#2a7ab8", tugla="#c8a878"):
                 elif u < -0.5 and py_ < cy_:
                     renk = _ac(renk, 0.2)
                 piksel(img, px_, py_, hex2(renk))
+    d.polygon([(x - int(5 * s), kub[1] + int(3 * s)), (x, kub[1] - int(5 * s)), (x + int(5 * s), kub[1] + int(3 * s))], fill=hex2(mavi))  # soğan ucu
+    d.line([x, kub[1] - int(5 * s), x, kub[1] - int(10 * s)], fill=hex2("#e0b040"), width=_u(0.8, s))
     # taç kapı
     d.rectangle([x - int(9 * s), y - int(34 * s), x + int(9 * s), y - 1], fill=hex2(_ac(tugla, 0.08)))
     d.rectangle([x - int(9 * s), y - int(34 * s), x + int(9 * s), y - int(31 * s)], fill=hex2(mavi))

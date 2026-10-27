@@ -62,6 +62,7 @@ export type Bolum = {
   sprite?: Spr;
   hava?: number; // hava katmanının kare hızı (yağmur/kar)
   sarsinti?: number; // savaş anında kamera sarsıntısı (px)
+  odakY?: number; // yakın çekimin odak satırı (ızgara y); verilmezse sprite tabanı
   mektup?: { metin: string[]; imza: string };
   yazilar: { satirlar: string[]; sure: number; boy?: number; renk?: string }[];
 };
@@ -90,7 +91,7 @@ const Sahne: React.FC<{ b: Bolum; sure: number }> = ({ b, sure }) => {
       <AbsoluteFill
         style={{
           transform: `translate(${sars}px, ${-sars / 2}px) scale(${zum})`, // zemin kadrajın %66 hizasında: Reels alt arayüzünün üstünde kalır
-          transformOrigin: `${(sx / 540) * 100}% ${((taban - 12) / 960) * 100}%`,
+          transformOrigin: `${(sx / 540) * 100}% ${(((b.odakY ?? taban - 12)) / 960) * 100}%`,
         }}
       >
         <Tekrar src={`sahne${no}-gokyuzu.png`} x={kam * 0.1 - akis * 0.5} />
@@ -158,11 +159,11 @@ const Mektup: React.FC<{ metin: string[]; imza: string; sure: number }> = ({ met
   const frame = useCurrentFrame();
   const ac = interpolate(frame, [0, sn(0.4)], [0, 1], { extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
   const kapan = interpolate(frame, [sure - sn(0.4), sure], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const harf = Math.floor(interpolate(frame, [sn(0.3), sure * 0.4], [0, metin.join(" ").length], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
+  const harf = Math.floor(interpolate(frame, [sn(0.15), sure * 0.25], [0, metin.join(" ").length], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
   let kalan = harf;
   return (
     <AbsoluteFill style={{ opacity: kapan }}>
-      <AbsoluteFill style={{ background: `rgba(14,6,2,${0.88 * ac})` }} />
+      <AbsoluteFill style={{ background: `rgba(14,6,2,${0.62 * ac})` }} />
       <div style={{ position: "absolute", left: 70, top: 560, width: 940, height: 820 * ac, overflow: "hidden" }}>
         <Img src={staticFile("parsomen.png")} style={{ ...PIKSEL, left: 0, top: 0, width: 940, height: 820 }} />
         <div style={{ position: "absolute", left: 70, top: 110, width: 800 }}>
@@ -203,7 +204,7 @@ const Kapanis: React.FC<{ satirlar: string[]; sonraki: string; arka: number }> =
       />
       <div style={{ position: "absolute", top: 650, left: 30, width: W - 60, textAlign: "center" }}>
         {satirlar.map((s, i) => (
-          <div key={i} style={{ ...yaziStil(Math.min(78, Math.floor((W - 120) / (s.length * 0.46))), i === satirlar.length - 1 ? ALTIN : KREM), whiteSpace: "nowrap" }}>
+          <div key={i} style={{ ...yaziStil(Math.min(78, Math.floor((W - 160) / (Math.max(...satirlar.map((x) => x.length)) * 0.46))), i === satirlar.length - 1 ? ALTIN : KREM), whiteSpace: "nowrap" }}>
             {s}
           </div>
         ))}
@@ -234,8 +235,8 @@ export const SeriVideo: React.FC<{ seri: Seri }> = ({ seri }) => {
     );
     if (b.mektup) {
       parcalar.push(
-        <Sequence key={`m${i}`} from={sn(t + sure * 0.3)} durationInFrames={sn(sure * 0.7)}>
-          <Mektup metin={b.mektup.metin} imza={b.mektup.imza} sure={sn(sure * 0.7)} />
+        <Sequence key={`m${i}`} from={sn(t + sure * 0.45)} durationInFrames={sn(sure * 0.55)}>
+          <Mektup metin={b.mektup.metin} imza={b.mektup.imza} sure={sn(sure * 0.55)} />
         </Sequence>,
       );
     }
