@@ -85,8 +85,8 @@ def kisi(img, x, zemin, s=1.0, govde="#3a5a8a", bas="bork", bas_renk="#5a3a22", 
     gv = hex2(govde)
     koyu = hex2(_ac(govde, -0.3))
     kalca = y - int(5 * s) - 0
-    if diz:  # iki diz yerde (saygıyla diz çökme): uyluklar öne iner, baldırlar yerde arkaya uzanır
-        kalca = y - int(3 * s)
+    if diz:  # iki diz yerde (saygıyla diz çökme): kalça dizlerin hemen üstünde, gövde belirgin biçimde alçalır
+        kalca = y - int(2.2 * s)
         for k, renk in ((0, koyu), (1, hex2("#4a3a2a"))):
             diz_x = x + int((2 + k * 0.6) * s) * yon
             d.line([x, kalca, diz_x, y - 1], fill=renk, width=_u(1.4, s))
@@ -107,7 +107,7 @@ def kisi(img, x, zemin, s=1.0, govde="#3a5a8a", bas="bork", bas_renk="#5a3a22", 
             d.line([ax, ay, ax + _u(1, s) * yon, ay], fill=hex2(KOYU))
     # aksak yürüyüşte gövde topal bacağa doğru iner
     egil = int(abs(math.sin((adim or 0) * 2 * math.pi)) * 0.8 * s) if (aksak and adim is not None) else 0
-    yy = y + egil + (int(2 * s) if diz else 0)
+    yy = y + egil + (int(3.6 * s) if diz else 0)
     ust = yy - int(11 * s)
     alt = yy - int(4 * s) if uzun else yy - int(6 * s)
     if diz:
@@ -654,23 +654,33 @@ def gur_i_emir(img, x, zemin, s=1.0, mavi="#2a7ab8", tugla="#c8a878"):
 def bibi_hanim(img, x, zemin, s=1.0, mavi="#2a8ac8", tugla="#c8a878", iskele=True, catlak=0.0):
     """Bibi Hanım Camii'nin dev taç kapısı ve kubbesi; iskele kurulu. catlak: 0-1 kubbede çatlak."""
     d = ImageDraw.Draw(img)
-    y = duz_zemin(zemin, x - int(36 * s), x + int(36 * s), "Bibi Hanım", tolerans=max(3, int(3 * s)))
-    temas_golgesi(img, x, y, 76 * s)
-    d.ellipse([x - int(20 * s) + int(18 * s), y - int(78 * s), x + int(20 * s) + int(18 * s), y - int(44 * s)], fill=hex2(mavi))  # kubbe arkada
-    d.rectangle([x - int(2 * s) + int(18 * s), y - int(50 * s), x + int(38 * s), y - 1], fill=hex2(tugla))
-    d.rectangle([x - int(22 * s), y - int(74 * s), x + int(10 * s), y - 1], fill=hex2(_ac(tugla, 0.06)))  # pištak
+    y = duz_zemin(zemin, x - int(36 * s), x + int(50 * s), "Bibi Hanım", tolerans=max(3, int(3 * s)))
+    temas_golgesi(img, x + int(6 * s), y, 90 * s)
+    # kubbeli ana yapı: taç kapıdan ayrı, sağda kendi kasnağı üstünde (soğan kubbe)
+    d.rectangle([x + int(22 * s), y - int(50 * s), x + int(48 * s), y - 1], fill=hex2(tugla))
+    d.rectangle([x + int(24 * s), y - int(56 * s), x + int(46 * s), y - int(50 * s)], fill=hex2(_ac(tugla, 0.08)))  # kasnak
+    for k in range(3):
+        d.line([x + int(24 * s), y - int((52 + k * 1.6) * s), x + int(46 * s), y - int((52 + k * 1.6) * s)], fill=hex2(mavi))
+    d.ellipse([x + int(23 * s), y - int(80 * s), x + int(47 * s), y - int(50 * s)], fill=hex2(mavi))
+    d.polygon([(x + int(35 * s), y - int(80 * s)), (x + int(33 * s), y - int(76 * s)), (x + int(37 * s), y - int(76 * s))], fill=hex2(_ac(mavi, 0.3)))
+    for k in range(-10, 11, 4):  # kubbe dilimleri
+        d.line([x + int(35 * s) + int(k * s), y - int(78 * s), x + int(35 * s) + int(k * 1.15 * s), y - int(52 * s)], fill=hex2(_ac(mavi, -0.2)))
+    d.rectangle([x - int(22 * s), y - int(74 * s), x + int(10 * s), y - 1], fill=hex2(_ac(tugla, 0.06)))  # pištak (taç kapı)
     d.rectangle([x - int(22 * s), y - int(74 * s), x + int(10 * s), y - int(70 * s)], fill=hex2(mavi))
     for k in range(4):
         d.line([x - int(22 * s), y - int((60 - k * 12) * s), x + int(10 * s), y - int((60 - k * 12) * s)], fill=hex2(_ac(mavi, 0.1)))
-    d.chord([x - int(14 * s), y - int(60 * s), x + int(2 * s), y - int(30 * s)], 180, 360, fill=hex2("#1a3a5a"))
-    d.rectangle([x - int(14 * s), y - int(45 * s), x + int(2 * s), y - 1], fill=hex2("#1a3a5a"))
+    d.rectangle([x - int(14 * s), y - int(62 * s), x + int(2 * s), y - int(24 * s)], fill=hex2(_ac(mavi, -0.15)))  # çini niş
+    d.chord([x - int(14 * s), y - int(70 * s), x + int(2 * s), y - int(54 * s)], 180, 360, fill=hex2(_ac(mavi, -0.15)))
+    # Timur'un 'alçak' bulduğu kapı: açıklık insan boyundan biraz alçak
+    d.chord([x - int(10 * s), y - int(20 * s), x + int(2 * s), y - int(10 * s)], 180, 360, fill=hex2("#1a3a5a"))
+    d.rectangle([x - int(10 * s), y - int(15 * s), x + int(2 * s), y - 1], fill=hex2("#1a3a5a"))
     for mx in (-25, 13):  # köşe kuleleri
         cx = x + int(mx * s)
         d.rectangle([cx - int(3 * s), y - int(80 * s), cx + int(3 * s), y - 1], fill=hex2(tugla))
         for k in range(5):
             d.line([cx - int(3 * s), y - int((12 + k * 13) * s), cx + int(3 * s), y - int((12 + k * 13) * s)], fill=hex2(mavi), width=_u(1.2, s))
     if catlak > 0:
-        cx, cy = x + int(18 * s), y - int(74 * s)
+        cx, cy = x + int(35 * s), y - int(79 * s)
         for i in range(int(14 * s * catlak)):
             piksel(img, cx + int(math.sin(i * 0.9) * 2 * s), cy + i, hex2("#1a2a3a"))
     if iskele:

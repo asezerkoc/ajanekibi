@@ -534,9 +534,10 @@ def tahtirevan(img, x, zemin, s=1.0, yon=1, faz=0.0):
 def sahne30():
     """Teslim olan şehir yaşadı, direnen şehir kule oldu: solda kapısı açık, pazarı kurulu, çocukların koştuğu aydınlık şehir;
     kamera sağa kayınca aynı ovada isyan etmiş, dumanı tüten şehrin önünde kafatası kuleleri ve kargalar."""
-    gokyuzu(30, ["#5a8ac8", "#7aa0d0", "#a8b8c8", "#c8a890", "#8a5a4a"], (110, 470, 16, ["#fff2c0", "#ffd890"]),
-            [(130, 290, 34), (420, 330, 30)], ("#f0e8e0", "#c8b8b0", "#8a7a78"))
-    uzak(30, ["#8a90a8", "#7a8098"], ["#a8a070", "#988f62"], ["#b8a870", "#a89a62", "#988c56"])
+    # gün ışığı: sıcak pastel gök, altın güneş; direnen şehrin karanlığını yalnızca dumanı verir
+    gokyuzu(30, ["#6aa0d8", "#9ac0e0", "#e0d0a8", "#f4d090", "#f0b070"], (110, 470, 18, ["#fff8d0", "#ffe090"]),
+            [(140, 300, 30)], ("#fff8ec", "#f4dcc8", "#d8a8a0"))
+    uzak(30, ["#9aa0b8", "#8a90a8"], ["#b8b070", "#a8a062"], ["#c8b870", "#b8aa62", "#a89c56"])
 
     def sehirler(img, z):
         zemin = duz(588)
@@ -552,7 +553,14 @@ def sahne30():
         f = i / KARE
         d = ImageDraw.Draw(t)
         y = z[0]
-        for x, renk in ((50, "#c8302a"), (110, "#2a7ac8")):  # pazar tezgâhları: direkler zemine dikili
+        # teslim olan şehrin açık kapısı: figürlerle aynı zeminde kemerli kapı, kanatları açık
+        d.rectangle([8, y - 56, 44, y - 1], fill=hex2("#c8a878"), outline=hex2("#6a4a2a"))
+        d.chord([14, y - 50, 38, y - 26], 180, 360, fill=hex2("#3a2a1a"))
+        d.rectangle([14, y - 38, 38, y - 1], fill=hex2("#3a2a1a"))
+        d.rectangle([8, y - 56, 44, y - 52], fill=hex2("#2a8ac8"))
+        d.polygon([(14, y - 40), (4, y - 36), (4, y - 1), (14, y - 1)], fill=hex2("#6a4a2a"))  # açık kanat
+        d.polygon([(38, y - 40), (48, y - 36), (48, y - 1), (38, y - 1)], fill=hex2("#6a4a2a"))
+        for x, renk in ((70, "#c8302a"), (126, "#2a7ac8")):  # pazar tezgâhları: direkler zemine dikili
             for px_ in (x - 18, x + 18):
                 d.line([px_, y - 1, px_, y - 26], fill=hex2("#5a3a22"), width=2)
             d.polygon([(x - 22, y - 26), (x + 22, y - 26), (x + 18, y - 32), (x - 18, y - 32)], fill=hex2(renk))
@@ -561,11 +569,12 @@ def sahne30():
                 d.line([ax, y - 9, ax, y - 1], fill=hex2("#5a3a22"))
             for m in range(4):
                 d.ellipse([x - 14 + m * 8, y - 16, x - 9 + m * 8, y - 11], fill=hex2(("#e0b040", "#c8302a", "#6aa040", "#f0e0c0")[m]))
-        for j, x in enumerate((80, 150)):  # satıcı ve alıcı
+        for j, x in enumerate((98, 158)):  # satıcı ve alıcı
             figur(t, kisi, x, z, 2.5, ("#6a4a8a", "#3a6a4a")[j], "takke", ("#2a5a3a", "#7a2a2a")[j], "#3a2a1a", yon=-1 if j else 1, kol=0.3)
-        for j in range(2):  # koşan çocuklar
-            cx = 185 + ((f + j * 0.5) % 1) * 50
-            figur(t, kisi, cx, z, 1.6, ("#c8a040", "#c8302a")[j], None, None, None, yon=1, adim=(f * 2 + j * 0.5) % 1, kemer=None)
+        for j in range(2):  # koşan çocuklar (yetişkinin yaklaşık %70'i, okunur boyda)
+            cx = 60 + ((f + j * 0.5) % 1) * 110
+            figur(t, kisi, cx, z, 1.9, ("#c8a040", "#c8302a")[j], "takke" if j else None, "#2a5a3a", None, yon=1, adim=(f * 2 + j * 0.5) % 1,
+                  kemer=None, uzun=False)
         for k, x in enumerate((390, 450)):  # isyan eden şehirden yükselen duman
             duman(t, x, y - 2, 150, 300 + k, faz=(f + k * 0.4) % 1, renk="#3a3434", ruzgar=0.3, genislik=1.4)
         for x, s in ((360, 2.6), (420, 3.0), (480, 2.6)):  # direnen şehrin önünde kafatası kuleleri
@@ -662,14 +671,18 @@ def sahne33():
 
     def kare(t, z, i):
         f = i / KARE
-        for j, x in enumerate((60, 120, 180)):
+        for j, x in enumerate((70, 125, 180)):
             figur(t, atli, x, z, 2.1, 1, (f * 2 + j * 0.3) % 1, ("#3a2418", "#6b3f24", "#2a1810")[j], "#140a06",
                   "#7a1e22" if j == 1 else "#1e4a7a", "sorguc" if j == 1 else "kalpak", "#2a1a14", "#a8522a" if j == 1 else None,
                   silah="kilic" if j == 1 else "yay", kol=0.6, adim=0.8)
-        for j, x in enumerate((310, 420)):
-            figur(t, fil, x, z, 2.2, -1, (f + j * 0.5) % 1, ("#8a8a90", "#7a7a80")[j])
+        # savaş filleri: omuz yüksekliği atın 1,7 katı (ölçek kuralı), atlılara doğru hücum; ayaklarında toz
+        for j, x in enumerate((300, 400, 490)):
+            figur(t, fil, x, z, 2.7, -1, (f * 1.5 + j * 0.4) % 1, ("#8a8a90", "#7a7a80", "#82828a")[j], adim=0.6)
+            for k in range(6):
+                u = (f * 1.5 + k / 6 + j * 0.2) % 1
+                piksel(t, x + 30 + u * 40, z[0] - 3 - math.sin(u * math.pi) * 14 - k % 3 * 2, hex2("#c8b080", int(190 * (1 - u))))
         for j in range(3):
-            ok_ucusu(t, 120 + j * 30, z[0] - 50, 330 + j * 40, z[0] - 70, (f * 1.5 + j * 0.33) % 1)
+            ok_ucusu(t, 120 + j * 30, z[0] - 50, 330 + j * 40, z[0] - 80, (f * 1.5 + j * 0.33) % 1)
 
     sprite(33, "karakter", 520, 200, KARE, kare)
 
@@ -754,49 +767,56 @@ def sahne36():
 def sahne37():
     """Sivas sonrası: 'kan dökülmeyecek' sözü. Açılmış derin çukurda savunucular; kürekçiler üstlerine toprak atar, toz kalkar;
     mızraklı muhafızlar bekler. Arkada düz ovada Sivas suru."""
-    gokyuzu(37, ["#140a12", "#2a1018", "#4a1418", "#7a2018", "#a83a1e"], (440, 520, 22, ["#ffa060", "#c8401c"]),
+    gokyuzu(37, ["#2a1420", "#4a1c24", "#7a2a22", "#a83a1e", "#d06030"], (440, 520, 22, ["#ffa060", "#c8401c"]),
             [(150, 320, 36)], ("#3a1616", "#2a1010", "#1a0a0a"), yildiz=40)
     uzak(37, ["#2a1418", "#221014"], ["#3a2418", "#301e14"], ["#4a3020", "#40281a", "#362216"])
 
     def kale(img, z):
         anadolu_kalesi(img, 470, 800, duz(588), 2.2, tas="#6a5a52", golge="#4a3e38")
 
-    orta(37, (526, 560), ["#4a3020", "#40281a", "#362216", "#2c1c12", "#22160e"], "#7a4a2e", ekle=kale)
+    orta(37, (526, 560), ["#6a4630", "#5a3c28", "#4e3220", "#42291a", "#362016"], "#9a6a3e", ekle=kale)
     on(37, ["#22160e", "#362216", "#3a1a12"], "#a85a3a")
 
-    ALT = 34  # sprite zeminin altına 34 satır iner: çukurun içi görünsün
+    ALT = 44  # sprite zeminin altına 44 satır iner: çukurun içi görünsün, kafalar çukur ağzının altında kalsın
 
     def kare(t, z, i):
         f = i / KARE
         d = ImageDraw.Draw(t)
         y = z[0] - ALT  # gerçek zemin çizgisi
         zemin = duz(y, len(z))
-        d.polygon([(170, y), (178, z[0] - 1), (342, z[0] - 1), (350, y)], fill=hex2("#1e120a"))  # çukur
-        d.line([170, y, 178, z[0] - 1], fill=hex2("#5a3a22"), width=2)
-        d.line([350, y, 340, z[0] - 1], fill=hex2("#5a3a22"), width=2)
+        d.polygon([(164, y), (172, z[0] - 1), (352, z[0] - 1), (360, y)], fill=hex2("#2a1a10"))  # çukur: zemine kazılmış
+        for k in range(y + 2, z[0] - 1, 5):  # kazı duvarındaki toprak katmanları (iki yan şev)
+            d.line([164 + (k - y) * 8 // (z[0] - y), k, 164 + (k - y) * 8 // (z[0] - y) + 10, k], fill=hex2("#4a2e1a"))
+            d.line([360 - (k - y) * 8 // (z[0] - y) - 10, k, 360 - (k - y) * 8 // (z[0] - y), k], fill=hex2("#4a2e1a"))
+        d.line([164, y, 172, z[0] - 1], fill=hex2("#6a4a2a"), width=2)
+        d.line([360, y, 350, z[0] - 1], fill=hex2("#6a4a2a"), width=2)
+        d.line([160, y - 1, 364, y - 1], fill=hex2("#7a5a32"))  # çukur ağzı: aydınlık kenar
         dip = duz(z[0], len(z))
         rnd = random.Random(37)
-        for j, x in enumerate(range(188, 335, 20)):  # çukurdaki savunucular: omuzları zemin hizasında
-            kisi(t, x + rnd.randint(-2, 2), dip, rnd.uniform(2.1, 2.5), rnd.choice(("#4a3a2a", "#3a3a4a", "#5a2a2a", "#4a4a3a", "#6a4a3a")),
+        for j, x in enumerate(range(182, 346, 18)):  # çukurdaki savunucular: büyük ve okunur, omuzları zemin hizasında
+            kisi(t, x + rnd.randint(-2, 2), dip, rnd.uniform(2.6, 3.0), rnd.choice(("#4a3a2a", "#3a3a4a", "#5a2a2a", "#4a4a3a", "#6a4a3a")),
                  rnd.choice(("bork", "kalpak", "migfer", None)), rnd.choice(("#3a2a1a", "#5a3a22", "#7a7a80")), rnd.choice((None, "#2a1a12")),
                  yon=rnd.choice((1, -1)), kemer=None, kol=rnd.choice((0.0, 0.0, 0.6, 1.0)), diz=j % 4 == 1)
         dolu = int(f * 10)  # toprak çukuru dolduruyor
-        d.rectangle([178, z[0] - 1 - dolu, 342, z[0] - 1], fill=hex2("#3a2416"))
-        for kx in (165, 358):  # kenarlarda toprak yığınları
-            d.chord([kx - 26, y - 16, kx + 26, y + 16], 180, 360, fill=hex2("#5a3a22"))
-        for j, x in enumerate((140, 380)):
+        d.rectangle([172, z[0] - 1 - dolu, 352, z[0] - 1], fill=hex2("#3a2416"))
+        for kx in (150, 374):  # kenarlarda kazılmış toprağın yığınları (büyük, iki kademeli)
+            d.chord([kx - 34, y - 22, kx + 34, y + 22], 180, 360, fill=hex2("#5a3a22"))
+            d.chord([kx - 20, y - 28, kx + 20, y + 28], 180, 360, fill=hex2("#6a4a2e"))
+            for m in range(6):
+                piksel(t, kx - 18 + m * 7, y - 20 + m % 2 * 4, hex2("#8a6a3a"))
+        for j, x in enumerate((150, 368)):
             figur(t, kisi, x, zemin, 2.5, "#5a4a3a", "kalpak", "#3a2a1a", "#2a1a12", yon=1 if x < 200 else -1, silah="kurek",
                   kol=abs(math.sin((f * 2 + j * 0.5) * math.pi)) * 0.7)
             u = (f * 2 + j * 0.5) % 1  # kürekten uçan toprak
             yon_ = 1 if x < 200 else -1
-            for k in range(4):  # kürekten savrulan toprak öbekleri
-                ox = x + yon_ * (14 + u * 60 + k * 5)
-                oy = y - 26 - math.sin(u * math.pi) * 22 + k * 3
-                ImageDraw.Draw(t).ellipse([ox - 2, oy - 2, ox + 2, oy + 1], fill=hex2("#6a4a2a"))
-        for k in range(30):  # çukurdan kalkan toz
-            piksel(t, 260 + rnd.randint(-80, 80), y - rnd.randint(4, 40) - (i % 6), hex2("#8a6a4a", 120))
-        for x in (112,):
-            figur(t, kisi, x, zemin, 2.3, "#3a2a2a", "migfer", "#7a7a80", "#2a1a12", yon=1 if x < 200 else -1, silah="mizrak")
+            for k in range(9):  # kürekten savrulan toprak öbekleri: yay çizip çukura düşer
+                ox = x + yon_ * (14 + u * 70 + k * 4)
+                oy = y - 26 - math.sin(u * math.pi) * 26 + k % 3 * 3
+                ImageDraw.Draw(t).ellipse([ox - 3, oy - 3, ox + 3, oy + 2], fill=hex2("#7a5a32"), outline=hex2("#3a2416"))
+        for k in range(60):  # çukurdan kalkan toz: yoğun, aydınlık
+            piksel(t, 260 + rnd.randint(-90, 90), y - rnd.randint(2, 48) - (i % 6), hex2("#b89a6a", rnd.randint(90, 170)))
+        for x in (134, 386):  # mızraklı muhafızlar iki yanda, kadrajın içinde
+            figur(t, kisi, x, zemin, 2.5, "#3a2a2a", "migfer", "#7a7a80", "#2a1a12", yon=1 if x < 200 else -1, silah="mizrak")
 
     sprite(37, "karakter", 520, 170 + ALT, KARE, kare)
 
@@ -809,31 +829,47 @@ def sahne38():
     orta(38, (526, 560), ["#b8a058", "#a89050", "#988048", "#887040", "#786038"], "#e0c878")
     on(38, ["#786038", "#988048", "#8a6a3a"], "#f0d888")
 
+    ALT_38 = 16
+
     def kare(t, z, i):
         f = i / KARE
         d = ImageDraw.Draw(t)
-        y = z[0]
-        d.rectangle([100, y - 8, 200, y - 1], fill=hex2("#3a6a9a"))  # bentin arkasında biriken su (zemine yayılmış)
-        for k in range(100, 200, 6):
-            piksel(t, k + (i % 6), y - 6, hex2("#8ab8d8"))
-        for k, (bx, bs) in enumerate(((208, 1.2), (226, 1.3), (244, 1.1))):  # bent: taş yığınları
-            figur(t, taslar, bx, z, bs)
-        for k in range(4):  # üstüne yatırılmış kütükler
-            d.line([198, y - 8 - k * 4, 256, y - 10 - k * 4], fill=hex2("#6a4428"), width=3)
-            piksel(t, 198, y - 8 - k * 4, hex2("#c8a070"))
-        d.rectangle([256, y - 8, 520, y - 1], fill=hex2("#b8966a"))  # kuru, çatlamış dere yatağı
-        for k in range(260, 520, 7):
-            d.line([k, y - 8, k + 3, y - 4, k + 1, y - 1], fill=hex2("#5a3a1a"))
-        figur(t, kisi, 230, duz(y - 24, 520), 2.3, "#2a6a7a", "kalpak", "#3a2a1a", "#2a1a12", yon=-1, silah="sopa",
+        ALT = ALT_38  # sprite gerçek zeminin 8 satır altına iner: kuru yatak zeminden alçak görünsün
+        y = z[0] - ALT
+        zem = duz(y, len(z))
+        # bentin arkasında yükselen göl: bent seviyesine kadar dolu, yüzeyde yansıma ve dalga pırıltısı
+        d.rectangle([10, y - 20, 196, y - 1], fill=hex2("#2a5a8a"))
+        d.rectangle([10, y - 20, 196, y - 17], fill=hex2("#4a8ab8"))
+        for k in range(12, 196, 9):
+            piksel(t, k + (i % 9), y - 18, hex2("#b8e0f0"))
+            piksel(t, k + (i * 2 % 9), y - 10 - (k // 9) % 3 * 3, hex2("#3a6a9a"))
+        for k, (bx, bs) in enumerate(((204, 1.7), (226, 1.9), (248, 1.7))):  # bent: büyük taş yığınları
+            figur(t, taslar, bx, zem, bs)
+        for k in range(6):  # üstüne yatırılmış kütükler
+            d.line([194, y - 10 - k * 4, 260, y - 12 - k * 4], fill=hex2("#6a4428"), width=3)
+            piksel(t, 194, y - 10 - k * 4, hex2("#c8a070"))
+        # bentin önü: zeminden alçak, kurumuş ve çatlamış dere yatağı (kenarları kıyı şevi)
+        d.polygon([(258, y - 1), (268, z[0] - 1), (514, z[0] - 1), (520, y - 1)], fill=hex2("#a8865a"))
+        d.rectangle([268, y + 1, 514, z[0] - 1], fill=hex2("#b8966a"))
+        rnd2 = random.Random(38)
+        for k in range(272, 512, 11):  # çatlak dokusu: kırık çokgen çizgiler
+            d.line([k, y + 1, k + 3, y + 4, k + 1, y + 7], fill=hex2("#5a3a1a"))
+            d.line([k + 3, y + 4, k + 9, y + 4 + rnd2.randint(-1, 1)], fill=hex2("#5a3a1a"))
+        for k in range(270, 512, 23):
+            d.ellipse([k, y + 2, k + 3, y + 4], fill=hex2("#8a7050"))  # kuru çakıl
+        yatak = duz(z[0], len(z))
+        figur(t, kisi, 228, duz(y - 30, 520), 2.5, "#2a6a7a", "kalpak", "#3a2a1a", "#2a1a12", yon=-1, silah="sopa",
               kol=0.4 + 0.3 * math.sin(f * 6.28))  # bentin üstünde Timur'un işçisi
-        for j, (x, diz, kol, yon) in enumerate(((280, True, 0.0, -1), (310, True, 0.0, -1), (345, False, 1.0, -1), (375, True, 0.0, -1))):
-            figur(t, kisi, x, z, 2.7, ("#c8302a", "#2a6a3a", "#c8302a", "#2a6a3a")[j], "sarik", "#f4f0e6", "#2a1a12", yon=yon,
-                  diz=diz, silah="testi", kol=kol)  # susuz askerler: diz çöküp boş testiyi yatağa uzatır, biri boş testiyi kaldırır
+        for j, x in enumerate((290, 322, 384)):  # susuz askerler yatağa çökmüş, boş testiyle kuru toprağa eğilir
+            figur(t, oturan, x, yatak, 2.7, ("#c8302a", "#2a6a3a", "#2a6a3a")[j], "sarik", "#f4f0e6", "#2a1a12", yon=-1, el="testi")
+        figur(t, kisi, 352, yatak, 2.7, "#c8302a", "sarik", "#f4f0e6", "#2a1a12", yon=-1, silah="testi", kol=1.0)  # biri boş testiyi kaldırır
+        for j, x in enumerate((283, 315, 377)):  # diz çökenlerin önünde ters çevrilmiş boş testi, tek damla düşmez
+            d.ellipse([x - 3, y + 2, x + 3, y + 6], fill=hex2("#c8a040"), outline=hex2("#7a5a22"))
         rnd = random.Random(i)
         for k in range(14):  # sıcak hava titreşimi
             piksel(t, rnd.randrange(200, 500), y - 30 - rnd.randrange(0, 50), hex2("#fff8e0", 80))
 
-    sprite(38, "karakter", 520, 150, KARE, kare)
+    sprite(38, "karakter", 520, 150 + ALT_38, KARE, kare)
 
 
 def sahne39():
@@ -1009,14 +1045,23 @@ def ic_mekan(no, duvar=("#3a2a22", "#4a3628", "#5a4230"), kemer="#2a1a14", cini=
     for x in range(0, W, 90):  # 6 kemer: 540'a tam bölünür, dikişsiz
         d.rectangle([x + 18, 330, x + 72, 600], fill=hex2(kemer))
         d.chord([x + 18, 300, x + 72, 360], 180, 360, fill=hex2(kemer))
-        if pencere:
+        if pencere:  # kemer içinde pencere: açık taş söve, cam, kayıtlar; içeri düşen ışık huzmesi duvarda okunur
+            sove = hex2(_ac(duvar[2], 0.35))
+            d.rectangle([x + 23, 340, x + 67, 444], fill=sove)
+            d.chord([x + 23, 312, x + 67, 364], 180, 360, fill=sove)
             d.rectangle([x + 26, 340, x + 64, 440], fill=hex2(pencere[0]))
             d.chord([x + 26, 316, x + 64, 360], 180, 360, fill=hex2(pencere[0]))
             rnd = random.Random(x)
-            for _ in range(30):
+            for _ in range(90):  # pencerede kar: yoğun taneler, alt kenarda birikinti
                 piksel(u, x + rnd.randint(27, 63), rnd.randint(322, 438), hex2(pencere[1]))
+            d.chord([x + 24, 432, x + 66, 452], 180, 360, fill=hex2(pencere[1]))
             d.line([x + 45, 318, x + 45, 440], fill=hex2(kemer), width=2)
             d.line([x + 26, 390, x + 64, 390], fill=hex2(kemer), width=2)
+            d.rectangle([x + 23, 444, x + 67, 447], fill=hex2(_ac(duvar[2], 0.5)))  # pencere denizliği
+            for k in range(0, 40, 2):  # pencereden duvara düşen soluk ışık huzmesi (dither)
+                for yy in range(448, 600, 3):
+                    if _esik(x + 26 + k, yy) < 0.18 * (1 - (yy - 448) / 160):
+                        piksel(u, x + 26 + k + (yy - 448) // 12, yy, hex2(pencere[1], 40))
     d.rectangle([0, 250, W, 270], fill=hex2(cini))
     for x in range(0, W, 6):
         piksel(u, x, 260, hex2("#f4ecd8"))
@@ -1088,21 +1133,42 @@ def tabut(img, x, zemin, s=1.0, acik=True):
     d = ImageDraw.Draw(img)
     y = zemin_y(zemin, x, 30 * s)
     temas_golgesi(img, x, y, 34 * s)
-    d.rectangle([x - int(16 * s), y - int(9 * s), x + int(16 * s), y - 1], fill=hex2("#2a1a12"), outline=hex2("#0a0604"))
-    d.rectangle([x - int(15 * s), y - int(8 * s), x + int(15 * s), y - int(3 * s)], fill=hex2("#0e0806"))  # sandığın içi
+    d.rectangle([x - int(16 * s), y - int(12 * s), x + int(16 * s), y - 1], fill=hex2("#2a1a12"), outline=hex2("#0a0604"))
+    d.rectangle([x - int(15 * s), y - int(11 * s), x + int(15 * s), y - int(3 * s)], fill=hex2("#0e0806"))  # sandığın içi
+    for k in range(3):  # sandığın ön yüzünde ahşap damarları
+        d.line([x - int(15 * s), y - int(2.5 * s) + k, x + int(15 * s), y - int(2.5 * s) + k], fill=hex2(("#3a2418", "#2a1a12", "#1e120c")[k]))
     if acik:
         k = hex2("#e8e0c8")
-        ic = y - int(5 * s)  # iskelet sandığın dibinde yatar
-        d.ellipse([x - int(14 * s), ic - int(2.5 * s), x - int(10 * s), ic + int(1 * s)], fill=k)  # kafatası
-        piksel(img, x - int(12.5 * s), ic - int(1 * s), hex2("#2a2018"))
-        d.line([x - int(10 * s), ic, x + int(2 * s), ic], fill=k, width=max(1, int(s)))  # omurga
-        for i in range(4):
-            d.line([x - int((8 - i * 2.4) * s), ic - int(1.5 * s), x - int((8 - i * 2.4) * s), ic + int(1.5 * s)], fill=k)  # kaburga
-        d.line([x - int(7 * s), ic + int(1.4 * s), x - int(2 * s), ic + int(2 * s)], fill=k, width=max(1, int(0.7 * s)))  # sağ kol
-        piksel(img, x - int(4.5 * s), ic + int(1.7 * s), hex2("#8a3a2a"))  # koldaki yara izi
-        d.line([x + int(2 * s), ic - int(0.6 * s), x + int(13 * s), ic - int(1 * s)], fill=k, width=max(1, int(0.8 * s)))  # sol bacak
-        d.line([x + int(2 * s), ic + int(0.6 * s), x + int(8 * s), ic + int(1.6 * s), x + int(12 * s), ic + int(0.4 * s)], fill=k,
-               width=max(1, int(0.8 * s)))  # sağ bacak: dizden eğri
+        kg = hex2("#b8b098")  # kemik gölgesi
+        ic = y - int(7 * s)  # iskeletin omurga hattı: sandığın dibinde, kutunun içinde yatar
+        for r in range(1, 4):  # iskelet çevresinde hafif parlama (lamba ışığı kemiklerde)
+            for a in range(0, 360, 10):
+                px_, py_ = x - int(1 * s) + math.cos(math.radians(a)) * (12 + r * 1.4) * s, ic + math.sin(math.radians(a)) * (2.6 + r) * s
+                if y - int(11 * s) < py_ < y - int(3 * s) and _esik(int(px_), int(py_)) < 0.5 * (1 - r / 4):
+                    piksel(img, px_, py_, hex2("#fff0a0", 60))
+        # kafatası: yuvarlak kubbe, göz çukuru, çene
+        d.ellipse([x - int(14.5 * s), ic - int(3 * s), x - int(10 * s), ic + int(1.2 * s)], fill=k)
+        d.rectangle([x - int(13 * s), ic + int(0.4 * s), x - int(10.5 * s), ic + int(2 * s)], fill=kg)  # çene
+        d.ellipse([x - int(12.8 * s), ic - int(1.6 * s), x - int(11.4 * s), ic - int(0.2 * s)], fill=hex2("#2a2018"))  # göz çukuru
+        piksel(img, x - int(11 * s), ic + int(0.2 * s), hex2("#2a2018"))  # burun boşluğu
+        d.line([x - int(10 * s), ic, x + int(1 * s), ic], fill=k, width=max(1, int(s)))  # omurga
+        for i in range(5):  # kaburga kafesi: omurgadan kıvrılan yaylar
+            kx = x - int((9 - i * 1.6) * s)
+            d.arc([kx - int(1.2 * s), ic - int(2.6 * s), kx + int(1.2 * s), ic + int(2.6 * s)], 250, 110, fill=k, width=max(1, int(0.6 * s)))
+        d.ellipse([x - int(0.5 * s), ic - int(2 * s), x + int(3 * s), ic + int(2 * s)], outline=k, width=max(1, int(0.7 * s)))  # leğen
+        # sol kol: omuzdan düz; sağ kol (önde, izleyiciye yakın): dirsekten kırık, yara izi
+        d.line([x - int(9 * s), ic - int(1.5 * s), x - int(1 * s), ic - int(2.2 * s)], fill=kg, width=max(1, int(0.6 * s)))
+        d.line([x - int(9 * s), ic + int(1.5 * s), x - int(6 * s), ic + int(2.8 * s), x - int(2 * s), ic + int(2.2 * s)], fill=k,
+               width=max(1, int(0.7 * s)))
+        d.ellipse([x - int(7 * s), ic + int(1.8 * s), x - int(5 * s), ic + int(3.6 * s)], fill=hex2("#6a2418"))  # dirsekteki yara: koyu kızıl iz
+        piksel(img, x - int(6 * s), ic + int(2.6 * s), hex2("#a84a3a"))
+        d.line([x + int(3 * s), ic - int(1 * s), x + int(13 * s), ic - int(1.4 * s)], fill=kg, width=max(1, int(0.8 * s)))  # sol bacak düz
+        # sağ bacak (önde): dizden belirgin eğri, kısa kalmış (aksaklık)
+        d.line([x + int(3 * s), ic + int(1 * s), x + int(7 * s), ic + int(3 * s), x + int(11 * s), ic + int(1.2 * s)], fill=k,
+               width=max(1, int(0.9 * s)))
+        d.ellipse([x + int(6.2 * s), ic + int(2.2 * s), x + int(7.8 * s), ic + int(3.8 * s)], fill=k)  # diz eklemi
+        for ex_, ey_ in ((x + int(13 * s), ic - int(1.4 * s)), (x + int(11 * s), ic + int(1.2 * s))):
+            d.line([ex_, ey_, ex_ + int(1.5 * s), ey_], fill=k, width=max(1, int(0.6 * s)))  # ayak kemikleri
     else:
         d.rectangle([x - int(17 * s), y - int(11 * s), x + int(17 * s), y - int(8 * s)], fill=hex2("#1e5a3a"), outline=hex2("#0a2a1a"))
 
@@ -1129,14 +1195,20 @@ def sahne44():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, yatan, 200, z, 3.0, govde="#2a6a3a", bas="sarik", bas_renk="#f4f0e6", sakal="#2a1a14", nefes=0.3 + 0.3 * math.sin(f * 2 * math.pi))
         d = ImageDraw.Draw(t)
-        mx = 300
-        d.rectangle([mx - 1, z[0] - 7, mx + 1, z[0] - 1], fill=hex2("#f0e8d0"))
-        alev = 2 + math.sin(f * 30) * 0.8
-        d.polygon([(mx - 2, z[0] - 7), (mx, z[0] - 7 - alev * 3), (mx + 2, z[0] - 7)], fill=hex2("#f8c040"))
-        piksel(t, mx, z[0] - 9, hex2("#fff4c0"))
-        figur(t, kisi, 360, z, 2.7, "#1e4a7a", "kalpak", "#3a2a1a", "#2a1a12", yon=-1, silah="mizrak")
+        y = z[0]
+        # kapı: taş söveli kemerli kapı, aralık; eşiği zemine basar
+        d.rectangle([82, y - 50, 112, y - 1], fill=hex2("#5a4a40"))
+        d.chord([82, y - 62, 112, y - 38], 180, 360, fill=hex2("#5a4a40"))
+        d.rectangle([86, y - 48, 108, y - 1], fill=hex2("#0e0a10"))
+        d.chord([86, y - 58, 108, y - 38], 180, 360, fill=hex2("#0e0a10"))
+        d.rectangle([98, y - 48, 108, y - 1], fill=hex2("#3a2a1a"))  # yarı açık ahşap kanat
+        d.line([98, y - 48, 98, y - 1], fill=hex2("#6a4a2a"))
+        figur(t, kisi, 128, z, 2.9, "#1e4a7a", "kalpak", "#3a2a1a", "#2a1a12", yon=1, silah="mizrak")  # kapıdaki muhafız
+        figur(t, yatan, 222, z, 3.6, govde="#2a6a3a", bas="sarik", bas_renk="#f4f0e6", sakal="#2a1a14", nefes=0.3 + 0.3 * math.sin(f * 2 * math.pi))
+        mumluk(t, 290, z, f, 1)  # yatağın yanında tek mum: söner gibi titrer
+        if int(f * 24) % 24 in (7, 8, 15):
+            d.rectangle([288, y - 40, 292, y - 30], fill=hex2("#1e1a26", 0))
 
     sprite(44, "karakter", 400, 140, KARE, kare)
 
@@ -1146,17 +1218,17 @@ def tabela(img, x, zemin, ad):
     from PIL import Image, ImageFont
     d = ImageDraw.Draw(img)
     y = zemin_y(zemin, x, 30)
-    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 9)
+    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 10)
     w = int(d.textlength(ad, font=font)) + 8
     for px_ in (x - w // 2 + 3, x + w // 2 - 3):
         d.line([px_, y - 1, px_, y - 24], fill=hex2("#4a2a16"), width=2)
-    d.rectangle([x - w // 2, y - 36, x + w // 2, y - 22], fill=hex2("#a8784a"), outline=hex2("#3a2010"))
-    yazi = Image.new("L", (w, 14))
+    d.rectangle([x - w // 2, y - 38, x + w // 2, y - 22], fill=hex2("#a8784a"), outline=hex2("#3a2010"))
+    yazi = Image.new("L", (w, 16))
     ImageDraw.Draw(yazi).text((4, 1), ad, font=font, fill=255)
-    for yy in range(14):
+    for yy in range(16):
         for xx in range(w):
-            if yazi.getpixel((xx, yy)) > 110:
-                piksel(img, x - w // 2 + xx, y - 36 + yy, hex2("#2a140a"))
+            if yazi.getpixel((xx, yy)) > 60:  # eşik düşük: İ'nin noktası gibi ince ayrıntılar silinmesin
+                piksel(img, x - w // 2 + xx, y - 38 + yy, hex2("#2a140a"))
     temas_golgesi(img, x, y, w)
 
 
@@ -1173,7 +1245,7 @@ def sahne51():
         koy_evleri(img, 230, 420, zemin, 2.2, tohum=52)
         for x in (200, 440):
             figur(img, agac_kavak, x, zemin, 1.5)
-        for x, ad in ((120, "BAĞDAT"), (300, "DIMAŞK"), (470, "ŞİRAZ"), (640, "MISIR")):
+        for x, ad in ((322, "BAĞDAT"), (384, "DIMAŞK"), (444, "ŞİRAZ"), (502, "MISIR")):  # dördü de kamera kayarken görünen bantta
             tabela(img, x, zemin, ad)
 
     orta(51, (526, 560), ["#8aa84a", "#7a9a40", "#6a8a38", "#5a7a30", "#4a6a2a"], "#c8d870", ekle=sehir)
@@ -1210,13 +1282,19 @@ def sahne52():
         d0 = ImageDraw.Draw(t)
         d0.line([164, z[0] - 26, 184, z[0] - 30], fill=hex2("#3a2418"), width=2)  # koşum: araba okundan filin göğüs kayışına
         d0.line([184, z[0] - 30, 196, z[0] - 34], fill=hex2("#3a2418"), width=2)
-        figur(t, timur, 300, z, 2.7, 1, silah="sopa", kol=0.7)
-        for j, x in enumerate((340, 372)):
-            figur(t, kisi, x, z, 2.4, "#5a4a3a", "takke", "#2a5a3a", "#3a2a1a", yon=-1, diz=True)
-        u = (f * 1.5) % 1  # düşen tuğlalar
+        # Timur at üstünde: kolu kapıyı gösterir (ağır gövdeli beyaz at, kızıl kaftan, sorguçlu külah)
+        figur(t, atli, 290, z, 2.6, 1, 0.0, "#d8d0c4", "#8a8078", "#7a1e22", "sorguc", "#2a1a14", "#a8522a", kol=0.8, dur=True, cul="#3a2a5a")
+        figur(t, kisi, 350, z, 2.4, "#5a4a3a", "takke", "#2a5a3a", "#3a2a1a", yon=-1, diz=True)  # mimar diz çökmüş, Timur'a dönük
+        for j, x in enumerate((318, 334)):  # kazmalı işçiler taç kapının dibinde, Timur'un buyruğuyla kapıyı yıkar
+            figur(t, kisi, x, z, 2.4, "#5a4a3a", "takke", "#2a5a3a", "#3a2a1a", yon=1, silah="kazma", kol=abs(math.sin((f * 2 + j * 0.5) * math.pi)) * 0.9)
+        u = (f * 1.5) % 1  # taç kapıdan kopan tuğlalar düşer, yere değince toz kalkar
         for k in range(3):
-            bx, by = 440 + k * 14, 10 + (u * 1.0 + k * 0.2) % 1 * (z[0] - 20)
+            v = (u + k * 0.3) % 1
+            bx, by = 286 + k * 12, 20 + v * (z[0] - 26)
             ImageDraw.Draw(t).rectangle([bx, by, bx + 5, by + 3], fill=hex2("#c88a5a"), outline=hex2("#5a3a22"))
+            if v > 0.85:
+                for m in range(5):
+                    piksel(t, bx + 2 + (m - 2) * 3, z[0] - 2 - (v - 0.85) * 40 - m % 2 * 2, hex2("#d8c0a0", 160))
 
     sprite(52, "karakter", 480, 200, KARE, kare)
 
@@ -1228,34 +1306,40 @@ def sahne53():
     uzak(53, ["#8a98b8", "#7a88a8"], ["#8aa080", "#7a9070"], ["#9ab07a", "#8aa46c", "#7a985e"])
 
     def otaglar(img, z):
-        zemin = duz(588)
-        for x, renk in ((40, "#c8302a"), (130, "#2a6a9a"), (220, "#e0b040"), (560, "#7a2a8a"), (650, "#2a8a5a"), (740, "#c8302a")):
-            figur(img, otag, x, zemin, 1.5, renk, "#f4ecd8")
+        zemin = duz(588)  # ipek otağlar düz çayırda, kadrajın görünen bandında (orta x = ızgara x + 135)
+        for x, renk in ((300, "#2a6a9a"), (395, "#e0b040"), (490, "#7a2a8a"), (40, "#c8302a"), (660, "#2a8a5a"), (760, "#c8302a")):
+            figur(img, otag, x, zemin, 2.0, renk, "#f4ecd8")
 
     orta(53, (520, 557), ["#7aa84a", "#6a9a3e", "#5a8a36", "#4a7a2e", "#3f6b2a"], "#a8d063", ekle=otaglar)
     on(53, ["#3f6b2a", "#5a8f36", "#8a7a3a"], "#d8e070")
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, otag, 110, z, 1.6, "#c8302a", "#f4ecd8", faz=f, acik=True)  # ipek otağ düz çayıra kurulu
-        ates(t, 60, z, f, 1.2)
-        dd = ImageDraw.Draw(t)
-        dd.rectangle([170, z[0] - 12, 300, z[0] - 9], fill=hex2("#6a4428"))  # uzun alçak sofra
-        for ax in (174, 235, 296):
-            dd.rectangle([ax - 1, z[0] - 9, ax + 1, z[0] - 1], fill=hex2("#4a2a16"))
-        for k in range(8):
-            dd.ellipse([176 + k * 15, z[0] - 16, 184 + k * 15, z[0] - 12], fill=hex2(("#c8a040", "#e8e0d0", "#8a3a1a", "#6aa040")[k % 4]))
+        figur(t, otag, 105, z, 1.9, "#c8302a", "#f4ecd8", faz=f, acik=True)  # ipek otağ düz çayıra kurulu
         d = ImageDraw.Draw(t)
-        d.line([92, z[0] - 26, 148, z[0] - 26], fill=hex2("#4a2a16"), width=2)  # şiş
-        for yx in (94, 146):
-            d.line([yx, z[0] - 1, yx, z[0] - 28], fill=hex2("#4a2a16"), width=2)  # çatal direkler zemine dikili
-        d.ellipse([104, z[0] - 32, 136, z[0] - 20], fill=hex2("#8a3a1a"))
-        for j, x in enumerate((185, 215)):
-            figur(t, oturan, x, z, 2.4, ("#2a5a8a", "#7a2a5a")[j], "kalpak", "#3a2a1a", "#2a1a12", yon=1, el="kase", minder="#c8a040")
-        figur(t, oturan, 248, z, 2.8, "#7a1e22", "sorguc", "#2a1a14", "#d8d0c8", yon=1, el="kase", minder="#9a2a2a")
-        for j, x in enumerate((285, 312)):  # Kastilyalı elçiler (Clavijo) sofraya oturur
-            figur(t, oturan, x, z, 2.5, ("#1a1a2a", "#3a1a1a")[j], "sapka", "#1a1a1a", "#3a2a1a", yon=-1, el="kase")
-        figur(t, kisi, 150, z, 2.4, "#5a3a6a", "takke", "#2a5a3a", "#2a1a12", yon=1, silah="yay", kol=0.4 + 0.2 * math.sin(f * 25))  # müzisyen
+        y = z[0]
+        ates(t, 150, z, f, 1.3)
+        d.line([132, y - 30, 168, y - 30], fill=hex2("#4a2a16"), width=2)  # şiş
+        for yx in (134, 166):
+            d.line([yx, y - 1, yx, y - 32], fill=hex2("#4a2a16"), width=2)  # çatal direkler zemine dikili
+        d.ellipse([132, y - 40, 168, y - 22], fill=hex2("#8a3a1a"))  # çevrilen at eti: şişe geçirilmiş, ateşin üstünde
+        d.ellipse([138, y - 36, 152, y - 28], fill=hex2("#a8502a"))
+        # uzun sofra: yere serili desenli örtü (dastarhan), figürlerin önünde; üstünde kâseler ve ekmek
+        d.rectangle([184, y - 11, 336, y - 1], fill=hex2("#e8dcc0"), outline=hex2("#8a6a3a"))
+        for k in range(188, 336, 12):
+            d.rectangle([k, y - 9, k + 5, y - 3], fill=hex2("#c8302a"))
+        for k in range(11):
+            d.ellipse([189 + k * 13, y - 15, 198 + k * 13, y - 10], fill=hex2(("#c8a040", "#e8e0d0", "#8a3a1a", "#6aa040")[k % 4]), outline=hex2("#5a3a1a"))
+        for j, x in enumerate((200, 228)):
+            figur(t, oturan, x, z, 2.7, ("#2a5a8a", "#7a2a5a")[j], "kalpak", "#3a2a1a", "#2a1a12", yon=1, el="kase", minder="#c8a040")
+        figur(t, oturan, 262, z, 3.1, "#7a1e22", "sorguc", "#2a1a14", "#d8d0c8", yon=1, el="kase", minder="#9a2a2a")
+        for j, x in enumerate((296, 324)):  # Kastilyalı elçiler (Clavijo) sofraya oturur
+            figur(t, oturan, x, z, 2.8, ("#1a1a2a", "#3a1a1a")[j], "sapka", "#1a1a1a", "#3a2a1a", yon=-1, el="kase")
+        figur(t, kisi, 176, z, 2.7, "#5a3a6a", "takke", "#2a5a3a", "#2a1a12", yon=1, silah="yay", kol=0.4 + 0.2 * math.sin(f * 25))  # müzisyen
+        figur(t, kisi, 342, z, 2.7, "#3a5a4a", "takke", "#e8e0d0", None, yon=-1, kol=0.5)  # tepsili hizmetkâr: tepsi elinde
+        d.rectangle([323, y - 34, 341, y - 32], fill=hex2("#e0b040"))  # tepsi
+        for k in range(3):
+            d.ellipse([324 + k * 6, y - 37, 328 + k * 6, y - 34], fill=hex2(("#c8302a", "#6aa040", "#e8e0d0")[k]))
 
     sprite(53, "karakter", 420, 190, KARE, kare)
 
@@ -1281,13 +1365,18 @@ def yasli_timur_yakin(img, x, zemin, f):
     d.ellipse([x - 14, by - 14, x - 4, by + 2], fill=hex2("#d6a07a"))  # yanak ışığı
     # göz: beyaz, iris; üstte ağır düşük kapak, altta torba
     for gx in (x - 2, x + 10):
-        kirp = (i := int(f * 24)) % 24 < 2
-        d.rectangle([gx - 4, by - 4, gx + 4, by], fill=hex2("#efe8dc"))
-        d.rectangle([gx - 1, by - 3, gx + 2, by], fill=hex2("#2a1a10"))
-        d.rectangle([gx - 5, by - 7, gx + 5, by - 2 if not kirp else by + 1], fill=hex2("#a8704a"))  # düşük göz kapağı
-        d.line([gx - 5, by - 2 if not kirp else by + 1, gx + 5, by - 2 if not kirp else by + 1], fill=hex2("#3a2010"), width=2)
-        d.line([gx - 4, by + 3, gx + 4, by + 3], fill=hex2("#9a6a4a"))  # göz altı torbası
-        d.line([gx - 6, by - 10, gx + 6, by - 9], fill=hex2("#e8e4dc"), width=2)  # ağarmış kaş
+        kirp = int(f * 24) % 24 < 2
+        d.ellipse([gx - 5, by - 4, gx + 5, by + 3], fill=hex2("#efe8dc"))  # göz akı
+        d.ellipse([gx - 2, by - 2, gx + 2, by + 2], fill=hex2("#2a1a10"))  # iris
+        piksel(img, gx + 1, by - 1, hex2("#f8f4ec"))
+        # ağır, düşük göz kapağı: gözün üst yarısına inen kıvrımlı deri; alt kenarı 1 px koyu kontur, üstü ışıklı
+        kapak_alt = by + 2 if kirp else by - 1
+        d.chord([gx - 6, by - 8, gx + 6, kapak_alt + 4], 180, 360, fill=hex2("#b8805a"))
+        d.rectangle([gx - 6, by - 4, gx + 6, kapak_alt], fill=hex2("#b8805a"))
+        d.line([gx - 6, kapak_alt, gx + 6, kapak_alt], fill=hex2("#3a2010"))
+        d.line([gx - 4, by - 7, gx + 4, by - 7], fill=hex2("#d6a07a"))  # kapak üstü ışık
+        d.arc([gx - 5, by - 1, gx + 5, by + 7], 0, 180, fill=hex2("#9a6a4a"))  # göz altı torbası
+        d.line([gx - 6, by - 11, gx + 6, by - 10], fill=hex2("#e8e4dc"), width=2)  # ağarmış kaş
     d.polygon([(x + 4, by - 2), (x + 9, by + 8), (x + 3, by + 8)], fill=hex2("#a8704a"))  # burun
     d.polygon([(x - 16, by + 6), (x + 18, by + 6), (x + 12, by + 30), (x + 2, by + 40), (x - 10, by + 30)], fill=hex2("#e8e4dc"))  # sakal
     d.line([x - 2, by + 11, x + 16, by + 11], fill=hex2("#d0ccc4"), width=3)  # bıyık
@@ -1298,8 +1387,9 @@ def yasli_timur_yakin(img, x, zemin, f):
     for k in range(12):  # sorguç tüyü
         piksel(img, x - 4 - k // 3, by - 36 - k, hex2("#f4f0e6"))
         piksel(img, x - 3 - k // 3, by - 36 - k, hex2("#d8d0c0"))
-    d.line([x + 24, y - 80, x + 40, y - 40], fill=hex2("#5a1418"), width=6)  # kol
-    d.ellipse([x + 36, y - 44, x + 46, y - 34], fill=hex2("#c8946a"))  # el dizinde
+    d.line([x + 22, y - 82, x + 36, y - 46], fill=hex2("#5a1418"), width=8)  # kol: omuzdan dize iner
+    d.ellipse([x + 30, y - 50, x + 44, y - 36], fill=hex2("#c8946a"))  # el dizin üstünde, kolun ucunda
+    d.line([x + 34, y - 44, x + 42, y - 40], fill=hex2("#a8704a"))  # parmak aralığı
 
 
 def sahne54():
@@ -1309,8 +1399,11 @@ def sahne54():
     def kare(t, z, i):
         f = i / KARE
         figur(t, yasli_timur_yakin, 135, z, f)
-        for x in (24, 246):
-            figur(t, kisi, x, z, 4.6, "#5a2a2a", "migfer", "#8a8a90", "#2a1a12", yon=1 if x < 130 else -1, silah="mizrak")
+        d = ImageDraw.Draw(t)  # buhurdan: ayaklı tunç kap zemine oturur, dumanı yukarı
+        temas_golgesi(t, 200, z[0], 14)
+        d.rectangle([194, z[0] - 4, 206, z[0] - 1], fill=hex2("#5a4a2a"))
+        d.ellipse([190, z[0] - 16, 210, z[0] - 4], fill=hex2("#c8a040"), outline=hex2("#5a3a10"))
+        d.ellipse([196, z[0] - 20, 204, z[0] - 14], fill=hex2("#e8601c"))
         for k in range(8):  # buhurdan dumanı
             u = (f + k / 8) % 1
             piksel(t, 200 + math.sin(u * 8) * 4, z[0] - 30 - u * 60, hex2("#d8d0c8", int(160 * (1 - u))))
@@ -1343,23 +1436,59 @@ def sahne55():
 def sahne56():
     """Otrar, Şubat 1405: ateşler içinde yatan Timur; hekimler buzla serinletmeye çalışır; pencerelerde kar."""
     ic_mekan(56, ("#1a1a2a", "#2a2634", "#342e3c"), kemer="#120e18", cini="#2a5a8a", pencere=("#1a2a4a", "#f4f8ff"),
-             zemin_renk=("#3a3030", "#302828", "#262020"))
+             zemin_renk=("#4a2a2a", "#3e2424", "#321e1e"), hali=True)
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, yatan, 190, z, 3.0, nefes=0.5 + 0.5 * math.sin(f * 2 * math.pi))
-        for j, x in enumerate((100, 290)):
-            figur(t, kisi, x, z, 2.6, ("#e8e0d0", "#3a4a5a")[j], "sarik", "#f4f0e6", "#d8d0c8", yon=1 if x < 190 else -1, diz=True)
+        figur(t, yatan, 190, z, 3.4, nefes=0.5 + 0.5 * math.sin(f * 2 * math.pi))
+        for j, x in enumerate((104, 282)):
+            figur(t, kisi, x, z, 2.8, ("#e8e0d0", "#3a4a5a")[j], "sarik", "#f4f0e6", "#d8d0c8", yon=1 if x < 190 else -1, diz=True)
         d = ImageDraw.Draw(t)
-        d.chord([118, z[0] - 10, 142, z[0] + 4], 180, 360, fill=hex2("#c8c0b0"))  # buz dolu leğen
+        d.chord([124, z[0] - 10, 150, z[0] + 4], 180, 360, fill=hex2("#c8c0b0"))  # buz dolu leğen
         for k in range(4):
-            d.rectangle([122 + k * 5, z[0] - 9, 125 + k * 5, z[0] - 6], fill=hex2("#e0f0ff"))
-        mum_x = 340
-        d.rectangle([mum_x - 2, z[0] - 14, mum_x + 2, z[0] - 1], fill=hex2("#f0e8d0"))
-        alev = 2 + math.sin(f * 30) * 0.8
-        d.polygon([(mum_x - 2, z[0] - 14), (mum_x, z[0] - 14 - alev * 3), (mum_x + 2, z[0] - 14)], fill=hex2("#f8c040"))
+            d.rectangle([128 + k * 5, z[0] - 9, 131 + k * 5, z[0] - 6], fill=hex2("#e0f0ff"))
+        mumluk(t, 85, z, f, 3)  # ayaklı şamdan: üç mum, ateşli hastanın başucunda titreyen ışık
+        mumluk(t, 296, z, f + 0.3, 2)
+        mangal(t, 250, z, f)
 
     sprite(56, "karakter", 380, 140, KARE, kare)
+
+
+def mumluk(t, x, z, f, adet=3):
+    """Ayaklı şamdan: tunç ayak zemine basar, mumlar titrer ve çevresine sıcak ışık halkası düşer."""
+    d = ImageDraw.Draw(t)
+    y = z[0]
+    temas_golgesi(t, x, y, 14)
+    d.rectangle([x - 6, y - 3, x + 6, y - 1], fill=hex2("#6a5a2a"))
+    d.line([x, y - 3, x, y - 22], fill=hex2("#c8a040"), width=2)
+    d.line([x - 7, y - 22, x + 7, y - 22], fill=hex2("#c8a040"), width=2)
+    for k in range(adet):
+        mx = x + (k - (adet - 1) / 2) * 7
+        d.rectangle([mx - 1, y - 30, mx + 1, y - 22], fill=hex2("#f0e8d0"))
+        alev = 1.5 + math.sin(f * 30 + k * 2) * 0.8
+        d.polygon([(mx - 2, y - 30), (mx, y - 30 - alev * 3), (mx + 2, y - 30)], fill=hex2("#f8c040"))
+        piksel(t, mx, y - 31, hex2("#fff4c0"))
+    for r in range(6, 26, 3):  # ışık halkası (dither)
+        for a in range(0, 360, 12):
+            px_, py_ = x + math.cos(math.radians(a)) * r * 1.4, y - 30 + math.sin(math.radians(a)) * r
+            if py_ < y - 1 and _esik(int(px_), int(py_)) < 0.45 * (1 - r / 26):
+                piksel(t, px_, py_, hex2("#f8d070", 70))
+
+
+def mangal(t, x, z, f):
+    """Kömür mangalı: üç ayak zemine basar, korlar kızarır, ince duman yukarı çıkar."""
+    d = ImageDraw.Draw(t)
+    y = z[0]
+    temas_golgesi(t, x, y, 18)
+    for dx in (-6, 0, 6):
+        d.line([x + dx, y - 1, x + dx // 2, y - 7], fill=hex2("#4a3a2a"), width=2)
+    d.ellipse([x - 9, y - 12, x + 9, y - 5], fill=hex2("#5a4a3a"), outline=hex2("#2a1a10"))
+    for k in range(5):
+        kor = 0.6 + 0.4 * math.sin(f * 20 + k)
+        piksel(t, x - 5 + k * 2.5, y - 10, hex2(_ac("#e8601c", kor - 0.6)))
+    for k in range(6):
+        u = (f + k / 6) % 1
+        piksel(t, x + math.sin(u * 9) * 2, y - 14 - u * 30, hex2("#c8c0b8", int(120 * (1 - u))))
 
 
 def sahne57():
@@ -1418,7 +1547,7 @@ def sahne58():
         for j, x in enumerate((236, 258, 280, 302)):  # abanoz tabutu omuzlarında taşıyanlar
             figur(t, kisi, x, z, 2.5, ("#2a2a3a", "#3a2a2a", "#2a3a2a", "#3a3a3a")[j], "sarik", "#f4f0e6", "#3a2a1a", yon=1, adim=(i / KARE + j * 0.25) % 1)
         om = z[0] - int(11 * 2.5) - 2
-        dd.rectangle([226, om - 8, 312, om], fill=hex2("#1a1210"), outline=hex2("#000000"))
+        abanoz_tabut(dd, 226, 312, om)
         for j, x in enumerate(range(30, 520, 34)):
             if abs(x - 270) > 70:
                 figur(t, kisi, x, z, 2.3, rnd.choice(("#2a2420", "#d8d0c0", "#3a2a2a")), rnd.choice(("sarik", "kalpak", "ortu")),
@@ -1430,12 +1559,14 @@ def sahne58():
 def sahne59():
     """Koyu yeşil yeşim taşı: 1740'ta Nadir Şah'ın askerleri taşı götürmek ister, taş çatlar."""
     ic_mekan(59, ("#0e1a1a", "#162424", "#1e2e2e"), kemer="#081010", cini="#1e5a6a", zemin_renk=("#2a3030", "#222828", "#1a2020"),
-             isik="#80e0a0")
+             isik="#80e0a0", hali=True)
 
     def kare(t, z, i):
         f = i / KARE
         d = ImageDraw.Draw(t)
         y = z[0]
+        for kx, faz in ((200, 0.0), (300, 0.4)):  # tavandan sarkan kandiller: zincir sprite'ın üst kenarından iner
+            kandil(t, kx, 0, f + faz, zincir=222)
         temas_golgesi(t, 200, y, 90)
         d.rectangle([150, y - 22, 250, y - 1], fill=hex2("#1e5a3a"), outline=hex2("#0a2a1a"))
         d.polygon([(150, y - 22), (160, y - 30), (260, y - 30), (250, y - 22)], fill=hex2("#2e7a4e"))
@@ -1448,9 +1579,28 @@ def sahne59():
             piksel(t, 201 + int(math.sin(k * 0.8) * 3), y - 29 + k, hex2("#06140c"))
         for x, yon in ((110, 1), (290, -1)):
             figur(t, kisi, x, z, 2.6, "#7a2a2a", "kalpak", "#c8302a", "#2a1a12", yon=yon, kol=0.3, silah="sopa")
-        figur(t, kisi, 340, z, 2.7, "#2a3a6a", "tac", "#e0b040", "#2a1a12", yon=-1, pelerin="#c8a040")  # Nadir Şah
+        figur(t, kisi, 305, z, 2.7, "#2a3a6a", "tac", "#e0b040", "#2a1a12", yon=-1, pelerin="#c8a040")  # Nadir Şah
 
-    sprite(59, "karakter", 400, 170, KARE, kare)
+    sprite(59, "karakter", 400, 320, KARE, kare)
+
+
+def kandil(t, x, ust, f, zincir=36):
+    """Tavandan zincirle sarkan yağ kandili: pirinç gövde, titreyen alev, çevresine yeşil-sarı ışık halkası."""
+    d = ImageDraw.Draw(t)
+    sal = math.sin(f * 2 * math.pi) * 1.5
+    for k in range(0, zincir, 3):
+        piksel(t, x + sal * k / zincir, ust + k, hex2("#8a7a4a"))
+    ky = ust + zincir
+    kx = x + sal
+    d.polygon([(kx - 7, ky), (kx + 7, ky), (kx + 4, ky + 8), (kx - 4, ky + 8)], fill=hex2("#c8a040"), outline=hex2("#5a3a10"))
+    d.rectangle([kx - 2, ky + 8, kx + 2, ky + 11], fill=hex2("#8a6a2a"))
+    alev = 1.5 + math.sin(f * 30) * 0.7
+    d.polygon([(kx - 2, ky), (kx, ky - alev * 3), (kx + 2, ky)], fill=hex2("#f8c040"))
+    for r in range(5, 24, 3):
+        for a in range(0, 360, 12):
+            px_, py_ = kx + math.cos(math.radians(a)) * r * 1.3, ky + math.sin(math.radians(a)) * r
+            if _esik(int(px_), int(py_)) < 0.45 * (1 - r / 24):
+                piksel(t, px_, py_, hex2("#e8e090", 60))
 
 
 def sahne60():
@@ -1460,19 +1610,20 @@ def sahne60():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, tabut, 230, z, 3.4, True)
+        figur(t, tabut, 236, z, 4.2, True)
         dd = ImageDraw.Draw(t)
-        temas_golgesi(t, 300, z[0], 14)
-        dd.ellipse([294, z[0] - 9, 306, z[0] - 1], fill=hex2("#e8e0c8"), outline=hex2("#4a4030"))  # Uluğ Bey'in ayrı duran kafatası
-        piksel(t, 297, z[0] - 6, hex2("#2a2018"))
-        piksel(t, 302, z[0] - 6, hex2("#2a2018"))
-        figur(t, lamba, 120, z, 2.0, f)
-        figur(t, lamba, 395, z, 2.0, (f + 0.4) % 1)
-        figur(t, kisi, 150, z, 2.6, "#5a5a4a", "kasket", "#3a3a32", "#5a4a3a", yon=1, diz=True)  # Gerasimov
-        figur(t, kisi, 320, z, 2.6, "#e8e4dc", None, None, None, yon=-1, kol=0.2, kemer=None)
-        figur(t, kisi, 360, z, 2.6, "#3a3a2a", "kasket", "#4a4a3a", None, yon=-1, silah="kamera")  # Kayumov
+        temas_golgesi(t, 140, z[0], 18)  # Uluğ Bey'in ayrı duran kafatası: sandığın solunda, lamba ışığında açıkta
+        dd.ellipse([132, z[0] - 13, 148, z[0] - 1], fill=hex2("#e8e0c8"), outline=hex2("#4a4030"))
+        dd.ellipse([135, z[0] - 9, 139, z[0] - 5], fill=hex2("#2a2018"))
+        dd.ellipse([141, z[0] - 9, 145, z[0] - 5], fill=hex2("#2a2018"))
+        dd.line([136, z[0] - 3, 144, z[0] - 3], fill=hex2("#4a4030"))
+        figur(t, lamba, 118, z, 2.2, f)
+        figur(t, lamba, 342, z, 2.2, (f + 0.4) % 1)
+        figur(t, kisi, 160, z, 2.7, "#5a5a4a", "kasket", "#3a3a32", "#5a4a3a", yon=1, diz=True)  # Gerasimov diz çökmüş, sandığa eğik
+        figur(t, kisi, 316, z, 2.7, "#e8e4dc", None, None, None, yon=-1, kol=0.2, kemer=None)
+        figur(t, kisi, 330, z, 2.7, "#3a3a2a", "kasket", "#4a4a3a", None, yon=-1, silah="kamera")  # Kayumov
 
-    sprite(60, "karakter", 460, 160, KARE, kare)
+    sprite(60, "karakter", 460, 170, KARE, kare)
 
 
 def sahne61():
@@ -1482,7 +1633,7 @@ def sahne61():
 
     def mahalle(img, z):
         zemin = duz(588)
-        koy_evleri(img, 10, 800, zemin, 2.7, tohum=61, kerpic="#d8b888")
+        koy_evleri(img, 10, 800, zemin, 4.0, tohum=61, kerpic="#d8b888")  # kapılar insandan biraz alçak (ölçek kuralı)
 
     orta(61, (528, 560), ["#c8a878", "#b8986c", "#a88860", "#987854", "#886848"], "#e8d0a0", ekle=mahalle)
     on(61, ["#886848", "#a88860", "#8a7a4a"], "#f0e0b0")
@@ -1491,20 +1642,24 @@ def sahne61():
         f = i / KARE
         d = ImageDraw.Draw(t)
         y = z[0]
-        for ax in (60, 130, 200, 270):  # sedirin dört ayağı zemine basar
-            d.rectangle([ax - 2, y - 14, ax + 2, y - 1], fill=hex2("#5a3a22"))
-        d.rectangle([54, y - 18, 276, y - 14], fill=hex2("#7a4a2a"), outline=hex2("#2a1408"))
-        d.rectangle([56, y - 20, 274, y - 18], fill=hex2("#9a2a2a"))
-        ust = duz(y - 20, 420)
-        for j, x in enumerate((90, 150, 245)):
-            figur(t, oturan, x, ust, 2.4, ("#2a3a5a", "#5a3a2a", "#3a5a4a")[j], "takke", ("#1a1a1a", "#2a5a3a", "#7a2a2a")[j], "#e8e4dc",
+        for ax in (106, 166, 226, 276):  # sedirin dört ayağı zemine basar
+            d.rectangle([ax - 2, y - 16, ax + 2, y - 1], fill=hex2("#5a3a22"))
+        d.rectangle([100, y - 20, 282, y - 16], fill=hex2("#7a4a2a"), outline=hex2("#2a1408"))
+        d.rectangle([102, y - 22, 280, y - 20], fill=hex2("#9a2a2a"))
+        ust = duz(y - 22, 420)
+        for j, x in enumerate((130, 188, 262)):  # yaşlılar kameramana dönük
+            figur(t, oturan, x, ust, 2.8, ("#2a3a5a", "#5a3a2a", "#3a5a4a")[j], "takke", ("#1a1a1a", "#2a5a3a", "#7a2a2a")[j], "#e8e4dc",
                   yon=1, el="kase" if j != 1 else None)
-        d.ellipse([186, y - 30, 204, y - 20], fill=hex2("#c8a040"), outline=hex2("#5a3a12"))  # semaver
-        d.rectangle([193, y - 34, 197, y - 30], fill=hex2("#c8a040"))
+        sx_ = 226  # semaver: tepsi, pirinç gövde, musluk, baca; buharı yukarı
+        d.rectangle([sx_ - 10, y - 24, sx_ + 10, y - 22], fill=hex2("#8a6a2a"))
+        d.rectangle([sx_ - 6, y - 38, sx_ + 6, y - 24], fill=hex2("#c8a040"), outline=hex2("#5a3a12"))
+        d.ellipse([sx_ - 7, y - 40, sx_ + 7, y - 34], fill=hex2("#d8b050"))
+        d.rectangle([sx_ - 2, y - 46, sx_ + 2, y - 40], fill=hex2("#8a6a2a"))
+        d.line([sx_ + 6, y - 30, sx_ + 10, y - 30], fill=hex2("#5a3a12"), width=2)  # musluk
         for k in range(6):
             u = (f + k / 6) % 1
-            piksel(t, 195 + math.sin(u * 7) * 3, y - 36 - u * 26, hex2("#f0f0f0", int(180 * (1 - u))))
-        figur(t, kisi, 312, z, 2.7, "#3a3a2a", "kasket", "#4a4a3a", None, yon=-1, silah="kamera")
+            piksel(t, sx_ + math.sin(u * 7) * 3, y - 48 - u * 26, hex2("#f0f0f0", int(180 * (1 - u))))
+        figur(t, kisi, 302, z, 3.0, "#3a3a2a", "kasket", "#4a4a3a", None, yon=-1, silah="kamera")  # Kayumov yaşlılara dönük
 
     sprite(61, "karakter", 420, 160, KARE, kare)
 
@@ -1517,15 +1672,21 @@ def sahne62():
 
     def koyler(img, z):
         zemin = duz(588)
-        koy_evleri(img, 500, 800, zemin, 2.1, tohum=62, kerpic="#a89880")
-        for k, x in enumerate((300, 420, 520)):
-            duman(img, x, 570, 120, 62 + k, faz=0.3 * k, renk="#3a3434", ruzgar=0.5, genislik=1.6)
+        koy_evleri(img, 560, 800, zemin, 3.2, tohum=62, kerpic="#a89880")
+        d = ImageDraw.Draw(img)
+        for k, x in enumerate((300, 420, 520)):  # ufuktaki yanan köyler: alev zemine oturur, duman alevin tabanından yükselir
+            for rr, renk in ((14, "#e8601c"), (9, "#f8a030"), (4, "#fff0a0")):
+                d.ellipse([x - rr * 1.6, 588 - rr, x + rr * 1.6, 588], fill=hex2(renk))
+            duman(img, x, 580, 120, 62 + k, faz=0.3 * k, renk="#3a3434", ruzgar=0.5, genislik=1.6)
+        for x in range(340, 500, 22):  # ufukta ilerleyen piyade silüetleri (ölçek için)
+            figur(img, kisi, x, zemin, 1.2, "#3a3a34", "migfer", "#3a3a34", None, yon=1, silah="mizrak", kemer=None)
 
     orta(62, (526, 560), ["#6a8a40", "#5e7e38", "#527230", "#46662a", "#3a5a24"], "#a0b870", ekle=koyler)
     on(62, ["#3a5a24", "#527230", "#5a5a3a"], "#c0c888")
 
     def kare(t, z, i):
         f = i / KARE
+        d = ImageDraw.Draw(t)
         for j, x in enumerate((80, 230, 380)):
             figur(t, tank, x, z, 2.6, 1, (f * 2 + j * 0.3) % 1)
             for k in range(5):  # egzoz ve toz
@@ -1546,6 +1707,7 @@ def sahne63():
 
     orta(63, (526, 560), ["#c8ccd4", "#bcc0c8", "#b0b4bc", "#a4a8b0", "#989ca4"], "#f4f8ff", ekle=turbe)
     kar_ortusu(63)
+    silik_sehir(63)  # efsane vurgusu: ufukta rüya gibi silik Stalingrad silüeti (yıkık bloklar, fabrika bacaları)
     on(63, ["#989ca4", "#b0b4bc", "#8a8e98"], "#ffffff")
     hava(63, "kar", 140, "#ffffff")
 
@@ -1556,14 +1718,56 @@ def sahne63():
         for j, x in enumerate(xs):
             figur(t, kisi, x, z, 2.4, ("#2a2a3a", "#3a2a2a", "#2a3a2a", "#3a3a3a")[j], "takke", "#1a1a1a", "#3a2a1a", yon=1, adim=(f + j * 0.25) % 1)
         omuz = z[0] - int(11 * 2.4) - 2
-        d.rectangle([180, omuz - 7, 275, omuz], fill=hex2("#1a1210"), outline=hex2("#000000"))  # abanoz tabut
-        for k in range(182, 274, 6):
-            piksel(t, k, omuz - 4, hex2("#e0b040"))
-        figur(t, kisi, 330, z, 2.6, "#e8e4dc", "sarik", "#f4f0e6", "#e8e4dc", yon=-1, kol=0.6)
-        for x in (60, 100, 400, 440):
-            figur(t, kisi, x, z, 2.3, "#3a3a4a", "kasket", "#3a3a3a", None, yon=1 if x < 200 else -1)
+        abanoz_tabut(d, 180, 275, omuz)
+        figur(t, kisi, 330, z, 2.6, "#e8e4dc", "sarik", "#f4f0e6", "#e8e4dc", yon=-1, kol=0.6)  # imam dua eder
+        rnd = random.Random(63)
+        for j, x in enumerate((96, 118, 140, 162, 356, 378, 400, 422, 444, 466)):  # ağır ağır dua eden kalabalık: eller açık, bazıları diz çökmüş
+            figur(t, kisi, x, z, 2.4, rnd.choice(("#3a3a4a", "#2a2a2a", "#4a3a3a", "#d8d0c0")), rnd.choice(("kasket", "takke", "ortu", "kalpak")),
+                  rnd.choice(("#3a3a3a", "#1a1a1a", "#e8e0d0")), None if j % 3 else "#d8d0c8", yon=1 if x < 200 else -1,
+                  kol=0.5 + 0.1 * math.sin(f * 2 * math.pi + j), diz=j % 4 == 2, kadin=j % 5 == 1)
 
     sprite(63, "karakter", 500, 160, KARE, kare)
+
+
+def abanoz_tabut(d, x0, x1, omuz):
+    """Omuzlarda taşınan abanoz tabut: hacimli gövde, açık renk kapak kenarı, altın şerit ve köşe bağları; üst yüzü
+    perspektifle görünür."""
+    d.rectangle([x0, omuz - 12, x1, omuz], fill=hex2("#1a1210"), outline=hex2("#000000"))  # gövde
+    d.polygon([(x0 + 3, omuz - 12), (x1 - 3, omuz - 12), (x1 - 7, omuz - 17), (x0 + 7, omuz - 17)], fill=hex2("#2e2420"), outline=hex2("#000000"))  # kapak
+    d.line([x0 + 7, omuz - 17, x1 - 7, omuz - 17], fill=hex2("#5a4a40"))
+    d.line([x0 + 1, omuz - 12, x1 - 1, omuz - 12], fill=hex2("#3a2e28"))
+    for kx in (x0 + 10, (x0 + x1) // 2, x1 - 10):  # altın bağlar
+        d.rectangle([kx - 2, omuz - 16, kx + 2, omuz], fill=hex2("#e0b040"))
+        d.rectangle([kx - 1, omuz - 15, kx + 1, omuz - 1], fill=hex2("#a88020"))
+    d.line([x0 + 4, omuz - 6, x1 - 4, omuz - 6], fill=hex2("#e0b040"))  # altın şerit
+
+
+def silik_sehir(no, y0=560, alfa=70):
+    """Uzak planın ufuk hattına silik bir savaş şehri silüeti işler (uzak katmanı yeniden işlenir): yıkık bloklar,
+    fabrika bacaları, kırık çatılar; düşük alfa ile rüya gibi."""
+    from PIL import Image
+    yol = Path(__file__).parents[1] / "public" / f"sahne{no}-uzak.png"
+    img = Image.open(yol).convert("RGBA")
+    kat = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    d = ImageDraw.Draw(kat)
+    rnd = random.Random(no * 7)
+    x = 0
+    while x < img.width:
+        w = rnd.randint(14, 34)
+        h = rnd.randint(14, 48)
+        d.rectangle([x, y0 - h, x + w, y0 + 30], fill=(40, 44, 60, alfa))
+        if rnd.random() < 0.5:  # yıkık üst kenar
+            for k in range(0, w, 4):
+                d.rectangle([x + k, y0 - h - rnd.randint(0, 6), x + k + 2, y0 - h], fill=(40, 44, 60, alfa))
+        if rnd.random() < 0.35:  # fabrika bacası
+            bx = x + rnd.randint(2, max(3, w - 4))
+            d.rectangle([bx, y0 - h - rnd.randint(14, 30), bx + 3, y0 - h], fill=(40, 44, 60, alfa))
+        for _ in range(rnd.randint(0, 3)):  # kırık pencereler
+            px0, py0 = x + rnd.randint(2, max(3, w - 4)), y0 - rnd.randint(6, max(7, h - 4))
+            d.rectangle([px0, py0, px0 + 1, py0 + 2], fill=(90, 80, 70, alfa))
+        x += w + rnd.randint(2, 10)
+    img.alpha_composite(kat)
+    img.save(yol)
 
 
 def sahne64():
@@ -1582,8 +1786,22 @@ def sahne64():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, heykel, 250, z, 3.4, tunc="#5a4630")
-        for j, x in enumerate((60, 330, 380)):
+        # Marx heykelinin silik hatırası: aynı kaidenin solunda yarı saydam gri büst (sakallı baş, geniş omuz), nabız gibi solar
+        d = ImageDraw.Draw(t)
+        alfa = int(120 + 45 * math.sin(f * 2 * math.pi))
+        hy = z[0]
+        gri = (196, 200, 212, alfa)
+        d.rectangle([152, hy - 30, 180, hy - 1], fill=gri)  # sütun kaide
+        d.rectangle([148, hy - 34, 184, hy - 30], fill=gri)
+        d.polygon([(150, hy - 34), (182, hy - 34), (186, hy - 56), (146, hy - 56)], fill=gri)  # büst: geniş omuzlar, ceket
+        d.rectangle([163, hy - 60, 169, hy - 54], fill=gri)  # boyun
+        d.ellipse([154, hy - 82, 178, hy - 58], fill=gri)  # baş
+        d.polygon([(154, hy - 66), (178, hy - 66), (174, hy - 52), (166, hy - 46), (158, hy - 52)], fill=(214, 218, 228, alfa))  # gür sakal
+        d.chord([150, hy - 90, 182, hy - 62], 180, 360, fill=(214, 218, 228, alfa))  # kabarık saç
+        d.rectangle([158, hy - 72, 162, hy - 69], fill=(80, 84, 96, alfa))  # gözler
+        d.rectangle([170, hy - 72, 174, hy - 69], fill=(80, 84, 96, alfa))
+        figur(t, heykel, 250, z, 3.4, tunc="#4a6a5a")
+        for j, x in enumerate((112, 312, 336)):
             figur(t, kisi, x, z, 2.4, ("#3a5a8a", "#8a3a3a", "#e8e0d0")[j], None if j else "kasket", "#3a3a3a", None,
                   yon=1 if x < 200 else -1, adim=(f + j * 0.3) % 1 if j == 2 else None, kemer=None)
         for k in range(4):  # güvercinler
@@ -1591,6 +1809,72 @@ def sahne64():
             piksel(t, 120 + u * 200, 30 + math.sin(u * 12 + k) * 6 + k * 8, hex2("#e8e8f0"))
 
     sprite(64, "karakter", 420, 200, KARE, kare)
+
+
+def sahne45():
+    """Kasım 1404, Semerkant dışı, altın saat: yaşlı Timur ağır adımlarla doğuya yürür, sağ bacağını sürür (zeminde sürtünme izi),
+    uzak planda belirgin dağ sırtı; tuğ taşıyan bir asker arkasından gelir."""
+    gokyuzu(45, ["#4a5a9a", "#8a7aa0", "#d89a70", "#f0b878", "#f8d090"], (430, 440, 20, ["#fff0c0", "#ffc070"]),
+            [(150, 300, 30)], ("#f8e0c8", "#e0b0a0", "#a87a80"))
+    uzak(45, ["#6a5a7a", "#5a4a6a"], ["#8a7a5a", "#7a6a4e"], ["#a89060", "#988256", "#88744c"], dag_y=(290, 430))
+    orta(45, (526, 560), ["#b89a58", "#a88a50", "#987a48", "#886a40", "#785a38"], "#e0c478")
+    on(45, ["#785a38", "#987a48", "#8a6a3a"], "#f0d888")
+
+    def kare(t, z, i):
+        f = i / KARE
+        d = ImageDraw.Draw(t)
+        y = z[0]
+        for k in range(112, 262, 3):  # sürüyen sağ ayağın toprakta bıraktığı iz: figürün arkasında (sağda), soluklaşarak
+            d.line([k, y - 1, k + 2, y - 1], fill=hex2("#5a3a1e", int(210 - 150 * (k - 112) / 150)))
+            if k % 9 == 0:
+                piksel(t, k, y - 2, hex2("#8a6a3a", 120))
+        figur(t, timur, 100, z, 3.6, -1, adim=f, yasli=True, kol=0.1)  # dağ sırtına, uzak Çin'e doğru yürür
+        figur(t, kisi, 180, z, 2.9, "#3a3a5a", "kalpak", "#2a1a14", "#2a1a12", yon=-1, adim=(f + 0.5) % 1, silah="mizrak")
+        figur(t, tug, 172, z, 1.6, faz=f)
+        for k in range(5):  # sürünen ayağın kaldırdığı ince toz
+            u = (f * 2 + k / 5) % 1
+            piksel(t, 110 + u * 14, y - 2 - u * 6, hex2("#c8a878", int(150 * (1 - u))))
+
+    sprite(45, "karakter", 300, 150, KARE, kare)
+
+
+def sahne46():
+    """Sığınma: Kara Yusuf ile Ahmed Celayir atlarından inmiş, Bayezid'in önünde diz çökmüş; Bayezid yeşil otağının önünde
+    ayakta, sancağı yanında, onlara dönük; atlar arkada durur, yoldan gelen toz çöker."""
+    gokyuzu(46, ["#3a5a9a", "#5a7ab0", "#8aa0c0", "#c8c0b0", "#e8d0a8"], None, [(130, 300, 40), (420, 320, 30)])
+    uzak(46, ["#7a8aa0", "#6a7a90"], ["#7a9068", "#6a805c"], ["#8aa060", "#7a9054", "#6a804a"])
+
+    def kamp(img, z):
+        zemin = duz(588)
+        for x, renk in ((80, "#2a6a3a"), (220, "#c8302a"), (640, "#2a6a3a")):
+            figur(img, otag, x, zemin, 1.6, renk, "#f0e8d8")
+
+    orta(46, (526, 560), ["#7a9a48", "#6a8a40", "#5a7a38", "#4a6a30", "#3a5a28"], "#a8c870", ekle=kamp)
+    on(46, ["#3a5a28", "#5a7a38", "#6a6a3a"], "#c8d888")
+
+    def kare(t, z, i):
+        f = i / KARE
+        d = ImageDraw.Draw(t)
+        y = z[0]
+        figur(t, otag, 95, z, 3.0, "#2a6a3a", "#e0b040", faz=f, acik=True)  # Osmanlı otağı
+        figur(t, kisi, 72, z, 2.6, "#c8302a", "sarik", "#f4f0e6", "#2a1a12", yon=1, silah="mizrak")  # yeniçeri
+        # sancak: direk zemine dikili, kırmızı zemin üzerinde beyaz hilal; rüzgârda dalgalanır
+        d.line([132, y - 1, 132, y - 58], fill=hex2("#5a3a22"), width=2)
+        dalga = int(math.sin(f * 2 * math.pi) * 2)
+        # dönem sancağı: hilalsiz, kırmızı-yeşil iki şeritli flama (anakronizm yok)
+        d.polygon([(133, y - 58), (160 + dalga, y - 54), (158 + dalga, y - 48), (133, y - 50)], fill=hex2("#c8302a"))
+        d.polygon([(133, y - 50), (158 + dalga, y - 48), (156 + dalga, y - 40), (133, y - 42)], fill=hex2("#2a6a3a"))
+        for j, x in enumerate((262, 300)):  # yorgun atlar arkada, başları aşağıda; insan boyu at boyunun ~%70'i
+            figur(t, at, x, z, 3.6, -1, ("#3a2418", "#6b3f24")[j], "#140a06", None, True, 0.0, True, 0.6)
+        figur(t, bayezid, 158, z, 3.1, 1, kol=0.35)  # Bayezid ayakta, sığınanlara dönük, eli onlara uzanır
+        for j, x in enumerate((204, 232)):  # Kara Yusuf (Karakoyunlu, siyah) ve Ahmed Celayir (mavi) diz çökmüş, atların önünde
+            figur(t, kisi, x, z, 2.8, ("#1a1a22", "#2a4a8a")[j], ("kalpak", "sarik")[j], ("#2a2a2a", "#f0e8d8")[j], "#2a1a12", yon=-1,
+                  diz=True, pelerin=("#3a3a4a", "#c8a040")[j])
+        rnd = random.Random(i // 2)
+        for k in range(12):  # yoldan gelen toz çöker
+            piksel(t, 268 + rnd.randint(0, 80), y - rnd.randint(2, 18) - k % 3, hex2("#c8b890", rnd.randint(50, 140)))
+
+    sprite(46, "karakter", 360, 170, KARE, kare)
 
 
 if __name__ == "__main__":

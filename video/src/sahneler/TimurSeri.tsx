@@ -139,12 +139,12 @@ const Yazi: React.FC<{ satirlar: string[]; sure: number; y?: number; boy?: numbe
   const frame = useCurrentFrame();
   const op = interpolate(frame, [0, sn(0.3), sure - sn(0.3), sure], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const kay = interpolate(frame, [0, sn(0.3)], [24, 0], { extrapolateRight: "clamp" });
-  // uzun satırlar kelime sınırından 24 harfi aşmayacak biçimde bölünür; böylece yazı boyu sahneden sahneye aynı kalır
-  if (satirlar.some((s) => s.length > 24)) {
-    // bütün metin kelime sınırından, satır uzunlukları dengeli olacak biçimde yeniden dizilir (en çok 24 harf)
+  // çok uzun satırlar kelime sınırından 30 harfi aşmayacak biçimde bölünür; 30 harfe kadar satırlar planlandığı gibi (anlam birimi) kalır
+  if (satirlar.some((s) => s.length > 30)) {
+    // bütün metin kelime sınırından, satır uzunlukları dengeli olacak biçimde yeniden dizilir (en çok 30 harf)
     const kelimeler = satirlar.join(" ").split(" ");
     const toplam = kelimeler.join(" ").length;
-    const hedef = Math.min(24, Math.ceil(toplam / Math.ceil(toplam / 24)) + 2);
+    const hedef = Math.min(30, Math.ceil(toplam / Math.ceil(toplam / 30)) + 2);
     const yeni: string[] = [];
     let satir = "";
     for (const k of kelimeler) {
@@ -204,17 +204,51 @@ const Mektup: React.FC<{ metin: string[]; imza: string; sure: number }> = ({ met
   );
 };
 
-const Kapanis: React.FC<{ satirlar: string[]; sonraki: string; arka: number }> = ({ satirlar, sonraki, arka }) => {
+/* Kapanış kartı: arka sahnenin katmanları kısık ışıkta; gece=true ise mavi gece tonu ve yanıp sönen yıldızlar
+   (3. bölüm: Gür-i Emir'in kubbe silüeti yıldızlı gecede). */
+const YILDIZLAR = Array.from({ length: 70 }, (_, k) => ({
+  x: ((k * 379) % 1061) + 10,
+  y: ((k * 233) % 1150) + 40,
+  faz: (k * 37) % 60,
+  b: 3 + (k % 3) * 2,
+}));
+
+const Kapanis: React.FC<{ satirlar: string[]; sonraki: string; arka: number; gece?: boolean }> = ({ satirlar, sonraki, arka, gece }) => {
   const frame = useCurrentFrame();
   const giris = interpolate(frame, [0, sn(0.5)], [0, 1], { extrapolateRight: "clamp" });
   const nabiz = 1 + Math.round(Math.sin((frame / T_FPS) * Math.PI * 2) * 2) / 100;
   return (
-    <AbsoluteFill style={{ opacity: giris, background: "#1a0806" }}>
-      <AbsoluteFill style={{ filter: "brightness(0.45)", transform: "scale(1.6)", transformOrigin: "50% 66%" }}>
+    <AbsoluteFill style={{ opacity: giris, background: gece ? "#060a1e" : "#1a0806" }}>
+      <AbsoluteFill
+        style={{
+          filter: gece ? "brightness(0.5) saturate(0.7)" : "brightness(0.45)",
+          transform: gece ? "translateY(170px) scale(1.6)" : "scale(1.6)", // gece kartında kubbe silüeti yazının altına iner
+          transformOrigin: "50% 66%",
+        }}
+      >
         <Tekrar src={`sahne${arka}-gokyuzu.png`} x={-frame * 0.2} />
         <Tekrar src={`sahne${arka}-uzak.png`} x={-frame * 0.4} />
         <Img src={staticFile(`sahne${arka}-orta.png`)} style={{ ...PIKSEL, left: -270, top: 0, width: 1620, height: H }} />
       </AbsoluteFill>
+      {gece ? (
+        <>
+          <AbsoluteFill style={{ background: "#0a1440", mixBlendMode: "multiply", opacity: 0.75 }} />
+          {YILDIZLAR.map((y, k) => (
+            <div
+              key={k}
+              style={{
+                position: "absolute",
+                left: y.x,
+                top: y.y,
+                width: y.b,
+                height: y.b,
+                background: "#fff8e0",
+                opacity: 0.35 + 0.65 * Math.abs(Math.sin(((frame + y.faz) / 60) * Math.PI)),
+              }}
+            />
+          ))}
+        </>
+      ) : null}
       <Img
         src={staticFile("logo-pikseltarihim.png")}
         style={{ position: "absolute", left: W / 2 - 170, top: 260, width: 340, height: 340, transform: `scale(${nabiz})` }}
@@ -229,13 +263,17 @@ const Kapanis: React.FC<{ satirlar: string[]; sonraki: string; arka: number }> =
       <div style={{ position: "absolute", top: 1180, left: 30, width: W - 60, textAlign: "center" }}>
         <div style={{ ...yaziStil(Math.min(104, Math.floor((W - 200) / (sonraki.length * 0.46))), ALTIN), whiteSpace: "nowrap" }}>{sonraki}</div>
         <div style={yaziStil(88, KREM)}>@pikseltarihim</div>
-        <div style={yaziStil(60, KREM)}>Piksel Tarih | Tarih Animasyon</div>
+        <div style={yaziStil(72, KREM)}>Piksel Tarih | Tarih Animasyon</div>
       </div>
     </AbsoluteFill>
   );
 };
 
-export type Seri = { etiket: string; bolumler: Bolum[]; kapanis: { satirlar: string[]; sonraki: string; sure: number; arka: number } };
+export type Seri = {
+  etiket: string;
+  bolumler: Bolum[];
+  kapanis: { satirlar: string[]; sonraki: string; sure: number; arka: number; gece?: boolean };
+};
 
 const ARA = 0.25;
 export const seriSure = (s: Seri) => s.bolumler.reduce((t, b) => t + b.yazilar.reduce((a, y) => a + y.sure, 0) + 0.5, 0) + s.kapanis.sure;
@@ -278,7 +316,7 @@ export const SeriVideo: React.FC<{ seri: Seri }> = ({ seri }) => {
         </div>
       </Sequence>
       <Sequence from={sn(t)} durationInFrames={sn(seri.kapanis.sure)}>
-        <Kapanis satirlar={seri.kapanis.satirlar} sonraki={seri.kapanis.sonraki} arka={seri.kapanis.arka} />
+        <Kapanis satirlar={seri.kapanis.satirlar} sonraki={seri.kapanis.sonraki} arka={seri.kapanis.arka} gece={seri.kapanis.gece} />
       </Sequence>
     </AbsoluteFill>
   );

@@ -60,7 +60,7 @@ Videolarda seslendirme yok. Ekran yazılarıyla anlaşılıyorlar. Müziği payl
 
 ---
 
-## 3) Timur · Bölüm 2/3 · "İki Yıldırım" (1370–1403) · 74 sn
+## 3) Timur · Bölüm 2/3 · "İki Yıldırım" (1370–1403) · 75 sn
 
 **Video:** `teslimler/video/pikseltarihim-timur-2-iki-yildirim.mp4`
 
