@@ -176,3 +176,20 @@ export const KapakGunduz: React.FC = () => (
     />
   </AbsoluteFill>
 );
+
+/* Kayıp Mezar kapağı: Cengiz Han serisinin 2. bölümü; savaş kapağının sanatı, "2. BÖLÜM" etiketi ve "Kayıp Mezar" başlığı. */
+export const KapakKayipMezar: React.FC = () => (
+  <AbsoluteFill style={{ background: "#1a0806", overflow: "hidden" }}>
+    <Img src={staticFile("kapak-cengiz-arka.png")} style={{ ...PIKSEL, left: 0, top: 0, width: W, height: H, filter: "saturate(0.8) brightness(0.9)" }} />
+    <Img
+      src={staticFile("logo-pikseltarihim.png")}
+      style={{ position: "absolute", left: 790, top: 262, width: 250, height: 250, filter: "drop-shadow(0 6px 0 rgba(20,8,4,0.8))" }}
+    />
+    {[0, 1, 2].map((i) => (
+      <div key={`a${i}`} style={{ position: "absolute", left: 0, top: 1230 + i * 30, width: W, height: 460 - i * 60, background: "rgba(20,8,4,0.24)" }} />
+    ))}
+    <Yazi metin="2. BÖLÜM" boy={64} y={1250} renk={ALTIN} kontur={6} />
+    <Yazi metin="CENGİZ HAN" boy={150} y={1320} kontur={9} />
+    <Yazi metin="Kayıp Mezar" boy={124} y={1490} renk={ALTIN} kontur={8} />
+  </AbsoluteFill>
+);
