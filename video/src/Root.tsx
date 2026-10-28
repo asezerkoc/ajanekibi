@@ -8,6 +8,7 @@ import { T1_KARE, Timur1 } from "./sahneler/Timur1";
 import { T2_KARE, Timur2 } from "./sahneler/Timur2";
 import { T3_KARE, Timur3 } from "./sahneler/Timur3";
 import { T_FPS } from "./sahneler/TimurSeri";
+import { C29_FPS, C29_KARE, Cumhuriyet29 } from "./sahneler/Cumhuriyet29";
 
 export const Root: React.FC = () => (
 	<>
@@ -29,5 +30,6 @@ export const Root: React.FC = () => (
 		<Composition id="Timur1" component={Timur1} durationInFrames={T1_KARE} fps={T_FPS} width={1080} height={1920} />
 		<Composition id="Timur2" component={Timur2} durationInFrames={T2_KARE} fps={T_FPS} width={1080} height={1920} />
 		<Composition id="Timur3" component={Timur3} durationInFrames={T3_KARE} fps={T_FPS} width={1080} height={1920} />
+		<Composition id="Cumhuriyet29" component={Cumhuriyet29} durationInFrames={C29_KARE} fps={C29_FPS} width={1080} height={1920} />
 	</>
 );

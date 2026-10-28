@@ -159,7 +159,40 @@ def poster():
     return buyut(img)
 
 
+def katmanlar():
+    """Remotion için yazısız katmanlar (1080x1920): 29ekim-gok (gök, ay-yıldız, güneş), 29ekim-orta (dağlar + atlı silüet,
+    saydam), 29ekim-on (ön bozkır bandı, saydam)."""
+    gok = yeni()
+    gradyan(gok, ["#0c0618", "#2a0a24", "#6a1020", "#a8161e", "#d42a22", "#e8562a", "#f4a040"])
+    yildizlar(gok, 110, 300, "#ffe8d0", 29)
+    ay_yildiz(gok, 236, 240, 76)
+    gunes(gok, 300, 578, 52, ["#fff4c8", "#ffd060", "#f08030"])
+    orta = yeni()
+    uzak = sirt(575, 24, 7, 3, 2, w=W)
+    arazi(orta, uzak, ["#5a1a22", "#4a141e", "#3a1018"], None, doku_tohum=1)
+    tepe = sirt(640, 26, 29, 2.2, 1.5, w=W)
+    for x in range(W):
+        kubbe = 78 * math.exp(-((x - 300) / 150) ** 2)
+        tepe[x] = int(tepe[x] - kubbe)
+    for x in range(230, 372):
+        tepe[x] = min(tepe[x], 562)
+    arazi(orta, tepe, ["#2a0c14", "#200a10", "#18080c", "#120608"], None, doku_tohum=29, perspektif=True)
+    cimen_tutamlari(orta, tepe, ["#2a0c14", "#3a1018", "#200a10"], 29, 0.5, 4)
+    siluet(orta, ata_siluet, 300, 562, 4.3)
+    on_ = yeni()
+    on_z = sirt(612, 8, 31, 2, 1, w=W)
+    arazi(on_, on_z, ["#120408", "#0e0306", "#0a0204", "#080204"], None, doku_tohum=5)
+    cimen_tutamlari(on_, on_z, ["#1a0408", "#2a0a10"], 31, 0.6, 6)
+    hedef = KOK / "video" / "public"
+    for ad, im in (("29ekim-gok", gok), ("29ekim-orta", orta), ("29ekim-on", on_)):
+        buyut(im).save(hedef / f"{ad}.png")
+    print("katmanlar:", hedef)
+
+
 if __name__ == "__main__":
+    if "--katmanlar" in sys.argv:
+        katmanlar()
+        sys.exit()
     out = poster()
     (KOK / "video" / "public").mkdir(exist_ok=True)
     out.save(KOK / "video" / "public" / "kapak-29-ekim.png")
