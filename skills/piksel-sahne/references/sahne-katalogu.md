@@ -73,3 +73,9 @@ kaynak satırlarını oku ve aynı kalıpla yaz. Sütunlar: sprite = `sprite(no,
 | 62 | 22 Haziran 1941 şafağı: Alman tankları sınırı geçer; ufukta patlamalar. | gokyuzu + uzak + orta + on; sprite: karakter 480×120 | `video/piksel/timur.py:1702` | Timur3.tsx: `yakin: 2.1, sarsinti: 3, kamera: 60, sprite: { w: 480, h: 120, fps: 20, x: [210, 320], taban: 632 }` |
 | 63 | Kasım 1942: Timur İslami törenle yeniden gömülür; omuzlarda tabut, imam dua eder, Gür-i Emir karlar altında. | gokyuzu + uzak + orta + on + hava + kar_ortusu + silik_sehir; sprite: karakter 500×160 | `video/piksel/timur.py:1737` | Timur3.tsx: `yakin: 2.0, hava: 20, sprite: { w: 500, h: 160, fps: 12, x: [250, 280], taban: 634 }` |
 | 64 | Taşkent bugün: Marx heykelinin yerinde atlı Emir Timur; 'Güç adalettedir'. | gokyuzu + uzak + orta + on; sprite: karakter 420×200 | `video/piksel/timur.py:1811` | Timur3.tsx: `yakin: 2.1, sprite: { w: 420, h: 200, fps: 10, x: 230, taban: 632 }` |
+
+## video/piksel/pasa.py
+
+| Sahne | Konu | Katmanlar / sprite | Kaynak | TSX `Bolum` |
+|---|---|---|---|---|
+| 71 | Alacakaranlık meydan: darağacında üç adam, sağ önde kahkaha atan Paşa, iki muhafız, dönen kargalar, arkada kale. | gokyuzu + uzak + orta + on; sprite: karakter 420×150 | `video/piksel/pasa.py:117` | CengizHan.tsx (kendi sahne yapısı) |

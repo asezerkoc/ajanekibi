@@ -123,3 +123,11 @@ Figürler `figur(img, fn, x, zemin, ...)` ile çağrılır (kontur + ışık/gö
 - **`at_suru(img, zemin, i, s, adet, x0, aralik, renkler, tohum)`** — Binicisiz dörtnala koşan atlar: sıra sıra, farklı fazlarda; toynakların arkasından toz kalkar.
 - **`_alay(no, gok, gunes_, bulut_renk, ova, orta_renk, kenar, on_renk, on_isik, yildiz=0)`** — (açıklama yok; kaynak koda bak)
 - **`_dag_ormani(img, z, yogunluk, tohum, renk='#1e3a2a')`** — (açıklama yok; kaynak koda bak)
+
+## pasa — darağacı, asılı adam, kahkaha atan paşa
+
+`from pasa import ...` (dosya: `video/piksel/pasa.py`)
+
+- **`daragaci(img, x, zemin, s=1.0, adamlar=(), f=0.0, ip=4.0)`** — Darağacı: iki kalın direk zemine dikili, üstte kiriş, kirişten sarkan iplerde asılmış adamlar. adamlar: (yerel_x_orani -1..1, govde_rengi, yon) listesi. Asılanların ayakları yerden kesilir (ipte sallanır); salınım f ile. Direkler düz zemine basar, dipleri toprakla desteklidir.
+- **`asili(img, x, kiris_y, s=1.0, govde='#3a3a3a', yon=1, sal=0.0, ip=4.0)`** — İpte asılı adam: ip kirişten boyna iner, baş yana düşmüş, kollar iki yanda sarkık, bacaklar bitişik ve gevşek, ayaklar yerden kesik (zemine basmaz, gölgesi yok). sal: salınım (piksel).
+- **`pasa_kahkaha(img, x, zemin, s=1.0, yon=-1, f=0.0, kaftan='#8a1e22', kurk='#e8e0d0', sakal='#2a1a12')`** — Kahkaha atan Paşa: kisi gövdesi üstüne geriye düşmüş baş, kapalı gözler, açık ağız; kol darağacını gösterir, gövde kahkahayla sarsılır (f ile kol ve baş titrer). Ayakları zemine basar.

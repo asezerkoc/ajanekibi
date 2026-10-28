@@ -25,8 +25,9 @@ MODULLER = [
     ("timur_figur.py", "timur_figur — tarihî kişiler, hayvanlar, yapılar ve araçlar"),
     ("timur.py", "timur — yardımcılar: hava, iç mekân, ateş, mum, tabut, tabela…"),
     ("kayip_mezar.py", "kayip_mezar — orman, nöbetçi, cenaze arabası, at sürüsü"),
+    ("pasa.py", "pasa — darağacı, asılı adam, kahkaha atan paşa"),
 ]
-SAHNE_DOSYALARI = ["sahneler.py", "kayip_mezar.py", "timur.py"]
+SAHNE_DOSYALARI = ["sahneler.py", "kayip_mezar.py", "timur.py", "pasa.py"]
 ATLA = {"main", "kaydet", "onizleme"}
 OZEL_ALT = {"_alay", "_dag_ormani"}  # alt çizgili ama grafikerin kullanabileceği yardımcılar
 
