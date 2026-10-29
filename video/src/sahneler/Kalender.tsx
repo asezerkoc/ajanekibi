@@ -9,20 +9,20 @@ export const KALENDER: Seri = {
   ses: "kalender-anlatim.mp3",
   bolumler: [
     {
-      no: 72, yakin: 2.6, kamera: 10, sprite: { w: 540, h: 200, fps: 8, x: 270, taban: 634 },
+      no: 72, yakin: 3.0, kamera: 10, sprite: { w: 540, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
         { satirlar: ["Hükümdar mı,", "derviş mi?"], sure: 8.19, renk: ALTIN },
         { satirlar: ["Bir elinde kılıç,", "öbüründe şiir."], sure: 2.23 },
       ],
     },
     {
-      no: 73, yakin: 2.6, kamera: 20, sprite: { w: 540, h: 170, fps: 10, x: 270, taban: 632 },
+      no: 73, yakin: 2.9, kamera: 20, sprite: { w: 540, h: 170, fps: 10, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Timur'un kanı,", "Baysungur'un kalemi"], sure: 13.82, renk: ALTIN },
       ],
     },
     {
-      no: 74, yakin: 2.6, kamera: 10, sprite: { w: 540, h: 200, fps: 8, x: 270, taban: 634 },
+      no: 74, yakin: 3.0, kamera: 10, sprite: { w: 540, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
         { satirlar: ["Hattatlar, nakkaşlar,", "müzehhipler."], sure: 6.21 },
       ],
@@ -34,19 +34,19 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 76, yakin: 2.8, kamera: 30, sprite: { w: 300, h: 170, fps: 16, x: [230, 300], taban: 630 },
+      no: 76, yakin: 3.0, kamera: 30, sprite: { w: 300, h: 170, fps: 16, x: [230, 300], taban: 630 },
       yazilar: [
         { satirlar: ["Sarayda tuhaf", "bir şehzade beliriyor"], sure: 9.90 },
       ],
     },
     {
-      no: 77, yakin: 2.6, kamera: 10, sprite: { w: 540, h: 190, fps: 8, x: 270, taban: 634 },
+      no: 77, yakin: 3.0, kamera: 10, sprite: { w: 540, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
         { satirlar: ["Ona \"Kalender\"", "diyorlar"], sure: 2.71, renk: ALTIN },
       ],
     },
     {
-      no: 78, yakin: 2.6, kamera: 20, sprite: { w: 540, h: 170, fps: 10, x: 270, taban: 632 },
+      no: 78, yakin: 2.8, kamera: 20, sprite: { w: 540, h: 170, fps: 10, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["İlk kapıda", "misliyle ver"], sure: 9.61, renk: ALTIN },
       ],
@@ -58,20 +58,20 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 80, yakin: 2.3, kamera: 20, sprite: { w: 540, h: 160, fps: 18, x: [255, 268], taban: 632 },
+      no: 80, yakin: 2.4, kamera: 20, sprite: { w: 540, h: 160, fps: 18, x: [255, 268], taban: 632 },
       yazilar: [
         { satirlar: ["Derviş ordu topluyor", "ve Herat'a giriyor"], sure: 7.79 },
         { satirlar: ["Dervişin elinde", "kılıç"], sure: 1.15, renk: KIZIL },
       ],
     },
     {
-      no: 81, yakin: 2.6, kamera: 10, sprite: { w: 440, h: 200, fps: 8, x: 270, taban: 634 },
+      no: 81, yakin: 3.0, kamera: 10, sprite: { w: 440, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
         { satirlar: ["Kılıçla yakışmayan", "iki satır…"], sure: 3.38, renk: ALTIN },
       ],
     },
     {
-      no: 82, yakin: 2.8, kamera: 20, sprite: { w: 380, h: 170, fps: 10, x: 270, taban: 630 },
+      no: 82, yakin: 2.6, kamera: 20, sprite: { w: 380, h: 170, fps: 10, x: 270, taban: 630 },
       yazilar: [
         { satirlar: ["O ay parçası gibi güzel yüze", "âşık olmayan her gönül,", "sana gönül denmez;"], sure: 5.25 },
         { satirlar: ["çünkü taş parçasından", "geri kalır yanın yok."], sure: 2.49 },
@@ -92,7 +92,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 85, yakin: 2.6, kamera: 10, sprite: { w: 440, h: 190, fps: 8, x: 270, taban: 634 },
+      no: 85, yakin: 3.0, kamera: 10, sprite: { w: 440, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
         { satirlar: ["Zamanımızın eski", "süvarilerinden biri meydir;"], sure: 3.33 },
         { satirlar: ["her vakit durmaksızın nefes", "isteyip kabul eden", "şey nedir?"], sure: 3.61 },
@@ -113,7 +113,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 88, yakin: 2.6, kamera: 10, sprite: { w: 540, h: 200, fps: 8, x: 270, taban: 634 },
+      no: 88, yakin: 3.0, kamera: 10, sprite: { w: 540, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
         { satirlar: ["Bu satırları elinde kılıç", "tutan hükümdar yazdı."], sure: 4.47 },
         { satirlar: ["Burada öldürülmekten", "başka hiçbir çare yok"], sure: 4.96, renk: KIZIL },
@@ -121,7 +121,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 85, yakin: 3.0, kamera: 10, odakY: 560, sprite: { w: 440, h: 190, fps: 8, x: 270, taban: 634 },
+      no: 85, yakin: 3.5, kamera: 10, odakY: 570, sprite: { w: 440, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
         { satirlar: ["Kadeh:", "şarap mı, hakikat mi?"], sure: 2.47, renk: ALTIN },
         { satirlar: ["Şeriat kadeh,", "hakikat içindeki içki"], sure: 5.30 },
