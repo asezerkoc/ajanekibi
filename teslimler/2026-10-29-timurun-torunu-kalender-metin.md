@@ -1,4 +1,4 @@
-# Timur'un Torunu Kalender · seslendirme metni (sahibin istediği sürüm, 29 Ekim 2026)
+# Timur'un Soyundan Kalender · seslendirme metni (sahibin istediği sürüm, 29 Ekim 2026)
 
 - **Durum:** ONAY BEKLİYOR (sahip metni inceliyor; ekip tam zincirle paralel çalışıyor)
 - **Kaynak:** Ünal 2022, Selçuk Türkiyat 56 (Fahrî-i Herevî, Devletşah); kroniklerden gelen iki olgu (kardeş katli 1452, ölüm 1457/35 yaş) araştırmacı doğrulayacak.

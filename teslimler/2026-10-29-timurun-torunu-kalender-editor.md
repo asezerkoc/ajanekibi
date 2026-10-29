@@ -1,9 +1,9 @@
-# Timur'un Torunu Kalender · 🟣 Editör düzenlemesi (sürüm 3 üzerine)
+# Timur'un Soyundan Kalender · 🟣 Editör düzenlemesi (sürüm 3 üzerine)
 
 - **Tarih:** 2026-10-29 18:04
-- **Durum:** ONAY BEKLİYOR
+- **Durum:** ONAYLANDI (sahip, 29 Ekim 2026) · seslendirme: vcvcvc · grafiker sahneleri hazırlıyor
 
-# Piksel Tarihim | Bâbür Kalender: Tahttaki Derviş (Sürüm 3, düzenlenmiş)
+# Piksel Tarihim | Bâbür Kalender: Tahttaki Derviş (Timur'un soyundan) (Sürüm 3, düzenlenmiş)
 
 **Tahmini süre:** yaklaşık 355 kelime, sakin ve ağır tempoda saniyede ~2 kelime, yani ~175-179 sn.
 
