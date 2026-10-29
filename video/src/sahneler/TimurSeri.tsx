@@ -65,6 +65,7 @@ export type Bolum = {
   sarsinti?: number; // savaş anında kamera sarsıntısı (px)
   odakY?: number; // yakın çekimin odak satırı (ızgara y); verilmezse sprite tabanı
   mektup?: { metin: string[]; imza: string };
+  yaziY?: number; // ekran yazısının üst kenarı (px); gökyüzündeki ay/güneş yazıyla çakışmasın diye aşağı alınabilir
   yazilar: { satirlar: string[]; sure: number; boy?: number; renk?: string }[];
 };
 
@@ -304,7 +305,7 @@ export const SeriVideo: React.FC<{ seri: Seri }> = ({ seri }) => {
     b.yazilar.forEach((y, j) => {
       parcalar.push(
         <Sequence key={`y${i}-${j}`} from={sn(ty)} durationInFrames={sn(y.sure)}>
-          <Yazi satirlar={y.satirlar} sure={sn(y.sure)} boy={y.boy} renk={y.renk} />
+          <Yazi satirlar={y.satirlar} sure={sn(y.sure)} boy={y.boy} renk={y.renk} y={b.yaziY} />
         </Sequence>,
       );
       ty += y.sure;

@@ -71,7 +71,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 82, yakin: 2.2, kamera: 20, sprite: { w: 380, h: 170, fps: 10, x: 270, taban: 630 },
+      no: 82, yakin: 2.2, kamera: 20, yaziY: 1120, sprite: { w: 380, h: 170, fps: 10, x: 270, taban: 630 },
       yazilar: [
         { satirlar: ["O ay parçası gibi güzel yüze", "âşık olmayan her gönül,", "sana gönül denmez;"], sure: 5.25 },
         { satirlar: ["çünkü taş parçasından", "geri kalır yanın yok."], sure: 2.49 },
@@ -99,7 +99,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 86, yakin: 2.2, kamera: 15, sprite: { w: 400, h: 170, fps: 10, x: 270, taban: 630 },
+      no: 86, yakin: 2.2, kamera: 15, yaziY: 1120, sprite: { w: 400, h: 170, fps: 10, x: 270, taban: 630 },
       yazilar: [
         { satirlar: ["İyilerin keman kaşları niçin", "siyahtır, bilir misin?"], sure: 4.63 },
         { satirlar: ["Çünkü onların gönül", "dumanının köşelerinden", "halk güç almaktadır."], sure: 3.67 },
