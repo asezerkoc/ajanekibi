@@ -22,7 +22,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 74, yakin: 2.6, kamera: 10, sprite: { w: 540, h: 200, fps: 8, x: 270, taban: 634 },
+      no: 74, yakin: 2.3, kamera: 10, sprite: { w: 540, h: 200, fps: 8, x: 270, taban: 634 },
       yazilar: [
         { satirlar: ["Hattatlar, nakkaşlar,", "müzehhipler."], sure: 6.21 },
       ],
@@ -58,7 +58,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 80, yakin: 2.2, kamera: 25, sprite: { w: 540, h: 160, fps: 18, x: [250, 275], taban: 632 },
+      no: 80, yakin: 2.2, kamera: 20, sprite: { w: 540, h: 160, fps: 18, x: [255, 268], taban: 632 },
       yazilar: [
         { satirlar: ["Derviş ordu topluyor", "ve Herat'a giriyor"], sure: 7.79 },
         { satirlar: ["Dervişin elinde", "kılıç"], sure: 1.15, renk: KIZIL },
@@ -71,7 +71,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 82, yakin: 2.2, kamera: 20, yaziY: 1120, sprite: { w: 380, h: 170, fps: 10, x: 270, taban: 630 },
+      no: 82, yakin: 2.2, kamera: 20, yaziY: 740, sprite: { w: 380, h: 170, fps: 10, x: 270, taban: 630 },
       yazilar: [
         { satirlar: ["O ay parçası gibi güzel yüze", "âşık olmayan her gönül,", "sana gönül denmez;"], sure: 5.25 },
         { satirlar: ["çünkü taş parçasından", "geri kalır yanın yok."], sure: 2.49 },
@@ -99,7 +99,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 86, yakin: 2.2, kamera: 15, yaziY: 1120, sprite: { w: 400, h: 170, fps: 10, x: 270, taban: 630 },
+      no: 86, yakin: 2.2, kamera: 15, yaziY: 740, sprite: { w: 400, h: 170, fps: 10, x: 270, taban: 630 },
       yazilar: [
         { satirlar: ["İyilerin keman kaşları niçin", "siyahtır, bilir misin?"], sure: 4.63 },
         { satirlar: ["Çünkü onların gönül", "dumanının köşelerinden", "halk güç almaktadır."], sure: 3.67 },
@@ -138,7 +138,7 @@ export const KALENDER: Seri = {
       yazilar: [
         { satirlar: ["Sonra ölüyor."], sure: 1.20, renk: KIZIL },
         { satirlar: ["Kılıcıyla değil, şiirleri", "ve bir lakapla anılıyor:", "Kalender"], sure: 5.19, renk: ALTIN },
-        { satirlar: ["Timur dünyayı kılıçla titretti,", "torunu geriye şiir bıraktı"], sure: 5.17 },
+        { satirlar: ["Atası Timur dünyayı kılıçla", "titretti; torunu bir şehri", "alıp geriye şiir bıraktı"], sure: 5.17 },
       ],
     },
   ],
