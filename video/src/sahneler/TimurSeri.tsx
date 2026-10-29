@@ -76,7 +76,7 @@ export type Bolum = {
   yazilar: { satirlar: string[]; sure: number; boy?: number; renk?: string }[];
   /* Tarz denemeleri: piksel katmanları yerine tek bir dikey görsel (public/, 1080x1920'ye oturtulur) ve kamera hareketi.
      hareket: icer (yavaş yaklaşma), disari (uzaklaşma), sol/sag (yatay kayma), yukari (aşağıdan yukarı tilt). */
-  gorsel?: { dosya: string; hareket?: "icer" | "disari" | "sol" | "sag" | "yukari"; olcek?: number };
+  gorsel?: { dosya: string; hareket?: "icer" | "disari" | "sol" | "sag" | "yukari"; olcek?: number; odakX?: number; odakY?: number }; // odak: yakınlaşma merkezi (%)
   video?: string; // gorsel yerine hareketli klip (public/, görsel modelin image-to-video çıktısı); süresi sahneyi doldurmazsa son kare kalır
 };
 
@@ -91,23 +91,25 @@ const GorselSahne: React.FC<{ b: Bolum; sure: number }> = ({ b, sure }) => {
   let dx = 0;
   let dy = 0;
   const hareket = g.hareket ?? "icer";
+  // kaydırma genliği, büyütmenin kenarlarda bıraktığı payı aşmaz: (olcek-1)*W/2 her yöne
   if (hareket === "icer") olcek = taban * (1 + 0.1 * t);
   else if (hareket === "disari") olcek = taban * (1.1 - 0.1 * t);
-  else if (hareket === "sol") dx = (0.5 - t) * W * (taban - 1) * 1.6;
-  else if (hareket === "sag") dx = (t - 0.5) * W * (taban - 1) * 1.6;
-  else if (hareket === "yukari") dy = (0.5 - t) * H * (taban - 1) * 1.2;
+  else if (hareket === "sol") dx = (0.5 - t) * W * (taban - 1) * 0.9;
+  else if (hareket === "sag") dx = (t - 0.5) * W * (taban - 1) * 0.9;
+  else if (hareket === "yukari") dy = (0.5 - t) * H * (taban - 1) * 0.9;
+  const odak = `${g.odakX ?? 50}% ${g.odakY ?? 55}%`;
   return (
     <AbsoluteFill style={{ opacity: giris, background: "#120806", overflow: "hidden" }}>
       {b.video ? (
         <OffthreadVideo
           src={staticFile(b.video)}
           muted
-          style={{ position: "absolute", left: 0, top: 0, width: W, height: H, objectFit: "cover", transform: `translate(${dx}px, ${dy}px) scale(${olcek})`, transformOrigin: "50% 55%" }}
+          style={{ position: "absolute", left: 0, top: 0, width: W, height: H, objectFit: "cover", transform: `translate(${dx}px, ${dy}px) scale(${olcek})`, transformOrigin: odak }}
         />
       ) : (
         <Img
           src={staticFile(g.dosya)}
-          style={{ position: "absolute", left: 0, top: 0, width: W, height: H, objectFit: "cover", transform: `translate(${dx}px, ${dy}px) scale(${olcek})`, transformOrigin: "50% 55%" }}
+          style={{ position: "absolute", left: 0, top: 0, width: W, height: H, objectFit: "cover", transform: `translate(${dx}px, ${dy}px) scale(${olcek})`, transformOrigin: odak }}
         />
       )}
       {/* üst yazı bandı ve alt kenar hafif koyulaşır: yazı her görselde okunur */}

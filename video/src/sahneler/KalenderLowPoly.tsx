@@ -24,28 +24,31 @@ Promise.all(
   }),
 ).then(() => continueRender(bekle), (e) => cancelRender(e));
 
-type Hareket = NonNullable<Bolum["gorsel"]>["hareket"];
-/* KALENDER.bolumler sırasıyla (72…88, 85 tekrar, 87 tekrar, 89): grafikerin kamera planı. */
-const KAMERA: { dosya: number; hareket: Hareket; olcek?: number }[] = [
+type Gorsel = NonNullable<Bolum["gorsel"]>;
+type Hareket = Gorsel["hareket"];
+/* KALENDER.bolumler sırasıyla (72…88, 85 tekrar, 87 tekrar, 89): grafikerin kamera planı + kalite kontrol düzeltmeleri.
+   yaziY: görselde üst bant dolu olduğunda yazı alt banda (y≈1480-1520, zemin/halı) iner; kremYazi: gün batımında kızıl yazı
+   okunmuyorsa yazı rengi kreme çekilir; odakX: figür kenardaysa yakınlaşma o kenarı korur. */
+const KAMERA: { dosya: number; hareket: Hareket; olcek?: number; odakX?: number; odakY?: number; yaziY?: number; kremYazi?: boolean }[] = [
   { dosya: 72, hareket: "icer" },
-  { dosya: 73, hareket: "sag", olcek: 1.12 },
-  { dosya: 74, hareket: "icer" },
-  { dosya: 75, hareket: "sag", olcek: 1.12 },
-  { dosya: 76, hareket: "sag", olcek: 1.12 },
+  { dosya: 73, hareket: "sag", olcek: 1.1 },
+  { dosya: 74, hareket: "icer", yaziY: 1480 }, // Baysungur'un başı üst bantta: yazı alta
+  { dosya: 75, hareket: "sag", olcek: 1.1, kremYazi: true }, // kızıl yazı gün batımıyla karışıyordu
+  { dosya: 76, hareket: "sag", olcek: 1.1 },
   { dosya: 77, hareket: "icer" },
-  { dosya: 78, hareket: "icer", olcek: 1.1 },
-  { dosya: 79, hareket: "sol", olcek: 1.12 },
-  { dosya: 80, hareket: "sag", olcek: 1.14 },
-  { dosya: 81, hareket: "icer", olcek: 1.1 },
-  { dosya: 82, hareket: "yukari", olcek: 1.12 },
+  { dosya: 78, hareket: "icer", olcek: 1.08, odakX: 100, yaziY: 1500 }, // Kalender sağ kenarda: yakınlaşma sağı korur, yazı alta
+  { dosya: 79, hareket: "sol", olcek: 1.1 },
+  { dosya: 80, hareket: "sag", olcek: 1.1, yaziY: 1500 }, // kalkık kılıç üst bantta
+  { dosya: 81, hareket: "icer", olcek: 1.08 },
+  { dosya: 82, hareket: "yukari", olcek: 1.1, yaziY: 1480 }, // dolunay üst bantta
   { dosya: 83, hareket: "icer", olcek: 1.04 },
   { dosya: 84, hareket: "disari", olcek: 1.06 },
   { dosya: 85, hareket: "icer" },
-  { dosya: 86, hareket: "yukari", olcek: 1.1 },
+  { dosya: 86, hareket: "yukari", olcek: 1.1, yaziY: 1480 }, // duman ve hilal üst bantta
   { dosya: 87, hareket: "icer" },
   { dosya: 88, hareket: "disari", olcek: 1.08 },
-  { dosya: 85, hareket: "icer", olcek: 1.14 }, // 85†: kadehe doğru
-  { dosya: 87, hareket: "sag", olcek: 1.15 }, // 87†: çadıra doğru
+  { dosya: 85, hareket: "icer", olcek: 1.06, odakY: 70, yaziY: 1500 }, // 85†: sakinin başı yazıya girmesin
+  { dosya: 87, hareket: "icer", olcek: 1.0, yaziY: 1500 }, // 87†: Mecnun tam kadrajda kalsın
   { dosya: 89, hareket: "disari", olcek: 1.1 },
 ];
 
@@ -53,11 +56,15 @@ export const KALENDER_LOWPOLY: Seri = {
   ...KALENDER,
   etiket: "PİKSEL TARİHİM · KALENDER",
   yaziTipi: { font: "Montserrat, sans-serif", em: 0.6, kontur: 5 },
-  bolumler: KALENDER.bolumler.map((b, i) => ({
-    ...b,
-    yaziY: undefined, // görsellerde üst %25 yazı için boş bırakıldı; piksel sahnedeki ay kaydırmaları gerekmez
-    gorsel: { dosya: `lowpoly/sahne${KAMERA[i].dosya}.png`, hareket: KAMERA[i].hareket, olcek: KAMERA[i].olcek },
-  })),
+  bolumler: KALENDER.bolumler.map((b, i) => {
+    const k = KAMERA[i];
+    return {
+      ...b,
+      yaziY: k.yaziY, // piksel sahnedeki ay kaydırmaları yerine görsele göre bant seçimi
+      yazilar: k.kremYazi ? b.yazilar.map((y) => ({ ...y, renk: undefined })) : b.yazilar,
+      gorsel: { dosya: `lowpoly/sahne${k.dosya}.png`, hareket: k.hareket, olcek: k.olcek, odakX: k.odakX, odakY: k.odakY },
+    };
+  }),
   kapanis: { ...KALENDER.kapanis, arkaGorsel: "lowpoly/sahne89.png" },
 };
 
