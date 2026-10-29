@@ -22,7 +22,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 74, yakin: 3.0, kamera: 10, sprite: { w: 540, h: 300, fps: 8, x: 270, taban: 634 },
+      no: 74, yakin: 2.7, kamera: 10, sprite: { w: 540, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
         { satirlar: ["Hattatlar, nakkaşlar,", "müzehhipler."], sure: 6.21 },
       ],
@@ -58,7 +58,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 80, yakin: 2.4, kamera: 20, sprite: { w: 540, h: 160, fps: 18, x: [255, 268], taban: 632 },
+      no: 80, yakin: 2.4, kamera: 20, sprite: { w: 540, h: 160, fps: 18, x: [262, 268], taban: 632 },
       yazilar: [
         { satirlar: ["Derviş ordu topluyor", "ve Herat'a giriyor"], sure: 7.79 },
         { satirlar: ["Dervişin elinde", "kılıç"], sure: 1.15, renk: KIZIL },
@@ -121,7 +121,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 85, yakin: 3.5, kamera: 10, odakY: 570, sprite: { w: 440, h: 300, fps: 8, x: 270, taban: 634 },
+      no: 85, yakin: 3.6, kamera: 10, odakY: 590, sprite: { w: 440, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
         { satirlar: ["Kadeh:", "şarap mı, hakikat mi?"], sure: 2.47, renk: ALTIN },
         { satirlar: ["Şeriat kadeh,", "hakikat içindeki içki"], sure: 5.30 },

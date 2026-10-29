@@ -315,13 +315,13 @@ def sahne80():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, atli, 192, z, 2.9, 1, faz=(f + 0.71) % 1, at_renk="#5a3a22", yele="#2b1a12",
+        figur(t, atli, 184, z, 2.9, 1, faz=(f + 0.71) % 1, at_renk="#5a3a22", yele="#2b1a12",
               govde="#6a2a2a", bas="migfer", bas_renk="#9aa2ac", silah="mizrak", adim=0.45,
               zirh="#9aa2ac")
-        figur(t, atli, 262, z, 2.9, 1, faz=(f + 0.37) % 1, at_renk="#6b3f24", yele="#2b1a12",
+        figur(t, atli, 252, z, 2.9, 1, faz=(f + 0.37) % 1, at_renk="#6b3f24", yele="#2b1a12",
               govde="#7a1e22", bas="migfer", bas_renk="#9aa2ac", silah="mizrak", adim=0.45,
               zirh="#9aa2ac")
-        figur(t, atli, 336, z, 2.9, 1, faz=f, at_renk="#3a2a22", yele="#1a1210",
+        figur(t, atli, 318, z, 2.9, 1, faz=f, at_renk="#3a2a22", yele="#1a1210",
               govde="#8a7a5a", bas="sarik", bas_renk="#e8e0cc", sakal="#2a1a12",
               silah="kilic", kol=0.6, adim=0.45)                                    # Kalender
 
@@ -411,7 +411,7 @@ def sahne84():
                       derinlik=26),
              figur(img, agac, PAY + 205, duz(590), 1.7,
                    yaprak=("#d8789a", "#f0a0b8", "#f8d0d8"), govde="#4a3022", tohum=84),
-             figur(img, agac, PAY + 350, duz(590), 1.5,
+             figur(img, agac, PAY + 470, duz(590), 1.5,
                    yaprak=("#d8789a", "#f0a0b8", "#f8d0d8"), govde="#4a3022", tohum=85)])
     on(84, ["#406a2a", "#5a8838", "#4c7830"], "#b8e078")
 
@@ -470,13 +470,18 @@ def sahne86():
          dag_y=(400, 455), tepe_y=462)
     orta(86, (526, 560), ["#3a4060", "#323852", "#2a3048", "#242a3e", "#1e2434"], "#6a7098",
          ekle=lambda img, z: [
-             kalabalik(img, duz(596), PAY + 30, PAY + 260, 30, 86,
+             kalabalik(img, duz(596), PAY + 110, PAY + 300, 30, 86,
                        ("#2a2a40", "#3a3050", "#2a3a48"), s=1.6, yon=1)])
     on(86, ["#1e2434", "#2a3048", "#242a3e"], "#6a7098")
 
     def kare(t, z, i):
         f = i / KARE
         mangal(t, 200, z, f)
+        d = ImageDraw.Draw(t)
+        for k in range(7):                                                            # korlar belirgin kızarır
+            kor = 0.5 + 0.5 * math.sin(f * 2 * math.pi * 3 + k)
+            piksel(t, 193 + k * 2, z[0] - 10, hex2(_ac("#ff7a20", kor * 0.3)))
+        d.ellipse([200 - 30, z[0] - 14, 200 + 30, z[0] + 1], outline=hex2("#5a3a20"))     # mangalın yere vuran sıcak ışığı
         duman(t, 200, z[0] - 13, 110, 86, faz=f, renk="#d9d2c4", ruzgar=0.2)         # mangalın ağzından
         figur(t, oturan, 135, z, 2.9, govde="#6a7a5a", bas="sarik", bas_renk="#e8e0cc",
               sakal="#2a1a12", yon=1, minder="#8a2a2a")
@@ -491,7 +496,7 @@ def sahne87():
     """Beyit 6: Mecnun çölde yürür; ufukta Leyla'nın ışıklı çadırı (yurt). Akşam çölü."""
     def ekle(img, z):
         # Leyla'nın ışıklı çadırı ufuk hattında (orta planın üst kenarı), kamera kaymasıyla da kadraj içinde kalacak x'te
-        baca = figur(img, yurt, PAY + 322, duz(572), 2.0, keçe="#d8c8a8", golge="#b0986e",
+        baca = figur(img, yurt, PAY + 322, duz(578), 2.6, keçe="#d8c8a8", golge="#b0986e",
                      isik=True, isik_gucu=1.6)
         duman(img, baca[0], baca[1], 80, 87, faz=0.0)
 
@@ -506,8 +511,8 @@ def sahne87():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 190, z, 3.3, govde="#5a4a36", bas="kalpak", bas_renk="#2a1e14",
-              sakal="#2a1a12", yon=1, adim=f, kemer=None)                           # Mecnun: yırtık koyu kaftan, dağınık koyu baş, kemersiz                                       # Mecnun (taş yığını çıkarıldı: Beyit 1 imgesiyle karışıyordu)
+        figur(t, kisi, 190, z, 3.3, govde="#5a4a36", bas="kalpak", bas_renk="#3a2a1c",
+              sakal="#2a1a12", yon=1, adim=f, kemer=None, ten="#f0c8a0")                           # Mecnun: yırtık koyu kaftan, dağınık koyu baş, kemersiz                                       # Mecnun (taş yığını çıkarıldı: Beyit 1 imgesiyle karışıyordu)
 
     sprite(87, "karakter", 440, 170, KARE, kare)
 
