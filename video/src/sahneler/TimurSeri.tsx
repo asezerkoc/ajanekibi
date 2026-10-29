@@ -4,6 +4,7 @@ import {
   Audio,
   Easing,
   Img,
+  OffthreadVideo,
   Sequence,
   cancelRender,
   continueRender,
@@ -43,6 +44,12 @@ export const ALTIN = "#ffd479";
 export const KIZIL = "#ffa486";
 const PIKSEL: React.CSSProperties = { imageRendering: "pixelated", position: "absolute", maxWidth: "none" };
 
+/* Yazı tipi bağlamı: piksel seriler Jersey 10 (≈0,46 em/harf); tarz denemeleri (low-poly) başka bir yazı tipi ve
+   harf genişliği verebilir. em: bir harfin yaklaşık genişliği (yazı boyuna oranla), satır sığdırma hesabında kullanılır. */
+export type YaziTipi = { font: string; em: number; kontur: number };
+const JERSEY: YaziTipi = { font: '"Jersey 10", monospace', em: 0.46, kontur: 7 };
+const YaziTipiCtx = React.createContext<YaziTipi>(JERSEY);
+
 const Tekrar: React.FC<{ src: string; x: number }> = ({ src, x }) => {
   const o = ((x % W) + W) % W;
   return (
@@ -67,9 +74,55 @@ export type Bolum = {
   mektup?: { metin: string[]; imza: string };
   yaziY?: number; // ekran yazısının üst kenarı (px); gökyüzündeki ay/güneş yazıyla çakışmasın diye aşağı alınabilir
   yazilar: { satirlar: string[]; sure: number; boy?: number; renk?: string }[];
+  /* Tarz denemeleri: piksel katmanları yerine tek bir dikey görsel (public/, 1080x1920'ye oturtulur) ve kamera hareketi.
+     hareket: icer (yavaş yaklaşma), disari (uzaklaşma), sol/sag (yatay kayma), yukari (aşağıdan yukarı tilt). */
+  gorsel?: { dosya: string; hareket?: "icer" | "disari" | "sol" | "sag" | "yukari"; olcek?: number };
+  video?: string; // gorsel yerine hareketli klip (public/, görsel modelin image-to-video çıktısı); süresi sahneyi doldurmazsa son kare kalır
+};
+
+/* Düz görsel sahnesi (Ken Burns): görsel kadrajı kaplar, sahne boyunca yavaşça kayar/yaklaşır; alt bant yazı için koyulaşır. */
+const GorselSahne: React.FC<{ b: Bolum; sure: number }> = ({ b, sure }) => {
+  const frame = useCurrentFrame();
+  const g = b.gorsel!;
+  const t = interpolate(frame, [0, sure], [0, 1], { easing: Easing.inOut(Easing.sin), extrapolateRight: "clamp" });
+  const giris = interpolate(frame, [0, sn(0.4)], [0, 1], { extrapolateRight: "clamp" });
+  const taban = g.olcek ?? 1.08;
+  let olcek = taban;
+  let dx = 0;
+  let dy = 0;
+  const hareket = g.hareket ?? "icer";
+  if (hareket === "icer") olcek = taban * (1 + 0.1 * t);
+  else if (hareket === "disari") olcek = taban * (1.1 - 0.1 * t);
+  else if (hareket === "sol") dx = (0.5 - t) * W * (taban - 1) * 1.6;
+  else if (hareket === "sag") dx = (t - 0.5) * W * (taban - 1) * 1.6;
+  else if (hareket === "yukari") dy = (0.5 - t) * H * (taban - 1) * 1.2;
+  return (
+    <AbsoluteFill style={{ opacity: giris, background: "#120806", overflow: "hidden" }}>
+      {b.video ? (
+        <OffthreadVideo
+          src={staticFile(b.video)}
+          muted
+          style={{ position: "absolute", left: 0, top: 0, width: W, height: H, objectFit: "cover", transform: `translate(${dx}px, ${dy}px) scale(${olcek})`, transformOrigin: "50% 55%" }}
+        />
+      ) : (
+        <Img
+          src={staticFile(g.dosya)}
+          style={{ position: "absolute", left: 0, top: 0, width: W, height: H, objectFit: "cover", transform: `translate(${dx}px, ${dy}px) scale(${olcek})`, transformOrigin: "50% 55%" }}
+        />
+      )}
+      {/* üst yazı bandı ve alt kenar hafif koyulaşır: yazı her görselde okunur */}
+      <div style={{ position: "absolute", left: 0, top: 0, width: W, height: 620, background: "linear-gradient(rgba(10,4,2,0.55), rgba(10,4,2,0))" }} />
+      <div style={{ position: "absolute", left: 0, top: H - 420, width: W, height: 420, background: "linear-gradient(rgba(10,4,2,0), rgba(10,4,2,0.45))" }} />
+    </AbsoluteFill>
+  );
 };
 
 const Sahne: React.FC<{ b: Bolum; sure: number }> = ({ b, sure }) => {
+  if (b.gorsel) return <GorselSahne b={b} sure={sure} />;
+  return <PikselSahne b={b} sure={sure} />;
+};
+
+const PikselSahne: React.FC<{ b: Bolum; sure: number }> = ({ b, sure }) => {
   const frame = useCurrentFrame();
   const { no, sprite } = b;
   const kamera = b.kamera ?? 36;
@@ -121,14 +174,15 @@ const Sahne: React.FC<{ b: Bolum; sure: number }> = ({ b, sure }) => {
   );
 };
 
-const yaziStil = (boy: number, renk: string): React.CSSProperties => ({
-  fontFamily: '"Jersey 10", monospace',
+const yaziStil = (boy: number, renk: string, yt: YaziTipi = JERSEY): React.CSSProperties => ({
+  fontFamily: yt.font,
+  fontWeight: yt === JERSEY ? 400 : 800,
   fontSize: boy,
   lineHeight: 1.12,
   color: renk,
-  WebkitTextStroke: `7px ${KAHVE}`,
+  WebkitTextStroke: `${yt.kontur}px ${KAHVE}`,
   paintOrder: "stroke fill",
-  textShadow: `0 7px 0 ${KAHVE}`,
+  textShadow: `0 ${yt.kontur}px 0 ${KAHVE}`,
 });
 
 const Yazi: React.FC<{ satirlar: string[]; sure: number; y?: number; boy?: number; renk?: string }> = ({
@@ -139,6 +193,7 @@ const Yazi: React.FC<{ satirlar: string[]; sure: number; y?: number; boy?: numbe
   renk = KREM,
 }) => {
   const frame = useCurrentFrame();
+  const yt = React.useContext(YaziTipiCtx);
   const op = interpolate(frame, [0, sn(0.3), sure - sn(0.3), sure], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const kay = interpolate(frame, [0, sn(0.3)], [24, 0], { extrapolateRight: "clamp" });
   // çok uzun satırlar kelime sınırından 30 harfi aşmayacak biçimde bölünür; 30 harfe kadar satırlar planlandığı gibi (anlam birimi) kalır
@@ -160,11 +215,11 @@ const Yazi: React.FC<{ satirlar: string[]; sure: number; y?: number; boy?: numbe
   }
   // her satır tek satırda kalır: en uzun satır kenarlarda %6 boşluk bırakacak boya sığdırılır (Jersey 10 ≈ 0,46 em/harf)
   const enUzun = Math.max(...satirlar.map((s) => s.length));
-  const sigan = Math.min(boy, Math.floor((W - 130) / (enUzun * 0.46)));
+  const sigan = Math.min(boy, Math.floor((W - 130) / (enUzun * yt.em)));
   return (
     <div style={{ position: "absolute", top: y + kay, left: 0, width: W, textAlign: "center", opacity: op }}>
       {satirlar.map((s, i) => (
-        <div key={i} style={{ ...yaziStil(sigan, i === satirlar.length - 1 ? renk : KREM), whiteSpace: "nowrap" }}>
+        <div key={i} style={{ ...yaziStil(sigan, i === satirlar.length - 1 ? renk : KREM, yt), whiteSpace: "nowrap" }}>
           {s}
         </div>
       ))}
@@ -215,12 +270,19 @@ const YILDIZLAR = Array.from({ length: 70 }, (_, k) => ({
   b: 3 + (k % 3) * 2,
 }));
 
-const Kapanis: React.FC<{ satirlar: string[]; sonraki: string; arka: number; gece?: boolean }> = ({ satirlar, sonraki, arka, gece }) => {
+const Kapanis: React.FC<{ satirlar: string[]; sonraki: string; arka: number; gece?: boolean; arkaGorsel?: string }> = ({ satirlar, sonraki, arka, gece, arkaGorsel }) => {
   const frame = useCurrentFrame();
+  const yt = React.useContext(YaziTipiCtx);
   const giris = interpolate(frame, [0, sn(0.5)], [0, 1], { extrapolateRight: "clamp" });
   const nabiz = 1 + Math.round(Math.sin((frame / T_FPS) * Math.PI * 2) * 2) / 100;
   return (
     <AbsoluteFill style={{ opacity: giris, background: gece ? "#060a1e" : "#1a0806" }}>
+      {arkaGorsel ? (
+        <Img
+          src={staticFile(arkaGorsel)}
+          style={{ position: "absolute", left: 0, top: 0, width: W, height: H, objectFit: "cover", filter: "brightness(0.4) saturate(0.8)", transform: `scale(${1.05 + frame / 6000})`, transformOrigin: "50% 60%" }}
+        />
+      ) : (
       <AbsoluteFill
         style={{
           filter: gece ? "brightness(0.55) saturate(0.8)" : "brightness(0.45)",
@@ -232,6 +294,7 @@ const Kapanis: React.FC<{ satirlar: string[]; sonraki: string; arka: number; gec
         <Tekrar src={`sahne${arka}-uzak.png`} x={-frame * 0.4} />
         <Img src={staticFile(`sahne${arka}-orta.png`)} style={{ ...PIKSEL, left: -270, top: 0, width: 1620, height: H }} />
       </AbsoluteFill>
+      )}
       {gece ? (
         <>
           <AbsoluteFill style={{ background: "#0a1440", mixBlendMode: "multiply", opacity: 0.55 }} />
@@ -257,15 +320,15 @@ const Kapanis: React.FC<{ satirlar: string[]; sonraki: string; arka: number; gec
       />
       <div style={{ position: "absolute", top: 650, left: 30, width: W - 60, textAlign: "center" }}>
         {satirlar.map((s, i) => (
-          <div key={i} style={{ ...yaziStil(Math.min(78, Math.floor((W - 160) / (Math.max(...satirlar.map((x) => x.length)) * 0.46))), i === satirlar.length - 1 ? ALTIN : KREM), whiteSpace: "nowrap" }}>
+          <div key={i} style={{ ...yaziStil(Math.min(78, Math.floor((W - 160) / (Math.max(...satirlar.map((x) => x.length)) * yt.em))), i === satirlar.length - 1 ? ALTIN : KREM, yt), whiteSpace: "nowrap" }}>
             {s}
           </div>
         ))}
       </div>
       <div style={{ position: "absolute", top: 1180, left: 30, width: W - 60, textAlign: "center" }}>
-        <div style={{ ...yaziStil(Math.min(104, Math.floor((W - 200) / (sonraki.length * 0.46))), ALTIN), whiteSpace: "nowrap" }}>{sonraki}</div>
-        <div style={yaziStil(88, KREM)}>@pikseltarihim</div>
-        <div style={yaziStil(72, KREM)}>Piksel Tarih | Tarih Animasyon</div>
+        <div style={{ ...yaziStil(Math.min(104, Math.floor((W - 200) / (sonraki.length * yt.em))), ALTIN, yt), whiteSpace: "nowrap" }}>{sonraki}</div>
+        <div style={yaziStil(Math.round(88 * 0.46 / yt.em), KREM, yt)}>@pikseltarihim</div>
+        <div style={yaziStil(Math.round(72 * 0.46 / yt.em), KREM, yt)}>Piksel Tarih | Tarih Animasyon</div>
       </div>
     </AbsoluteFill>
   );
@@ -276,7 +339,8 @@ export type Seri = {
   ses?: string; // public/ altındaki seslendirme (hizala_seri.py üretir)
   kapak?: string; // sahibin hazırladığı açılış kapağı (public/, 1080x1920, olduğu gibi gösterilir)
   bolumler: Bolum[];
-  kapanis: { satirlar: string[]; sonraki: string; sure: number; arka: number; gece?: boolean };
+  kapanis: { satirlar: string[]; sonraki: string; sure: number; arka: number; gece?: boolean; arkaGorsel?: string };
+  yaziTipi?: YaziTipi; // verilmezse Jersey 10 (piksel seriler)
 };
 
 const ARA = 0.25;
@@ -313,7 +377,9 @@ export const SeriVideo: React.FC<{ seri: Seri }> = ({ seri }) => {
     t += sure;
   });
   const kapak = seri.kapak ? sn(KAPAK_SURE) : 0;
+  const yt = seri.yaziTipi ?? JERSEY;
   return (
+    <YaziTipiCtx.Provider value={yt}>
     <AbsoluteFill style={{ background: "#120806" }}>
       {seri.kapak ? (
         <Sequence from={0} durationInFrames={kapak}>
@@ -324,15 +390,16 @@ export const SeriVideo: React.FC<{ seri: Seri }> = ({ seri }) => {
         {seri.ses ? <Audio src={staticFile(seri.ses)} /> : null}
         {parcalar}
         <Sequence from={0} durationInFrames={sn(t)}>
-          <div style={{ position: "absolute", top: 150, left: 0, width: W, textAlign: "center", fontFamily: '"Jersey 10", monospace', fontSize: 46,
-            color: ALTIN, WebkitTextStroke: `5px ${KAHVE}`, paintOrder: "stroke fill", letterSpacing: 4 }}>
+          <div style={{ position: "absolute", top: 150, left: 0, width: W, textAlign: "center", fontFamily: yt.font, fontWeight: yt === JERSEY ? 400 : 800,
+            fontSize: Math.round(46 * 0.46 / yt.em), color: ALTIN, WebkitTextStroke: `5px ${KAHVE}`, paintOrder: "stroke fill", letterSpacing: 4 }}>
             {seri.etiket}
           </div>
         </Sequence>
         <Sequence from={sn(t)} durationInFrames={sn(seri.kapanis.sure)}>
-          <Kapanis satirlar={seri.kapanis.satirlar} sonraki={seri.kapanis.sonraki} arka={seri.kapanis.arka} gece={seri.kapanis.gece} />
+          <Kapanis satirlar={seri.kapanis.satirlar} sonraki={seri.kapanis.sonraki} arka={seri.kapanis.arka} gece={seri.kapanis.gece} arkaGorsel={seri.kapanis.arkaGorsel} />
         </Sequence>
       </Sequence>
     </AbsoluteFill>
+    </YaziTipiCtx.Provider>
   );
 };
