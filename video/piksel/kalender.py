@@ -10,7 +10,7 @@ from PIL import ImageDraw  # noqa: E402
 from ciz import _ac, agac, cicek, cicekler, duman, figur, hex2, orta_asya_sehri, piksel, taslar, tug, yurt  # noqa: E402
 from sahneler import kaydet  # noqa: E402
 from sahneler import GW, KARE, PAY, duz, gokyuzu, on, orta, sprite, uzak  # noqa: E402
-from timur import abanoz_tabut, ic_mekan, kalabalik, kandil, mangal, mumluk  # noqa: E402
+from timur import ic_mekan, kalabalik, kandil, mangal, mumluk  # noqa: E402
 from timur_figur import anadolu_kalesi, atli, gur_i_emir, kisi, oturan, sedir, timur  # noqa: E402
 
 
@@ -32,13 +32,36 @@ def taht(t, x, z, s=1.0, renk="#c8a040", ortu="#8a1e22"):
     """Oyma taht: sedir gövdesi dört ayakla zemine basar, arkada yüksek arkalık ve altın tepelik. Oturma yüzeyinin y'sini döndürür."""
     d = ImageDraw.Draw(t)
     ust = sedir(t, x, z, s, renk=renk, ortu=ortu)
-    d.rectangle([x - int(9 * s), ust - int(16 * s), x + int(9 * s), ust - int(2 * s)], fill=hex2(_ac(renk, -0.25)), outline=hex2("#2a1a10"))
-    d.rectangle([x - int(7 * s), ust - int(14 * s), x + int(7 * s), ust - int(3 * s)], fill=hex2(ortu))
-    d.rectangle([x - int(10 * s), ust - int(17.5 * s), x + int(10 * s), ust - int(16 * s)], fill=hex2("#e0b040"))
-    for dx in (-8, 0, 8):
-        d.polygon([(x + int(dx * s) - int(1.5 * s), ust - int(17.5 * s)), (x + int(dx * s), ust - int(20 * s)),
-                   (x + int(dx * s) + int(1.5 * s), ust - int(17.5 * s))], fill=hex2("#e0b040"))
+    k = hex2("#2a1a10")
+    # arkalık: oturanın gövdesi kadar dar (taht gibi okunsun, dolap gibi değil), üstte kemerli tepelik
+    d.rectangle([x - int(6 * s), ust - int(16 * s), x + int(6 * s), ust - int(2 * s)], fill=hex2(_ac(renk, -0.25)), outline=k)
+    d.rectangle([x - int(4.5 * s), ust - int(14 * s), x + int(4.5 * s), ust - int(3 * s)], fill=hex2(ortu))
+    d.ellipse([x - int(6 * s), ust - int(19 * s), x + int(6 * s), ust - int(13 * s)], fill=hex2(_ac(renk, -0.25)), outline=k)
+    d.ellipse([x - int(4.5 * s), ust - int(17.5 * s), x + int(4.5 * s), ust - int(13.5 * s)], fill=hex2(ortu))
+    d.polygon([(x - int(1.5 * s), ust - int(19 * s)), (x, ust - int(22 * s)), (x + int(1.5 * s), ust - int(19 * s))], fill=hex2("#e0b040"))
+    for yon in (-1, 1):                                                                      # kolçaklar: oturma yüzeyinden yükselir
+        kx = x + yon * int(8 * s)
+        d.rectangle([kx - int(1.2 * s), ust - int(7 * s), kx + int(1.2 * s), ust], fill=hex2(_ac(renk, -0.15)), outline=k)
+        d.rectangle([kx - int(2 * s), ust - int(8 * s), kx + int(2 * s), ust - int(6.5 * s)], fill=hex2("#e0b040"), outline=k)
     return ust
+
+
+def omuz_tabutu(t, x0, x1, z, s=2.6):
+    """Omuzlarda taşınan abanoz tabut: taşıyıcı figürün (kisi, ölçek s) omuz hizasına oturan hacimli kutu, üstte kapak ve
+    altın bağlar. Taşıyıcılar sonra çizilir, başları tabutun önünde kalır."""
+    d = ImageDraw.Draw(t)
+    omuz = z - int(13.5 * s)                       # kisi: omuz ≈ zemin - 13,5·s
+    h = int(7 * s)                                 # gövde yüksekliği
+    d.rectangle([x0, omuz - h, x1, omuz], fill=hex2("#1a1210"), outline=hex2("#000000"))
+    d.polygon([(x0 + 2, omuz - h), (x1 - 2, omuz - h), (x1 - 8, omuz - h - int(2.5 * s)), (x0 + 8, omuz - h - int(2.5 * s))],
+              fill=hex2("#2e2420"), outline=hex2("#000000"))                                  # kapak (perspektif)
+    d.line([x0 + 8, omuz - h - int(2.5 * s), x1 - 8, omuz - h - int(2.5 * s)], fill=hex2("#5a4a40"))
+    for kx in (x0 + 12, (x0 + x1) // 2, x1 - 12):                                                # altın bağlar
+        d.rectangle([kx - 2, omuz - h - 1, kx + 2, omuz], fill=hex2("#e0b040"))
+        d.rectangle([kx - 1, omuz - h, kx + 1, omuz - 1], fill=hex2("#a88020"))
+    d.line([x0 + 4, omuz - h // 2, x1 - 4, omuz - h // 2], fill=hex2("#e0b040"))                # altın şerit
+    d.rectangle([x0 - 2, omuz - h + 1, x0, omuz - 1], fill=hex2("#5a4a40"))                      # kapak kenarı (açık renk)
+    d.rectangle([x1, omuz - h + 1, x1 + 2, omuz - 1], fill=hex2("#5a4a40"))
 
 
 def kitaplar(t, x, y, s=1.0):
@@ -89,8 +112,8 @@ def sahne73():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, tug, 182, z, 1.5, f)                                              # flamalar dalgalanır
-        figur(t, timur, 222, z, 3.0, 1, silah="kilic",
+        figur(t, tug, 198, z, 1.5, f)                                              # flamalar dalgalanır
+        figur(t, timur, 238, z, 3.0, 1, silah="kilic",
               kol=0.25 + 0.1 * math.sin(f * 2 * math.pi), yasli=True)
         ust = figur(t, taht, 326, z, 3.0, renk="#8a6a3a", ortu="#2a6a3a")
         figur(t, oturan, 332, duz(ust, t.width), 2.7, govde="#2a6a3a", bas="sorguc",
@@ -142,7 +165,7 @@ def sahne75():
 
     def kare(t, z, i):
         f = i / KARE
-        abanoz_tabut(ImageDraw.Draw(t), 178, 338, z[0] - 26)  # omuzlarda; taşıyıcılar sonra çizilir, başlar önde
+        omuz_tabutu(t, 172, 334, z[0], 2.6)                   # omuzlarda; taşıyıcılar sonra çizilir, başlar önde
         for j, x in enumerate((180, 225, 285, 325)):                               # taşıyıcılar
             figur(t, kisi, x, z, 2.6, govde="#4a4a5c", bas="sarik", bas_renk="#e8e0cc", sakal="#2a1a12",
                   yon=1, adim=(f + (j % 2) * 0.5) % 1)
@@ -243,21 +266,22 @@ def sahne79():
     orta(79, (526, 560), ["#a09870", "#908862", "#807854", "#706a48", "#625c40"], "#c8c090",
          ekle=lambda img, z: [
              figur(img, orta_asya_sehri, PAY + 250, PAY + 520, duz(588), 2.0, tohum=79),
-             kalabalik(img, duz(596), PAY + 220, PAY + 330, 22, 79, ("#2a2430", "#3a3038"),
-                       s=1.4, yon=-1),
-             figur(img, atli, PAY + 182, duz(598), 1.5, 1, dur=True, zirh="#9aa2ac",
+             kalabalik(img, duz(594), PAY + 230, PAY + 320, 18, 79, ("#2a2430", "#3a3038"),
+                       s=1.2, yon=-1),
+             # torunların atlıları: orta planın gerisinde, taşıyıcılardan küçük (uzak) ve kadrajın içinde; tabutla üst üste binmez
+             figur(img, atli, PAY + 196, duz(586), 1.0, 1, dur=True, zirh="#9aa2ac",
                    silah="mizrak", bayrak="#8a1e22"),
-             figur(img, atli, PAY + 208, duz(598), 1.5, 1, dur=True, zirh="#9aa2ac",
+             figur(img, atli, PAY + 216, duz(586), 1.0, 1, dur=True, zirh="#9aa2ac",
                    silah="mizrak", bayrak="#8a1e22"),
-             figur(img, atli, PAY + 340, duz(598), 1.5, -1, dur=True, zirh="#9aa2ac",
+             figur(img, atli, PAY + 330, duz(586), 1.0, -1, dur=True, zirh="#9aa2ac",
                    silah="mizrak", bayrak="#2a5a8a"),
-             figur(img, atli, PAY + 366, duz(598), 1.5, -1, dur=True, zirh="#9aa2ac",
+             figur(img, atli, PAY + 350, duz(586), 1.0, -1, dur=True, zirh="#9aa2ac",
                    silah="mizrak", bayrak="#2a5a8a")])
     on(79, ["#625c40", "#807854", "#706a48"], "#c8c090")
 
     def kare(t, z, i):
         f = i / KARE
-        abanoz_tabut(ImageDraw.Draw(t), 200, 358, z[0] - 26)
+        omuz_tabutu(t, 204, 354, z[0], 2.6)
         for j, x in enumerate((212, 252, 308, 346)):
             figur(t, kisi, x, z, 2.6, govde="#4a4a5c", bas="sarik", bas_renk="#e8e0cc", sakal="#2a1a12",
                   yon=-1, adim=(f + (j % 2) * 0.5) % 1)
@@ -321,9 +345,10 @@ def sahne81():
 # ---------------------------------------------------------------- 82
 def sahne82():
     """Beyit 1: gece gökyüzü, dolunay; Kalender aya bakar, yanında taş yığını."""
+    # dolunay: yakin 2.8'de görünür gök y ≥ 400; marka yazısı (x 227-313) ve yazı bandının (y ≥ 452) dışında, solda
     gokyuzu(82, ["#0a1228", "#16204a", "#26306a", "#3a407a", "#4a4a84"],
-            (330, 380, 26, ["#fff8e0", "#f4e8b8"]), [],
-            ("#8890b8", "#6a70a0", "#4a5088"), yildiz=70)                            # dolunay kadraj içinde (yakin 2.2'de görünür y ≥ 340)
+            (192, 434, 14, ["#fff8e0", "#f4e8b8"]), [],
+            ("#8890b8", "#6a70a0", "#4a5088"), yildiz=70)
     uzak(82, ["#1e2a52", "#26305a"], ["#2a3460", "#323c68"], ["#2a3254", "#242c4a", "#1e2640"],
          dag_y=(400, 455), tepe_y=462)
     orta(82, (526, 560), ["#3a4060", "#323852", "#2a3048", "#242a3e", "#1e2434"], "#6a7098",
@@ -397,11 +422,11 @@ def sahne84():
         for gx, gs, gf in ((345, 3.0, f), (362, 2.4, (f + 0.4) % 1), (377, 2.7, (f + 0.7) % 1)):   # gül çalısı
             figur(t, cicek, gx, z, gs, gf, "#c8302a", "#f4d24a")
         for j in range(6):                                                          # düşen yapraklar
-            y = 20 + ((f + j / 6) % 1) * (z[0] - 20)
+            y = 80 + ((f + j / 6) % 1) * (z[0] - 80)
             x = 330 + j * 12 + 5 * math.sin((f + j / 6) * 2 * math.pi)
             piksel(t, int(x), int(y), hex2("#f8c0d0"))
 
-    sprite(84, "karakter", 540, 170, KARE, kare)
+    sprite(84, "karakter", 540, 230, KARE, kare)   # ağaç tacı 170'lik sayfada kesiliyordu (yatay dikiş); sayfa yükseltildi
 
 
 # ---------------------------------------------------------------- 85
@@ -429,8 +454,10 @@ def sahne86():
     gk = gokyuzu(86, ["#0a1228", "#16204a", "#26306a", "#3a407a", "#4a4a84"], None, [],
                  ("#8890b8", "#6a70a0", "#4a5088"), yildiz=90)
     d = ImageDraw.Draw(gk)                                                          # ince hilal: iki daire farkı
-    d.ellipse([340 - 13, 385 - 13, 340 + 13, 385 + 13], fill=hex2("#f4ecd0"))
-    d.ellipse([340 - 13 + 6, 385 - 13 - 3, 340 + 13 + 6, 385 + 13 - 3], fill=hex2("#16204a"))
+    # yakin 2.8'de görünür gök y ≥ 400; marka yazısının sağında (x > 313), yazı bandının (y ≥ 452) üstünde
+    hx, hy = 342, 426
+    d.ellipse([hx - 11, hy - 11, hx + 11, hy + 11], fill=hex2("#f4ecd0"))
+    d.ellipse([hx - 11 + 5, hy - 11 - 3, hx + 11 + 5, hy + 11 - 3], fill=hex2("#16204a"))
     kaydet(gk, "sahne86-gokyuzu.png")
     uzak(86, ["#1e2a52", "#26305a"], ["#2a3460", "#323c68"], ["#2a3254", "#242c4a", "#1e2640"],
          dag_y=(400, 455), tepe_y=462)
@@ -456,10 +483,10 @@ def sahne86():
 def sahne87():
     """Beyit 6: Mecnun çölde yürür; ufukta Leyla'nın ışıklı çadırı (yurt). Akşam çölü."""
     def ekle(img, z):
-        baca = figur(img, yurt, PAY + 372, duz(588), 2.2, keçe="#d8c8a8", golge="#b0986e",
+        # Leyla'nın ışıklı çadırı ufuk hattında (orta planın üst kenarı), kamera kaymasıyla da kadraj içinde kalacak x'te
+        baca = figur(img, yurt, PAY + 322, duz(566), 1.6, keçe="#d8c8a8", golge="#b0986e",
                      isik=True)
         duman(img, baca[0], baca[1], 80, 87, faz=0.0)
-        figur(img, taslar, PAY + 70, duz(588), 1.2)
 
     gokyuzu(87, ["#3a2a5a", "#7a3a6a", "#c05a5a", "#e88a58", "#f4b868", "#f8d890"],
             (300, 452, 26, ["#fff0c0", "#ffb868"]), [],
@@ -472,9 +499,8 @@ def sahne87():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 150, z, 3.3, govde="#7a6a52", bas="sarik", bas_renk="#a89878",
-              sakal="#3a2a1a", yon=1, adim=f)                                       # Mecnun
-        figur(t, taslar, 255, z, 1.6)
+        figur(t, kisi, 190, z, 3.3, govde="#7a6a52", bas="sarik", bas_renk="#a89878",
+              sakal="#3a2a1a", yon=1, adim=f)                                       # Mecnun (taş yığını çıkarıldı: Beyit 1 imgesiyle karışıyordu)
 
     sprite(87, "karakter", 440, 170, KARE, kare)
 
@@ -504,15 +530,15 @@ def sahne88():
 def sahne89():
     """Kapanış: alacakaranlık, uzaklaşan derviş silüeti, silik Herat ve mavi türbe."""
     gokyuzu(89, ["#1a1a3a", "#3a2a5a", "#7a3a6a", "#c05a62", "#e88a60", "#f4b878"],
-            (300, 452, 26, ["#fff0c0", "#ffb868"]), [],
+            (198, 436, 14, ["#fff0c0", "#ffb868"]), [],
             ("#f0d0d0", "#d8a8b0", "#a07088"), yildiz=50)
     uzak(89, ["#3a2a52", "#4a3258"], ["#5a3a5e", "#6a4264"], ["#6a4668", "#5a3a5a", "#4a304c"],
          dag_y=(400, 455), tepe_y=462)
     orta(89, (526, 560), ["#4a3050", "#402848", "#382240", "#301c38", "#281630"], "#7a5068",
          ekle=lambda img, z: [
-             figur(img, orta_asya_sehri, PAY + 300, PAY + 560, duz(588), 2.0, tohum=89,
+             figur(img, orta_asya_sehri, PAY + 320, PAY + 580, duz(588), 2.0, tohum=89,
                    kerpic="#6a4a60", golge="#4a3248", kubbe="#5a5a8a"),
-             figur(img, gur_i_emir, PAY + 205, duz(588), 1.6, mavi="#3a4a7a", tugla="#6a4a60")])
+             figur(img, gur_i_emir, PAY + 240, duz(588), 1.6, mavi="#3a4a7a", tugla="#6a4a60")])
     on(89, ["#281630", "#402848", "#382240"], "#7a5068")
 
     def kare(t, z, i):

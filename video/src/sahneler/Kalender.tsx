@@ -16,13 +16,13 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 73, yakin: 2.2, kamera: 20, sprite: { w: 540, h: 170, fps: 10, x: 270, taban: 632 },
+      no: 73, yakin: 2.6, kamera: 20, sprite: { w: 540, h: 170, fps: 10, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Timur'un kanı,", "Baysungur'un kalemi"], sure: 13.82, renk: ALTIN },
       ],
     },
     {
-      no: 74, yakin: 2.3, kamera: 10, sprite: { w: 540, h: 200, fps: 8, x: 270, taban: 634 },
+      no: 74, yakin: 2.6, kamera: 10, sprite: { w: 540, h: 200, fps: 8, x: 270, taban: 634 },
       yazilar: [
         { satirlar: ["Hattatlar, nakkaşlar,", "müzehhipler."], sure: 6.21 },
       ],
@@ -34,7 +34,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 76, yakin: 2.2, kamera: 30, sprite: { w: 300, h: 170, fps: 16, x: [230, 300], taban: 630 },
+      no: 76, yakin: 2.8, kamera: 30, sprite: { w: 300, h: 170, fps: 16, x: [230, 300], taban: 630 },
       yazilar: [
         { satirlar: ["Sarayda tuhaf", "bir şehzade beliriyor"], sure: 9.90 },
       ],
@@ -46,7 +46,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 78, yakin: 2.2, kamera: 20, sprite: { w: 540, h: 170, fps: 10, x: 270, taban: 632 },
+      no: 78, yakin: 2.6, kamera: 20, sprite: { w: 540, h: 170, fps: 10, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["İlk kapıda", "misliyle ver"], sure: 9.61, renk: ALTIN },
       ],
@@ -58,7 +58,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 80, yakin: 2.2, kamera: 20, sprite: { w: 540, h: 160, fps: 18, x: [255, 268], taban: 632 },
+      no: 80, yakin: 2.3, kamera: 20, sprite: { w: 540, h: 160, fps: 18, x: [255, 268], taban: 632 },
       yazilar: [
         { satirlar: ["Derviş ordu topluyor", "ve Herat'a giriyor"], sure: 7.79 },
         { satirlar: ["Dervişin elinde", "kılıç"], sure: 1.15, renk: KIZIL },
@@ -71,7 +71,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 82, yakin: 2.2, kamera: 20, yaziY: 740, sprite: { w: 380, h: 170, fps: 10, x: 270, taban: 630 },
+      no: 82, yakin: 2.8, kamera: 20, sprite: { w: 380, h: 170, fps: 10, x: 270, taban: 630 },
       yazilar: [
         { satirlar: ["O ay parçası gibi güzel yüze", "âşık olmayan her gönül,", "sana gönül denmez;"], sure: 5.25 },
         { satirlar: ["çünkü taş parçasından", "geri kalır yanın yok."], sure: 2.49 },
@@ -85,7 +85,7 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 84, yakin: 2.2, kamera: 25, sprite: { w: 540, h: 170, fps: 10, x: 270, taban: 630 },
+      no: 84, yakin: 2.3, kamera: 25, sprite: { w: 540, h: 230, fps: 10, x: 270, taban: 630 },
       yazilar: [
         { satirlar: ["Nevruz, ilkbahar, gül,", "kadeh ve dilberler…"], sure: 2.48 },
         { satirlar: ["Dünyaya ikinci kez gelinmediği", "için hayatı güzel yaşa."], sure: 3.19, renk: ALTIN },
@@ -99,14 +99,14 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 86, yakin: 2.2, kamera: 15, yaziY: 740, sprite: { w: 400, h: 170, fps: 10, x: 270, taban: 630 },
+      no: 86, yakin: 2.8, kamera: 15, sprite: { w: 400, h: 170, fps: 10, x: 270, taban: 630 },
       yazilar: [
         { satirlar: ["İyilerin keman kaşları niçin", "siyahtır, bilir misin?"], sure: 4.63 },
         { satirlar: ["Çünkü onların gönül", "dumanının köşelerinden", "halk güç almaktadır."], sure: 3.67 },
       ],
     },
     {
-      no: 87, yakin: 2.2, kamera: 30, sprite: { w: 440, h: 170, fps: 10, x: [230, 300], taban: 630 },
+      no: 87, yakin: 2.4, kamera: 30, sprite: { w: 440, h: 170, fps: 10, x: [230, 300], taban: 630 },
       yazilar: [
         { satirlar: ["Bâbür, senin ağlayıp inlemen", "sevgilinin kulağına ulaştı;"], sure: 4.04 },
         { satirlar: ["Mecnun'un bu hay içinde", "olmasından", "Leyla haberdar oldu"], sure: 3.44, renk: ALTIN },
@@ -128,13 +128,13 @@ export const KALENDER: Seri = {
       ],
     },
     {
-      no: 87, yakin: 2.2, kamera: 30, sprite: { w: 440, h: 170, fps: 10, x: [230, 300], taban: 630 },
+      no: 87, yakin: 2.4, kamera: 30, sprite: { w: 440, h: 170, fps: 10, x: [230, 300], taban: 630 },
       yazilar: [
         { satirlar: ["Leyla kim?", "İnsan mı, Hak mı?"], sure: 8.57, renk: ALTIN },
       ],
     },
     {
-      no: 89, yakin: 2.3, kamera: 30, sprite: { w: 300, h: 150, fps: 12, x: [280, 235], taban: 632 },
+      no: 89, yakin: 2.8, kamera: 30, sprite: { w: 300, h: 150, fps: 12, x: [280, 235], taban: 632 },
       yazilar: [
         { satirlar: ["Sonra ölüyor."], sure: 1.20, renk: KIZIL },
         { satirlar: ["Kılıcıyla değil, şiirleri", "ve bir lakapla anılıyor:", "Kalender"], sure: 5.19, renk: ALTIN },
