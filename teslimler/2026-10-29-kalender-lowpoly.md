@@ -1,7 +1,7 @@
 # SKONSTART teslimi
 
-- **İş:** [LOW-POLY TARZ DENEMESİ] Timur'un Soyundan Kalender: Ebu'l-Kâsım Bâbür Kalender Mîrzâ'nın hikâyesi, altı beyitlik gazeliyle; 3 dakikalık dikey video (Reels/TikTok), seslendirme vcvcvc.
-- **Tarih:** 2026-10-29 18:43
+- **İş:** Timur'un Soyundan Kalender: Ebu'l-Kâsım Bâbür Kalender Mîrzâ'nın hikâyesi, altı beyitlik gazeliyle; 3 dakikalık dikey video (Reels/TikTok), seslendirme vcvcvc. TARZ DENEMESİ: Ajans sahibinin talimatıyla aynı metin ve seslendirme, piksel yerine LOW-POLY 3D görsellerle (görsel üretim modeli + Remotion kamera hareketi). Piksel tarzı kuralları bu denemede uygulanmaz; fizik, ölçek, okunurluk, yazı-görsel çakışması ve karakter tutarlılığı (Kalender: adaçayı yeşili kaftan, beyaz sarık) denetlenir.
+- **Tarih:** 2026-10-29 19:13
 - **Durum:** ONAY BEKLİYOR
 - **Kalite kontrol:** revizyon sınırına ulaşıldı, son notlar aşağıda
 
@@ -214,832 +214,367 @@ Timur'un torunlarının diğer hikâyelerini de ister misin? Uluğ Bey mi, Baysu
 
 ## 🟢 Grafiker · Animasyon ve grafik
 
-## 1) Sahne planı
+# Timur'un Soyundan Kalender · 🟢 Grafiker low-poly 3D tarz denemesi
 
-| No | Zaman | Sn | Bölüm | Konu | Mekân |
-|---|---|---|---|---|---|
-| 72 | 0:00–0:10 | 10 | Kanca | Tahtta Kalender; solda kılıçlı muhafız, sağda yazan kâtip | iç mekân, kandil + mum |
-| 73 | 0:10–0:20 | 10 | Herat | Herat silüeti; Timur (ata) ve tahtta oğlu Şahruh | dış, altın saat |
-| 74 | 0:20–0:28 | 8 | Herat | Baysungur'un sanat akademisi; hattat, nakkaş, müzehhip; çocuk Bâbür | iç mekân, kandil |
-| 75 | 0:28–0:34 | 6 | Herat | Baysungur'un cenazesi; önde genç Bâbür | dış, alacakaranlık |
-| 76 | 0:34–0:40 | 6 | Kalender | Saray avlusunda asalı derviş şehzade yürür, saray ehli bakar | dış, gündüz |
-| 77 | 0:40–0:50 | 10 | Kalender | Kalender yazar, Câmî risale uzatır | iç mekân, gece penceresi |
-| 78 | 0:50–0:59 | 9 | Kalender | Kapıda yoksula sadaka (rivayet) | dış, öğleden sonra |
-| 79 | 0:59–1:05 | 6 | Dönüş | Şahruh'un cenazesi; arkada birbirine düşen torunlar | dış, bulutlu gün |
-| 80 | 1:05–1:12 | 7 | Dönüş | Ordu, Herat kapısı, atlı Kalender elinde kılıç | dış, parlak gün |
-| 81 | 1:12–1:19 | 7 | Gazele giriş | Kadehle ve kalemle şiir yazan hükümdar | iç mekân, mum |
-| 82 | 1:19–1:27 | 8 | Gazel b.1 | Gece gökyüzü, ay parçası, taş yığını | dış, gece |
-| 83 | 1:27–1:36 | 9 | Gazel b.2 | Gün batımında gül | dış, kızıl gün batımı |
-| 84 | 1:36–1:46 | 10 | Gazel b.3 | Nevruz bahar bahçesi: kadeh, gül, dilberler | dış, gündüz |
-| 85 | 1:46–1:54 | 8 | Gazel b.4 | Kadeh: Kalender ve saki | iç mekân, mum |
-| 86 | 1:54–2:00 | 6 | Gazel b.5 | Gece, ince ay, mangaldan yükselen "gönül dumanı", halk | dış, gece |
-| 87 | 2:00–2:06 | 6 | Gazel b.6 | Mecnun çölde yürür, ufukta Leyla'nın ışıklı çadırı | dış, akşam çöl |
-| 88 | 2:06–2:20 | 14 | Çözümleme | Kılıçlı gölge siluet ve yazan Kalender | iç mekân, mum |
-| 85† | 2:20–2:31 | 11 | Çözümleme | Kadeh sorusu (Sahne 85 yeniden kullanılır, yakın çekim) | iç mekân |
-| 87† | 2:31–2:40 | 9 | Çözümleme | Leyla kim? (Sahne 87 yeniden kullanılır) | çöl |
-| 89 | 2:40–2:50 + kapanış 9 sn | 19 | Kapanış | Alacakaranlıkta derviş silüeti uzaklaşır; soru | dış, alacakaranlık |
+- **Tarih:** 2026-10-29 19:02
+- **Durum:** ÜRETİM BEKLİYOR
 
-† Aynı sahne numarası ikinci kez `Bolum` olur. Motor bunu desteklemezse 88'in ardına iki ek sahne açılır (90 = kadeh yakın çekim, 91 = Leyla çölü kopyası). Bu durumda sahne sayısı 20 olur, bu yüzden önce bu yolu denemenizi öneririm.
+# Timur'un Soyundan Kalender: LOW-POLY 3D Tarz Denemesi (Sahne 72–89)
 
-**Ortak kurallar (her sahne için geçerli):**
-- Sprite tabanı iç mekânda 634, dışta 630–634. Orta plan figürleri `duz(588)` ile `duz(596)` arasına oturur.
-- İnsan ölçeği `s=2.4–2.6`, at `s=2.9`. İnsan boyu at boyunun yaklaşık %65–70'idir.
-- Orta plandaki figürler `s≈1.1` ve daha yüksek zeminde durur, yani arkadadır.
-- İç mekânların hepsinde kandil ve/veya mumluk ışığı var.
-- Yazı bandı y 95–245'tir. Bulutlar ve dağ tepeleri y ≥ 330'da.
-
-### Sahne sahne plan
-
-**Sahne 72: Kanca (10 sn).** Sarayın iç mekânı. Ortada alçak taht (sedir, altın ve kızıl örtü) üzerinde sade yeşil-gri kaftanlı, sarıklı Kalender oturur ve elinde kalem vardır. Solunda miğferli, kılıçlı muhafız, sağında oturan kâtip yazı yazar. Yani "bir elinde kılıç, öbüründe şiir" iki yandaki figürlerle anlatılır.
-- Zemin: sprite tabanı 634 (`z`). Taht tabanı `z`'de, Kalender tahtın üst yüzünde (`duz(ust, 540)`).
-- Ölçek: hepsi `s≈2.4–2.6`, taht `s=3.4`.
-- Hareket: kandil ve mum titrer (fps 8).
-- Kamera: `yakin 2.0`, `kamera 10`.
-- Ses: mum çıtırtısı, uzaktan ney.
-
-**Sahne 73: Herat, Timur ve Şahruh (10 sn).** Altın saat. Arkada Herat (`orta_asya_sehri`) ve türbe/medrese (`gur_i_emir`). Önde soy tablosu: solda tuğ yanında yaşlı Timur kılıçla, sağda alçak tahtta Şahruh (`sorguc`).
-- Zemin: sprite tabanı 632; arka yapılar `duz(588)`.
-- Ölçek: Timur ve Şahruh `s=2.6/2.4`.
-- Hareket: tuğ flamaları dalgalanır, Timur'un kolu hafif oynar.
-- Kamera: `yakin 1.9`, `kamera 20`.
-- Ses: rüzgâr, bozkır davulu uzaktan.
-
-**Sahne 74: Akademi (8 sn).** İç mekân, kitap ve mürekkep dünyası. Üç usta yere oturup yazar: hattat, nakkaş, müzehhip. Sağda Baysungur (`sorguc`) ayakta onaylar, yanında çocuk Bâbür (`s=1.8`).
-- Zemin: tabanı 634.
-- Hareket: iki kandil ve mum titrer, Baysungur'un kolu hafif oynar.
-- Kamera: `yakin 1.8`, `kamera 10`.
-- Ses: kalem hışırtısı, sayfa sesi, hafif ney.
-
-**Sahne 75: Baysungur'un cenazesi (6 sn).** Alacakaranlık. Dört taşıyıcı omuzda abanoz tabutu sağa yürütür. Önde başı eğik çocuk Bâbür (`s=1.8`). Arkada yas tutanlar ve şehir silüeti.
-- Zemin: sprite tabanı 634; yas tutanlar `duz(588)`.
-- Hareket: taşıyıcılar yavaş adım atar, ağırlık nedeniyle sırayla.
-- Kamera: `yakin 2.0`, `kamera 20`.
-- Ses: ağır adım sesleri, ezan sessizliği.
-
-**Sahne 76: Saray avlusu (6 sn).** Gündüz. Sade kaftanlı, sarıklı, asalı Kalender sağa yürür. Orta planda renkli kaftanlı saray ehli şaşkınlıkla bakar. Arkada kerpiç sur ve mavi kubbe, çınar ağacı.
-- Zemin: sprite tabanı 630; orta plan figürleri `duz(596)`, yapılar `duz(588)`.
-- Hareket: Kalender yürür (`adim=f`), sprite 70 px kayar.
-- Kamera: `yakin 2.2`, `kamera 30`.
-- Ses: avlu uğultusu, kuş sesi.
-
-**Sahne 77: Câmî ve Kalender (10 sn).** Gece penceresi. Solda oturan Kalender yazar, sağda beyaz sakallı Câmî ayakta risale (rulo) uzatır. Ortada mumluk, tavanda kandil.
-- Zemin: tabanı 634; ikisi de `z`'de.
-- Hareket: Câmî'nin kolu yavaşça uzanır ve geri çekilir.
-- Kamera: `yakin 2.1`, `kamera 10`.
-- Ses: sakin fon, mum.
-
-**Sahne 78: Sadaka (9 sn, rivayet).** Öğleden sonra. Arkada taş sur ve kapı, dibinde bekleyen yoksullar. Önde sağda Kalender, solda yamalı kaftanlı yoksul ve kadın, ellerini açmış. `f` 0.35–0.75 arasında bir altın sikke Kalender'in elinden yoksulun eline geçer.
-- Zemin: tabanı 632; sur `duz(588)`, bekleyen kalabalık `duz(596)`.
-- Hareket: Kalender'in kolu uzanıp iner.
-- Kamera: `yakin 2.0`, `kamera 20`.
-- Ses: kapı gıcırtısı, madeni para sesi.
-
-**Sahne 79: Şahruh'un cenazesi (6 sn).** Bulutlu gün. Taşıyıcılar abanoz tabutu sola taşır. Arka planda iki küçük atlı grup (zırhlı, mızraklı) karşılıklı yüzleşir, yani torunlar birbirine düşer. Arkada şehir, yas tutanlar.
-- Zemin: sprite tabanı 634; arka atlılar `duz(584)`, kalabalık ve şehir `duz(588)`.
-- Hareket: taşıyıcılar yavaş yürür; arka atlılar tuğla flamalarıyla dururlar.
-- Kamera: `yakin 2.0`, `kamera 20`.
-- Ses: matem davulu, rüzgâr.
-
-**Sahne 80: Ordu ve Herat kapısı (7 sn).** Parlak gün. Önde atlı Kalender kılıcı kaldırmış (`kol=0.6`) sağa, Herat'a yürür. Arkasında iki atlı. Orta planda ordu ve tuğ, sağda Herat surları ve kapısı.
-- Zemin: sprite tabanı 632; ordu `duz(596)`, tuğ `duz(592)`, şehir `duz(588)`.
-- Ölçek: at `s=2.9`, binici insan boyu %65–70.
-- Hareket: atlar yürür (fazlar kaydırılmış).
-- Kamera: `yakin 2.0`, `kamera 40`.
-- Ses: nal sesleri, boru.
-
-**Sahne 81: Gazele giriş (7 sn).** İç mekân. Oturan Kalender kalemle yazar, ara ara kadehi kaldırır (`el` kalem ↔ kase). Etrafta iki mumluk, tavanda kandil.
-- Zemin: tabanı 634.
-- Hareket: kalem ve kadeh evreleri değişir.
-- Kamera: `yakin 2.3`, `kamera 10`.
-- Ses: mum, çok hafif ney.
-
-**Sahne 82: Beyit 1, gece ve ay (8 sn).** Dolunay, yıldızlı gök. Kalender ayağa kalkıp aya bakar. Yanında koca bir taş yığını ("taş parçasından geri kalır yanın yok").
-- Zemin: sprite tabanı 630; taşlar `duz(588)`.
-- Hareket: yıldızlar ve çimen sakin.
-- Kamera: `yakin 2.1`, `kamera 20`.
-- Ses: gece rüzgârı, cırcırböcek.
-
-**Sahne 83: Beyit 2, gül (9 sn).** Kızıl gün batımı. Büyük bir gül (`cicek`, kızıl taç, sarı orta) ve iki küçük gül rüzgârda salınır. Bir gül yaprağı yavaşça düşer.
-- Zemin: tabanı 630; güller `z`'de.
-- Hareket: güller sallanır, yaprak yerçekimiyle aşağı iner.
-- Kamera: `yakin 2.4`, `kamera 20`.
-- Ses: rüzgâr, uzaktan bülbül.
-
-**Sahne 84: Beyit 3, bahar bahçesi (10 sn).** Pastel gündüz, çiçekli pembe ağaç, ağaç altında kadehle oturan Kalender, yanında iki dilber (kadın figür), gül. Ağaçtan yapraklar düşer.
-- Zemin: tabanı 630; orta plandaki ağaçlar `duz(590)`.
-- Hareket: ağaç sallanır, yapraklar düşer.
-- Kamera: `yakin 1.9`, `kamera 25`.
-- Ses: kuş, su, bahar rüzgârı.
-
-**Sahne 85: Beyit 4, kadeh (8 sn).** İç mekân. Solda oturan Kalender kadeh tutar, sağda saki testiyle doldurur. Arada mumluk, tavanda kandil.
-- Zemin: tabanı 634.
-- Hareket: saki'nin kolu eğilir.
-- Kamera: `yakin 2.2`, `kamera 10`.
-- Ses: mum, su dökme.
-
-**Sahne 86: Beyit 5, gönül dumanı (6 sn).** Gece, ince ay. Ortada mangal, duman yukarı yükselir. Etrafında iki dervişle halk (orta planda).
-- Zemin: sprite tabanı 630; halk `duz(596)`.
-- Hareket: duman yukarı kıvrılır, korlar kızarır.
-- Kamera: `yakin 2.2`, `kamera 15`.
-- Ses: ateş çıtırtısı, gece.
-
-**Sahne 87: Beyit 6, Mecnun çölde (6 sn).** Akşam çölü. Yırtık kaftanlı Mecnun sağa, ufuktaki Leyla'nın ışıklı çadırına doğru yavaşça yürür. Çadırdan duman yükselir.
-- Zemin: sprite tabanı 630; çadır `duz(588)`.
-- Hareket: yürüyüş, sprite 70 px kayar.
-- Kamera: `yakin 2.0`, `kamera 30`.
-- Ses: çöl rüzgârı, uzaktan ney.
-
-**Sahne 88: Çözümleme (14 sn).** İç mekân. Solda kılıç kaldırmış koyu siluet (hükümdarın öbür yüzü), sağda yazan ve kadehi kaldıran Kalender. Ortada mumluk ve kandil.
-- Zemin: tabanı 634.
-- Hareket: Kalender'in el evreleri değişir, mum titrer.
-- Kamera: `yakin 2.0`, `kamera 10`.
-- Ses: derin sessizlik, hafif tını.
-
-**Sahne 89: Kapanış (10 sn + 9 sn kapanış).** Alacakaranlık. Önde asalı derviş silüeti sola, uzaktaki şehre doğru yürür. Orta planda silik Herat ve mavi türbe. Kapanışta `arka` olarak bu sahne durur.
-- Zemin: sprite tabanı 632; arka yapılar `duz(588)`.
-- Hareket: yürüyüş, sprite 45 px kayar.
-- Kamera: `yakin 2.3`, `kamera 30`.
-- Ses: rüzgâr, ney.
+**Durum:** Tarz denemesi. Ajans sahibinin talimatıyla piksel motoru kullanılmadı. Python tarifi, TSX ve piksel fonksiyonu yazılmadı, skill dosyaları okunmadı.
+**Format:** Dikey 9:16 (1080×1920), görseller text-to-image ile üretilir. Remotion'da kamera hareketi ve seslendirme eklenir. İstenen sahnelerde image-to-video uygulanır.
+**Toplam süre:** 179 sn, 18 sahne. Önceki plandaki süreler ve ekran yazıları aynen korundu.
+**Kural:** Her prompt'un başına 1. bölümdeki kart aynen eklenir, sonuna "No text." gelir. Yazılar Remotion'da basılır.
 
 ---
 
-## 2) Python tarifi: `video/piksel/kalender.py`
+## 1) Karakter ve dünya kartı (her prompt'un başına aynen eklenecek)
 
-```python
-"""Timur'un Soyundan Kalender — sahneler 72-89."""
-import math
-from ciz import (figur, piksel, duman, tug, agac, taslar, cicek, cicekler, yurt,
-                 orta_asya_sehri)
-from timur_figur import (kisi, timur, oturan, sedir, atli, anadolu_kalesi, gur_i_emir)
-from timur import (ic_mekan, mumluk, mangal, kandil, abanoz_tabut, kalabalik)
-from sahneler import gokyuzu, uzak, orta, on, sprite, duz, KARE, PAY
-
-
-# ---------------------------------------------------------------- 72
-def sahne72():
-    """Kanca: tahtta Kalender; solda kılıçlı muhafız, sağda yazan kâtip. İç mekân, kandil + mum."""
-    ic_mekan(72, duvar=("#3a2a22", "#4a3628", "#5a4230"), kemer="#2a1a14", cini="#2a6a9a",
-             pencere=("#1a2a4a", "#f8e0a0"), zemin_renk=("#5a4a3a", "#4a3c2e", "#3e3226"),
-             isik="#f8c060", hali=True)
-
-    def kare(t, z, i):
-        f = i / KARE
-        kandil(t, 270, 0, f, 64)
-        mumluk(t, 150, z, f, 3)
-        mumluk(t, 395, z, (f + 0.3) % 1, 3)
-        ust = figur(t, sedir, 270, z, 3.4, renk="#c8a040", ortu="#8a1e22")     # taht: sedir (tabanı z)
-        figur(t, oturan, 270, duz(ust, 540), 2.6, govde="#6a7a5a", bas="sarik",
-              bas_renk="#e8e0cc", sakal="#2a1a12", el="kalem", minder="#8a2a2a")
-        figur(t, kisi, 175, z, 2.6, govde="#7a1e22", bas="migfer", bas_renk="#9aa2ac",
-              yon=1, silah="kilic", kol=0.15)                                   # kılıç tarafı
-        figur(t, oturan, 370, z, 2.4, govde="#3a5a8a", bas="bork", bas_renk="#5a3a22",
-              sakal="#2a1a12", yon=-1, el="kalem", minder="#6a3a2a")            # şiir tarafı
-
-    sprite(72, "karakter", 540, 200, KARE, kare)
-
-
-# ---------------------------------------------------------------- 73
-def sahne73():
-    """Herat: Timur (ata) ve tahtta oğlu Şahruh; arkada Herat silüeti ve türbe. Altın saat."""
-    gokyuzu(73, ["#5a5a98", "#8a78a8", "#d09aa0", "#f0b890", "#f8d8a0", "#fce8b8"],
-            (420, 360, 30, ["#fff4d0", "#ffd890"]), [(130, 340, 24), (300, 370, 18)],
-            ("#fff4e0", "#f4dcc8", "#d8a8a0"))
-    uzak(73, ["#7a6a98", "#8a7aa0"], ["#9a82a0", "#a88aa0"], ["#c89a98", "#b88a90", "#a87a84"],
-         dag_y=(350, 425))
-    orta(73, (524, 558), ["#a8885a", "#987a50", "#887048", "#78603e", "#685036"], "#d8b878",
-         ekle=lambda img, z: [
-             figur(img, orta_asya_sehri, PAY + 10, PAY + 330, duz(588), 2.2, tohum=73),
-             figur(img, gur_i_emir, PAY + 430, duz(588), 1.5)])
-    on(73, ["#685036", "#887048", "#78603e"], "#d8b878")
-
-    def kare(t, z, i):
-        f = i / KARE
-        figur(t, tug, 105, z, 1.4, f)                                              # flamalar dalgalanır
-        figur(t, timur, 190, z, 2.6, 1, silah="kilic",
-              kol=0.25 + 0.1 * math.sin(f * 2 * math.pi), yasli=True)
-        ust = figur(t, sedir, 360, z, 3.0, renk="#8a6a3a", ortu="#2a6a3a")
-        figur(t, oturan, 360, duz(ust, 540), 2.4, govde="#2a6a3a", bas="sorguc",
-              bas_renk="#e0b040", sakal="#2a1a12", yon=-1)
-
-    sprite(73, "karakter", 540, 170, KARE, kare)
-
-
-# ---------------------------------------------------------------- 74
-def sahne74():
-    """Baysungur'un akademisi: hattat, nakkaş, müzehhip; Baysungur ve çocuk Bâbür. İç mekân, kandil."""
-    ic_mekan(74, duvar=("#4a3626", "#5a4430", "#6a5238"), kemer="#2a1a14", cini="#2a8a8a",
-             pencere=("#f0c890", "#fff4d8"), zemin_renk=("#5a4a3a", "#4a3c2e", "#3e3226"),
-             isik="#f8c060", hali=True)
-
-    def kare(t, z, i):
-        f = i / KARE
-        kandil(t, 215, 0, f, 56)
-        kandil(t, 335, 0, (f + 0.4) % 1, 56)
-        figur(t, oturan, 150, z, 2.3, govde="#8a3a2a", bas="sarik", bas_renk="#e8e0cc",
-              sakal="#2a1a12", el="kalem", minder="#8a2a2a")                       # hattat
-        figur(t, oturan, 220, z, 2.3, govde="#2a6a5a", bas="bork", bas_renk="#5a3a22",
-              el="kalem", minder="#6a4a2a")                                         # nakkaş
-        figur(t, oturan, 290, z, 2.3, govde="#6a4a8a", bas="sarik", bas_renk="#f4f0e6",
-              sakal="#2a1a12", el="kalem", minder="#2a4a6a")                        # müzehhip
-        figur(t, kisi, 360, z, 2.6, govde="#2a3a6a", bas="sorguc", bas_renk="#e0b040",
-              sakal="#2a1a12", yon=-1, kol=0.2 + 0.1 * math.sin(f * 2 * math.pi))   # Baysungur
-        figur(t, kisi, 405, z, 1.8, govde="#8a7a5a", bas="bork", bas_renk="#5a3a22",
-              yon=-1)                                                               # genç Bâbür
-
-    sprite(74, "karakter", 540, 200, KARE, kare)
-
-
-# ---------------------------------------------------------------- 75
-def sahne75():
-    """Baysungur'un cenazesi: omuzlarda abanoz tabut, önde çocuk Bâbür. Alacakaranlık."""
-    gokyuzu(75, ["#3a3a6a", "#6a5a88", "#a87a8a", "#d8908a", "#e8b090", "#f0c8a0"],
-            (150, 380, 26, ["#ffe0b0", "#f0a878"]), [(380, 340, 22), (120, 320, 18)],
-            ("#f0d8d0", "#d8b0b0", "#a88090"))
-    uzak(75, ["#5a5a88", "#6a6a90"], ["#7a6a88", "#8a7088"], ["#8a6a78", "#7a5a6a", "#6a4a5c"],
-         dag_y=(352, 430))
-    orta(75, (526, 560), ["#6a5a58", "#5a4a4c", "#4a3c40", "#3c3036", "#30262c"], "#9a8078",
-         ekle=lambda img, z: [
-             figur(img, orta_asya_sehri, PAY + 260, PAY + 560, duz(588), 2.0, tohum=75),
-             kalabalik(img, duz(596), PAY + 20, PAY + 230, 26, 75, ("#2a2430", "#3a3038"),
-                       s=1.1, yon=1)])
-    on(75, ["#30262c", "#4a3c40", "#3c3036"], "#9a8078")
-
-    def kare(t, z, i):
-        f = i / KARE
-        for j, x in enumerate((180, 225, 285, 325)):                               # taşıyıcılar
-            figur(t, kisi, x, z, 2.5, govde="#24202c", bas="bork", bas_renk="#2a2420",
-                  yon=1, adim=(f + (j % 2) * 0.5) % 1)
-        abanoz_tabut(t, 170, 335, z[0] - 58)           # omuz y'si önizlemede ayarlanır
-        figur(t, kisi, 395, z, 1.8, govde="#3a3a5a", bas="bork", bas_renk="#5a3a22",
-              yon=1, adim=f)                                                        # genç Bâbür
-
-    sprite(75, "karakter", 540, 170, KARE, kare)
-
-
-# ---------------------------------------------------------------- 76
-def sahne76():
-    """Herat sarayı avlusu: asalı derviş şehzade yürür, saray ehli bakar. Gündüz."""
-    gokyuzu(76, ["#7aa0c8", "#a8c0d0", "#d8d0c0", "#f4dcb0", "#f8e4b8"],
-            (110, 360, 26, ["#fff8e0", "#ffe8b0"]), [(380, 340, 24), (250, 380, 18)],
-            ("#fff8ec", "#f4e4d0", "#d8c4b0"))
-    uzak(76, ["#8a9ab0", "#9aa8b8"], ["#a8b4a0", "#b4bc9c"], ["#c4c090", "#b4b080", "#a4a070"],
-         dag_y=(350, 425))
-    orta(76, (524, 558), ["#b8a870", "#a89860", "#988850", "#887842", "#786838"], "#e0d090",
-         ekle=lambda img, z: [
-             figur(img, orta_asya_sehri, PAY + 10, PAY + 520, duz(588), 2.4, tohum=76),
-             kalabalik(img, duz(596), PAY + 60, PAY + 420, 38, 76,
-                       ("#8a2a2a", "#2a5a8a", "#2a6a3a", "#8a6a2a"), s=1.1, yon=1),
-             figur(img, agac, PAY + 590, duz(592), 1.6)])
-    on(76, ["#786838", "#988850", "#887842"], "#e0d090")
-
-    def kare(t, z, i):
-        f = i / KARE
-        figur(t, kisi, 150, z, 2.6, govde="#8a7a5a", bas="sarik", bas_renk="#e8e0cc",
-              sakal="#2a1a12", yon=1, adim=f, silah="sopa")                         # derviş şehzade
-
-    sprite(76, "karakter", 300, 170, KARE, kare)
-
-
-# ---------------------------------------------------------------- 77
-def sahne77():
-    """Kalender yazar, Câmî muamma risalesini uzatır. İç mekân, gece penceresi, kandil + mum."""
-    ic_mekan(77, duvar=("#3a2a22", "#4a3628", "#5a4230"), kemer="#2a1a14", cini="#2a6a9a",
-             pencere=("#1a2a4a", "#f4f8ff"), zemin_renk=("#5a4a3a", "#4a3c2e", "#3e3226"),
-             isik="#f8c060", hali=True)
-
-    def kare(t, z, i):
-        f = i / KARE
-        kandil(t, 270, 0, f, 60)
-        mumluk(t, 270, z, f, 3)
-        figur(t, oturan, 185, z, 2.5, govde="#6a7a5a", bas="sarik", bas_renk="#e8e0cc",
-              sakal="#2a1a12", yon=1, el="kalem", minder="#8a2a2a")                 # Kalender
-        figur(t, kisi, 350, z, 2.5, govde="#2a4a6a", bas="sarik", bas_renk="#f4f0e6",
-              sakal="#e8e4dc", yon=-1, silah="mektup",
-              kol=0.35 + 0.2 * math.sin(f * 2 * math.pi))                           # Câmî
-
-    sprite(77, "karakter", 540, 190, KARE, kare)
-
-
-# ---------------------------------------------------------------- 78
-def sahne78():
-    """Kapıda sadaka (rivayet): Kalender yoksula altın verir. Öğleden sonra."""
-    gokyuzu(78, ["#7aa0c8", "#a8c0d0", "#d8d0c0", "#f4dcb0", "#f8e4b8"],
-            (420, 360, 26, ["#fff8e0", "#ffe8b0"]), [(140, 340, 24), (300, 380, 18)],
-            ("#fff8ec", "#f4e4d0", "#d8c4b0"))
-    uzak(78, ["#8a9ab0", "#9aa8b8"], ["#a8b4a0", "#b4bc9c"], ["#c4c090", "#b4b080", "#a4a070"],
-         dag_y=(350, 425))
-    orta(78, (524, 558), ["#b8a870", "#a89860", "#988850", "#887842", "#786838"], "#e0d090",
-         ekle=lambda img, z: [
-             figur(img, anadolu_kalesi, PAY + 120, PAY + 470, duz(588), 1.8),
-             kalabalik(img, duz(596), PAY + 20, PAY + 130, 28, 78, ("#6a5a4a", "#5a4a3a"),
-                       s=1.1, yon=1)])
-    on(78, ["#786838", "#988850", "#887842"], "#e0d090")
-
-    def kare(t, z, i):
-        f = i / KARE
-        figur(t, kisi, 145, z, 2.6, govde="#6a4a4a", bas="bork", bas_renk="#4a3a2a",
-              kadin=True, yon=1)                                                    # yoksul kadın
-        figur(t, kisi, 195, z, 2.6, govde="#6a5a4a", bas="kalpak", bas_renk="#4a3a2a",
-              sakal="#3a2a1a", yon=1, kol=0.6)                                      # yoksul
-        figur(t, kisi, 330, z, 2.6, govde="#8a7a5a", bas="sarik", bas_renk="#e8e0cc",
-              sakal="#2a1a12", yon=-1,
-              kol=0.2 + 0.4 * (0.5 - 0.5 * math.cos(f * 2 * math.pi)))              # Kalender
-        if 0.35 < f < 0.75:                                                         # altın sikke: ele
-            p = (f - 0.35) / 0.4
-            xk = int(320 - 90 * p)
-            yk = int(z[0] - 52 - 10 * math.sin(p * math.pi))
-            piksel(t, xk, yk, "#f8d860")
-            piksel(t, xk, yk + 1, "#c8a030")
-
-    sprite(78, "karakter", 540, 170, KARE, kare)
-
-
-# ---------------------------------------------------------------- 79
-def sahne79():
-    """Şahruh'un cenazesi; arkada birbirine düşen torunlar (karşılıklı atlı gruplar). Bulutlu gün."""
-    gokyuzu(79, ["#8a9ab0", "#a8b0b8", "#c8c0b8", "#e0d0b8", "#ece0c4"],
-            (400, 360, 22, ["#fffbe8", "#f4e8c8"]), [(140, 340, 26), (300, 330, 20)],
-            ("#f4f0ea", "#d8d4d0", "#a8a8b0"))
-    uzak(79, ["#7a8498", "#8a92a4"], ["#98a09c", "#a4aaa0"], ["#b4b090", "#a4a080", "#949070"],
-         dag_y=(352, 428))
-    orta(79, (526, 560), ["#a09870", "#908862", "#807854", "#706a48", "#625c40"], "#c8c090",
-         ekle=lambda img, z: [
-             figur(img, orta_asya_sehri, PAY + 250, PAY + 520, duz(588), 2.0, tohum=79),
-             kalabalik(img, duz(596), PAY + 20, PAY + 230, 26, 79, ("#2a2430", "#3a3038"),
-                       s=1.1, yon=-1),
-             figur(img, atli, PAY + 470, duz(584), 1.1, 1, dur=True, zirh="#9aa2ac",
-                   silah="mizrak", bayrak="#8a1e22"),
-             figur(img, atli, PAY + 490, duz(584), 1.1, 1, dur=True, zirh="#9aa2ac",
-                   silah="mizrak", bayrak="#8a1e22"),
-             figur(img, atli, PAY + 540, duz(584), 1.1, -1, dur=True, zirh="#9aa2ac",
-                   silah="mizrak", bayrak="#2a5a8a"),
-             figur(img, atli, PAY + 560, duz(584), 1.1, -1, dur=True, zirh="#9aa2ac",
-                   silah="mizrak", bayrak="#2a5a8a")])
-    on(79, ["#625c40", "#807854", "#706a48"], "#c8c090")
-
-    def kare(t, z, i):
-        f = i / KARE
-        for j, x in enumerate((210, 250, 310, 350)):
-            figur(t, kisi, x, z, 2.5, govde="#24202c", bas="sarik", bas_renk="#2a2420",
-                  yon=-1, adim=(f + (j % 2) * 0.5) % 1)
-        abanoz_tabut(t, 200, 360, z[0] - 58)
-
-    sprite(79, "karakter", 540, 170, KARE, kare)
-
-
-# ---------------------------------------------------------------- 80
-def sahne80():
-    """Ordu Herat kapısına: atlı Kalender elinde kılıç, arkasında iki atlı; orta planda ordu ve tuğ."""
-    gokyuzu(80, ["#6a9ad0", "#98b8dc", "#c8d8e0", "#f0e4c0", "#f8ecc8"],
-            (110, 360, 28, ["#fffbe8", "#fff0b8"]), [(380, 340, 26), (250, 380, 18)],
-            ("#ffffff", "#f0eef0", "#c8ccd8"))
-    uzak(80, ["#7a9ab8", "#8aa6c0"], ["#98b098", "#a4bc98"], ["#c4c488", "#b4b478", "#a4a468"],
-         dag_y=(350, 425))
-    orta(80, (524, 558), ["#b8b070", "#a8a460", "#989450", "#888442", "#787438"], "#e0dc90",
-         ekle=lambda img, z: [
-             figur(img, orta_asya_sehri, PAY + 250, PAY + 530, duz(588), 2.4, tohum=80),
-             kalabalik(img, duz(596), PAY + 20, PAY + 220, 18, 80,
-                       ("#2a2420", "#3a3030", "#5a2a2a"), s=1.1, yon=1, bas="migfer"),
-             figur(img, tug, PAY + 60, duz(592), 1.2, 0.0)])
-    on(80, ["#787438", "#988850", "#888442"], "#e0dc90")
-
-    def kare(t, z, i):
-        f = i / KARE
-        figur(t, atli, 145, z, 2.9, 1, faz=(f + 0.71) % 1, at_renk="#5a3a22", yele="#2b1a12",
-              govde="#6a2a2a", bas="migfer", bas_renk="#9aa2ac", silah="mizrak", adim=0.45,
-              zirh="#9aa2ac")
-        figur(t, atli, 235, z, 2.9, 1, faz=(f + 0.37) % 1, at_renk="#6b3f24", yele="#2b1a12",
-              govde="#7a1e22", bas="migfer", bas_renk="#9aa2ac", silah="mizrak", adim=0.45,
-              zirh="#9aa2ac")
-        figur(t, atli, 330, z, 2.9, 1, faz=f, at_renk="#3a2a22", yele="#1a1210",
-              govde="#8a7a5a", bas="sarik", bas_renk="#e8e0cc", sakal="#2a1a12",
-              silah="kilic", kol=0.6, adim=0.45)                                    # Kalender
-
-    sprite(80, "karakter", 540, 160, KARE, kare)
-
-
-# ---------------------------------------------------------------- 81
-def sahne81():
-    """Gazele giriş: kadehle ve kalemle şiir yazan hükümdar. İç mekân, mum + kandil."""
-    ic_mekan(81, duvar=("#3a2a22", "#4a3628", "#5a4230"), kemer="#2a1a14", cini="#2a6a9a",
-             pencere=("#1a2a4a", "#f4f8ff"), zemin_renk=("#5a4a3a", "#4a3c2e", "#3e3226"),
-             isik="#f8c060", hali=True)
-
-    def kare(t, z, i):
-        f = i / KARE
-        kandil(t, 220, 0, f, 60)
-        mumluk(t, 135, z, f, 3)
-        mumluk(t, 305, z, (f + 0.3) % 1, 2)
-        el = "kase" if 0.55 <= f < 0.85 else "kalem"
-        figur(t, oturan, 220, z, 2.8, govde="#6a7a5a", bas="sarik", bas_renk="#e8e0cc",
-              sakal="#2a1a12", yon=1, el=el, minder="#8a2a2a")
-
-    sprite(81, "karakter", 440, 200, KARE, kare)
-
-
-# ---------------------------------------------------------------- 82
-def sahne82():
-    """Beyit 1: gece gökyüzü, dolunay; Kalender aya bakar, yanında taş yığını."""
-    gokyuzu(82, ["#0a1228", "#16204a", "#26306a", "#3a407a", "#4a4a84"],
-            (390, 340, 34, ["#fff8e0", "#f4e8b8"]), [(150, 340, 20), (300, 390, 16)],
-            ("#8890b8", "#6a70a0", "#4a5088"), yildiz=70)
-    uzak(82, ["#1e2a52", "#26305a"], ["#2a3460", "#323c68"], ["#2a3254", "#242c4a", "#1e2640"],
-         dag_y=(352, 430))
-    orta(82, (526, 560), ["#3a4060", "#323852", "#2a3048", "#242a3e", "#1e2434"], "#6a7098",
-         ekle=lambda img, z: [
-             figur(img, taslar, PAY + 80, duz(588), 1.2),
-             figur(img, taslar, PAY + 440, duz(588), 1.2)])
-    on(82, ["#1e2434", "#2a3048", "#242a3e"], "#6a7098")
-
-    def kare(t, z, i):
-        f = i / KARE
-        figur(t, kisi, 130, z, 2.6, govde="#6a6a5a", bas="sarik", bas_renk="#d8d4c4",
-              sakal="#2a1a12", yon=1)
-        figur(t, taslar, 250, z, 2.6, cicek=False)
-
-    sprite(82, "karakter", 380, 170, KARE, kare)
-
-
-# ---------------------------------------------------------------- 83
-def sahne83():
-    """Beyit 2: gün batımı, büyük gül ve düşen yaprak."""
-    gokyuzu(83, ["#4a2a5a", "#8a3a62", "#c85a5a", "#e88a58", "#f4b868", "#f8d890"],
-            (270, 370, 30, ["#fff0c0", "#ffb868"]), [(130, 340, 22), (420, 330, 20)],
-            ("#f8d0b8", "#e0a090", "#a86078"))
-    uzak(83, ["#6a3a62", "#7a4268"], ["#8a4a68", "#9a5870"], ["#a8607a", "#985470", "#884a66"],
-         dag_y=(352, 430))
-    orta(83, (526, 560), ["#7a4a52", "#6a4048", "#5a363e", "#4a2c34", "#3c242a"], "#c08070")
-    on(83, ["#3c242a", "#5a363e", "#4a2c34"], "#c08070")
-
-    def kare(t, z, i):
-        f = i / KARE
-        figur(t, cicek, 70, z, 2.4, (f + 0.3) % 1, "#c8302a", "#f4d24a")
-        figur(t, cicek, 150, z, 4.2, f, "#c8302a", "#f4d24a")
-        figur(t, cicek, 230, z, 2.8, (f + 0.6) % 1, "#c8302a", "#f4d24a")
-        ytop = z[0] - 50                                                            # yaprak aşağı düşer
-        xk = int(165 + 6 * math.sin(f * 2 * math.pi))
-        yk = int(ytop + f * (z[0] - ytop))
-        piksel(t, xk, yk, "#c8302a")
-        piksel(t, xk + 1, yk, "#e85a4a")
-
-    sprite(83, "karakter", 300, 170, KARE, kare)
-
-
-# ---------------------------------------------------------------- 84
-def sahne84():
-    """Beyit 3: Nevruz, bahar bahçesi; ağaç altında kadehli Kalender, dilberler, gül."""
-    gokyuzu(84, ["#78b0e0", "#a0c8e8", "#c8def0", "#e8eed8", "#f8f0d0"],
-            (90, 360, 26, ["#fffbe8", "#fff0b8"]), [(380, 340, 28), (210, 330, 22), (470, 380, 20)],
-            ("#ffffff", "#eef0f8", "#c8d0e0"))
-    uzak(84, ["#7a9ab8", "#8aa8c0"], ["#90b090", "#a0bc98"], ["#a8c878", "#98b868", "#88a858"],
-         dag_y=(350, 420))
-    orta(84, (524, 558), ["#7aa850", "#6a9844", "#5a8838", "#4c7830", "#406a2a"], "#b8e078",
-         ekle=lambda img, z: [
-             cicekler(img, z, ["#f4d24a", "#e86a8a", "#ffffff", "#8a6ae0"], 84, adet=60,
-                      derinlik=26),
-             figur(img, agac, PAY + 60, duz(590), 1.6,
-                   yaprak=("#d8789a", "#f0a0b8", "#f8d0d8"), govde="#4a3022", tohum=84),
-             figur(img, agac, PAY + 470, duz(590), 1.6,
-                   yaprak=("#d8789a", "#f0a0b8", "#f8d0d8"), govde="#4a3022", tohum=85)])
-    on(84, ["#406a2a", "#5a8838", "#4c7830"], "#b8e078")
-
-    def kare(t, z, i):
-        f = i / KARE
-        figur(t, agac, 380, z, 1.8, yaprak=("#d8789a", "#f0a0b8", "#f8d0d8"),
-              govde="#4a3022", tohum=84, sallanma=math.sin(f * 2 * math.pi))
-        figur(t, kisi, 150, z, 2.5, govde="#c8508a", bas="sarik", bas_renk="#f0d0e0",
-              kadin=True, yon=1)
-        figur(t, kisi, 190, z, 2.5, govde="#8a5ac8", bas="sarik", bas_renk="#f0d0e0",
-              kadin=True, yon=1)
-        figur(t, oturan, 245, z, 2.5, govde="#6a7a5a", bas="sarik", bas_renk="#e8e0cc",
-              sakal="#2a1a12", yon=1, el="kase", minder="#8a2a2a")
-        figur(t, cicek, 300, z, 3.0, f, "#c8302a", "#f4d24a")
-        for j in range(6):                                                          # düşen yapraklar
-            y = 20 + ((f + j / 6) % 1) * (z[0] - 20)
-            x = 330 + j * 12 + 5 * math.sin((f + j / 6) * 2 * math.pi)
-            piksel(t, int(x), int(y), "#f8c0d0")
-
-    sprite(84, "karakter", 540, 170, KARE, kare)
-
-
-# ---------------------------------------------------------------- 85
-def sahne85():
-    """Beyit 4: kadeh; oturan Kalender kadeh tutar, saki testiyle doldurur. İç mekân."""
-    ic_mekan(85, duvar=("#3a2a22", "#4a3628", "#5a4230"), kemer="#2a1a14", cini="#2a6a9a",
-             pencere=("#1a2a4a", "#f4f8ff"), zemin_renk=("#5a4a3a", "#4a3c2e", "#3e3226"),
-             isik="#f8c060", hali=True)
-
-    def kare(t, z, i):
-        f = i / KARE
-        kandil(t, 225, 0, f, 56)
-        mumluk(t, 225, z, f, 3)
-        figur(t, oturan, 165, z, 2.6, govde="#6a7a5a", bas="sarik", bas_renk="#e8e0cc",
-              sakal="#2a1a12", yon=1, el="kase", minder="#8a2a2a")
-        figur(t, kisi, 285, z, 2.6, govde="#7a4a8a", bas="bork", bas_renk="#5a3a22",
-              yon=-1, silah="testi", kol=0.35 + 0.3 * math.sin(f * 2 * math.pi))      # saki
-
-    sprite(85, "karakter", 440, 190, KARE, kare)
-
-
-# ---------------------------------------------------------------- 86
-def sahne86():
-    """Beyit 5: gece, ince ay, mangaldan yükselen gönül dumanı, halk."""
-    gokyuzu(86, ["#0a1228", "#16204a", "#26306a", "#3a407a", "#4a4a84"],
-            (130, 340, 14, ["#f4ecd0", "#c8c0a0"]), [(380, 350, 18)],
-            ("#8890b8", "#6a70a0", "#4a5088"), yildiz=90)
-    uzak(86, ["#1e2a52", "#26305a"], ["#2a3460", "#323c68"], ["#2a3254", "#242c4a", "#1e2640"],
-         dag_y=(352, 430))
-    orta(86, (526, 560), ["#3a4060", "#323852", "#2a3048", "#242a3e", "#1e2434"], "#6a7098",
-         ekle=lambda img, z: [
-             kalabalik(img, duz(596), PAY + 30, PAY + 260, 30, 86,
-                       ("#2a2a40", "#3a3050", "#2a3a48"), s=1.1, yon=1)])
-    on(86, ["#1e2434", "#2a3048", "#242a3e"], "#6a7098")
-
-    def kare(t, z, i):
-        f = i / KARE
-        mangal(t, 200, z, f)
-        duman(t, 200, z[0] - 34, 120, 86, faz=f, renk="#d9d2c4", ruzgar=0.2)
-        figur(t, oturan, 130, z, 2.5, govde="#6a7a5a", bas="sarik", bas_renk="#e8e0cc",
-              sakal="#2a1a12", yon=1, minder="#8a2a2a")
-        figur(t, oturan, 270, z, 2.5, govde="#4a5a7a", bas="sarik", bas_renk="#d8d4c4",
-              sakal="#e8e4dc", yon=-1, minder="#4a3a2a")
-
-    sprite(86, "karakter", 400, 170, KARE, kare)
-
-
-# ---------------------------------------------------------------- 87
-def sahne87():
-    """Beyit 6: Mecnun çölde yürür; ufukta Leyla'nın ışıklı çadırı (yurt). Akşam çölü."""
-    def ekle(img, z):
-        baca = figur(img, yurt, PAY + 470, duz(588), 2.2, keçe="#d8c8a8", golge="#b0986e",
-                     isik=True)
-        duman(img, baca[0], baca[1], 80, 87, faz=0.0)
-        figur(img, taslar, PAY + 70, duz(588), 1.2)
-
-    gokyuzu(87, ["#3a2a5a", "#7a3a6a", "#c05a5a", "#e88a58", "#f4b868", "#f8d890"],
-            (400, 370, 32, ["#fff0c0", "#ffb868"]), [(130, 340, 22)],
-            ("#f8d0b8", "#e0a090", "#a86078"))
-    uzak(87, ["#8a5a62", "#9a6a68"], ["#aa7a6a", "#ba8a70"], ["#c89a78", "#b88a6c", "#a87a60"],
-         dag_y=(352, 428))
-    orta(87, (526, 560), ["#d0a870", "#c09862", "#b08856", "#a0784a", "#90683e"], "#f0c888",
-         ekle=ekle)
-    on(87, ["#90683e", "#b08856", "#a0784a"], "#f0c888")
-
-    def kare(t, z, i):
-        f = i / KARE
-        figur(t, kisi, 150, z, 2.6, govde="#7a6a52", bas="sarik", bas_renk="#a89878",
-              sakal="#3a2a1a", yon=1, adim=f)                                       # Mecnun
-        figur(t, taslar, 330, z, 1.8)
-
-    sprite(87, "karakter", 440, 170, KARE, kare)
-
-
-# ---------------------------------------------------------------- 88
-def sahne88():
-    """Çözümleme: kılıçlı siluet (öbür yüz) ve yazan, kadeh kaldıran Kalender. İç mekân."""
-    ic_mekan(88, duvar=("#3a2a22", "#4a3628", "#5a4230"), kemer="#2a1a14", cini="#2a6a9a",
-             pencere=("#1a2a4a", "#f4f8ff"), zemin_renk=("#5a4a3a", "#4a3c2e", "#3e3226"),
-             isik="#f8c060", hali=True)
-
-    def kare(t, z, i):
-        f = i / KARE
-        kandil(t, 260, 0, f, 60)
-        mumluk(t, 260, z, f, 3)
-        figur(t, kisi, 185, z, 2.6, govde="#1a1620", bas="sarik", bas_renk="#1a1620",
-              sakal="#1a1620", yon=1, silah="kilic", kol=0.5, ten="#1e1824")        # gölge siluet
-        el = "kalem" if f < 0.5 else "kase"
-        figur(t, oturan, 330, z, 2.6, govde="#6a7a5a", bas="sarik", bas_renk="#e8e0cc",
-              sakal="#2a1a12", yon=-1, el=el, minder="#8a2a2a")
-
-    sprite(88, "karakter", 540, 200, KARE, kare)
-
-
-# ---------------------------------------------------------------- 89
-def sahne89():
-    """Kapanış: alacakaranlık, uzaklaşan derviş silüeti, silik Herat ve mavi türbe."""
-    gokyuzu(89, ["#1a1a3a", "#3a2a5a", "#7a3a6a", "#c05a62", "#e88a60", "#f4b878"],
-            (270, 370, 28, ["#fff0c0", "#ffb868"]), [(110, 340, 20), (430, 330, 18)],
-            ("#f0d0d0", "#d8a8b0", "#a07088"), yildiz=50)
-    uzak(89, ["#3a2a52", "#4a3258"], ["#5a3a5e", "#6a4264"], ["#6a4668", "#5a3a5a", "#4a304c"],
-         dag_y=(352, 430))
-    orta(89, (526, 560), ["#4a3050", "#402848", "#382240", "#301c38", "#281630"], "#7a5068",
-         ekle=lambda img, z: [
-             figur(img, orta_asya_sehri, PAY + 300, PAY + 560, duz(588), 2.0, tohum=89,
-                   kerpic="#6a4a60", golge="#4a3248", kubbe="#5a5a8a"),
-             figur(img, gur_i_emir, PAY + 120, duz(588), 1.6, mavi="#3a4a7a", tugla="#6a4a60")])
-    on(89, ["#281630", "#402848", "#382240"], "#7a5068")
-
-    def kare(t, z, i):
-        f = i / KARE
-        figur(t, kisi, 150, z, 2.6, govde="#140e1c", bas="sarik", bas_renk="#140e1c",
-              sakal="#140e1c", yon=-1, adim=f, silah="sopa", ten="#140e1c")
-
-    sprite(89, "karakter", 300, 150, KARE, kare)
-
-
-SAHNELER = {72: sahne72, 73: sahne73, 74: sahne74, 75: sahne75, 76: sahne76, 77: sahne77,
-            78: sahne78, 79: sahne79, 80: sahne80, 81: sahne81, 82: sahne82, 83: sahne83,
-            84: sahne84, 85: sahne85, 86: sahne86, 87: sahne87, 88: sahne88, 89: sahne89}
-
-if __name__ == "__main__":
-    import sys
-    for a in sys.argv[1:]:
-        SAHNELER[int(a)]()
+```
+Low-poly 3D illustration with faceted geometry and flat-shaded polygons, soft global illumination, a pastel-earth palette of sand, terracotta, sage green, turquoise and warm gold, a slight claymation feel and cinematic depth of field. The recurring hero Kalender is a Timurid prince-dervish in a plain sage-green kaftan and a white turban, with a short dark beard and a calm gaze, holding a wooden staff or a reed pen. Herat has sun-baked mud-brick walls and towers, turquoise ribbed domes and tall slender poplars; light is clear soft daylight by day, low amber light with long shadows at golden hour, and deep indigo sky with warm candle and lantern glow at night.
 ```
 
----
+### Sabit yardımcı bloklar (ilgili sahne prompt'larına aynen yapıştırılır)
 
-## 3) Seri nesnesi (TSX): `video/src/sahneler/Kalender.tsx`
-
-```ts
-import { ALTIN, KIZIL, type Seri } from "./TimurSeri";
-
-// kapak: ajans sahibi vermedi, alan boş bırakıldı.
-export const Kalender: Seri = {
-  etiket: "Timur'un Soyundan Kalender",
-  bolumler: [
-    // ---- Kanca 0:00-0:10
-    { no: 72, yakin: 2.0, kamera: 10, sprite: { w: 540, h: 200, fps: 8, x: 270, taban: 634 },
-      yazilar: [
-        { satirlar: ["Hükümdar mı,", "derviş mi?"], sure: 5.0, renk: ALTIN },
-        { satirlar: ["Bir elinde kılıç,", "öbüründe şiir."], sure: 4.5 },
-      ] },
-    // ---- Herat 0:10-0:34
-    { no: 73, yakin: 1.9, kamera: 20, sprite: { w: 540, h: 170, fps: 10, x: 270, taban: 632 },
-      yazilar: [{ satirlar: ["Timur'un kanı,", "Baysungur'un kalemi"], sure: 9.5, renk: ALTIN }] },
-    { no: 74, yakin: 1.8, kamera: 10, sprite: { w: 540, h: 200, fps: 8, x: 270, taban: 634 },
-      yazilar: [{ satirlar: ["Hattatlar, nakkaşlar,", "müzehhipler."], sure: 7.5 }] },
-    { no: 75, yakin: 2.0, kamera: 20, sprite: { w: 540, h: 170, fps: 12, x: [240, 300], taban: 634 },
-      yazilar: [{ satirlar: ["Baysungur", "37 yaşında öldü"], sure: 5.5, renk: KIZIL }] },
-    // ---- Kalender 0:34-0:59
-    { no: 76, yakin: 2.2, kamera: 30, sprite: { w: 300, h: 170, fps: 16, x: [230, 300], taban: 630 },
-      yazilar: [{ satirlar: ["Sarayda tuhaf", "bir şehzade beliriyor"], sure: 5.5 }] },
-    { no: 77, yakin: 2.1, kamera: 10, sprite: { w: 540, h: 190, fps: 8, x: 270, taban: 634 },
-      yazilar: [{ satirlar: ["Ona \"Kalender\"", "diyorlar"], sure: 9.5, renk: ALTIN }] },
-    { no: 78, yakin: 2.0, kamera: 20, sprite: { w: 540, h: 170, fps: 10, x: 270, taban: 632 },
-      yazilar: [{ satirlar: ["İlk kapıda", "misliyle ver"], sure: 8.5, renk: ALTIN }] },
-    // ---- Dönüş 0:59-1:12
-    { no: 79, yakin: 2.0, kamera: 20, sprite: { w: 540, h: 170, fps: 12, x: [300, 250], taban: 634 },
-      yazilar: [{ satirlar: ["Taht boşaldı"], sure: 5.5, renk: KIZIL }] },
-    { no: 80, yakin: 2.0, kamera: 40, sprite: { w: 540, h: 160, fps: 18, x: [220, 300], taban: 632 },
-      yazilar: [
-        { satirlar: ["Derviş ordu topluyor", "ve Herat'a giriyor"], sure: 3.0 },
-        { satirlar: ["Dervişin elinde", "kılıç"], sure: 3.5, renk: KIZIL },
-      ] },
-    // ---- Gazele giriş 1:12-1:19
-    { no: 81, yakin: 2.3, kamera: 10, sprite: { w: 440, h: 200, fps: 8, x: 270, taban: 634 },
-      yazilar: [{ satirlar: ["Kılıçla yakışmayan", "iki satır…"], sure: 6.5, renk: ALTIN }] },
-    // ---- Gazel 1:19-2:06 (altyazı + vurgu)
-    { no: 82, yakin: 2.1, kamera: 20, sprite: { w: 380, h: 170, fps: 10, x: 270, taban: 630 },
-      yazilar: [
-        { satirlar: ["O ay parçası gibi güzel yüze", "âşık olmayan her gönül,", "sana gönül denmez;"], sure: 4.2 },
-        { satirlar: ["çünkü taş parçasından", "geri kalır yanın yok."], sure: 3.3 },
-      ] },
-    { no: 83, yakin: 2.4, kamera: 20, sprite: { w: 300, h: 170, fps: 12, x: 270, taban: 630 },
-      yazilar: [
-        { satirlar: ["Dedim: Ey sevgili,", "senin gamının karşısında", "ne yapayım?"], sure: 3.8 },
-        { satirlar: ["Dedi: Burada öldürülmekten", "başka hiçbir çare yok."], sure: 4.7, renk: KIZIL },
-      ] },
-    { no: 84, yakin: 1.9, kamera: 25, sprite: { w: 540, h: 170, fps: 10, x: 270, taban: 630 },
-      yazilar: [
-        { satirlar: ["Nevruz, ilkbahar, gül,", "kadeh ve dilberler…"], sure: 3.8 },
-        { satirlar: ["Dünyaya ikinci kez gelinmediği", "için hayatı güzel yaşa."], sure: 5.7, renk: ALTIN },
-      ] },
-    { no: 85, yakin: 2.2, kamera: 10, sprite: { w: 440, h: 190, fps: 8, x: 270, taban: 634 },
-      yazilar: [
-        { satirlar: ["Zamanımızın eski", "süvarilerinden biri meydir;"], sure: 3.2 },
-        { satirlar: ["her vakit durmaksızın nefes", "isteyip kabul eden", "şey nedir?"], sure: 4.3 },
-      ] },
-    { no: 86, yakin: 2.2, kamera: 15, sprite: { w: 400, h: 170, fps: 10, x: 270, taban: 630 },
-      yazilar: [
-        { satirlar: ["İyilerin keman kaşları niçin", "siyahtır, bilir misin?"], sure: 2.6 },
-        { satirlar: ["Çünkü onların gönül", "dumanının köşelerinden", "halk güç almaktadır."], sure: 2.9 },
-      ] },
-    { no: 87, yakin: 2.0, kamera: 30, sprite: { w: 440, h: 170, fps: 10, x: [230, 300], taban: 630 },
-      yazilar: [
-        { satirlar: ["Bâbür, senin ağlayıp inlemen", "sevgilinin kulağına ulaştı;"], sure: 2.6 },
-        { satirlar: ["Mecnun'un bu hay içinde", "olmasından", "Leyla haberdar oldu"], sure: 2.9, renk: ALTIN },
-      ] },
-    // ---- Çözümleme 2:06-2:40
-    { no: 88, yakin: 2.0, kamera: 10, sprite: { w: 540, h: 200, fps: 8, x: 270, taban: 634 },
-      yazilar: [
-        { satirlar: ["Bu satırları elinde kılıç", "tutan hükümdar yazdı."], sure: 4.5 },
-        { satirlar: ["Burada öldürülmekten", "başka hiçbir çare yok"], sure: 4.5, renk: KIZIL },
-        { satirlar: ["Dünyaya ikinci kez", "gelinmediği için", "hayatı güzel yaşa"], sure: 4.5, renk: ALTIN },
-      ] },
-    // Sahne 85'in yeniden kullanımı, yakın çekim (yakin 2.8)
-    { no: 85, yakin: 2.8, kamera: 10, odakY: 560, sprite: { w: 440, h: 190, fps: 8, x: 270, taban: 634 },
-      yazilar: [
-        { satirlar: ["Kadeh:", "şarap mı, hakikat mi?"], sure: 5.5, renk: ALTIN },
-        { satirlar: ["Şeriat kadeh,", "hakikat içindeki içki"], sure: 5.0 },
-      ] },
-    // Sahne 87'nin yeniden kullanımı
-    { no: 87, yakin: 2.0, kamera: 30, sprite: { w: 440, h: 170, fps: 10, x: [230, 300], taban: 630 },
-      yazilar: [{ satirlar: ["Leyla kim?", "İnsan mı, Hak mı?"], sure: 8.5, renk: ALTIN }] },
-    // ---- Kapanış 2:40-2:59
-    { no: 89, yakin: 2.3, kamera: 30, sprite: { w: 300, h: 150, fps: 12, x: [280, 235], taban: 632 },
-      yazilar: [
-        { satirlar: ["Sonra ölüyor."], sure: 2.5, renk: KIZIL },
-        { satirlar: ["Kılıcıyla değil, şiirleri", "ve bir lakapla anılıyor:", "Kalender"], sure: 4.0, renk: ALTIN },
-        { satirlar: ["Timur dünyayı kılıçla titretti,", "torunu geriye şiir bıraktı"], sure: 3.0 },
-      ] },
-  ],
-  kapanis: {
-    satirlar: ["Ermiş mi,", "şair mi?"],
-    sonraki: "Sıradaki: Uluğ Bey mi, Baysungur mu?",
-    sure: 9, arka: 89, gece: true,
-  },
-};
+**PALACE ROOM** (72, 77, 81, 85, 88'de aynı oda):
+```
+the same palace room: turquoise-and-white tiled walls, a deep red carpet, a low carved cedar throne with crimson and gold cushions on the left, a tall brass candlestand in the middle, a hanging brass lantern above, and a tall arched window on the right
 ```
 
-`Root.tsx` kaydı: `Kalender` bileşeni `TimurSeri` kalıbıyla eklenecek.
+**Yan karakterler** (her sahnede aynı tarif):
+- **Timur:** elderly, white beard, steel lamellar armor with crimson cloak, heavy build.
+- **Şahruh:** middle-aged, trimmed grey beard, royal blue-and-gold robe, tall white turban with a small jeweled plume.
+- **Baysungur:** thirties, short black beard, plum-colored robe, small round turban.
+- **Câmî:** very old, long white beard, grey-blue robe, large soft white turban.
+- **Bâbür (çocuk):** about 9 years old, no beard, simple sage-tinted tunic, small white cap.
+- **Saki:** young cupbearer in a rust-orange vest with a brass ewer.
+- **Mecnun:** gaunt, ragged ochre kaftan, tangled hair.
 
 ---
 
-## 4) Yeni figür isteği
+## 2) Sahne planı (özet)
 
-Aşağıdaki tüm figürler `figur()` ile çağrılacak şekilde düşünüldü.
-
-| # | Figür | Boy / ölçek | Zemine nasıl bastığı | Sahne | Şimdiki yedek çözüm |
+| No | Zaman | Sn | Konu | Kamera | Ekran yazısı |
 |---|---|---|---|---|---|
-| 1 | **Taht** (oyma ahşap, altın ve kızıl minderli) | oturan Kalender'den ~%60 yüksek, `s≈3.4` | Dört ayak `z`'ye basar; üst yüz `y` döndürür (`sedir` gibi) | 72, 73 | `sedir` (altın renk) |
-| 2 | **Kitap rafı** (kitap sırtları, kandil nişi) | insandan ~%30 yüksek; tabanı `z`'de | Ahşap alt kasası zemine oturur | 74, 77 | `ic_mekan` kemer nişleri |
-| 3 | **Yazı masası / rahle** (alçak, üstünde kâğıt ve kalem) | oturan dizi hizası | Ayakları `z`'de | 74, 77, 81, 88 | `oturan el='kalem'` |
-| 4 | **Kadeh ve sürahi** (yerde ya da rahlede) | el boyu, ~6–8 px (`s=1`) | Dibi zemine ya da rahle üstüne oturur | 81, 84, 85, 88 | `oturan el='kase'`, saki `silah='testi'` |
-| 5 | **Duvara dayalı kılıç** | insan boyunun ~%70'i | Alt ucu zemine, üstü duvara yaslanır | 72, 81, 88 | `kisi silah='kilic'` (muhafız) |
-| 6 | **Hilal ay** | küçük, ince | gökyüzünde, yazı bandı dışında | 86 | `gokyuzu`'nda küçük `gunes_` |
-| 7 | **Gül çalısı** (dikenli, kızıl çiçekli) | insan dizi hizasından göğse | Gövdesi zemine sabit, üst kısım rüzgârda salınır | 83, 84 | `cicek renk='#c8302a'` büyük ölçek |
-| 8 | **Arap kara çadırı** (Leyla) | yurt boyunda, ışıklı kapı | Taban düz zemine oturur | 87 | `yurt isik=True` |
-| 9 | **Takke / derviş külahı** (`kisi bas='takke'`) | baş boyu | baş figürüne ait | 76, 78, 89 | `bas='sarik'` (`'takke'` değeri fonksiyon referansında yok) |
-| 10 | **Altın sikke ve kese** | 2–3 px | elden ele (kısa süreli) | 78 | `piksel()` ile sarı iki piksel |
+| 72 | 0:00–0:10 | 10 | Tahtta Kalender, yanlarında muhafız ve kâtip | push-in 1.00→1.15 | Hükümdar mı, derviş mi? |
+| 73 | 0:10–0:20 | 10 | Timur ve tahtta Şahruh, Herat | pan-right 1.10→1.18 | Timur'un kanı, Baysungur'un kalemi |
+| 74 | 0:20–0:28 | 8 | Baysungur'un akademisi, çocuk Bâbür | push-in 1.00→1.12 | (yok) |
+| 75 | 0:28–0:34 | 6 | Baysungur'un cenazesi | pan-right 1.10→1.18 | Baysungur 37 yaşında öldü |
+| 76 | 0:34–0:40 | 6 | Avluda asalı şehzade | pan-right 1.10→1.18 | (yok) |
+| 77 | 0:40–0:50 | 10 | Câmî risale uzatır | push-in 1.00→1.12 | Ona "Kalender" diyorlar |
+| 78 | 0:50–0:59 | 9 | Kapıda sadaka (rivayet) | push-in 1.05→1.20 | İlk kapıda misliyle ver |
+| 79 | 0:59–1:05 | 6 | Şahruh'un cenazesi, torunlar yüzleşir | pan-left 1.10→1.18 | Taht boşaldı |
+| 80 | 1:05–1:12 | 7 | Atlı Kalender, kılıç, Herat kapısı | pan-right 1.10→1.20 | Dervişin elinde kılıç |
+| 81 | 1:12–1:19 | 7 | Kalem ve kadeh | push-in 1.05→1.20 | (yok) |
+| 82 | 1:19–1:27 | 8 | Gece, ay, taş yığını | tilt-up 1.12→1.12 | Kılıçla yakışmayan iki satır… |
+| 83 | 1:27–1:36 | 9 | Gün batımında gül | push-in 1.00→1.10 | Burada öldürülmekten başka hiçbir çare yok |
+| 84 | 1:36–1:46 | 10 | Nevruz bahçesi | pull-out 1.15→1.00 | Dünyaya ikinci kez gelinmediği için hayatı güzel yaşa |
+| 85 | 1:46–1:54 | 8 | Kadeh: Kalender ve saki | push-in 1.00→1.12 | (yok) |
+| 86 | 1:54–2:00 | 6 | Gönül dumanı | tilt-up 1.10→1.10 | (yok) |
+| 87 | 2:00–2:06 | 6 | Mecnun çölde | push-in 1.00→1.12 | Leyla haberdar oldu |
+| 88 | 2:06–2:20 | 14 | Kılıçlı gölge ve yazan Kalender | pull-out 1.18→1.02 | (yok) |
+| 85† | 2:20–2:31 | 11 | Kadeh yakın çekim (85 yeniden) | push-in 1.10→1.25 | Kadeh: şarap mı, hakikat mi? |
+| 87† | 2:31–2:40 | 9 | Leyla kim? (87 yeniden) | pan-right 1.15→1.15 | (yok) |
+| 89 | 2:40–2:59 | 19 | Derviş silüeti uzaklaşır | pull-out 1.20→1.00 | Ermiş mi, şair mi? (2:50) |
+
+**Yeniden kullanım notu:** 85† ve 87† için yeni görsel üretilmez. Sahne 85 ve 87 görselleri farklı kamerayla tekrar kullanılır. Hareket prompt'ları sahnelerin içinde yazılı.
+
+**Ara yazılar:** Önceki plandaki seslendirme alıntısı ara yazıları (72, 74, 76, 80) aynen kalır. Görsellerden etkilenmezler.
 
 ---
 
-## Kod tarafına notlar (doğrulanması gerekenler)
+## 3) Sahne sahne teslim
 
-1. `abanoz_tabut(d, x0, x1, omuz)` imzasındaki `d` için kare tuvali (`t`) verdim. Sahne 63'teki çağrı kalıbı farklıysa onu kullanın. `omuz = z[0] − 58` tahminidir, önizlemede taşıyıcı omuzlarına göre ayarlanmalı.
-2. `KARE` ve `PAY` sabitlerini `sahneler` içinden import ettim. Başka modülde tanımlıysa import satırı değişir.
-3. `oturan(minder=...)` için renk dizesi verdim. Parametre mantıksal değerse dize de doğru kabul edilir. Renk olarak kullanılıyorsa renk görünür.
-4. İç mekân sahnelerinde (72, 74, 77, 81, 85, 88) kare boyutları ve x konumları görünür aralığa göre seçildi. Oturan figürlerin gerçek genişliği `onizleme`'de kontrol edilmeli, çakışma olursa x değerleri 10–15 px kaydırılır.
-5. Sahne 85 ve 87'nin ikinci `Bolum` olarak kullanılması motorda doğrulanmalı. Desteklenmezse yedek: 90 ve 91 numaralı iki ek sahne.
-6. Dönem uyumu için Timurlu şehzadelerde taç yerine `sorguc` kullandım. Hâtim-i Tâî sözü ve sadaka sahnesi (78) rivayet olarak yazıda zaten işaretli.
+### Sahne 72 · Kanca · 10 sn
+- **a) Konu:** Tahtta oturan sade kaftanlı Kalender'in iki yanında kılıçlı muhafız ve yazan kâtip durur.
+- **b) Görsel prompt:**
+```
+Medium shot, eye level. Adult Kalender sits upright on the low throne holding a reed pen in his right hand, looking calmly toward the viewer. To his left stands a helmeted guard holding a sheathed sword point-down; to his right a scribe sits cross-legged writing on a scroll. Setting: the same palace room with turquoise-and-white tiled walls, a deep red carpet, a low carved cedar throne with crimson and gold cushions, a tall brass candlestand and a hanging brass lantern. Warm candlelight, soft shadows. Characters large and readable, all figures standing or sitting firmly on the carpet. Vertical 9:16 composition, the upper 25% of the frame is calm tiled wall and lantern glow. No text.
+```
+- **c) Kamera:** push-in, ölçek 1.00 → 1.15.
+- **d) Hareket prompt'u:**
+```
+Camera slowly pushes in, candle flames flicker gently, the scribe's pen moves across the scroll, robes sway slightly. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 10 sn.
 
+### Sahne 73 · Herat, Timur ve Şahruh · 10 sn
+- **a) Konu:** Altın saatte Herat silüetinin önünde yaşlı Timur kılıçla, yanında oğlu Şahruh alçak tahtta durur.
+- **b) Görsel prompt:**
+```
+Wide-medium shot, slightly low angle. On the left the elderly Timur stands in steel armor with a crimson cloak, both hands on a planted sword, beside a tall standard with a horsehair tail. On the right Şahruh sits on a low carved throne in a royal blue-and-gold robe. Behind them the skyline of Herat: mud-brick walls, turquoise ribbed domes and slender poplars on flat sandy ground. Golden hour, low amber light with long shadows, warm haze. Both figures large and readable, feet planted on the ground. Vertical 9:16 composition, the upper 25% is calm golden sky. No text.
+```
+- **c) Kamera:** pan-right, ölçek 1.10 → 1.18 (Timur'dan Şahruh'a).
+- **d) Hareket prompt'u:**
+```
+Camera slowly pans right from Timur to Şahruh, the standard's horsehair tail and cloaks sway in the wind, dust drifts low over the ground. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 10 sn.
 
-Kod notu: tarif video/piksel/kalender.py olarak çizildi (18 sahne, taban_denetimi geçti); TSX video/src/sahneler/Kalender.tsx; süreler hizala_seri.py ile kalender-vcvcvc-take1.mp3'e hizalandı (173,9 sn). Yakınlaştırma iç mekânlarda 2.5'e çıkarıldı.
+### Sahne 74 · Akademi · 8 sn
+- **a) Konu:** Baysungur'un sanat akademisinde hattat, nakkaş ve müzehhip çalışırken çocuk Bâbür yanında izler.
+- **b) Görsel prompt:**
+```
+Medium-wide shot. Inside a warm library-workshop, three masters sit on the floor at low desks: a calligrapher with a reed pen, a painter with a fine brush, an illuminator with gold paint. On the right stands Baysungur in a plum robe nodding approvingly, and beside him the child Bâbür, about 9 years old, gazing at the pages. Shelves of books and scrolls, turquoise tiles, hanging brass lanterns and candles giving warm amber light. Figures large and readable, sitting and standing on a patterned carpet. Vertical 9:16 composition, the upper 25% is calm shelf and lantern glow. No text.
+```
+- **c) Kamera:** push-in, ölçek 1.00 → 1.12.
+- **d) Hareket prompt'u:**
+```
+Camera slowly pushes in, candle flames flicker, the calligrapher's pen and the painter's brush move gently, the child's head turns slightly toward the pages. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 8 sn.
+
+### Sahne 75 · Baysungur'un cenazesi · 6 sn
+- **a) Konu:** Alacakaranlıkta dört taşıyıcı Baysungur'un tabutunu omuzlarda taşır, önde çocuk Bâbür başı eğik yürür.
+- **b) Görsel prompt:**
+```
+Medium shot. Four bearers in dark muted robes carry an ebony coffin draped in a deep green cloth on their shoulders, walking to the right. In front, the child Bâbür, about 9 years old, walks with his head bowed. Behind them mourners and a faint low-poly city silhouette with a turquoise dome. Dusk, violet-orange sky, cool blue shadows, a few soft warm lanterns. Figures large, feet on a dusty path. Vertical 9:16 composition, the upper 25% is calm dusk sky. No text.
+```
+- **c) Kamera:** pan-right, ölçek 1.10 → 1.18.
+- **d) Hareket prompt'u:**
+```
+Camera slowly pans right following the procession, the bearers walk in slow heavy steps, cloth and robes sway, thin dust rises from the path. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 6 sn.
+
+### Sahne 76 · Saray avlusu · 6 sn
+- **a) Konu:** Gündüz saray avlusunda asalı, sade kaftanlı genç şehzade yürürken renkli kaftanlı saray ehli şaşkınlıkla bakar.
+- **b) Görsel prompt:**
+```
+Medium shot, eye level. Young adult Kalender, with a short dark beard, walks to the right through a palace courtyard with a wooden staff, calm and humble. Behind him courtiers in bright red, blue and yellow kaftans stare in surprise. Background: mud-brick wall, a turquoise dome and a plane tree. Clear soft daylight, pale blue sky. Figures large, feet on swept sandy ground. Vertical 9:16 composition, the upper 25% is calm pale sky. No text.
+```
+- **c) Kamera:** pan-right, ölçek 1.10 → 1.18.
+- **d) Hareket prompt'u:**
+```
+Camera slowly pans right following the walking prince, his robe and the courtiers' sleeves sway, leaves of the plane tree flutter softly. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 6 sn.
+
+### Sahne 77 · Câmî ve Kalender · 10 sn
+- **a) Konu:** Gece penceresinin yanında yazan Kalender'e yaşlı Câmî bir risale uzatır.
+- **b) Görsel prompt:**
+```
+Medium two-shot. Adult Kalender sits on the left writing with a reed pen, and on the right the very old Câmî with a long white beard stands holding out a rolled scroll toward him. Setting: the same palace room with turquoise-and-white tiled walls, a deep red carpet, a tall brass candlestand between them, a hanging brass lantern above, and a tall arched window on the right showing a dark night sky with stars. Warm candlelight against cool blue night. Figures large and readable, sitting and standing on the carpet. Vertical 9:16 composition, the upper 25% is calm lantern-lit wall. No text.
+```
+- **c) Kamera:** push-in, ölçek 1.00 → 1.12.
+- **d) Hareket prompt'u:**
+```
+Camera slowly pushes in, candle flames flicker, Câmî's arm extends slowly with the scroll, Kalender's pen pauses, robes sway slightly. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 10 sn.
+
+### Sahne 78 · Kapıda sadaka (rivayet) · 9 sn
+- **a) Konu:** Öğleden sonra taş kapının önünde Kalender, ellerini açmış yoksula bir avuç altın sikke verir.
+- **b) Görsel prompt:**
+```
+Medium shot. On the right, adult Kalender extends his hand with gold coins toward a poor man in a patched brown kaftan on the left, who holds out both open hands; beside him a poor woman in a faded shawl waits. Behind them a stone city wall with a wooden gate and a few waiting poor people. Warm afternoon light, golden coins catching the light. Figures large, feet on packed earth. Vertical 9:16 composition, the upper 25% is calm wall and pale sky. No text.
+```
+- **c) Kamera:** push-in, ölçek 1.05 → 1.20.
+- **d) Hareket prompt'u:**
+```
+Camera slowly pushes in toward the hands, Kalender's arm extends and gold coins pour into the poor man's palms, robes sway softly. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 9 sn.
+
+### Sahne 79 · Şahruh'un cenazesi · 6 sn
+- **a) Konu:** Bulutlu günde Şahruh'un tabutu sola taşınırken arkada torunların iki atlı grubu birbirine karşı durur.
+- **b) Görsel prompt:**
+```
+Medium-wide shot. Four bearers carry an ebony coffin draped in dark green cloth to the left. Behind them two small groups of armored riders with spears face each other across a dry field, tense and silent. A city skyline with a turquoise dome in the far background, mourners in the mid-ground. Overcast, heavy grey clouds, muted pastel-earth tones. Bearers large in the foreground, riders smaller in depth, everyone on solid ground. Vertical 9:16 composition, the upper 25% is calm overcast sky. No text.
+```
+- **c) Kamera:** pan-left, ölçek 1.10 → 1.18.
+- **d) Hareket prompt'u:**
+```
+Camera slowly pans left following the coffin, the bearers walk in slow steps, banners on the riders' spears flutter, wind stirs dust. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 6 sn.
+
+### Sahne 80 · Ordu ve Herat kapısı · 7 sn
+- **a) Konu:** Atlı Kalender kılıcını kaldırarak ordusuyla Herat kapısına doğru ilerler.
+- **b) Görsel prompt:**
+```
+Medium-wide shot, slightly low angle. Adult Kalender rides a chestnut horse to the right with a sword raised, his white turban and sage kaftan clear. Two riders follow behind him, and an army with a tall standard in the mid-ground. On the right the mud-brick walls and a large gate of Herat with turquoise domes behind. Horse legs strong, hooves touching the ground with dust kicking up, rider about two thirds of the horse's height. Bright clear day. Vertical 9:16 composition, the upper 25% is calm blue sky. No text.
+```
+- **c) Kamera:** pan-right, ölçek 1.10 → 1.20.
+- **d) Hareket prompt'u:**
+```
+Camera slowly pans right, the horses walk forward, dust rises from the hooves, banners and cloaks ripple in the wind, the raised sword stays steady. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 7 sn.
+
+### Sahne 81 · Gazele giriş · 7 sn
+- **a) Konu:** Oturan Kalender bir elinde kalemle yazarken yanındaki kadehe uzanır.
+- **b) Görsel prompt:**
+```
+Medium close-up. Adult Kalender sits at a low writing desk in the same palace room, turquoise-and-white tiled walls, a deep red carpet, a tall brass candlestand next to him, a hanging brass lantern above. He holds a reed pen over a sheet of paper, a small golden goblet beside the paper, his eyes thoughtful. Warm candlelight, soft shadows. Figure large and readable, sitting firmly on the carpet. Vertical 9:16 composition, the upper 25% is calm tiled wall and lantern glow. No text.
+```
+- **c) Kamera:** push-in, ölçek 1.05 → 1.20.
+- **d) Hareket prompt'u:**
+```
+Camera slowly pushes in, candle flames flicker, Kalender writes a line then slowly lifts the goblet, robes sway slightly. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 7 sn.
+
+### Sahne 82 · Beyit 1, ay ve taş yığını · 8 sn
+- **a) Konu:** Gece gökyüzünde dolunayın altında Kalender, yanındaki koca taş yığınının yanında aya bakar.
+- **b) Görsel prompt:**
+```
+Quiet poetic medium shot. Adult Kalender stands seen in three-quarter back view on a flat sandy plain, looking up at a large full moon placed at about one third height of the frame. Beside him a heap of rough grey faceted stones. A few poplars far away. Deep indigo night sky with soft stars, cool silver moonlight with a faint warm rim light on the figure. Figure large, feet planted on the ground. Vertical 9:16 composition, the upper 25% is calm starry sky. No text.
+```
+- **c) Kamera:** tilt-up, ölçek 1.12 → 1.12 (yerden aya doğru).
+- **d) Hareket prompt'u:**
+```
+Camera slowly tilts up from the stones toward the moon, stars twinkle softly, his robe and turban cloth sway gently in the night breeze. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 8 sn.
+
+### Sahne 83 · Beyit 2, gül · 9 sn
+- **a) Konu:** Kızıl gün batımında rüzgârda sallanan büyük gül ve iki küçük gülden bir yaprak yavaşça düşer.
+- **b) Görsel prompt:**
+```
+Quiet poetic close-up. One large crimson low-poly rose with a golden center on a green stem takes the middle of the frame, two smaller roses beside it, one petal about to fall. Soft out-of-focus background of a red-orange sunset over a distant mud-brick wall and poplars. Warm backlight on petal edges. Roses stand on a patch of earth with leaves at the bottom. Vertical 9:16 composition, the upper 25% is calm gradient sunset sky. No text.
+```
+- **c) Kamera:** push-in, ölçek 1.00 → 1.10.
+- **d) Hareket prompt'u:**
+```
+Camera very slowly pushes in, the roses sway in the wind, one petal detaches and drifts slowly down to the ground. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 9 sn.
+
+### Sahne 84 · Beyit 3, Nevruz bahçesi · 10 sn
+- **a) Konu:** Çiçek açmış ağacın altında Kalender elinde kadehle, yanında iki dilber ve bir gül çalısıyla bahara selam verir.
+- **b) Görsel prompt:**
+```
+Poetic medium-wide shot. Under a large pink blossoming low-poly tree sits adult Kalender with a golden goblet, a rose bush beside him, and two elegant young women in pastel dresses with sheer veils sitting nearby, all relaxed. Petals falling from the tree, a small stream, soft green grass. Bright gentle spring daylight, pastel sky. Figures large, sitting on the grass. Vertical 9:16 composition, the upper 25% is calm pale sky and upper blossom branches kept soft. No text.
+```
+- **c) Kamera:** pull-out, ölçek 1.15 → 1.00.
+- **d) Hareket prompt'u:**
+```
+Camera slowly pulls out, blossom petals fall gently, the tree sways softly, the stream ripples, robes and veils flutter slightly. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 10 sn.
+
+### Sahne 85 · Beyit 4, kadeh · 8 sn
+- **a) Konu:** Odada oturan Kalender'in kadehini ayakta duran saki testiyle doldurur.
+- **b) Görsel prompt:**
+```
+Medium two-shot. Adult Kalender sits on the left holding out a golden goblet. On the right a young cupbearer in a rust-orange vest tilts a brass ewer to fill it. The same palace room: turquoise-and-white tiled walls, a deep red carpet, a tall brass candlestand between them, a hanging brass lantern above. Warm candlelight, soft shadows. Figures large and readable, firmly on the carpet. Vertical 9:16 composition, the upper 25% is calm tiled wall and lantern glow. No text.
+```
+- **c) Kamera:** push-in, ölçek 1.00 → 1.12.
+- **d) Hareket prompt'u:**
+```
+Camera slowly pushes in, the cupbearer tilts the ewer and a thin stream pours into the goblet, candle flames flicker. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 8 sn.
+- **85† (2:20–2:31, 11 sn):** aynı görsel. Kamera push-in 1.10 → 1.25, kadehe doğru. Hareket: `camera slowly pushes in toward the goblet, candlelight shimmers on its surface; maintain exact appearance from reference image.`
+
+### Sahne 86 · Beyit 5, gönül dumanı · 6 sn
+- **a) Konu:** Gece ince ayın altında mangaldan yükselen duman, çevresinde dervişler ve halk.
+- **b) Görsel prompt:**
+```
+Quiet medium shot. A brazier with glowing embers in the center, thin smoke rising straight up in a curling column. Around it two dervishes in felt hats and a small group of villagers sit and stand, faces warmly lit. Thin crescent moon, dark indigo sky with stars. Figures large, sitting on packed earth. Vertical 9:16 composition, the upper 25% is calm dark night sky with the smoke fading out softly. No text.
+```
+- **c) Kamera:** tilt-up, ölçek 1.10 → 1.10.
+- **d) Hareket prompt'u:**
+```
+Camera slowly tilts up following the smoke, smoke rises and curls, embers pulse red, robes sway slightly. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 6 sn.
+
+### Sahne 87 · Beyit 6, Mecnun çölde · 6 sn
+- **a) Konu:** Akşam çölünde yırtık kaftanlı Mecnun, ufuktaki Leyla'nın ışıklı çadırına doğru yürür.
+- **b) Görsel prompt:**
+```
+Wide-medium poetic shot. Gaunt Mecnun in a ragged ochre kaftan with tangled hair walks to the right over a flat sand desert, toward a distant glowing tent on the horizon with a thin smoke column rising. Soft sand dunes, dusk sky fading from orange to violet. Warm lantern glow from the tent, long shadow behind the walker. Figure large, feet on sand. Vertical 9:16 composition, the upper 25% is calm gradient sky. No text.
+```
+- **c) Kamera:** push-in, ölçek 1.00 → 1.12.
+- **d) Hareket prompt'u:**
+```
+Camera slowly pushes in, Mecnun walks slowly forward, his ragged kaftan sways, the smoke from the tent rises gently, sand drifts low. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 6 sn.
+- **87† (2:31–2:40, 9 sn):** aynı görsel. Kamera pan-right 1.15 → 1.15, çadıra doğru. Hareket: `camera slowly pans right toward the glowing tent, smoke rises, sand drifts; maintain exact appearance from reference image.`
+
+### Sahne 88 · Çözümleme · 14 sn
+- **a) Konu:** Yazan ve kadehi kaldıran Kalender'in duvarda kılıçlı kocaman bir gölgesi belirir.
+- **b) Görsel prompt:**
+```
+Dramatic medium shot. Adult Kalender, now slightly older with a few grey hairs in his beard, sits on the right writing with a reed pen and a golden goblet beside him. On the wall to the left, cast by the candles, a huge dark faceted shadow of a figure raising a sword. The same palace room: turquoise-and-white tiled walls, a deep red carpet, a tall brass candlestand in the middle, a hanging brass lantern above. Warm candlelight, deep contrast, calm mood. Figure large and readable, sitting firmly on the carpet. Vertical 9:16 composition, the upper 25% is calm dark wall and lantern glow. No text.
+```
+- **c) Kamera:** pull-out, ölçek 1.18 → 1.02.
+- **d) Hareket prompt'u:**
+```
+Camera slowly pulls out, candle flames flicker making the sword shadow waver, Kalender slowly lifts the goblet, robes sway slightly. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 14 sn. Görüntü modeli klipleri kısaysa klip yavaşlatılır ya da son kare tutulur.
+
+### Sahne 89 · Kapanış · 10 sn + 9 sn (toplam 19 sn)
+- **a) Konu:** Alacakaranlıkta asalı derviş arkasını dönüp uzaktaki Herat'a doğru yürür, soru havada kalır.
+- **b) Görsel prompt:**
+```
+Wide-medium shot from behind. Adult Kalender, with white turban, sage kaftan and wooden staff, walks away to the left along a dusty path toward distant Herat, with faded mud-brick walls, turquoise domes and poplars glowing softly on the horizon. Dusk sky from soft orange to violet, long shadow, gentle haze. Figure large, feet on the path. Vertical 9:16 composition, the upper 25% is calm dusk sky. No text.
+```
+- **c) Kamera:** pull-out, ölçek 1.20 → 1.00.
+- **d) Hareket prompt'u:**
+```
+Camera slowly pulls out, Kalender walks slowly away, robe and turban cloth sway gently, dust drifts low, the distant city lights warm up. Maintain exact appearance from reference image.
+```
+- **e) Süre:** 10 sn sahne + 9 sn kapanış (son kare üzerinde kapanış yazısı).
+
+---
+
+## 4) Tutarlılık notları
+
+**Kalender'in yaşı**
+- **72:** yetişkin Kalender (ileriye bakış), koyu kısa sakal.
+- **74 ve 75:** Kalender yok, çocuk Bâbür var: yaklaşık 9 yaş, sakalsız, sade tunik, küçük beyaz takke.
+- **76:** genç yetişkin, sakal kısa ve koyu.
+- **77–87:** yetişkin Kalender. Kaftan adaçayı yeşili, sarık beyaz, sakal koyu. Değişmez.
+- **88:** sakalında birkaç beyaz tel, hafif yaşlanmış.
+- **89:** arkadan görünür, aynı kaftan ve asa.
+
+**Tekrar eden saray odası:** 72, 77, 81, 85 ve 88 aynı odadır. "PALACE ROOM" bloğu bu sahnelerde birebir kopyalanır. Taht solda, mumluk ortada, kandil üstte, pencere sağdadır. Sadece kamera açısı ve gece/gündüz farkı değişir. Tercihen 72 görseli referans olarak seri boyunca verilir.
+
+**Gazel sahneleri (82–87)**
+- Daha sakin ve şiirsel kadrajlar: geniş boşluk, yumuşak ışık, yavaş kamera (ölçek farkı en fazla 0.12).
+- Hareket minimum: yaprak, duman, yıldız, esinti.
+- 83'te (gül) insan yok. Karakter kuralı bu sahnede uygulanmaz.
+- Palet gece için indigo, gün batımı için kızıl-turuncu, bahar için pastel pembe-yeşil.
+
+**Genel**
+- Kalender hep merkezde ya da güçlü bir üçte birlik noktada durur. Yüzü ve sarığı okunur olmalıdır.
+- Üst %25 boş bırakılır, çünkü Remotion yazıları orada basar.
+- Kılıç ve savaş sahneleri (79, 80, 88) şiddetsiz: kan yok, kılıç yalnızca kalkık ya da gölge olarak görünür.
+- Ölçek: binici, at boyunun yaklaşık %65–70'idir (80).
+- Her nesne zemine oturur, havada asılı nesne olmaz (kadeh, sikke ve yaprak hareket halindeki istisnalardır).
+- Remotion'da pan hareketleri ölçek ≥ 1.10 ile yapılır ki kenarlarda boşluk görünmesin.
+
+---
+
+## 5) Kapak prompt'u
+
+```
+Epic vertical cover composition, low-poly 3D. Adult Kalender sits on a grand low throne in the palace room, holding a golden goblet in his left hand and a reed pen in his right, calm and almost smiling, his white turban and sage kaftan clear. Behind him on the wall a huge dark faceted shadow of a figure with a raised sword. Turquoise-and-white tiles, crimson and gold cushions, warm candlelight with a cool blue rim light, cinematic depth of field. Figure large and centered at the lower two thirds of the frame, the upper 25% is calm lantern-lit wall for the title. No text.
+```
+
+**Kapak notu:** Başlık, alt başlık, logo ve @pikseltarihim Remotion'da basılır. Yazılar profil ızgarası için ortadaki 3:4 alanda kalır.
+
+---
+
+## 6) Yeni figür isteği
+
+Piksel kütüphanesi kullanılmadığı için yeni figür isteği yoktur.
+
 
 ## 🔴 Kalite Kontrol · Kalite kontrol notu
 
-Genel: 14, 28, 34, 52, 62, 70, 80, 96, 112, 141, 150 ve 165. saniye kareleri tek tek incelendi. Tarz tutarlı (piksel sanatı, dither gökyüzü, 1 piksel kontur), Türkçe harfler (İ, ş, ı, ğ, ü, â) her karede doğru ve okunuyor. Ancak bir yazı sorunu, birkaç kırpılma ve bir havada duran nesne sorunu var; ayrıca eksik bir sahne öğesi ve plana uymayan bir ay çizimi var. Bu yüzden iş uygun değil. Revizyonlar:
-
-1) kare-080s (Gazel b.1) ve kare-112s (Gazel b.5): Gazel altyazıları, yazı bandının (y 95-245) dışında, kadrajın ortasında (yaklaşık y 580-700) duruyor ve karakterlerin üstüne biniyor. kare-080s'te '...âşık olmayan her gönül, sana gönül denmez;' satırları Kalender'in gövdesini ve taş yığınını örtüyor. kare-112s'te 'İyilerin keman kaşları niçin siyahtır, bilir misin?' satırları oturan iki dervişin gövdesinin ve duman sütununun üstünde. Düzeltme: gazel altyazılarını diğer yazılarla aynı yazı bandına (y 95-245) al. Üç satır sığmazsa yazı bandını koru, satır sayısını 2'ye indir ya da bu iki sahnede yazıyı karakterlerin altına (y ≥ 760) taşı. Kural: yazı karakterin üstüne gelmez.
-
-2) kare-112s (Sahne 86): Planda 'mangaldan yükselen gönül dumanı' var. Karede mangal seçilemiyor. Duman sütunu (x≈290) altyazının arkasından başlıyor, kaynağı görünmüyor. Ayrıca plan 'ince ay' diyor ama sağ üstteki ay tam yuvarlak, dither haleli bir disk (hilal değil). Düzeltme: mangalı altyazıdan arındırıp görünür kıl (korlar ve duman tabanı okunmalı). Ayı gerçek hilal olarak çiz (figür isteği #6), yuvarlak gunes_ yedeği kullanma.
-
-3) kare-150s (Sahne 87, 'Leyla kim? İnsan mı, Hak mı?'): Planın kilit öğesi olan Leyla'nın ışıklı çadırı (yurt, ufukta, dumanı yükselen) karede yok. Kadrajda yalnızca solda Mecnun ve sağda bir taş yığını var. Çadır büyük ihtimalle kamera yakınlaşması ve kaymasıyla kadraj dışında kalıyor (x=PAY+470). Düzeltme: yurdu görünür aralığa al (ya da kamera/yakın değerini bu sahnede düşür), Mecnun'un yürüyüş yönü çadıra doğru olsun, duman yukarı yükselsin. Soru ekranda dururken Leyla'nın çadırı da görünmeli.
-
-4) kare-062s (Sahne 79, 'Taht boşaldı'): Arka plandaki atlıların toynakları (y≈565), şehir surunun tabanının (y≈595) belirgin biçimde üstünde. Atlılar surun yüzüne yapışmış gibi, havada duruyor; sağdaki grup surun önüne çizilmiş ama zeminde değil. Soldaki atlı grubu da sol kenardan kırpılmış. Düzeltme: atlıların zemin değerini (duz 584) şehir tabanının (duz 588) altına indir ya da atlıları surdan uzağa, açık çayıra taşı; ya da şehri atlıların önüne çiz. Atlı gruplarını tam kadraja sığdır, kırpma olmasın.
-
-5) kare-034s ve kare-062s (cenaze sahneleri 75 ve 79): Tabut ince, düz siyah bir kiriş gibi duruyor ve taşıyıcıların omzunda değil, göğüs-boyun hizasında, gövdelerinin önünden geçiyor. Taşıyıcıların kolları ve omuzları görünmüyor. Düzeltme: abanoz_tabut omuz y değerini ayarla (şu an z[0]-58 tahminiydi), tabuta hacim ver (kapak, yan yüz), taşıyıcıların omuz hizasına oturt.
-
-6) kare-028s (Sahne 74, akademi): Sağ kenarda Baysungur'un gövdesi kırpılmış, çocuk Bâbür ise yarım görünüyor (x≈1060+). Notta iç mekân yakınlaştırmasının 2.5'e çıkarıldığı yazıyor, plan ise bu sahne için 1.8 diyor. Yakınlaştırma yan figürleri kadraj dışına itiyor. Düzeltme: sahne 74 için yakın değerini plandaki 1.8'e indir ya da figür x değerlerini sola kaydır; Baysungur ve Bâbür tam görünsün. Aynı kırpılma riski diğer iç mekânlar için de kontrol edilsin.
-
-7) kare-014s (Sahne 73): Sol kenarda Timur ve tuğ flamaları kırpılmış, hemen yanında kenardan taşan yarım bir figür var. Şahruh'un 'tahtı' oyma taht gibi değil, düz yeşil bir masa/sedir gibi görünüyor ve Timur'a göre çok küçük. Düzeltme: Timur ve tuğu kadraja tam al (x değerini sağa kaydır), kenardaki yarım figürü çıkar ya da tam göster; Şahruh'un tahtını büyüt ve taht olarak okunacak şekilde detaylandır (figür isteği #1).
-
-8) kare-070s (Sahne 80): Kalender'in atı sağ kenarda kırpılmış, at başı kadraj dışında; soldaki ilk atlı da kenardan taşıyor. Kahraman figür bütün olarak görünmeli. Düzeltme: kamera kaymasını (40) ya da atlıların x değerlerini ayarla, Kalender kılıçla birlikte tam kadraja girsin.
-
-9) kare-165s (Kapanış, Sahne 89): a) Ekran yazısı planlanan 2 satır yerine 3 satıra bölünmüş ('Timur dünyayı kılıçla / titretti, torunu geriye şiir / bıraktı'), 'bıraktı' tek başına yetim satır, yazı diğer karelerden belirgin küçük. Düzeltme: 2 satıra sığdır ve diğer yazılarla aynı punto kalsın. b) Yazı seslendirmeyle bire bir değil: onaylı ses 'Atası Timur dünyayı kılıçla titretti. Torunu bir şehri alıp geriye şiir bıraktı.' diyor; ekranda 'Atası' düşmüş, 'bir şehri alıp' çıkarılmış. Ajans sahibinin soy bağı notu ('metinde atası Timur') gereği ekran yazısını onaylı seslendirme metniyle eşleştir. c) Planda 'silik Herat ve mavi türbe' var, ama türbe sol kenardan kırpılmış (yalnızca sütun ve blok kenarda görünüyor). Türbe kadraja tam alınsın.
-
-10) Genel kompozisyon (14, 52, 62, 70, 80, 96, 150, 165. saniye): Dış mekân karelerinde figürler kadrajın yaklaşık %10-12'si kadar ve kare yüksekliğinin alt üçte biri boş çayır. Ajans kuralı 'figürler kadrajda büyük ve okunur'. kare-052s'te kapı insan boyunun yaklaşık yarısı. Düzeltme: sprite ölçeğini ya da kamera yakınlaştırmasını artır, zemin tabanını biraz aşağı çek ve boş alt alanı azalt. Kapı yüksekliği insandan 'biraz' alçak olacak şekilde düzelt.
-
-Uygun bulunanlar: kare-096s (Nevruz bahçesi, ağaç, dilberler, gül), kare-141s (Kadeh iç mekânı, mumluk ve saki zemine oturuyor, yazı okunuyor) ve kare-052s (sur, yoksullar) genel olarak fizik ve tarz açısından uygun. Küçük not: kare-096s'te sol ağaç ve sağdaki gül kenardan hafif kırpılmış. Yukarıdaki maddeler düzeltildikten sonra aynı karelerle yeniden kalite kontrole gönderilsin.
+GENEL: Low-poly 3D tarz, ışık, detay ve Kalender'in adaçayı yeşili kaftan + beyaz sarık tutarlılığı çoğu karede iyi. Türkçe harfler (ş, ı, İ, â, ç, ğ, ü) doğru basılmış. Nesneler zemine oturuyor; havada duran ya da ters yöne bakan nesne görmedim. Ancak yazı-görsel çakışması ve kadraj hataları birkaç karede okunurluğu bozuyor. Bu sorunlar yüzünden iş şu haliyle uygun değil. Düzeltilecekler: 1) kare-028s (Akademi), sağ üst: 'Hattatlar, nakkaşlar,' ve 'müzehhipler.' altyazısı, mor kaftanlı Baysungur'un sarığı, yüzü ve sakalının üstüne biniyor; figürün yüzü yazının arkasında kalıyor. Altyazıyı alt banda (ör. y≈1500-1650 civarı, sade zemin) indirin ya da Baysungur'u kadrajda aşağı/sola kaydırıp üst %25'i boş bırakın. 2) kare-052s (Kapıda sadaka), sağ kenar: Kalender'in yüzü ve sarığı kadraj kenarında yarım kesiliyor, 'ver' kelimesi sarığın ve sakalın üstüne değiyor. Kalender'in yüzü okunur ve tam kadrajda olmalı. Kompozisyonu sola kaydırıp Kalender'i kadraja tam sığdırın; başlığı fakir adamın üstündeki sade duvar alanına alın, sarıkla çakışmasın. 3) kare-070s (Herat'a giriş), üst orta: kalkık kılıcın bıçağı 'Derviş ordu topluyor ve Herat'a giriyor' başlığının ortasından geçiyor. Yazı kılıcın üstüne biniyor. Kılıcı yazı bandının dışında (başlığın üstünde ya da yanında) tutun ya da başlığı bıçaktan uzak, alt banda alın. Ayrıca bu karede altyazı 'Derviş denen adam ordu topluyor...' cümlesindeki 'denen adam' kelimelerini düşürmüş. Altyazılar seslendirmeyle birebir olmalı, tam cümleyi yazın. 4) kare-080s (Gazel, beyit 1), üst sağ: dolunay tam altyazının arkasında; 'güzel yüze' ve 'âşık olmayan' beyaz yazısı parlak ayın üstünde kontrastını yitiriyor. Ayı kadrajda yukarı ya da sağ üst köşeye çekip yazı bandından uzaklaştırın ya da yazıya koyu yarı saydam şerit/gölge ekleyin. 5) kare-141s (Kadeh), sağ üst: 'şarap mı, hakikat mi?' yazısının sağ ucu ('hakikat mi?') saki'nin kırmızı takkesi ve alnının üstüne biniyor; saki'nin başı yazı bandına giriyor. 85† yeniden kullanımında kırpma/ölçek (1.10→1.25) saki'yi yukarı itmiş. Kamerayı saki'nin başı yazı bandının altında kalacak şekilde ayarlayın ya da yazıyı sola kaydırın; saki'nin başı yazıyla kesişmemeli. 6) kare-150s (Mecnun), sol üst: 'İnsan mı, Hak mı?' yazısı Mecnun'un başına ve saçına biniyor, yüzü yazının arkasında kalıyor; Mecnun ayrıca sol kenarda kısmen kesiliyor. 87† pan-right kırpmasını Mecnun tam görünecek şekilde değiştirin, yazı bandını figürün başından yukarıda tutun. Ayrıca bu karedeki 'Leyla kim? İnsan mı, Hak mı?' yazısı seslendirme metnindeki ('Bir insan mı? Yoksa tasavvufun Hak dediği sevgili mi?') cümlenin birebir karşılığı değil ve onaylı ekran metinleri tablosunda yok (2:31-2:40 aralığı '(yok)' idi). Ya seslendirme cümlesini birebir basın ya da bu yazıyı kaldırın. 7) kare-096s (Nevruz bahçesi), orta: Kalender'in sarığında mücevherli tüy/sorguç var. Bu, kart gereği Şahruh'un ayırt edici özelliği; Kalender'in sarığı sade beyaz olmalı. Karakter tutarlılığı için bu sahneyi sorguçsuz, sade beyaz sarıkla yeniden üretin. Kaftan da diğer karelerdeki sade yeşilden daha süslü/altın işlemeli; diğer sahnelerle aynı sade kaftana çekin. Üst %25'te ağaç dalları ve çiçekler var; yazı okunuyor ama sahne yoğun, dalları yumuşatın. 8) kare-165s (Kapanış), orta üst: altyazı 'Atası Timur dünyayı kılıçla titretti; torunu bir şehri alıp geriye şiir bıraktı' seslendirme metninden ('Atası Timur dünyayı kılıçla titretti. Torunu bir şehri alıp geriye şiir bıraktı.') farklı noktalama ve büyük/küçük harfle yazılmış ('torunu' küçük, noktanın yerine noktalı virgül). Metni birebir eşleyin. 9) kare-014s (Timur ve Şahruh), sol üst: Timur'un yanındaki tuğun saç püskülü kadraj kenarında kesilmiş, sopası görünmüyor ve havada asılı gibi duruyor; ayrıca püskülün alt ucu 'Baysungur'un' yazısının ilk harflerine yaklaşıyor. Tuğu kadraja tam alın (sopasıyla zemine bastığı görünsün) ya da kadrajdan tamamen çıkarın. 10) kare-034s (Baysungur'un cenazesi), orta: başlığın ikinci satırı '37 yaşında öldü' turuncu-pembe tonda ve gün batımı gökyüzüyle aynı renk ailesinde, kontrastı düşük. Yazıyı daha açık krem tona çekin ya da hafif koyu gölge/şerit verin. KONTROL (görmediğim ama doğrulanması gerekenler): sahne 76-77 ve 81, 82, 83, 85-86, 88 ile 89'un tam geçişlerini örnek karelerde görmedim; revizyon sonrası 0:40 'Ona Kalender diyorlar', 1:08 'Dervişin elinde kılıç' ve 1:19 'Kılıçla yakışmayan iki satır…' vurgu yazılarının zamanında göründüğünü ve çakışmadığını yeniden kontrol edin. 1:10 civarındaki 070s karesinde planlı 'Dervişin elinde kılıç' vurgusu değil altyazı görünüyor. Revizyondan sonra tüm karelerde yazıların figürlerin yüzüne, sarığına ve nesnelere binmediğini ve Kalender'in yüzünün kadraj kenarında kesilmediğini doğrulayıp tekrar gönderin.
 
 ## 🔴 Kalite Kontrol · Görsel kontrol (render edilen kareler)
 
 **Karar:** UYGUN DEĞİL, düzeltecek birim: 🟢 Grafiker
 
-Genel: 14, 28, 34, 52, 62, 70, 80, 96, 112, 141, 150 ve 165. saniye kareleri tek tek incelendi. Tarz tutarlı (piksel sanatı, dither gökyüzü, 1 piksel kontur), Türkçe harfler (İ, ş, ı, ğ, ü, â) her karede doğru ve okunuyor. Ancak bir yazı sorunu, birkaç kırpılma ve bir havada duran nesne sorunu var; ayrıca eksik bir sahne öğesi ve plana uymayan bir ay çizimi var. Bu yüzden iş uygun değil. Revizyonlar:
-
-1) kare-080s (Gazel b.1) ve kare-112s (Gazel b.5): Gazel altyazıları, yazı bandının (y 95-245) dışında, kadrajın ortasında (yaklaşık y 580-700) duruyor ve karakterlerin üstüne biniyor. kare-080s'te '...âşık olmayan her gönül, sana gönül denmez;' satırları Kalender'in gövdesini ve taş yığınını örtüyor. kare-112s'te 'İyilerin keman kaşları niçin siyahtır, bilir misin?' satırları oturan iki dervişin gövdesinin ve duman sütununun üstünde. Düzeltme: gazel altyazılarını diğer yazılarla aynı yazı bandına (y 95-245) al. Üç satır sığmazsa yazı bandını koru, satır sayısını 2'ye indir ya da bu iki sahnede yazıyı karakterlerin altına (y ≥ 760) taşı. Kural: yazı karakterin üstüne gelmez.
-
-2) kare-112s (Sahne 86): Planda 'mangaldan yükselen gönül dumanı' var. Karede mangal seçilemiyor. Duman sütunu (x≈290) altyazının arkasından başlıyor, kaynağı görünmüyor. Ayrıca plan 'ince ay' diyor ama sağ üstteki ay tam yuvarlak, dither haleli bir disk (hilal değil). Düzeltme: mangalı altyazıdan arındırıp görünür kıl (korlar ve duman tabanı okunmalı). Ayı gerçek hilal olarak çiz (figür isteği #6), yuvarlak gunes_ yedeği kullanma.
-
-3) kare-150s (Sahne 87, 'Leyla kim? İnsan mı, Hak mı?'): Planın kilit öğesi olan Leyla'nın ışıklı çadırı (yurt, ufukta, dumanı yükselen) karede yok. Kadrajda yalnızca solda Mecnun ve sağda bir taş yığını var. Çadır büyük ihtimalle kamera yakınlaşması ve kaymasıyla kadraj dışında kalıyor (x=PAY+470). Düzeltme: yurdu görünür aralığa al (ya da kamera/yakın değerini bu sahnede düşür), Mecnun'un yürüyüş yönü çadıra doğru olsun, duman yukarı yükselsin. Soru ekranda dururken Leyla'nın çadırı da görünmeli.
-
-4) kare-062s (Sahne 79, 'Taht boşaldı'): Arka plandaki atlıların toynakları (y≈565), şehir surunun tabanının (y≈595) belirgin biçimde üstünde. Atlılar surun yüzüne yapışmış gibi, havada duruyor; sağdaki grup surun önüne çizilmiş ama zeminde değil. Soldaki atlı grubu da sol kenardan kırpılmış. Düzeltme: atlıların zemin değerini (duz 584) şehir tabanının (duz 588) altına indir ya da atlıları surdan uzağa, açık çayıra taşı; ya da şehri atlıların önüne çiz. Atlı gruplarını tam kadraja sığdır, kırpma olmasın.
-
-5) kare-034s ve kare-062s (cenaze sahneleri 75 ve 79): Tabut ince, düz siyah bir kiriş gibi duruyor ve taşıyıcıların omzunda değil, göğüs-boyun hizasında, gövdelerinin önünden geçiyor. Taşıyıcıların kolları ve omuzları görünmüyor. Düzeltme: abanoz_tabut omuz y değerini ayarla (şu an z[0]-58 tahminiydi), tabuta hacim ver (kapak, yan yüz), taşıyıcıların omuz hizasına oturt.
-
-6) kare-028s (Sahne 74, akademi): Sağ kenarda Baysungur'un gövdesi kırpılmış, çocuk Bâbür ise yarım görünüyor (x≈1060+). Notta iç mekân yakınlaştırmasının 2.5'e çıkarıldığı yazıyor, plan ise bu sahne için 1.8 diyor. Yakınlaştırma yan figürleri kadraj dışına itiyor. Düzeltme: sahne 74 için yakın değerini plandaki 1.8'e indir ya da figür x değerlerini sola kaydır; Baysungur ve Bâbür tam görünsün. Aynı kırpılma riski diğer iç mekânlar için de kontrol edilsin.
-
-7) kare-014s (Sahne 73): Sol kenarda Timur ve tuğ flamaları kırpılmış, hemen yanında kenardan taşan yarım bir figür var. Şahruh'un 'tahtı' oyma taht gibi değil, düz yeşil bir masa/sedir gibi görünüyor ve Timur'a göre çok küçük. Düzeltme: Timur ve tuğu kadraja tam al (x değerini sağa kaydır), kenardaki yarım figürü çıkar ya da tam göster; Şahruh'un tahtını büyüt ve taht olarak okunacak şekilde detaylandır (figür isteği #1).
-
-8) kare-070s (Sahne 80): Kalender'in atı sağ kenarda kırpılmış, at başı kadraj dışında; soldaki ilk atlı da kenardan taşıyor. Kahraman figür bütün olarak görünmeli. Düzeltme: kamera kaymasını (40) ya da atlıların x değerlerini ayarla, Kalender kılıçla birlikte tam kadraja girsin.
-
-9) kare-165s (Kapanış, Sahne 89): a) Ekran yazısı planlanan 2 satır yerine 3 satıra bölünmüş ('Timur dünyayı kılıçla / titretti, torunu geriye şiir / bıraktı'), 'bıraktı' tek başına yetim satır, yazı diğer karelerden belirgin küçük. Düzeltme: 2 satıra sığdır ve diğer yazılarla aynı punto kalsın. b) Yazı seslendirmeyle bire bir değil: onaylı ses 'Atası Timur dünyayı kılıçla titretti. Torunu bir şehri alıp geriye şiir bıraktı.' diyor; ekranda 'Atası' düşmüş, 'bir şehri alıp' çıkarılmış. Ajans sahibinin soy bağı notu ('metinde atası Timur') gereği ekran yazısını onaylı seslendirme metniyle eşleştir. c) Planda 'silik Herat ve mavi türbe' var, ama türbe sol kenardan kırpılmış (yalnızca sütun ve blok kenarda görünüyor). Türbe kadraja tam alınsın.
-
-10) Genel kompozisyon (14, 52, 62, 70, 80, 96, 150, 165. saniye): Dış mekân karelerinde figürler kadrajın yaklaşık %10-12'si kadar ve kare yüksekliğinin alt üçte biri boş çayır. Ajans kuralı 'figürler kadrajda büyük ve okunur'. kare-052s'te kapı insan boyunun yaklaşık yarısı. Düzeltme: sprite ölçeğini ya da kamera yakınlaştırmasını artır, zemin tabanını biraz aşağı çek ve boş alt alanı azalt. Kapı yüksekliği insandan 'biraz' alçak olacak şekilde düzelt.
-
-Uygun bulunanlar: kare-096s (Nevruz bahçesi, ağaç, dilberler, gül), kare-141s (Kadeh iç mekânı, mumluk ve saki zemine oturuyor, yazı okunuyor) ve kare-052s (sur, yoksullar) genel olarak fizik ve tarz açısından uygun. Küçük not: kare-096s'te sol ağaç ve sağdaki gül kenardan hafif kırpılmış. Yukarıdaki maddeler düzeltildikten sonra aynı karelerle yeniden kalite kontrole gönderilsin.
+GENEL: Low-poly 3D tarz, ışık, detay ve Kalender'in adaçayı yeşili kaftan + beyaz sarık tutarlılığı çoğu karede iyi. Türkçe harfler (ş, ı, İ, â, ç, ğ, ü) doğru basılmış. Nesneler zemine oturuyor; havada duran ya da ters yöne bakan nesne görmedim. Ancak yazı-görsel çakışması ve kadraj hataları birkaç karede okunurluğu bozuyor. Bu sorunlar yüzünden iş şu haliyle uygun değil. Düzeltilecekler: 1) kare-028s (Akademi), sağ üst: 'Hattatlar, nakkaşlar,' ve 'müzehhipler.' altyazısı, mor kaftanlı Baysungur'un sarığı, yüzü ve sakalının üstüne biniyor; figürün yüzü yazının arkasında kalıyor. Altyazıyı alt banda (ör. y≈1500-1650 civarı, sade zemin) indirin ya da Baysungur'u kadrajda aşağı/sola kaydırıp üst %25'i boş bırakın. 2) kare-052s (Kapıda sadaka), sağ kenar: Kalender'in yüzü ve sarığı kadraj kenarında yarım kesiliyor, 'ver' kelimesi sarığın ve sakalın üstüne değiyor. Kalender'in yüzü okunur ve tam kadrajda olmalı. Kompozisyonu sola kaydırıp Kalender'i kadraja tam sığdırın; başlığı fakir adamın üstündeki sade duvar alanına alın, sarıkla çakışmasın. 3) kare-070s (Herat'a giriş), üst orta: kalkık kılıcın bıçağı 'Derviş ordu topluyor ve Herat'a giriyor' başlığının ortasından geçiyor. Yazı kılıcın üstüne biniyor. Kılıcı yazı bandının dışında (başlığın üstünde ya da yanında) tutun ya da başlığı bıçaktan uzak, alt banda alın. Ayrıca bu karede altyazı 'Derviş denen adam ordu topluyor...' cümlesindeki 'denen adam' kelimelerini düşürmüş. Altyazılar seslendirmeyle birebir olmalı, tam cümleyi yazın. 4) kare-080s (Gazel, beyit 1), üst sağ: dolunay tam altyazının arkasında; 'güzel yüze' ve 'âşık olmayan' beyaz yazısı parlak ayın üstünde kontrastını yitiriyor. Ayı kadrajda yukarı ya da sağ üst köşeye çekip yazı bandından uzaklaştırın ya da yazıya koyu yarı saydam şerit/gölge ekleyin. 5) kare-141s (Kadeh), sağ üst: 'şarap mı, hakikat mi?' yazısının sağ ucu ('hakikat mi?') saki'nin kırmızı takkesi ve alnının üstüne biniyor; saki'nin başı yazı bandına giriyor. 85† yeniden kullanımında kırpma/ölçek (1.10→1.25) saki'yi yukarı itmiş. Kamerayı saki'nin başı yazı bandının altında kalacak şekilde ayarlayın ya da yazıyı sola kaydırın; saki'nin başı yazıyla kesişmemeli. 6) kare-150s (Mecnun), sol üst: 'İnsan mı, Hak mı?' yazısı Mecnun'un başına ve saçına biniyor, yüzü yazının arkasında kalıyor; Mecnun ayrıca sol kenarda kısmen kesiliyor. 87† pan-right kırpmasını Mecnun tam görünecek şekilde değiştirin, yazı bandını figürün başından yukarıda tutun. Ayrıca bu karedeki 'Leyla kim? İnsan mı, Hak mı?' yazısı seslendirme metnindeki ('Bir insan mı? Yoksa tasavvufun Hak dediği sevgili mi?') cümlenin birebir karşılığı değil ve onaylı ekran metinleri tablosunda yok (2:31-2:40 aralığı '(yok)' idi). Ya seslendirme cümlesini birebir basın ya da bu yazıyı kaldırın. 7) kare-096s (Nevruz bahçesi), orta: Kalender'in sarığında mücevherli tüy/sorguç var. Bu, kart gereği Şahruh'un ayırt edici özelliği; Kalender'in sarığı sade beyaz olmalı. Karakter tutarlılığı için bu sahneyi sorguçsuz, sade beyaz sarıkla yeniden üretin. Kaftan da diğer karelerdeki sade yeşilden daha süslü/altın işlemeli; diğer sahnelerle aynı sade kaftana çekin. Üst %25'te ağaç dalları ve çiçekler var; yazı okunuyor ama sahne yoğun, dalları yumuşatın. 8) kare-165s (Kapanış), orta üst: altyazı 'Atası Timur dünyayı kılıçla titretti; torunu bir şehri alıp geriye şiir bıraktı' seslendirme metninden ('Atası Timur dünyayı kılıçla titretti. Torunu bir şehri alıp geriye şiir bıraktı.') farklı noktalama ve büyük/küçük harfle yazılmış ('torunu' küçük, noktanın yerine noktalı virgül). Metni birebir eşleyin. 9) kare-014s (Timur ve Şahruh), sol üst: Timur'un yanındaki tuğun saç püskülü kadraj kenarında kesilmiş, sopası görünmüyor ve havada asılı gibi duruyor; ayrıca püskülün alt ucu 'Baysungur'un' yazısının ilk harflerine yaklaşıyor. Tuğu kadraja tam alın (sopasıyla zemine bastığı görünsün) ya da kadrajdan tamamen çıkarın. 10) kare-034s (Baysungur'un cenazesi), orta: başlığın ikinci satırı '37 yaşında öldü' turuncu-pembe tonda ve gün batımı gökyüzüyle aynı renk ailesinde, kontrastı düşük. Yazıyı daha açık krem tona çekin ya da hafif koyu gölge/şerit verin. KONTROL (görmediğim ama doğrulanması gerekenler): sahne 76-77 ve 81, 82, 83, 85-86, 88 ile 89'un tam geçişlerini örnek karelerde görmedim; revizyon sonrası 0:40 'Ona Kalender diyorlar', 1:08 'Dervişin elinde kılıç' ve 1:19 'Kılıçla yakışmayan iki satır…' vurgu yazılarının zamanında göründüğünü ve çakışmadığını yeniden kontrol edin. 1:10 civarındaki 070s karesinde planlı 'Dervişin elinde kılıç' vurgusu değil altyazı görünüyor. Revizyondan sonra tüm karelerde yazıların figürlerin yüzüne, sarığına ve nesnelere binmediğini ve Kalender'in yüzünün kadraj kenarında kesilmediğini doğrulayıp tekrar gönderin.
 
 ## 🔵 Araştırmacı · Araştırma
 
