@@ -85,4 +85,4 @@ düşmeye başladı.
 - 2026-10-27: TikTok hesabı açıldı (@pikseltarihim). İlk video Cengiz Han Bölüm 1, ertesi gün Kayıp Mezar; sonra her Reels'e TikTok sürümü standart eklenir (5 etiket, playlist, HD yükleme).
 - 2026-10-27: Timur 1/3 "Topal Kurt" Instagram'da yayınlandı. Sırada Timur 2 (yarın), Timur 3 (ertesi gün).
 - 2026-10-27: TikTok (@pikseltarihim) ilk video yayınlandı: Cengiz Han Bölüm 1. Sırada Kayıp Mezar (playlist "Cengiz Han").
-- 2026-10-29: Sahip "Timur'un Soyundan Kalender" (Bâbür Kalender Mîrzâ, 3 dk) editör metnini onayladı: seslendirme vcvcvc ile, grafiker sahneleri hazırlıyor. Kaynaksız olgular (kardeş katli, 1457, Meşhed) metin dışı; araştırmacı doğrularsa eklenecek. Not: Bâbür, Timur'un torununun torunu (Timur→Şahruh→Baysungur→Bâbür).
+- 2026-10-29: Sahip "Timur'un Soyundan Kalender" (Bâbür Kalender Mîrzâ, 3 dk) editör metnini onayladı: seslendirme vcvcvc ile, grafiker sahneleri hazırlıyor. Kaynaksız olgular (kardeş katli, 1457, Meşhed) metin dışı; araştırmacı doğrularsa eklenecek. Not: Bâbür, Timur'un torununun oğlu, yani büyük torunu (Timur→Şahruh→Baysungur→Bâbür); Baysungur 1433'te öldü.
