@@ -33,3 +33,29 @@ Dünyaya ikinci kez gelinmez, demişti. Sence Kalender ermiş miydi, yoksa kaça
 6. "Öldürülmekten başka / çare yok"
 7. "Dünyaya ikinci kez / gelinmez"
 8. Ermiş mi, / kaçan hükümdar mı?
+
+## Sürüm 2 (sahibin isteği: iki gazel tam metinle; ~105-110 sn)
+
+Tahtta bir hükümdar oturuyor ve herkes ona "derviş" diyor.
+
+Dedesi Timur dünyayı kılıçla aldı. Babası Herat'ı kırk ustayla sanat şehrine çevirdi, otuz yedisinde öldü. Geriye bir çocuk kaldı: Bâbür. Ama kimse ona Bâbür demiyor; Kalender diyorlar, yalınayak derviş. Çünkü hattatların, şeyhlerin arasında büyüyor; kapısına yoksul gelince "ilk kapıda misliyle ver" diyor.
+
+Ama damarlarında Timur'un kanı var. Taht boşalınca Herat'ı alıyor, kaynaklara göre kardeşini öldürtüyor. Dervişin elinde kan.
+
+Sonra aynı adam gece kadehini alıp yazıyor:
+
+"Zamanımızın eski süvarilerinden biri meydir; her vakit durmaksızın nefes isteyip kabul eden şey nedir?
+İyilerin keman kaşları niçin siyahtır, bilir misin? Çünkü onların gönül dumanının köşelerinden halk güç almaktadır.
+Bâbür, senin ağlayıp inlemen sevgilinin kulağına ulaştı; Mecnun'un bu hay içinde olmasından Leyla haberdar oldu."
+
+Ve bir başka gece:
+
+"O ay parçası gibi güzel yüze âşık olmayan her gönül, sana gönül denmez; çünkü taş parçasından geri kalır yanın yok.
+Dedim: Ey sevgili, senin gamının karşısında ne yapayım? Dedi: Burada öldürülmekten başka hiçbir çare yok.
+Nevruz, ilkbahar, gül, kadeh ve dilberler… Dünyaya ikinci kez gelinmediği için hayatı güzel yaşa."
+
+Kaynaklara göre otuz beşinde, Meşhed'e ziyarete giderken öldü.
+
+Dünyaya ikinci kez gelinmez, demişti. Sence Kalender ermiş miydi, yoksa kaçan bir hükümdar mı?
+
+Ekran metinleri: Tahttaki derviş · Herkes ona "Kalender" diyor · İlk kapıda misliyle ver · Dervişin elinde kan · "Süvarilerden biri meydir" · "Leyla haberdar oldu" · "Öldürülmekten başka çare yok" · "Dünyaya ikinci kez gelinmez" · Ermiş mi, kaçan hükümdar mı?
