@@ -51,9 +51,9 @@ Ajans sahibine toplu rapor: Piksel Tarihim (@pikseltarihim) için yapılan işle
 - Kod: `TimurSeri.tsx` düz görsel sahnesi (Ken Burns), yazı tipi bağlamı, `hizala_seri.py` + `hizala_ankor.py`, render betiği, 4K sürüm kuralı.
 - Hafıza: `hafiza/onaylananlar.md` (onaylar, yayınlar), `hafiza/geri_bildirimler.md` (araştırma, metin, revizyon notları).
 
-## 6) Hesaplar ve harcama
+## 6) Hesaplar ve kredi kullanımı
 - TikTok hesabı açıldı; Cengiz Han paylaşıldı. Instagram'da Kayıp Mezar, Timur 1 ve 2 yayında.
-- ElevenLabs: Kalender (vcvcvc) 2 kayıt, Cem Sultan (Mehmet) 4 kayıt, 9 tarz görseli + 21 low-poly görsel ≈ 1,9 $.
+- ElevenLabs: Kalender (vcvcvc) 2 kayıt, Cem Sultan (Mehmet) 4 kayıt, 9 tarz görseli + 21 low-poly görsel ≈ 11.900 kredi; abonelik kotasından düştü, ayrı ödeme yok.
 - Higgsfield: 113 kredi, CDN engelli (ağ izni gerekir).
 
 ## 7) Açık kararlar (sahibe)
