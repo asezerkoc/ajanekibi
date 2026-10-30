@@ -12,6 +12,7 @@ import { C29_FPS, C29_KARE, Cumhuriyet29 } from "./sahneler/Cumhuriyet29";
 import { KAL_KARE, Kalender } from "./sahneler/Kalender";
 import { KAL_LP_KARE, KalenderLowPoly } from "./sahneler/KalenderLowPoly";
 import { CEM_KARE, CemSultan } from "./sahneler/CemSultan";
+import { F_FPS, F_KARE, Fetih1453 } from "./sahneler/Fetih1453";
 
 export const Root: React.FC = () => (
 	<>
@@ -38,5 +39,6 @@ export const Root: React.FC = () => (
 		<Composition id="Kalender" component={Kalender} durationInFrames={KAL_KARE} fps={T_FPS} width={1080} height={1920} />
 		<Composition id="CemSultan" component={CemSultan} durationInFrames={CEM_KARE} fps={T_FPS} width={1080} height={1920} />
 		<Composition id="KalenderLowPoly" component={KalenderLowPoly} durationInFrames={KAL_LP_KARE} fps={T_FPS} width={1080} height={1920} />
+		<Composition id="Fetih1453" component={Fetih1453} durationInFrames={F_KARE} fps={F_FPS} width={1920} height={1080} />
 	</>
 );
