@@ -15,8 +15,7 @@ export const CEM_SULTAN: Seri = {
       no: 90, yakin: 2.9, kamera: 0,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Cem Sultan'ın", "Zehirli Tıraşı"], sure: 2.07, boy: 120, renk: ALTIN },
-        { satirlar: ["Eve dönemeyen şehzade"], sure: 1.14, renk: KIZIL },
+        { satirlar: ["Cem Sultan'ın", "Zehirli Tıraşı", "Eve dönemeyen şehzade"], sure: 2.0, boy: 112, renk: ALTIN }, // kapak 2,5 sn (ses bu kadar ötelendi); başlık ve alt başlık birlikte
       ],
     },
     {
@@ -201,7 +200,7 @@ export const CEM_SULTAN: Seri = {
       sprite: { w: 420, h: 300, fps: 10, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Naaşı yıllar sonra", "Bursa'ya döner."], sure: 2.50 },
-        { satirlar: ["Eve ancak ölü döner."], sure: 0.93, renk: KIZIL },
+        { satirlar: ["Eve ancak ölü döner."], sure: 0.93, renk: ALTIN }, // ana motif: mor gökte kızıl okunmuyordu
       ],
     },
     {

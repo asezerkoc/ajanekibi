@@ -72,7 +72,7 @@ def s_oturan(yakin, oran=0.30):
 
 def s_atli(yakin):
     """İnsan/at oranı: atlı 2.9 ↔ kisi 2.6 (SKILL.md)."""
-    return round(s_kisi(yakin) * 2.9 / 2.6, 1)
+    return round(s_kisi(yakin, 0.24) * 2.9 / 2.6, 1)   # kalite kontrol: sarık üst yazıya değmesin, at kadrajı taşırmasın
 
 
 def s_muhafiz(yakin, oran=0.32):
@@ -179,20 +179,21 @@ def _tiras_ayar(yakin):
     if yakin in _TIRAS:
         return _TIRAS[yakin]
     s = s_kisi(yakin)
+    sb = round(s * 1.15, 1)                           # berber ayakta: oturan Cem'den uzun görünsün
     z = duz(TH - 1, TW)
-    boy = max(8, round(2.7 * s))                      # bıçak uzunluğu
+    boy = max(10, round(3.8 * s))                     # bıçak uzunluğu (okunur)
     kenar, ust, alt = _cem_yuz(z, s)
     for d in range(int(8 * s), int(45 * s)):
         bx = CEM_X - d
         tamam = True
         for kol in (0.45, 0.55, 0.65):                # kol aralığının uçları ve ortası
-            el = _berber_el(z, s, bx, kol)
-            if el is None or not (-4 <= kenar - (el[0] + boy + 1) <= 8
+            el = _berber_el(z, sb, bx, kol)
+            if el is None or not (-4 <= kenar - (el[0] + boy + 1) <= 2
                                   and ust <= el[1] <= ust + 0.55 * (alt - ust)):
                 tamam = False
                 break
         if tamam:
-            _TIRAS[yakin] = (s, bx, boy, kenar, ust, alt)
+            _TIRAS[yakin] = (s, sb, bx, boy, kenar, ust, alt)
             return _TIRAS[yakin]
     raise RuntimeError("Ustura yüze hizalanamadı: kol aralığını daralt ya da CEM_X'i değiştir")
 
@@ -214,15 +215,15 @@ def _ustura(t, el, i, nabiz, boy):
 
 
 def _tiras_kare(t, z, i, yakin, nabiz):
-    s, bx, boy, kenar, ust, alt = _tiras_ayar(yakin)
+    s, sb, bx, boy, kenar, ust, alt = _tiras_ayar(yakin)
     f = i / KARE
     kandil(t, 205, 0, f, zincir=_kz(yakin))               # zincir tavana kadar
     mumluk(t, 112, z, f, 3)
     figur(t, oturan, CEM_X, z, s, yon=-1, **CEM)
     kol = 0.55 + 0.10 * SIN(f, 2)
-    figur(t, kisi, bx, z, s, yon=1, kol=kol, **BERBER)
-    el = _berber_el(z, s, bx, kol)
-    if el is None or not (-4 <= kenar - (el[0] + boy + 1) <= 8
+    figur(t, kisi, bx, z, sb, yon=1, kol=kol, **BERBER)
+    el = _berber_el(z, sb, bx, kol)
+    if el is None or not (-4 <= kenar - (el[0] + boy + 1) <= 2
                           and ust <= el[1] <= ust + 0.55 * (alt - ust)):
         raise RuntimeError(f"Kare {i}: ustura yüze hizalı değil")
     _ustura(t, el, i, nabiz, boy)
@@ -334,7 +335,7 @@ def sahne91():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, atli, 175, z, sa, -1, faz=f, at_renk="#6b3f24", yele="#2b1a12",
+        figur(t, atli, 205, z, sa, -1, faz=f, at_renk="#6b3f24", yele="#2b1a12",
               **CEM_K, adim=0.45)
 
     _spr(91, 420, 300, kare, yk)
@@ -672,7 +673,7 @@ def sahne119():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, atli, 210, z, sa, -1, faz=f, govde="#2a6a3a", bas="sarik", bas_renk="#f4f0e6",
+        figur(t, atli, 238, z, sa, -1, faz=f, govde="#2a6a3a", bas="sarik", bas_renk="#f4f0e6",
               sakal="#2a1a12", adim=0.45)
 
     _spr(119, 420, 300, kare, yk)
@@ -901,11 +902,11 @@ def sahne110():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 125, z, K, govde="#1a1a22", bas="bork", bas_renk="#2a1a14", sakal=None,
+        figur(t, kisi, 158, z, K, govde="#1a1a22", bas="bork", bas_renk="#2a1a14", sakal=None,
               yon=1, kol=0.02 * (1 + SIN(f)))
-        figur(t, kisi, 285, z, K, govde="#1a1a22", bas="bork", bas_renk="#2a1a14",
+        figur(t, kisi, 256, z, K, govde="#1a1a22", bas="bork", bas_renk="#2a1a14",
               sakal="#d8d0c8", yon=-1, kol=0.02 * (1 + SIN(f)))
-        figur(t, tabut, 205, z, round(0.9 * K, 1), acik=False)           # kapalı tabut yere oturur
+        figur(t, tabut, 207, z, round(0.42 * K, 1), acik=False)           # kapalı tabut yere oturur
 
     _spr(110, 420, 300, kare, yk, esik=0.7)
 
