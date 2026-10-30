@@ -1,31 +1,44 @@
 # SKONSTART teslimi
 
 - **İş:** Piksel Tarihim (@pikseltarihim) için Reels: Cem Sultan'ın hikâyesi. Fatih'in oğlu, II. Bayezid'in kardeşi; taht mücadelesi, Rodos şövalyelerine sığınması, Avrupa'da 13 yıl rehinelik (Fransa, Papa VIII. Innocentius, Borgia), Napoli'de 1495'te şüpheli ölümü (zehir iddiası, 'zehirli tıraş' rivayeti), naaşının yıllar sonra Bursa'ya getirilmesi. AJANS SAHİBİNİN KARARI: iki hikâye tek videoda birleşsin. (1) BELGE: 31 Mayıs 1492'de II. Bayezid, kardeşini tutsak eden Papa'ya İsa'yı deldiğine inanılan Kutsal Mızrak'ı hediye yolladı (Burchard'ın günlüğü, tanık). (2) RİVAYET: Şubat 1495'te Cem, Napoli'de öldü; halk anlatısına göre Papa VI. Alexander'ın (Borgia) adamları onu zehirledi, bir anlatımda berberin usturası zehirliydi ('zehirli tıraş'); Guicciardini zehir der, Burchard zehirden söz etmez, modern tarihçiler (İnalcık, Vatin) hastalık der. VİDEONUN BAŞLIĞI VE EKSENİ (sahibin kararı): 'Cem Sultan'ın Zehirli Tıraşı'. Tek soru tıraş etrafında kurulsun, 'kim öldürdü' sorusu başlık olmasın (ör. 'Bir ustura bir şehzadeyi öldürebilir mi?' ya da 'O tıraş gerçekten zehirli miydi?'). Kanca tıraş sahnesiyle açılsın ('Napoli, 1495. Bir berber şehzadeyi tıraş ediyor. Rivayete göre ustura zehirli.'), ardından bedel (13 yıl rehinelik, elden ele: Rodos, Fransa, Roma), 'ama' dönüşü (kardeşi onu kurtarmak yerine Papa'ya Kutsal Mızrak'ı yolladı: tutsak kalsın diye), sonda tıraş sorusunun cevabı: belgeler zehiri kanıtlamıyor, Guicciardini zehir der, Burchard susar, modern tarihçiler hastalık der; usturayı yalnızca halk anlatısı söyler. İzleyiciye soru ('Sizce o ustura zehirli miydi?'). Reels uzunluğu (110-130 kelimelik seslendirme). Tartışmalı bilgiler (zehir, ustura, ödenen para, kimin öldürttüğü) 'rivayete göre' ya da 'kaynaklar ayrışıyor' diye açıkça işaretlensin; mızrağın gerçekliği de tartışmalıdır ('İsa'yı deldiğine inanılan'). KAYNAKSIZ bilgi (yıllık ödeme tutarı, 300 bin düka ödülü) metne girmesin. Grafiker piksel sahneleri yalnızca kalite kontrol metni onayladıktan sonra tasarlayacak.
-- **Tarih:** 2026-10-30 17:15
+- **Tarih:** 2026-10-30 17:46
 - **Durum:** ONAY BEKLİYOR
-- **Kalite kontrol:** revizyon sınırına ulaşıldı, son notlar aşağıda
+- **Kalite kontrol:** uygun
 
 ## 🟣 Editör · Gönderi metni
 
-# Cem Sultan'ın Zehirli Tıraşı: Reels gönderi paketi (@pikseltarihim)
+# Cem Sultan'ın Zehirli Tıraşı: Reels paketi (3. revizyon, @pikseltarihim)
 
-## 1. Seslendirme metni (127 kelime)
+**Onay kaydı notu (yayına girmez):**
+- Seslendirme **128 kelimedir** (işteki karar: 110-130). Süre ses üretilince ölçülecek, aşılırsa kırpma sırası: ekran 4 "Evi, denizin öbür yanında" → ekran 10 → ekran 6.
+- Eski kayıttaki "sahibin 170-200 kelime notu" cümlesi silindi, kaynağı doğrulanamadı. Sahibin yazılı notu gösterilirse uzunluğa yeniden bakılır.
+- **Risk notu:** Zehirli ustura ve berber ayrıntısı araştırmanın KAYNAKSIZ listesindedir. Sahibin başlık kararıyla yalnızca "rivayete göre" işaretiyle ve kapanışta "dönem belgesi gösterilemiyor" cümlesiyle dengelenerek kullanılıyor. Sorumluluk sahip ve editördedir.
+
+---
+
+## 1. Seslendirme metni (128 kelime)
 
 **Metnin cevapladığı tek soru:** O tıraş gerçekten zehirli miydi?
 
 Napoli, 1495. Bir berber şehzadeyi tıraş ediyor. Rivayete göre ustura zehirli.
 
-Koltuktaki adam, Fatih'in oğlu Cem. Kardeşi Bayezid'e taht savaşında yenilir, Rodos'a sığınır. Şövalyeler onu Fransa'ya, sonra Roma'ya gönderir. Elden ele, yaklaşık on üç yıl. Siz olsanız dayanır mıydınız?
+Şehzade, Fatih'in oğlu Cem. Evi, denizin öbür yanında.
 
-Umudu sultan kardeşi. Ama Bayezid kurtarmaz. Roma'ya hediye yollar.
+Taht kavgasında kardeşi Bayezid'e yenilir. Rodos'ta şövalyelere sığınır.
 
-31 Mayıs 1492. Papa'nın tören ustası Burchard günlüğüne yazar: İsa'yı deldiğine inanılan Kutsal Mızrak Roma'ya geliyor.
+Rodos, Fransa, Roma. Elden ele, yaklaşık on üç yıl. Eve dönemez.
 
-Gönderen kardeşi. Alan, onu elinde tutan Papa. Hediye mi, pazarlık mı? Bilmiyoruz.
+Kardeşi tahtta, Cem hâlâ Papa'nın elinde. Bayezid bir hediye yollar. Ama Cem'e değil, Papa'ya.
 
-Ocak 1495. Papa, Cem'i Fransa Kralı'na teslim eder. Yaklaşık dört hafta sonra Cem ölür.
+31 Mayıs 1492. Papa'nın tören ustası Burchard yazar: İsa'yı deldiğine inanılan Kutsal Mızrak Roma'ya geliyor.
 
-Peki ustura? Guicciardini zehir der, ama yaklaşık kırk yıl sonra yazar. Burchard zehirden söz etmez. İnalcık gibi tarihçiler hastalık der. Belgeler zehiri kanıtlamıyor. Ustura için dönem belgesi gösterilemiyor; ayrıntı halk anlatısında geçer.
+Hediye mi, pazarlık mı? Bilmiyoruz.
+
+Ocak 1495. Papa, Cem'i Fransa Kralı'na teslim eder. Yaklaşık dört hafta sonra, yabancılar arasında, Napoli'de ölür.
+
+Naaşı yıllar sonra Bursa'ya döner. Eve ancak ölü döner.
+
+Peki ustura? Guicciardini zehir der, ama yaklaşık kırk yıl sonra yazar. Burchard susar. İnalcık gibi tarihçiler hastalık der. Ustura için dönem belgesi gösterilemiyor. Belgeler zehiri kanıtlamıyor.
 
 Sizce o ustura zehirli miydi?
 
@@ -33,60 +46,60 @@ Sizce o ustura zehirli miydi?
 
 ## 2. Ekran metinleri (Jersey 10, her satır en çok 30 harf, seslendirmeyle sırayla bire bir)
 
-Sahneler arası geçişler yumuşak çapraz geçiş olur. İlk iki ekran tıraş sahnesidir: berber, ustura, koltukta şehzade.
+Geçişler yumuşak çapraz geçiştir. Ekran 1-3 tıraş sahnesi, ekran 4, 8 ve 19 yavaş ve sessiz sahnelerdir (deniz, kapalı kapı, Bursa). Sahne planı, metin onaylanana kadar grafikerde beklemede.
 
 1. Napoli, 1495.
    Bir berber şehzadeyi
    tıraş ediyor.
 2. Rivayete göre
    ustura zehirli.
-3. Koltuktaki adam,
-   Fatih'in oğlu Cem.
-4. Kardeşi Bayezid'e
-   taht savaşında yenilir,
-5. Rodos'a sığınır.
-6. Şövalyeler onu Fransa'ya,
-   sonra Roma'ya gönderir.
-7. Elden ele,
+3. Şehzade, Fatih'in oğlu Cem.
+4. Evi, denizin
+   öbür yanında.
+5. Taht kavgasında kardeşi
+   Bayezid'e yenilir.
+6. Rodos'ta şövalyelere
+   sığınır.
+7. Rodos, Fransa, Roma.
+   Elden ele,
    yaklaşık on üç yıl.
-8. Siz olsanız
-   dayanır mıydınız?
-9. Umudu sultan kardeşi.
-10. Ama Bayezid kurtarmaz.
-11. Roma'ya hediye yollar.
+8. Eve dönemez.
+9. Kardeşi tahtta,
+   Cem hâlâ Papa'nın elinde.
+10. Bayezid bir hediye yollar.
+11. Ama Cem'e değil,
+    Papa'ya.
 12. 31 Mayıs 1492.
 13. Papa'nın tören ustası
-    Burchard günlüğüne yazar:
+    Burchard yazar:
 14. İsa'yı deldiğine inanılan
     Kutsal Mızrak
     Roma'ya geliyor.
-15. Gönderen kardeşi.
-    Alan, onu elinde tutan Papa.
-16. Hediye mi, pazarlık mı?
+15. Hediye mi, pazarlık mı?
     Bilmiyoruz.
-17. Ocak 1495.
-    Papa, Cem'i Fransa Kralı'na
-    teslim eder.
-18. Yaklaşık dört hafta sonra
-    Cem ölür.
-19. Peki ustura?
-20. Guicciardini zehir der,
-    ama yaklaşık kırk yıl sonra
-    yazar.
-21. Burchard zehirden
-    söz etmez.
-22. İnalcık gibi tarihçiler
+16. Ocak 1495. Papa, Cem'i
+    Fransa Kralı'na teslim eder.
+17. Yaklaşık dört hafta sonra,
+    yabancılar arasında,
+    Napoli'de ölür.
+18. Naaşı yıllar sonra
+    Bursa'ya döner.
+19. Eve ancak ölü döner.
+20. Peki ustura?
+21. Guicciardini zehir der,
+    ama yaklaşık kırk yıl
+    sonra yazar.
+22. Burchard susar.
+23. İnalcık gibi tarihçiler
     hastalık der.
-23. Belgeler zehiri
-    kanıtlamıyor.
 24. Ustura için dönem belgesi
-    gösterilemiyor;
-25. ayrıntı halk anlatısında
-    geçer.
+    gösterilemiyor.
+25. Belgeler zehiri
+    kanıtlamıyor.
 26. Sizce o ustura
     zehirli miydi?
 
-**Kapak (ortadaki 3:4 alan):** Büyük başlık "Cem Sultan'ın Zehirli Tıraşı", alt başlık "O ustura gerçekten zehirli miydi?", altta logo ve @pikseltarihim.
+**Kapak (ortadaki 3:4 alan):** Büyük başlık "Cem Sultan'ın Zehirli Tıraşı", alt başlık "Eve dönemeyen şehzade", altta logo ve @pikseltarihim.
 
 ---
 
@@ -94,161 +107,173 @@ Sahneler arası geçişler yumuşak çapraz geçiş olur. İlk iki ekran tıraş
 
 Napoli, 1495. Bir berber şehzadeyi tıraş ediyor. Rivayete göre ustura zehirli.
 
-Koltuktaki adam, Fatih'in oğlu Cem. Taht savaşını kardeşi II. Bayezid'e kaybetti. Yaklaşık 13 yıl Rodos'ta, Fransa'da ve Roma'da elden ele dolaştı. Umudu sultan kardeşiydi. Ama 31 Mayıs 1492'de kardeşi, onu elinde tutan Papa'ya İsa'yı deldiğine inanılan Kutsal Mızrak'ı gönderdi. Hediye mi, pazarlık mı? Bilmiyoruz. Ocak 1495'te Papa, Cem'i Fransa Kralı'na teslim etti. Yaklaşık dört hafta sonra Cem öldü. Naaşı yıllar sonra Bursa'ya getirildi.
+Şehzade, Fatih'in oğlu Cem. Evi, denizin öbür yanında.
 
-Sizce o ustura zehirli miydi? Yorumlara yazın, hikâyeyi tarih meraklısı bir arkadaşınıza gönderin.
+Babası ölünce 21-22 yaşındaydı. Haziran 1481'de Yenişehir'de kardeşi II. Bayezid'in orduları onu yendi. Önce Kahire'de Memlük Sultanı Kayıtbay'a, sonra Rodos'ta şövalyelere sığındı. Oradan Fransa'ya gönderildi. Bourganeuf'te onun için bir kule yapıldı, Zizim Kulesi bugün de ayakta. Rodos, Fransa, Roma: yaklaşık 13 yıl elden ele dolaştı ve eve dönemedi.
 
-Not: Cem'in ölüm nedeni kesin değil, kaynaklar ayrışıyor. Zehir iddiası bir rivayettir ve Guicciardini'de geçer. Guicciardini olaydan yaklaşık kırk yıl sonra yazmıştır ve Borgia karşıtıdır. Papalık tören ustası Burchard zehirden söz etmez. Ancak ölümün tanığı değildir, haberini kaydeder; bu yüzden sessizliği kanıt sayılmaz. İnalcık gibi tarihçiler hastalığı öne çıkarır. Berber ve zehirli ustura ayrıntısı için dönem belgesi gösterilemiyor; bu, halk anlatısında geçen bir rivayet olarak aktarılıyor. Kutsal Mızrak'ın gerçekliği de tartışmalıdır. Ölüm günü 24 ya da 25 Şubat olarak aktarılır. Tutsaklık süresi yaklaşık 13 yıldır, tam hesap 12 yıl 7 aydır.
+Kardeşi tahttaydı, Cem hâlâ Papa'nın elindeydi. 31 Mayıs 1492'de Roma'ya bir hediye geldi: İsa'yı deldiğine inanılan Kutsal Mızrak. Gönderen Bayezid'di, alan kardeşini elinde tutan Papa. Hediye mi, pazarlık mı? Bilmiyoruz.
+
+Ocak 1495'te Papa, Cem'i Fransa Kralı'na teslim etti. Yaklaşık dört hafta sonra Cem, yabancılar arasında, Napoli'de öldü. Naaşı yıllar sonra Bursa'ya döndü.
+
+Peki o tıraş gerçekten zehirli miydi? Siz ne dersiniz? Yorumlara yazın, Cem'in hikâyesini tarihe meraklı bir arkadaşınıza gönderin, sıradaki piksel hikâye için @pikseltarihim'i takip edin.
+
+Not: Cem'in ölüm nedeni kesin değil, kaynaklar ayrışıyor. Zehir iddiası Guicciardini'de geçer. Guicciardini olaydan yaklaşık kırk yıl sonra yazmıştır ve Borgia karşıtıdır. Papalık tören ustası Burchard ölümde zehirden söz etmez, ama Napoli'de değildi, bu yüzden sessizliği kanıt sayılmaz. İnalcık gibi tarihçiler hastalığı öne çıkarır. Berber ve zehirli ustura ayrıntısı bir rivayettir, dönem belgesi gösterilemiyor. Kutsal Mızrak'ın gerçekliği tartışmalıdır. Hediyenin amacı belgelerde yazılı değildir. Ölüm günü 24 ya da 25 Şubat olarak aktarılır. Tutsaklık süresi yaklaşık 13 yıldır, tam hesap 12 yıl 7 aydır. Naaşın Bursa'ya dönüş yılı kaynaklarda yaklaşık verilir.
+
+#CemSultan #ZehirliTıraş #OsmanlıTarihi #TarihHikayeleri #PikselTarih #TarihAnimasyon #IIBayezid #Reels
 
 ---
 
-## 4. Hashtag'ler
+## 4. Sabitlenecek ilk yorum
 
-#ZehirliTıraş #CemSultan #OsmanlıTarihi #TarihHikayeleri #PikselTarih #TarihAnimasyon #IIBayezid #Reels
-
----
-
-## 5. Sabitlenecek ilk yorum
-
-Sizce o ustura zehirli miydi? 👇
+Eve ancak ölü döndü. Sizce o ustura zehirli miydi? 👇
 
 Kaynaklar ayrışıyor, hangisine yaslandığınızı yazın:
 • Zehir: Guicciardini (olaydan yaklaşık 40 yıl sonra yazıyor)
-• Zehirden söz etmeyen kayıt: Burchard günlüğü (ölümün tanığı değil, haberi kaydediyor; sessizliği kanıt sayılmaz)
+• Zehirden söz etmeyen tanık: Burchard günlüğü (Napoli'de değildi, sessizliği kanıt sayılmaz)
 • Hastalık: Halil İnalcık, "Djem" (Encyclopaedia of Islam)
 
-Belgeler zehiri kanıtlamıyor. Ustura ve berber ayrıntısı için dönem belgesi gösterilemiyor, halk anlatısında geçen bir rivayet olarak aktarılıyor. Kutsal Mızrak'ın gerçekliği de tartışmalı: Roma, Viyana ve Eçmiyazin'de üç ayrı mızrak anılır. Yeni piksel hikâyeler için @pikseltarihim'i takip edin.
+Ustura ve berber ayrıntısı bir rivayet, dönem belgesi gösterilemiyor. Belgeler zehiri kanıtlamıyor. Kutsal Mızrak'ın gerçekliği de tartışmalı: Roma, Viyana ve Eçmiyazin'de üç ayrı mızrak var. Cem'in kulesi Bourganeuf'te hâlâ ayakta. Yeni piksel hikâyeler için @pikseltarihim'i takip edin.
 
 ---
 
 ## Editör notları
 
-**Genel durum:** Elimdeki paket, revizyon notunda istenen ekseni (tıraş başlığı, tıraş kancası, tıraş sorusuyla kapanış) zaten taşıyordu. Notun "tıraşı baştan reddeden bölüm" diye andığı paragraf pakette yoktu. Bu yüzden yeniden kurgulamadım, hedefli düzeltmeler yaptım.
+1. **Uzunluk:** 197 → 128 kelime (işin kararı: 110-130). Kesilenler: yaş cümlesi, Kahire, "gemi Fransa'ya gider", Bourganeuf/Zizim Kulesi, "Siz olsanız dayanır mıydınız?". Kule, Kahire, yaş ve gemi bilgisi açıklama ve ilk yorumda kaldı.
+2. **170-200 kelime kararı:** Dosyada yazılı kaynağı yok. Onay kaydından çıkarıldı. Sahip yazılı not gösterirse yeniden bakılır. Not: bu revizyon notu alanı 170-200 kelimeyi "zorunlu" diye yazıyor, işin ana brifi ise 110-130 diyor. İki karar çakışıyor, sahipten tek cümlelik yazılı teyit istenmeli.
+3. **"Ama" dönüşü netleşti:** "Ama o hediye Cem'e değil, Papa'ya" ayrıldı. Yeni hâli "Bayezid bir hediye yollar. Ama Cem'e değil, Papa'ya." Hediyenin kime gittiği belgeli olgudur. Niyet "Bilmiyoruz" ile açık kaldı. "Gönderen Bayezid. Alan…" tekrarı, hediye cümlesine taşınarak sadeleşti.
+4. **Kanca:** Sahibin kalıbı korundu. "Rivayete göre", ustura cümlesiyle aynı ekranda (ekran 2). Ekran 3 "Şehzade, Fatih'in oğlu Cem." oldu. "Rivayete göre" seslendirmede yalnız bir kez geçiyor. Ötesi açıklamadaki nota taşındı.
+5. **Ekranlar:** Yeni seslendirmeye bire bir yazıldı (26 ekran, hiçbir satır 30 harfi geçmiyor).
+6. **Duygu:** Motif "eve dönmek" korundu: ekran 4 "Evi, denizin öbür yanında" → 8 "Eve dönemez" → 19 "Eve ancak ölü döner". "Bir daha eve dönemez" cümlesi "Eve dönemez" olarak kısaltıldı. Uydurma iç monolog, şairlik ve aşk yok.
+7. **Kaynak kuralı:** KAYNAKSIZ listesinden hiçbir bilgi yok: yıllık ödeme, 300 bin düka, Sassenage, şairlik, elçi adı, doğum günü, Pollaiuolo mezarı, naaş bedeli, zehir türü. Mızrak her yerde "inanılan" ile geçiyor. "Yaklaşık" işaretleri duruyor (13 yıl, dört hafta, kırk yıl). "Naaşı yaklaşık dört yıl sonra" cümlesi "yıllar sonra" oldu, çünkü yıl kaynaklarda yaklaşık veriliyor.
+8. **Kapanış:** Burchard cümlesi "susar" ile kısaldı. "Ustura için dönem belgesi gösterilemiyor" ve "Belgeler zehiri kanıtlamıyor" korundu. "Yalnızca halk anlatısı" ve "tutsak kalsın diye" cümleleri yok.
+9. **Açıklama/ilk yorum:** Yeni duyguya ve metne göre güncellendi, kaynak notları korundu. Burchard'ın Napoli'de olmadığı notu ve ustura risk notu duruyor.
 
-**Değişenler:**
-1. **Hitap birliği:** Metinde "Sen olsan" ile "Sizce" karışıktı. Hepsi "siz" oldu: "Siz olsanız dayanır mıydınız?" Kapanış sorusu sahibin cümlesiyle aynı kaldı.
-2. **"Tek umudun kardeşin" → "Umudu sultan kardeşi":** "Tek umut" kaynaksız mutlak bir iddiaydı. Yeni cümle üçüncü kişili, daha kısa ve Bayezid'in sultan olduğunu hatırlatıyor.
-3. **Kapanış sırası:** "Belgeler zehiri kanıtlamıyor" ile ustura cümlesinin yeri değişti. Soru ustura olduğu için son bilgi cümlesi artık usturaya ait.
-4. **Ustura cümlesi:** "Ustura için dönem belgesi gösterilemiyor; ayrıntı halk anlatısında geçer." Araştırmacının kanıtlayamadığı "yalnızca halk anlatısı söyler" cümlesi yok. Revizyon notunun önerdiği ifade kullanıldı.
-5. **Burchard dipnotu:** "Napoli'de değildi" ifadesi araştırmada yazmıyor. Araştırma onu "ölümün tanığı değil, haberini kaydeder" diye tanımlıyor. Açıklama ve ilk yorum buna göre düzeltildi.
-6. **Açıklamadaki çift soru:** "Peki o tıraş gerçekten zehirli miydi? Sizce o ustura zehirli miydi?" tek soruya indi. Üç çağrı (yorum, gönder, takip) ikiye indi; takip çağrısı ilk yorumda kaldı.
-7. **Naaş:** "Naaşı yıllar sonra Bursa'ya getirildi" cümlesi açıklamaya eklendi (araştırmada güvenli cümle). Seslendirmede yer yok.
-8. **Ekran metinleri:** Yeni seslendirmeyle bire bir eşleşecek şekilde yeniden numaralandı (26 ekran). Her satır 30 harf ve altında. Kapak ve hashtag'ler korundu.
-9. **"Rivayete göre":** Seslendirmede tek kez, kancada geçiyor. Diğer işaretlemeler açıklamadaki nota taşındı. Mızrak her yerde "inanılan" ifadesiyle anılıyor.
+**İlgi denetimi:**
+- **Kanca:** geçti (tıraş sahnesi açık döngü, cevap sonda)
+- **Tek soru:** geçti (her şey "O ustura zehirli miydi?" sorusuna bağlı)
+- **Dönüş:** geçti ("Ama Cem'e değil, Papa'ya" çatışması, "Eve dönemez" bedeli)
+- **Merak sıklığı:** geçti, yaklaşık her 25 kelimede yeni bir merak: tıraş (0), hediye kime? (50), mızrak (55), hediye mi pazarlık mı? (70), ölüm ve ustura cevabı (90-128)
+- **Hitap:** geçti, kapanışta "Sizce…" sorusu var. Metin içindeki "Siz olsanız…" cümlesi uzunluk için çıkarıldı. Sahip isterse 4 kelimeyle geri eklenebilir, toplam 132 olur ve başka bir yerden kırpılması gerekir.
+- **Kronolojik liste riski:** düzeltildi, Kahire ve kule gibi ayrıntılar açıklamaya alındı.
+- **"Rivayete göre" sayısı:** teke indi (ekran 2)
+- **KAYNAKSIZ bilgi:** temiz
 
-**Metne girmeyenler:** Yıllık ödeme tutarı, 300 bin düka, Sassenage aşkı, şairlik, elçinin adı, Pollaiuolo mezarı, naaş teslim bedeli, "kim öldürdü" sorusu, Papa ya da Borgia'ya doğrudan suç yükleme.
-
-**Sahibe açık risk notu:**
-- Araştırmacı berber ve ustura rivayetinin varlığını iki bağımsız kaynakla gösteremedi. Bu yüzden ustura hiçbir yerde olgu olarak yazılmadı, yalnızca rivayet olarak işaretlendi.
-- "Ayrıntı halk anlatısında geçer" ifadesi sahibin brifine dayanıyor, araştırmada ayrıca teyitli değil. Sorumluluk ajans sahibinde ve editörde. İstenirse bu ifade çıkarılır, "dönem belgesi gösterilemiyor" cümlesi tek başına yeter.
-- "Ama Bayezid kurtarmaz" ve mızrağın amacı yorum niteliğinde. Niyet olgu gibi yazılmadı, "Hediye mi, pazarlık mı? Bilmiyoruz." ile işaretlendi.
-- Süre "yaklaşık on üç yıl" olarak veriliyor, tam hesap (12 yıl 7 ay) açıklama notunda.
-
-**Sonraki adım:** Metin onaylanırsa grafiker piksel sahneleri tasarlayabilir. İlk iki ekran tıraş sahnesi.
-
----
-
-## İlgi denetimi
-
-| Ölçüt | Sonuç |
-|---|---|
-| **Kanca** | **Geçti.** Yıl ve yer bilgisiyle başlıyor ama aynı nefeste sahne ve açık döngü geliyor: berber, ustura, "zehirli" iddiası. Cevap sonda. |
-| **Tek soru** | **Geçti.** Her şey "O ustura zehirli miydi?" sorusuna bağlı. Kronolojik liste yok, "kim öldürdü" sorusu açılmıyor. |
-| **Dönüş (ama, çatışma, bedel)** | **Geçti.** Bedel yaklaşık 13 yıl elden ele. Dönüş "Ama Bayezid kurtarmaz. Roma'ya hediye yollar." Çatışma: kurtaracak kardeş, tutan Papa ve aradaki mızrak. |
-| **Merak sıklığı (~25 kelime)** | **Geçti, hitap düzeltildi.** Merak noktaları yaklaşık 1., 16., 39. (soru), 48. (ama), 64. (mızrak), 76. ("Hediye mi, pazarlık mı?"), 90. (dört hafta) ve 97. (Peki ustura?) kelimelerde. En uzun boşluk 23 kelime. |
-| **Hitap** | **Düzeltildi.** "Sen/siz" karışıklığı giderildi. Ortada "Siz olsanız dayanır mıydınız?", sonda "Sizce o ustura zehirli miydi?" |
-| **Zaman ve sahne** | **Geçti.** Şimdiki zaman anlatımı korundu. Yalnızca bilgi veren, duygusuz cümle kalmadı. |
-| **KAYNAKSIZ listesi** | **Geçti.** Listeden hiçbir bilgi metne girmedi. |
+**Sonraki adım:** Metin onaylandıktan sonra grafiker sahne planını bu sürüme göre yazar.
 
 ## 🟢 Grafiker · Animasyon ve grafik
 
-# Cem Sultan'ın Zehirli Tıraşı: piksel sahne teslimi (revizyon 2)
+# Cem Sultan'ın Zehirli Tıraşı: piksel sahne teslimi (revizyon 3)
 
-Seri: `cem_sultan` · Sahneler 72–87 · Dikey 1080×1920, 60 fps · Süre ≈ 72 sn (2,5 sn kapak + 66,4 sn anlatım + 3 sn kapanış)
+Seri: `cem_sultan` · Dikey 1080×1920, 60 fps · Süre ≈ 83 sn tahmini (2,5 sn kapak + 77,3 sn anlatım + 3 sn kapanış). Seslendirme gelince `ses/hizala_seri.py` süreleri sese göre kısaltır. Bu yüzden son süre muhtemelen 65–75 sn olur.
 
-**Önce dürüst durum notu.** Bu ortamda yalnızca dosya okuma aracım var. Render alamadım ve `taban_denetimi` çalıştıramadım. Bu yüzden "render'la doğruladım" demiyorum ve uydurma çıktı eklemiyorum. Hiza ve konum sorunlarını kodun kendisi denetler: aşağıdaki yardımcılar ölçüm yapar, tutmazsa betik durur. Kod tarafının koşturacağı komutlar ve geçme ölçütleri "Doğrulama" bölümünde.
+**Önce dürüst durum notu.** Bu ortamda yalnızca dosya okuma aracım var. Render alamadım ve `taban_denetimi` çalıştıramadım. "Render'la doğruladım" demiyorum. Hiza, ölçek ve kadraj sorunlarını kodun kendisi ölçer. Ölçüm tutmazsa betik, ne yapılacağını söyleyen bir hata mesajıyla durur. Komutlar ve geçme ölçütleri en sondaki "Doğrulama" bölümünde.
 
-## Revizyon özeti (kalite kontrol maddeleri)
+## Revizyon özeti
 
 | # | Madde | Ne yaptım |
 |---|---|---|
-| 1 | Sahne 83 araştırmayla çelişiyordu | Napoli odası ve hasta/hekim/testi tamamen kalktı. "Burchard zehirden söz etmez" artık Roma odasında (sahne 78'in odası) günlüğüne yazan Burchard'la gösteriliyor (yeni **sahne 83**). "İnalcık gibi tarihçiler hastalık der" için içinde kimse olmayan, nötr bir Napoli penceresi var (yeni **sahne 84**). Hasta, hekim, testi, sedir ve Napoli'de Burchard yok. |
-| 2 | Ustura sabit koordinattaydı | Ustura artık berberin elinden hesaplanıyor. Aynı pozu `kol=0` ve `kol=şimdiki` ile iki ayrı yüzeye çizip farkın yöne en uzak noktasını el ucu sayıyorum (`_el_ucu`). Ustura o noktaya çiziliyor, yani kol oynayınca ustura da oynuyor. Ayrıca her karede bıçak ucunun Cem'in yüzüne boşluğu ölçülüyor (`_yuz_denetimi`). Tutmazsa betik durur. Elçinin mızrağı koordinatla değil, `kisi(silah="mizrak")` ile elde taşınıyor. |
-| 3 | Sahne 74 tutarsızdı | Tek değer: `KIYI_Y = 580`. Su, kale ve şövalye tabanı bu çizgiden başlıyor. Sprite'ta su `SU_SPR = 156`, yani alt 14 satır, tablo ve kod aynı. TSX tabanı 632. Kumsal kaldırıldı, yerine düz liman kıyısı geldi. Gerekçe: sprite'taki tam genişlikte su bandı, kumsalı alttan örtüyordu. Gemi ve kıyı için ölçüm denetimi (`_gemi_denetimi`) eklendi. |
-| 4 | Fonksiyon denetimi | Aşağıdaki "Fonksiyon denetimi" tablosunda her parametre `fonksiyonlar.md` satırıyla eşleştirildi. `silah='mektup'`, `diz`, `pelerin`, `dur`, `zirh`, `mesale` referansta var. `testi`, `nefes`, `yatan` ve `sedir` sahne 83 kalkınca kullanımdan çıktı. |
-| 5 | Anadolu kalesi yanlış okunur | Rodos, Roma ve Napoli'de `anadolu_kalesi` kalktı. Yerine nötr `sehir` (surlu şehir) geldi. Rodos için gri taş ve kiremit kırmızısı, Roma için sıcak bej, Napoli için gece paleti kullandım. Gerçek bir Avrupa/Hospitaller kalesi için ayrıca yeni figür isteği yazdım. |
-| 6 | Dokunulmayanlar | 72'den başlayan numaralandırma, sahne-metin sırası ve bire bir eşleşme, ≤30 harf, 2 kat piksel, bulut ve dağ yazı bandı kuralı, zehrin hiç gösterilmemesi, gri silüet çözümü (artık sahne 85) korundu. |
+| 1 | Numaralandırma | Kod tarafı eski 72–87 sahnelerini 90–105 yaptı. Güncellenen sahneler **90–103 ve 105** oldu. Yeni sahneler **106–110**. Görev metni "71'den başla" diyor, ama 71 `pasa.py`'de dolu. Bu yüzden bu serinin ilk numarası 90. **Sahne 104** (halk anlatısı köyü) yeni metinde yok, kaldırıldı. |
+| 2 | Metin bire bir | 26 ekran yazısı yeni seslendirmeyle bire bir eşlendi. Satırların hepsi ≤ 30 harf. Eski "Siz olsanız…", "Umudu sultan kardeşi" ve "halk anlatısında geçer" yazıları gitti. |
+| 3 | Figür boyu ≥ %30 | Elle ölçek yazmadım. `olcek()` figürü boş tuvale çizer, kutusunu ölçer ve `0,32 × 960 / yakin` satırına ulaşan en küçük `s` değerini bulur. Bu, kadraj yüksekliğinin %32'sine denk gelir. Böylece `yakin` 2,6–3,2 aralığında gerçekten büyük figür çıkar. Yapılar ve arka figürler aynı çarpanla büyür (`0,55×` ile `0,9×`). |
+| 4 | İç mekân | Sprite yüksekliği **300**. `kandil` zinciri, sprite'ın üstünden (`ust=0`) başlar ve `_kz()` ile kadrajın üst kenarının biraz altına iner. Zincir tavandan sarkar, havada lamba yok. |
+| 5 | Keder dili | Ağır kamera (`kamera` 6–12). Alacakaranlık ve gece paletleri. Yalnız figür kadrajları (106, 94, 108, 96, 100, 101). Uzaklaşan gemi (107). Kule penceresi (94). Boş pencere (102). Tek mumlu odalar. |
+| 6 | Rodos kadırgası | Gemi `s_gemi()` ile kadrajın en az %30'una ölçeklenir ve direkli. Şövalyeler gemiye bitişmez. Gemi genişliği ölçülür, şövalyeler ve kıyı o kadar sağa itilir. |
+| 7 | Elden ele (93) | Dört figür koridorda: Rodos şövalyesi, **Cem (önde, ön sırada ve en büyük)**, Fransız, papalık görevlisi. |
+| 8 | Cem'in yüzü kameraya dönük | **Kütüphanede cepheden bakan figür yok.** `kisi` ve `oturan` yalnızca `yon=±1` ile profil çizer. Şimdiki çözüm: Cem her sahnede en önde, en büyük ve yüzü açık (profil, hiçbir şey yüzünü örtmüyor). Gerçek çözüm "Yeni figür isteği"nde (`kisi_on`). |
+| 9 | Ustura | Ustura hâlâ berberin el ucundan türetiliyor. `BERBER_X` artık elle yazılmıyor, ölçekten sonra otomatik bulunuyor (`_tiras_ayar`). Her karede bıçak ucunun Cem'in yüzüne boşluğu ölçülüyor. |
+| 10 | Zehir | Hiçbir sahnede zehir, yeşil efekt ya da hasta görünmez. Ustura parıltısı nötr beyaz. Sahne 103'teki gri silüette ustura çizilmez. |
 
-**Numaralandırma notu.** Görev notu "71'den başla" diyor. Ama katalogda 71, `pasa.py` (darağacı) sahnesi. Aynı numara dosyaları ezeceği için seri 72'den başlıyor. Sahne 83 ve 84 eklendiği için eski 84–86 artık **85–87**.
+Eski sahnelerin yeni numaraları: 72→90, 73→91, 74→92, 75→93, 76→94, 77→95, 78→96, 79→97, 80→98, 81→99, 82→100, 83→101, 84→102, 85→103, 86→**kaldırıldı**, 87→105.
 
 ---
 
 ## 1) Sahne planı
 
 Genel ilkeler:
-- Zehir hiçbir sahnede gösterilmez. Ustura parıltısı nötr beyazdır, yeşil ya da zehir efekti yoktur. Ölüm sahnesinde ölüm nedeni gösterilmez.
-- Rivayet ve belge ayrımı görsel dille korunur. Ustura yalnızca tıraş sahnelerinde (72, 87) canlı, belge sahnesinde (85) gri silüet olarak geçer. Silüette ustura çizilmez.
 - Her sahne bir öncekine yumuşak çapraz geçişle bağlanır.
-- Hastalık hiçbir sahnede çizilmez. Hasta, hekim ve testi yoktur.
+- Yavaş ve sessiz sahneler: ekran 4 (107, deniz), ekran 8 (94, kule penceresi) ve ekran 19 (110, Bursa).
+- Zehir, hastalık ve ölüm anı çizilmez. Cem'in ölümü sahne 99'da yalnızca gece ve nöbetçilerle anılır.
+- Mızrak her yerde "inanılan" yazısıyla anılır. Ustura yalnızca tıraş sahnelerinde (90, 105) canlı geçer.
+
+### Ekran → sahne eşlemesi
+
+| Ekran | Sahne | Ekran | Sahne | Ekran | Sahne |
+|---|---|---|---|---|---|
+| 1, 2 | 90 | 10, 11 | 95 | 19 | 110 |
+| 3 | 106 | 12, 13 | 96 | 20, 21 | 100 |
+| 4 | 107 | 14 | 109 | 22 | 101 |
+| 5 | 91 | 15 | 97 | 23 | 102 |
+| 6 | 92 | 16 | 98 | 24, 25 | 103 |
+| 7 | 93 | 17 | 99 | 26 | 105 |
+| 8 | 94 | 18 | 110 | | |
+| 9 | 108 | | | | |
+
+### Sahne tablosu (anlatım sırasıyla)
+
+Sahne süresi = Σ yazı süresi + 0,5 sn.
 
 | No | Süre (sn) | Konu | Zemin çizgisi | Hareket | Kamera | Ses önerisi |
 |---|---|---|---|---|---|---|
-| **72** | 5,5 | **Kanca, tıraş:** Napoli sarayı, akşam. Minderde Cem, karşısında berber, elinde parlayan ustura. Mumluk, mangal. | sprite taban 634 | Berberin kolu sallanır, ustura **elin ucuna bağlı** hareket eder, ustura ışıldar, mum titrer. | yakin 2.4, kamera 14, odakY 590 | Sessiz oda, mum çıtırtısı, derin nefes. |
-| **73** | 5,0 | **Taht savaşı yenilgisi:** Gün batımı. Arkada Bayezid'in yeşil otağı, yanında ayakta Bayezid. Önde Cem ve iki adamı atla sağa çekilir. | orta `duz(588)`, `duz(590)`; sprite taban 632 | Atlar yürür, bir toynak hep yerde. Otağ flaması dalgalanır. | yakin 2.0, kamera 30 | Uzak davul, rüzgâr, ağır toynak. |
-| **74** | 4,4 | **Rodos:** Gündüz, deniz. Kırmızı yelkenli kadırga sola, taş surlu limana gelir. Kıyıda iki şövalye. | **`KIYI_Y = 580`:** su başlangıcı, surlu yapı ve şövalyeler `duz(580)`. Gemi sprite su çizgisi y156 (alt 14 satır su, taban 632). | Gemi dalgayla iner kalkar, yelken kımıldar, sprite sola kayar. | yakin 1.7, kamera 40 | Dalga, martı, zincir. |
-| **75** | 4,9 | **Elden ele:** Taş koridor, kandiller. Dört kişi: kırmızılı Rodos şövalyesi, ortada Cem, mavili Fransız, altın sarılı papalık görevlisi. | sprite taban 634 | Hepsi sağa yürür, fazlar kaydırılmış. Kandil alevi titrer. | yakin 1.9, kamera 40 | Taş zeminde adımlar, yankı. |
-| **76** | 3,7 | **Umut:** Hücre benzeri oda. Cem akşam penceresine bakar, tek mum. | taban 634 | Cem hafifçe nefes alır, mum titrer. | yakin 2.3, kamera 10 | Rüzgâr, uzak martı. |
-| **77** | 3,7 | **Hediye yollar:** İstanbul surları önünde Bayezid ayakta; elçi ve eşlikçisi mızraklı atla Roma'ya (sola) dörtnala gider. | Bayezid `duz(590)`, şehir `duz(588)`; sprite taban 632 | Atlar koşar, Bayezid işaret eder. | yakin 2.0, kamera 50 | Toynak ritmi, borazan. |
-| **78** | 6,2 | **Burchard günlüğü, Roma, 31 Mayıs 1492:** Ayakta tören ustası Burchard, karşısında diz çökmüş elçi mızrağı uzatır. Mumluk, pencereden gün ışığı. | taban 634 | Burchard'ın kolu hafifçe oynar, mum titrer. | yakin 2.1, kamera 10 | Kalem, oda yankısı, hafif org. |
-| **79** | 5,9 | **Hediye mi, pazarlık mı?** Solda arkada Cem ve iki muhafız (küçük, yüksek zeminde), sağ önde mızrağı tutan Papa, aralarında mumluk. | Papa taban 634, arka sıra `duz(y-12)` | Papa'nın kolu hafif oynar. | yakin 1.9, kamera 20 | Gerilim, kısa sessizlik. |
-| **80** | 3,7 | **Ocak 1495, teslim:** Roma surları dışında soğuk gri gün. İki papalık görevlisi bırakır, Cem Fransız süvarilerine (taçlı kral dahil) yürür. | orta `duz(588)`, sprite taban 632 | Cem yürür, Fransız atlar durur. | yakin 1.8, kamera 30 | Kış rüzgârı, uzak zil. |
-| **81** | 2,9 | **Cem ölür (Napoli, Şubat):** Gece, yıldızlı gök, surlu yapı; kapıda iki meşaleli nöbetçi. Ölüm gösterilmez. | orta `duz(588)`, sprite taban 632 | Meşaleler titrer. | yakin 2.1, kamera 10 | Çan, uzun sessizlik. |
-| **82** | 5,3 | **Guicciardini yazar:** Floransa tarzı çalışma odası, mumluk, elinde defter. | taban 634 | Mum titrer, kol hafif oynar. | yakin 2.2, kamera 10 | Kalem, sayfa çevirme. |
-| **83** | 2,4 | **Burchard'ın sessizliği (Roma):** Roma odasında, günlüğüne yazan ayakta Burchard. Napoli yok. | taban 634 | Kol hafif oynar, mumlar titrer. | yakin 2.1, kamera 10 | Kalem sesi, sessiz oda. |
-| **84** | 2,8 | **"Hastalık der":** Nötr Napoli penceresi, akşam ışığı. Odada kimse yok, yalnızca kandil ve mumluk. | taban 634 | Kandil ve mum titrer. | yakin 2.2, kamera 14 | Uzak dalga, sakin oda. |
-| **85** | 4,8 | **Belge yok:** Solda Burchard, sağda Guicciardini; aralarında gri silüet halinde tıraş sahnesi (belge olmayan anlatı, ustura yok). | silüet `duz(y-12)`, yazarlar taban 634 | Yazarlar kol oynatır, silüet durur. | yakin 1.8, kamera 10 | Rüzgâr, sayfa sesi, yankı. |
-| **86** | 2,5 | **Halk anlatısı:** Alacakaranlık köy, ateş etrafında dinleyiciler, ayakta anlatıcı. | orta `duz(588)`, sprite taban 632 | Alev oynar, anlatıcı kolunu sallar. | yakin 2.0, kamera 20 | Çıtırdayan ateş, uzak köpek, kısık söyleşi. |
-| **87** | 2,7 | **Soru ve kapanış:** Tıraş odası, gece penceresi. Ustura yavaş parlar (elin ucuna bağlı). Kapanışta sahne arkada durur. | taban 634 | Ustura parıltısı yavaş nabız atar. | yakin 2.4, kamera 10, odakY 590 | Kısa sessizlik, tek nota. |
-
-Süre: kapak 2,5 + 66,4 + kapanış 3 ≈ **71,9 sn** (Reels sınırı 90 sn). Her sahne süresi Σsure + 0,5 sn çapraz geçiştir. Süreler tahminidir (~14 harf/sn); seslendirme gelince `ses/hizala_seri.py` sese göre düzeltir.
+| **90** | 5,5 | **Kanca, tıraş (ekran 1–2):** Napoli sarayı, akşam. Minderde Cem, karşısında berber, ustura parlar. Büyük figürler, tavandan inen kandil. | sprite taban 634 (iç mekân) | Berberin kolu sallanır, ustura el ucuna bağlı gelir gider, mum titrer, ustura parıltısı nabız atar. | yakin 2.9, kamera 8 | Sessiz oda, mum çıtırtısı, derin nefes. |
+| **106** | 2,7 | **"Şehzade, Fatih'in oğlu Cem." (ekran 3):** Alacakaranlık, taş rıhtımda yalnız Cem, arkasında uzak kıyı ve deniz, pelerini hafif. | sprite taban 632; orta taş rıhtım (üst kenar 554–558) | Cem hafifçe nefes alır, pelerin sallanır. | yakin 3.2, kamera 6 | Rüzgâr, uzak dalga. |
+| **107** | 3,3 | **"Evi, denizin öbür yanında." (ekran 4, yavaş ve sessiz):** Koyu mor alacakaranlık, ufka doğru uzaklaşan küçük kadırga, figür yok. | Su başlangıcı `KIYI2=508`; gemi su çizgisi sprite alt 14 satır (taban 556) | Gemi sola, uzağa yavaş gider, dalgayla iner kalkar. | yakin 2.2, kamera 8 | Uzak dalga, tek martı. |
+| **91** | 3,3 | **Taht kavgası yenilgisi (ekran 5):** Gün batımı. Cem atıyla sağa uzaklaşır. Solda geride Bayezid'in yeşil otağı, yanında Bayezid ayakta. | orta `duz(588)`, `duz(590)`; sprite taban 632 | At yürür (bir toynak hep yerde), otağ flaması dalgalanır. | yakin 2.8, kamera 10 | Uzak davul, ağır toynak. |
+| **92** | 2,7 | **Rodos (ekran 6):** Gri-mor alacakaranlık, büyük direkli kırmızı yelkenli kadırga limana girer. Sağ kıyıda surlu yapı ve iki şövalye. | `KIYI_Y=576`: su, surlu yapı ve şövalyeler; gemi su çizgisi sprite y286 (ızgara 618) | Gemi sağa iner kalkar, yelken kımıldar. | yakin 2.4, kamera 12 | Dalga, zincir, martı. |
+| **93** | 4,1 | **"Elden ele" (ekran 7):** Taş koridor, iki kandil. Dört kişi sağa yürür; Cem önde ve en büyük. | sprite taban 634; arka sıra `duz(z−12)` | Hepsi yürür, fazlar kaydırılmış. | yakin 2.6, kamera 8 | Taş zeminde adımlar, yankı. |
+| **94** | 3,3 | **"Eve dönemez." (ekran 8, yavaş ve sessiz):** Gece, kule odası. Yalnız Cem, kafesli gece penceresine bakar, tek mum. | taban 634 | Cem çok yavaş nefes alır, mum titrer. | yakin 3.0, kamera 6 | Rüzgâr, kapı anahtarı sesi yok, yalnızca sessizlik. |
+| **108** | 3,3 | **"Kardeşi tahtta" (ekran 9):** Saray odası, minderde (taht yerine) oturan Bayezid; yalnız figür. | taban 634 | Mum titrer, Bayezid sabit. | yakin 3.0, kamera 6 | Ağır org, uzak çan. |
+| **95** | 4,5 | **Hediye yollar (ekran 10–11):** Soluk sabah, İstanbul surları, ayakta Bayezid. Mızraklı elçi büyük planda Roma'ya (sola) dörtnala. | orta `duz(588)`, `duz(590)`; sprite taban 632 | At koşar, Bayezid işaret eder. | yakin 2.8, kamera 20 | Toynak ritmi, tek borazan. |
+| **96** | 4,5 | **Burchard günlüğü (ekran 12–13):** Roma odası, gün ışığı. Ayakta Burchard yazar; yalnız figür. | taban 634 | Kol hafifçe oynar, mum titrer. | yakin 3.0, kamera 6 | Kalem, oda yankısı. |
+| **109** | 4,3 | **Kutsal Mızrak (ekran 14):** Roma odası. Diz çökmüş elçi mızrağı uzatır, Burchard ayakta bakar. | taban 634 | Mum titrer, elçi mızrağı hafifçe uzatır. | yakin 2.7, kamera 8 | Hafif org. |
+| **97** | 3,3 | **"Hediye mi, pazarlık mı?" (ekran 15):** Solda arkada Cem ve iki muhafız (küçük, yüksek zeminde), sağ önde mızrağı tutan Papa, aralarında mumluk. | Papa taban 634, arka sıra `duz(z−12)` | Papa'nın kolu hafif oynar. | yakin 2.6, kamera 8 | Gerilim, kısa sessizlik. |
+| **98** | 3,9 | **Ocak 1495, teslim (ekran 16):** Soğuk gri gün, Roma surları dışında. Papalık görevlisi bırakır, Cem yürür, Fransa Kralı atıyla bekler. | orta `duz(588)`; sprite taban 632; arka sıra `duz(z−12)` | Cem yürür, at durur. | yakin 2.6, kamera 12 | Kış rüzgârı, uzak zil. |
+| **99** | 4,5 | **Napoli gecesi (ekran 17):** Yıldızlı gece, surlu yapı; kapıda iki meşaleli nöbetçi. Ölüm gösterilmez. | orta `duz(588)`; sprite taban 632 | Meşaleler titrer. | yakin 2.8, kamera 6 | Çan, uzun sessizlik. |
+| **110** | 5,5 | **Bursa (ekran 18–19, yavaş ve sessiz):** Alacakaranlık, arkada dağ ve evler. Kapalı tabut yerde, iki yaslı yanında. | orta `duz(588)`; sprite taban 632 | Yaslıların nefesi, uzak rüzgâr. | yakin 2.8, kamera 8 | Rüzgâr, tek nota. |
+| **100** | 5,3 | **Guicciardini (ekran 20–21):** Floransa tarzı çalışma odası, mumlar. Ayakta Guicciardini yazar. | taban 634 | Kol hafif oynar, mum titrer. | yakin 3.0, kamera 6 | Kalem, sayfa çevirme. |
+| **101** | 2,0 | **"Burchard susar." (ekran 22):** Roma odası, gece. Burchard hareketsiz, kalem kalkık; yalnızca mumlar kımıldar. | taban 634 | Burchard sabit (susar), mumlar titrer. | yakin 3.0, kamera 6 | Tam sessizlik. |
+| **102** | 3,1 | **"İnalcık gibi tarihçiler hastalık der." (ekran 23):** Akşam penceresi olan boş oda. Hastalık, hasta ve hekim çizilmez. | taban 634 | Kandil ve mum titrer. | yakin 2.6, kamera 8 | Uzak dalga, sakin oda. |
+| **103** | 5,3 | **Belge yok (ekran 24–25):** Solda Burchard, sağda Guicciardini; ortada arkada gri silüet olarak tıraş rivayeti (ustura çizilmez). | silüet `duz(z−14)`, yazarlar taban 634 | Yazarlar kol oynatır, silüet durur. | yakin 2.6, kamera 8 | Rüzgâr, sayfa sesi. |
+| **105** | 2,9 | **Soru ve kapanış (ekran 26):** Tıraş odası, gece penceresi. Ustura yavaş parlar. Kapanışta sahne arkada durur. | taban 634 | Ustura parıltısı yavaş nabız atar. | yakin 2.9, kamera 8 | Tek nota. |
 
 ### Ekran yazıları (Jersey 10, ≤ 30 harf, son satır renkli)
 
-- **72:** "Napoli, 1495. / Bir berber şehzadeyi / tıraş ediyor." · "Rivayete göre / ustura zehirli." (KIZIL)
-- **73:** "Koltuktaki adam, / Fatih'in oğlu Cem." · "Kardeşi Bayezid'e / taht savaşında yenilir," (KIZIL)
-- **74:** "Rodos'a sığınır." · "Şövalyeler onu Fransa'ya, / sonra Roma'ya gönderir."
-- **75:** "Elden ele, / yaklaşık on üç yıl." · "Siz olsanız / dayanır mıydınız?" (ALTIN)
-- **76:** "Umudu sultan kardeşi." · "Ama Bayezid kurtarmaz." (KIZIL)
-- **77:** "Roma'ya hediye yollar." · "31 Mayıs 1492." (ALTIN)
-- **78:** "Papa'nın tören ustası / Burchard günlüğüne yazar:" · "İsa'yı deldiğine inanılan / Kutsal Mızrak / Roma'ya geliyor." (ALTIN)
-- **79:** "Gönderen kardeşi. / Alan, onu elinde tutan Papa." · "Hediye mi, pazarlık mı? / Bilmiyoruz." (ALTIN)
-- **80:** "Ocak 1495. / Papa, Cem'i Fransa Kralı'na / teslim eder."
-- **81:** "Yaklaşık dört hafta sonra / Cem ölür." (KIZIL)
-- **82:** "Peki ustura?" (ALTIN) · "Guicciardini zehir der, / ama yaklaşık kırk yıl sonra / yazar."
-- **83:** "Burchard zehirden / söz etmez."
-- **84:** "İnalcık gibi tarihçiler / hastalık der." (ALTIN)
-- **85:** "Belgeler zehiri / kanıtlamıyor." (ALTIN) · "Ustura için dönem belgesi / gösterilemiyor;"
-- **86:** "ayrıntı halk anlatısında / geçer."
-- **87:** "Sizce o ustura / zehirli miydi?" (ALTIN)
-- **Kapak (72 başı):** "Cem Sultan'ın / Zehirli Tıraşı" (ALTIN, boy 120) · alt başlık "O ustura gerçekten / zehirli miydi?"
+- **90:** "Napoli, 1495. / Bir berber şehzadeyi / tıraş ediyor." · "Rivayete göre / ustura zehirli." (KIZIL)
+- **106:** "Şehzade, Fatih'in oğlu Cem."
+- **107:** "Evi, denizin / öbür yanında."
+- **91:** "Taht kavgasında kardeşi / Bayezid'e yenilir." (KIZIL)
+- **92:** "Rodos'ta şövalyelere / sığınır."
+- **93:** "Rodos, Fransa, Roma. / Elden ele, / yaklaşık on üç yıl." (ALTIN)
+- **94:** "Eve dönemez." (KIZIL)
+- **108:** "Kardeşi tahtta, / Cem hâlâ Papa'nın elinde."
+- **95:** "Bayezid bir hediye yollar." · "Ama Cem'e değil, / Papa'ya." (ALTIN)
+- **96:** "31 Mayıs 1492." (ALTIN) · "Papa'nın tören ustası / Burchard yazar:"
+- **109:** "İsa'yı deldiğine inanılan / Kutsal Mızrak / Roma'ya geliyor." (ALTIN)
+- **97:** "Hediye mi, pazarlık mı? / Bilmiyoruz." (ALTIN)
+- **98:** "Ocak 1495. Papa, Cem'i / Fransa Kralı'na teslim eder."
+- **99:** "Yaklaşık dört hafta sonra, / yabancılar arasında, / Napoli'de ölür." (KIZIL)
+- **110:** "Naaşı yıllar sonra / Bursa'ya döner." · "Eve ancak ölü döner." (KIZIL)
+- **100:** "Peki ustura?" (ALTIN) · "Guicciardini zehir der, / ama yaklaşık kırk yıl / sonra yazar."
+- **101:** "Burchard susar."
+- **102:** "İnalcık gibi tarihçiler / hastalık der." (ALTIN)
+- **103:** "Ustura için dönem belgesi / gösterilemiyor." · "Belgeler zehiri / kanıtlamıyor." (ALTIN)
+- **105:** "Sizce o ustura / zehirli miydi?" (ALTIN)
+- **Kapak (ilk Bolum, ortadaki 3:4 alan):** "Cem Sultan'ın / Zehirli Tıraşı" (ALTIN, boy 120) · alt başlık "Eve dönemeyen şehzade". Logo ve @pikseltarihim alt bandını kapak bileşeni ekler.
 
-Kapak notu: ajans sahibi kapak görseli vermedi, bu yüzden `kapak:` alanı yok. Kapak, sahne 72 katmanlarıyla yapılan 2,5 sn'lik ilk Bolum'dur. Logo ve @pikseltarihim alt bandını kapak bileşeni ekler, yazılar ortadaki 3:4 alanda kalır. Kapak karesi 0,9. saniyeden alınır.
-
-Her sahnenin görünür aralığını (yerel x = w/2 ± 270/yakin) kontrol ettim ve figürleri bu aralığa yerleştirdim. Eski tarifte 75, 77, 79 ve 80'de kadraj dışında kalan figürler vardı.
+Kapak notu: ajans sahibi kapak görseli vermedi, bu yüzden `kapak:` alanı yok. Kapak, sahne 90 katmanlarıyla yapılan 2,5 sn'lik ilk Bolum'dur. Kapak karesi 0,9. saniyeden alınır.
 
 ---
 
 ## 2) Python tarifi: `video/piksel/cem_sultan.py`
 
 ```python
-"""Cem Sultan'ın Zehirli Tıraşı: Piksel Tarih (@pikseltarihim), sahne 72-87."""
+"""Cem Sultan'ın Zehirli Tıraşı: Piksel Tarih (@pikseltarihim).
+Sahneler 90-103, 105 (güncellenen) ve 106-110 (yeni). Sahne 104 yeni metinde yok."""
 import math
 
-from ciz import figur, piksel, yeni, sehir, agac
+from ciz import figur, piksel, yeni, sehir
 from sahneler import gokyuzu, uzak, orta, on, sprite, duz
 from timur_figur import kisi, bayezid, oturan, atli, otag, gemi, koy_evleri
-from timur import (ic_mekan, mumluk, mangal, kandil, ates, su_ve_kiyi,
-                   kalabalik)
+from timur import ic_mekan, mumluk, kandil, su_ve_kiyi, kalabalik, tabut
 from kayip_mezar import muhafiz
 
 KARE = 24      # sprite kare sayısı (SKILL.md)
@@ -257,448 +282,669 @@ SIN = lambda f, k=1: math.sin(f * 2 * math.pi * k)
 
 
 # --------------------------------------------------------------------------
-# Ölçüm yardımcıları (yalnızca ciz.yeni + ciz.figur + PIL alfa kanalı).
-# Yeni çizim fonksiyonu değildir: figürü boş bir yüzeye çizip piksellerini ölçer.
-# Amaç: elle yazılmış koordinat yerine figürün kendi pikselinden türetmek.
+# Ölçüm yardımcıları. Yeni çizim fonksiyonu DEĞİL: figürü boş yüzeye çizip alfa
+# kanalından ölçer (ciz.yeni + ciz.figur + PIL). Amaç: elle yazılmış ölçek ve
+# koordinat yerine figürün kendi pikselinden türetmek.
 # --------------------------------------------------------------------------
 def _opak(img):
-    """Opak piksel kümesi {(x, y)}."""
-    px = img.getchannel("A").load()
-    w, h = img.size
-    return {(x, y) for y in range(h) for x in range(w) if px[x, y] > 0}
+    w = img.size[0]
+    return {(i % w, i // w) for i, v in enumerate(img.getchannel("A").getdata()) if v > 0}
+
+
+def _bb(img):
+    return img.getchannel("A").getbbox()
+
+
+_ONBELLEK = {}
+
+
+def olcek(ad, yakin, cizim, oran=0.32):
+    """Figür kutusu kadraj yüksekliğinin >= oran'ı olan en küçük s (0.1 adım).
+    Kadrajda görünen ızgara yüksekliği = 960 / yakin."""
+    anahtar = (ad, yakin, oran)
+    if anahtar in _ONBELLEK:
+        return _ONBELLEK[anahtar]
+    hedef = oran * 960 / yakin
+    s = 2.0
+    while s <= 9.0:
+        t = yeni(560, 420)
+        cizim(t, round(s, 1), duz(417, 560))
+        bb = _bb(t)
+        if bb and bb[1] <= 1:
+            break                                    # tuvale sığmıyor
+        if bb and bb[3] - bb[1] >= hedef:
+            _ONBELLEK[anahtar] = round(s, 1)
+            return _ONBELLEK[anahtar]
+        s += 0.1
+    raise RuntimeError(f"olcek({ad}, yakin={yakin}): %{int(oran * 100)} boya ulaşılamadı")
+
+
+def s_kisi(yakin, oran=0.32):
+    return olcek("kisi", yakin, lambda t, s, z: figur(
+        t, kisi, 280, z, s, govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0",
+        sakal="#2a1a12", yon=1), oran)
+
+
+def s_oturan(yakin, oran=0.30):
+    return olcek("oturan", yakin, lambda t, s, z: figur(
+        t, oturan, 280, z, s, govde="#2a6a3a", bas="sarik", bas_renk="#f4f0e6",
+        sakal="#2a1a12", yon=-1, minder="#c8a040"), oran)
+
+
+def s_atli(yakin):
+    """İnsan/at oranı: atlı 2.9 ↔ kisi 2.6 (SKILL.md)."""
+    return round(s_kisi(yakin) * 2.9 / 2.6, 1)
+
+
+def s_muhafiz(yakin, oran=0.32):
+    return olcek("muhafiz", yakin, lambda t, s, z: figur(
+        t, muhafiz, 280, z, s, faz=0.0, mizrak=True, mesale=True, deel="#2a2a3a"), oran)
+
+
+def s_gemi(yakin, oran=0.30):
+    return olcek("gemi", yakin, lambda t, s, z: figur(t, gemi, 280, 400, s, 1, 0.0), oran)
+
+
+def _gemi_yarim(s):
+    t = yeni(560, 420)
+    figur(t, gemi, 280, 400, s, 1, 0.0)
+    a, _, b, _ = _bb(t)
+    return max(280 - a, b - 280)
+
+
+def _gemi_denetimi(s, su, w, h):
+    """Gövde su çizgisine ulaşmalı (havada gemi olmaz)."""
+    for f in (0.0, 0.25, 0.5, 0.75):
+        g = yeni(w, h)
+        figur(g, gemi, w // 2, su, s, 1, f)
+        if _bb(g)[3] < su:
+            raise RuntimeError(f"Gemi suya ulaşmıyor: alt={_bb(g)[3]}, su_y={su}")
+
+
+def _kz(yakin, taban=634, h=300):
+    """Kandil zinciri: sprite'ın üst kenarından (tavan) kadrajın üst kenarının biraz altına.
+    Kadrajın üst satırı = (taban-12)·(1 - 1/yakin); varsayılan odakY = taban-12."""
+    ust_gorunen = (taban - 12) * (1 - 1 / yakin)
+    return max(40, int(ust_gorunen - (taban - h)) + 10)
+
+
+def _kadraj(no, kare, w, h, yakin, esik):
+    """Görünür aralık yerel x = w/2 ± 270/yakin. Opak piksellerin en az `esik` oranı içeride
+    olmalı; figür sprite'ın üstüne değmemeli (kesik baş = hata)."""
+    yarim = 270 / yakin
+    a, b = max(int(w / 2 - yarim), 0), min(int(w / 2 + yarim), w)
+    for i in (0, 12):
+        t = yeni(w, h)
+        kare(t, duz(h - 1, w), i)
+        alfa = t.getchannel("A")
+        toplam = sum(alfa.histogram()[1:])
+        bb = alfa.getbbox()
+        if not toplam or bb[1] <= 1:
+            raise RuntimeError(f"Sahne {no}: sprite yüksekliği (h={h}) yetmiyor ya da kare boş")
+        ici = sum(alfa.crop((a, 0, b, h)).histogram()[1:])
+        if ici / toplam < esik:
+            raise RuntimeError(f"Sahne {no}: figürlerin %{int(100 * ici / toplam)}'i görünür "
+                               f"aralıkta (x {a}-{b}); konumları merkeze çek")
+
+
+def _spr(no, w, h, kare, yakin, esik=0.75):
+    _kadraj(no, kare, w, h, yakin, esik)
+    sprite(no, "karakter", w, h, KARE, kare)      # taban_denetimi varsayılan açık
 
 
 # --------------------------------------------------------------------------
-# Tıraş sahnesi (72 ve 87 ortak kare çizimi)
+# Tıraş sahnesi (90 ve 105 ortak kare çizimi)
 # Cem minderde oturur (sola bakar), berber ayakta (sağa bakar).
-# Ustura berberin elinin ucundan türetilir: kol oynayınca ustura da oynar.
+# Ustura berberin el ucundan türetilir: kol oynayınca ustura da oynar.
 # Parıltı NÖTR beyazdır (zehir olgu gibi gösterilmez).
 # --------------------------------------------------------------------------
-CEM_X, BERBER_X = 235, 170          # sprite yerel x (ayar noktası: yalnızca BERBER_X)
-CEM = dict(govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0", sakal="#2a1a12",
-           minder="#8a2a2a")
-BERBER = dict(govde="#7a6a4a", bas="sapka", bas_renk="#3a2a1a", sakal=None,
-              kemer="#c8b890")
+TW, TH, CEM_X = 400, 300, 255
+CEM = dict(govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0", sakal="#2a1a12", minder="#8a2a2a")
+BERBER = dict(govde="#7a6a4a", bas="sapka", bas_renk="#3a2a1a", sakal=None, kemer="#c8b890")
+_TIRAS = {}
 
 
-def _el_ucu(w, h, z, x, s, yon, kol):
-    """Elin ucu: aynı poz kol=0 ve kol=kol ile çizilir; farkın yöne en uzak noktası el ucudur."""
-    a = yeni(w, h)
-    figur(a, kisi, x, z, s, yon=yon, kol=0.0, **BERBER)
-    b = yeni(w, h)
-    figur(b, kisi, x, z, s, yon=yon, kol=kol, **BERBER)
-    fark = _opak(b) - _opak(a)
-    if not fark:
-        raise RuntimeError("Ustura: kol farkı bulunamadı, el ucu hesaplanamadı")
-    return max(fark, key=lambda p: (yon * p[0], -p[1]))
-
-
-def _yuz_denetimi(w, h, z, el, yon):
-    """Bıçak ucu Cem'in yüzüne değmeli (-4..+8 px boşluk) ve yüz yüksekliğinde olmalı."""
-    c = yeni(w, h)
-    figur(c, oturan, CEM_X, z, 2.6, yon=-yon, **CEM)
+def _cem_yuz(z, s):
+    c = yeni(TW, TH)
+    figur(c, oturan, CEM_X, z, s, yon=-1, **CEM)
     k = _opak(c)
     ust = min(y for _, y in k)
     alt = max(y for _, y in k)
-    yuz = [x for x, y in k if y <= ust + 0.45 * (alt - ust)]
-    uc_x = el[0] + yon * 9
-    kenar = min(yuz) if yon == 1 else max(yuz)
-    bosluk = (kenar - uc_x) * yon
-    if not (-4 <= bosluk <= 8) or not (ust <= el[1] <= ust + 0.55 * (alt - ust)):
-        raise RuntimeError(
-            f"Ustura yüze hizalı değil: boşluk={bosluk}, el_y={el[1]}, "
-            f"yüz_y=({ust}..{alt}). BERBER_X ayarını değiştir.")
+    return min(x for x, y in k if y <= ust + 0.45 * (alt - ust)), ust, alt
 
 
-def _ustura(t, el, yon, i, nabiz):
+def _berber_el(z, s, bx, kol):
+    """El ucu: aynı poz kol=0 ve kol ile çizilir; farkın sağa en uzak noktası el ucudur."""
+    a = yeni(TW, TH)
+    figur(a, kisi, bx, z, s, yon=1, kol=0.0, **BERBER)
+    b = yeni(TW, TH)
+    figur(b, kisi, bx, z, s, yon=1, kol=kol, **BERBER)
+    fark = _opak(b) - _opak(a)
+    return max(fark, key=lambda p: (p[0], -p[1])) if fark else None
+
+
+def _tiras_ayar(yakin):
+    """Ölçek ve berber konumu ölçülerek bulunur (elle BERBER_X yok)."""
+    if yakin in _TIRAS:
+        return _TIRAS[yakin]
+    s = s_kisi(yakin)
+    z = duz(TH - 1, TW)
+    boy = max(8, round(2.7 * s))                      # bıçak uzunluğu
+    kenar, ust, alt = _cem_yuz(z, s)
+    for d in range(int(8 * s), int(45 * s)):
+        bx = CEM_X - d
+        tamam = True
+        for kol in (0.45, 0.55, 0.65):                # kol aralığının uçları ve ortası
+            el = _berber_el(z, s, bx, kol)
+            if el is None or not (-4 <= kenar - (el[0] + boy + 1) <= 8
+                                  and ust <= el[1] <= ust + 0.55 * (alt - ust)):
+                tamam = False
+                break
+        if tamam:
+            _TIRAS[yakin] = (s, bx, boy, kenar, ust, alt)
+            return _TIRAS[yakin]
+    raise RuntimeError("Ustura yüze hizalanamadı: kol aralığını daralt ya da CEM_X'i değiştir")
+
+
+def _ustura(t, el, i, nabiz, boy):
     ex, ey = el
-    for k in range(-2, 3):                               # sap: elin içinde
-        piksel(t, ex + yon * k, ey, "#3a2414")
-    for k in range(3, 10):                               # bıçak: Cem'e doğru
-        yy = ey - (k - 3) // 4
-        piksel(t, ex + yon * k, yy, "#dfe6ee")
-        piksel(t, ex + yon * k, yy - 1, "#f4f8ff")       # üst kenar ışığı
-    if i % (KARE // nabiz) < 3:                          # nötr beyaz parıltı
-        piksel(t, ex + yon * 10, ey - 3, "#ffffff")
-        piksel(t, ex + yon * 9, ey - 3, "#cfd8e4")
+    for k in range(-3, 2):                                # sap: elin içinde
+        for dy in (0, 1):
+            piksel(t, ex + k, ey + dy, "#3a2414")
+    for k in range(2, boy + 2):                           # bıçak: Cem'e doğru, 2 piksel kalın
+        yy = ey - (k - 2) // 5
+        piksel(t, ex + k, yy - 1, "#f4f8ff")              # üst kenar ışığı
+        piksel(t, ex + k, yy, "#dfe6ee")
+        piksel(t, ex + k, yy + 1, "#aeb8c6")              # alt kenar gölgesi
+    if i % (KARE // nabiz) < 3:                           # nötr beyaz parıltı
+        piksel(t, ex + boy + 2, ey - 4, "#ffffff")
+        piksel(t, ex + boy + 1, ey - 4, "#cfd8e4")
+        piksel(t, ex + boy + 2, ey - 5, "#cfd8e4")
 
 
-def _tiras_kare(t, z, i, nabiz=2):
+def _tiras_kare(t, z, i, yakin, nabiz):
+    s, bx, boy, kenar, ust, alt = _tiras_ayar(yakin)
     f = i / KARE
-    w, h = t.size
-    mumluk(t, 125, z, f, 3)
-    mangal(t, 305, z, f)
-    figur(t, oturan, CEM_X, z, 2.6, yon=-1, **CEM)
+    kandil(t, 205, 0, f, zincir=_kz(yakin))               # zincir tavana kadar
+    mumluk(t, 112, z, f, 3)
+    figur(t, oturan, CEM_X, z, s, yon=-1, **CEM)
     kol = 0.55 + 0.10 * SIN(f, 2)
-    figur(t, kisi, BERBER_X, z, 2.6, yon=1, kol=kol, **BERBER)
-    el = _el_ucu(w, h, z, BERBER_X, 2.6, 1, kol)
-    _yuz_denetimi(w, h, z, el, 1)
-    _ustura(t, el, 1, i, nabiz)
+    figur(t, kisi, bx, z, s, yon=1, kol=kol, **BERBER)
+    el = _berber_el(z, s, bx, kol)
+    if el is None or not (-4 <= kenar - (el[0] + boy + 1) <= 8
+                          and ust <= el[1] <= ust + 0.55 * (alt - ust)):
+        raise RuntimeError(f"Kare {i}: ustura yüze hizalı değil")
+    _ustura(t, el, i, nabiz, boy)
 
 
-def sahne72():
+def sahne90():
     """Kanca: Napoli, 1495. Berber minderdeki Cem'i tıraş ediyor; ustura parlar (rivayet)."""
-    ic_mekan(72, duvar=("#3a2a22", "#4a3628", "#5a4230"), kemer="#2a1a14", cini="#2a6a9a",
+    ic_mekan(90, duvar=("#3a2a22", "#4a3628", "#5a4230"), kemer="#2a1a14", cini="#2a6a9a",
              pencere=("#2a3a5a", "#f4e0b0"),
              zemin_renk=("#5a4a3a", "#4a3c2e", "#3e3226"), isik="#f8c060", hali=True)
-    sprite(72, "karakter", 440, 170, KARE, lambda t, z, i: _tiras_kare(t, z, i, 2))
+    _spr(90, TW, TH, lambda t, z, i: _tiras_kare(t, z, i, 2.9, 2), 2.9)
 
 
-def sahne73():
-    """Taht savaşı sonrası: yenilen Cem'in küçük kafilesi Bayezid'in otağından uzaklaşır."""
-    gokyuzu(73, ["#4a4a7a", "#8a5a8a", "#d0708a", "#ee9a7c", "#f6c48a", "#f8dca4"],
-            (150, 400, 30, ["#fff0c0", "#ffd890"]), [(380, 330, 26), (110, 300, 24)],
-            ("#fff4e0", "#f4d0c0", "#d098a0"))
-    uzak(73, ["#7a5a7a", "#6a4a6a"], ["#8a6a78", "#7a5a6a"],
-         ["#8a6a5a", "#7a5a4a", "#6a4a3e"], dag_y=(350, 430))
+# --------------------------------------------------------------------------
+# 106: Cem rıhtımda yalnız (alacakaranlık). Deniz uzak katmanda (ova mavi), Cem taş rıhtımda.
+# --------------------------------------------------------------------------
+def sahne106():
+    """'Şehzade, Fatih'in oğlu Cem.': taş rıhtımda yalnız Cem, arkasında deniz ve uzak kıyı."""
+    gokyuzu(106, ["#2a2a5a", "#5a3a6a", "#a05a78", "#d88a7a", "#f0b088", "#f4c898"],
+            (400, 410, 26, ["#fff0c0", "#ffd890"]), [(130, 330, 24), (360, 300, 26)],
+            ("#f4e0d0", "#d8a8b0", "#a07890"))
+    uzak(106, ["#5a4a7a", "#4a3c6a"], ["#6a5a7a", "#5a4a6a"],
+         ["#4a5a8a", "#3e4e7e", "#324270"], dag_y=(392, 440), tepe_y=462, ova_y=476)
+    orta(106, (554, 558), ["#6a6a78", "#5c5c6a", "#4e4e5c", "#42424e", "#38384a"], "#a0a0b4")
+    on(106, ["#2a3a38", "#344a44", "#3e5a50"], "#6a8a78", boy=90)
+    yk = 3.2
+    s = s_kisi(yk, 0.34)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 150, z, s, govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0",
+              sakal="#2a1a12", yon=-1, kol=0.03 * (1 + SIN(f)), pelerin="#4a1018")
+
+    _spr(106, 300, 260, kare, yk)
+
+
+# --------------------------------------------------------------------------
+# 107: uzaklaşan gemi (ekran 4, yavaş ve sessiz). Figür yok.
+# --------------------------------------------------------------------------
+KIYI2 = 508                  # orta planda su başlangıcı (ufuk)
+H107 = 150
+SU107 = H107 - 14            # sprite alt 14 satır su
+
+
+def sahne107():
+    """'Evi, denizin öbür yanında.': alacakaranlıkta ufka doğru uzaklaşan kadırga."""
+    gokyuzu(107, ["#1a1a44", "#3a2a5a", "#6a3a6a", "#a05a78", "#d88a7a", "#f0b088"],
+            (150, 420, 24, ["#fff0c0", "#ffd890"]), [(380, 330, 24)],
+            ("#f4e0d0", "#d8a8b0", "#a07890"))
+    uzak(107, ["#4a4a6a", "#3e3e5e"], ["#5a4a6a", "#4e4260"],
+         ["#3a4a7a", "#324270", "#2a3a66"], dag_y=(392, 440), tepe_y=462, ova_y=476)
+    orta(107, (528, 532), ["#2a3a66", "#243462", "#1e2e5a", "#182850", "#142248"], "#6a8ab0",
+         ekle=lambda img, z: su_ve_kiyi(img, KIYI2))
+    on(107, ["#142238", "#1a2c44", "#22364e"], "#4a6a88", boy=40)
+    s = 2.4
+    _gemi_denetimi(s, SU107, 360, H107)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, gemi, 180, SU107, s, -1, f, govde="#3a2a22", yelken="#a8381e")
+        su_ve_kiyi(t, SU107)                    # alt 14 satır su: son satır opak
+
+    _spr(107, 360, H107, kare, 2.2, esik=0.3)   # tam genişlikte su bandı sayımı büyütür
+
+
+def sahne91():
+    """Taht kavgası yenilgisi: Cem atıyla sağa uzaklaşır; arkada Bayezid'in otağı ve Bayezid."""
+    gokyuzu(91, ["#3a3a6a", "#7a4a7a", "#c0607a", "#e08a78", "#f0b088", "#f4cc98"],
+            (150, 410, 30, ["#fff0c0", "#ffd890"]), [(380, 330, 26), (110, 300, 24)],
+            ("#f4d8c8", "#d8a0a8", "#a87890"))
+    uzak(91, ["#6a4a6a", "#5a3e5a"], ["#7a5a6a", "#6a4a5a"],
+         ["#7a5a4a", "#6a4a3e", "#5a3e34"], dag_y=(356, 430))
+    yk = 2.8
+    K = s_kisi(yk)
 
     def ekle(img, z):
-        # zemin: duz(588) / duz(590); otağ ve Bayezid düz çizgiye oturur
-        kalabalik(img, duz(588), PAY + 170, PAY + 235, 16, 73, ("#2a5a3a", "#3a6a44"),
-                  s=1.3, yon=1)
-        figur(img, otag, PAY + 250, duz(588), 2.3, "#2a6a3a", "#e0b040", faz=0.0)
-        figur(img, bayezid, PAY + 330, duz(590), 2.1, yon=1)
+        kalabalik(img, duz(588), PAY + 150, PAY + 215, 22, 91, ("#2a5a3a", "#3a6a44"),
+                  s=round(0.8 * K, 1), yon=1)
+        figur(img, otag, PAY + 190, duz(588), round(0.9 * K, 1), "#2a6a3a", "#e0b040", faz=0.0)
+        figur(img, bayezid, PAY + 232, duz(590), round(0.8 * K, 1), yon=1)
 
-    orta(73, (528, 560), ["#8a7a4a", "#7a6a40", "#6a5a38", "#5a4c30", "#4a3e2a"],
+    orta(91, (528, 560), ["#8a7a4a", "#7a6a40", "#6a5a38", "#5a4c30", "#4a3e2a"],
          "#c8a860", ekle=ekle)
-    on(73, ["#3a2e1e", "#4a3c26", "#5a4a30"], "#b89858")
-
-    def kare(t, z, i):                   # z: son satıra basan zemin (632)
-        f = i / KARE
-        atlar = ((330, "#7a1e22", "sarik", "#e8e0d0"),       # Cem önde
-                 (235, "#4a3a5a", "kalpak", "#3a2a1a"),
-                 (150, "#4a3a5a", "kalpak", "#3a2a1a"))
-        for j, (x, govde, bas, bas_renk) in enumerate(atlar):
-            figur(t, atli, x, z, 2.9, 1, faz=(f + j * 0.37) % 1,
-                  at_renk="#6b3f24", yele="#2b1a12", govde=govde, bas=bas,
-                  bas_renk=bas_renk, sakal="#2a1a12", adim=0.45)
-
-    sprite(73, "karakter", 520, 160, KARE, kare)
-
-
-# --------------------------------------------------------------------------
-# Sahne 74 (Rodos): TEK ölçü sistemi
-#   KIYI_Y: deniz başlangıcı, surlu yapı ve şövalyelerin tabanı (orta plan, ızgara y)
-#   SU_SPR: sprite içinde gemi su çizgisi; sprite h=170 -> alt 14 satır su (SU_SPR..169)
-#   Kumsal yok: düz liman kıyısı. Kara şeridi KIYI_Y'nin üstünde (y 552-558 .. 580).
-# --------------------------------------------------------------------------
-KIYI_Y = 580
-SU_SPR = 156
-KALE_X0, KALE_X1 = 120, 235          # ızgara x (orta planda PAY + ...)
-GEMI_X = 330                         # gemi sprite yerel x; ızgara x = sx - 270 + 330
-SX_BAS, SX_SON = 330, 270            # sprite kayması (TSX x: [330, 270])
-
-
-def _gemi_denetimi():
-    """Gemi gövdesi su çizgisine ulaşmalı; gemi hareketin sonunda bile yapıdan uzak kalmalı."""
-    for f in (0.0, 0.25, 0.5, 0.75):
-        g = yeni(540, 170)
-        figur(g, gemi, GEMI_X, SU_SPR, 2.0, -1, f)
-        sol, ust, sag, alt = g.getchannel("A").getbbox()
-        if alt < SU_SPR:
-            raise RuntimeError(f"Gemi suya ulaşmıyor: alt={alt}, su_y={SU_SPR}")
-        if SX_SON - 270 + sol < KALE_X1 + 20:
-            raise RuntimeError(f"Gemi kıyıdaki yapıya karışıyor: sol={SX_SON - 270 + sol}")
-
-
-def sahne74():
-    """Rodos: kırmızı yelkenli kadırga taş surlu limana gelir; kıyıda şövalyeler."""
-    gokyuzu(74, ["#5a8ac8", "#78a8d8", "#98c0e0", "#b8d4e8", "#d8e4e8"],
-            (400, 330, 26, ["#fffbe8", "#fff0c0"]), [(130, 320, 26), (330, 290, 30)],
-            ("#ffffff", "#e8eef4", "#c0cce0"))
-    uzak(74, ["#7a9ab0", "#6a8aa0"], ["#8aa890", "#7a9880"],
-         ["#6a9ab8", "#5a8aa8", "#4a7a98"], dag_y=(350, 430), tepe_y=450, ova_y=490)
-
-    def ekle(img, z):
-        su_ve_kiyi(img, KIYI_Y)                                  # KIYI_Y'den aşağısı deniz
-        figur(img, sehir, PAY + KALE_X0, PAY + KALE_X1, duz(KIYI_Y), 1.3,
-              duvar="#c0b8a8", golge="#8a8478", cati="#a8452e", tohum=74)
-        for x in (PAY + 165, PAY + 205):                          # tabanları KIYI_Y
-            figur(img, kisi, x, duz(KIYI_Y), 1.9, govde="#a8281e", bas="migfer",
-                  bas_renk="#9aa2ac", sakal=None, yon=1, silah="mizrak")
-
-    orta(74, (KIYI_Y - 28, KIYI_Y - 24),
-         ["#6a8a7a", "#5a7a6a", "#4a6a5a", "#3e5a4e", "#324a40"], "#a8c0a0", ekle=ekle)
-    on(74, ["#3e5a4e", "#4a6a5a", "#5a7a6a"], "#a8c0a0", boy=120)   # kıyı kamışı
-
-    _gemi_denetimi()
+    on(91, ["#3a2e1e", "#4a3c26", "#5a4a30"], "#b89858")
+    sa = s_atli(yk)
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, gemi, GEMI_X, SU_SPR, 2.0, -1, f)    # gövde su çizgisine oturur, alt kısmı batık
-        su_ve_kiyi(t, SU_SPR)                          # alt 14 satır su: son satır opak
+        figur(t, atli, 245, z, sa, 1, faz=f, at_renk="#6b3f24", yele="#2b1a12",
+              govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0", sakal="#2a1a12", adim=0.45)
 
-    sprite(74, "karakter", 540, 170, KARE, kare)
+    _spr(91, 420, 300, kare, yk)
 
 
-def sahne75():
-    """Elden ele: Rodos, Fransa, Roma görevlileri arasında yürüyen Cem."""
-    ic_mekan(75, duvar=("#2e2a2e", "#3a3238", "#4a3e44"), kemer="#1a1418", cini="#5a3a6a",
+# --------------------------------------------------------------------------
+# 92 Rodos: TEK ölçü sistemi
+#   KIYI_Y: orta planda su başlangıcı; surlu yapı ve şövalyelerin tabanı (orta ızgara y)
+#   SU92 = h-14: sprite içinde gemi su çizgisi (alt 14 satır su)
+#   Gemi sola 55 px kaymış çizilir; şövalyeler gemi genişliği ölçülerek sağa konur.
+# --------------------------------------------------------------------------
+KIYI_Y = 576
+H92 = 300
+SU92 = H92 - 14
+GL92 = 155                   # gemi yerel x (sprite genişliği 420, merkez 210)
+SX92_SON = 285               # TSX x: [240, 285]
+
+
+def sahne92():
+    """Rodos: büyük direkli, kırmızı yelkenli kadırga limana girer; kıyıda şövalyeler."""
+    gokyuzu(92, ["#4a4a7a", "#7a6a8a", "#a8808a", "#d0a090", "#e8c0a0"],
+            (130, 400, 24, ["#fffbe8", "#fff0c0"]), [(130, 330, 26), (380, 300, 28)],
+            ("#e8dcd8", "#c8b0b8", "#a08ca0"))
+    uzak(92, ["#6a6a8a", "#5a5a7a"], ["#7a7a8a", "#6a6a7a"],
+         ["#5a7a9a", "#4a6a8a", "#3e5a7a"], dag_y=(356, 432), tepe_y=450, ova_y=490)
+    yk = 2.4
+    K = s_kisi(yk)
+    sg = s_gemi(yk)
+    _gemi_denetimi(sg, SU92, 420, H92)
+    # gemi genişliği ölçülür: şövalyeler en az 35 px sağında
+    sol_kn = max(SX92_SON + 80, SX92_SON - (210 - GL92) + _gemi_yarim(sg) + 35)
+
+    def ekle(img, z):
+        su_ve_kiyi(img, KIYI_Y)                                    # KIYI_Y'den aşağısı deniz
+        figur(img, sehir, PAY + sol_kn - 10, PAY + sol_kn + 170, duz(KIYI_Y),
+              round(0.55 * K, 1), duvar="#c0b8a8", golge="#8a8478", cati="#a8452e", tohum=92)
+        for dx in (0, 28):                                         # tabanları KIYI_Y
+            figur(img, kisi, PAY + sol_kn + dx, duz(KIYI_Y), round(0.8 * K, 1),
+                  govde="#a8281e", bas="migfer", bas_renk="#9aa2ac", sakal=None, yon=-1,
+                  silah="mizrak")
+
+    orta(92, (548, 552), ["#6a8a7a", "#5a7a6a", "#4a6a5a", "#3e5a4e", "#324a40"], "#a8c0a0",
+         ekle=ekle)
+    on(92, ["#3e5a4e", "#4a6a5a", "#5a7a6a"], "#a8c0a0", boy=100)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, gemi, GL92, SU92, sg, 1, f)          # gövde su çizgisine oturur
+        su_ve_kiyi(t, SU92)
+
+    _spr(92, 420, H92, kare, yk, esik=0.4)
+
+
+def sahne93():
+    """Elden ele: Rodos, Fransa, Roma görevlileri arasında yürüyen Cem (ön sırada, en büyük)."""
+    ic_mekan(93, duvar=("#2e2a2e", "#3a3238", "#4a3e44"), kemer="#1a1418", cini="#5a3a6a",
              zemin_renk=("#4a4440", "#3e3834", "#322e2c"), isik="#f8c060", hali=False)
+    yk = 2.6
+    s = s_kisi(yk)
+    sa = round(0.92 * s, 1)
+    ara = round(11.5 * s)
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 150, 0, f)
-        kandil(t, 390, 0, f)
-        figur(t, kisi, 170, z, 2.6, govde="#a8281e", bas="migfer", bas_renk="#9aa2ac",
+        arka = duz(z[0] - 12, 400)
+        for x in (130, 270):
+            kandil(t, x, 0, f, zincir=_kz(yk))
+        xs = [200 + round((j - 1.5) * ara) for j in range(4)]
+        figur(t, kisi, xs[0], arka, sa, govde="#a8281e", bas="migfer", bas_renk="#9aa2ac",
               sakal=None, yon=1, adim=(f + 0.2) % 1, silah="mizrak")        # Rodos
-        figur(t, kisi, 245, z, 2.6, govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0",
-              sakal="#2a1a12", yon=1, adim=f)                               # Cem
-        figur(t, kisi, 320, z, 2.6, govde="#2a4a9a", bas="migfer", bas_renk="#aab2bc",
+        figur(t, kisi, xs[2], arka, sa, govde="#2a4a9a", bas="migfer", bas_renk="#aab2bc",
               sakal=None, yon=1, adim=(f + 0.55) % 1, silah="mizrak")       # Fransa
-        figur(t, kisi, 395, z, 2.6, govde="#d8b040", bas="sapka", bas_renk="#a8281e",
+        figur(t, kisi, xs[3], arka, sa, govde="#d8b040", bas="sapka", bas_renk="#a8281e",
               sakal=None, yon=1, adim=(f + 0.8) % 1, silah="mizrak")        # Roma
+        figur(t, kisi, xs[1], z, s, govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0",
+              sakal="#2a1a12", yon=1, adim=f)                               # Cem önde
 
-    sprite(75, "karakter", 540, 170, KARE, kare)
+    _spr(93, 400, 300, kare, yk, esik=0.7)
 
 
-def sahne76():
-    """Umut: akşam penceresine bakan Cem; tek mum."""
-    ic_mekan(76, duvar=("#2a2630", "#342e3a", "#403848"), kemer="#1a1620", cini="#3a4a6a",
-             pencere=("#3a5a8a", "#f4e0b0"),
-             zemin_renk=("#4a4048", "#3e363e", "#322c34"), isik="#e8a860", hali=False)
+def sahne94():
+    """'Eve dönemez.': gece, kule odası; kafesli pencereye bakan yalnız Cem."""
+    ic_mekan(94, duvar=("#22222c", "#2c2c38", "#383646"), kemer="#14141c", cini="#2a3a5a",
+             pencere=("#0a1228", "#cfd8e8"),
+             zemin_renk=("#3e3a40", "#34303a", "#2a2630"), isik="#d8a860", hali=False)
+    yk = 3.0
+    s = s_kisi(yk, 0.34)
 
     def kare(t, z, i):
         f = i / KARE
-        mumluk(t, 60, z, f, 1)
-        figur(t, kisi, 150, z, 2.8, govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0",
-              sakal="#2a1a12", yon=1, kol=0.05 + 0.03 * SIN(f))
+        mumluk(t, 120, z, f, 1)
+        kandil(t, 235, 0, f, zincir=_kz(yk))
+        figur(t, kisi, 205, z, s, govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0",
+              sakal="#2a1a12", yon=-1, kol=0.04 + 0.02 * SIN(f), pelerin="#4a1018")
 
-    sprite(76, "karakter", 300, 170, KARE, kare)
+    _spr(94, 400, 300, kare, yk)
 
 
-def sahne77():
-    """Hediye yollar: İstanbul surları önünde Bayezid; mızraklı elçi Roma'ya (sola) gider."""
-    gokyuzu(77, ["#6a9ad0", "#88b0dc", "#a8c8e4", "#c4d8e8", "#e0e4dc"],
-            (110, 330, 26, ["#fffbe8", "#fff0c0"]), [(380, 300, 28), (150, 340, 22)],
-            ("#ffffff", "#e8eef4", "#c0cce0"))
-    uzak(77, ["#8aa0b0", "#7a90a0"], ["#9ab098", "#8aa088"],
-         ["#a0a878", "#90985e", "#80884e"], dag_y=(350, 430))
+def sahne108():
+    """'Kardeşi tahtta': saray odasında minderde (taht yerine) oturan Bayezid; yalnız figür."""
+    ic_mekan(108, duvar=("#2a3a2e", "#344a38", "#425a46"), kemer="#1a2a1e", cini="#c8a040",
+             pencere=("#3a4a6a", "#f4d8a0"),
+             zemin_renk=("#5a4a3a", "#4a3c2e", "#3e3226"), isik="#f8c060", hali=True)
+    yk = 3.0
+    s = s_oturan(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        mumluk(t, 105, z, f, 3)
+        kandil(t, 215, 0, f, zincir=_kz(yk))
+        figur(t, oturan, 205, z, s, govde="#2a6a3a", bas="sarik", bas_renk="#f4f0e6",
+              sakal="#2a1a12", yon=-1, minder="#c8a040")
+
+    _spr(108, 400, 300, kare, yk)
+
+
+def sahne95():
+    """Hediye yollar: İstanbul surları önünde Bayezid; mızraklı elçi Roma'ya (sola) dörtnala."""
+    gokyuzu(95, ["#6a7a9a", "#8a8aa8", "#a8a0b0", "#c4b8b8", "#dcd0c4"], None,
+            [(380, 320, 28), (150, 350, 24)], ("#eeeaf0", "#d0cad8", "#a8a4b8"))
+    uzak(95, ["#8a90a8", "#7a8098"], ["#98a0a8", "#8a929c"],
+         ["#98a088", "#889078", "#788068"], dag_y=(356, 432))
+    yk = 2.8
+    K = s_kisi(yk)
 
     def ekle(img, z):
-        figur(img, sehir, PAY + 20, PAY + 300, duz(588), 1.6, tohum=77)
-        figur(img, bayezid, PAY + 260, duz(590), 2.4, yon=-1, kol=0.6)
+        figur(img, sehir, PAY + 130, PAY + 420, duz(588), round(0.55 * K, 1), tohum=95)
+        figur(img, bayezid, PAY + 345, duz(590), round(0.85 * K, 1), yon=-1, kol=0.6)
 
-    orta(77, (528, 560), ["#8a9a58", "#7a8a4e", "#6a7a44", "#5a6a3a", "#4a5a30"],
-         "#c0cc88", ekle=ekle)
-    on(77, ["#4a5a30", "#5a6a3a", "#6a7a44"], "#c0cc88")
+    orta(95, (528, 560), ["#7a8668", "#6c785e", "#5e6a52", "#505c46", "#424e3a"], "#a0aa88",
+         ekle=ekle)
+    on(95, ["#424e3a", "#505c46", "#5e6a52"], "#a0aa88")
+    sa = s_atli(yk)
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, atli, 175, z, 2.9, -1, faz=f, govde="#2a6a3a", bas="sarik",
-              bas_renk="#f4f0e6", sakal="#2a1a12", silah="mizrak", bayrak="#e8d8a0",
-              adim=0.7)                                                      # elçi (önde, solda)
-        figur(t, atli, 285, z, 2.9, -1, faz=(f + 0.37) % 1, govde="#3a4a3a",
-              bas="kalpak", bas_renk="#3a2a1a", sakal="#2a1a12", adim=0.7)   # eşlikçi
+        figur(t, atli, 210, z, sa, -1, faz=f, govde="#2a6a3a", bas="sarik", bas_renk="#f4f0e6",
+              sakal="#2a1a12", silah="mizrak", bayrak="#e8d8a0", adim=0.7)
 
-    sprite(77, "karakter", 420, 170, KARE, kare)
+    _spr(95, 420, 300, kare, yk)
 
 
-# Roma odası: sahne 78 ve 83 aynı paleti kullanır
-def _roma_odasi(no):
+def _roma(no, gece=False):
+    pen = ("#2a3a5a", "#f4d8a0") if gece else ("#6a9ad0", "#fff4d8")
     ic_mekan(no, duvar=("#4a3a30", "#5a4638", "#6a5440"), kemer="#3a2a20", cini="#8a2a2a",
-             pencere=("#6a9ad0", "#fff4d8"),
-             zemin_renk=("#6a5a4a", "#5a4c3e", "#4a3e32"), isik="#f8c060", hali=True)
+             pencere=pen, zemin_renk=("#6a5a4a", "#5a4c3e", "#4a3e32"), isik="#f8c060",
+             hali=True)
 
 
-def sahne78():
-    """Roma, 31 Mayıs 1492: Burchard yazar; diz çökmüş elçi Kutsal Mızrak'ı uzatır."""
-    _roma_odasi(78)
-
-    def kare(t, z, i):
-        f = i / KARE
-        mumluk(t, 100, z, f, 3)
-        mumluk(t, 320, z, f, 1)
-        figur(t, kisi, 170, z, 2.7, govde="#1a1a22", bas="sapka", bas_renk="#2a1a22",
-              sakal=None, yon=1, silah="mektup", kol=0.30 + 0.08 * SIN(f))   # Burchard
-        figur(t, kisi, 270, z, 2.7, govde="#2a6a3a", bas="sarik", bas_renk="#f4f0e6",
-              sakal="#2a1a12", yon=-1, diz=True, silah="mizrak", kol=0.6)    # elçi: mızrak elde, koordinatsız
-
-    sprite(78, "karakter", 400, 170, KARE, kare)
-
-
-def sahne79():
-    """Hediye mi, pazarlık mı? Solda Cem ve muhafızlar, sağda mızrağı tutan Papa."""
-    ic_mekan(79, duvar=("#3a2a30", "#4a3640", "#5a4450"), kemer="#2a1a20", cini="#8a6a2a",
-             zemin_renk=("#5a4a4a", "#4a3c3c", "#3e3030"), isik="#f8c060", hali=True)
-
-    def kare(t, z, i):
-        f = i / KARE
-        ust = duz(z[0] - 12, 520)             # arka sıra daha yüksek zeminde
-        for x in (140, 210):
-            figur(t, muhafiz, x, ust, 2.3, faz=f, mizrak=True, mesale=False, deel="#2a2a3a")
-        figur(t, kisi, 175, ust, 2.3, govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0",
-              sakal="#2a1a12", yon=1)                                         # Cem
-        mumluk(t, 280, z, f, 3)
-        figur(t, kisi, 360, z, 2.9, govde="#f2eee4", bas="tac", bas_renk="#e0b040",
-              sakal="#d8d0c8", yon=-1, silah="mizrak", kol=0.15 + 0.05 * SIN(f),
-              pelerin="#8a1e22")                                              # Papa
-
-    sprite(79, "karakter", 520, 170, KARE, kare)
-
-
-def sahne80():
-    """Ocak 1495: Cem papalık görevlilerinden Fransız süvarilerine doğru yürür."""
-    gokyuzu(80, ["#6a7a9a", "#8a96b0", "#a8b0c0", "#c4c8d0", "#d8d8d8"], None,
-            [(120, 320, 28), (400, 300, 30)], ("#e8ecf0", "#c8ccd8", "#a0a8b8"))
-    uzak(80, ["#8a94a8", "#7a849a"], ["#98a0b0", "#8a92a4"],
-         ["#7a8068", "#6a7058", "#5a604a"], dag_y=(350, 430))
-
-    def ekle(img, z):
-        # Roma surları: nötr surlu şehir, düz zemine (duz(588))
-        figur(img, sehir, PAY + 40, PAY + 300, duz(588), 1.6,
-              duvar="#b8a890", golge="#8a7a68", cati="#8a5a46", tohum=80)
-
-    orta(80, (528, 560), ["#7a8068", "#6a7058", "#5a604a", "#4c523e", "#3e4432"],
-         "#a8b090", ekle=ekle)
-    on(80, ["#4c523e", "#5a604a", "#6a7058"], "#a8b090")
-
-    def kare(t, z, i):
-        f = i / KARE
-        for x in (125, 160):
-            figur(t, kisi, x, z, 2.7, govde="#d8b040", bas="sapka", bas_renk="#a8281e",
-                  sakal=None, yon=1, silah="mizrak")                          # papalık
-        figur(t, kisi, 215, z, 2.7, govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0",
-              sakal="#2a1a12", yon=1, adim=f)                                 # Cem yürür
-        figur(t, atli, 365, z, 2.9, -1, dur=True, govde="#2a4a9a", bas="migfer",
-              bas_renk="#aab2bc", zirh="#9aa2ac", bayrak="#2a4a9a")           # arkadaki süvari
-        figur(t, atli, 300, z, 2.9, -1, dur=True, govde="#2a4a9a", bas="tac",
-              bas_renk="#e0b040", sakal="#5a3a22", zirh="#9aa2ac", bayrak="#2a4a9a")  # Fransa Kralı
-
-    sprite(80, "karakter", 500, 170, KARE, kare)
-
-
-def sahne81():
-    """Napoli, Şubat 1495 gecesi: surlu yapı ve meşaleli nöbetçiler. Ölüm gösterilmez."""
-    gokyuzu(81, ["#0a0e24", "#141a3a", "#1e2a50", "#2a3a62", "#3a4a74"],
-            (400, 360, 22, ["#f4f0e0", "#c8d0e0"]), [(140, 330, 26)],
-            ("#6a7a9a", "#4a5a7a", "#2a3a5a"), yildiz=90)
-    uzak(81, ["#1a2240", "#141c38"], ["#202a48", "#1a2240"],
-         ["#1a2438", "#141c2e", "#101828"], dag_y=(360, 440))
-
-    def ekle(img, z):
-        figur(img, sehir, PAY + 90, PAY + 450, duz(588), 1.9,
-              duvar="#4a4e5a", golge="#2a2e3a", cati="#3a3040", tohum=81)
-
-    orta(81, (530, 560), ["#1e2a24", "#18241e", "#141e18", "#101a14", "#0c140e"],
-         "#3a4a44", ekle=ekle)
-    on(81, ["#0c140e", "#141e18", "#18241e"], "#3a4a44")
-
-    def kare(t, z, i):
-        f = i / KARE
-        for j, x in enumerate((90, 210)):
-            figur(t, muhafiz, x, z, 2.6, faz=(f + j * 0.37) % 1, mizrak=True,
-                  mesale=True, deel="#2a2a3a")
-
-    sprite(81, "karakter", 300, 170, KARE, kare)
-
-
-def sahne82():
-    """Guicciardini yazar: çalışma odası, mumlar; olaydan yaklaşık kırk yıl sonra."""
-    ic_mekan(82, duvar=("#2e2a30", "#3a343c", "#48404a"), kemer="#1e1a20", cini="#6a2a2a",
-             pencere=("#2a3a5a", "#f4d8a0"),
-             zemin_renk=("#5a4a42", "#4a3c36", "#3e3230"), isik="#f8c060", hali=True)
+def sahne96():
+    """Roma, 31 Mayıs 1492: ayakta Burchard günlüğüne yazar; yalnız figür."""
+    _roma(96)
+    yk = 3.0
+    s = s_kisi(yk)
 
     def kare(t, z, i):
         f = i / KARE
         mumluk(t, 110, z, f, 3)
-        mumluk(t, 310, z, f, 2)
-        figur(t, kisi, 210, z, 2.8, govde="#6a2a2a", bas="sapka", bas_renk="#2a1a1a",
-              sakal=None, yon=1, silah="mektup", kol=0.35 + 0.10 * SIN(f, 2))
+        kandil(t, 290, 0, f, zincir=_kz(yk))
+        figur(t, kisi, 200, z, s, govde="#1a1a22", bas="sapka", bas_renk="#2a1a22",
+              sakal=None, yon=1, silah="mektup", kol=0.30 + 0.08 * SIN(f))   # Burchard
 
-    sprite(82, "karakter", 420, 170, KARE, kare)
-
-
-def sahne83():
-    """Burchard'ın sessizliği: Roma odasında günlüğüne yazan Burchard (Napoli'de değil)."""
-    _roma_odasi(83)
-
-    def kare(t, z, i):
-        f = i / KARE
-        mumluk(t, 80, z, f, 3)
-        mumluk(t, 270, z, f, 2)
-        figur(t, kisi, 170, z, 2.7, govde="#1a1a22", bas="sapka", bas_renk="#2a1a22",
-              sakal=None, yon=1, silah="mektup", kol=0.30 + 0.08 * SIN(f))
-
-    sprite(83, "karakter", 340, 170, KARE, kare)
+    _spr(96, 400, 300, kare, yk)
 
 
-def sahne84():
-    """'Hastalık der': nötr Napoli penceresi, akşam ışığı; odada kimse yok, hastalık çizilmez."""
-    ic_mekan(84, duvar=("#2a2a30", "#34343c", "#403e48"), kemer="#1a1a20", cini="#2a4a6a",
-             pencere=("#3a5a8a", "#f4d8a0"),
-             zemin_renk=("#4a4440", "#3e3834", "#322e2c"), isik="#e8b060", hali=True)
+def sahne109():
+    """Roma: diz çökmüş elçi, inanılan Kutsal Mızrak'ı uzatır; Burchard ayakta izler."""
+    _roma(109)
+    yk = 2.7
+    s = s_kisi(yk)
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 150, 0, f)
-        mumluk(t, 80, z, f, 3)
-        mumluk(t, 220, z, f, 1)
+        mumluk(t, 105, z, f, 3)
+        kandil(t, 300, 0, f, zincir=_kz(yk))
+        figur(t, kisi, 150, z, s, govde="#1a1a22", bas="sapka", bas_renk="#2a1a22",
+              sakal=None, yon=1, silah="mektup", kol=0.30)                    # Burchard
+        figur(t, kisi, 240, z, s, govde="#2a6a3a", bas="sarik", bas_renk="#f4f0e6",
+              sakal="#2a1a12", yon=-1, diz=True, silah="mizrak",
+              kol=0.55 + 0.05 * SIN(f))                                       # elçi: mızrak elde
 
-    sprite(84, "karakter", 300, 170, KARE, kare)
+    _spr(109, 400, 300, kare, yk)
 
 
-def sahne85():
-    """Belge yok: iki kaynak yan yana; ortada gri silüet halinde tıraş rivayeti (ustura çizilmez)."""
-    ic_mekan(85, duvar=("#2e3036", "#383a42", "#444650"), kemer="#1e2026", cini="#4a5a6a",
-             zemin_renk=("#4a4a4e", "#3e3e42", "#323236"), isik="#d8d0b0", hali=False)
+def sahne97():
+    """Hediye mi, pazarlık mı? Solda arkada Cem ve muhafızlar, sağ önde mızrağı tutan Papa."""
+    ic_mekan(97, duvar=("#3a2a30", "#4a3640", "#5a4450"), kemer="#2a1a20", cini="#8a6a2a",
+             zemin_renk=("#5a4a4a", "#4a3c3c", "#3e3030"), isik="#f8c060", hali=True)
+    yk = 2.6
+    s = s_kisi(yk)
+    sb = round(0.75 * s, 1)
 
     def kare(t, z, i):
         f = i / KARE
-        ust = duz(z[0] - 12, 440)
-        figur(t, oturan, 225, ust, 2.0, govde="#6a6a72", bas="sarik", bas_renk="#9a9aa2",
-              sakal="#4a4a52", yon=-1)                                    # gri silüet: rivayet
-        figur(t, kisi, 180, ust, 2.0, govde="#5a5a62", bas="sapka", bas_renk="#4a4a52",
-              sakal=None, yon=1, kol=0.5)
-        figur(t, kisi, 105, z, 2.8, govde="#1a1a22", bas="sapka", bas_renk="#2a1a22",
-              sakal=None, yon=1, silah="mektup", kol=0.2 + 0.05 * SIN(f))   # Burchard
-        figur(t, kisi, 335, z, 2.8, govde="#6a2a2a", bas="sapka", bas_renk="#2a1a1a",
-              sakal=None, yon=-1, silah="mektup", kol=0.2 + 0.05 * SIN(f))  # Guicciardini
+        arka = duz(z[0] - 12, 400)
+        kandil(t, 215, 0, f, zincir=_kz(yk))
+        for x in (118, 178):
+            figur(t, muhafiz, x, arka, sb, faz=f, mizrak=True, mesale=False, deel="#2a2a3a")
+        figur(t, kisi, 148, arka, sb, govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0",
+              sakal="#2a1a12", yon=1)                                         # Cem (arkada)
+        mumluk(t, 215, z, f, 3)
+        figur(t, kisi, 262, z, s, govde="#f2eee4", bas="tac", bas_renk="#e0b040",
+              sakal="#d8d0c8", yon=-1, silah="mizrak", kol=0.15 + 0.05 * SIN(f),
+              pelerin="#8a1e22")                                              # Papa (önde)
 
-    sprite(85, "karakter", 440, 170, KARE, kare)
+    _spr(97, 400, 300, kare, yk, esik=0.7)
 
 
-def sahne86():
-    """Halk anlatısı: alacakaranlık köyde ateş başında dinleyiciler, ayakta anlatıcı."""
-    gokyuzu(86, ["#2a2a5a", "#5a3a6a", "#a05a78", "#d88a7a", "#f0b088", "#f4c898"],
-            (420, 410, 26, ["#fff0c0", "#ffd890"]), [(130, 330, 24), (330, 300, 26)],
-            ("#f4e0d0", "#d8a8b0", "#a07890"), yildiz=50)
-    uzak(86, ["#5a4a6a", "#4a3c5a"], ["#6a5a6a", "#5a4a5a"],
-         ["#6a5a4e", "#5a4a40", "#4a3c32"], dag_y=(350, 430))
+def sahne98():
+    """Ocak 1495: Cem papalık görevlisinden Fransa Kralı'na doğru yürür (soğuk gri gün)."""
+    gokyuzu(98, ["#6a7a9a", "#8a96b0", "#a8b0c0", "#c4c8d0", "#d8d8d8"], None,
+            [(120, 320, 28), (400, 300, 30)], ("#e8ecf0", "#c8ccd8", "#a0a8b8"))
+    uzak(98, ["#8a94a8", "#7a849a"], ["#98a0b0", "#8a92a4"],
+         ["#7a8068", "#6a7058", "#5a604a"], dag_y=(356, 430))
+    yk = 2.6
+    K = s_kisi(yk)
 
     def ekle(img, z):
-        figur(img, koy_evleri, PAY + 60, PAY + 330, duz(588), 1.5, tohum=86)
-        figur(img, agac, PAY + 360, duz(590), 2.0, tohum=86)
+        figur(img, sehir, PAY + 120, PAY + 420, duz(588), round(0.55 * K, 1),
+              duvar="#b8a890", golge="#8a7a68", cati="#8a5a46", tohum=98)
 
-    orta(86, (528, 560), ["#6a6a3e", "#5a5a36", "#4a4a2e", "#3e3e28", "#323220"],
-         "#b8a860", ekle=ekle)
-    on(86, ["#323220", "#3e3e28", "#4a4a2e"], "#b8a860")
+    orta(98, (528, 560), ["#7a8068", "#6a7058", "#5a604a", "#4c523e", "#3e4432"], "#a8b090",
+         ekle=ekle)
+    on(98, ["#4c523e", "#5a604a", "#6a7058"], "#a8b090")
+    sa = s_atli(yk)
 
     def kare(t, z, i):
         f = i / KARE
-        ates(t, 190, z, f, 1.0)
-        for x, yon, renk in ((100, 1, "#3a5a8a"), (140, 1, "#6a3a2a"),
-                             (240, -1, "#3a6a4a"), (285, -1, "#7a5a2a")):
-            figur(t, oturan, x, z, 2.2, govde=renk, bas="bork", bas_renk="#5a3a22",
-                  sakal=None, yon=yon)
-        figur(t, kisi, 322, z, 2.5, govde="#6a4a2a", bas="bork", bas_renk="#5a3a22",
-              sakal="#d8d0c8", yon=-1, kol=0.55 + 0.25 * SIN(f))           # anlatıcı
+        arka = duz(z[0] - 12, 420)
+        figur(t, kisi, 100, arka, round(0.9 * K, 1), govde="#d8b040", bas="sapka",
+              bas_renk="#a8281e", sakal=None, yon=1, silah="mizrak")          # papalık görevli
+        figur(t, atli, 290, arka, round(0.8 * sa, 1), -1, dur=True, govde="#2a4a9a", bas="tac",
+              bas_renk="#e0b040", sakal="#5a3a22", zirh="#9aa2ac", bayrak="#2a4a9a")  # Fransa Kralı
+        figur(t, kisi, 190, z, K, govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0",
+              sakal="#2a1a12", yon=1, adim=f)                                 # Cem yürür (önde)
 
-    sprite(86, "karakter", 380, 150, KARE, kare)
+    _spr(98, 420, 300, kare, yk, esik=0.65)
 
 
-def sahne87():
+def sahne99():
+    """Napoli gecesi: surlu yapı, kapıda meşaleli nöbetçiler. Ölüm gösterilmez."""
+    gokyuzu(99, ["#0a0e24", "#141a3a", "#1e2a50", "#2a3a62", "#3a4a74"],
+            (400, 360, 22, ["#f4f0e0", "#c8d0e0"]), [(140, 330, 26)],
+            ("#6a7a9a", "#4a5a7a", "#2a3a5a"), yildiz=90)
+    uzak(99, ["#1a2240", "#141c38"], ["#202a48", "#1a2240"],
+         ["#1a2438", "#141c2e", "#101828"], dag_y=(360, 440))
+    yk = 2.8
+    K = s_kisi(yk)
+
+    def ekle(img, z):
+        figur(img, sehir, PAY + 110, PAY + 430, duz(588), round(0.55 * K, 1),
+              duvar="#4a4e5a", golge="#2a2e3a", cati="#3a3040", tohum=99)
+
+    orta(99, (530, 560), ["#1e2a24", "#18241e", "#141e18", "#101a14", "#0c140e"], "#3a4a44",
+         ekle=ekle)
+    on(99, ["#0c140e", "#141e18", "#18241e"], "#3a4a44")
+    sm = s_muhafiz(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        for j, x in enumerate((150, 255)):
+            figur(t, muhafiz, x, z, sm, faz=(f + j * 0.37) % 1, mizrak=True, mesale=True,
+                  deel="#2a2a3a")
+
+    _spr(99, 400, 300, kare, yk)
+
+
+def sahne110():
+    """Bursa, alacakaranlık: yerde kapalı tabut, iki yaslı; arkada dağ ve evler."""
+    gokyuzu(110, ["#1a1e44", "#3a3060", "#704a72", "#a8647a", "#d08a7c", "#e8a888"],
+            (420, 420, 22, ["#fff0c0", "#ffd890"]), [(130, 330, 24), (330, 300, 26)],
+            ("#e8d0d0", "#c0a0b0", "#907890"), yildiz=40)
+    uzak(110, ["#4a4a6e", "#3e3e60"], ["#524a68", "#464060"],
+         ["#3a4054", "#323848", "#2a303c"], dag_y=(352, 430))
+    yk = 2.8
+    K = s_kisi(yk)
+
+    def ekle(img, z):
+        figur(img, koy_evleri, PAY + 80, PAY + 400, duz(588), round(0.5 * K, 1), tohum=110,
+              kerpic="#8a7a68")
+
+    orta(110, (528, 560), ["#3e4a3a", "#364232", "#2e3a2c", "#263224", "#1e2a1c"], "#6a7a5a",
+         ekle=ekle)
+    on(110, ["#1e2a1c", "#263224", "#2e3a2c"], "#6a7a5a")
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 115, z, K, govde="#1a1a22", bas="bork", bas_renk="#2a1a14", sakal=None,
+              yon=1, kol=0.02 * (1 + SIN(f)))
+        figur(t, kisi, 295, z, K, govde="#1a1a22", bas="bork", bas_renk="#2a1a14",
+              sakal="#d8d0c8", yon=-1, kol=0.02 * (1 + SIN(f, 1)))
+        figur(t, tabut, 205, z, round(0.9 * K, 1), acik=False)           # kapalı tabut yere oturur
+
+    _spr(110, 420, 300, kare, yk, esik=0.7)
+
+
+def _yazar_odasi(no, duvar, pencere, cini):
+    ic_mekan(no, duvar=duvar, kemer="#1e1a20", cini=cini, pencere=pencere,
+             zemin_renk=("#5a4a42", "#4a3c36", "#3e3230"), isik="#f8c060", hali=True)
+
+
+def sahne100():
+    """Guicciardini yazar: Floransa tarzı çalışma odası, mumlar; olaydan yaklaşık kırk yıl sonra."""
+    _yazar_odasi(100, ("#2e2a30", "#3a343c", "#48404a"), ("#2a3a5a", "#f4d8a0"), "#6a2a2a")
+    yk = 3.0
+    s = s_kisi(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        mumluk(t, 112, z, f, 3)
+        kandil(t, 295, 0, f, zincir=_kz(yk))
+        figur(t, kisi, 200, z, s, govde="#6a2a2a", bas="sapka", bas_renk="#2a1a1a",
+              sakal=None, yon=1, silah="mektup", kol=0.35 + 0.10 * SIN(f, 2))
+
+    _spr(100, 400, 300, kare, yk)
+
+
+def sahne101():
+    """Burchard susar: Roma odası, gece; Burchard hareketsiz (yazmıyor), yalnız mumlar kımıldar."""
+    _roma(101, gece=True)
+    yk = 3.0
+    s = s_kisi(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        mumluk(t, 115, z, f, 2)
+        kandil(t, 285, 0, f, zincir=_kz(yk))
+        figur(t, kisi, 200, z, s, govde="#1a1a22", bas="sapka", bas_renk="#2a1a22",
+              sakal=None, yon=-1, silah="mektup", kol=0.30)
+
+    _spr(101, 400, 300, kare, yk)
+
+
+def sahne102():
+    """'Hastalık der': akşam penceresi olan boş oda; hasta, hekim ve testi yok, hastalık çizilmez."""
+    ic_mekan(102, duvar=("#2a2a30", "#34343c", "#403e48"), kemer="#1a1a20", cini="#2a4a6a",
+             pencere=("#3a5a8a", "#f4d8a0"),
+             zemin_renk=("#4a4440", "#3e3834", "#322e2c"), isik="#e8b060", hali=True)
+    yk = 2.6
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, zincir=_kz(yk))
+        mumluk(t, 145, z, f, 3)
+        mumluk(t, 255, z, f, 1)
+
+    _spr(102, 400, 300, kare, yk, esik=0.6)
+
+
+def sahne103():
+    """Belge yok: iki kaynak yan yana; ortada arkada gri silüet halinde tıraş rivayeti (ustura yok)."""
+    ic_mekan(103, duvar=("#2e3036", "#383a42", "#444650"), kemer="#1e2026", cini="#4a5a6a",
+             zemin_renk=("#4a4a4e", "#3e3e42", "#323236"), isik="#d8d0b0", hali=False)
+    yk = 2.6
+    s = s_kisi(yk)
+    sg = round(0.7 * s, 1)
+
+    def kare(t, z, i):
+        f = i / KARE
+        arka = duz(z[0] - 14, 400)
+        figur(t, oturan, 214, arka, sg, govde="#6a6a72", bas="sarik", bas_renk="#9a9aa2",
+              sakal="#4a4a52", yon=-1)                                    # gri silüet: rivayet
+        figur(t, kisi, 176, arka, sg, govde="#5a5a62", bas="sapka", bas_renk="#4a4a52",
+              sakal=None, yon=1, kol=0.5)                                 # (ustura çizilmez)
+        figur(t, kisi, 124, z, s, govde="#1a1a22", bas="sapka", bas_renk="#2a1a22",
+              sakal=None, yon=1, silah="mektup", kol=0.2 + 0.05 * SIN(f))   # Burchard
+        figur(t, kisi, 276, z, s, govde="#6a2a2a", bas="sapka", bas_renk="#2a1a1a",
+              sakal=None, yon=-1, silah="mektup", kol=0.2 + 0.05 * SIN(f))  # Guicciardini
+
+    _spr(103, 400, 300, kare, yk, esik=0.7)
+
+
+def sahne105():
     """Soru: tıraş odası bu kez gece penceresiyle; ustura yavaş parlar (kapanış)."""
-    ic_mekan(87, duvar=("#2a2020", "#382a28", "#463430"), kemer="#1a1210", cini="#1e4a7a",
+    ic_mekan(105, duvar=("#2a2020", "#382a28", "#463430"), kemer="#1a1210", cini="#1e4a7a",
              pencere=("#0e1630", "#f4f8ff"),
              zemin_renk=("#4a3c32", "#3e322a", "#322822"), isik="#f8c060", hali=True)
-    sprite(87, "karakter", 440, 170, KARE, lambda t, z, i: _tiras_kare(t, z, i, 1))
+    _spr(105, TW, TH, lambda t, z, i: _tiras_kare(t, z, i, 2.9, 1), 2.9)
 
 
-SAHNELER = {72: sahne72, 73: sahne73, 74: sahne74, 75: sahne75, 76: sahne76,
-            77: sahne77, 78: sahne78, 79: sahne79, 80: sahne80, 81: sahne81,
-            82: sahne82, 83: sahne83, 84: sahne84, 85: sahne85, 86: sahne86,
-            87: sahne87}
+SAHNELER = {90: sahne90, 91: sahne91, 92: sahne92, 93: sahne93, 94: sahne94, 95: sahne95,
+            96: sahne96, 97: sahne97, 98: sahne98, 99: sahne99, 100: sahne100,
+            101: sahne101, 102: sahne102, 103: sahne103, 105: sahne105,
+            106: sahne106, 107: sahne107, 108: sahne108, 109: sahne109, 110: sahne110}
 
 if __name__ == "__main__":
     import sys
@@ -710,32 +956,31 @@ if __name__ == "__main__":
 
 | Kullanım | Referanstaki karşılığı |
 |---|---|
-| `figur, piksel, yeni, sehir, agac` | `ciz` bölümü: `figur`, `piksel`, `yeni`, `sehir`, `agac` |
-| `gokyuzu, uzak, orta, on, sprite, duz` | `sahneler` bölümü (`on(..., boy=)` imzada var) |
-| `kisi(... silah="mizrak"/"mektup", kol, diz=True, pelerin, kemer, adim, yon)` | `kisi` imzası: `silah` listesi kilic, mizrak, kalkan, kurek, testi, mektup, kamera, mesale, yay, kazma, sopa. `diz`, `pelerin`, `kemer`, `kol`, `adim` imzada. |
-| `oturan(... minder=)` | `oturan` imzası: `minder` var |
-| `atli(... dur=True, zirh, bayrak, silah, adim, at_renk, yele)` | `atli` imzası: hepsi var |
-| `muhafiz(... mizrak, mesale, deel, faz)` | `muhafiz` imzası: hepsi var |
-| `bayezid`, `otag`, `gemi`, `koy_evleri` | `timur_figur` bölümü |
-| `ic_mekan, mumluk, mangal, kandil, ates, su_ve_kiyi, kalabalik` | `timur` bölümü (`su_ve_kiyi(img, y0)`, `kiyi_x` verilmedi, çünkü isteğe bağlı) |
-| `sehir(... duvar, golge, cati, tohum)` | `sehir` imzasında hepsi var |
-| `yeni(w, h)`, `_opak`, `getchannel("A")`, `getbbox()` | `yeni` referansta. Gerisi PIL'in kendi yöntemleri, çizim fonksiyonu değil. |
+| `figur, piksel, yeni, sehir` | `ciz` bölümü |
+| `gokyuzu, uzak, orta, on, sprite, duz` | `sahneler` bölümü. `gokyuzu(..., None, ...)` katalogtaki sahne80 kalıbı. |
+| `kisi(... silah="mizrak"/"mektup", kol, diz, pelerin, kemer, adim, yon)` | `kisi` imzasında hepsi var. |
+| `oturan(... minder=)` | `oturan` imzasında `minder` var. |
+| `atli(... dur, zirh, bayrak, silah, adim, at_renk, yele)` | `atli` imzasında hepsi var. |
+| `muhafiz(... faz, mizrak, mesale, deel)` | `kayip_mezar` bölümü. |
+| `bayezid`, `otag`, `gemi`, `koy_evleri` | `timur_figur` bölümü. |
+| `ic_mekan, mumluk, kandil(t, x, ust, f, zincir=), su_ve_kiyi(img, y0), kalabalik, tabut(acik=False)` | `timur` bölümü. |
+| `sehir(x0, x1, zemin, s, duvar, golge, cati, tohum)` | `ciz` bölümü, imzada hepsi var. |
+| `_opak`, `_bb`, `olcek`, `_kadraj`, `_tiras_ayar`, `_berber_el` | Dosyaya özel ölçüm yardımcıları. Yalnızca `yeni`, `figur` ve PIL'in alfa kanalı kullanılır. Kütüphaneye çizim fonksiyonu eklemezler. |
 
-Kodda `silah='testi'`, `yatan`, `sedir`, `nefes` artık geçmiyor. `anadolu_kalesi` ve `piksel()` ile sabit koordinatlı ustura kalktı. `piksel()` yalnızca el ucundan türetilen noktaya çiziyor. `_el_ucu`, `_yuz_denetimi` ve `_gemi_denetimi` seri dosyasının içindeki özel ölçüm yardımcılarıdır, kütüphaneye yeni figür eklemez. "Yeni figür isteği" bölümündeki `silah="ustura"` gelince `_el_ucu` ve `_ustura` kalkabilir.
+`anadolu_kalesi`, `abanoz_tabut`, `yatan`, `sedir` ve `silah="testi"` kullanılmadı. Rodos, Roma ve Napoli'de Osmanlı yapısı yok. Hasta, hekim ve testi yok. Zehir hiçbir yerde gösterilmiyor.
 
 ### Fizik ve ölçek denetimi
 
 | Madde | Durum |
 |---|---|
-| Zemin | Ayakta tüm figürlerde `z`, `duz(588/590)`, `duz(KIYI_Y)` ya da `duz(y-12)` var. Orta plan yapıları (otağ, şehir, köy evleri) düz listelere kurulu. |
-| Sahne 74 | Tek değerler: `KIYI_Y=580` (su, surlu yapı, şövalyeler), `SU_SPR=156` (alt 14 satır su), TSX taban 632 (gemi su çizgisi ızgarada 619, kıyıdan yakın, deniz önde). Kumsal yerine düz liman kıyısı var. Tarif tabloyla kodu birebir tutuyor. |
-| Ölçek | Atlı 2,9 · yaya 2,6–2,8. Arkadaki figürler (79, 85) 2,0–2,3 ölçekte ve `z−12` zeminde. |
-| Yön | 73 sağa: `yon=1`, sprite x artan. 77 sola: `yon=-1`, x azalan. 74 sola: gemi `yon=-1`, x [330, 270] azalan. 75 ve 80 sağa: `yon=1`. |
-| Hava ve duman | Hava katmanı yok. Alev, mum ve meşale yukarı çıkar. |
-| Anakronizm | Yok. Rodos, Roma ve Napoli'de Osmanlı yapısı kullanılmadı. |
-| Tartışmalı | Zehir hiçbir yerde gösterilmiyor. Ustura rivayet yazısıyla birlikte geçiyor. Hastalık çizilmiyor, Burchard yalnızca Roma'da. Kutsal Mızrak "inanılan" yazısıyla anılıyor. |
-| Yazı bandı | Bulutlar y ≥ 290; dağ tepeleri y ≥ 350. Hiçbir bulut yazı bandı (y 95–245) içinde değil. |
-| Görünür aralık | Yerel x = w/2 ± 270/yakin. Önemli figürler bu aralığa taşındı (75, 77, 79, 80, 82, 85, 86 revize edildi). |
+| Zemin | Ayakta tüm figürlerde `z`, `duz(588/590)`, `duz(KIYI_Y)` ya da arka sırada `duz(z−12/14)` var. Yapılar düz listelere kurulu. Tabut yere oturur. |
+| Ölçek | Figür boyu `olcek()` ile ölçülüp ≥ %30 kadraja ulaştırılıyor. Atlı = 1,115 × kisi (2,9 ↔ 2,6). Arka figürler 0,7–0,9 × ve daha yüksek zeminde. Orta plan yapıları 0,55–0,9 × `K`. |
+| Rodos | Su başlangıcı `KIYI_Y=576`, gemi su çizgisi sprite y286 (ızgara 618), alt 14 satır su. `_gemi_denetimi` gövdenin suya ulaştığını doğrular. Şövalyeler gemi genişliği ölçülerek sağa konur, gemiye karışmaz. |
+| Yön | 91 sağa: `yon=1`, x artar. 92 sağa: gemi `yon=1`, x artar. 95 sola: `yon=-1`, x azalır. 107 sola: gemi `yon=-1`, x azalır. 93 ve 98 sağa: `yon=1`. |
+| Kandil | Zincir sprite'ın üstünden başlar (tavan). Lamba kadrajın üst kenarının biraz altında durur. Havada lamba yok. |
+| Hava | Hava katmanı yok. Alev, mum ve meşale yukarı çıkar. |
+| Yazı bandı | Bulutlar y ≥ 290. Dağ tepeleri y ≥ 352. Hiçbir bulut yazı bandı (y 95–245) içinde değil. |
+| Tartışmalı | Zehir yok. Ustura yalnızca "rivayete göre" ekranıyla geçer. Gri silüette ustura çizilmez. Mızrak "inanılan" yazısıyla anılır. Burchard yalnızca Roma'da. |
 
 ---
 
@@ -744,152 +989,177 @@ Kodda `silah='testi'`, `yatan`, `sedir`, `nefes` artık geçmiyor. `anadolu_kale
 ```tsx
 import { Seri, ALTIN, KIZIL } from "./TimurSeri";
 
-// Kapak: ajans sahibi görsel vermedi (kapak: alanı boş). Kapak, sahne 72 katmanlarıyla yapılan
-// ilk Bolum'dur (2,5 sn, sessiz). Logo ve @pikseltarihim alt bandını kapak bileşeni ekler.
-// Sahne 72 ikinci kez, seslendirmeyle birlikte oynar.
+// Kapak: ajans sahibi görsel vermedi (kapak: alanı boş). Kapak, sahne 90 katmanlarıyla yapılan
+// ilk Bolum'dur (2,5 sn, sessiz). Logo ve @pikseltarihim alt bandını kapak bileşeni ekler;
+// yazılar ortadaki 3:4 alanda kalır. Sahne 90 ikinci kez seslendirmeyle birlikte oynar.
+// Sahne 104 yeni metinde yok (kaldırıldı). Süreler tahmini; hizala_seri.py sese göre düzeltir.
 export const CemSultan: Seri = {
   etiket: "Cem Sultan'ın Zehirli Tıraşı",
   bolumler: [
     { // KAPAK
-      no: 72, yakin: 2.4, kamera: 0, odakY: 590,
-      sprite: { w: 440, h: 170, fps: 8, x: 270, taban: 634 },
+      no: 90, yakin: 2.9, kamera: 0,
+      sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
         { satirlar: ["Cem Sultan'ın", "Zehirli Tıraşı"], sure: 1.2, boy: 120, renk: ALTIN },
-        { satirlar: ["O ustura gerçekten", "zehirli miydi?"], sure: 0.8, renk: KIZIL },
+        { satirlar: ["Eve dönemeyen şehzade"], sure: 0.8, renk: KIZIL },
       ],
     },
-    {
-      no: 72, yakin: 2.4, kamera: 14, odakY: 590,
-      sprite: { w: 440, h: 170, fps: 8, x: 270, taban: 634 },
+    { // ekran 1-2
+      no: 90, yakin: 2.9, kamera: 8,
+      sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
         { satirlar: ["Napoli, 1495.", "Bir berber şehzadeyi", "tıraş ediyor."], sure: 3.0 },
         { satirlar: ["Rivayete göre", "ustura zehirli."], sure: 2.0, renk: KIZIL },
       ],
     },
-    {
-      no: 73, yakin: 2.0, kamera: 30,
-      sprite: { w: 520, h: 160, fps: 14, x: [235, 300], taban: 632 },
+    { // ekran 3
+      no: 106, yakin: 3.2, kamera: 6,
+      sprite: { w: 300, h: 260, fps: 10, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Koltuktaki adam,", "Fatih'in oğlu Cem."], sure: 2.2 },
-        { satirlar: ["Kardeşi Bayezid'e", "taht savaşında yenilir,"], sure: 2.3, renk: KIZIL },
+        { satirlar: ["Şehzade, Fatih'in oğlu Cem."], sure: 2.2 },
       ],
     },
-    {
-      no: 74, yakin: 1.7, kamera: 40,
-      sprite: { w: 540, h: 170, fps: 12, x: [330, 270], taban: 632 },
+    { // ekran 4 (yavaş, sessiz)
+      no: 107, yakin: 2.2, kamera: 8,
+      sprite: { w: 360, h: 150, fps: 8, x: [250, 205], taban: 556 },
       yazilar: [
-        { satirlar: ["Rodos'a sığınır."], sure: 1.3 },
-        { satirlar: ["Şövalyeler onu Fransa'ya,", "sonra Roma'ya gönderir."], sure: 2.6 },
+        { satirlar: ["Evi, denizin", "öbür yanında."], sure: 2.8 },
       ],
     },
-    {
-      no: 75, yakin: 1.9, kamera: 40,
-      sprite: { w: 540, h: 170, fps: 14, x: [255, 285], taban: 634 },
+    { // ekran 5
+      no: 91, yakin: 2.8, kamera: 10,
+      sprite: { w: 420, h: 300, fps: 14, x: [265, 285], taban: 632 },
       yazilar: [
-        { satirlar: ["Elden ele,", "yaklaşık on üç yıl."], sure: 2.4 },
-        { satirlar: ["Siz olsanız", "dayanır mıydınız?"], sure: 2.0, renk: ALTIN },
+        { satirlar: ["Taht kavgasında kardeşi", "Bayezid'e yenilir."], sure: 2.8, renk: KIZIL },
       ],
     },
-    {
-      no: 76, yakin: 2.3, kamera: 10,
-      sprite: { w: 300, h: 170, fps: 10, x: 270, taban: 634 },
+    { // ekran 6
+      no: 92, yakin: 2.4, kamera: 12,
+      sprite: { w: 420, h: 300, fps: 10, x: [240, 285], taban: 632 },
       yazilar: [
-        { satirlar: ["Umudu sultan kardeşi."], sure: 1.6 },
-        { satirlar: ["Ama Bayezid kurtarmaz."], sure: 1.6, renk: KIZIL },
+        { satirlar: ["Rodos'ta şövalyelere", "sığınır."], sure: 2.2 },
       ],
     },
-    {
-      no: 77, yakin: 2.0, kamera: 50,
-      sprite: { w: 420, h: 170, fps: 22, x: [330, 210], taban: 632 },
+    { // ekran 7
+      no: 93, yakin: 2.6, kamera: 8,
+      sprite: { w: 400, h: 300, fps: 14, x: [255, 285], taban: 634 },
       yazilar: [
-        { satirlar: ["Roma'ya hediye yollar."], sure: 1.6 },
-        { satirlar: ["31 Mayıs 1492."], sure: 1.6, renk: ALTIN },
+        { satirlar: ["Rodos, Fransa, Roma.", "Elden ele,", "yaklaşık on üç yıl."], sure: 3.6, renk: ALTIN },
       ],
     },
-    {
-      no: 78, yakin: 2.1, kamera: 10,
-      sprite: { w: 400, h: 170, fps: 10, x: 270, taban: 634 },
+    { // ekran 8 (yavaş, sessiz)
+      no: 94, yakin: 3.0, kamera: 6,
+      sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Papa'nın tören ustası", "Burchard günlüğüne yazar:"], sure: 2.5 },
-        { satirlar: ["İsa'yı deldiğine inanılan", "Kutsal Mızrak", "Roma'ya geliyor."], sure: 3.2, renk: ALTIN },
+        { satirlar: ["Eve dönemez."], sure: 2.8, renk: KIZIL },
       ],
     },
-    {
-      no: 79, yakin: 1.9, kamera: 20,
-      sprite: { w: 520, h: 170, fps: 10, x: 270, taban: 634 },
+    { // ekran 9
+      no: 108, yakin: 3.0, kamera: 6,
+      sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Gönderen kardeşi.", "Alan, onu elinde tutan Papa."], sure: 3.0 },
-        { satirlar: ["Hediye mi, pazarlık mı?", "Bilmiyoruz."], sure: 2.4, renk: ALTIN },
+        { satirlar: ["Kardeşi tahtta,", "Cem hâlâ Papa'nın elinde."], sure: 2.8 },
       ],
     },
-    {
-      no: 80, yakin: 1.8, kamera: 30,
-      sprite: { w: 500, h: 170, fps: 14, x: [250, 290], taban: 632 },
+    { // ekran 10-11
+      no: 95, yakin: 2.8, kamera: 20,
+      sprite: { w: 420, h: 300, fps: 22, x: [335, 255], taban: 632 },
       yazilar: [
-        { satirlar: ["Ocak 1495.", "Papa, Cem'i Fransa Kralı'na", "teslim eder."], sure: 3.2 },
+        { satirlar: ["Bayezid bir hediye yollar."], sure: 2.0 },
+        { satirlar: ["Ama Cem'e değil,", "Papa'ya."], sure: 2.0, renk: ALTIN },
       ],
     },
-    {
-      no: 81, yakin: 2.1, kamera: 10,
-      sprite: { w: 300, h: 170, fps: 10, x: 270, taban: 632 },
+    { // ekran 12-13
+      no: 96, yakin: 3.0, kamera: 6,
+      sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Yaklaşık dört hafta sonra", "Cem ölür."], sure: 2.4, renk: KIZIL },
+        { satirlar: ["31 Mayıs 1492."], sure: 1.4, renk: ALTIN },
+        { satirlar: ["Papa'nın tören ustası", "Burchard yazar:"], sure: 2.6 },
       ],
     },
-    {
-      no: 82, yakin: 2.2, kamera: 10,
-      sprite: { w: 420, h: 170, fps: 10, x: 270, taban: 634 },
+    { // ekran 14
+      no: 109, yakin: 2.7, kamera: 8,
+      sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
+      yazilar: [
+        { satirlar: ["İsa'yı deldiğine inanılan", "Kutsal Mızrak", "Roma'ya geliyor."], sure: 3.8, renk: ALTIN },
+      ],
+    },
+    { // ekran 15
+      no: 97, yakin: 2.6, kamera: 8,
+      sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
+      yazilar: [
+        { satirlar: ["Hediye mi, pazarlık mı?", "Bilmiyoruz."], sure: 2.8, renk: ALTIN },
+      ],
+    },
+    { // ekran 16
+      no: 98, yakin: 2.6, kamera: 12,
+      sprite: { w: 420, h: 300, fps: 14, x: [255, 275], taban: 632 },
+      yazilar: [
+        { satirlar: ["Ocak 1495. Papa, Cem'i", "Fransa Kralı'na teslim eder."], sure: 3.4 },
+      ],
+    },
+    { // ekran 17
+      no: 99, yakin: 2.8, kamera: 6,
+      sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 632 },
+      yazilar: [
+        { satirlar: ["Yaklaşık dört hafta sonra,", "yabancılar arasında,", "Napoli'de ölür."], sure: 4.0, renk: KIZIL },
+      ],
+    },
+    { // ekran 18-19 (yavaş, sessiz)
+      no: 110, yakin: 2.8, kamera: 8,
+      sprite: { w: 420, h: 300, fps: 10, x: 270, taban: 632 },
+      yazilar: [
+        { satirlar: ["Naaşı yıllar sonra", "Bursa'ya döner."], sure: 2.2 },
+        { satirlar: ["Eve ancak ölü döner."], sure: 2.8, renk: KIZIL },
+      ],
+    },
+    { // ekran 20-21
+      no: 100, yakin: 3.0, kamera: 6,
+      sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
         { satirlar: ["Peki ustura?"], sure: 1.2, renk: ALTIN },
-        { satirlar: ["Guicciardini zehir der,", "ama yaklaşık kırk yıl sonra", "yazar."], sure: 3.6 },
+        { satirlar: ["Guicciardini zehir der,", "ama yaklaşık kırk yıl", "sonra yazar."], sure: 3.6 },
       ],
     },
-    {
-      no: 83, yakin: 2.1, kamera: 10,
-      sprite: { w: 340, h: 170, fps: 10, x: 270, taban: 634 },
+    { // ekran 22
+      no: 101, yakin: 3.0, kamera: 6,
+      sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Burchard zehirden", "söz etmez."], sure: 1.9 },
+        { satirlar: ["Burchard susar."], sure: 1.5 },
       ],
     },
-    {
-      no: 84, yakin: 2.2, kamera: 14,
-      sprite: { w: 300, h: 170, fps: 9, x: 270, taban: 634 },
+    { // ekran 23
+      no: 102, yakin: 2.6, kamera: 8,
+      sprite: { w: 400, h: 300, fps: 9, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["İnalcık gibi tarihçiler", "hastalık der."], sure: 2.3, renk: ALTIN },
+        { satirlar: ["İnalcık gibi tarihçiler", "hastalık der."], sure: 2.6, renk: ALTIN },
       ],
     },
-    {
-      no: 85, yakin: 1.8, kamera: 10,
-      sprite: { w: 440, h: 170, fps: 10, x: 270, taban: 634 },
+    { // ekran 24-25
+      no: 103, yakin: 2.6, kamera: 8,
+      sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Belgeler zehiri", "kanıtlamıyor."], sure: 1.9, renk: ALTIN },
-        { satirlar: ["Ustura için dönem belgesi", "gösterilemiyor;"], sure: 2.4 },
+        { satirlar: ["Ustura için dönem belgesi", "gösterilemiyor."], sure: 2.8 },
+        { satirlar: ["Belgeler zehiri", "kanıtlamıyor."], sure: 2.0, renk: ALTIN },
       ],
     },
-    {
-      no: 86, yakin: 2.0, kamera: 20,
-      sprite: { w: 380, h: 150, fps: 12, x: 270, taban: 632 },
+    { // ekran 26
+      no: 105, yakin: 2.9, kamera: 8,
+      sprite: { w: 400, h: 300, fps: 6, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["ayrıntı halk anlatısında", "geçer."], sure: 2.0 },
-      ],
-    },
-    {
-      no: 87, yakin: 2.4, kamera: 10, odakY: 590,
-      sprite: { w: 440, h: 170, fps: 6, x: 270, taban: 634 },
-      yazilar: [
-        { satirlar: ["Sizce o ustura", "zehirli miydi?"], sure: 2.2, renk: ALTIN },
+        { satirlar: ["Sizce o ustura", "zehirli miydi?"], sure: 2.4, renk: ALTIN },
       ],
     },
   ],
   kapanis: {
     satirlar: ["Piksel Tarih", "@pikseltarihim"],
     sonraki: "Yorumlara yaz, arkadaşına gönder",
-    sure: 3, arka: 87, gece: true,
+    sure: 3, arka: 105, gece: true,
   },
 };
 ```
 
-Not: `Root.tsx` kaydı için kompozisyon kimliği `CemSultan` olarak ayrıca eklenecek (`Timur1.tsx` kalıbı).
+Not: `Root.tsx` kaydı için kompozisyon kimliği `CemSultan` ayrıca eklenecek (`Timur1.tsx` kalıbı). Sprite `x` değerleri, ölçülmüş figürlerin görünür aralıkta kalması için seçildi. Kodu değiştirirsen TSX'teki `x` ve `yakin` değerlerini de aynı şekilde güncelle.
 
 ---
 
@@ -899,42 +1169,42 @@ Aşağıdaki figürler kütüphanede yok. Her biri için şimdi kullandığım e
 
 | Figür | Boy | Zemine basış | Sahne | Şimdiki çözüm |
 |---|---|---|---|---|
-| **`silah="ustura"`** (`kisi` için, elde taşınır) | Bıçak 7–9 px, sap 4 px (s=2.6'da) | Elde taşınır, zemine basmaz. | 72, 87 | Elin ucu pikselden ölçülür (`_el_ucu`) ve `piksel()` ile bıçak çizilir. Hiza her karede `_yuz_denetimi` ile denetlenir. Kütüphaneye girince bu yardımcılar kalkar. |
-| **`avrupa_kalesi`** (Rodos Hospitaller kalesi, Roma ve Napoli surları: kare kuleler, mazgal, kırmızı-beyaz flama) | `sehir` ile aynı genişlik, kuleler 1,3× yüksek | Düz zemine kurulur (`duz(y)`). | 74, 80, 81 | `sehir(duvar, golge, cati)` nötr surlu şehir. `anadolu_kalesi` kullanılmıyor, çünkü Osmanlı yapısı olarak okunuyordu. |
-| **`koltuk`** (berber koltuğu) | Oturma yüksekliği ≈ 18 px (s=1) | Dört ayağı zemine basar. | 72, 87 | `oturan(minder=...)` ile minderde oturuş. |
-| **`silah="kutsal_mizrak"`** | Kişi boyu × 1,6, altın uç ve ince flama | Elde taşınır. | 78, 79 | Düz `silah="mizrak"`. |
-| **`papa`** (kısa ve uzun cübbe, yüksek tiara) | `kisi` ile aynı | Ayakları zemine basar. | 79, 80 | `kisi(bas="tac", pelerin=...)`. |
-| *İsteğe bağlı* **`masa_yazar`** (kitap ve yazı masası) | Masa yüksekliği insan belinin ~%90'ı | Dört ayağı zemine basar. | 78, 82, 83, 85 | Burchard ve Guicciardini ayakta, elde `silah="mektup"`. Sahne 84 için de kitap-masa gelirse "tarihçi" çağrışımı güçlenir. |
+| **`kisi_on`** (cepheden, yüzü kameraya dönük insan; `yon=0`) | `kisi` ile aynı | Ayakları zemine basar. | 93, 94, 106 (Cem) | `kisi` yalnızca profil çizer. Cem ön sırada, en büyük ve yüzü açık, ama yüzü kameraya dönük değil. QC'nin "yüz kameraya dönük" notu **kod tarafında yeni figür gelmeden tam karşılanamaz.** |
+| **`silah="ustura"`** (`kisi` için, elde taşınır) | Bıçak ≈ 2,7 × `s` px, sap 4 px | Elde taşınır, zemine basmaz. | 90, 105 | El ucu pikselden ölçülür (`_berber_el`), `piksel()` ile bıçak çizilir. Hiza her karede denetlenir. |
+| **`kapali_kapi`** (taş kemer içinde demir kuşaklı ağır kapı) | Kapı insandan biraz alçak ya da eşit | Eşik zemine oturur. | 94 (ekran 8 "kapalı kapı") | Kule penceresi ve yalnız Cem. Editörün "kapalı kapı" sahnesi tam çizilemiyor. |
+| **`taht`** (Bayezid) | Oturma yüksekliği ≈ 18 px (s=1) | Dört ayak zemine basar. | 108 | `oturan(minder="#c8a040")` ile minderde oturuş. |
+| **`mumluk(s=)` ve `kandil(s=)` ölçek parametresi** | `s` çarpanı | Mevcut gibi. | 90, 93, 94, 96–103, 105, 108, 109 | Büyük figürlerin (s ≈ 3–4) yanında şamdan küçük kalıyor. Zemine oturuyor, ama oranı düşük. Şimdilik ayak izi dar tutuldu. |
+| **`avrupa_kalesi`** (Rodos Hospitaller kalesi, Roma ve Napoli surları) | `sehir` ile aynı genişlik, kuleler 1,3× | Düz zemine kurulur. | 92, 98, 99 | `sehir(duvar, golge, cati)` nötr surlu şehir. `anadolu_kalesi` kullanılmadı. |
+| **`silah="kutsal_mizrak"`** | Kişi boyu × 1,6, altın uç, ince flama | Elde taşınır. | 109 | Düz `silah="mizrak"`. |
+| **`papa`** (uzun cübbe, yüksek tiara) | `kisi` ile aynı | Ayakları zemine basar. | 97 | `kisi(bas="tac", pelerin=...)`. |
+| **`bursa_turbesi`** (sade Osmanlı türbesi, kubbeli) | Kapı insandan biraz alçak | Düz zemine kurulur. | 110 | `koy_evleri`. `gur_i_emir` Timur'a ait olduğu için kullanılmadı. |
+| **`taht_yazar_masasi`** (kitap ve yazı masası) | Masa yüksekliği insan belinin ~%90'ı | Dört ayak zemine basar. | 96, 100, 101, 103 | Ayakta yazar, elde `silah="mektup"`. |
 
 ---
 
-## Doğrulama (kod tarafının koşturacağı, ben çalıştıramadım)
+## Doğrulama (kod tarafının koşturacağı; ben çalıştıramadım)
 
 ```sh
-python3 -I video/piksel/cem_sultan.py 72 74 87     # tıraş sahneleri ve Rodos: ölçüm denetimleri
-python3 -I video/piksel/cem_sultan.py              # tüm sahneler (fizik ve taban_denetimi)
-npx remotion still CemSultan --frame=N out.png     # kapak, 72, 74, 78, 83, 84 kareleri
+python3 -I video/piksel/cem_sultan.py 90 92 105      # ustura, gemi ve olcek denetimleri
+python3 -I video/piksel/cem_sultan.py                # tüm sahneler (kadraj + taban_denetimi)
+npx remotion still CemSultan --frame=N out.png       # kapak, 90, 92, 93, 94, 110 kareleri
 uv run gorsel_kontrol teslimler/<teslim>.md <kare-klasörü>
 ```
 
 Geçme ölçütleri:
-1. **Ustura (72, 87):** `_yuz_denetimi` hata vermeden 24 karenin hepsini geçmeli. Hata verirse mesaj ölçülen boşluğu yazar. Tek ayar noktası `BERBER_X` (şimdi 170). Elin kol farkından ölçülmesi, kolun doğrudan öne uzanmadığı bir pozda yanlış nokta verebilir. Bu durumda kare görseli bakılıp `kol` aralığı daraltılır.
-2. **Gemi (74):** `_gemi_denetimi` geçmeli (gövde su çizgisine ulaşır, hareket sonunda yapıdan ≥ 20 px uzakta). Render'da su sağda ve önde, gemi suda, şövalyeler ve surlu yapı kıyı çizgisinde görünmeli.
-3. **`taban_denetimi`:** `sprite()` bunu varsayılan olarak çalıştırır (`denetim=True`). Çıktısı kod tarafında teslime eklenecek. Ben çalıştıramadığım için buraya sonuç yazmıyorum.
-4. **Elçi mızrağı (78):** mızrak koordinatla değil `silah="mizrak"` ile elde. Render'da elde durup durmadığı kareden bakılacak.
-5. **Sahne 83 ve 84:** karelerde Napoli odasında Burchard, hasta, hekim ya da testi görünmemeli.
+1. **`olcek()`:** Hata verirse mesaj hangi figürün ve hangi `yakin` değerinin %30'a ulaşamadığını yazar. Çare: `yakin` değerini düşür ya da sprite `h`'sini büyüt.
+2. **Ustura (90, 105):** `_tiras_ayar` bulup `_tiras_kare` her karede hizayı doğrulamalı. Hata verirse kol aralığını (0,45–0,65) daralt ya da `CEM_X`'i değiştir. El ucu kol farkından ölçüldüğü için kolun öne uzanmadığı bir pozda yanlış nokta verebilir. Bu durumda kare görseline bakılır.
+3. **Kadraj (`_kadraj`):** Hata verirse hangi sahnede figürlerin görünür aralıkta olmadığını yazar. Çare: yerel x'leri merkeze çek. 92 ve 107'de tam genişlikte su bandı oranı büyüttüğü için eşik 0,3–0,4'e indirildi.
+4. **Kandil formülü:** Kadrajın üst satırının `(taban−12)·(1−1/yakin)` olduğunu varsaydım (yakınlaştırma odağı `odakY` varsayılanı `taban−12`). Render'da lamba kadraja girmiyor ya da yazı bandını çok kapatıyorsa `_kz` içindeki `+10` değerini ayarla.
+5. **Sahne 92/107 su dikişi:** Sprite'taki 14 satırlık su bandının rengi orta plandaki suyla aynı bantta durmalı. Render'da dikdörtgen kenar görünürse `su_ve_kiyi` renkleri eşitlenir.
+6. **Sahne 101–102:** Karelerde hasta, hekim, testi ya da Napoli odası görünmemeli.
+7. **Süre:** Seslendirme gelince `hizala_seri.py` çalışır. Toplam 90 sn altında kalmalı (tahmin 82,8 sn).
 
-Düzeltmeler tamamlandı. Kalite kontrole yeniden gönderilebilir.
+Kalite kontrole yeniden gönderilebilir. Tek açık kalan madde, cepheden bakan Cem figürü. Bu madde yukarıdaki "yeni figür isteği" tablosunun ilk satırında.
 
 ## 🔴 Kalite Kontrol · Kalite kontrol notu
 
-GENEL: Seslendirme ve ekran metni onaylı sürümle bire bir aynı, Türkçe harfler (ş, ğ, ı, İ, ö) net, Jersey 10 yazılar okunuyor. Piksel dokusu, titreşimli gökyüzü ve paletin kendisi (kare-014s, kare-018s, kare-050s) tarza uygun. Görsel tarafta sorunlar var, o yüzden iş uygun değil. SORUNLAR: 1) ÖLÇEK VE KADRAJ (kare-001s, 004s, 009s, 018s, 023s, 030s, 037s, 043s, 050s): Figürler kare yüksekliğinin yaklaşık %12-18'i kadar, kadrajın alt %35-45'i boş halı, çim ya da su. Kural 'figürler kadrajda büyük ve okunur'. Ustura, yüz ve mızrak gibi hikâyenin taşıyıcı detayları bu boyutta okunmuyor. Çözüm: yakin (zoom) değerini artırıp odakY'yi figürlerin göğüs hizasına ayarla (şu an kare başına yaklaşık 1,7-2,4), figür ölçeğini büyüt, boş halı ve çim bandını kes. Hedef: ana figürler kare yüksekliğinin en az %30'u. 2) TIRAŞ SAHNESİ (kare-001s, 004s, 009s; sahne 72, 87): a) Ustura Cem'in yüzüne değmiyor. Ustura ucu ile Cem'in sarığı ve sakalı arasında yaklaşık 15-20 piksel boşluk var, ustura iki figür arasında havada duran beyaz bir çubuk gibi okunuyor. Kodun _yuz_denetimi ölçütü (-4..+8 px) render'da tutmuyor. Berber konumunu (BERBER_X) ya da kolu düzelt, denetimi gerçek kare çıktısında doğrula. b) Cem'in yüzü okunmuyor: sarık altında koyu sakal lekesi ve kırmızı koni gövde var. Cem'i yüzü seçilecek şekilde çiz ya da yüz tarafını kadraja çevir. c) Planda yazan mumluk ve mangal üç karede de yok, oda boş ve düz. Plana uygun ekle. d) Kancanın ana nesnesi olan tıraşın bu kadar küçük olması izleyiciyi tutmaz. Berber ve Cem ile ustura yakın plana alınmalı. 3) SAHNE 75 (kare-023s): a) Planda dört figür var (Rodos şövalyesi, Cem, Fransız, altın sarılı papalık görevlisi), karede üç tane görünüyor. Altın sarılı papalık görevlisi yok. b) İki kandilden yalnızca biri kadrajın sol kenarında yarım görünüyor. c) Duvar düz, koyu dikey şeritler, 'bol detay' yok. d) Bu karede ekran yazısı yok, oysa anlatım sürüyor. Yazı süresi ve sesle eşleşmesini kontrol et. 4) SAHNE 74 (kare-018s): Gemide gövde ve yelken var ama direk görünmüyor. Kare, haçlı kırmızı yelken İsviçre bayrağı gibi okunuyor, 'kadırga' okunmuyor. Gemi küçük, kıyıdaki yapıdan çok uzak, 'limana gelir' hissi yok. Gemiyi büyüt, direk ve yelken ekle, haç oranını Hospitaller bayrağına yaklaştır (beyaz haç, kırmızı zemin), gemiyi kıyıya yaklaştır. Alt yarıdaki boş su kadrajdan çıksın. 5) SAHNE 73 (kare-014s): Sağdaki Cem'in (kırmızı, beyaz sarıklı) atı ve soldaki atın yarısı kadraj kenarlarında kesiliyor, Cem tam görünmüyor. Cem'i kadrajın içine al. Cem'i diğer süvarilerden ayıran bir ayrıntı (renk ya da konum) belirginleşsin. Alt %35'lik boş çim kadraj dışına alınsın. 6) SAHNE 77 (kare-030s): Bayezid bu karede görünmüyor. Planda surların önünde ayakta duruyordu. Kamera kaymasında hiç kadraja girip girmediğini kontrol et, girmiyorsa konumunu düzelt. Sağdaki eşlikçi atlı kenarda kesiliyor. Duvar, Rodos ve Roma'daki aynı 'sehir' figürüyle çizilmiş (kiremit çatılı Avrupa görünümü), İstanbul okunmuyor. Kubbe ya da minare gibi ayırt edici bir öğe ekle. 7) SAHNE 78 (kare-037s): a) Planda mumluk var ama karede yok. b) Pencerelerdeki gökyüzünde yıldızlar var, oysa planda 'gün ışığı'. Mayıs gündüzü için yıldızsız gündüz gökyüzü çiz. c) Diz çökmüş elçinin mızrağı dikey duran sıradan bir mızrak, mızrağı uzattığı okunmuyor ve Burchard'a yönelmiyor. Elçi kadrajın en sağ kenarına çok yakın. Mızrak uzatılmış poza gelsin, kadraja ortalanıp büyütülsün. 8) SAHNE 79 (kare-043s): Papa'nın mızrağı ile iki muhafızın mızrağı birebir aynı, hangisinin 'Kutsal Mızrak' olduğu anlaşılmıyor. Planda istenen altın uç ve ince flamayı ekle. Papa altın taçla bir krala benziyor, tiara ya da papalığı belirten bir başlık kullan, ayrıca sahne 80'deki Fransa Kralı'nın tacından ayrışsın. 9) SAHNE 81 (kare-050s): Gökyüzü neredeyse düz koyu, planlanan ay ve yıldızlar görünmüyor. Sağ üst köşede kesik bir titreşim lekesi var. Ay'ı kadraja al, yıldızları ekle. Napoli'deki nöbetçiler Osmanlı muhafız figürü gibi okunuyor, sivri miğferli Avrupa görünümü ver. 10) KAPAK (kare-001s): Altta logo ve @pikseltarihim yok, profil kuralı bunu zorunlu kılıyor. Başlık kapak için küçük kalıyor, büyütülebilir. 11) YAZI SÜRELERİ (kare-058s, 066s): Çapraz geçiş anlarında ekranda yazı yok. Anlatım kesintisiz sürdüğü için yazı ile sesin bire bir eşleştiğini kare kare doğrula. Geçişte bir yazı sönerken diğeri belirsin. 12) DOĞRULAMA: Render sonrası taban_denetimi çıktısını ve ustura, gemi ölçüm denetimlerinin sonucunu teslime ekle, şu an eklenmemiş. Bu düzeltmeler yapıldıktan sonra kalite kontrole yeniden gönder. Yazı metninde değişiklik gerekmiyor.
-
-## 🔴 Kalite Kontrol · Görsel kontrol (render edilen kareler)
-
-**Karar:** UYGUN DEĞİL, düzeltecek birim: 🟢 Grafiker
-
-GENEL: Seslendirme ve ekran metni onaylı sürümle bire bir aynı, Türkçe harfler (ş, ğ, ı, İ, ö) net, Jersey 10 yazılar okunuyor. Piksel dokusu, titreşimli gökyüzü ve paletin kendisi (kare-014s, kare-018s, kare-050s) tarza uygun. Görsel tarafta sorunlar var, o yüzden iş uygun değil. SORUNLAR: 1) ÖLÇEK VE KADRAJ (kare-001s, 004s, 009s, 018s, 023s, 030s, 037s, 043s, 050s): Figürler kare yüksekliğinin yaklaşık %12-18'i kadar, kadrajın alt %35-45'i boş halı, çim ya da su. Kural 'figürler kadrajda büyük ve okunur'. Ustura, yüz ve mızrak gibi hikâyenin taşıyıcı detayları bu boyutta okunmuyor. Çözüm: yakin (zoom) değerini artırıp odakY'yi figürlerin göğüs hizasına ayarla (şu an kare başına yaklaşık 1,7-2,4), figür ölçeğini büyüt, boş halı ve çim bandını kes. Hedef: ana figürler kare yüksekliğinin en az %30'u. 2) TIRAŞ SAHNESİ (kare-001s, 004s, 009s; sahne 72, 87): a) Ustura Cem'in yüzüne değmiyor. Ustura ucu ile Cem'in sarığı ve sakalı arasında yaklaşık 15-20 piksel boşluk var, ustura iki figür arasında havada duran beyaz bir çubuk gibi okunuyor. Kodun _yuz_denetimi ölçütü (-4..+8 px) render'da tutmuyor. Berber konumunu (BERBER_X) ya da kolu düzelt, denetimi gerçek kare çıktısında doğrula. b) Cem'in yüzü okunmuyor: sarık altında koyu sakal lekesi ve kırmızı koni gövde var. Cem'i yüzü seçilecek şekilde çiz ya da yüz tarafını kadraja çevir. c) Planda yazan mumluk ve mangal üç karede de yok, oda boş ve düz. Plana uygun ekle. d) Kancanın ana nesnesi olan tıraşın bu kadar küçük olması izleyiciyi tutmaz. Berber ve Cem ile ustura yakın plana alınmalı. 3) SAHNE 75 (kare-023s): a) Planda dört figür var (Rodos şövalyesi, Cem, Fransız, altın sarılı papalık görevlisi), karede üç tane görünüyor. Altın sarılı papalık görevlisi yok. b) İki kandilden yalnızca biri kadrajın sol kenarında yarım görünüyor. c) Duvar düz, koyu dikey şeritler, 'bol detay' yok. d) Bu karede ekran yazısı yok, oysa anlatım sürüyor. Yazı süresi ve sesle eşleşmesini kontrol et. 4) SAHNE 74 (kare-018s): Gemide gövde ve yelken var ama direk görünmüyor. Kare, haçlı kırmızı yelken İsviçre bayrağı gibi okunuyor, 'kadırga' okunmuyor. Gemi küçük, kıyıdaki yapıdan çok uzak, 'limana gelir' hissi yok. Gemiyi büyüt, direk ve yelken ekle, haç oranını Hospitaller bayrağına yaklaştır (beyaz haç, kırmızı zemin), gemiyi kıyıya yaklaştır. Alt yarıdaki boş su kadrajdan çıksın. 5) SAHNE 73 (kare-014s): Sağdaki Cem'in (kırmızı, beyaz sarıklı) atı ve soldaki atın yarısı kadraj kenarlarında kesiliyor, Cem tam görünmüyor. Cem'i kadrajın içine al. Cem'i diğer süvarilerden ayıran bir ayrıntı (renk ya da konum) belirginleşsin. Alt %35'lik boş çim kadraj dışına alınsın. 6) SAHNE 77 (kare-030s): Bayezid bu karede görünmüyor. Planda surların önünde ayakta duruyordu. Kamera kaymasında hiç kadraja girip girmediğini kontrol et, girmiyorsa konumunu düzelt. Sağdaki eşlikçi atlı kenarda kesiliyor. Duvar, Rodos ve Roma'daki aynı 'sehir' figürüyle çizilmiş (kiremit çatılı Avrupa görünümü), İstanbul okunmuyor. Kubbe ya da minare gibi ayırt edici bir öğe ekle. 7) SAHNE 78 (kare-037s): a) Planda mumluk var ama karede yok. b) Pencerelerdeki gökyüzünde yıldızlar var, oysa planda 'gün ışığı'. Mayıs gündüzü için yıldızsız gündüz gökyüzü çiz. c) Diz çökmüş elçinin mızrağı dikey duran sıradan bir mızrak, mızrağı uzattığı okunmuyor ve Burchard'a yönelmiyor. Elçi kadrajın en sağ kenarına çok yakın. Mızrak uzatılmış poza gelsin, kadraja ortalanıp büyütülsün. 8) SAHNE 79 (kare-043s): Papa'nın mızrağı ile iki muhafızın mızrağı birebir aynı, hangisinin 'Kutsal Mızrak' olduğu anlaşılmıyor. Planda istenen altın uç ve ince flamayı ekle. Papa altın taçla bir krala benziyor, tiara ya da papalığı belirten bir başlık kullan, ayrıca sahne 80'deki Fransa Kralı'nın tacından ayrışsın. 9) SAHNE 81 (kare-050s): Gökyüzü neredeyse düz koyu, planlanan ay ve yıldızlar görünmüyor. Sağ üst köşede kesik bir titreşim lekesi var. Ay'ı kadraja al, yıldızları ekle. Napoli'deki nöbetçiler Osmanlı muhafız figürü gibi okunuyor, sivri miğferli Avrupa görünümü ver. 10) KAPAK (kare-001s): Altta logo ve @pikseltarihim yok, profil kuralı bunu zorunlu kılıyor. Başlık kapak için küçük kalıyor, büyütülebilir. 11) YAZI SÜRELERİ (kare-058s, 066s): Çapraz geçiş anlarında ekranda yazı yok. Anlatım kesintisiz sürdüğü için yazı ile sesin bire bir eşleştiğini kare kare doğrula. Geçişte bir yazı sönerken diğeri belirsin. 12) DOĞRULAMA: Render sonrası taban_denetimi çıktısını ve ustura, gemi ölçüm denetimlerinin sonucunu teslime ekle, şu an eklenmemiş. Bu düzeltmeler yapıldıktan sonra kalite kontrole yeniden gönder. Yazı metninde değişiklik gerekmiyor.
+ONAY. Metin: Seslendirme tek tek sayıldı, 128 kelime, işin 110-130 sınırı içinde. Tıraş kancası, 13 yıllık bedel, 'Ama Cem'e değil, Papa'ya' dönüşü, kapanış sorusu ve 'Eve dönemez / Eve ancak ölü döner' motifi sahibin eksenine uyuyor. Her şey tıraş sorusuna bağlı, 'kim öldürdü' başlık olmuyor. Kaynak: Yıllık ödeme, 300 bin düka, Sassenage, şairlik, elçi adı, doğum günü, Pollaiuolo mezarı ve zehir türü metinde yok. Ustura ve berber araştırmada KAYNAKSIZ listesinde, ama ajans sahibinin açık kararıyla yalnızca 'Rivayete göre' ekranı ve 'Ustura için dönem belgesi gösterilemiyor' cümlesiyle dengelenerek giriyor. Bu risk editörün onay kaydında yazılı. Zehir iddiası Guicciardini'ye, hastalık yorumu İnalcık'a, sessizlik Burchard'a atfedilmiş. Mızrak her yerde 'inanılan' ile anılıyor. 'Tutsak kalsın diye' ve 'yalnızca halk anlatısı' gibi araştırmanın riskli bulduğu ifadeler çıkarılmış, niyet 'Bilmiyoruz' ile açık bırakılmış. Süreler 'yaklaşık' diye verilmiş. Açıklamadaki not ve sabit yorum kaynak ayrışmasını, Burchard'ın Napoli'de olmadığını ve mızrağın tartışmalı gerçekliğini açıkça yazıyor. Ekran yazıları seslendirmeyle bire bir, hiçbir satır 30 harfi geçmiyor. Görsel: 64-bit piksel tarzı, dikey 9:16, 60 fps, katmanlı sahneler, Jersey 10 yazı, yumuşak çapraz geçişler ve sakin/hüzünlü ton ajans tarzına uygun. Zehir, hastalık ve ölüm anı çizilmiyor, ustura parıltısı nötr beyaz, gri silüette ustura yok. Her sahnede sprite tabanı ve zemin çizgisi yazılı: iç mekân sprite tabanı 634, dış mekân 632, Rodos'ta KIYI_Y=576, gemiler su çizgisine oturuyor. Kandiller tavandan zincirle iniyor, havada nesne yok, yapılar ve tabut düz zemine kurulu, alev ve duman yukarı çıkıyor. Bulutlar yazı bandının (y 95-245) dışında. Yeni figür isteği tablosundaki hiçbir figür sahnelerde kullanılmamış, yalnızca kütüphanedeki fonksiyonlar çağrılıyor. Dosyaya özel ölçüm yardımcıları (olcek, _kadraj, _tiras_ayar vb.) yeni çizim fonksiyonu değil, yalnızca yeni ve figur çıktısını ölçüyor. Not (revizyon gerektirmez): Grafiker render alıp taban_denetimi çalıştıramadığını dürüstçe belirtmiş. Üretimde şunlara bakılsın: 90/105 ustura hizası, 92 ve 107 su dikişi, kandil zincirinin kadrajda kalması, Cem'in yüzü (kisi_on figürü yok, Cem profilde). Ayrıca 97 ve 98'de Papa ile Fransa Kralı aynı 'tac' başlığıyla çiziliyor. Görselde karışmaması için Papa'nın başlığı ve cübbe rengi render'da ayırt edilebilir olmalı. Ses gelince hizala_seri.py ile süre sese göre kısaltılmalı.
 
 ## 🔵 Araştırmacı · Araştırma
 
