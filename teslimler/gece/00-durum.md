@@ -6,9 +6,11 @@ Bu hata ajansın anahtarıyla (`SKONSTART_API_KEY`) yapılan her çağrıda dön
 
 **Sahibin yapması gereken:** console.anthropic.com → Plans & Billing → kredi yükle. Başka bir şey gerekmez.
 
-**Kredi gelince otomatik devam:** bir bekçi betiği 10 dakikada bir API'yi yokluyor (başarısız çağrı ücretsiz).
-Kredi geldiği anda üç işçiyi yeniden başlatıyor. İşçiler kayıtlı adımlardan devam eder; biten araştırmalar
-yeniden yaptırılmaz.
+**Kredi gelince otomatik devam:** oturum saatte bir uyanıp API'yi yokluyor (başarısız çağrı ücretsiz; bulut
+konteyneri boşta kalınca kapandığı için sürekli çalışan bekçi tutulamıyor). Kredi görüldüğü saatte üç işçi yeniden
+başlar. İşçiler kayıtlı adımlardan devam eder; biten araştırmalar yeniden yaptırılmaz.
+
+Kontroller: 22:57 kredi yok · 00:00 sıradaki kontrol.
 
 ## Kurtarılan iş (yeniden ödenmeyecek)
 
