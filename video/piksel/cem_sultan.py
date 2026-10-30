@@ -37,7 +37,7 @@ def _opak(img):
 # Ustura berberin elinin ucundan türetilir: kol oynayınca ustura da oynar.
 # Parıltı NÖTR beyazdır (zehir olgu gibi gösterilmez).
 # --------------------------------------------------------------------------
-CEM_X, BERBER_X = 235, 203          # sprite yerel x (ayar noktası: yalnızca BERBER_X)
+CEM_X, BERBER_X = 235, 196          # sprite yerel x (ayar noktası: yalnızca BERBER_X)
 CEM = dict(govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0", sakal="#2a1a12",
            minder="#8a2a2a")
 BERBER = dict(govde="#7a6a4a", bas="sapka", bas_renk="#3a2a1a", sakal=None,
@@ -64,7 +64,7 @@ def _yuz_denetimi(w, h, z, el, yon):
     ust = min(y for _, y in k)
     alt = max(y for _, y in k)
     yuz = [x for x, y in k if y <= ust + 0.45 * (alt - ust)]
-    uc_x = el[0] + yon * 9
+    uc_x = el[0] + yon * 16
     kenar = min(yuz) if yon == 1 else max(yuz)
     bosluk = (kenar - uc_x) * yon
     if not (-4 <= bosluk <= 8) or not (ust <= el[1] <= ust + 0.55 * (alt - ust)):
@@ -77,20 +77,22 @@ def _ustura(t, el, yon, i, nabiz):
     ex, ey = el
     for k in range(-2, 3):                               # sap: elin içinde
         piksel(t, ex + yon * k, ey, hex2("#3a2414"))
-    for k in range(3, 10):                               # bıçak: Cem'e doğru
-        yy = ey - (k - 3) // 4
+    for k in range(3, 17):                               # bıçak: Cem'e doğru (14 px, 3 px kalın)
+        yy = ey - (k - 3) // 5
+        piksel(t, ex + yon * k, yy + 1, hex2("#aab4c0"))       # alt kenar gölgesi
         piksel(t, ex + yon * k, yy, hex2("#dfe6ee"))
         piksel(t, ex + yon * k, yy - 1, hex2("#f4f8ff"))       # üst kenar ışığı
-    if i % (KARE // nabiz) < 3:                          # nötr beyaz parıltı
-        piksel(t, ex + yon * 10, ey - 3, hex2("#ffffff"))
-        piksel(t, ex + yon * 9, ey - 3, hex2("#cfd8e4"))
+    if i % (KARE // nabiz) < 4:                          # nötr beyaz parıltı (yıldız)
+        gx, gy = ex + yon * 14, ey - 4
+        for dx, dy in ((0, 0), (1, 0), (-1, 0), (0, 1), (0, -1), (2, 0), (-2, 0), (0, 2), (0, -2)):
+            piksel(t, gx + dx, gy + dy, hex2("#ffffff"))
 
 
 def _tiras_kare(t, z, i, nabiz=2):
     f = i / KARE
     w, h = t.size
     mumluk(t, 125, z, f, 3)
-    mangal(t, 305, z, f)
+    mumluk(t, 320, z, f, 2)
     figur(t, oturan, CEM_X, z, 2.6, yon=-1, **CEM)
     kol = 0.55 + 0.10 * SIN(f, 2)
     figur(t, kisi, BERBER_X, z, 2.6, yon=1, kol=kol, **BERBER)
@@ -201,8 +203,8 @@ def sahne93():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 150, 0, f)
-        kandil(t, 390, 0, f)
+        kandil(t, 150, 0, f, 166)
+        kandil(t, 390, 0, f, 166)
         figur(t, kisi, 170, z, 2.6, govde="#a8281e", bas="migfer", bas_renk="#9aa2ac",
               sakal=None, yon=1, adim=(f + 0.2) % 1, silah="mizrak")        # Rodos
         figur(t, kisi, 245, z, 2.6, govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0",
@@ -212,7 +214,7 @@ def sahne93():
         figur(t, kisi, 395, z, 2.6, govde="#d8b040", bas="sapka", bas_renk="#a8281e",
               sakal=None, yon=1, adim=(f + 0.8) % 1, silah="mizrak")        # Roma
 
-    sprite(93, "karakter", 540, 170, KARE, kare)
+    sprite(93, "karakter", 540, 300, KARE, kare)
 
 
 def sahne94():
@@ -240,7 +242,7 @@ def sahne95():
 
     def ekle(img, z):
         figur(img, sehir, PAY + 20, PAY + 300, duz(588), 1.6, tohum=77)
-        figur(img, bayezid, PAY + 260, duz(590), 2.4, yon=-1, kol=0.6)
+        figur(img, bayezid, PAY + 400, duz(590), 3.0, yon=-1, kol=0.6)
 
     orta(95, (528, 560), ["#8a9a58", "#7a8a4e", "#6a7a44", "#5a6a3a", "#4a5a30"],
          "#c0cc88", ekle=ekle)
@@ -251,7 +253,7 @@ def sahne95():
         figur(t, atli, 175, z, 2.9, -1, faz=f, govde="#2a6a3a", bas="sarik",
               bas_renk="#f4f0e6", sakal="#2a1a12", silah="mizrak", bayrak="#e8d8a0",
               adim=0.7)                                                      # elçi (önde, solda)
-        figur(t, atli, 285, z, 2.9, -1, faz=(f + 0.37) % 1, govde="#3a4a3a",
+        figur(t, atli, 310, z, 2.9, -1, faz=(f + 0.37) % 1, govde="#3a4a3a",
               bas="kalpak", bas_renk="#3a2a1a", sakal="#2a1a12", adim=0.7)   # eşlikçi
 
     sprite(95, "karakter", 420, 170, KARE, kare)
@@ -288,12 +290,12 @@ def sahne97():
     def kare(t, z, i):
         f = i / KARE
         ust = duz(z[0] - 12, 520)             # arka sıra daha yüksek zeminde
-        for x in (140, 210):
-            figur(t, muhafiz, x, ust, 2.3, faz=f, mizrak=True, mesale=False, deel="#2a2a3a")
-        figur(t, kisi, 175, ust, 2.3, govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0",
+        for x in (168, 236):
+            figur(t, muhafiz, x, ust, 2.6, faz=f, mizrak=True, mesale=False, deel="#2a2a3a")
+        figur(t, kisi, 202, ust, 2.6, govde="#7a1e22", bas="sarik", bas_renk="#e8e0d0",
               sakal="#2a1a12", yon=1)                                         # Cem
-        mumluk(t, 280, z, f, 3)
-        figur(t, kisi, 360, z, 2.9, govde="#f2eee4", bas="tac", bas_renk="#e0b040",
+        mumluk(t, 285, z, f, 3)
+        figur(t, kisi, 335, z, 3.1, govde="#f2eee4", bas="tac", bas_renk="#e0b040",
               sakal="#d8d0c8", yon=-1, silah="mizrak", kol=0.15 + 0.05 * SIN(f),
               pelerin="#8a1e22")                                              # Papa
 
@@ -394,11 +396,11 @@ def sahne102():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 150, 0, f)
+        kandil(t, 150, 0, f, 166)
         mumluk(t, 80, z, f, 3)
         mumluk(t, 220, z, f, 1)
 
-    sprite(102, "karakter", 300, 170, KARE, kare)
+    sprite(102, "karakter", 300, 300, KARE, kare)
 
 
 def sahne103():
