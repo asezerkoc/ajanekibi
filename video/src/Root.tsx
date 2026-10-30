@@ -11,6 +11,7 @@ import { T_FPS } from "./sahneler/TimurSeri";
 import { C29_FPS, C29_KARE, Cumhuriyet29 } from "./sahneler/Cumhuriyet29";
 import { KAL_KARE, Kalender } from "./sahneler/Kalender";
 import { KAL_LP_KARE, KalenderLowPoly } from "./sahneler/KalenderLowPoly";
+import { CEM_KARE, CemSultan } from "./sahneler/CemSultan";
 
 export const Root: React.FC = () => (
 	<>
@@ -35,6 +36,7 @@ export const Root: React.FC = () => (
 		<Composition id="Timur3" component={Timur3} durationInFrames={T3_KARE} fps={T_FPS} width={1080} height={1920} />
 		<Composition id="Cumhuriyet29" component={Cumhuriyet29} durationInFrames={C29_KARE} fps={C29_FPS} width={1080} height={1920} />
 		<Composition id="Kalender" component={Kalender} durationInFrames={KAL_KARE} fps={T_FPS} width={1080} height={1920} />
+		<Composition id="CemSultan" component={CemSultan} durationInFrames={CEM_KARE} fps={T_FPS} width={1080} height={1920} />
 		<Composition id="KalenderLowPoly" component={KalenderLowPoly} durationInFrames={KAL_LP_KARE} fps={T_FPS} width={1080} height={1920} />
 	</>
 );
