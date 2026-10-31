@@ -289,7 +289,7 @@ def parsomen_harita(img, x, zemin, s=1.0, renk=PARSOMEN, notlar=True, vurgu=None
     x0, y0 = x - w // 2, y - h
     lay, maske, nk = _harita_katmani(w, h, s, renk, notlar)
     if vurgu == "soguk":
-        mavi = Image.new("RGBA", (w, h), hex2("#6a9ad8", 110))
+        mavi = Image.new("RGBA", (w, h), hex2("#3a7ae8", 95))
         lay = Image.alpha_composite(lay, mavi)
     dl = ImageDraw.Draw(lay)
     if vurgu == "not":
@@ -712,7 +712,7 @@ def _su(t, y0, renkler, f, tohum=1, dalga=1.0, kopuk=True):
         for k in range(rnd.randint(3, 7)):
             piksel(t, x + k + kay, y, hex2("#c8e0f0", 110))
     for x in range(0, t.width if kopuk else 0, 2):                       # su yüzeyindeki köpük çizgisi
-        if _esik(x + int(f * 24), y0) < 0.5:
+        if _esik(x + int(f * 24), y0) < 0.22:
             piksel(t, x, y0, hex2("#e8f4fc", 170))
 
 
@@ -1174,8 +1174,8 @@ def sahne342():
         kandil(t, 262, 0, (f + 0.4) % 1, zincir=_kz(yk))
         ust = figur(t, taht, 250, z, round(0.62 * K, 1), renk="#c8a040", ortu="#3a2a6a")
         figur(t, oturan, 250, duz(ust, t.width), round(0.62 * K, 1), yon=-1, minder="#8a1e22", **KANUNI)
-        rahle(t, 204, z[0], round(0.55 * K, 1))
-        kitaplar(t, 222, z[0], round(0.4 * K, 1))
+        rahle(t, 200, z[0], round(0.85 * K, 1))
+        kitaplar(t, 222, z[0], round(0.6 * K, 1))
         figur(t, kisi, 152, z, K, **PIRI_KAPTAN, yon=1, kol=0.2 + 0.04 * SIN(f))
 
     _spr2(342, IW, IH, kare, yk)
@@ -1224,8 +1224,8 @@ def sahne343():
                ("#ffffff", "#f4ece0", "#d8ccb8"))
     uzak(343, ["#b08a66", "#a07c5a"], ["#c09a70", "#b08c64"], ["#5a8ab0", "#5282a8", "#4a7aa0"],
          dag_y=(440, 470), tepe_y=480, ova_y=494)
-    _liman(343, ("#4a7aa0", "#4272980", "#3a6a90")[:1] + ("#427298", "#3a6a90", "#34628a"), "#c8bca8",
-           [(175, 590, 2.0, YELKEN), (370, 586, 1.6, YELKEN)], tas="#a89a84")
+    _liman(343, ("#4a7aa0", "#427298", "#3a6a90", "#34628a"), "#c8bca8",
+           [(330, 584, 1.4, YELKEN), (272, 590, 1.8, YELKEN)], tas="#a89a84")
     yk = 2.8
     K = s_kisi(yk)
 
@@ -1240,7 +1240,7 @@ def sahne343():
 def _basra_uzak(no, gok, ova, hurma_renk):
     img = uzak(no, [ova[0], ova[1]], [ova[1], ova[0]], ova, dag_y=(484, 490), tepe_y=490, ova_y=494)
     for x in range(10, W, 23):                                             # karşı kıyıda hurmalık
-        figur(img, hurma, x + (x * 7) % 9, duz(492, W), 0.55 + 0.1 * ((x // 23) % 3), yaprak=hurma_renk,
+        figur(img, hurma, x + (x * 7) % 9, duz(492, W), 0.32 + 0.06 * ((x // 23) % 3), yaprak=hurma_renk,
               gov=_ac(hurma_renk[0], -0.2))
     kaydet(img, f"sahne{no}-uzak.png")
 
@@ -1383,9 +1383,6 @@ def sahne350():
     _kiyi_orta(350, ["#5a3a5a", "#523454", "#4a2e4e", "#422848"], "#3a2a34", ekle, kenar="#e8a090")
     _bos_on(350)
 
-    def sandiklar(t, f, ev):
-        if ev != "on":
-            return
     gemiler = [(150, SU - 12, 2.5, -1, "#e0c8b0", False, 0.3), (250, SU - 12, 2.5, -1, "#e0c8b0", False, 0.7),
                (200, SU, 3.0, -1, "#e8d0b8", False, 0.0)]
     _deniz_sprite(350, gemiler, ["#422848", "#3c2242", "#361e3c", "#301a36"], 2.4, ekle=_ganimet(gemiler))
@@ -1447,8 +1444,8 @@ def sahne356():
     _orta_deniz(356, 552, ["#24323e", "#202e3a", "#1c2a36", "#182632", "#14222c"], kenar="#8aa0b8")
     _bos_on(356)
     _hava(356, 340, "#a8b8cc", 0.4, parlama=(9, 10, 20))
-    _deniz_sprite(356, [(110, SU - 14, 2.2, 1, "#b8ac90", False, 0.6), (220, SU - 14, 2.2, 1, "#b8ac90", False, 0.2),
-                        (160, SU, 3.0, 1, "#c8bca0", False, 0.0)], FIRTINA_SU, 2.4, kopuk=2.2)
+    _deniz_sprite(356, [(156, SU - 14, 2.2, 1, "#b8ac90", False, 0.6), (262, SU - 14, 2.2, 1, "#b8ac90", False, 0.2),
+                        (200, SU, 3.0, 1, "#c8bca0", False, 0.0)], FIRTINA_SU, 2.4, kopuk=2.2)
 
 
 # ==========================================================================
@@ -1511,7 +1508,7 @@ def sahne353():
         figur(t, kitap_rafi, 264, arka, round(0.55 * K, 1), dolu=True, tohum=6)
         top = figur(t, masa, 202, z, round(0.5 * K, 1), ortu="#4a2a2a")
         kitaplar(t, 196, top, round(0.42 * K, 1))
-        figur(t, kagit_destesi, 150, z, round(0.6 * K, 1), kat=5, tohum=3)
+        figur(t, kagit_destesi, 150, z, round(0.32 * K, 1), kat=5, tohum=3)
         mumluk(t, 246, z, f, 1)
 
     _spr2(353, IW, IH, kare, yk, esik=0.6)
@@ -1537,7 +1534,7 @@ def sahne357():
     def kare(t, z, i):
         f = i / KARE
         arka = duz(z[0] - 8, DW)
-        figur(t, deve, 272, arka, round(0.9 * sa, 1), -1, faz=(f + 0.3) % 1, adim=0.4)
+        figur(t, deve, 262, arka, round(0.78 * sa, 1), -1, faz=(f + 0.3) % 1, adim=0.4)
         figur(t, atli, 200, z, sa, -1, faz=f, at_renk="#6a4a32", yele="#2a1a12", adim=0.4, **SEYDI_O)
         figur(t, kisi, 128, z, round(0.95 * K, 1), govde="#6a5a3a", bas="bork", bas_renk="#d8d0c0", sakal="#3a2a1a",
               yon=-1, adim=(f + 0.5) % 1)
@@ -1577,7 +1574,7 @@ def sahne359():
          dag_y=(440, 470), tepe_y=478, ova_y=494)
 
     def ekle(img, z):
-        figur(img, babusselam, PAY + 280, duz(586), 1.5)
+        figur(img, babusselam, PAY + 308, duz(586), 1.3)
 
     orta(359, (556, 560), ["#a8a090", "#9c9484", "#908878", "#847c6c", "#787060"], "#d8d0c0", ekle=ekle)
     on(359, ["#4a5a3a", "#566a42", "#62784a"], "#a8c888", boy=60)
@@ -1586,8 +1583,8 @@ def sahne359():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 176, z, K, **EDHEM, yon=1, adim=f)
-        figur(t, kisi, 224, z, round(0.97 * K, 1), govde="#4a3a2a", bas="sapka", bas_renk="#2a2a2a", sakal=None,
+        figur(t, kisi, 168, z, K, **EDHEM, yon=1, adim=f)
+        figur(t, kisi, 124, z, round(0.97 * K, 1), govde="#4a3a2a", bas="sapka", bas_renk="#2a2a2a", sakal=None,
               kemer=None, yon=1, adim=(f + 0.5) % 1)
 
     _spr2(359, DW, DH, kare, yk, esik=0.7)
@@ -1608,7 +1605,7 @@ def sahne360():
     def kare(t, z, i):
         f = i / KARE
         arka = duz(z[0] - 12, IW)
-        figur(t, kagit_destesi, 128, arka, round(0.55 * K, 1), kat=6, tohum=7)
+        figur(t, kagit_destesi, 122, arka, round(0.32 * K, 1), kat=6, tohum=7)
         figur(t, lamba, 286, arka, round(0.55 * K, 1), faz=f)
         figur(t, harita_masasi, 204, z, round(0.6 * K, 1))
         figur(t, kisi, 150, z, K, **EDHEM, yon=1, kol=0.1 + 0.04 * SIN(f))

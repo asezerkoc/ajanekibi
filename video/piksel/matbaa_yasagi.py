@@ -1287,8 +1287,8 @@ def sahne181():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 194, 0, f, zincir=_kz(p.yk))
-        figur(t, bos_rahle, 142, z, 3.6)
-        figur(t, acik_kitap, 240, z, 3.1, "oklid", f)
+        figur(t, bos_rahle, 156, z, 2.9)
+        figur(t, acik_kitap, 244, z, 2.9, "oklid", f)
 
     _spr(181, kare, esik=0.8)
 

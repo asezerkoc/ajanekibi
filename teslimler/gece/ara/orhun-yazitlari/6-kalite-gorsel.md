@@ -39,3 +39,57 @@ anlaşılmayan, uçan daireye benzeyen bir nesne. Sahibin 03:40 notu ("görselde
 ## Değerlendirme (sahibe gösterilecek)
 
 Video tarz olarak tutarlı: 64-bit piksel, belirgin konturlar ve şafak, gece, kar ve mum ışığı paletleriyle yüzyılların geçişi okunuyor. Taşın harflerinin altın ve kızıl ışıması anlatıyı güzel taşıyor. Bütün kartlar okunuyor, Türkçe harfler doğru, her kart doğru sahnede; havada duran nesne yok. Yine de beş karede gözünüze takılacak hata var: Bilge Kağan'ın ölüm sahnesinde kağan çocuk boyunda, Fin seferinde 1890'a uymayan bir sinema kamerası var, 150'de konuşulan taş kameranın arkasında kaybolmuş, 153'te kadın figürün yüzü yok, kapakta da ne olduğu anlaşılmayan, uçan daireye benzeyen bir nesne duruyor. Bunlar grafikere düzeltilmek üzere geri gönderildi; düzeltilmiş hâli yeniden kontrol edilmeden size gelmeyecek.
+
+## 2. tur: UYGUN DEĞİL (revize_birimi: grafiker)
+
+**İncelenen:** revizyondan sonra render edilen 28 sahne karesi (`qc-orhun-yazitlari/r2/sahne130 … sahne161`), kontak sayfası
+`qc-orhun-r2.png` ve ek kapak karesi `r2/kapak.png` (60. kare). 1. turda hiç bakılmamış 16 sahneye de bakıldı (132, 133, 135, 138, 139, 142,
+143, 145, 147, 148, 152, 154, 157, 159, 160, 161). 150, 135 ve 136 büyütülerek incelendi.
+
+Beş zorunlu düzeltmeden dördü tam yapılmış. Beşincisi (150) yarım kalmış: taş artık görünüyor ama makinenin objektifi taşın harfli yüzüne
+giriyor. 1. tur düzeltmesi "hiçbir figür ya da makine harfli yüzü örtmesin" diyordu; grafikerin notu da "harfli yüzü hiçbir şey örtmüyor" diyor,
+ama karede durum bu değil. Sahibin "görselde tek bir hatalı kare bile kabul değil" notu gereği iş geri dönüyor. Kalan iş tek sahne ve küçük.
+
+### 1. tur düzeltmelerinin durumu
+
+| # | Sahne | Durum | Karede görülen |
+|---|---|---|---|
+| 1 | 136 | Yapıldı | `sahne136`: Yatan kağanın başı (~130 px) hizmetkârın başıyla (~120 px) aynı boyda; battaniye boyu ayaktaki hizmetkârın boyuna yakın. Yana uzanan sakal yok. Sedir ayakları ve hizmetkârın ayakları zeminde (hizmetkâr arka sırada, daha yüksek zemin çizgisinde). Çocuk ya da oyuncak gibi okunmuyor. |
+| 2 | 150 | **Yarım** | `sahne150`: Taş ortada, açıkta ve büyük ölçüde görünüyor; objektif taşa dönük. Ama objektif ve körüğün ucu (x 390-515, y 870-950) taşın harfli yüzünün sağ yarısına giriyor, 4-6. satırlardaki son iki-üç harfi örtüyor. Objektif taşa dayanmış gibi duruyor. |
+| 3 | 144, 150 | Yapıldı | `sahne144` ve `sahne150`: Makaralı sinema kamerası gitmiş. Yerine ahşap kutulu, körüklü, pirinç objektifli, üç ayaklı ahşap sehpalı levhalı makine var; sehpa ayakları zeminde. Döneme uygun. |
+| 4 | 130 ve kapak | Yapıldı | `sahne130` ve `kapak.png`: Ovoo kaldırılmış, orta plan boş bozkır. Uçan daireye benzeyen nesne yok. Çiçekler de 0,15·K'ye inmiş (~100 px), insan ölçeğinde. |
+| 5 | 153 (ve 154) | Yapıldı | `sahne153`: Kadının yüzünde göz var. Beyaz başörtüsü alnı örtüyor, yüzü iki yandan çerçeveliyor. `sahne154`: mavi başörtülü kadının da gözü görünüyor. |
+
+1. turdaki iyileştirme önerileri de büyük ölçüde uygulanmış: 140'ta üç köşeli şapka, omuzda tüfek ve bağlı eller, iple çekilen esir; 155'te
+kıvrık saçaklı kapı köşkü olan Çin suru; 149 ve 158'de mum masanın içinde; 151'deki dinleyicinin sakalı koyu; 158'de Petersburg odası yeşil
+duvarlı ve penceresiz, Kopenhag'dan ayrılıyor; 134'te at başı yukarıda.
+
+### 1. turda görülmeyen 16 sahne
+
+Hiçbirinde havada duran nesne, okunmayan ya da kesilen yazı, yazı bandına giren figür yok. Türkçe karakterler doğru, her kart doğru sahnede.
+Figürler ve nesneler zemine basıyor; arka sıradakilerin (133'teki atlılar, 143'teki çadır ve taş, 145'teki taş, 151'deki dinleyiciler, 154'teki
+kalabalık, 155'teki sur, 157'deki otağlar) zemin çizgisi daha yüksekte, perspektife uygun. Tarz öteki sahnelerle tutarlı. 153'teki kart karede
+yarı saydam; bu kartın giriş geçişi, hata değil.
+
+### Zorunlu düzeltme (kare | yer | sorun | düzeltme)
+
+| # | Kare | Yer | Sorun | Düzeltme |
+|---|---|---|---|---|
+| 1 | `r2/sahne150` (sahne 150) | Orta, taşın harfli yüzü ile makinenin ön ucu (x 390-515, y 860-950) | Objektif ve körük taşın harfli yüzünün sağ yarısına giriyor, 4-6. satırların son harflerini örtüyor. Makine taşa dayanmış gibi; 1. tur düzeltme #2'nin "hiçbir figür ya da makine harfli yüzü örtmesin" şartı karşılanmıyor. | Objektifin ucu taşın sağ kenarının (x ≈ 520) en az 30 px sağında kalsın; makine ile taş arasında çimen görünsün. Bunun için körüğü kısalt, makine, sehpa ve fotoğrafçıyı sağa kaydır; yer açmak gerekirse Rus subayını fotoğrafçının arkasına, arka sıraya al. Kamera hareketi ve paralaks katmanları kaydırdığı için sahnenin başında, ortasında ve sonunda (3 kare) objektifin harflere girmediğini kontrol et. |
+
+### İyileştirme önerileri (reddetme nedeni değil; düzeltme sırasında yapılırsa iyi olur)
+
+- **sahne138 (Tonyukuk):** Asanın alt ucu y ≈ 1160'ta bitiyor, figürün ayakları y ≈ 1305'te; ihtiyarın asası yere değmiyor. Elde tutulduğu için havada durmuyor, ama yaşlı adamın asası yere basmalı. Asayı zemine kadar uzat.
+- **sahne150:** Sağdaki yeşil paltolu subayın önündeki dikey sopa (x 830-880, y 820-1300) bir ele bağlı değil; üst ucu fotoğrafçının sakalında bitiyor. Sopayı subayın eline ver (ya da omuza alınmış tüfek yap) ya da kaldır.
+- **sahne135:** Diz çöken yazıcının mavi kaftanı yerde geniş bir çan gibi açılıyor; dizi ve bacakları görünmediği için büyücü şapkasına benziyor. Önde bir diz ve yere değen bir ayak ucu çizilirse diz çöktüğü okunur.
+- **sahne145:** Radloff'un kasket siperi sağa doğru uzun, ince siyah bir çubuk gibi uzanıyor (x 610-680, y 740-760). Siperi kısalt.
+- **sahne143:** Sağdaki arka plan taşının kaplumbağa kaidesi sağ kenarda kesiliyor (x 1080). Taşı 40-60 px sola al.
+- **sahne140:** Soldaki Rus askerinin sol kolu boşluğa, kadraj dışına uzanıyor. Kolu tüfeğe ya da esire yönelt.
+
+### Değerlendirme (sahibe gösterilecek)
+
+Grafiker ilk turdaki beş hatadan dördünü tam düzeltti: Bilge Kağan artık hizmetkârıyla aynı boyda; 1890'a uymayan sinema kamerasının yerinde
+körüklü, ahşap bir fotoğraf makinesi var; kapaktaki uçan daireye benzeyen nesne kalktı; başörtülü kadının yüzü göründü. İlk turda bakılmayan
+16 sahneye de baktım; hepsi temiz, yazılar okunuyor, figürler yere basıyor. Tek bir sorun kaldı: Fin seferi sahnesinde (150) fotoğraf
+makinesinin objektifi taşın yazılı yüzüne girip birkaç harfi örtüyor, makine taşa dayanmış gibi görünüyor. Bu küçük bir yerleşim düzeltmesi;
+grafikere geri gönderildi, düzeltildikten sonra yalnız bu sahneye yeniden bakılıp size gelecek.
