@@ -22,7 +22,7 @@ export const IRLANDA_SERI: Seri = {
       no: 490, yakin: 2.8, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Bir padişah", "bin lira gönderiyor."], sure: 2.41, renk: ALTIN }, // kart 1
+        { satirlar: ["Bir padişah", "bin lira gönderiyor."], sure: 1.99, renk: ALTIN }, // kart 1
       ],
     },
     // efsane: gece, sisli nehirde üç soluk yelkenli (hayal gibi)
@@ -30,7 +30,7 @@ export const IRLANDA_SERI: Seri = {
       no: 491, yakin: 2.6, kamera: 10, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 8, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Bugün anlatılan hikâyede", "ise üç gizli gemi var.", "Bin lira nasıl gemi oluyor?"], sure: 5.17, renk: ALTIN }, // kart 2
+        { satirlar: ["Bugün anlatılan hikâyede", "ise üç gizli gemi var.", "Bin lira nasıl gemi oluyor?"], sure: 4.90, renk: ALTIN }, // kart 2
       ],
     },
     // defter yakın plan: kâtip kürsüsünde açık defter, mum
@@ -38,7 +38,7 @@ export const IRLANDA_SERI: Seri = {
       no: 492, yakin: 3.2, kamera: 4, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Oysa defterde", "hâlâ bin yazıyor."], sure: 2.34, renk: ALTIN }, // kart 3
+        { satirlar: ["Oysa defterde", "hâlâ bin yazıyor."], sure: 1.31, renk: ALTIN }, // kart 3
       ],
     },
     // İstanbul, 1847 baharı: saray bahçesinde erguvanlar, padişah yürür; uzakta Boğaz ve camiler
@@ -46,8 +46,8 @@ export const IRLANDA_SERI: Seri = {
       no: 493, yakin: 2.8, kamera: 10, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 14, x: [258, 284], taban: 632 },
       yazilar: [
-        { satirlar: ["İstanbul, 1847 baharı.", "Padişah Abdülmecid", "yirmi üç yaşında."], sure: 4.11 }, // kart 4
-        { satirlar: ["On altı yaşından beri tahtta.", "Nisan sonunda", "yirmi dört olacak."], sure: 4.31 }, // kart 5
+        { satirlar: ["İstanbul, 1847 baharı.", "Padişah Abdülmecid", "yirmi üç yaşında."], sure: 5.54 }, // kart 4
+        { satirlar: ["On altı yaşından beri tahtta.", "Nisan sonunda", "yirmi dört olacak."], sure: 3.84 }, // kart 5
       ],
     },
     // İstanbul: kahvehane önü, peykede gazete okuyanlar
@@ -55,7 +55,7 @@ export const IRLANDA_SERI: Seri = {
       no: 494, yakin: 2.8, kamera: 8, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 10, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["İstanbul gazeteleri", "uzak bir adayı yazıyor:", "İrlanda."], sure: 3.65 }, // kart 6
+        { satirlar: ["İstanbul gazeteleri", "uzak bir adayı yazıyor:", "İrlanda."], sure: 3.15 }, // kart 6
       ],
     },
     // İrlanda, 1845 sonbaharı: çürüyen patates tarlası, köylü kazar; taş kulübe
@@ -63,7 +63,7 @@ export const IRLANDA_SERI: Seri = {
       no: 495, yakin: 2.8, kamera: 8, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 10, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["İrlanda'da patates 1845", "sonbaharından beri çürüyor.", "Ada aç."], sure: 4.11, renk: KIZIL }, // kart 7
+        { satirlar: ["İrlanda'da patates 1845", "sonbaharından beri çürüyor.", "Ada aç."], sure: 4.82, renk: KIZIL }, // kart 7
       ],
     },
     // göç yolu: bohçalı aile limana yürür; geride damı çökmüş boş kulübe
@@ -71,8 +71,8 @@ export const IRLANDA_SERI: Seri = {
       no: 496, yakin: 2.6, kamera: 12, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 14, x: [286, 254], taban: 632 },
       yazilar: [
-        { satirlar: ["Kıtlık bittiğinde yaklaşık", "bir milyon ölü, bir milyon", "göçmen olacak."], sure: 4.71, renk: KIZIL }, // kart 8
-        { satirlar: ["Sekiz milyonluk ada", "altı buçuk milyona inecek."], sure: 3.33, renk: KIZIL }, // kart 9
+        { satirlar: ["Kıtlık bittiğinde yaklaşık", "bir milyon ölü, bir milyon", "göçmen olacak."], sure: 5.65, renk: KIZIL }, // kart 8
+        { satirlar: ["Sekiz milyonluk ada", "altı buçuk milyona inecek."], sure: 2.33, renk: KIZIL }, // kart 9
       ],
     },
     // Londra, Ocak 1847: yardım derneğinin odası, beyefendiler masa başında
@@ -80,7 +80,7 @@ export const IRLANDA_SERI: Seri = {
       no: 497, yakin: 2.8, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Londra, Ocak 1847.", "Bir yardım derneği kuruluyor."], sure: 3.46 }, // kart 10
+        { satirlar: ["Londra, Ocak 1847.", "Bir yardım derneği kuruluyor."], sure: 4.70 }, // kart 10
       ],
     },
     // Kraliçe Victoria (taç) bağışını kâğıtla uzatır; saray odası
@@ -88,7 +88,7 @@ export const IRLANDA_SERI: Seri = {
       no: 498, yakin: 3.0, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Kraliçe Victoria", "iki bin sterlin veriyor.", "İlk bağışçılardan."], sure: 4.18 }, // kart 11
+        { satirlar: ["Kraliçe Victoria", "iki bin sterlin veriyor.", "İlk bağışçılardan."], sure: 3.59 }, // kart 11
       ],
     },
     // aynı dernek odası: kâtip deftere yazar
@@ -96,7 +96,7 @@ export const IRLANDA_SERI: Seri = {
       no: 497, yakin: 2.8, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Dernek sonunda yaklaşık", "dört yüz yetmiş bin", "sterlin toplayacak."], sure: 4.38 }, // kart 12
+        { satirlar: ["Dernek sonunda yaklaşık", "dört yüz yetmiş bin", "sterlin toplayacak."], sure: 3.65 }, // kart 12
       ],
     },
     // İstanbul: Osmanlı nazırı bağış kesesini İngiliz elçisi Wellesley'e emanet eder
@@ -104,7 +104,7 @@ export const IRLANDA_SERI: Seri = {
       no: 499, yakin: 2.8, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Aynı bahar, İstanbul.", "İngiliz elçisi Wellesley'e", "bir bağış emanet ediliyor."], sure: 5.17 }, // kart 13
+        { satirlar: ["Aynı bahar, İstanbul.", "İngiliz elçisi Wellesley'e", "bir bağış emanet ediliyor."], sure: 4.52 }, // kart 13
       ],
     },
     // Londra: kâtip yüksek yazı kürsüsünde deftere yazar
@@ -112,7 +112,7 @@ export const IRLANDA_SERI: Seri = {
       no: 500, yakin: 3.0, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Gönderen padişah. Tutar: bin.", "Londra defterine", "bin sterlin diye geçiyor."], sure: 4.97 }, // kart 14
+        { satirlar: ["Gönderen padişah. Tutar: bin.", "Londra defterine", "bin sterlin diye geçiyor."], sure: 5.27 }, // kart 14
       ],
     },
     // Osmanlı kâtibi rahlede kayıt düşer; sedir ve mum
@@ -120,7 +120,7 @@ export const IRLANDA_SERI: Seri = {
       no: 501, yakin: 3.0, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Osmanlı arşivindeki kayıt", "ise bin lira diyor.", "Sterlin değil, lira."], sure: 4.57 }, // kart 15
+        { satirlar: ["Osmanlı arşivindeki kayıt", "ise bin lira diyor.", "Sterlin değil, lira."], sure: 3.78 }, // kart 15
       ],
     },
     // iki defter yan yana: deri ciltli İngiliz defteri ve kırmızı ciltli Osmanlı defteri
@@ -128,7 +128,7 @@ export const IRLANDA_SERI: Seri = {
       no: 502, yakin: 3.2, kamera: 4, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["İki imparatorluk aynı iyiliği", "kendi parasıyla yazıyor."], sure: 3.85, renk: ALTIN }, // kart 16
+        { satirlar: ["İki imparatorluk aynı iyiliği", "kendi parasıyla yazıyor."], sure: 3.51, renk: ALTIN }, // kart 16
       ],
     },
     // Dublin, 1847: soylular masada teşekkür mektubunu imzalar
@@ -136,8 +136,8 @@ export const IRLANDA_SERI: Seri = {
       no: 503, yakin: 2.8, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Dublin, 1847. İrlanda'nın", "soyluları ve beyefendileri", "bir mektup imzalıyor."], sure: 5.10 }, // kart 17
-        { satirlar: ["Aç bir ülkenin soyluları,", "genç bir padişaha", "teşekkür ediyor."], sure: 4.18 }, // kart 18
+        { satirlar: ["Dublin, 1847. İrlanda'nın", "soyluları ve beyefendileri", "bir mektup imzalıyor."], sure: 6.92 }, // kart 17
+        { satirlar: ["Aç bir ülkenin soyluları,", "genç bir padişaha", "teşekkür ediyor."], sure: 3.59 }, // kart 18
       ],
     },
     // bugün: kütüphane, camlı vitrinde mektup; bir okur bakar
@@ -145,7 +145,7 @@ export const IRLANDA_SERI: Seri = {
       no: 504, yakin: 2.8, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Mektubun aslı bugün", "İstanbul'da. Sureti Dublin'de,", "Ulusal Kütüphane'de."], sure: 4.90 }, // kart 19
+        { satirlar: ["Mektubun aslı bugün", "İstanbul'da. Sureti Dublin'de,", "Ulusal Kütüphane'de."], sure: 4.32 }, // kart 19
       ],
     },
     // Drogheda, Mayıs 1847: Boyne kıyısında taş rıhtım, karşı kıyıda kasaba
@@ -153,7 +153,7 @@ export const IRLANDA_SERI: Seri = {
       no: 505, yakin: 2.6, kamera: 8, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 8, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Drogheda, Mayıs 1847.", "Boyne nehri kıyısında", "bir liman kasabası."], sure: 4.38 }, // kart 20
+        { satirlar: ["Drogheda, Mayıs 1847.", "Boyne nehri kıyısında", "bir liman kasabası."], sure: 5.71 }, // kart 20
       ],
     },
     // üç yabancı yelkenli rıhtıma yanaşır; rıhtımda halat bekleyen hamallar
@@ -161,7 +161,7 @@ export const IRLANDA_SERI: Seri = {
       no: 506, yakin: 2.6, kamera: 8, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 8, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Üç yabancı gemi yanaşıyor.", "İkisi Selanik'ten, biri", "Prusya'daki Stettin'den."], sure: 5.17 }, // kart 21
+        { satirlar: ["Üç yabancı gemi yanaşıyor.", "İkisi Selanik'ten, biri", "Prusya'daki Stettin'den."], sure: 4.57 }, // kart 21
       ],
     },
     // rıhtımda tahıl çuvalları, tüccar defteriyle; biri gazete okur
@@ -169,8 +169,8 @@ export const IRLANDA_SERI: Seri = {
       no: 507, yakin: 2.8, kamera: 8, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 10, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Ambarlarda buğday ve mısır.", "Alıcılar kasabanın", "tüccarları."], sure: 4.05 }, // kart 22
-        { satirlar: ["Kasabanın gazeteleri", "\"yabancı gemiler\" yazıyor.", "Padişahın adı yok."], sure: 4.57 }, // kart 23
+        { satirlar: ["Ambarlarda buğday ve mısır.", "Alıcılar kasabanın", "tüccarları."], sure: 4.21 }, // kart 22
+        { satirlar: ["Kasabanın gazeteleri", "\"yabancı gemiler\" yazıyor.", "Padişahın adı yok."], sure: 4.08 }, // kart 23
       ],
     },
     // Selanik limanı: Beyaz Kule, minareler; demirli yelkenli
@@ -178,7 +178,7 @@ export const IRLANDA_SERI: Seri = {
       no: 508, yakin: 2.6, kamera: 8, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 8, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Selanik ise o yıllarda", "bir Osmanlı limanı.", "Bu üç gemiyi aklınızda tutun."], sure: 4.97, renk: ALTIN }, // kart 24
+        { satirlar: ["Selanik ise o yıllarda", "bir Osmanlı limanı.", "Bu üç gemiyi aklınızda tutun."], sure: 4.38, renk: ALTIN }, // kart 24
       ],
     },
     // New York, 1849: tuğla binalar, gazete satan çocuk
@@ -186,7 +186,7 @@ export const IRLANDA_SERI: Seri = {
       no: 509, yakin: 2.8, kamera: 8, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 10, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["New York, 21 Temmuz 1849.", "Olaydan iki yıl sonra,", "okyanusun öbür yakası."], sure: 4.90 }, // kart 25
+        { satirlar: ["New York, 21 Temmuz 1849.", "Olaydan iki yıl sonra,", "okyanusun öbür yakası."], sure: 6.76 }, // kart 25
       ],
     },
     // basımhane: demir el baskı makinesi, baskıcı kolu çeker, çırak kâğıt alır
@@ -194,7 +194,7 @@ export const IRLANDA_SERI: Seri = {
       no: 510, yakin: 2.8, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Albion gazetesi yazıyor:", "Padişah başta on bin sterlin", "ve erzak gemileri önermişti."], sure: 5.63 }, // kart 26
+        { satirlar: ["Albion gazetesi yazıyor:", "Padişah başta on bin sterlin", "ve erzak gemileri önermişti."], sure: 5.21 }, // kart 26
       ],
     },
     // rivayet: aynı salonda elçi elini kaldırıp araya girer
@@ -202,7 +202,7 @@ export const IRLANDA_SERI: Seri = {
       no: 499, yakin: 2.8, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Rivayete göre İngiliz elçisi", "araya girmiş:", "Kimse Kraliçe'yi geçemez."], sure: 4.71 }, // kart 27
+        { satirlar: ["Rivayete göre İngiliz elçisi", "araya girmiş:", "Kimse Kraliçe'yi geçemez."], sure: 4.58 }, // kart 27
       ],
     },
     // gece: defterin üstünde katlanmış gazete, mum
@@ -210,7 +210,7 @@ export const IRLANDA_SERI: Seri = {
       no: 511, yakin: 3.2, kamera: 4, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["On bin, 1847 belgelerinde yok.", "Defterde bin yazıyor.", "Ama hikâye artık yolda."], sure: 5.23, renk: KIZIL }, // kart 28
+        { satirlar: ["On bin, 1847 belgelerinde yok.", "Defterde bin yazıyor.", "Ama hikâye artık yolda."], sure: 5.54, renk: KIZIL }, // kart 28
       ],
     },
     // Londra, 1851: yazar masasında biyografiyi yazar; kitap yığını
@@ -218,7 +218,7 @@ export const IRLANDA_SERI: Seri = {
       no: 512, yakin: 2.8, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["1851'de Londra'da eski", "Başbakan Peel'in", "biyografisine giriyor."], sure: 4.31 }, // kart 29
+        { satirlar: ["1851'de Londra'da eski", "Başbakan Peel'in", "biyografisine giriyor."], sure: 5.46 }, // kart 29
       ],
     },
     // Drogheda, yıllar sonra: kasaba sokağında kasketli adamlar konuşur
@@ -226,7 +226,7 @@ export const IRLANDA_SERI: Seri = {
       no: 513, yakin: 2.8, kamera: 8, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 10, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Drogheda, yıllar sonra.", "Kasabada başka bir hikâye", "dolaşıyor."], sure: 4.18 }, // kart 30
+        { satirlar: ["Drogheda, yıllar sonra.", "Kasabada başka bir hikâye", "dolaşıyor."], sure: 3.83 }, // kart 30
       ],
     },
     // efsane: soluk üç gemi gece nehirde
@@ -234,7 +234,7 @@ export const IRLANDA_SERI: Seri = {
       no: 491, yakin: 2.6, kamera: 10, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 8, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Efsaneye göre o üç gemi", "padişahındı, gizlice gelmişti;"], sure: 3.85 }, // kart 31
+        { satirlar: ["Efsaneye göre o üç gemi", "padişahındı, gizlice gelmişti;"], sure: 3.09 }, // kart 31
       ],
     },
     // efsane: kasaba kapısında hilal ve yıldızlı kalkan (soluk, hayal gibi)
@@ -242,7 +242,7 @@ export const IRLANDA_SERI: Seri = {
       no: 514, yakin: 2.6, kamera: 8, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 8, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["kasaba da teşekkür için", "armasına hilal ve yıldız", "koymuştu."], sure: 4.05 }, // kart 32
+        { satirlar: ["kasaba da teşekkür için", "armasına hilal ve yıldız", "koymuştu."], sure: 4.14 }, // kart 32
       ],
     },
     // 1844: tarihçi D'Alton masasında kitabını yazar
@@ -250,7 +250,7 @@ export const IRLANDA_SERI: Seri = {
       no: 515, yakin: 2.8, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Ama hilal ve yıldız", "yardımdan üç yıl önce", "bir kitapta zaten var."], sure: 4.44, renk: KIZIL }, // kart 33
+        { satirlar: ["Ama hilal ve yıldız", "yardımdan üç yıl önce", "bir kitapta zaten var."], sure: 3.45, renk: KIZIL }, // kart 33
       ],
     },
     // mühür yakın planı: kürsüde belge, kırmızı balmumu mühürde hilal ve yıldız
@@ -258,7 +258,7 @@ export const IRLANDA_SERI: Seri = {
       no: 516, yakin: 3.2, kamera: 4, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["1844. Tarihçi D'Alton", "belediye başkanının mührünü", "yazıyor: hilal ve yıldız."], sure: 5.17 }, // kart 34
+        { satirlar: ["1844. Tarihçi D'Alton", "belediye başkanının mührünü", "yazıyor: hilal ve yıldız."], sure: 6.54 }, // kart 34
       ],
     },
     // 13. yüzyıl: Kral John taçlı, eski armalı sancak ve kalkan; taş kale
@@ -266,8 +266,8 @@ export const IRLANDA_SERI: Seri = {
       no: 517, yakin: 2.6, kamera: 8, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 10, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Arma uzmanları onu İngiltere", "Kralı John'un nişanına", "bağlıyor: on üçüncü yüzyıl."], sure: 5.43 }, // kart 35
-        { satirlar: ["Yardımdan yaklaşık", "altı yüz yıl önce."], sure: 2.73, renk: ALTIN }, // kart 36
+        { satirlar: ["Arma uzmanları onu İngiltere", "Kralı John'un nişanına", "bağlıyor: on üçüncü yüzyıl."], sure: 5.28 }, // kart 35
+        { satirlar: ["Yardımdan yaklaşık", "altı yüz yıl önce."], sure: 2.29, renk: ALTIN }, // kart 36
       ],
     },
     // arşiv: boş raflar, fenerle arayan arşivci
@@ -275,7 +275,7 @@ export const IRLANDA_SERI: Seri = {
       no: 518, yakin: 2.8, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Peki gemiler için belge?", "Türk, İrlanda arşivleri: yok.", "Drogheda liman kayıtları: yok."], sure: 5.82, renk: KIZIL }, // kart 37
+        { satirlar: ["Peki gemiler için belge?", "Türk, İrlanda arşivleri: yok.", "Drogheda liman kayıtları: yok."], sure: 5.08, renk: KIZIL }, // kart 37
       ],
     },
     // yerel tarihçi kitaplarla dolu odasında; elinde açık kitap
@@ -283,8 +283,8 @@ export const IRLANDA_SERI: Seri = {
       no: 519, yakin: 2.8, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Kasabanın bir tarihçisi", "padişahın gemilerini", "olası buluyor."], sure: 4.11 }, // kart 38
-        { satirlar: ["O bile belge olmadığını", "kabul ediyor.", "Hikâye yine de durmuyor."], sure: 4.31, renk: KIZIL }, // kart 39
+        { satirlar: ["Kasabanın bir tarihçisi", "padişahın gemilerini", "olası buluyor."], sure: 4.43 }, // kart 38
+        { satirlar: ["O bile belge olmadığını", "kabul ediyor.", "Hikâye yine de durmuyor."], sure: 3.43, renk: KIZIL }, // kart 39
       ],
     },
     // Drogheda, 1995: West Street'te otel cephesi, plaket; belediye başkanı ve büyükelçi
@@ -292,9 +292,9 @@ export const IRLANDA_SERI: Seri = {
       no: 520, yakin: 2.8, kamera: 8, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 10, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Drogheda, 2 Mayıs 1995.", "West Street'te bir plaket", "açılıyor."], sure: 4.11 }, // kart 40
-        { satirlar: ["Belediye başkanı ve Türk", "büyükelçisi yan yana."], sure: 3.33 }, // kart 41
-        { satirlar: ["Plaket, Türk halkının", "cömertliğini anıyor."], sure: 3.06 }, // kart 42
+        { satirlar: ["Drogheda, 2 Mayıs 1995.", "West Street'te bir plaket", "açılıyor."], sure: 6.11 }, // kart 40
+        { satirlar: ["Belediye başkanı ve Türk", "büyükelçisi yan yana."], sure: 3.32 }, // kart 41
+        { satirlar: ["Plaket, Türk halkının", "cömertliğini anıyor."], sure: 2.57 }, // kart 42
       ],
     },
     // Ankara, 2010: resmî yemek, uzun masa; Cumhurbaşkanı ayakta konuşur
@@ -302,8 +302,8 @@ export const IRLANDA_SERI: Seri = {
       no: 521, yakin: 2.8, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Ankara, 23 Mart 2010.", "İrlanda Cumhurbaşkanı Mary", "McAleese resmî bir yemekte."], sure: 5.23 }, // kart 43
-        { satirlar: ["Üç gemi dolusu yiyeceği", "ve armayı anlatıyor."], sure: 3.19 }, // kart 44
+        { satirlar: ["Ankara, 23 Mart 2010.", "İrlanda Cumhurbaşkanı Mary", "McAleese resmî bir yemekte."], sure: 6.89 }, // kart 43
+        { satirlar: ["Üç gemi dolusu yiyeceği", "ve armayı anlatıyor."], sure: 3.16 }, // kart 44
       ],
     },
     // ertesi gün: ofiste basın görevlisi düzeltme metnini okur
@@ -311,7 +311,7 @@ export const IRLANDA_SERI: Seri = {
       no: 522, yakin: 3.0, kamera: 6, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Ertesi gün ofisi düzeltiyor:", "Arma bağı doğru görünmüyor.", "İddia ancak bir gün dayanıyor."], sure: 5.95, renk: KIZIL }, // kart 45
+        { satirlar: ["Ertesi gün ofisi düzeltiyor:", "Arma bağı doğru görünmüyor.", "İddia ancak bir gün dayanıyor."], sure: 5.26, renk: KIZIL }, // kart 45
       ],
     },
     // 1861: boş taht, sönmeye yüz tutmuş şamdanlar
@@ -319,8 +319,8 @@ export const IRLANDA_SERI: Seri = {
       no: 523, yakin: 2.8, kamera: 4, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Peki padişah?", "1861'de veremden ölüyor.", "Otuz sekiz yaşında."], sure: 4.05, renk: KIZIL }, // kart 46
-        { satirlar: ["İyiliği onsuz", "büyümeye devam ediyor.", "Her anlatımda biraz daha."], sure: 4.31 }, // kart 47
+        { satirlar: ["Peki padişah?", "1861'de veremden ölüyor.", "Otuz sekiz yaşında."], sure: 5.73, renk: KIZIL }, // kart 46
+        { satirlar: ["İyiliği onsuz", "büyümeye devam ediyor.", "Her anlatımda biraz daha."], sure: 3.93 }, // kart 47
       ],
     },
     // belgeler masası: defter, teşekkür mektubu ve mühür
@@ -328,8 +328,8 @@ export const IRLANDA_SERI: Seri = {
       no: 524, yakin: 3.2, kamera: 4, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Belge ne diyor? Bin lira.", "Kraliçe'nin iki bini.", "Bir teşekkür mektubu."], sure: 4.77 }, // kart 48
-        { satirlar: ["Mektup bin sterline", "teşekkür ediyor.", "Gemilere değil."], sure: 3.65, renk: ALTIN }, // kart 49
+        { satirlar: ["Belge ne diyor? Bin lira.", "Kraliçe'nin iki bini.", "Bir teşekkür mektubu."], sure: 4.45 }, // kart 48
+        { satirlar: ["Mektup bin sterline", "teşekkür ediyor.", "Gemilere değil."], sure: 3.08, renk: ALTIN }, // kart 49
       ],
     },
     // Drogheda: kasaba sokağı (hikâye eklenir)
@@ -337,7 +337,7 @@ export const IRLANDA_SERI: Seri = {
       no: 513, yakin: 2.8, kamera: 8, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 10, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Gerisini iki yıl sonra bir", "gazete, yıllar sonra bir", "kasaba ekliyor."], sure: 4.64 }, // kart 50
+        { satirlar: ["Gerisini iki yıl sonra bir", "gazete, yıllar sonra bir", "kasaba ekliyor."], sure: 4.50 }, // kart 50
       ],
     },
     // defter yakın plan (motif)
@@ -345,7 +345,7 @@ export const IRLANDA_SERI: Seri = {
       no: 492, yakin: 3.2, kamera: 4, yaziY: 250,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Defterde hâlâ bin yazıyor."], sure: 2.08, renk: ALTIN }, // kart 51
+        { satirlar: ["Defterde hâlâ bin yazıyor."], sure: 1.11, renk: ALTIN }, // kart 51
       ],
     },
     // efsanenin üç gemisi soluklaşır
@@ -353,7 +353,7 @@ export const IRLANDA_SERI: Seri = {
       no: 491, yakin: 2.6, kamera: 10, yaziY: 250,
       sprite: { w: 400, h: 220, fps: 8, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Sizce hangisi daha uzun yaşar:", "belgedeki bin lira mı,", "efsanedeki üç gemi mi?"], sure: 5.23, renk: ALTIN }, // kart 52
+        { satirlar: ["Sizce hangisi daha uzun yaşar:", "belgedeki bin lira mı,", "efsanedeki üç gemi mi?"], sure: 5.95, renk: ALTIN }, // kart 52
       ],
     },
   ],

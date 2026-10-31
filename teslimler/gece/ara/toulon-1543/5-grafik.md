@@ -109,3 +109,23 @@ Kamera notu: kuşbakışı masa sahnelerinde (478, 481, 485) `odakY: 560`, kamer
 - Uzak katman motor gereği sahne boyunca yavaşça sola kayar. Bu yüzden uzak plandaki küçük kadırgalar (456, 459) birkaç piksel yer değiştirir; hiçbiri figürlerle çakışmaz.
 - Matrakçı minyatürü temsilîdir; gerçek minyatürün kopyası değildir.
 - Remotion render'ı alınmadı (`Root.tsx`'e kayıt kod tarafında). Önizlemeler Python birleşimiyle yapıldı. `npx tsc --noEmit -p .` temiz geçti.
+
+## Görsel KK revizyonu (6-kalite-gorsel.md'deki 6 zorunlu düzeltme ve öneriler)
+
+`Toulon1543.tsx`'e dokunulmadı (sese hizalı). Yalnızca `toulon_1543.py` ve sprite'lar değişti. Bütün sahneler yeniden çizildi: kenar, yazı bandı ve taban denetimleri geçti, `tsc` temiz. Değişen 13 sahnenin önizlemesine tek tek baktım.
+
+| # | Sahne | Düzeltme |
+|---|---|---|
+| 1 | 458 | Atlılara yeni figür `zirhli_atli`: yüzü açık 16. yy morion miğfer (yuvarlak kubbe, sırt, iki ucu kalkık siperlik). Göz 2×2 piksel ve net, sakal açıkta. İki atlı birbirinden ayrılıyor: öndeki açık gri miğferli, beyaz tüylü; arkadaki koyu miğferli, mavi tüylü. Sivri miğfer kaldırıldı. |
+| 2 | 464 | Surlar uzak plana alındı (orta planın uzak kenarı, 556). Kapıda kalan adam da aynı derinlikte ve surla aynı ölçekte (s 1,0): kapı adamın yaklaşık iki katı, kuleler daha da yüksek. Sur kadrajın içinde bitiyor (`_gorunur`). Yürüyenler 4 kişi (2 kadın, 2 çocuk); adamla üst üste binmiyorlar. |
+| 3 | 479, 480, 483 | Zeytin ağacı çıkarıldı. Ağacı insandan uzun çizmek yazı bandına giriyordu. Yerine ön planda alçak çalılar var (yeni figür `cali`); bir çalının insandan kısa olması doğal. |
+| 4 | 479, 480, 483 | Lipari yeniden kuruldu. Kale kayası koyun karşı kıyısında duruyor; yakın kıyı ile kaya arasında su şeridi var, karşı kıyı pusla soluklaştırıldı. Böylece kale ve evlerin küçüklüğü uzaklık olarak okunuyor. Kenara dayanan ev dizisi kaldırıldı; kayanın dibindeki iki küçük ev kümesi kadrajın içinde bitiyor (`_gorunur`). Kaya, katedral kulesi yazı bandının altında kalacak kadar alçaltıldı. |
+| 5 | 481 | Rakam yerleşimi sayfa içine sabitlendi: cilt çizgisinden en az 2 px uzakta. Sayfaya sığmazsa betik durur (`assert`). "11000" tamamen sağ sayfada. |
+| 6 | 486 | Tek kadırga kaldı, ölçeği büyütüldü (s 0,45 → 0,8). Gövde kıyıdaki 5 ev genişliğinde, direk ev boyunun yaklaşık iki katı. Kadırga kadrajın içinde (`_gorunur`). Rıhtımla arasında su bandı korundu; adamla arası açık. |
+
+**İyileştirmeler**
+- **480:** Levend artık ön planda, esirlerden ayrı duruyor. Elinde (kaldırılmamış) değnek var, yüzü esirlere dönük; bekçi olduğu okunuyor.
+- **465, 469, 486:** Direkteki sokak fenerleri kaldırıldı. 465 ve 486'da adam elinde fener taşıyor (`el_feneri`). 469'da fener katedral duvarındaki demir kolda asılı (`duvar_feneri`).
+- **472:** Rahibe dört köşeli biret verildi (471'de de); babanın başında kırmızı keçe kalpak var.
+- **468:** Kadırga sıraları seyreltildi, aralarına su bırakıldı (3 sıra: 40/54/74 px aralık). Kaynağı belirsiz duman sütunu kaldırıldı.
+- **478, 485:** Kâğıtlar 24 px aşağı alındı; böylece üstteki koyulaşma bandının altında kalıyorlar.

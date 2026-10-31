@@ -12,6 +12,7 @@ import { C29_FPS, C29_KARE, Cumhuriyet29 } from "./sahneler/Cumhuriyet29";
 import { KAL_KARE, Kalender } from "./sahneler/Kalender";
 import { KAL_LP_KARE, KalenderLowPoly } from "./sahneler/KalenderLowPoly";
 import { CEM_KARE, CemSultan } from "./sahneler/CemSultan";
+import { IRLANDA_KARE, IrlandaKitligi } from "./sahneler/IrlandaKitligi";
 import { TOULON_KARE, Toulon1543 } from "./sahneler/Toulon1543";
 import { DON_VOLGA_KARE, DonVolga } from "./sahneler/DonVolga";
 import { RAZIYE_KARE, RaziyeSultan } from "./sahneler/RaziyeSultan";
@@ -56,6 +57,7 @@ export const Root: React.FC = () => (
 		<Composition id="RaziyeSultan" component={RaziyeSultan} durationInFrames={RAZIYE_KARE} fps={T_FPS} width={1080} height={1920} />
 		<Composition id="DonVolga" component={DonVolga} durationInFrames={DON_VOLGA_KARE} fps={T_FPS} width={1080} height={1920} />
 		<Composition id="Toulon1543" component={Toulon1543} durationInFrames={TOULON_KARE} fps={T_FPS} width={1080} height={1920} />
+		<Composition id="IrlandaKitligi" component={IrlandaKitligi} durationInFrames={IRLANDA_KARE} fps={T_FPS} width={1080} height={1920} />
 		<Composition id="KalenderLowPoly" component={KalenderLowPoly} durationInFrames={KAL_LP_KARE} fps={T_FPS} width={1080} height={1920} />
 		<Composition id="Fetih1453" component={Fetih1453} durationInFrames={F_KARE} fps={F_FPS} width={1920} height={1080} />
 	</>

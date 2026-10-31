@@ -32,3 +32,41 @@ Dört zorunlu düzeltme var: oyuncak boyunda bir tekne, esiri bıçaklıyormuş 
 ## Değerlendirme (sahibe gösterilecek)
 
 Video genelde SKONSTART tarzında: 64-bit piksel, konturlar net, sahneler aynı paletle tutarlı. Kişiler renk kimlikleriyle ayrışıyor (Sokollu yeşil ve ak sakallı, Kasım Paşa hardal ve kara sakallı, Maltsev gri-mavi ve kahve sakallı). Yazılar her karede okunuyor, Türkçe karakterler doğru ve kartlar sahnelerle örtüşüyor. Ancak dört karede, daha önce reddettiğiniz türden hatalar var: Perevoloka'da karadan çekilen gemi oyuncak boyunda, kadırgada nöbetçinin kılıcı esir elçiye saplanmış gibi duruyor, 1569 Moskova'sında masada bir fotoğraf var ve Don'daki kadırgalardan biri kadrajın kenarında kesiliyor. Grafiker bu dördünü düzeltince ok saldırısı ve 1948 sahneleriyle birlikte yeniden bakacağım; size ancak ondan sonra gösterilmeli.
+
+## 2. tur
+
+**Bakılan kareler:** r2 klasöründeki 13 sahne ortası (250, 254, 255, 258, 260, 261, 272, 276, 277, 279, 283, 285, 287) ve 3 ek render: 254'ün başı ve sonu (kare 2125, 2378), 261'in son yakınlaşması (kare 5248). Gerektiğinde kareler yakınlaştırılarak tek tek açıldı. 276 ve 283'ün r2'deki orta kareleri geçişe denk gelmedi, ikisi de temiz.
+
+### Karar: UYGUN DEĞİL (revize_birimi: grafiker)
+
+Birinci turdaki dört zorunlu düzeltme yapılmış ve kabul edildi. Ancak iki karede ana sahneyi taşıyan figürlerin yüzünde göz yok. Bu, daha önce reddedilen hata türlerinden biri ve düzeltmesi birkaç piksel.
+
+### Birinci turun zorunlu düzeltmeleri
+
+| # | Sahne | Durum | Not |
+|---|---|---|---|
+| 1 | 254 Perevoloka | **Kabul** | Tekne artık kütüklere oturan, direği yatırılmış bir nehir gemisi. Halat burundan çekenlerin omzuna eğimle iniyor; gemi ve çekenler aynı zemin hattında (taban y≈1135). Ölçüm: görünen gövde x 225-805, yani yaklaşık 2,6-3 çeken boyu. Grafikerin yazdığı "dört boy" değil, ama kıç Kasım Paşa'nın arkasında kaldığı için gerçek boy biraz daha uzun. **Kural çakışması kararı:** 9:16 kadrajda dört-beş insan boyunda bir gemi ile %30 boyunda insanlar aynı derinlikte olamaz. Bu yüzden %30 kuralını öndeki Kasım Paşa'nın karşılaması (y 730-1305, kadrajın %30'u), ölçeği ise gemi derinliğindeki çekenlerin vermesi kabul edildi. Gemi, kütükler ve çekenler kendi aralarında tutarlı; artık oyuncak gibi okunmuyor. |
+| 2 | 260 kılıç | **Kabul** | Kılıç kınında, belden aşağı iniyor (x 590-720, y 1100-1220). Hiçbir figür bir başkasına değmiyor; Maltsev ile yeniçeri arasında yaklaşık 45 piksel boşluk var. |
+| 3 | 279 masa | **Kabul** | Fotoğraf kalktı. Masada açık sayfa, kâğıt tomarı, hokka ve yanan mum var. Maltsev masanın başında, tüy kalemi kâğıdın üstünde. Tavandaki avize üst kenarda kesiliyor, ama tavana asılı olduğu için doğal. |
+| 4 | 261 arka kadırga | **Kabul** | Sahne ortasında ve son yakınlaşmada üç kadırga da kadrajın içinde (sol arka x 100-370, sağ arka x 700-900). |
+
+### Zorunlu düzeltmeler (kare | yer | sorun | düzeltme)
+
+| # | Kare / sahne | Kadrajın neresi | Sorun | Düzeltme |
+|---|---|---|---|---|
+| 1 | `r2/sahne272.png` · sahne 272 (Rus takviyesi haberi) | Atlının yüzü, x 495-555, y 765-800 | Sahnenin tek ana figürü olan atlının profil yüzünde göz yok: sivri börk ile sakal arasında düz ten rengi bir şerit var. Atın gözü eklenmiş, binicininki eklenmemiş. | Yüze 1-2 piksellik koyu bir göz ekle. Diğer figürlerde olduğu gibi göz, börk kenarının bir piksel altında ve burun tarafında olsun. |
+| 2 | `r2/sahne254.png` · sahne 254 | İki çeken, x 830-1020, y 945-960 | Gemiyi çeken iki adamın yüzünde göz yok: börk ile sakal arasında yalnızca ince bir ten şeridi kalıyor. Bu figürler sahnenin ölçek referansı ve gözsüz halleriyle maske takmış gibi okunuyor. | Börkü 1-2 piksel yukarı al ya da sakalı aşağı indir, ten şeridine birer koyu göz pikseli koy. 276'daki arka plan atlıları da aynı kalıpta; onlara da eklenirse iyi olur (bkz. öneriler). |
+
+### İyileştirme önerileri
+
+- **254:** Kasım Paşa'nın uzanan eli (x 230-285, y 1000-1025) teknenin gövdesinde bitiyor ve gemiye dokunuyormuş gibi okunuyor. Gemiyi 60-80 piksel sağa almak ya da Paşa'yı sola kaydırmak, eli boşluğa ve kıçı görünür hale getirir; gemi de daha uzun okunur. Ayrıca ilk çekenin sol kenarı son kütüğe (x≈835) değiyor; 10 piksel sağa alınmalı. Çekenler dimdik duruyor; öne eğik gövde "çekme" hareketini güçlendirir.
+- **250:** Çadır sağa alınmış, kazma artık çadıra binmiyor. Ama çadır şimdi Sokollu'nun uzanan elinin tam ucunda (x 570-735, y 910-1020): Paşa elinde küçük bir çadır maketi tutuyormuş gibi görünüyor. Çadır x≈950'ye ya da ufukta daha yukarı alınmalı.
+- **261 (son kare 5248):** Ana kadırganın mahmuz ucu sağ kenara 3 piksel kalıyor (x≈1077). Kesilmiyor, ama son yakınlaşmada 20 piksel pay bırakılması daha güvenli olur.
+- **272:** Arka plandaki çadır ve uzak atlılar sol (x 0-35) ve sağ (x 1060-1080) kenarda yarım kalıyor. Kayan parallaks katmanında oldukları için hata sayılmadı.
+- **276:** Arka plandaki Kazak/Çerkes atlılarının yüzleri koyu börk ile sakal arasında kayboluyor; göz pikseli eklenmeli. Sahne temiz: ok yerdeki askere saplı, uçan oklar havada mermi olarak doğal, ayakta duran asker kalkanıyla zemine oturuyor ve kimse kimseye değmiyor.
+- **283:** Sahne temiz ve 1948'e uygun: kazma, kürek, dikenli tel, yastıklı ceketler. Yalnızca sağdaki yeşil figürün miğferinin üstünde gri, kubbe biçimli ikinci bir başlık kenarı var (x 840-940, y 800-850); çift şapka gibi duruyor, silinmeli.
+- **Önceki öneriler:** 255 adası su şeridiyle ayrıldı. 258 atlarında göz var. 285'te su hazneyi dolduruyor. 287'de ziyaretçi silueti heykelin büyüklüğünü veriyor ve kaideye değmiyor. 260'ta kürekler suya iniyor. Bunlar uygulanmış ve iyi görünüyor.
+
+### Değerlendirme (sahibe gösterilecek)
+
+Grafiker ilk turdaki dört hatayı düzeltti. Perevoloka'daki gemi artık kütüklerin üstünde, halatla çekilen gerçek bir nehir gemisi. Kadırgadaki kılıç kınında, Moskova masasındaki fotoğraf yerini hokka, kâğıt ve muma bıraktı, Don'daki kadırgaların hepsi kadrajda. Ok saldırısı ve 1948 sahnelerine bu turda temiz karelerde baktım; ikisi de sorunsuz. Geriye tek tür bir hata kaldı: Rus takviyesi sahnesindeki atlının ve Perevoloka'da gemiyi çeken iki adamın yüzünde göz yok. Birkaç piksellik bu düzeltme yapılınca video size gösterilebilir.
