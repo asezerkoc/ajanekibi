@@ -247,9 +247,9 @@ def _sac(d, x, by, r, s, yon, renk, favori=False):
     d.chord([x - r - 1, by - r - 1, x + r + 1, by + r // 3], 180, 360, fill=hex2(renk))
     ax = x - r * yon
     d.rectangle([min(ax, ax + (r // 3) * yon), by - r // 2, max(ax, ax + (r // 3) * yon), by + r // 3], fill=hex2(renk))
-    if favori:                                                 # 1840'lar: yanak boyunca favori
-        fx = x - int(0.2 * r) * yon
-        d.rectangle([min(fx, fx - _u(0.5, s) * yon), by + 1, max(fx, fx - _u(0.5, s) * yon), by + r - 1], fill=hex2(renk))
+    if favori:                                                 # 1840'lar: ense tarafında, kulak hizasında uzun favori
+        fx = x - (r - 1) * yon
+        d.rectangle([min(fx, fx + _u(0.4, s) * yon), by, max(fx, fx + _u(0.4, s) * yon), by + int(r * 0.7)], fill=hex2(renk))
 
 
 def beyefendi(img, x, zemin, s=1.0, govde="#2a2a34", bas=None, bas_renk="#b8201e", sac="#3a2a1e", sakal=None,
@@ -581,9 +581,9 @@ def sandalye(img, x, zemin, s=1.0, renk="#4a2c18", minder="#7a1e22"):
 
 
 def oturan_masada(img, x, zemin, s, cizen, **kw):
-    """Masada oturan: figür, ayakları masanın arkasında (görünmez) kalacak biçimde 4.5·s alçaltılarak çizilir; masa
-    sonra önüne çizilir. Kaşık figür (beyefendi/hanim) parametreleri kw ile."""
-    alt = [v + int(4.5 * s) for v in zemin]
+    """Masada oturan: figür, ayakları masanın arkasında (görünmez) kalacak biçimde 3.2·s alçaltılarak çizilir; masa
+    sonra önüne çizilir (örtülü masa: bacaklar görünmez). Çizilen figür (beyefendi/hanim) parametreleri kw ile."""
+    alt = [v + int(3.2 * s) for v in zemin]
     cizen(img, x, alt, s, **kw)
 
 
@@ -1589,7 +1589,7 @@ def sahne494():
     def kare(t, z, i):
         f = i / KARE
         u = figur(t, peyke, 168, z, round(k * 0.62, 1))
-        figur(t, oturan_fesli, 172, duz(u, t.width), round(k * 0.95, 1), govde="#4a3a2a", sakal="#3a2a1a", yon=1, gazete=True)
+        figur(t, oturan_fesli, 172, duz(u, t.width), round(k * 0.8, 1), govde="#4a3a2a", sakal="#3a2a1a", yon=1, gazete=True)
         figur(t, beyefendi, 250, z, k, govde="#2a3a4a", bas="fes", bas_renk="#a8201e", sac="#2a1a12", biyik="#2a1a12", yon=-1,
               kol=0.05 + 0.05 * (1 + SIN(f)))
 
@@ -1608,19 +1608,19 @@ def sahne495():
     uzak_tepe(no, TEPE_IRL, 540)
 
     def ekle(img, z):
-        figur(img, kulube, PAY + 330, z, 3.4)
+        figur(img, kulube, PAY + 300, z, 3.4)
         rnd = random.Random(5)
         for row, y in enumerate(range(574, 600, 6)):
             for x in range(4, GW, 9):
                 patates(img, x + rnd.randint(-2, 2), duz(y, GW), 1.0 + row * 0.25, 1.0, tohum=x + y)
-    _orta_gorunur(no, [(PAY + 330 - 45, PAY + 330 + 45)])
+    _orta_gorunur(no, [(PAY + 300 - 45, PAY + 300 + 45)])
     zemin_orta(no, 562, ["#5a4a36", "#524230", "#4a3c2a", "#423424"], "tarla", ekle)
     _bos(no, "on")
     k = K(no)
 
     def kare(t, z, i):
         f = i / KARE
-        for x in range(124, 280, 13):
+        for x in range(132, 272, 13):
             patates(t, x, z, round(k * 0.6, 1), 1.0, faz=f, tohum=x)
         figur(t, beyefendi, 168, z, k, govde="#5a4a32", sac="#3a2a1a", sakal="#4a3420", yon=1, silah="kurek",
               kol=0.25 + 0.2 * SIN(f))
@@ -1665,7 +1665,7 @@ def sahne497():
         f = i / KARE
         kandil(t, 200, 0, f, _kz(no))
         oturan_masada(t, 200, z, k, beyefendi, **LONDRA_1, yon=1)
-        u = figur(t, masa, 200, z, k, ortu="#2a4a2a", gen=4.0, yuk=6.2)
+        u = figur(t, masa, 200, z, k, ortu="#2a4a2a", gen=4.0, yuk=5.0)
         for j, x in enumerate((186, 204)):
             kagit(t, x, u, k * 0.4)
         figur(t, beyefendi, 142, z, k, **LONDRA_2, yon=1, kol=0.25 + 0.12 * (1 + SIN(f)))
@@ -1792,7 +1792,7 @@ def sahne503():
     def kare(t, z, i):
         f = i / KARE
         oturan_masada(t, 200, z, k, beyefendi, govde="#2a2a3a", sac="#9a9a98", favori=True, yon=1, kol=0.32 + 0.04 * SIN(f, 2))
-        u = figur(t, masa, 200, z, k, ortu="#3a2a4a", gen=4.4, yuk=6.2)
+        u = figur(t, masa, 200, z, k, ortu="#3a2a4a", gen=4.4, yuk=5.0)
         d = ImageDraw.Draw(t)
         d.rectangle([194, u - int(0.8 * k), 214, u - 1], fill=hex2("#f0e6d0"), outline=hex2("#8a7a5a"))
         piksel(t, 210, u - 2, hex2("#b8281e"))
@@ -1812,9 +1812,9 @@ def sahne504():
     def kare(t, z, i):
         f = i / KARE
         lamba_tavan(t, 205, 0, f, _kz(no))
-        figur(t, raf, 146, z, round(k * 0.55, 1), tohum=504, kat=4, gen=8)
+        figur(t, raf, 153, z, round(k * 0.55, 1), tohum=504, kat=4, gen=8)
         figur(t, vitrin, 207, z, round(k * 0.62, 1))
-        figur(t, hanim, 262, z, k, elbise="#3a5a6a", sac="#5a3a22", yon=-1, etek=0.75, topuz=False, kol=0.08)
+        figur(t, hanim, 258, z, k, elbise="#3a5a6a", sac="#5a3a22", yon=-1, etek=0.75, topuz=False, kol=0.08)
 
     _bitir(no, kare, orta_denetle=False)
 
@@ -1847,7 +1847,7 @@ def sahne505():
     def kare(t, z, i):
         f = i / KARE
         figur(t, cuval_yigini, 150, z, round(k * 0.42, 1), (2, 1))
-        figur(t, beyefendi, 205, z, k, govde="#2a2a2a", bas="silindir", sac="#5a3a20", favori=True, yon=1, kol=0.03 * (1 + SIN(f)))
+        figur(t, beyefendi, 205, z, round(k * 0.9, 1), govde="#2a2a2a", bas="silindir", sac="#5a3a20", favori=True, yon=1, kol=0.03 * (1 + SIN(f)))
         figur(t, beyefendi, 258, z, k, govde="#5a4a3a", bas="kasket", bas_renk="#3a3a3a", sac="#3a2a1a", yon=-1)
 
     _bitir(no, kare)
@@ -1865,8 +1865,8 @@ def sahne506():
 
     def kare(t, z, i):
         f = i / KARE
-        gemi_suda(t, 134, kenar - 18, 1.6, (f + 0.5) % 1, rf, ust, alt=kenar, acik=0.0, govde="#2a2420", serit="#c8b890")
-        gemi_suda(t, 250, kenar - 11, 2.1, (f + 0.25) % 1, rf, ust, yon=-1, alt=kenar, acik=0.5, govde="#1e1e24", serit="#d8d0b8")
+        gemi_suda(t, 148, kenar - 18, 1.6, (f + 0.5) % 1, rf, ust, alt=kenar, acik=0.0, govde="#2a2420", serit="#c8b890")
+        gemi_suda(t, 244, kenar - 11, 2.1, (f + 0.25) % 1, rf, ust, yon=-1, alt=kenar, acik=0.5, govde="#1e1e24", serit="#d8d0b8")
         gemi_suda(t, 180, kenar - 5, 2.7, f, rf, ust, alt=kenar, acik=0.0, govde="#241c18", serit="#e0d8c0", bayrak="#3a5a8a")
         for j, x in enumerate((150, 196, 236)):
             figur(t, beyefendi, x, z, 0.9, govde=("#5a4a3a", "#4a4a4a", "#6a5a40")[j], bas="kasket", bas_renk="#3a3a3a",
@@ -1924,9 +1924,9 @@ def sahne508():
     su = ("#3a7ab0", "#3472a8", "#2e6aa0", "#286298")
 
     def on_ekle(img, z):
-        figur(img, beyaz_kule, PAY + 205, z, 3.0)
+        figur(img, beyaz_kule, PAY + 216, z, 3.0)
     liman_orta(no, su, tas="#c8bca4", kenar="#e8e0d0", ust_su=548, ekle_on=on_ekle)
-    _orta_gorunur(no, [(PAY + 205 - 24, PAY + 205 + 24)])
+    _orta_gorunur(no, [(PAY + 216 - 24, PAY + 216 + 24)])
     _bos(no, "on")
     b = P(no)
     ust = b["taban"] - b["h"]
@@ -1935,7 +1935,11 @@ def sahne508():
 
     def kare(t, z, i):
         f = i / KARE
-        gemi_suda(t, 248, kenar - 5, 2.4, f, rf, ust, yon=-1, alt=kenar, acik=0.0, govde="#2a2420", serit="#e0d8c0")
+        gemi_suda(t, 236, kenar - 5, 2.4, f, rf, ust, yon=-1, alt=kenar, acik=0.0, govde="#2a2420", serit="#e0d8c0")
+        for j, x in enumerate((168, 204)):                                   # rıhtımda fesli iki hamal (gemi ölçeğinde)
+            figur(t, beyefendi, x, z, 0.9, govde=("#5a4a3a", "#3a4a5a")[j], bas="fes", bas_renk="#a8201e", yon=(1, -1)[j],
+                  kol=0.15 + 0.1 * SIN(f + j * 0.4))
+        figur(t, cuval_yigini, 228, z, 0.8, (2, 1))
 
     _bitir(no, kare, esik=0.7)
 
@@ -2019,9 +2023,9 @@ def sahne512():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 206, 0, f, _kz(no))
-        figur(t, raf, 140, z, round(k * 0.55, 1), tohum=512, kat=4, gen=7)
+        figur(t, raf, 147, z, round(k * 0.55, 1), tohum=512, kat=4, gen=7)
         oturan_masada(t, 222, z, k, beyefendi, govde="#2a2a34", sac="#7a7a78", favori=True, yon=-1, kol=0.3 + 0.03 * SIN(f, 2))
-        u = figur(t, masa, 222, z, k, renk="#4a2c18", gen=4.2, yuk=6.0)
+        u = figur(t, masa, 222, z, k, renk="#4a2c18", ortu="#5a2e1e", gen=4.2, yuk=5.0)
         figur(t, kitaplar_yigini, 206, duz(u, t.width), round(k * 0.55, 1), 3, 512)
         mum(t, 240, u, f, 1.6)
 
@@ -2086,7 +2090,7 @@ def sahne515():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 200, 0, f, _kz(no))
-        figur(t, raf, 140, z, round(k * 0.55, 1), tohum=515, kat=4, gen=7)
+        figur(t, raf, 147, z, round(k * 0.55, 1), tohum=515, kat=4, gen=7)
         u = figur(t, masa, 202, z, k, renk="#5a3418", gen=3.8, yuk=6.2)
         d = ImageDraw.Draw(t)
         d.rectangle([188, u - 2, 206, u - 1], fill=hex2("#f0e6d0"), outline=hex2("#5a2e1e"))       # açık kitap
@@ -2166,8 +2170,8 @@ def sahne518():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, raf, 146, z, round(k * 0.55, 1), dolu=False, tohum=518, kat=4, gen=7)
-        figur(t, raf, 256, z, round(k * 0.55, 1), dolu=False, tohum=519, kat=4, gen=7)
+        figur(t, raf, 150, z, round(k * 0.55, 1), dolu=False, tohum=518, kat=4, gen=7)
+        figur(t, raf, 250, z, round(k * 0.55, 1), dolu=False, tohum=519, kat=4, gen=7)
         figur(t, beyefendi, 200, z, k, govde="#3a3a42", sac="#5a4a3a", yon=1, kol=0.35)
         ex, ey = _el(200, z, k, 1, 0.35)
         fener_el(t, ex, ey, f, k * 0.5)
@@ -2185,7 +2189,7 @@ def sahne519():
     def kare(t, z, i):
         f = i / KARE
         lamba_tavan(t, 205, 0, f, _kz(no))
-        figur(t, raf, 140, z, round(k * 0.55, 1), tohum=520, kat=4, gen=7)
+        figur(t, raf, 147, z, round(k * 0.55, 1), tohum=520, kat=4, gen=7)
         u = figur(t, masa, 202, z, k, renk="#6a4a2a", gen=3.6, yuk=6.0)
         figur(t, kitaplar_yigini, 196, duz(u, t.width), round(k * 0.55, 1), 4, 519)
         figur(t, beyefendi, 258, z, k, govde="#5a3a2a", sac="#9a9a96", yon=-1, silah="mektup", kol=0.3 + 0.05 * SIN(f),
@@ -2230,7 +2234,7 @@ def sahne521():
         oturan_masada(t, 146, z, k, beyefendi, govde="#22283a", sac="#5a5a58", yon=1, kravat="#2a3a6a")
         figur(t, hanim, 200, z, k, elbise="#2a6a4a", sac="#c8a878", yon=1, etek=0.7, topuz=False, kol=0.25 + 0.15 * (1 + SIN(f)))
         oturan_masada(t, 254, z, k, beyefendi, govde="#1e1e24", sac="#2a2018", biyik="#2a2018", yon=-1, kravat="#b8201e")
-        u = figur(t, masa, 200, z, k, ortu="#f4f0e6", gen=11.0, yuk=6.0)
+        u = figur(t, masa, 200, z, k, ortu="#f4f0e6", gen=11.0, yuk=5.0)
         for x in (146, 254):
             kagit(t, x, u, k * 0.35, renk="#ffffff")
 

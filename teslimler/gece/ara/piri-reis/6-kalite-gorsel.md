@@ -120,3 +120,10 @@ Tek bir şeyi geri çeviriyorum: 1929 Topkapı sahnesinde Halil Edhem ve yanınd
 - Aden ve Umman kıyıları çıplak, kaleler kadrajın içinde, kenarlarda yarım nesne kalmadı.
 
 Tek bir yeni sorun var. Basra rıhtımına eklenen iki hurma, önlerindeki insanların yarısından kısa çizilmiş; videonun son karesinde oyuncak gibi duruyorlar. Grafiker bu hurmaları rıhtımdan kaldırıp uzak kıyıya doğru ölçekte koyduğunda video teslime hazır.
+
+## 3. tur: UYGUN
+Sahne 335, 346, 349 ve 354 yeni karelerle kontrol edildi:
+- 349 ve 354: hurmalar rıhtımdan kalkmış, karşı kıyıda uzak ölçekte duruyor. Ölçek hatası giderilmiş, yazı bandına girmiyorlar.
+- 335: Piri'nin kalemli eli parşömenin üstünde, şamdan kadraj içinde.
+- 346: Portekiz gemileri kalenin sağında, açık suda. Bayraklar yazıdan uzak.
+Kalan zorunlu düzeltme: yok. Render'a gidebilir.

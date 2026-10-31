@@ -187,3 +187,10 @@ PiriReis.tsx'teki `sure` değerlerine ve kart metinlerine dokunulmadı; onlar se
 - `python3 -I video/piksel/piri_reis.py` 38 sahnenin hepsini yeniden çizdi (çıkış 0); taban, kadraj ve yazı bandı denetimleri geçti.
 - Önizleyiciyle şu sahnelere baktım: 332, 335, 338, 344, 345, 346, 349, 354, 359, 360, 362, 364, 366.
 - `npx tsc --noEmit -p .` temiz.
+
+## Görsel KK 2. tur revizyonu
+
+- **349 ve 354 (zorunlu):** Rıhtımdaki iki hurma kaldırıldı. Karşı kıyıya, su çizgisinin üstüne alçak bir kıyı şeridi çizildi; üstünde uzak ölçekte (yaklaşık 30 px) seyrek ve düzensiz aralıklı hurmalar var. Gövdeleri kahverengi, yaprakları yeşil (349'da koyu yeşil-mor). Hepsi yazı bandının altında kalıyor.
+- **335:** Şamdan 20 px içeri alındı. Piri'nin kalemli kolu masanın önünde ayrı katman olarak çizildi: omuzdan parşömenin üstüne uzanıyor, kalemin ucu parşömene değiyor.
+- **346:** Portekiz gemileri uzak plandan orta plana, kalenin sağındaki açık suya alındı. Uzak plan aktığı için gemiler kaleyle örtüşüyordu ve bayrakları yazıya değiyordu; şimdi ikisi de yok.
+- 335, 346, 349 ve 354 yeniden çizildi; denetimler geçti. PiriReis.tsx'e dokunulmadı.

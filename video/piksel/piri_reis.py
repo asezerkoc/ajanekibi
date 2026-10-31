@@ -976,7 +976,7 @@ def sahne331():
 # ==========================================================================
 # 332 · kart 4 · Korsan kadırgasının güvertesi: genç Piri ve amcası Kemal Reis; uzakta İspanya kıyısı ve kale
 # ==========================================================================
-def _deniz_uzak(no, gok_alt, deniz, tepe, dag_y=(452, 476), tepe_y=480, ova_y=490, kale=None, gemiler=()):
+def _deniz_uzak(no, gok_alt, deniz, tepe, dag_y=(452, 476), tepe_y=480, ova_y=490, kale=None, gemiler=(), gemi_dy=0):
     img = uzak(no, [tepe[0], tepe[1]], [tepe[1], tepe[0]], deniz, dag_y=dag_y, tepe_y=tepe_y, ova_y=ova_y)
     d = ImageDraw.Draw(img)
     if kale:
@@ -985,7 +985,7 @@ def _deniz_uzak(no, gok_alt, deniz, tepe, dag_y=(452, 476), tepe_y=480, ova_y=49
         figur(img, anadolu_kalesi, x0, x1, duz(ova_y - 3, W), s_, tas=tas, golge=_ac(tas, -0.25), kapi=True)
     for x, s_, yelken, port in gemiler:
         if port:
-            portekiz_gemisi(img, x, ova_y + int(6 * s_), s_, 1, 0.0)
+            portekiz_gemisi(img, x, ova_y + int(6 * s_) + gemi_dy, s_, 1, 0.0)
         else:
             figur(img, gemi, x, ova_y + int(6 * s_), s_, 1, 0.0, govde=GOVDE, yelken=yelken, hac=False)
     kaydet(img, f"sahne{no}-uzak.png")
@@ -1096,9 +1096,19 @@ def sahne335():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 262, 0, f, zincir=_kz(yk))
-        mumluk(t, 292, z, f, 2)
+        mumluk(t, 268, z, f, 2)
         figur(t, oturan, 168, z, so, yon=1, el="kalem", minder="#8a2a2a", **PIRI_1513)
-        figur(t, harita_masasi, 168 + int(8.2 * so), z, round(0.5 * so, 1))
+        tx = 168 + int(8.2 * so)
+        py = figur(t, harita_masasi, tx, z, round(0.5 * so, 1))
+        # kalemli kol: omuzdan parşömenin üstüne (masanın önünde ayrı katman); kalemin ucu parşömene değer
+        d = ImageDraw.Draw(t)
+        omuz = (168 + int(1.2 * so), z[0] - int(1.6 * so) - int(8.2 * so))
+        el = (tx - int(1.5 * so) + int(SIN(f) * 0.8 * so), py - _u(0.6, so))
+        d.line([*omuz, *el], fill=hex2(PIRI_1513["govde"]), width=_u(1.1, so))
+        d.line([omuz[0], omuz[1] + _u(0.9, so), el[0], el[1] + 1], fill=hex2("#1e4250"))
+        d.ellipse([el[0] - _u(0.8, so), el[1] - _u(0.8, so), el[0] + _u(0.8, so), el[1] + _u(0.4, so)], fill=hex2("#d6a07a"),
+                  outline=hex2("#8a5a3a"))
+        d.line([el[0] + _u(0.6, so), el[1] - _u(1.6, so), el[0] + _u(1.4, so), el[1]], fill=hex2("#c8a868"))
 
     _spr2(335, IW, IH, kare, yk)
 
@@ -1279,7 +1289,7 @@ def sahne342():
 RIHTIM = 600
 
 
-def _liman(no, su_renk, kenar, gemiler, ekle=None, tas="#7a6e60", hurmalar=()):
+def _liman(no, su_renk, kenar, gemiler, ekle=None, tas="#7a6e60", kiyi=None):
     """Orta plan: deniz (556'dan), demirli kadırgalar su çizgisine oturur; önde düz taş rıhtım (600)."""
     def _ekle(img, z):
         d = ImageDraw.Draw(img)
@@ -1292,6 +1302,15 @@ def _liman(no, su_renk, kenar, gemiler, ekle=None, tas="#7a6e60", hurmalar=()):
                 piksel(img, x + k, y, hex2("#c8dcec", 80))
         if ekle:
             ekle(img, z)
+        if kiyi:                                                              # karşı kıyı: alçak şerit, seyrek hurmalar
+            renk, yap, gov = kiyi
+            d.rectangle([0, 550, GW, 557], fill=hex2(renk))
+            d.line([0, 550, GW, 550], fill=hex2(_ac(renk, 0.2)))
+            rnd = random.Random(no)
+            x = PAY + 150
+            while x < PAY + 420:                                              # uzak ölçek: ~30 px, yazı bandının altında
+                figur(img, hurma, x, duz(556), rnd.uniform(0.85, 1.1), egim=rnd.choice((-1, 1)), yaprak=yap, gov=gov)
+                x += rnd.randint(22, 48)
         for x, su, s_, yelken in gemiler:
             figur(img, gemi, PAY + x, su, s_, 1, 0.0, govde=GOVDE, yelken=yelken, hac=False)
         d.rectangle([0, RIHTIM, GW, H], fill=hex2(tas))
@@ -1303,8 +1322,6 @@ def _liman(no, su_renk, kenar, gemiler, ekle=None, tas="#7a6e60", hurmalar=()):
         for bx in (PAY + 110, PAY + 300, PAY + 450):                          # babalar: rıhtıma oturur
             d.rectangle([bx - 3, RIHTIM - 7, bx + 3, RIHTIM + 1], fill=hex2("#3a3634"))
             d.rectangle([bx - 4, RIHTIM - 9, bx + 4, RIHTIM - 7], fill=hex2("#4a4644"))
-        for x, s_, egim, yap in hurmalar:                                     # rıhtımdaki hurmalar: düzensiz aralık
-            figur(img, hurma, PAY + x, duz(RIHTIM + 6), s_, egim=egim, yaprak=yap, gov=_ac(yap[0], -0.1))
     orta(no, (552, 556), [su_renk[0]] * 5, su_renk[0], ekle=_ekle)
     _bos_on(no)
 
@@ -1346,7 +1363,7 @@ def sahne349():
     _basra_uzak(349, None, ["#6a5a70", "#5e5066", "#54465c"], ("#2a2a2a", "#34302e", "#3e3a34"))
     _liman(349, ("#6a5a7a", "#5e5070", "#544866", "#4a405c"), "#a89aa8",
            sorted(BASRA_FILO, key=lambda g: g[1]), tas="#5a5258",
-           hurmalar=[(202, 1.5, 1, ("#2a2a2a", "#34302e", "#3e3a34")), (340, 1.35, -1, ("#2a2a2a", "#34302e", "#3e3a34"))])
+           kiyi=("#4a3a48", ("#3a4a3a", "#4a3a52", "#5a4a5e"), "#5a4030"))
     yk = 2.8
     K = s_kisi(yk)
 
@@ -1364,8 +1381,7 @@ def sahne354():
                ("#ffffff", "#eef0f4", "#c8ccd8"))
     _basra_uzak(354, None, ["#7a94a8", "#728ca0", "#6a8498"], ("#3a4a32", "#46583a", "#526642"))
     _liman(354, ("#6a8aa4", "#62829c", "#5a7a94", "#52728c"), "#c8c8c0", sorted(BASRA_FILO, key=lambda g: g[1]),
-           tas="#8a8478", hurmalar=[(202, 1.5, 1, ("#3a5a2a", "#4a6a32", "#5a7a3a")),
-                                    (340, 1.35, -1, ("#3a5a2a", "#4a6a32", "#5a7a3a"))])
+           tas="#8a8478", kiyi=("#7a8a6a", ("#3a5a2a", "#4a6a32", "#5a7a3a"), "#6a5034"))
     yk = 2.8
     K = s_kisi(yk)
 
@@ -1429,9 +1445,11 @@ def sahne346():
     _sahne_gok(346, ["#5a7aa8", "#7890b0", "#9aa4b0", "#bab4a8", "#d4c0a0"], [(110, 404, 22), (420, 408, 20)],
                ("#fff4e4", "#e8d8c8", "#c8b4a8"))
     _deniz_uzak(346, None, ["#4a6a90", "#446288", "#3e5a80"], ["#8a8a8a", "#7a7a7a"], dag_y=(486, 490), tepe_y=490,
-                ova_y=492, gemiler=[(250, 0.55, None, True), (282, 0.5, None, True), (314, 0.55, None, True)])
+                ova_y=492)
     _kiyi_orta(346, ["#3e6288", "#385a80", "#325278", "#2c4a70"], "#a08a6a",
-               lambda img, z: figur(img, anadolu_kalesi, PAY + 186, PAY + 316, z, 1.4, tas="#b8a888", golge="#8a7a62"))
+               lambda img, z: [figur(img, anadolu_kalesi, PAY + 186, PAY + 316, z, 1.4, tas="#b8a888", golge="#8a7a62")]
+               + [portekiz_gemisi(img, PAY + x, 574, s_, -1, 0.0) for x, s_ in ((336, 0.6), (362, 0.55))])
+    # Portekiz gemileri orta planda, kalenin sağında açık suda (uzak planda kaydıklarında kalenin üstüne biniyorlardı)
     _bos_on(346)
     _deniz_sprite(346, [(126, SU - 12, 2.4, -1, YELKEN, False, 0.4), (200, SU, 3.0, -1, YELKEN, False, 0.0)],
                   ["#325278", "#2c4a70", "#264268", "#203a60"], 2.4)
