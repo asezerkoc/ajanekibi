@@ -1423,7 +1423,7 @@ def sahne381():
     _orta_deniz(381, 552, ("#3e628a", "#34567c", "#2c4c70", "#264466"))
     _on_bos(381)
     p = P[381]
-    s = 4.4                           # açık kanatlar uçtan uca görünür aralığa 8 px payla sığsın (görsel KK)
+    s = 4.2                           # açık kanatlar uçtan uca görünür aralığa 8 px payla sığsın (görsel KK)
     su = p.h - 14
 
     def kare(t, z, i):

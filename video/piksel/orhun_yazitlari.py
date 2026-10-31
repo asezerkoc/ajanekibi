@@ -1091,31 +1091,34 @@ def sahne149():
 
 
 def sahne150():
-    """Kart 27: bozkırda taşın iki yanında üç grup: solda Türkolog Radloff, sağda levhalı makinesi taşa dönük Fin
-    fotoğrafçı ve Rus subayı. Hepsi taşa bakar; hiçbiri çözümü yayımlamaz."""
+    """Kart 27: bozkırda solda taş; sağda, taştan açık bir boşlukla ayrı, objektifi taşa dönük levhalı makine ve Fin
+    fotoğrafçı; arkalarında Türkolog Radloff ve Rus subayı. Hepsi taşa bakar; hiçbiri çözümü yayımlamaz."""
     yk = 2.6
-    K = _K(150, yk)
+    K = _K(150, yk, 0.27)                 # KK 2. tur: taş ile makine arasında boşluk için figürler %27
     _dis(150, "aksam")
-    st = _yazit_s(150, yk, 0.36, geri=14)
-    TAS_X, BOSLUK = 160, 12
+    st = _yazit_s(150, yk, 0.33, geri=14)
+    BOSLUK = 12                            # objektif ucu ile taşın sağ kenarı arası (ızgara px, ekranda ~60 px)
     g = yeni(400, 230)
-    tas(g, TAS_X, duz(229 - 14, 400), st, tohum=1)
-    tas_sag = _bb(g)[2]
+    tas(g, 200, duz(229 - 14, 400), st, tohum=1)
+    bb = _bb(g)
+    TAS_X = 200 + (108 - bb[0])            # taşın sol kenarı yerel x 108'da
+    tas_sag = bb[2] + (TAS_X - 200)
     m = yeni(400, 230)
     figur(m, fotograf_makinesi, 300, duz(229, 400), K, yon=-1)
     MAK_X = tas_sag + BOSLUK + (300 - _bb(m)[0])            # objektif ucu = taşın sağ kenarı + BOSLUK
 
     def kare(t, z, i):
         f = i / KARE
-        # KK 2. tur: makine taştan ayrı; objektif ucu ile taşın sağ kenarı arasında açık çimen (BOSLUK px).
-        # Rus subayı fotoğrafçının arkasında, arka sırada (eli boş; sopa kaldırıldı).
-        figur(t, avrupali, 124, z, K, govde="#3a3a46", sac="#e8e4dc", sakal="#e8e4dc", bas="kasket",
-              bas_renk="#3a3a40", yon=1, silah="mektup", kol=0.3 + 0.04 * SIN(f))   # Radloff (solda, taşa döner)
+        # KK 2. tur: taş solda tek başına; makine taştan ayrı, arada açık çimen; objektif taşa dönük.
+        # Radloff ve Rus subayı fotoğrafçının arkasında, arka sırada (subayın eli boş; sopa kaldırıldı).
         tas(t, TAS_X, duz(z[0] - 14, t.width), st, tohum=1)
-        figur(t, avrupali, MAK_X + 52, duz(z[0] - 10, t.width), round(0.9 * K, 1), govde="#4a5a4a", sac="#3a2a1a",
-              bas="kalpak", bas_renk="#3a2a1a", yon=-1, kol=0.05)                 # Rus subayı (arka sıra)
+        arka = duz(z[0] - 10, t.width)
+        figur(t, avrupali, MAK_X + 2, arka, round(0.92 * K, 1), govde="#3a3a46", sac="#e8e4dc", sakal="#e8e4dc",
+              bas="kasket", bas_renk="#3a3a40", yon=-1, silah="mektup", kol=0.3 + 0.04 * SIN(f))   # Radloff
+        figur(t, avrupali, MAK_X + 31, arka, round(0.92 * K, 1), govde="#4a5a4a", sac="#3a2a1a",
+              bas="kalpak", bas_renk="#3a2a1a", yon=-1, kol=0.05)                 # Rus subayı
         figur(t, fotograf_makinesi, MAK_X, z, K, yon=-1)                         # objektif taşa dönük
-        figur(t, avrupali, MAK_X + 28, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
+        figur(t, avrupali, MAK_X + 20, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
               bas_renk="#3a3a2a", yon=-1, kol=0.25)                               # Fin fotoğrafçı
 
     _bitir(150, kare, yk, esik=0.75)

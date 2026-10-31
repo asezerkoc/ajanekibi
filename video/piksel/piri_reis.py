@@ -915,7 +915,7 @@ def sahne332():
     def kare(t, z, i):
         f = i / KARE
         figur(t, halat, 122, z, round(0.32 * K, 1))
-        figur(t, fici, 286, z, round(0.4 * K, 1))
+        figur(t, fici, 278, z, round(0.4 * K, 1))
         figur(t, kisi, 168, z, round(0.95 * K, 1), **PIRI_GENC, yon=1, kol=0.03 * (1 + SIN(f)))
         figur(t, kisi, 236, z, K, **KEMAL, yon=1, kol=0.55 + 0.05 * SIN(f))           # kıyıyı gösterir
 
@@ -1122,8 +1122,8 @@ def sahne340():
         f = i / KARE
         arka = duz(z[0] - 12, IW)
         kandil(t, 200, 0, f, zincir=_kz(yk))
-        figur(t, kitap_rafi, 142, arka, round(0.55 * K, 1), rulo=True, tohum=1)
-        figur(t, kitap_rafi, 262, arka, round(0.55 * K, 1), rulo=True, tohum=2)
+        figur(t, kitap_rafi, 152, arka, round(0.55 * K, 1), rulo=True, tohum=1)
+        figur(t, kitap_rafi, 250, arka, round(0.55 * K, 1), rulo=True, tohum=2)
         figur(t, sandik, 202, z, round(0.6 * K, 1))
 
     _spr2(340, IW, IH, kare, yk, esik=0.6)
@@ -1172,8 +1172,8 @@ def sahne342():
         f = i / KARE
         kandil(t, 150, 0, f, zincir=_kz(yk))
         kandil(t, 262, 0, (f + 0.4) % 1, zincir=_kz(yk))
-        ust = figur(t, taht, 250, z, round(0.62 * K, 1), renk="#c8a040", ortu="#3a2a6a")
-        figur(t, oturan, 250, duz(ust, t.width), round(0.62 * K, 1), yon=-1, minder="#8a1e22", **KANUNI)
+        ust = figur(t, taht, 242, z, round(0.62 * K, 1), renk="#c8a040", ortu="#3a2a6a")
+        figur(t, oturan, 242, duz(ust, t.width), round(0.62 * K, 1), yon=-1, minder="#8a1e22", **KANUNI)
         rahle(t, 200, z[0], round(0.85 * K, 1))
         kitaplar(t, 222, z[0], round(0.6 * K, 1))
         figur(t, kisi, 152, z, K, **PIRI_KAPTAN, yon=1, kol=0.2 + 0.04 * SIN(f))
@@ -1504,8 +1504,8 @@ def sahne353():
         f = i / KARE
         arka = duz(z[0] - 12, IW)
         kandil(t, 270, 0, f, zincir=_kz(yk))
-        figur(t, kitap_rafi, 140, arka, round(0.55 * K, 1), dolu=True, tohum=5)
-        figur(t, kitap_rafi, 264, arka, round(0.55 * K, 1), dolu=True, tohum=6)
+        figur(t, kitap_rafi, 152, arka, round(0.55 * K, 1), dolu=True, tohum=5)
+        figur(t, kitap_rafi, 252, arka, round(0.55 * K, 1), dolu=True, tohum=6)
         top = figur(t, masa, 202, z, round(0.5 * K, 1), ortu="#4a2a2a")
         kitaplar(t, 196, top, round(0.42 * K, 1))
         figur(t, kagit_destesi, 150, z, round(0.32 * K, 1), kat=5, tohum=3)
@@ -1606,7 +1606,7 @@ def sahne360():
         f = i / KARE
         arka = duz(z[0] - 12, IW)
         figur(t, kagit_destesi, 134, arka, round(0.32 * K, 1), kat=6, tohum=7)
-        figur(t, lamba, 282, arka, round(0.5 * K, 1), faz=f)
+        figur(t, lamba, 274, arka, round(0.5 * K, 1), faz=f)
         figur(t, harita_masasi, 208, z, round(0.56 * K, 1))
         figur(t, kisi, 158, z, K, **EDHEM, yon=1, kol=0.1 + 0.04 * SIN(f))
         figur(t, kisi, 258, z, round(0.97 * K, 1), **DEISSMANN, yon=-1, kol=0.32 + 0.05 * SIN(f + 0.3))
@@ -1679,8 +1679,8 @@ def sahne362():
     def kare(t, z, i):
         f = i / KARE
         arka = duz(z[0] - 12, IW)
-        figur(t, kitap_rafi, 140, arka, round(0.55 * K, 1), dolu=True, tohum=8)
-        figur(t, kitap_rafi, 266, arka, round(0.55 * K, 1), dolu=True, tohum=9)
+        figur(t, kitap_rafi, 152, arka, round(0.55 * K, 1), dolu=True, tohum=8)
+        figur(t, kitap_rafi, 254, arka, round(0.55 * K, 1), dolu=True, tohum=9)
         top = figur(t, masa, 170, z, round(0.5 * K, 1), ortu="#3a4a3a")
         kitaplar(t, 166, top, round(0.4 * K, 1))
         figur(t, kisi, 236, z, K, **KAHLE, yon=-1, silah="mektup", kol=0.34 + 0.04 * SIN(f))
@@ -1717,7 +1717,7 @@ def sahne366():
     def kare(t, z, i):
         f = i / KARE
         arka = duz(z[0] - 12, IW)
-        figur(t, kitap_rafi, 140, arka, round(0.55 * K, 1), dolu=True, tohum=11)
+        figur(t, kitap_rafi, 152, arka, round(0.55 * K, 1), dolu=True, tohum=11)
         for x, s_ in ((196, 0.6), (258, 0.72)):
             top = figur(t, masa, x, z, round(0.42 * K, 1), ortu="#4a3a5a")
             kitaplar(t, x, top, round(s_ * K, 1))
