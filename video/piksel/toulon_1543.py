@@ -1104,8 +1104,8 @@ def sahne451():
 def sahne452():
     _gok(452, GUN, [(100, 402, 22), (420, 406, 20)], BULUT_GUN)
     _uzak_kiyi(452, None, ("#8aa0b4", "#7c92a8"), ("#8aa0b4", "#7c92a8", "#6e84a0"), D_YAZ, 546, tepe_y=538, kara_kalin=3)
-    _orta_deniz(452, 556, D_YAZ, ekle=lambda img: [kadirga(img, PAY + x, 566 + k * 6, 0.5 + k * 0.1, 1, 0.0, mod="acik",
-                                                          kurek=True, kurekci=False, **OSMANLI) for k, x in enumerate((-70, 500, 600))])
+    _orta_deniz(452, 556, D_YAZ, ekle=lambda img: [kadirga(img, PAY + x, su, s_, 1, 0.0, mod="acik", kurek=True, kurekci=False,
+                                                          **OSMANLI) for x, su, s_ in ((185, 563, 0.42), (395, 566, 0.5))])
     _bos_on(452)
     b = P(452)
     _spr(452, _gemi_sp(452, 0, [(198, b["h"] - 14, 1.7, 1, "acik", OSMANLI, dict(fener=1))], D_YAZ, 556))
@@ -1116,7 +1116,7 @@ def sahne452():
 # ==========================================================================
 def sahne453():
     ic_mekan(453, duvar=("#2a3458", "#34406a", "#425080"), kemer="#1a2038", cini="#c8a040",
-             pencere=("#6a8ab8", "#c8dcf0"), zemin_renk=("#6a5a4a", "#5a4c3e", "#4a3e32"), isik="#f8d080", hali=True)
+             pencere=("#6a8ab8", "#7c9cc8"), zemin_renk=("#6a5a4a", "#5a4c3e", "#4a3e32"), isik="#f8d080", hali=True)
     K = K_(453)
 
     def kare(t, z, i):
@@ -1379,7 +1379,7 @@ def sahne474():
 # ==========================================================================
 def sahne463():
     ic_mekan(463, duvar=("#4a3a2a", "#5a4632", "#6a523c"), kemer="#2a1e14", cini="#8a2a2a",
-             pencere=("#8aa0b8", "#f0e8d0"), zemin_renk=("#6a5a48", "#5a4c3c", "#4c4032"), isik="#f8c060", hali=False)
+             pencere=("#8aa0b8", "#9ab0c4"), zemin_renk=("#6a5a48", "#5a4c3c", "#4c4032"), isik="#f8c060", hali=False)
     K = K_(463)
 
     def kare(t, z, i):
