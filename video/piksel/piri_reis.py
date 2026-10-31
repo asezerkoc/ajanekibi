@@ -1530,14 +1530,14 @@ def sahne357():
          dag_y=(430, 466), tepe_y=476, ova_y=494)
     orta(357, (546, 556), ["#c0a474", "#b4986a", "#a88c60", "#9c8056", "#90744c"], "#e8d0a0")
     on(357, ["#90744c", "#9c8056", "#a88c60"], "#e8d0a0", boy=70)
-    yk = 2.8
-    K = s_kisi(yk)
-    sa = round(K * 2.9 / 2.6, 1)
+    yk = 2.6
+    K = s_kisi(yk, 0.30)
+    sa = round(0.72 * K, 1)                    # atlı: Çelebi dosyasındaki atlı/kişi oranı (3.8 ↔ kişi), insan ≈ at boyunun %70'i
 
     def kare(t, z, i):
         f = i / KARE
         arka = duz(z[0] - 8, DW)
-        figur(t, deve, 270, arka, round(0.95 * sa, 1), -1, faz=(f + 0.3) % 1, adim=0.4)
+        figur(t, deve, 272, arka, round(0.9 * sa, 1), -1, faz=(f + 0.3) % 1, adim=0.4)
         figur(t, atli, 200, z, sa, -1, faz=f, at_renk="#6a4a32", yele="#2a1a12", adim=0.4, **SEYDI_O)
         figur(t, kisi, 128, z, round(0.95 * K, 1), govde="#6a5a3a", bas="bork", bas_renk="#d8d0c0", sakal="#3a2a1a",
               yon=-1, adim=(f + 0.5) % 1)

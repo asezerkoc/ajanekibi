@@ -230,13 +230,14 @@ def _gorunur(no, xler, pay=12, ara=False):
                 raise RuntimeError(f"Sahne {no}: orta plan figürü x={x} görünür aralık [{int(a)}, {int(b)}] dışında (sx={sx})")
 
 
-def _el(x, z, s, yon, kol):
-    """kisi() figürünün el ucu (timur_figur.kisi ile aynı formül; ayakta, diz=False, yürümüyor)."""
+def _el(x, z, s, yon, kol, adim=None):
+    """kisi() figürünün el ucu (timur_figur.kisi ile aynı formül; ayakta ya da yürürken, diz=False)."""
     y = zemin_y(z, x, 6 * s)
     ust = y - int(11 * s)
     if kol > 0:
         return x + int(3.5 * s) * yon, ust - int(4 * s * kol) + int(1 * s)
-    return x + int(2.5 * s) * yon, ust + int(5 * s)
+    sal = 0 if adim is None else math.sin(adim * 2 * math.pi) * 1.5 * s
+    return x + int(2.5 * s) * yon - int(sal) * yon, ust + int(5 * s)
 
 
 def _oturan_el(x, z, s, yon, minder=True):
@@ -1543,8 +1544,8 @@ def sahne196():
 
 
 def sahne197():
-    """Kart 33: 16 Aralık 1727, Yavuz Selim semti, İbrahim'in evi: önde baskıcı presi çekiyor, geride ikinci tezgâh;
-    İbrahim sağda eliyle gösteriyor. Pencerede kış gecesi."""
+    """Kart 33: 16 Aralık 1727, Yavuz Selim semti, İbrahim'in evi: önde baskıcı presi çekiyor, geride (daha yüksek zeminde,
+    küçük) ikinci tezgâh; İbrahim solda eliyle gösteriyor. Pencerede kış gecesi."""
     _oda(197, "ahsap")
     p = P(197)
     K = s_kisi(p.yk)
@@ -1552,9 +1553,9 @@ def sahne197():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 210, 0, f, zincir=_kz(p.yk))
-        figur(t, tahta_pres, 112, duz(z[0] - 14, t.width), round(K * 0.75, 1), faz=(f + 0.5) % 1, yon=1)
-        _pres_sahnesi(t, z, f, 198, K, 1, 198 - int(8 * K), K, BASKICI)
-        figur(t, kisi, 272, z, K, **IBRAHIM, yon=-1, kol=0.3 + 0.04 * SIN(f))
+        figur(t, tahta_pres, 168, duz(z[0] - 16, t.width), round(K * 0.7, 1), faz=(f + 0.5) % 1, yon=-1)
+        _pres_sahnesi(t, z, f, 222, K, -1, 222 + int(8 * K), K, BASKICI)
+        figur(t, kisi, 126, z, K, **IBRAHIM, yon=1, kol=0.3 + 0.04 * SIN(f))
 
     _spr(197, kare)
 
@@ -1647,8 +1648,8 @@ def sahne203():
     def kare(t, z, i):
         f = i / KARE
         figur(t, kagithane, 262, duz(z[0] - 36, t.width), 2.6, f)          # geride: daha yüksek zemin (derinlik)
-        figur(t, kisi, 118, z, K, **IBRAHIM_YASLI, yon=1, silah="sopa")
-        figur(t, kisi, 150, z, K, **USTA_LEH, yon=1, kol=0.5 + 0.05 * SIN(f))
+        figur(t, kisi, 114, z, K, **IBRAHIM_YASLI, yon=1, silah="sopa")
+        figur(t, kisi, 162, z, K, **USTA_LEH, yon=1, kol=0.5 + 0.05 * SIN(f))
         _cimen(t, z, f, ["#6a8a52", "#5a7a46", "#7a9a5e"], 203, 0, 160)
 
     _spr(203, kare, esik=0.72)
@@ -1737,7 +1738,7 @@ def sahne208():
     def kare(t, z, i):
         f = i / KARE
         figur(t, kisi, 170, z, K, **ALICI, yon=1, adim=f)
-        kitap_bohcasi(t, _el(170, z, K, 1, 0.0), K, 1)
+        kitap_bohcasi(t, _el(170, z, K, 1, 0.0, adim=f), K, 1)
 
     _spr(208, kare)
 

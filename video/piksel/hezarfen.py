@@ -107,12 +107,28 @@ def yazi_alti(yakin, taban, satir=3, odak=None, yaziY=None):
     return o + (ekran - o) / yakin
 
 
-def _kadraj(no, kare, w, h, yakin, esik, taban, yazi_satir=3, serbest=0, odak=None, yaziY=None, sxler=(270,)):
+def _kadraj(no, kare, w, h, yakin, esik, taban, yazi_satir=3, serbest=0, odak=None, yaziY=None, sxler=(270,),
+            kenar_pay=12, kenar_haric_alt=0, kenar_serbest=False):
     """Görünür aralık: yakınlaşmanın odağı sprite'ın ızgara x'i (sx) olduğundan görünen yerel x aralığı
     [w/2 - sx/yakin, w/2 + (540 - sx)/yakin]'dir (sx 270'te w/2 ± 270/yakin). Kayan sprite'ta baş ve son sx'in ikisi de
     denetlenir. Opak piksellerin en az `esik` oranı içeride olmalı; figür sprite'ın üstüne değmemeli (kesik baş).
-    Yazı denetimi: görünür aralıkta, kartın alt kenarından yukarıda kalan opak piksel sayısı `serbest`'i aşmamalı."""
+    Yazı denetimi: görünür aralıkta, kartın alt kenarından yukarıda kalan opak piksel sayısı `serbest`'i aşmamalı.
+    Kenar denetimi (görsel KK revizyonu): 24 karenin hiçbirinde, görünür aralığın sol ve sağ kenarından `kenar_pay` px
+    (8 px pay + kamera paralaksı) içeride opak figür pikseli olmamalı: kanat uçları, mum, fener kadraj kenarında kesilmez.
+    kenar_haric_alt: sprite'ın alt satırlarındaki tam genişlikte su bandı denetim dışıdır."""
     sinir = yazi_alti(yakin, taban, yazi_satir, odak, yaziY) - (taban - h)       # sprite yerel y
+    if not kenar_serbest:
+        for i in range(KARE):
+            t = yeni(w, h)
+            kare(t, duz(h, w), i)
+            alfa = t.getchannel("A").point(lambda v: 255 if v > 200 else 0)
+            for sx in sxler:
+                a, b = int(w / 2 - sx / yakin), int(w / 2 + (540 - sx) / yakin)
+                for x0, x1, yan in ((max(0, a - 400), a + kenar_pay, "sol"), (b - kenar_pay, min(w, b + 400), "sağ")):
+                    x0, x1 = max(0, x0), min(w, x1)
+                    if x1 > x0 and alfa.crop((x0, 0, x1, h - kenar_haric_alt)).getbbox():
+                        raise RuntimeError(f"Sahne {no}, kare {i}, sx {sx}: {yan} kenarda kesilen opak piksel "
+                                           f"(yerel x {x0}-{x1}, görünür {a}-{b})")
     for i in (0, 4, 8, 12, 16, 20):
         t = yeni(w, h)
         kare(t, duz(h, w), i)
@@ -914,13 +930,15 @@ def _kandil(t, x, f, no):
         kandil(t, x, 0, f, zincir=_kz(p.yk, p.taban, p.h))
 
 
-def _cek(no, kare, esik=0.75, satir=3, serbest=0):
+def _cek(no, kare, esik=0.75, satir=3, serbest=0, kenar_haric_alt=0, kenar_serbest=False):
     """Sprite'ı P[no] ayarlarıyla denetleyip yazar: görünür aralık (sahne sonundaki %6 yakınlaşma dahil) ve yazı bandı."""
     p = P[no]
     _DENETIM[0] = True
     try:
+        kam = 14 if isinstance(p.x, list) else 8                        # TSX kamera genliği (paralaks payı)
         _kadraj(no, kare, p.w, p.h, p.yk * 1.06, esik, p.taban, satir, serbest, odak=p.odak, yaziY=p.yaziY,
-                sxler=tuple(p.x) if isinstance(p.x, list) else (p.x,))
+                sxler=tuple(p.x) if isinstance(p.x, list) else (p.x,), kenar_pay=8 + int(kam * 0.65 / 2 + 1),
+                kenar_haric_alt=kenar_haric_alt, kenar_serbest=kenar_serbest)
     finally:
         _DENETIM[0] = False
     sprite(no, "karakter", p.w, p.h, KARE, kare)

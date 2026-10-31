@@ -242,7 +242,7 @@ export const PIRI_REIS_SERI: Seri = {
     },
     // kara yolu: Seydi Ali atlı, yanında yaya yoldaş ve deve; sola, eve
     {
-      no: 357, yakin: 2.8, kamera: 12,
+      no: 357, yakin: 2.6, kamera: 12,
       sprite: { w: 400, h: 220, fps: 16, x: [300, 250], taban: 632 },
       yazilar: [
         { satirlar: ["Seydi Ali Osmanlı topraklarına", "karadan dönüyor. Basra'dan", "çıkalı üç yıl yedi ay olmuş."], sure: 6.55 }, // kart 35
