@@ -532,8 +532,7 @@ def pece_yerde(img, x, zemin, s=1.0, renk="#ece4d4"):
 
 
 def uyuyan(img, x, zemin, s=1.0, yon=1, f=0.0):
-    """Yeni figür: yerde yan yatmış uyuyan Raziye: başı bir bohçaya dayalı, gövde ve bacaklar zemine değer; külahı yanında
-    yerde. Giysisinde mücevherler f ile sırayla parıldar (köylünün gördüğü). Nefesle gövde hafifçe kalkar."""
+    """Yeni figür: yerde yan yatmış uyuyan Raziye: başı bir bohçaya dayalı, gövde ve bacaklar zemine değer; açık saçlı. Giysisinde mücevherler f ile sırayla parıldar (köylünün gördüğü). Nefesle gövde hafifçe kalkar."""
     d = ImageDraw.Draw(img)
     y = zemin_y(zemin, x, 18 * s)
     temas_golgesi(img, x, y, 20 * s)
@@ -554,9 +553,6 @@ def uyuyan(img, x, zemin, s=1.0, yon=1, f=0.0):
     d.ellipse([hx - r, hy - r, hx + r, hy + r], fill=hex2(TEN))
     d.rectangle([min(hx, hx - r * yon), hy - r, max(hx, hx - r * yon), hy + r], fill=hex2("#2a1a12"))         # saç
     d.line([hx + int(0.4 * s) * yon, hy - _u(0.2, s), hx + int(1.2 * s) * yon, hy - _u(0.2, s)], fill=hex2(KOYU))  # kapalı göz
-    kx = x + int(14.5 * s) * yon                                           # külah ayak ucunda yerde yan yatmış
-    d.polygon([(kx, y - 1), (kx - int(4.5 * s) * yon, y - int(1.2 * s)), (kx, y - int(2.6 * s))], fill=hex2(RAZ["bas_renk"]))
-    d.line([kx, y - 1, kx, y - int(2.6 * s)], fill=hex2(ALTIN_R), width=_u(0.6, s))
     for k, (mx, my) in enumerate(((-3, -3.2), (-1, -3.6), (1, -3.4), (-2, -2.4), (0.5, -2.6))):
         px_, py_ = x + int(mx * s) * yon, y + int(my * s) - nef
         piksel(img, px_, py_, hex2(("#e0b040", "#c8302a", "#3ab0a0", "#e0b040", "#f4f0e6")[k]))

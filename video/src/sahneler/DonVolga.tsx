@@ -138,7 +138,7 @@ export const DON_VOLGA_SERI: Seri = {
     },
     // panorama: solda Don, sağda Volga; arada hendek boyunca kazıcılar
     {
-      no: 264, yakin: 2.6, kamera: 300,
+      no: 264, yakin: 2.6, kamera: -300,
       sprite: { w: 560, h: 230, fps: 12, x: 270, taban: 640 },
       yazilar: [
         { satirlar: ["Kazmalar toprağa iniyor.", "Düz, ağaçsız bozkır. Bir yanda", "Don, öbür yanda Volga."], sure: 6.24 }, // kart 20

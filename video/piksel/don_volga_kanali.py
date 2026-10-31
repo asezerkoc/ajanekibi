@@ -735,7 +735,7 @@ def kilit(t, w, h, f, durum="kapali"):
     köpüklü su hazneye hücum eder (f ile akar). 'dolu': hazne dolu, sakin su izleyiciye doğru akar.
     Kulelerin, kanal duvarlarının ve beton düzlüğün tabanı zemindir (y = kanal kenarı); su kanalın içindedir."""
     d = ImageDraw.Draw(t)
-    zy = h - 160                         # beton düzlük ve kapak eşiği (yerel y)
+    zy = h - 150                         # beton düzlük ve kapak eşiği (yerel y)
     cx = w // 2
     beton, betk, beta = hex2("#b8b4a8"), hex2("#8a867c"), hex2("#d8d4c8")
     d.rectangle([0, zy, w, h], fill=hex2("#9a968a"))                                      # beton düzlük (zemin)
@@ -779,7 +779,7 @@ def kilit(t, w, h, f, durum="kapali"):
     for a, b, yy in sol:                                                                   # kanal ağzının kenar çizgisi
         piksel(t, a, yy, beta)
         piksel(t, b, yy, beta)
-    ku_y = zy - 112                                                                         # kuleler
+    ku_y = zy - 74                                                                          # kuleler
     for k in (-1, 1):
         x0, x1 = (cx - 100, cx - 46) if k < 0 else (cx + 46, cx + 100)
         d.rectangle([x0, ku_y, x1, zy], fill=beton)
@@ -789,9 +789,9 @@ def kilit(t, w, h, f, durum="kapali"):
         d.rectangle([x0 + 6, ku_y - 21, x1 - 6, ku_y - 18], fill=beta)
         mx = (x0 + x1) // 2
         d.chord([mx - 9, ku_y + 14, mx + 9, ku_y + 32], 180, 360, fill=hex2("#3a4a5a"))
-        d.rectangle([mx - 9, ku_y + 23, mx + 9, ku_y + 54], fill=hex2("#3a4a5a"))
-        d.line([mx, ku_y + 16, mx, ku_y + 54], fill=beta)
-        for yy in range(ku_y + 66, zy - 4, 12):
+        d.rectangle([mx - 9, ku_y + 23, mx + 9, ku_y + 44], fill=hex2("#3a4a5a"))
+        d.line([mx, ku_y + 16, mx, ku_y + 44], fill=beta)
+        for yy in range(ku_y + 54, zy - 4, 8):
             d.line([x0 + 2, yy, x1 - 2, yy], fill=hex2("#a8a498"))
     d.rectangle([cx - 46, ku_y + 6, cx + 46, ku_y + 20], fill=hex2("#9a968a"))              # köprü
     d.line([cx - 46, ku_y + 6, cx + 46, ku_y + 6], fill=beta)
@@ -979,7 +979,7 @@ def sahne250():
     yk = 2.8
 
     def ekle(img, z):
-        for x, s_ in ((PAY + 214, 1.2), (PAY + 246, 1.1)):
+        for x, s_ in ((PAY + 272, 1.1),):
             figur(img, kon_cadir, x, duz(586, img.width), s_, renk="#e8e0cc", serit="#b8281e")
         d = ImageDraw.Draw(img)
         d.ellipse([PAY + 196, 637, PAY + 214, 643], fill=hex2("#5a4028"))                # ilk vuruşun çukuru
@@ -1054,8 +1054,8 @@ def sahne254():
     bas = []
 
     def ekle(img, z):
-        bas.append(figur(img, kayik_kutuk, PAY + 220, duz(590, img.width), 1.8, 1))
-        figur(img, kisi, PAY + 197, duz(590, img.width), 1.4, govde="#6a5a3a", bas="kalpak", bas_renk="#3a2a1a", yon=1, kol=0.3)
+        bas.append(figur(img, kayik_kutuk, PAY + 224, duz(590, img.width), 1.5, 1))
+        figur(img, kisi, PAY + 206, duz(590, img.width), 1.4, govde="#6a5a3a", bas="kalpak", bas_renk="#3a2a1a", yon=1, kol=0.3)
     _gorunur(254, [190, 250], sx, sx, yk, pay=4)
     _dis(254, "yaz", ekle=ekle)
     K = _K(254, yk, DT, ornek=NOGAY)
