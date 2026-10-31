@@ -2,7 +2,7 @@
 
 - **İş:** @pikseltarihim gece serisi, video 2/10
 - **Durum:** ONAY BEKLİYOR (gece vardiyası; ajans sahibi işi önceden onayladı, son onay sahibin)
-- **Video:** `teslimler/video/pikseltarihim-matbaa-yasagi.mp4` (süre: render sırasında; görsel kontrol 2. turda UYGUN verdi, dosya henüz yok)
+- **Video:** `teslimler/video/pikseltarihim-matbaa-yasagi.mp4` (süre: 4:33; görsel kontrol 2. turda UYGUN verdi)
 - **Seslendirme:** ElevenLabs "Metin" sesi
 
 ## 🔵 Araştırma özeti

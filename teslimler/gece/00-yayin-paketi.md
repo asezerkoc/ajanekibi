@@ -91,7 +91,7 @@ Kaynaklar: V. Thomsen, "Déchiffrement des inscriptions de l'Orkhon et de l'Ién
 
 ## 2. Osmanlı'da "matbaa yasağı" efsanesi ve İbrahim Müteferrika (1727)
 
-**Video dosyası:** `teslimler/video/pikseltarihim-matbaa-yasagi.mp4` (henüz render edilmedi; görsel düzeltmede)
+**Video dosyası:** `teslimler/video/pikseltarihim-matbaa-yasagi.mp4` (hazır, 4:33; görsel kalite kontrol UYGUN)
 
 **Kapak yazısı:** Matbaa / Yasağı / Fermanı gören yok
 
@@ -325,7 +325,7 @@ Bunu biliyor muydunuz? Piri Reis 1528'de ikinci bir dünya haritası daha çizdi
 
 ## 7. Hezarfen Ahmed Çelebi'nin uçuşu: tek kaynak Evliya Çelebi
 
-**Video dosyası:** `teslimler/video/pikseltarihim-hezarfen.mp4` (henüz render edilmedi; görsel kalite kontrolden geçti, render sırada)
+**Video dosyası:** `teslimler/video/pikseltarihim-hezarfen.mp4` (hazır, 3:55; görsel kalite kontrol UYGUN)
 
 **Kapak yazısı:** Galata'dan / Üsküdar'a / Kalması uygun değil
 
