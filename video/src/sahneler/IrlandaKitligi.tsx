@@ -4,7 +4,7 @@ import { ALTIN, KIZIL, Seri, SeriVideo, T_FPS, seriSure } from "./TimurSeri";
 /* Defterde Bin Yazıyor: Abdülmecid'in İrlanda Büyük Kıtlığı yardımı, belge ile efsane (1847). Grafikerin tarifi:
    teslimler/gece/ara/irlanda-kitligi/5-grafik.md; sahneler 490-524 (video/piksel/irlanda_kitligi.py).
    Kartlar kalite kontrolün nihai 52 kartıyla harfi harfine aynı; süreler tahmini (seslendirme 245 sn),
-   ses/hizala_seri.py sese göre yeniden yazar. Hilal ve yıldız yalnızca efsane (491, 514) ve mühür (516-517) sahnelerinde. */
+   ses/hizala_seri.py sese göre yeniden yazar. Hilal ve yıldız yalnızca efsane (514), mühür (516) ve Kral John (517) sahnelerinde. */
 // Kapak: sahne 490 katmanlarıyla yapılan ilk Bolum (2 sn, sessiz); başlık editörün kapak önerisi.
 export const IRLANDA_SERI: Seri = {
   etiket: "PİKSEL TARİHİM · İRLANDA KITLIĞI",

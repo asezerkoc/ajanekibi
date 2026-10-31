@@ -125,7 +125,7 @@ def _boyun(img, x0, x1, y0, y1, renk):
                 px[xx, yy] = renk
 
 
-def _goz(d, img, x, bas_y, s, yon, ten=None):
+def _goz(d, img, x, bas_y, s, yon, ten=None, yukari=0):
     """Görsel KK revizyonu: telefonda okunur göz. s >= 2.5: açık göz akı + bakış yönünde koyu bebek (koyu tende de
     seçilir), yüzün ön kenarından bir piksel içeride, başlığın kenarından bir piksel aşağıda; kütüphanenin eski tek
     pikselli / ince gözü önce ten rengiyle silinir. Küçük figürde başlığın üstüne yeniden basılan tek koyu piksel."""
@@ -139,7 +139,7 @@ def _goz(d, img, x, bas_y, s, yon, ten=None):
     pw = max(2, _u(0.45, s))
     gw = pw + max(1, _u(0.45, s))
     gh = max(2, _u(0.5, s))
-    y0 = bas_y - int(round(0.3 * s))
+    y0 = bas_y - int(round(0.3 * s)) - yukari
     d.rectangle([min(on, on - (gw - 1) * yon), y0, max(on, on - (gw - 1) * yon), y0 + gh - 1], fill=hex2(GOZ_AKI))
     d.rectangle([min(on, on - (pw - 1) * yon), y0, max(on, on - (pw - 1) * yon), y0 + gh - 1], fill=hex2(KOYU))
 
@@ -153,7 +153,8 @@ def _baslik_gozlu(d, img, x, bas_y, r, s, yon, tur, renk):
     if ten[3] > 200 and tur != "ortu":
         n = _u(0.6, s)
         _boyun(img, x - n, x + n, bas_y + r - 1, bas_y + int(2.6 * s) + 1, ten)
-    _goz(d, img, x, bas_y, s, yon, ten if ten[3] > 200 else None)
+    # kalpak/sarık yukarı alındığı için orada yer var: göz bir piksel yukarı, sakalla arasında ten şeridi kalsın
+    _goz(d, img, x, bas_y, s, yon, ten if ten[3] > 200 else None, 1 if tur in ("kalpak", "sarik", "sarik_k") and s >= 2.5 else 0)
 
 
 _tf._baslik = _baslik_gozlu
@@ -1683,14 +1684,14 @@ def sahne236():
     kadrajın soluna alındı (atlar %30 ölçekte), ordu sağdaki boşlukta, uzakta (orta planın yükseltilmiş üst kenarında)
     ve son figürü sahne sonu yakınlaşmasında da kadraj içinde."""
     no = 236
-    ordu_atli = (322, 333, 344)
+    ordu_atli = (314, 324, 334, 344)
 
     def ekle(img, z):
         for j, x in enumerate(ordu_atli):
             figur(img, atli, PAY + x, z, 1.1, -1, faz=(j * 0.3) % 1, dur=True, govde="#3a3a44", bas="migfer",
                   bas_renk="#8a8a90", silah="mizrak", bayrak="#2a6a3a")
         zz = [v + 5 for v in z]                                                 # yaya sırası atlıların bir adım önünde
-        kalabalik(img, zz, PAY + 316, PAY + 346, 6, 236, ("#3a3a44", "#4a3a2a"), s=1.15, yon=-1, bas="migfer")
+        kalabalik(img, zz, PAY + 312, PAY + 346, 5, 236, ("#3a3a44", "#4a3a2a"), s=1.15, yon=-1, bas="migfer")
 
     _gorunur(no, list(ordu_atli) + [314, 344], pay=20)
     _dis(no, "aksam", ekle=ekle, dag_y=(500, 518), tepe_y=522, ova_y=530, orta_ust=(536, 540))
