@@ -107,14 +107,13 @@ def yazi_alti(yakin, taban, satir=3, odak=None, yaziY=None):
     return o + (ekran - o) / yakin
 
 
-def _kadraj(no, kare, w, h, yakin, esik, taban, yazi_satir=3, serbest=0, odak=None, yaziY=None):
-    """Görünür aralık yerel x = w/2 ± 270/yakin: opak piksellerin en az `esik` oranı içeride olmalı; figür sprite'ın
-    üstüne değmemeli (kesik baş). Yazı denetimi: görünür aralıkta, kartın altından yukarıda kalan opak piksel sayısı
-    `serbest`'i aşmamalı (kandil zinciri gibi bilinçli istisnalar için serbest verilir)."""
-    yarim = 270 / yakin
-    a, b = max(int(w / 2 - yarim), 0), min(int(w / 2 + yarim), w)
+def _kadraj(no, kare, w, h, yakin, esik, taban, yazi_satir=3, serbest=0, odak=None, yaziY=None, sxler=(270,)):
+    """Görünür aralık: yakınlaşmanın odağı sprite'ın ızgara x'i (sx) olduğundan görünen yerel x aralığı
+    [w/2 - sx/yakin, w/2 + (540 - sx)/yakin]'dir (sx 270'te w/2 ± 270/yakin). Kayan sprite'ta baş ve son sx'in ikisi de
+    denetlenir. Opak piksellerin en az `esik` oranı içeride olmalı; figür sprite'ın üstüne değmemeli (kesik baş).
+    Yazı denetimi: görünür aralıkta, kartın alt kenarından yukarıda kalan opak piksel sayısı `serbest`'i aşmamalı."""
     sinir = yazi_alti(yakin, taban, yazi_satir, odak, yaziY) - (taban - h)       # sprite yerel y
-    for i in (0, 6, 12, 18):
+    for i in (0, 4, 8, 12, 16, 20):
         t = yeni(w, h)
         kare(t, duz(h, w), i)
         alfa = t.getchannel("A")
@@ -123,19 +122,22 @@ def _kadraj(no, kare, w, h, yakin, esik, taban, yazi_satir=3, serbest=0, odak=No
         ust_satir = sum(alfa.crop((0, 0, w, 2)).histogram()[1:])
         if not toplam or (bb[1] <= 1 and ust_satir > serbest + 12):
             raise RuntimeError(f"Sahne {no}: sprite yüksekliği (h={h}) yetmiyor ya da kare boş")
-        ici = sum(alfa.crop((a, 0, b, h)).histogram()[1:])
-        if ici / toplam < esik:
-            raise RuntimeError(f"Sahne {no}: figürlerin %{int(100 * ici / toplam)}'i görünür aralıkta (x {a}-{b})")
-        if sinir > 0:
-            yukari = sum(alfa.crop((a, 0, b, int(sinir))).point(lambda v: 255 if v > 200 else 0).histogram()[1:])
-            if yukari > serbest:
-                raise RuntimeError(f"Sahne {no}, kare {i}: {yukari} opak piksel yazı bandında (yerel y < {int(sinir)})")
+        for sx in sxler:
+            a, b = max(int(w / 2 - sx / yakin), 0), min(int(w / 2 + (540 - sx) / yakin), w)
+            ici = sum(alfa.crop((a, 0, b, h)).histogram()[1:])
+            if ici / toplam < esik:
+                raise RuntimeError(f"Sahne {no}, kare {i}, sx {sx}: figürlerin %{int(100 * ici / toplam)}'i görünür aralıkta "
+                                   f"(yerel x {a}-{b})")
+            if sinir > 0:
+                yukari = sum(alfa.crop((a, 0, b, int(sinir))).point(lambda v: 255 if v > 200 else 0).histogram()[1:])
+                if yukari > serbest:
+                    raise RuntimeError(f"Sahne {no}, kare {i}: {yukari} opak piksel yazı bandında (yerel y < {int(sinir)})")
 
 
 def _gorunur(no, xler, sx0, sx1, yakin, pay=10):
     """Orta plandaki (hareketsiz) önemli figürlerin ızgara x'i sprite'ın baş ve son sx'inde görünür aralıkta kalmalı."""
     for sx in (sx0, sx1):
-        a, b = sx - 270 / yakin + pay, sx + 270 / yakin - pay
+        a, b = sx - sx / yakin + pay, sx + (540 - sx) / yakin - pay
         for x in xler:
             if not a <= x <= b:
                 raise RuntimeError(f"Sahne {no}: orta plan figürü x={x} görünür aralık [{int(a)}, {int(b)}] dışında (sx={sx})")
@@ -870,7 +872,7 @@ P = {n: _P(v) for n, v in {
     378: dict(yk=2.8, w=380, h=230, x=270, taban=632, fps=8),
     379: dict(yk=2.6, w=400, h=230, x=270, taban=632, fps=10),
     380: dict(yk=2.8, w=380, h=230, x=270, taban=632, fps=8),
-    381: dict(yk=2.6, w=420, h=230, x=[215, 325], taban=650, fps=10, odak=600, yaziY=230),
+    381: dict(yk=2.6, w=420, h=230, x=[250, 300], taban=650, fps=10, odak=600, yaziY=230),
     382: dict(yk=2.8, w=380, h=230, x=270, taban=632, fps=10),
     383: dict(yk=2.8, w=400, h=300, x=270, taban=634, fps=8),
     384: dict(yk=2.8, w=400, h=300, x=270, taban=634, fps=8),
@@ -917,7 +919,8 @@ def _cek(no, kare, esik=0.75, satir=3, serbest=0):
     p = P[no]
     _DENETIM[0] = True
     try:
-        _kadraj(no, kare, p.w, p.h, p.yk * 1.06, esik, p.taban, satir, serbest, odak=p.odak, yaziY=p.yaziY)
+        _kadraj(no, kare, p.w, p.h, p.yk * 1.06, esik, p.taban, satir, serbest, odak=p.odak, yaziY=p.yaziY,
+                sxler=tuple(p.x) if isinstance(p.x, list) else (p.x,))
     finally:
         _DENETIM[0] = False
     sprite(no, "karakter", p.w, p.h, KARE, kare)
@@ -948,19 +951,21 @@ def _uzak_kara(no, kiyi, taban, tepe, sil, ova, tohum, cami=1, minare=10, kule=N
     if damlar:                                                       # aşağıda kalan şehrin düz damları (yukarıdan bakış)
         d = ImageDraw.Draw(img)
         rnd = random.Random(no + 11)
-        y = taban + 3
+        y, sira = taban + 2, 0
         while y < 640:
-            x = rnd.randint(-8, 0)
-            while x < W:
-                w = rnd.randint(8, 16)
-                renk = _ac(damlar, rnd.uniform(-0.15, 0.1))
-                d.rectangle([x % W, y, min(W - 1, x % W + w), y + 5], fill=hex2(renk))
-                d.line([x % W, y, min(W - 1, x % W + w), y], fill=hex2(_ac(renk, 0.2)))
-                d.line([x % W, y + 6, min(W - 1, x % W + w), y + 6], fill=hex2(_ac(renk, -0.4)))
-                if rnd.random() < 0.35:
-                    d.rectangle([x % W + 3, y + 3, x % W + 4, y + 4], fill=hex2("#2a1a14"))
-                x += w + rnd.randint(1, 3)
-            y += 8
+            bh = 3 + sira                                            # yakına doğru büyüyen sıra yüksekliği (perspektif)
+            x = rnd.randint(-10, 0)
+            while x < W + 10:
+                w = rnd.randint(6, 10) + sira * 2
+                renk = _ac(damlar, rnd.uniform(-0.12, 0.08))
+                x0 = x % W
+                d.rectangle([x0, y + 1, min(W - 1, x0 + w), y + bh], fill=hex2(_ac(renk, -0.28)))       # cephe (gölgede)
+                d.rectangle([x0, y - 1, min(W - 1, x0 + w), y + 1], fill=hex2(_ac(renk, 0.15)))         # dam yüzü (ışıkta)
+                if rnd.random() < 0.5 and w > 7:
+                    d.rectangle([x0 + 2, y + bh // 2 + 1, x0 + 3, y + bh - 1], fill=hex2("#2a1a14"))     # kapı/pencere
+                x += w + rnd.randint(2, 4)
+            y += bh + 3
+            sira += 1
     kaydet(img, f"sahne{no}-uzak.png")
     return img
 
@@ -1125,7 +1130,7 @@ def sahne374():
         f = i / KARE
         _kandil(t, 200, f, 374)
         mumluk(t, 128, z, f, 2)
-        _kanat_sehpasi(t, 250, z, round(0.95 * s, 1))
+        _kanat_sehpasi(t, 242, z, round(0.85 * s, 1))
         figur(t, kisi, 170, z, s, yon=1, kol=0.03 * (1 + SIN(f)), **HEZARFEN)
 
     _cek(374, kare)
@@ -1242,7 +1247,8 @@ def _galata_genis(no, gok, deniz, tepe, sil, zemin_renk, kenar, isik=False, gece
         for ex, dx in ((cx - 46, 2.3), (cx + 50, 2.2)):
             baca = figur(t, ev, ex, z, dx, duvar="#c8a878" if not gece else "#5a4a44", cati="#a8452e" if not gece else "#4a2a2a",
                          isik=isik)
-            duman(t, baca[0], baca[1], 30, no + ex, faz=f, renk="#d8d2c8" if not gece else "#6a6670", ruzgar=0.9, genislik=0.7)
+            if not bugun:                                              # ocak dumanı lodosla sağa yatar
+                duman(t, baca[0], baca[1], 30, no + ex, faz=f, renk="#d8d2c8" if not gece else "#6a6670", ruzgar=0.9, genislik=0.7)
         serefe, a, b = figur(t, galata_kulesi, cx, z, sk, isik=isik)
         if adam:                                                       # şerefede kanatlı adam (uzaktan, küçük)
             figur(t, kanatli, b - 3, duz(serefe, t.width), 0.62, yon=1, acik=0.9, cirp=0.3 * SIN(f, 2))
@@ -1296,7 +1302,7 @@ def sahne381():
         f = i / KARE
         _su_bandi(t, su, 552, p.taban - p.h, ("#3e628a", "#34567c", "#2c4c70", "#264466"))   # orta plandaki denizle aynı
         ayak = su - 36 + int(round(3 * SIN(f)))
-        figur(t, kanatli, p.w // 2, duz(ayak, t.width), s, yon=1, acik=1.0, cirp=0.25 * SIN(f), havada=True)
+        figur(t, kanatli, p.w // 2, duz(ayak, t.width), s, yon=1, acik=0.92, cirp=0.25 * SIN(f), havada=True)
 
     _cek(381, kare, esik=0.5)
 
@@ -1519,8 +1525,8 @@ def sahne391():
 
 
 def sahne392():
-    """'Kaya Sultan'ın doğduğu gece. Sarayburnu'nda şenlik.': ışıklı köşk, fenerler; fişekçi küçük fişekleri ateşler,
-    fişekler kıyıdan yükselir ve alçakta patlar (kıvılcımlar aşağı düşer)."""
+    """'Kaya Sultan'ın doğduğu gece. Sarayburnu'nda şenlik.': ışıklı köşk, fenerler; fişekçi meşaleyle küçük fişekleri
+    ateşler: fişekler sehpadan yükselir (kıvılcım kuyruğu sehpaya iner) ve alçakta patlar, kıvılcımlar yerçekimiyle düşer."""
     _sarayburnu_gece(392, kosk_x=205)
     p = P[392]
     s = s_kisi(p.yk)
@@ -1529,33 +1535,34 @@ def sahne392():
         f = i / KARE
         d = ImageDraw.Draw(t)
         y = z[0]
-        figur(t, fener, 70, z, round(0.55 * s, 1), f=f)
-        figur(t, fener, 320, z, round(0.55 * s, 1), f=(f + 0.4) % 1)
-        rx = 262                                                         # fişek sehpası (zemine basar)
-        d.line([rx - 8, y - 1, rx - 2, y - 16], fill=hex2("#6a4428"), width=2)
-        d.line([rx + 8, y - 1, rx + 2, y - 16], fill=hex2("#6a4428"), width=2)
-        d.rectangle([rx - 5, y - 18, rx + 5, y - 16], fill=hex2("#8a5a34"))
-        temas_golgesi(t, rx, y, 18)
+        figur(t, fener, 112, z, round(0.55 * s, 1), f=f)
+        figur(t, fener, 286, z, round(0.55 * s, 1), f=(f + 0.4) % 1)
+        rx = 238                                                         # fişek sehpası (zemine basar)
+        d.line([rx - 9, y - 1, rx - 2, y - 18], fill=hex2("#6a4428"), width=2)
+        d.line([rx + 9, y - 1, rx + 2, y - 18], fill=hex2("#6a4428"), width=2)
+        d.rectangle([rx - 6, y - 20, rx + 6, y - 18], fill=hex2("#8a5a34"))
+        temas_golgesi(t, rx, y, 20)
         for k in range(3):
             ph = (f + k / 3) % 1
-            hx = rx + (k - 1) * 22
-            if ph < 0.45:                                                # yükselen fişek: kıvılcım kuyruğu sehpaya iner
-                yy = y - 18 - ph / 0.45 * 70
-                d.line([rx, y - 18, hx * ph / 0.45 + rx * (1 - ph / 0.45), yy], fill=hex2("#f8d070", 120))
-                d.rectangle([hx * ph / 0.45 + rx * (1 - ph / 0.45) - 1, yy - 3, hx * ph / 0.45 + rx * (1 - ph / 0.45) + 1, yy],
-                            fill=hex2("#e8601c"))
-            else:                                                        # patlama: kıvılcımlar açılır ve yerçekimiyle düşer
-                q = (ph - 0.45) / 0.55
-                cy = y - 74
-                renk = ("#ffd479", "#ffa486", "#a8e0ff")[k]
-                for a in range(0, 360, 30):
-                    r = 5 + q * 18
-                    px_ = hx + math.cos(math.radians(a + k * 10)) * r
-                    py_ = cy + math.sin(math.radians(a + k * 10)) * r + q * q * 18
-                    if py_ < y - 2:
-                        piksel(t, px_, py_, hex2(renk, int(255 * (1 - q * 0.7))))
-                        piksel(t, px_ + 1, py_, hex2(renk, int(160 * (1 - q))))
-        figur(t, kisi, 214, z, round(0.95 * s, 1), yon=1, silah="mesale", kol=0.0, **LAGARI)
+            hx, cy = (196, 236, 276)[k], y - (70, 80, 66)[k]
+            if ph < 0.35:                                                # yükselen fişek
+                q = ph / 0.35
+                fx, fy = rx + (hx - rx) * q, y - 20 - (y - 20 - cy) * q
+                d.line([rx, y - 20, fx, fy], fill=hex2("#f8d070", 110))
+                d.rectangle([fx - 1, fy - 4, fx + 1, fy], fill=hex2("#e8601c"))
+                piksel(t, fx, fy - 5, hex2("#fff0a0"))
+            else:                                                        # patlama: kıvılcımlar açılır, düşer ve söner
+                q = (ph - 0.35) / 0.65
+                renk = ("#ffd479", "#ffa486", "#b8e8ff")[k]
+                for a in range(0, 360, 20):
+                    for r0 in (1.0, 0.6):
+                        r = (4 + q * 24) * r0
+                        px_ = hx + math.cos(math.radians(a + k * 10)) * r
+                        py_ = cy + math.sin(math.radians(a + k * 10)) * r + q * q * 16
+                        if py_ < y - 2:
+                            al = int(255 * (1 - q * 0.8))
+                            d.rectangle([px_, py_, px_ + 1, py_ + 1], fill=hex2(renk, al))
+        figur(t, kisi, 176, z, round(0.95 * s, 1), yon=1, silah="mesale", kol=0.0, **LAGARI)
 
     _cek(392, kare)
 
