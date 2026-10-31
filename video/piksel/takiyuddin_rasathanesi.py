@@ -56,11 +56,12 @@ def teras(img, x0, x1, zemin, h, tas="#a89878"):
     return ust
 
 
-def rasathane(img, x, zemin, s=1.0, yikik=0.0, isik=False, tas=TAS, kubbe=KURSUN):
+def rasathane(img, x, zemin, s=1.0, yikik=0.0, isik=False, tas=TAS, kubbe=KURSUN, sinir=None):
     """Yeni figür: İstanbul Rasathanesi (mimarisi bilinmiyor; kaynaklarla çelişmeyen sade Osmanlı taş yapısı).
     Solda iki katlı taş blok ve kurşun kubbe, sağda düz damlı gözlem kulesi (dam korkuluklu). Yalnızca düz zemine
     kurulur. yikik 0-1: kubbe düşer, duvar ve kule tepesi kırılır, dibinde moloz yığılır (moloz da zemine oturur).
-    isik=True: pencerelerde kandil ışığı. Dönen değer: (kule_tepe_x, kule_tepe_y, moloz noktaları)."""
+    isik=True: pencerelerde kandil ışığı. sinir=(x0, x1): moloz yığınları bu aralığın (ör. teras platformunun) içinde
+    kalır, kenardan boşluğa taşmaz. Dönen değer: (kule_tepe_x, kule_tepe_y, moloz noktaları)."""
     k = yeni(img.width, img.height)
     d = ImageDraw.Draw(k)
     y = duz_zemin(zemin, x - int(24 * s), x + int(22 * s), "rasathane", tolerans=max(3, int(s)))
@@ -127,6 +128,9 @@ def rasathane(img, x, zemin, s=1.0, yikik=0.0, isik=False, tas=TAS, kubbe=KURSUN
         # moloz yığınları: zemine oturur, üçgen tümsek + taş blokları
         for mx, mw in ((bx0 - int(2 * s), 10), (x + int(2 * s), 12), (tx1 + int(3 * s), 9)):
             mw = int(mw * s * (0.5 + yikik))
+            if sinir:                                                     # moloz platformun içinde kalır
+                mw = min(mw, sinir[1] - sinir[0] - 2)
+                mx = max(sinir[0] + mw // 2 + 1, min(sinir[1] - mw // 2 - 1, mx))
             mh = int(mw * 0.45)
             d.polygon([(mx - mw // 2, y - 1), (mx, y - 1 - mh), (mx + mw // 2, y - 1)], fill=hex2(_ac(tas, -0.15)))
             for _ in range(int(6 * (0.5 + yikik))):
@@ -821,8 +825,8 @@ def sahne416():
         f = i / KARE
         figur(t, ceyrek_daire, 166, z, 3.2, -1, aci=0.55 + 0.05 * SIN(f))
         figur(t, kisi, 128, z, K, **TYCHO, yon=1, kol=0.3, pelerin="#6a2a2a")
-        figur(t, armilla, 280, z, 3.4, faz=f * 0.5)
-        figur(t, kisi, 228, z, K, **TAKI, yon=1, kol=0.3)
+        figur(t, armilla, 270, z, 3.4, faz=f * 0.5)
+        figur(t, kisi, 222, z, K, **TAKI, yon=1, kol=0.3)
 
     _spr(416, 400, 300, kare, yk, esik=0.8)
 
@@ -830,17 +834,17 @@ def sahne416():
 # --------------------------------------------------------------------------
 # 417 (kart 12-13) ve 448 (kart 49-50): aynı gökyüzü, iki gözlemevi (solda Uraniborg, sağda İstanbul Rasathanesi).
 # --------------------------------------------------------------------------
-def _iki_gozlemevi(no, yikik):
+def _iki_gozlemevi(no, yikik, yk=2.0, ux=134, s=2.1, teras_x=(222, 322), rx=274):
     _gok(no, GECE, yildiz=240, y0=320, y1=590)
     uzak(no, GECE_DAG, GECE_TEPE, GECE_DENIZ, dag_y=(500, 526), tepe_y=530, ova_y=540)
     _gece_ortasi(no, (566, 572))
-    yk = 2.0
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, uraniborg, 134, z, 2.1, yikik=yikik[0], isik=not yikik[0])
-        ust = figur(t, teras, 222, 322, z, 10)
-        figur(t, rasathane, 274, duz(ust, t.width), 2.1, yikik=yikik[1], isik=not yikik[1])
+        figur(t, uraniborg, ux, z, s, yikik=yikik[0], isik=not yikik[0])
+        ust = figur(t, teras, teras_x[0], teras_x[1], z, 10)
+        figur(t, rasathane, rx, duz(ust, t.width), s, yikik=yikik[1], isik=not yikik[1],
+              sinir=(teras_x[0] + 2, teras_x[1] - 2))
         _cimen(t, z, f, ["#3a4a5a", "#2e3e4e", "#4a5a6a"], no, 60, 340, boy=7 if yikik[0] else 5)
 
     _spr(no, 400, 300, kare, yk, esik=0.9)
@@ -983,11 +987,11 @@ def sahne423():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 200, 0, f, zincir=_kz(yk))
-        ust = figur(t, sedir, 258, z, round(0.75 * so, 1), renk="#7a4a2a", ortu="#8a1e22")
-        figur(t, oturan, 258, duz(ust, t.width), so, **MURAD, yon=-1, minder="#c8a040")
+        ust = figur(t, sedir, 248, z, round(0.75 * so, 1), renk="#7a4a2a", ortu="#8a1e22")
+        figur(t, oturan, 248, duz(ust, t.width), so, **MURAD, yon=-1, minder="#c8a040")
         figur(t, kisi, 158, z, K, **TAKI, yon=1, diz=True, silah="mektup", kol=0.35 + 0.03 * SIN(f))
         kitaplar(t, 128, z[0], 4.0)
-        mumluk(t, 312, z, f, 3)
+        mumluk(t, 290, z, f, 3)
 
     _spr(423, 400, 300, kare, yk)
 
@@ -1044,7 +1048,7 @@ def sahne425():
 def sahne426():
     """Hven, 13 Kasım 1577 gecesi: Tycho çeyrek dairenin yanında elini kuyruklu yıldıza kaldırır; gökte alçakta Ay,
     daha yukarıda kuyruklu yıldız (ölçümün sonucu: yıldız Ay'ın ötesinde)."""
-    _gok(426, GECE, yildiz=240, y0=320, y1=590, ay=(178, 552, 7), kuyruk=(352, 516, 56, -2.6))
+    _gok(426, GECE, yildiz=240, y0=320, y1=590, ay=(196, 552, 6), kuyruk=(352, 516, 56, -2.6))
     uzak(426, ["#1c2440", "#182038"], ["#202a46", "#1b243e"], ["#1a2c48", "#16263e", "#122036"], **ALCAK_UZAK)
     _gece_ortasi(426, (598, 604), renkler=["#24382e", "#1e3028", "#182822", "#12201c", "#0e1a16"], kenar="#4a6a5a")
     yk = 2.2
@@ -1107,8 +1111,8 @@ def sahne429():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 210, 0, f, zincir=_kz(yk))
-        ust = figur(t, sedir, 262, z, round(0.75 * so, 1), renk="#7a4a2a", ortu="#8a1e22")
-        figur(t, oturan, 262, duz(ust, t.width), so, **MURAD, yon=-1, minder="#c8a040")
+        ust = figur(t, sedir, 248, z, round(0.75 * so, 1), renk="#7a4a2a", ortu="#8a1e22")
+        figur(t, oturan, 248, duz(ust, t.width), so, **MURAD, yon=-1, minder="#c8a040")
         figur(t, kisi, 160, z, K, **TAKI, yon=1, kol=0.85 + 0.08 * SIN(f))
 
     _spr(429, 400, 300, kare, yk)
@@ -1224,8 +1228,11 @@ def sahne433():
             figur(img, gemi, x, 572, s_, -1, 0.0, govde="#3a2a22", yelken="#e8dcc0", hac=False)
         img_d = ImageDraw.Draw(img)
         img_d.rectangle([0, 600, img.width, img.height], fill=hex2("#5a5448"))           # rıhtım (düz taş)
-        for xx in range(0, img.width, 14):
-            img_d.line([xx, 600, xx, 610], fill=hex2("#46403a"))
+        for k, yy in enumerate(range(600, img.height, 10)):          # taş sıraları, şaşırtmalı derz
+            img_d.line([0, yy, img.width, yy], fill=hex2("#46403a"))
+            for xx in range((k % 2) * 9, img.width, 18):
+                img_d.line([xx, yy, xx, yy + 9], fill=hex2("#46403a"))
+                piksel(img, xx + 2, yy + 1, hex2("#6e6858"))
         img_d.line([0, 600, img.width, 600], fill=hex2("#8a8270"))
 
     orta(433, (536, 548), KIS_ORTA, "#8a8a70", ekle=ekle)
@@ -1379,11 +1386,11 @@ def sahne439():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 205, 0, f, zincir=_kz(yk))
-        ust = figur(t, sedir, 262, z, round(0.75 * so, 1), renk="#7a4a2a", ortu="#2a6a3a")
-        figur(t, oturan, 262, duz(ust, t.width), so, **SOKOLLU, yon=-1, minder="#c8a040")
+        ust = figur(t, sedir, 248, z, round(0.75 * so, 1), renk="#7a4a2a", ortu="#2a6a3a")
+        figur(t, oturan, 248, duz(ust, t.width), so, **SOKOLLU, yon=-1, minder="#c8a040")
         figur(t, kisi, 160, z, K, govde="#5a4a32", bas="bork", bas_renk="#7a6448", sakal="#3a2a1a", yon=1, diz=True,
               silah="mektup", kol=0.3 + 0.03 * SIN(f))
-        mumluk(t, 112, z, f, 3)
+        mumluk(t, 134, z, f, 3)                                            # KK: kenarda kesilmesin
 
     _spr(439, 400, 300, kare, yk)
 
@@ -1507,16 +1514,48 @@ def sahne445():
 # --------------------------------------------------------------------------
 # 446 (kart 47): 1597: Tycho'nun gemisi Hven'den ayrılır; arkada Uraniborg.
 # --------------------------------------------------------------------------
+def _hven_adasi(img, x0, x1, ust, su):
+    """Orta planda Hven adası (Görsel KK revizyonu): düz çimen üstü (ust), suya inen kumsal ve köpük çizgisi (su).
+    Yapılar bu çimen şeridine oturur; altlarında su değil kara vardır."""
+    d = ImageDraw.Draw(img)
+    d.polygon([(x0, ust), (x1, ust), (x1 + 16, su), (x0 - 16, su)], fill=hex2("#c8b88a"))           # kumsal
+    d.polygon([(x0 + 2, ust), (x1 - 2, ust), (x1 + 8, su - 4), (x0 - 8, su - 4)], fill=hex2("#5a7a48"))  # çimen
+    d.line([x0 + 2, ust, x1 - 2, ust], fill=hex2("#8aaa6a"))
+    for xx in range(x0 - 16, x1 + 17, 2):                                                           # köpük
+        piksel(img, xx, su, hex2("#f0f4f4"))
+    rnd = random.Random(446)
+    for _ in range(60):
+        xx = rnd.randint(x0 + 4, x1 - 4)
+        piksel(img, xx, rnd.randint(ust + 1, su - 6), hex2("#6a8a54"))
+
+
+def _kara_denetimi(img, x0, x1, y, ad):
+    """Fizik denetimi: yapının taban satırının hemen altında su değil kara (çimen/kumsal) olmalı."""
+    px = img.load()
+    su = {hex2(r)[:3] for r in ("#4a5e74", "#42566a", "#3a4e60", "#324656", "#8ab8d8")}
+    for xx in range(x0, x1 + 1):
+        if px[xx, y][:3] in su:
+            raise RuntimeError(f"{ad}: x={xx}, y={y} su; yapı suyun üstünde duramaz")
+
+
 def sahne446():
-    """1597: soğuk gri gün; Tycho'yu götüren gemi sola (Avrupa'ya) yol alır; arkada adada Uraniborg."""
+    """1597: soğuk gri gün; Tycho'yu götüren gemi sola (Avrupa'ya) yol alır; arkada Hven adasının düz çimen
+    şeridinde Uraniborg (altında kara, kıyıda kumsal ve köpük)."""
     _gok(446, ["#5a6478", "#727c8e", "#8a92a0", "#a2a8b2", "#b8bcc2", "#c8cacc"])
     uzak(446, ["#6a7488", "#5e687c"], ["#56744a", "#4c6a42"], ["#4a5e74", "#42566a", "#3a4e60"],
          dag_y=(492, 512), tepe_y=520, ova_y=530)
-    orta(446, (548, 552), ["#4a5e74", "#42566a", "#3a4e60", "#324656", "#2a3e4c"], "#8aa0b4",
-         ekle=lambda img, z: (su_ve_kiyi(img, 552, renkler=("#4a5e74", "#42566a", "#3a4e60", "#324656")),
-                              figur(img, uraniborg, PAY + 300, duz(552), 1.0)))
-    on(446, ["#2a3e4c", "#324656", "#3a4e60"], "#8aa0b4", boy=40)
     yk = 2.4
+    UX = 298                                       # Uraniborg ızgara x'i; sprite x [256, 220]
+    _gorunur(446, [UX - 24, UX + 24], 256, 220, yk * 1.06, pay=4)
+
+    def ekle(img, z):
+        su_ve_kiyi(img, 552, renkler=("#4a5e74", "#42566a", "#3a4e60", "#324656"))
+        _hven_adasi(img, PAY + UX - 44, PAY + UX + 44, 544, 562)
+        _kara_denetimi(img, PAY + UX - 24, PAY + UX + 24, 552, "Uraniborg (446)")
+        figur(img, uraniborg, PAY + UX, duz(552), 1.0)
+
+    orta(446, (548, 552), ["#4a5e74", "#42566a", "#3a4e60", "#324656", "#2a3e4c"], "#8aa0b4", ekle=ekle)
+    on(446, ["#2a3e4c", "#324656", "#3a4e60"], "#8aa0b4", boy=40)
     sg = 3.4
     _gemi_denetimi(sg, SU_Y, 400, H_DENIZ)
 
@@ -1551,7 +1590,8 @@ def sahne447():
 
 def sahne448():
     """'Aynı gökyüzü, iki gözlemevi. İkisi de yok.': aynı yıldızlı gök altında iki yıkıntı yan yana; uzun otlar."""
-    _iki_gozlemevi(448, (0.75, 0.85))
+    # Görsel KK revizyonu: moloz teras içinde (sinir), yakın çekim 2.0 → 2.2, yapılar %6 yaklaşmalı son karede de içeride
+    _iki_gozlemevi(448, (0.75, 0.85), yk=2.2, ux=142, s=1.9, teras_x=(206, 306), rx=254)
 
 
 # --------------------------------------------------------------------------

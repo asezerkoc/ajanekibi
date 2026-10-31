@@ -199,10 +199,11 @@ def kanatli(img, x, zemin, s=1.0, yon=1, acik=0.0, cirp=0.0, havada=False, diz=F
     y = zemin_y(zemin, x, 6 * s)
     yy = y + (int(3.6 * s) if diz else 0)
     oy = yy - int(10 * s)                                   # omuz hizası
-    aci = -78 + 84 * acik + 10 * cirp
-    L = s * (7.0 + 5.5 * acik)
-    kanat(k, x + int(1.6 * s), oy, 1, aci, L, s)
-    kanat(k, x - int(1.6 * s), oy, -1, aci - 30 * sol_dus, L * (1 - 0.15 * sol_dus), s)
+    aci = -74 + 80 * acik + 10 * cirp
+    L = s * (7.6 + 4.9 * acik)
+    ky = oy - int(2.4 * s * (1 - acik))                      # kapalı kanadın dirseği omuzun üstünde: kanat sırtta okunur
+    kanat(k, x + int((1.4 + 0.4 * acik) * s), ky, 1, aci, L, s)
+    kanat(k, x - int((1.4 + 0.4 * acik) * s), ky, -1, aci - 30 * sol_dus, L * (1 - 0.15 * sol_dus), s)
     kisi(k, x, zemin, s, govde, bas, bas_renk, sakal, yon, adim, kol=kol, diz=diz, kemer="#c8a040")
     if acik > 0.3:                                          # kollar kanadın ön kenarını tutar
         d = ImageDraw.Draw(k)
@@ -409,7 +410,7 @@ def fici(img, x, zemin, s=1.0, renk="#7a5232"):
     d.ellipse([x - int(0.8 * s), y - int(6.5 * s), x + int(0.6 * s), y - int(6 * s)], fill=hex2("#2a2420"))
 
 
-def fisek(img, x, zemin, s=1.0, govde="#a8301e", serit="#e0b040", alev=0.0):
+def fisek(img, x, zemin, s=1.0, govde="#a8301e", serit="#e0b040", alev=0.0, kalin=1.0):
     """Yeni figür: Lagari'nin fişeği. Ahşap sehpanın dört ayağı zemine basar; sehpadaki kalın gövde, iki yanında daha
     kısa iki kol (kolların sayısı vurgulanmaz), üstte ahşap oturak. alev 0-1: gövdenin dibinden kıvılcım ve alev.
     Dönen değer: oturağın y'si."""
@@ -422,18 +423,20 @@ def fisek(img, x, zemin, s=1.0, govde="#a8301e", serit="#e0b040", alev=0.0):
         d.line([x + int(ax * s), y - 1, x + int(ax * 0.45 * s), halka], fill=ah, width=_u(0.8, s))
     d.line([x - int(5 * s), y - int(2.5 * s), x + int(5 * s), y - int(2.5 * s)], fill=ah, width=_u(0.5, s))
     d.rectangle([x - int(3.6 * s), halka - _u(0.8, s), x + int(3.6 * s), halka], fill=hex2("#8a5a34"))
+    k = kalin
     for yn in (-1, 1):                                                   # yan kollar (kısa, arkada)
-        cx = x + yn * int(2.3 * s)
-        d.rectangle([cx - int(1 * s), y - int(18 * s), cx + int(1 * s), halka], fill=hex2(_ac(govde, -0.25)))
-        d.polygon([(cx - int(1 * s), y - int(18 * s)), (cx, y - int(20 * s)), (cx + int(1 * s), y - int(18 * s))],
+        cx = x + yn * int(2.3 * s * k)
+        d.rectangle([cx - int(1 * s * k), y - int(18 * s), cx + int(1 * s * k), halka], fill=hex2(_ac(govde, -0.25)))
+        d.polygon([(cx - int(1 * s * k), y - int(18 * s)), (cx, y - int(20 * s)), (cx + int(1 * s * k), y - int(18 * s))],
                   fill=hex2(_ac(serit, -0.2)))
-        d.line([cx - int(1 * s), y - int(12 * s), cx + int(1 * s), y - int(12 * s)], fill=hex2(serit))
+        d.line([cx - int(1 * s * k), y - int(12 * s), cx + int(1 * s * k), y - int(12 * s)], fill=hex2(serit))
     ust = y - int(22 * s)
-    d.rectangle([x - int(1.6 * s), ust, x + int(1.6 * s), halka + int(1.4 * s)], fill=hex2(govde))   # ana gövde
-    d.line([x - int(1.6 * s), ust, x - int(1.6 * s), halka + int(1.4 * s)], fill=hex2(_ac(govde, 0.25)))
+    gx = int(1.6 * s * k)
+    d.rectangle([x - gx, ust, x + gx, halka + int(1.4 * s)], fill=hex2(govde))   # ana gövde
+    d.line([x - gx, ust, x - gx, halka + int(1.4 * s)], fill=hex2(_ac(govde, 0.25)))
     for yy in (ust + int(3 * s), ust + int(8 * s), ust + int(13 * s)):
-        d.rectangle([x - int(1.6 * s), yy, x + int(1.6 * s), yy + _u(0.6, s)], fill=hex2(serit))
-    d.rectangle([x - int(3 * s), ust - _u(0.9, s), x + int(3 * s), ust], fill=hex2("#8a5a34"), outline=hex2("#3a2414"))  # oturak
+        d.rectangle([x - gx, yy, x + gx, yy + _u(0.6, s)], fill=hex2(serit))
+    d.rectangle([x - int(3 * s * k), ust - _u(0.9, s), x + int(3 * s * k), ust], fill=hex2("#8a5a34"), outline=hex2("#3a2414"))  # oturak
     fit = halka + int(1.4 * s)
     d.line([x, fit, x + int(0.6 * s), fit + int(1.6 * s)], fill=hex2("#3a2a1a"))        # fitil
     if alev > 0:
@@ -446,23 +449,36 @@ def fisek(img, x, zemin, s=1.0, govde="#a8301e", serit="#e0b040", alev=0.0):
 
 
 def yuzen(img, x, su_y, s=1.0, yon=-1, f=0.0, govde=LAGARI["govde"], sac="#2a1a12"):
-    """Yeni figür: denizde yüzen adam (kulaç). Baş ve bir kol su çizgisinin üstünde; gövde suyun altında kalır
-    (su_y'den aşağısı çizilmez). Başın çevresinde dalga halkası."""
+    """Yeni figür: denizde yüzen adam (kulaç). Baş, omuzlar ve sırasıyla suya giren kollar su çizgisinin üstünde;
+    gövdenin geri kalanı suyun altındadır (su_y'den aşağısı çizilmez). Arkasında V biçimli iz, çevresinde köpük."""
     d = ImageDraw.Draw(img)
     r = max(2, int(1.7 * s))
-    bx, by = x, su_y - int(0.9 * s) + int(SIN(f, 2) * 0.3 * s)
-    a = f * 2 * math.pi                                                  # kulaç: kol öne-yukarı çıkar, suya girer
-    omuz = (x - yon * int(0.6 * s), su_y)
-    el = (x + yon * int(4.2 * s * math.cos(a)), su_y - int(3.4 * s * max(0.0, math.sin(a))))
-    if el[1] < su_y - 1:
-        d.line([*omuz, *el], fill=hex2(govde), width=_u(1, s))
-        piksel(img, el[0], el[1], hex2("#e8b890"))
-    d.ellipse([bx - r, by - r, bx + r, by + r], fill=hex2("#e8b890"))
-    d.chord([bx - r, by - r - 1, bx + r, by + r - _u(0.4, s)], 180, 360, fill=hex2(sac))   # ıslak saç
-    piksel(img, bx + yon * int(0.9 * s), by, hex2("#2b1a12"))
-    for k in range(-int(4 * s), int(4 * s) + 1):                          # dalga halkası
-        if abs(k) > r and (k + int(f * 6)) % 3:
-            piksel(img, bx + k, su_y - 1, hex2("#d8eaf4"))
+    k = yeni(img.width, img.height)
+    dk = ImageDraw.Draw(k)
+    dk.ellipse([x - int(3.4 * s), su_y - int(1.6 * s), x + int(3.4 * s), su_y + int(1.6 * s)], fill=hex2(govde))   # omuzlar
+    bx, by = x + yon * int(0.8 * s), su_y - int(2.2 * s) + int(SIN(f, 2) * 0.3 * s)
+    dk.ellipse([bx - r, by - r, bx + r, by + r], fill=hex2("#e8b890"))
+    dk.chord([bx - r, by - r - 1, bx + r, by + r - _u(0.6, s)], 180, 360, fill=hex2(sac))          # ıslak saç
+    piksel(k, bx + yon * int(1 * s), by, hex2("#2b1a12"))
+    for j, faz in enumerate((f, (f + 0.5) % 1)):                                                # iki kol sırayla
+        a = faz * 2 * math.pi
+        if math.sin(a) > 0:
+            omuz = (x - yon * int(1.6 * s) * (1 if j else -1), su_y - int(0.8 * s))
+            el = (x + yon * int(4.6 * s * math.cos(a)), su_y - int(4 * s * math.sin(a)))
+            dk.line([*omuz, *el], fill=hex2(_ac(govde, -0.15)), width=_u(1, s))
+            dk.ellipse([el[0] - _u(0.6, s), el[1] - _u(0.6, s), el[0] + _u(0.6, s), el[1] + _u(0.6, s)], fill=hex2("#e8b890"))
+    px = k.load()
+    for yy in range(su_y, k.height):                                                             # su çizgisinin altı silinir
+        for xx in range(max(0, x - int(8 * s)), min(k.width, x + int(8 * s))):
+            px[xx, yy] = (0, 0, 0, 0)
+    img.alpha_composite(k)
+    for j in range(1, int(12 * s)):                                                             # arkada V izi
+        for sg in (-1, 1):
+            if (j + int(f * 8)) % 3:
+                piksel(img, x - yon * (int(3 * s) + j), su_y + sg * (j // 4) + 1, hex2("#c8dcec", 150))
+    for kk in range(-int(4 * s), int(4 * s) + 1):                                               # köpük
+        if (kk + int(f * 6)) % 3 == 0:
+            piksel(img, x + kk, su_y, hex2("#e8f2f8", 200))
 
 
 def terazi(img, x, zemin, s=1.0, egim=0.0, sol="kitap", sag="tuy"):
@@ -748,9 +764,9 @@ def _uzak_deniz(no, kiyi, su, tepe, sil, su_renk, tohum, cami=2, minare=12, kule
     d = ImageDraw.Draw(img)
     if kule is not None:                                             # karşı kıyıda küçük Galata Kulesi
         r = 3
-        d.rectangle([kule - r, su - 22, kule + r, su - 1], fill=hex2(_ac(sil, -0.12)))
-        d.rectangle([kule - r - 1, su - 24, kule + r + 1, su - 22], fill=hex2(_ac(sil, -0.12)))
-        d.polygon([(kule - r - 1, su - 24), (kule, su - 31), (kule + r + 1, su - 24)], fill=hex2(_ac(sil, -0.2)))
+        d.rectangle([kule - r, su - 13, kule + r, su - 1], fill=hex2(_ac(sil, -0.12)))
+        d.rectangle([kule - r - 1, su - 15, kule + r + 1, su - 13], fill=hex2(_ac(sil, -0.12)))
+        d.polygon([(kule - r - 1, su - 15), (kule, su - 20), (kule + r + 1, su - 15)], fill=hex2(_ac(sil, -0.2)))
     if isik:                                                         # gece: kıyıda yanan pencereler
         rnd = random.Random(tohum + 9)
         for _ in range(70):
@@ -908,7 +924,7 @@ def _yerel(no, izgara_x, sx=None):
     return izgara_x - (sx - p.w / 2)
 
 
-def _uzak_kara(no, kiyi, taban, tepe, sil, ova, tohum, cami=1, minare=10, kule=None, yogun=1.0):
+def _uzak_kara(no, kiyi, taban, tepe, sil, ova, tohum, cami=1, minare=10, kule=None, yogun=1.0, damlar=None):
     """Uzak plan (yeni katman yardımcısı): tepeler, ufuk çizgisine oturan şehir silüeti ve dümdüz ova. Dikişsiz."""
     img = yeni()
     hat = sirt(kiyi, 5, tohum, 3, 0.6, w=W, dongulu=True)
@@ -918,12 +934,37 @@ def _uzak_kara(no, kiyi, taban, tepe, sil, ova, tohum, cami=1, minare=10, kule=N
     if kule is not None:
         d = ImageDraw.Draw(img)
         r = 3
-        d.rectangle([kule - r, taban - 22, kule + r, taban - 1], fill=hex2(_ac(sil, -0.12)))
-        d.rectangle([kule - r - 1, taban - 24, kule + r + 1, taban - 22], fill=hex2(_ac(sil, -0.12)))
-        d.polygon([(kule - r - 1, taban - 24), (kule, taban - 31), (kule + r + 1, taban - 24)], fill=hex2(_ac(sil, -0.2)))
+        d.rectangle([kule - r, taban - 13, kule + r, taban - 1], fill=hex2(_ac(sil, -0.12)))
+        d.rectangle([kule - r - 1, taban - 15, kule + r + 1, taban - 13], fill=hex2(_ac(sil, -0.12)))
+        d.polygon([(kule - r - 1, taban - 15), (kule, taban - 20), (kule + r + 1, taban - 15)], fill=hex2(_ac(sil, -0.2)))
     arazi(img, [taban] * W, list(ova), None, doku_tohum=no + 3)
+    if damlar:                                                       # aşağıda kalan şehrin düz damları (yukarıdan bakış)
+        d = ImageDraw.Draw(img)
+        rnd = random.Random(no + 11)
+        y = taban + 3
+        while y < 640:
+            x = rnd.randint(-8, 0)
+            while x < W:
+                w = rnd.randint(8, 16)
+                renk = _ac(damlar, rnd.uniform(-0.15, 0.1))
+                d.rectangle([x % W, y, min(W - 1, x % W + w), y + 5], fill=hex2(renk))
+                d.line([x % W, y, min(W - 1, x % W + w), y], fill=hex2(_ac(renk, 0.2)))
+                d.line([x % W, y + 6, min(W - 1, x % W + w), y + 6], fill=hex2(_ac(renk, -0.4)))
+                if rnd.random() < 0.35:
+                    d.rectangle([x % W + 3, y + 3, x % W + 4, y + 4], fill=hex2("#2a1a14"))
+                x += w + rnd.randint(1, 3)
+            y += 8
     kaydet(img, f"sahne{no}-uzak.png")
     return img
+
+
+def _su_bandi(t, y0, orta_ust, sprite_ust, renkler):
+    """Sprite'ın alt satırlarına orta plandaki denizle AYNI renkte su bandı (dikiş görünmez): her satırın rengi o satırın
+    dünya y'sinden hesaplanır (su_ve_kiyi: 30 satırlık bantlar). Sprite tabanı bu suya oturur."""
+    d = ImageDraw.Draw(t)
+    for y in range(y0, t.height):
+        dy = sprite_ust + y - orta_ust
+        d.line([0, y, t.width, y], fill=hex2(renkler[min(len(renkler) - 1, max(0, dy) // 30)]))
 
 
 def _orta_deniz(no, ust, renkler):

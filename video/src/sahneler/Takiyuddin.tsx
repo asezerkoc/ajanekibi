@@ -320,7 +320,7 @@ export const TAKIYUDDIN_SERI: Seri = {
     // 446: 1597: Tycho Hven'den ayrılır
     {
       no: 446, yakin: 2.4, kamera: 10,
-      sprite: { w: 400, h: 300, fps: 10, x: [300, 235], taban: 632 },
+      sprite: { w: 400, h: 300, fps: 10, x: [256, 220], taban: 632 },
       yazilar: [
         { satirlar: ["Peki Tycho?", "Kralı 1588'de ölüyor.", "1597'de adayı terk ediyor."], sure: 6.24 }, // kart 47
       ],
@@ -335,7 +335,7 @@ export const TAKIYUDDIN_SERI: Seri = {
     },
     // 448: Motif: ikisi de yok
     {
-      no: 448, yakin: 2.0, kamera: 6,
+      no: 448, yakin: 2.2, kamera: 6,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Aynı gökyüzü, iki gözlemevi.", "İkisi de yok."], sure: 2.94, renk: ALTIN }, // kart 49
