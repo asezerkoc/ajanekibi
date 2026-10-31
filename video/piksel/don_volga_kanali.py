@@ -1130,6 +1130,708 @@ def sahne257():
 
     _spr(257, IW, IH, kare, yk)
 
+
+
+def _su_sprite(t, y0, taban, h, renkler=("#4a6a8a", "#42627e", "#3a5a74", "#325268"), su0=556, tohum=1):
+    """Sprite'ın alt satırlarına orta plandaki suyla aynı renkte su (renk dünya y'sine göre: (y - su0) // 30)."""
+    d = ImageDraw.Draw(t)
+    for ly in range(y0, h):
+        wy = taban - h + ly
+        d.line([0, ly, t.width, ly], fill=hex2(renkler[min(len(renkler) - 1, max(0, (wy - su0) // 30))]))
+    rnd = random.Random(tohum)
+    for _ in range((h - y0) * 6):
+        x, y = rnd.randrange(t.width), rnd.randrange(y0 + 2, h)
+        for k in range(rnd.randint(2, 6)):
+            piksel(t, x + k, y, hex2("#8ab8d8", 140))
+    d.line([0, y0, t.width, y0], fill=hex2("#9ac0d8"))
+
+
+def _su_orta(img, y0, renkler=("#4a6a8a", "#42627e", "#3a5a74", "#325268")):
+    d = ImageDraw.Draw(img)
+    for y in range(y0, img.height):
+        d.line([0, y, img.width, y], fill=hex2(renkler[min(len(renkler) - 1, (y - 556) // 30 if y >= 556 else 0)]))
+    rnd = random.Random(y0)
+    for _ in range(600):
+        x, y = rnd.randrange(img.width), rnd.randrange(y0 + 2, img.height)
+        for k in range(rnd.randint(3, 7)):
+            piksel(img, x + k, y, hex2("#8ab8d8", 140))
+
+
+def _s_atli(no, yk, taban, ornek=TATAR, geri=0):
+    return min(s_atli(yk, 0.30), _sigdir(no, lambda t, s, z: figur(t, atli, 280, z, s, 1, dur=True, **ornek), taban, geri))
+
+
+def sahne258():
+    """Kart 13: 14 Mart 1569, Perevoloka; soğuk gri gün. Rus elçisi Maltsev ve uşağı yakın kıyıda batıya (sola) at sürer;
+    arkada Volga'da buz kütleleri, kıyıda kar lekeleri."""
+    yk = 2.6
+
+    def ekle(img, z):
+        _su_bandi(img, 556, 596, ("#5a6a7a", "#52626e", "#4a5a66", "#42525e"), "#a8a090", 258)
+        rnd = random.Random(258)
+        d = ImageDraw.Draw(img)
+        for _ in range(26):
+            x, y = rnd.randrange(img.width), rnd.randrange(560, 592)
+            g = rnd.randint(5, 14)
+            d.polygon([(x, y), (x + g, y), (x + g - 2, y + 2), (x + 1, y + 2)], fill=hex2("#e8eef4"))
+        for _ in range(40):
+            x, y = rnd.randrange(img.width), rnd.randrange(604, 700)
+            d.ellipse([x, y, x + rnd.randint(8, 22), y + 3], fill=hex2("#dce2e8"))
+    _dis(258, "gri", ekle=ekle, orta_ust=(550, 556))
+    sa = _s_atli(258, yk, DT, ornek=MALTSEV)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, atli, 262, duz(z[0] - 8, t.width), round(0.92 * sa, 1), -1, (f + 0.4) % 1, "#4a3a2a", "#1a120c",
+              govde="#5a4a3a", bas="kalpak", bas_renk="#2a1e14", sakal=None, adim=0.45)
+        figur(t, atli, 166, z, sa, -1, f, "#7a6a5a", "#2a2018", adim=0.45, **{k: v for k, v in MALTSEV.items() if k != "kemer"})
+
+    _spr(258, DW, DH, kare, yk, esik=0.7)
+
+
+def sahne259():
+    """Kart 14: Nogay atlısı (solda, batıya giden) yaralı Maltsev'i elleri bağlı yürütür; ip eyerden ellerine uzanır,
+    elçinin alnında kan. Uzakta Don'un ağzında Azak kalesi."""
+    yk = 2.6
+
+    def ekle(img, z):
+        figur(img, anadolu_kalesi, PAY + 176, PAY + 236, duz(586, img.width), 1.2)
+    _gorunur(259, [176, 236], 300, 252, yk, pay=-30)
+    _dis(259, "gri", ekle=ekle)
+    sa = _s_atli(259, yk, DT, ornek=NOGAY)
+    K = _K(259, yk, DT, ornek=MALTSEV)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, atli, 158, z, sa, -1, f, "#5a3a24", "#1a120c", adim=0.4, silah="mizrak" if False else None, **NOGAY)
+        figur(t, kisi, 262, z, K, **MALTSEV, yon=-1, adim=(f * 2) % 1, kol=0.12)
+        d = ImageDraw.Draw(t)
+        ust = z[0] - int(11 * K)
+        el = (262 - int(3.5 * K), ust - int(4 * K * 0.12) + int(1 * K))
+        d.line([(186, z[0] - int(0.95 * sa * 14)), el], fill=hex2("#c8aa78"), width=_u(0.4, K))
+        hx, hy = 262 - int(0.8 * K), z[0] - int(14.6 * K)
+        d.rectangle([hx - int(0.6 * K), hy, hx + int(0.2 * K), hy + int(0.7 * K)], fill=hex2("#a01a14"))
+
+    _spr(259, DW, DH, kare, yk, esik=0.7)
+
+
+def sahne260():
+    """Kart 15: Kasım Paşa'nın kadırgasının güvertesi (kamera güvertede): arkada küpeşte ve suya inen kürekler, Don'un
+    suyu ve karşı kıyı. Esir Maltsev sıraya oturmuş kürek çeker; solda yeniçeri nöbetçi, sağda (kıçta) Kasım Paşa."""
+    yk = 2.8
+    sx = 270
+
+    def ekle(img, z):
+        _su_orta(img, 552)
+        d = ImageDraw.Draw(img)
+        d.rectangle([0, 590, img.width, img.height], fill=hex2("#7a5a3a"))                     # güverte
+        for k, yy in enumerate(range(594, img.height, 6 + k)):
+            d.line([0, yy, img.width, yy], fill=hex2("#5e442c"))
+        for xx in range(0, img.width, 22):                                                     # küpeşte direkleri
+            d.rectangle([xx, 578, xx + 3, 592], fill=hex2("#5a3a22"))
+            d.line([xx + 2, 580, xx - 16, 560], fill=hex2("#3a2418"))                        # suya inen kürek
+            d.rectangle([xx - 19, 558, xx - 15, 562], fill=hex2("#3a2418"))
+        d.rectangle([0, 576, img.width, 580], fill=hex2("#8a6a44"))
+        d.line([0, 576, img.width, 576], fill=hex2("#b8946a"))
+        d.rectangle([0, 586, img.width, 590], fill=hex2("#8a2a1a"))
+    _dis(260, "yaz", ekle=ekle, orta_ust=(548, 552), on_=False)
+    K = _K(260, yk, DT, ornek=KASIM)
+
+    def kare(t, z, i):
+        f = i / KARE
+        mx = 182
+        figur(t, oturan, mx, z, round(0.95 * K, 1), govde=MALTSEV["govde"], bas="kalpak", bas_renk="#2e241c",
+              sakal="#a07a4a", yon=1, minder="#5a3a22")
+        y = z[0] - int(1.6 * 0.95 * K)
+        el = (mx + int(3 * 0.95 * K) + int(1.2 * K * SIN(f)), y - int(4.5 * 0.95 * K))
+        d = ImageDraw.Draw(t)
+        d.line([el, (el[0] - int(0.9 * K * 10), (590 - (DT - DH)) - 2)], fill=hex2("#4a2e18"), width=_u(0.5, K))
+        figur(t, kisi, 124, z, K, **YENICERI, yon=1, silah="kilic", kol=0.0)
+        figur(t, kisi, 256, z, K, **KASIM, yon=-1, kol=0.03 * (1 + SIN(f)))
+
+    _spr(260, DW, DH, kare, yk)
+
+
+def sahne261():
+    """Kart 16: Ağustos 1569; kadırgalar Don'dan yukarı (sağa) kürek çeker. Öndeki büyük kadırga suya oturur, küpeştede
+    gemi ölçeğinde kürekçi başları; geride iki kadırga daha (küçük ve yüksekte: uzakta)."""
+    yk = 2.6
+    G_W, G_H, G_T = 400, 260, 640
+    su = G_H - 30
+
+    def ekle(img, z):
+        _su_orta(img, 556)
+        for x, s_ in ((PAY + 196, 0.9), (PAY + 330, 0.8)):
+            figur(img, kadirga, x, 574, s_, 1, 0.3, tayfa=False)
+    _dis(261, "yaz", ekle=ekle, orta_ust=(552, 556), on_=False)
+    sg = min(2.6, _sigdir(261, lambda t, s, z: figur(t, kadirga, 280, z[0] - 30, s, 1, 0.0), G_T - 30))
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kadirga, 196, su, sg, 1, f)
+        _su_sprite(t, su, G_T, G_H, tohum=261)
+
+    _spr(261, G_W, G_H, kare, yk, esik=0.4, kenar=False)
+
+
+def sahne262():
+    """Kart 17-18: bozkırda Kırım Hanı Devlet Giray (mor kaftan, sorguç) ak atının üstünde durur, atı başını eğmiş;
+    arkasında iki Tatar atlısı, ufka kadar uzanan atlı sırası."""
+    yk = 2.8
+
+    def ekle(img, z):
+        for k, x in enumerate(range(PAY + 150, PAY + 420, 16)):
+            figur(img, atli, x, duz(586 + (k % 2) * 3, img.width), 0.9, 1, (k * 0.13) % 1, dur=True, **TATAR)
+    _dis(262, "yaz", ekle=ekle)
+    sa = _s_atli(262, yk, DT, ornek=HAN)
+
+    def kare(t, z, i):
+        f = i / KARE
+        arka = duz(z[0] - 12, t.width)
+        for x in (150, 262):
+            figur(t, atli, x, arka, round(0.86 * sa, 1), 1, 0.0, "#5a3a24", "#1a120c", dur=True, **TATAR)
+        figur(t, atli, 206, z, sa, 1, 0.0, "#e0d8c8", "#a89888", dur=True, kol=0.02 * (1 + SIN(f)), **HAN)
+
+    _spr(262, DW, DH, kare, yk, esik=0.7)
+
+
+def sahne263():
+    """Kart 19: Han ak atında (solda) nehre bakar; uzakta Don'da kürek çeken üç küçük kadırga (suyun üstünde, ufka yakın)."""
+    yk = 2.8
+
+    def ekle(img, z):
+        _su_bandi(img, 562, 586, tohum=263)
+        for x in (PAY + 262, PAY + 306, PAY + 346):
+            figur(img, kadirga, x, 578, 0.55, 1, 0.2, tayfa=False)
+    _gorunur(263, [250, 360], 270, 270, yk, pay=0)
+    _dis(263, "yaz", ekle=ekle, orta_ust=(552, 560))
+    sa = _s_atli(263, yk, DT, ornek=HAN)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, atli, 160, z, sa, 1, 0.0, "#e0d8c8", "#a89888", dur=True, kol=0.02 * (1 + SIN(f)), **HAN)
+
+    _spr(263, DW, DH, kare, yk, esik=0.7)
+
+
+def _nehir_kama(img, cx, renk=("#4a6a8a", "#3a5a74"), tohum=1, egri=10):
+    """Orta planda izleyiciye doğru akan nehir: ufukta ince, aşağı doğru perspektifle genişler (panorama için)."""
+    d = ImageDraw.Draw(img)
+    rnd = random.Random(tohum)
+    for y in range(556, img.height):
+        t_ = (y - 556) / (img.height - 556)
+        g = 4 + t_ * 120
+        x = cx + egri * math.sin(t_ * 3)
+        d.line([x - g / 2, y, x + g / 2, y], fill=hex2(renk[0] if (y // 3) % 5 else renk[1]))
+        piksel(img, x - g / 2 - 1, y, hex2("#b8a070"))
+        piksel(img, x + g / 2 + 1, y, hex2("#b8a070"))
+        if rnd.random() < 0.5:
+            piksel(img, x + rnd.uniform(-g / 2, g / 2), y, hex2("#9ac0d8"))
+
+
+def sahne264():
+    """Kart 20: panorama (kamera -300: orta plan ve sprite birlikte sola kayar, kadraj soldan sağa gezer). Başta solda
+    Don, sonda sağda Volga görünür; ikisi aynı karede değildir. Arada düz, ağaçsız bozkırda sığ hendek ve boyunca kazıcılar."""
+    yk = 2.6
+    W_, H_ = 560, 230
+
+    def ekle(img, z):
+        _nehir_kama(img, 222, tohum=1)
+        _nehir_kama(img, 600, tohum=2, egri=-10)
+        hendek_yarigi(img, PAY + 150, PAY + 410, tohum=264)
+    _dis(264, "yaz", ekle=ekle, on_=False)
+    K = _K(264, yk, HT, ornek=AZAP[1])
+
+    def kare(t, z, i):
+        f = i / KARE
+        for j, x in enumerate((180, 238, 300, 362, 410)):
+            ph = (f + j * 0.37) % 1
+            if j % 2:
+                figur(t, kurekci, x, z, K, ph, (1, -1)[j % 2 == 1], **AZAP[1])
+            else:
+                figur(t, kazici, x, z, K, ph, 1, **AZAP[(j // 2) % 3])
+
+    _spr(264, W_, H_, kare, yk, esik=0.3, kenar=False)
+
+
+def _kazi_sahnesi(no, palet, xs, ot=0.0, kuru=True, renk=TOPRAK, kisiler=None, yigin=True):
+    def ekle(img, z):
+        hendek_yarigi(img, PAY + 180, PAY + 362, renk=renk, tohum=no, ot=ot, kuru=kuru, yigin=yigin)
+    _gorunur(no, [184, 358], 270, 270, 2.8, pay=0)
+    _dis(no, palet, ekle=ekle)
+
+
+def sahne265():
+    """Kart 21: öğle; hendeğin tabanında iki kazmacı ve bir kürekçi; taban kupkuru, çatlak."""
+    yk = 2.8
+    _kazi_sahnesi(265, "yaz", None)
+    K = _K(265, yk, HT, ornek=AZAP[1])
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kazici, 136, z, K, f, 1, **AZAP[0])
+        figur(t, kurekci, 206, z, K, (f + 0.4) % 1, -1, **AZAP[1])
+        figur(t, kazici, 264, z, K, (f + 0.55) % 1, -1, **AZAP[2])
+
+    _spr(265, DW, 230, kare, yk)
+
+
+def sahne266():
+    """Kart 22-23: akşam; kazı bırakılmış: uzak kenardaki toprak yığınlarına kazmalar saplı kalmış; iki asker hendek
+    boyunca batıya (sola) yürür."""
+    yk = 2.8
+
+    def ekle(img, z):
+        hendek_yarigi(img, PAY + 180, PAY + 362, tohum=266)
+        for x, kr in ((PAY + 214, False), (PAY + 262, True), (PAY + 318, False)):
+            figur(img, sapli_kazma, x, duz(624, img.width), 2.0, -1, kurek=kr)
+    _gorunur(266, [184, 358], 292, 258, yk, pay=-20)
+    _dis(266, "aksam", ekle=ekle)
+    K = _K(266, yk, HT, ornek=AZAP[1])
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 176, z, K, **AZAP[1], yon=-1, adim=f)
+        figur(t, kisi, 236, z, K, **AZAP[0], yon=-1, adim=(f + 0.4) % 1)
+
+    _spr(266, DW, 230, kare, yk)
+
+
+def sahne267():
+    """Kart 24: Kasım Paşa (sağda) kararını verir, kolunu batıya, Azak'a uzatır; koşulu öküz ve ağır tunç top kağnı
+    yoluna döner. Geride nehirde büyük bir kadırga da batıya döner."""
+    yk = 2.8
+
+    def ekle(img, z):
+        _su_bandi(img, 562, 586, tohum=267)
+        figur(img, kadirga, PAY + 300, 578, 0.7, -1, 0.3, tayfa=False)
+    _dis(267, "aksam", ekle=ekle, orta_ust=(552, 560))
+    K = _K(267, yk, DT, ornek=KASIM)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, okuz, 132, z, round(0.55 * K, 1), -1, "#5a4030", 0.0)
+        figur(t, top_, 196, z, round(0.42 * K, 1), -1)
+        d = ImageDraw.Draw(t)
+        d.line([(150, z[0] - int(0.55 * K * 5)), (172, z[0] - int(0.42 * K * 3))], fill=hex2("#8a6a44"), width=_u(0.35, K))
+        figur(t, kisi, 262, z, K, **KASIM, yon=-1, kol=0.55 + 0.04 * SIN(f))
+
+    _spr(267, DW, DH, kare, yk, esik=0.7)
+
+
+def sahne268():
+    """Kart 25-26: ordu karadan doğuya (sağa), Astrahan'a yürür: önde üç asker, geride uzun bir yürüyüş kolu; top yok."""
+    yk = 2.8
+
+    def ekle(img, z):
+        for k, x in enumerate(range(PAY + 130, PAY + 440, 12)):
+            figur(img, kisi, x, duz(587 + (k % 2) * 2, img.width), 1.3, **(YENICERI if k % 3 else AZAP[k % 2]), yon=1,
+                  adim=(k * 0.29) % 1)
+    _dis(268, "aksam", ekle=ekle)
+    K = _K(268, yk, DT, ornek=YENICERI)
+
+    def kare(t, z, i):
+        f = i / KARE
+        for j, (x, ki) in enumerate(((150, YENICERI), (206, AZAP[0]), (262, YENICERI))):
+            figur(t, kisi, x, z, K, **ki, yon=1, adim=(f + j * 0.37) % 1, silah="kilic" if j == 1 else None)
+
+    _spr(268, DW, DH, kare, yk)
+
+
+def sahne269():
+    """Kart 27: Eylül 1569, Astrahan'ın yukarısında eski şehrin yeri: kerpiç harabeler arasında kamp; asker çadırın
+    kazığını çakar. Geride harabe ve çadırlar düz zemine oturur."""
+    yk = 2.8
+
+    def ekle(img, z):
+        figur(img, harabe, PAY + 176, PAY + 250, duz(586, img.width), 1.3, tohum=1)
+        for x in (PAY + 290, PAY + 336):
+            figur(img, kon_cadir, x, duz(586, img.width), 1.2)
+    _gorunur(269, [176, 350], 270, 270, yk, pay=0)
+    _dis(269, "aksam", ekle=ekle)
+    K = _K(269, yk, DT, ornek=AZAP[0])
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, harabe, 112, 170, duz(z[0] - 6, t.width), round(0.42 * K, 1), tohum=4)
+        figur(t, kon_cadir, 248, duz(z[0] - 4, t.width), round(0.42 * K, 1))
+        figur(t, kazici, 190, z, K, f, 1, **AZAP[0])
+
+    _spr(269, DW, DH, kare, yk, esik=0.7)
+
+
+def sahne270():
+    """Kart 28: Kasım Paşa ve bir yeniçeri ağası nehrin ortasındaki adada duran Astrahan kalesine bakar; önlerinde
+    kuşatma topu yok."""
+    yk = 2.8
+
+    def ekle(img, z):
+        _su_bandi(img, 556, 596, tohum=270)
+        _ada(img, PAY + 290, PAY + 356, 572, 556, 596)
+        figur(img, ahsap_kale, PAY + 296, PAY + 350, duz(572, img.width), 1.1)
+    _gorunur(270, [280, 362], 270, 270, yk, pay=-6)
+    _dis(270, "gri", ekle=ekle, orta_ust=(550, 556))
+    K = _K(270, yk, DT, ornek=KASIM)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 146, z, K, **KASIM, yon=1, kol=0.02 * (1 + SIN(f)))
+        figur(t, kisi, 200, duz(z[0] - 6, t.width), round(0.96 * K, 1), **YENICERI, yon=1, kol=0.0)
+
+    _spr(270, DW, DH, kare, yk)
+
+
+def sahne271():
+    """Kart 29-30: gece; ateşin başında iki asker eğilip fısıldaşır; arkada içi ışıklı çadırlar; uzakta mor-altın
+    Han'ın çadırı."""
+    yk = 2.8
+
+    def ekle(img, z):
+        for x in (PAY + 186, PAY + 230):
+            figur(img, kon_cadir, x, duz(586, img.width), 1.15, isik=True)
+        figur(img, kon_cadir, PAY + 340, duz(584, img.width), 1.0, renk="#6a3a7a", serit="#e0b040", isik=True)
+    _dis(271, "gece", ekle=ekle, yildiz=70)
+    K = _K(271, yk, DT, ornek=AZAP[0])
+
+    def kare(t, z, i):
+        f = i / KARE
+        ates(t, 206, z, f, round(0.28 * K, 1))
+        figur(t, oturan, 160, z, round(0.95 * K, 1), govde=AZAP[0]["govde"], bas="bork", bas_renk="#5a3a22",
+              sakal="#2a1a12", yon=1)
+        figur(t, oturan, 254, z, round(0.95 * K, 1), **YENICERI, yon=-1)
+
+    _spr(271, DW, DH, kare, yk)
+
+
+def sahne272():
+    """Kart 31: soluk şafak; bir ulak dörtnala batıdan değil doğudan (sağdan) kampa girer, toynaklarından toz kalkar."""
+    yk = 2.8
+
+    def ekle(img, z):
+        for x in (PAY + 170, PAY + 214, PAY + 380):
+            figur(img, kon_cadir, x, duz(586, img.width), 1.15)
+    _dis(272, "gri", ekle=ekle)
+    sa = _s_atli(272, yk, DT, ornek=AZAP[0])
+
+    def kare(t, z, i):
+        f = i / KARE
+        for k in range(3):
+            duman(t, 236 + k * 12, z[0] - 2, 16, 272 + k, faz=(f + k * 0.3) % 1, renk="#a89c88", ruzgar=0.4, genislik=1.2)
+        figur(t, atli, 196, z, sa, -1, f, "#3a2a1e", "#1a120c", adim=0.8, govde="#6a3a2a", bas="bork", bas_renk="#e8e0d0",
+              sakal="#2a1a12")
+
+    _spr(272, DW, DH, kare, yk, esik=0.7)
+
+
+def sahne273():
+    """Kart 32: Eylül sonu, yağmur; çadırlar sökülür (geride biri yere serilmiş); sırtında yük olan iki asker batıya yürür."""
+    yk = 2.8
+
+    def ekle(img, z):
+        figur(img, kon_cadir, PAY + 196, duz(586, img.width), 1.2, yikik=1)
+        figur(img, kon_cadir, PAY + 300, duz(586, img.width), 1.2)
+    _dis(273, "gri", ekle=ekle)
+    hava(273, "yagmur", 160, renk="#a8b4c4", egim=0.2)
+    K = _K(273, yk, DT, ornek=AZAP[1])
+
+    def kare(t, z, i):
+        f = i / KARE
+        d = ImageDraw.Draw(t)
+        for j, (x, ki) in enumerate(((168, AZAP[1]), (238, YENICERI))):
+            ad = (f + j * 0.45) % 1
+            figur(t, kisi, x, z, K, **ki, yon=-1, adim=ad)
+            ust = z[0] - int(11 * K)
+            bx = x + int(2.6 * K)
+            d.rectangle([bx - int(2 * K), ust - int(0.5 * K), bx + int(1 * K), ust + int(4 * K)], fill=hex2("#c8bc9a"),
+                        outline=hex2("#5a4a3a"))
+
+    _spr(273, DW, DH, kare, yk)
+
+
+def sahne274():
+    """Kart 33: boş kamp yeri, gri gün: taş halkalı sönmüş ateşten ince duman yükselir, yere serilmiş çadır ve kazıklar
+    kalmış. Ne düşman ne savaş."""
+    yk = 2.8
+    _dis(274, "gri")
+    K = s_kisi(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        d = ImageDraw.Draw(t)
+        cx, y = 170, z[0]
+        for k in range(-3, 4):
+            d.ellipse([cx + k * int(0.9 * K) - int(0.5 * K), y - int(0.9 * K), cx + k * int(0.9 * K) + int(0.5 * K), y - 1],
+                      fill=hex2("#7a7670"), outline=hex2("#3a3630"))
+        d.rectangle([cx - int(2 * K), y - int(1.2 * K), cx + int(2 * K), y - int(0.7 * K)], fill=hex2("#2a2420"))
+        duman(t, cx, y - int(1 * K), 60, 274, faz=f, renk="#9a968e", ruzgar=0.3, genislik=1.2)
+        figur(t, kon_cadir, 246, z, round(0.5 * K, 1), yikik=1)
+
+    _spr(274, DW, DH, kare, yk, esik=0.7)
+
+
+def sahne275():
+    """Kart 34: Kuzey Kafkasya, kavurucu güneş; çatlamış kuru dere yatağında diz çökmüş asker kazmayla su arar; yanında
+    ayaktaki asker boş testisini kaldırır. Geride dağlar."""
+    yk = 2.8
+
+    def ekle(img, z):
+        d = ImageDraw.Draw(img)
+        rnd = random.Random(275)
+        for _ in range(140):
+            x, y = rnd.randrange(img.width), rnd.randrange(600, 960)
+            for k in range(4):
+                x2, y2 = x + rnd.randint(-6, 6), y + rnd.randint(-2, 2)
+                d.line([x, y, x2, y2], fill=hex2("#7a6038"))
+                x, y = x2, y2
+    _dis(275, "sicak", ekle=ekle, dag=True, dag_y=(452, 486), tepe_y=490, ova_y=498)
+    K = _K(275, yk, DT, ornek=AZAP[2])
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kazici, 160, z, K, f, 1, diz=True, **AZAP[2], toz="#a88a5a")
+        figur(t, kisi, 250, z, K, **YENICERI, yon=-1, silah="testi", kol=0.55 + 0.05 * SIN(f))
+
+    _spr(275, DW, DH, kare, yk)
+
+
+def sahne276():
+    """Kart 35: dönüş yolunda saldırı: sağdan oklar uçar; kalkanlı asker sağa döner, yanında yüzüstü düşmüş asker (sırtında
+    ok, kan); uzakta tozun içinden gelen Kazak ve Çerkes atlıları."""
+    yk = 2.8
+
+    def ekle(img, z):
+        for k, x in enumerate((PAY + 318, PAY + 340, PAY + 362)):
+            duman(img, x + 10, 586, 18, 276 + k, faz=0.3, renk="#c8b088", ruzgar=0.4, genislik=1.4)
+            figur(img, atli, x, duz(586 + k % 2, img.width), 1.0, -1, 0.3 + k * 0.2, "#3a2a1e", "#140e0a", silah="kilic",
+                  kol=0.8, adim=0.8, **KAZAK)
+    _gorunur(276, [318, 362], 270, 270, yk, pay=-4)
+    _dis(276, "sicak", ekle=ekle, dag=True, dag_y=(452, 486), tepe_y=490, ova_y=498)
+    K = _K(276, yk, DT, ornek=YENICERI)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, yatan_asker, 168, z, round(0.55 * K, 1), "#3a4a7a", "#ece6d8", 1)
+        figur(t, kisi, 246, z, K, **YENICERI, yon=1, silah="kalkan", kol=0.45)
+        for k in range(3):
+            ff = (f + k / 3) % 1
+            ok_ucusu(t, 300, 470 - (DT - DH) + k * 14 - 400, 120, 560 - (DT - DH) - 400 + k * 10, ff)
+
+    _spr(276, DW, DH, kare, yk, esik=0.7)
+
+
+def sahne277():
+    """Kart 36-37: Azak, fırtınadan sonra: kırık direkli, yan yatmış kadırga suya oturur, seren ve yırtık yelken suya
+    sarkar; solda kıyıda Azak kalesi (karada); sağda uzakta barut deposundan kara duman."""
+    yk = 2.6
+    G_W, G_H, G_T = 400, 260, 640
+    su = G_H - 30
+
+    def ekle(img, z):
+        _su_orta(img, 556, ("#4a5a6a", "#42525e", "#3a4a56", "#32424e"))
+        d = ImageDraw.Draw(img)
+        d.polygon([(0, 566), (PAY + 230, 566), (PAY + 252, 586), (0, 586)], fill=hex2("#6a6450"))
+        d.line([0, 566, PAY + 230, 566], fill=hex2("#8a8470"))
+        for xx in range(PAY + 230, PAY + 254, 2):
+            piksel(img, xx, 566 + (xx - PAY - 230) * 20 // 22, hex2("#e8f0f0"))
+        figur(img, anadolu_kalesi, PAY + 164, PAY + 222, duz(566, img.width), 1.1)
+        figur(img, kadirga, PAY + 300, 574, 0.6, 1, 0.3, hasar=1, tayfa=False)
+        d.rectangle([PAY + 352, 566, PAY + 360, 574], fill=hex2("#5a4a3a"))
+        duman(img, PAY + 356, 566, 34, 277, faz=0.4, renk="#2e2a28", ruzgar=0.3, genislik=1.6)
+    _gorunur(277, [164, 360], 270, 270, yk, pay=-8)
+    _dis(277, "firtina", ekle=ekle, orta_ust=(552, 556), on_=False)
+    sg = min(2.4, _sigdir(277, lambda t, s, z: figur(t, kadirga, 280, z[0] - 30, s, 1, 0.0, hasar=1), G_T - 30))
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kadirga, 200, su, sg, -1, f, hasar=1)
+        _su_sprite(t, su, G_T, G_H, ("#4a5a6a", "#42525e", "#3a4a56", "#32424e"), tohum=277)
+
+    _spr(277, G_W, G_H, kare, yk, esik=0.4, kenar=False)
+
+
+def sahne278():
+    """Kart 38: ilk kar; Maltsev (kurtulmuş, yalnız) kuzeye, sola yürür; geride Azak kalesi ufukta."""
+    yk = 2.8
+
+    def ekle(img, z):
+        figur(img, anadolu_kalesi, PAY + 316, PAY + 372, duz(586, img.width), 1.1)
+    _dis(278, "kar", ekle=ekle)
+    hava(278, "kar", 160)
+    K = _K(278, yk, DT, ornek=MALTSEV)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 200, z, K, **MALTSEV, yon=-1, adim=f)
+
+    _spr(278, DW, DH, kare, yk)
+
+
+def sahne279():
+    """Kart 39: Moskova, ahşap oda, gece: Maltsev masanın başında, mum ışığında raporunu yazar."""
+    ic_mekan(279, **MOSKOVA)
+    yk = 3.0
+    K = _K(279, yk, IT, ornek=MALTSEV)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 250, 0, f, zincir=_kz(yk))
+        u = figur(t, masa, 226, z, round(0.85 * K, 1), yuk="kagit")
+        masa_mumu(t, 254, u, f, round(0.7 * K, 1))
+        figur(t, kisi, 170, z, K, **MALTSEV, yon=1, silah="mektup", kol=0.2 + 0.03 * SIN(f))
+
+    _spr(279, IW, IH, kare, yk)
+
+
+def sahne280():
+    """Kart 40: alacakaranlık; 1569'un hendeği otlarla örtülmüş, tabanı kuru; uzak kenarda paslı bir kazma saplı
+    kalmış, yanında kır çiçekleri."""
+    yk = 2.8
+
+    def ekle(img, z):
+        hendek_yarigi(img, PAY + 180, PAY + 362, tohum=280, ot=0.8, yigin=False)
+        for x in (PAY + 220, PAY + 300):
+            figur(img, toprak_yigini, x, duz(625, img.width), 1.4, "#6a5a3a", x)
+    _dis(280, "aksam", ekle=ekle)
+    K = s_kisi(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        arka = duz(z[0] - 16, t.width)
+        figur(t, sapli_kazma, 206, arka, round(0.75 * K, 1), -1)
+        for x, ph in ((150, 0.0), (186, 0.3), (246, 0.6)):
+            figur(t, cicek, x, duz(z[0] - 15, t.width), round(0.3 * K, 1), (f + ph) % 1)
+
+    _spr(280, DW, 230, kare, yk, esik=0.7)
+
+
+def sahne281():
+    """Kart 41-42: 1697, yaz; daha kuzeyde yeni bir hendek. Çar Petro (uzun boylu, koyu yeşil palto) gösterir; İngiliz
+    mühendis John Perry (kahverengi, ak peruk) planı tutar; köylü kazar."""
+    yk = 2.8
+    _kazi_sahnesi(281, "bahar", None)
+    K = _K(281, yk, HT, ornek=PETRO)
+    kp = min(round(1.12 * K, 1), _sigdir(281, lambda t, s, z: figur(t, kisi, 280, z, s, **PETRO), HT))
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 146, z, kp, **PETRO, yon=1, kol=0.5 + 0.04 * SIN(f))
+        figur(t, avrupali, 206, z, K, govde=PERRY["govde"], sac=PERRY["sac"], yon=-1, silah="mektup", kol=0.3)
+        figur(t, kazici, 262, z, K, f, -1, govde=MUJIK["govde"], bas="bork", bas_renk="#5a4a3a", sakal="#7a5a3a",
+              kemer="#3a2a1a")
+
+    _spr(281, DW, 230, kare, yk)
+
+
+def sahne282():
+    """Kart 43: kuzeyde, kış; terk edilmiş hendek karla dolmuş; ters dönmemiş el arabası ve saplı kürek kalmış."""
+    yk = 2.8
+
+    def ekle(img, z):
+        hendek_yarigi(img, PAY + 180, PAY + 362, renk="#8a8a90", tohum=282, kuru=False)
+    _dis(282, "kar", ekle=ekle)
+    hava(282, "kar", 140)
+    K = s_kisi(yk)
+
+    def kare(t, z, i):
+        figur(t, el_arabasi, 176, z, round(0.6 * K, 1), 1, yuk="#f0f4fa")
+        figur(t, sapli_kazma, 240, z, round(0.85 * K, 1), -1, kurek=True)
+
+    _spr(282, DW, 230, kare, yk, esik=0.7)
+
+
+def sahne283():
+    """Kart 44-45: 1948, kurşuni gök; dikenli tel ve alçak gözcü kulesinin önünde hendekte iki mahkûm kazar; haki
+    gardiyan bekler."""
+    yk = 2.8
+
+    def ekle(img, z):
+        figur(img, gozcu_kulesi, PAY + 330, duz(584, img.width), 1.5)
+        figur(img, dikenli_tel, PAY + 140, PAY + 400, duz(596, img.width), 1.3)
+        hendek_yarigi(img, PAY + 180, PAY + 362, renk="#6a5a44", tohum=283)
+    _gorunur(283, [320, 340], 270, 270, yk, pay=0)
+    _dis(283, "sovyet", ekle=ekle)
+    K = _K(283, yk, HT, ornek=GARDIYAN)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kazici, 140, z, K, f, 1, **MAHKUM[0])
+        figur(t, kurekci, 204, z, K, (f + 0.5) % 1, 1, **MAHKUM[1])
+        figur(t, kisi, 262, z, K, **GARDIYAN, yon=-1, silah="sopa", kol=0.02)
+
+    _spr(283, DW, 230, kare, yk)
+
+
+def _kilit_sahnesi(no, durum, palet="bahar"):
+    yk = 2.6
+    _dis(no, palet, on_=False)
+
+    def kare(t, z, i):
+        kilit(t, 400, 360, i / KARE, durum)
+
+    _spr(no, 400, 360, kare, yk, esik=0.3, kenar=False)
+
+
+def sahne284():
+    """Kart 46: 1952, beton kanal kapağı önden: iki kule, köprü, kapalı çelik kapak; önündeki hazne kuru."""
+    _kilit_sahnesi(284, "kapali", "sovyet")
+
+
+def sahne285():
+    """Kart 47: 31 Mayıs 1952, 13.55: kapak açılır, köpüklü su hazneye hücum eder."""
+    _kilit_sahnesi(285, "akiyor")
+
+
+def sahne286():
+    """Kart 48: su, nihayet akıyor: kapak açık, hazne dolu; sakin su izleyiciye doğru akar."""
+    _kilit_sahnesi(286, "dolu")
+
+
+def _heykel(no, kim):
+    yk = 2.8
+
+    def ekle(img, z):
+        d = ImageDraw.Draw(img)
+        _su_bandi(img, 566, 588, ("#4a7aa0", "#4272 96".replace(" ", ""), "#3a6a8c", "#346284"), "#b8b4a8", no)
+        d.rectangle([0, 588, img.width, 592], fill=hex2("#b8b4a8"))
+    _dis(no, "bahar", ekle=ekle, orta_ust=(552, 566))
+    sh = _sigdir(no, lambda t, s, z: figur(t, heykel_kaide, 280, z, s, "lenin"), DT, pay=6)
+
+    def kare(t, z, i):
+        k = kim(i) if callable(kim) else kim
+        figur(t, heykel_kaide, 200, z, sh, k)
+
+    _spr(no, DW, DH, kare, yk, esik=0.7)
+
+
+def sahne287():
+    """Kart 49: kanalın girişinde dev Stalin heykeli: granit kaide, ayakta, yüzsüz bronz siluet."""
+    _heykel(287, "stalin")
+
+
+def sahne288():
+    """Kart 50: aynı kaide; fps 2 ile kare 0-7 kaide boş (heykel kaldırıldı), kare 8-23 aynı kaidede ayakta Lenin."""
+    _heykel(288, lambda i: None if i < 8 else "lenin")
+
+
+def sahne289():
+    """Kart 51-52 ve kapanış: gün batımı; geride kanalda akan su; önde toprak yığınına saplı eski bir kazma ve kır
+    çiçekleri: aynı bozkır, aynı iki nehir."""
+    yk = 2.8
+
+    def ekle(img, z):
+        _su_bandi(img, 566, 590, ("#7a6a8a", "#6a5a7a", "#5a4e6c", "#4e4460"), "#a8907a", 289)
+    _dis(289, "gunbatimi", ekle=ekle, orta_ust=(552, 566))
+    K = s_kisi(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, toprak_yigini, 200, z, round(0.7 * K, 1), "#6a4a30", 289)
+        figur(t, sapli_kazma, 206, duz(z[0] - int(0.3 * K), t.width), round(0.85 * K, 1), -1)
+        for x, ph in ((140, 0.0), (262, 0.5)):
+            figur(t, cicek, x, z, round(0.32 * K, 1), (f + ph) % 1, "#f4b44a")
+
+    _spr(289, DW, DH, kare, yk, esik=0.7)
+
 SAHNELER = {}
 
 if __name__ == "__main__":

@@ -33,3 +33,27 @@ Havada duran bir nesne yok. Bütün yazılar okunuyor, Türkçe harfler doğru. 
 ## Değerlendirme (sahibe gösterilecek)
 
 Video tarz olarak tutarlı: 64-bit piksel, konturlu figürler, katmanlı sahneler. 20 karenin hiçbirinde havada duran bir nesne yok, yazılar ve Türkçe harfler kusursuz okunuyor, kartlar sahnelerine oturuyor. Kapak temiz: başlık okunuyor, logoyla çakışmıyor. Galata Kulesi'nin geniş çekimi, Lagari'nin fişeği ve 2009 deneyi hikâyeyi iyi taşıyor. Buna karşın açılış görüntüsünde adam kulenin tepesinde değil, sahilde bir taşlıkta duruyor gibi görünüyor. Minberdeki talimde de yükseklik yok. Süzülüş ve Üsküdar inişinde kanat uçları ekranın kenarında kesiliyor. Bu üç düzeltme için iş grafikere geri gitti, düzeltilmiş kareleri yeniden kontrol edeceğim.
+
+---
+
+## 2. tur: UYGUN
+
+**Bakılan kareler (33):** grafikerin revizyonundan sonra render edilen 30 sahne karesi (`r2/sahne370` … `r2/sahne406`; 371, 373, 374, 376, 384, 387, 388, 390, 391, 393, 395, 397, 398, 402, 404, 405, 406 ilk kez görüldü), benim aldığım kapak (`r2/kapak.png`, kare 60) ve iki ek kare: `r2/ek-11940.png`, `r2/ek-12180.png` (401'in iki kartının ortası). Hepsi `scratchpad/qc-hezarfen/r2/` klasöründe. Her kareyi tam boyutta tek tek açtım. 381, 382, 380 ve 395'in kenar sütunlarını piksel okuyarak denetledim.
+
+**1. turdaki 3 zorunlu düzeltme**
+
+| # | Kare | Sonuç |
+|---|---|---|
+| 1 | `sahne370.png`, `kapak.png`, `sahne371.png`, kart 37 dönüşü (`ek-10920`) | **Düzeldi.** Korkuluğun ötesinde artık yukarıdan bakılmış, sıra sıra kiremit damlar, onların ötesinde deniz suru, en arkada Boğaz ve Üsküdar var. Adamın yüksekte durduğu okunuyor. 380 ise kendi sarı taşlığında ve yanında Sinan Paşa Köşkü var, iki yer artık karışmıyor. 371'in kartı ("Aşağıda Boğaz") da görüntüye oturuyor. |
+| 2 | `sahne378.png` | **Düzeldi.** Ayaklar kesme taş minberin dar sahanlığında (sahanlık figürden biraz geniş). Gövde çayıra oturuyor, merdiven ve korkuluk sola doğru çayıra iniyor, çayır belirgin şekilde aşağıda. Kart "minberin üstünden" ile görüntü uyuşuyor. |
+| 3 | `sahne381.png`, `sahne382.png` | **Düzeldi.** 381'de kanatlar x≈115-965, 382'de x≈135-945 aralığında. İki karede de kenar sütunları (x=0 ve 1079) yalnız gök, su ve taş renginde, kanat pikseli yok. 381'de kayma [264, 276]'ya daraltıldığı için sahne sonunda da pay kalıyor. Denizdeki soluk gölge süzülmeyi destekliyor. Kart "Boğaz'ın üstünde süzülüyor" dediği için adamın havada olması doğru. 382'de ayaklar Doğancılar taşlığına basıyor. |
+
+**Yeni ve değişen sahneler:** 30 karenin hiçbirinde havada duran ya da zeminden kopuk bir nesne yok. Figürler, sehpa, şamdan, fişek ayağı, fıçılar, kese, uçak tekerleri, terazi ve evler zemin çizgisine oturuyor. 399'daki kamera sehpası ve ekip beton blokların arkasında aynı zemindeler. 376'daki küçük kubbe, Cevherî'nin durduğu cami damının üstünde. Yazıların hepsi okunuyor, Türkçe harfler (ğ, ş, ı, İ, â, î) doğru. `sahne401.png`deki soluk yazı, kart geçişinde alınmış bir kare. Kartın ortasında (`ek-11940`, `ek-12180`) iki kart da net okunuyor. Kapakta başlık okunuyor, logo bandıyla çakışmıyor. 1. turdaki önerilerden 386 (hilal, konturlu Cezayir evleri, kaldırım), 385 (köpük ve iz), 396 (yatay kol), 375 (sade baş örtüsü), 399 (ayrışan ekip) ve 403 (uçak kesilmiyor) uygulanmış.
+
+**İyileştirme önerileri (reddetme nedeni değil)**
+- `sahne370.png` / `kapak.png`: Şerefe döşemesi hâlâ geniş ve düz (y≈1240-1640), kavis yok. Aşağıdaki damlar da birbirinin kopyası olan düzgün bir ızgara gibi duruyor. Döşemeyi daraltıp kavislendirmek ve dam sıralarına biraz düzensizlik (bir kubbe, bir minare, ağaç) eklemek yüksekliği daha da güçlendirir.
+- `sahne395.png`: Sinan Paşa Köşkü sol kenarda kesik (saçak x=0'dan taşıyor). `sahne380.png`'de köşkün saçak ucu sağ kenara değiyor. Bunlar figür değil yapı, ama biraz içeri alınabilir.
+- `sahne396.png`: Yüzücünün sağındaki iz (x≈775-955, y≈1140-1155) uçlarında dik çentikler olan düz bir çizgi, köşeli parantez gibi okunuyor. Dalgalı köpüğe çevrilebilir.
+- `sahne378.png`: Merdiven sol kenarda kesiliyor. Talim anını bozmuyor, ama merdivenin dibi kadraja alınırsa minberin bütünü okunur.
+
+**Değerlendirme (sahibe gösterilecek):** Grafiker üç zorunlu düzeltmenin üçünü de yaptı. Açılışta Hezarfen artık Galata Kulesi'nin şerefesinde, aşağıdaki damlara ve Boğaz'a yukarıdan bakıyor. Minber talimi dar bir sahanlıkta geçiyor. Süzülüşte ve Üsküdar inişinde kanatlar uçtan uca görünüyor. İlk kez gördüğüm 17 sahne dahil 33 karenin hiçbirinde havada duran bir nesne ya da okunmayan bir yazı yok. Kalan notlar küçük estetik ayrıntılar. Video sahibin onayına gidebilir.

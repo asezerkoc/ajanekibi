@@ -258,7 +258,7 @@ export const RAZIYE_SERI: Seri = {
         { satirlar: ["Hinduların eline düştüler,", "öldürüldüler.", "Kim olduklarını yazmıyor."], sure: 4.49 }, // kart 35
       ],
     },
-    // 239: Faslı gezgin İbn Battûta asasıyla Delhi'ye (sağa) yürür; yükü taşıyan deve
+    // 239: Faslı gezgin İbn Battûta asasıyla Delhi'ye (sağa) yürür; sağ geride Delhi surları
     {
       no: 239, yakin: 2.6, kamera: 12, yaziY: 260,
       sprite: { w: 400, h: 220, fps: 16, x: [245, 290], taban: 632 },

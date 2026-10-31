@@ -24,8 +24,8 @@ from PIL import Image, ImageDraw  # noqa: E402
 
 import timur_figur as _tf  # noqa: E402
 from ciz import KOYU, _ac, agac, duman, duz_zemin, figur, gradyan, hex2, orta_asya_sehri, piksel, temas_golgesi, yeni, zemin_y  # noqa: E402
-from sahneler import GW, H, duz, gokyuzu, kaydet, on, orta, sprite, uzak  # noqa: E402
-from timur_figur import TEN, anadolu_kalesi, at, atli, deve, fil, kisi, koy_evleri, oturan, sedir  # noqa: E402
+from sahneler import GW, H, duz, kaydet, on, orta, sprite, uzak  # noqa: E402
+from timur_figur import TEN, anadolu_kalesi, at, atli, fil, kisi, koy_evleri, oturan  # noqa: E402
 from timur import ic_mekan, kalabalik, kandil, mangal, mumluk  # noqa: E402
 from kalender import kitaplar, rahle, taht  # noqa: E402
 
