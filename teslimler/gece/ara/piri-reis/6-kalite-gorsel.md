@@ -64,3 +64,59 @@ Piri Reis videosu görsel olarak sağlam:
 - Basra'da kalan donanma, fırtına ve parşömen yakın planları hikâyeyi güçlü taşıyor.
 
 Tek bir şeyi geri çeviriyorum: 1929 Topkapı sahnesinde Halil Edhem ve yanındaki adamın şapkası. Şapka takmaları dönemine uygun, ama çizilen silüet 1920'lerin fötrü değil, püriten ya da Amiş şapkası gibi okunuyor. Grafiker bunu fötrle değiştirip aynı turda Babüsselam'ı daha Osmanlı ve daha büyük çizdiğinde video teslime hazır olacak.
+
+## 2. tur
+
+**Girdiler:** Grafikerin `5-grafik.md` dosyasındaki "Görsel KK revizyonu" bölümü ve `scratchpad/qc-piri-reis/r2/` altındaki 11 kare: kapak, 335, 340, 345, 346, 349, 354, 359, 360, 362 ve 364. Bulutların kaldırılmasından etkilenen ve ilk turda görülmeyen sahneler için 6 ek kare render ettim (`r2/ek/`):
+
+| Ek kare | Sahne | Kare no |
+|---|---|---|
+| ek-332 | 332 | 1313 |
+| ek-335son | 335, sahne sonu | 2428 |
+| ek-341 | 341 | 4680 |
+| ek-344 | 344 Aden | 6005 |
+| ek-356 | 356 fırtına | 10016 |
+| ek-366 | 366 Hapgood | 13777 |
+
+### Karar: UYGUN DEĞİL (revize_birimi: grafiker)
+
+**İlk turdaki zorunlu düzeltme yapıldı.**
+- sahne359 ve sahne360'ta iki adam da alçak, yuvarlak taçlı, koyu bantlı, dar kenarlı şapka takıyor. Bu şapka 1920'lerin fötrü ya da melon şapkası olarak okunuyor; püriten silüeti gitti.
+- Halil Edhem iki sahnede de lacivert paltolu, kır sakallı ve fötrlü.
+- Deissmann iki sahnede de kahverengi paltolu ve ak sakallı. 359'da fötrlü, 360'ta içeride başı açık. Karakter bağı kuruluyor.
+- Yüzlerin hepsinde göz var, ayakların hepsi zeminde.
+
+**İyileştirmelerin çoğu da yapıldı.**
+- **Bâbüsselâm:** Kuleler adamların başını geçiyor; saçak ve yeşil-altın tuğra panosu var.
+- **Kahle (362):** Başı açık.
+- **Ohlmeyer (364):** Yüksek taçlı subay kepi takıyor, sandalyede lamba yanında oturuyor, masada kâğıt ve kalem var.
+- **Uzak plan:** Tepelerde çam kalmadı (ek-344, 345, 359, kapak).
+- **Kaleler:** Maskat ve Hürmüz kaleleri iki kulesi ve kapısıyla kadrajın içinde.
+- **Kenar nesneleri:** Kenarda kesik bulut ve uzak gemiler yok (ek-332, ek-341).
+- **Fırtına:** Bulutsuz da yağmur ve karanlık gökle fırtına olarak okunuyor (ek-356).
+
+**Ama düzeltmeler yeni bir ölçek hatası getirdi.** Bu hata zorunlu düzeltme gerektiriyor.
+
+### Kalan zorunlu düzeltmeler (kare | yer | sorun | düzeltme)
+
+| Kare | Yer | Sorun | Düzeltme |
+|---|---|---|---|
+| sahne349.png (kapanış) ve sahne354.png | Rıhtım kenarındaki iki hurma: sol x ≈ 70-270, sağ x ≈ 830-1010, y ≈ 890-1160 | **Ölçek hatası.** Revizyonda rıhtıma dikilen hurmalar yaklaşık 270 px boyunda. Hemen önlerindeki Piri (354'te Seydi Ali de) yaklaşık 630 px. Tabanları (y 1160) adamların tabanına (y 1310) çok yakın, yani aynı derinlikteler. Bu derinlikte bir hurma insanın 3-5 katı olmalı; burada insanın yarısından kısa. Saksı bitkisi ya da oyuncak gibi duruyor. 349'da gövde ve yapraklar simsiyah olduğu için hurma olarak da okunmuyor; kara direk ya da örümcek gibi görünüyor. Bu kare videonun son sorusunun karesi. | `piri_reis.py` 1349. ve 1367. satırlardaki `_liman(..., hurmalar=[...])` listelerini boşalt; rıhtımda hurma olmasın. Basra hissi isteniyorsa hurmaları uzak plana koy: karşı kıyı şeridinde, yazı bandının altında (y > 600, su çizgisinin üstünde), uzak ölçekte (en çok ~90-110 px), seyrek ve düzensiz dizilsin. 349'da gövdeye kahverengi, yapraklara koyu yeşil-mor bir ton ver ki karanlıkta da siluet okunsun. Sonra 349 ve 354'ü yeniden üret, taban ve yazı bandı denetimlerini çalıştır. |
+
+### İyileştirme önerileri (reddetme nedeni değil)
+
+1. **sahne335.png ve ek-335son.png.** Grafikerin notunda "kalemli eli parşömenin üstüne uzanıyor" yazıyor, ama iki karede de kol ya da el görünmüyor. Masa yaklaşmış ve Piri'nin gövdesinin önünü örtüyor; eli masanın arkasında kalıyor. Kolu masanın üst yüzeyine (y ≈ 1050-1100) çizilen ayrı bir katman olarak ekle.
+2. **sahne335.png, sağ kenar (x ≈ 1074-1080, y ≈ 1100-1190).** Kameranın kaymasıyla bir şamdan 6 px'lik bir şerit olarak kenarda kesik görünüyor. Sahne sonunda (ek-335son) kayboluyor, telefonda neredeyse fark edilmez. İstenirse 20-30 px içeri alınabilir.
+3. **sahne346.png.** Ufuktaki Portekiz gemilerinin bayrak tepeleri (y ≈ 545) kartın 3. satırının hemen altına değiyor. İlk turda da böyleydi. Gemiler 15-20 px aşağı alınırsa nefes payı olur.
+4. **ek-332.** Uzak kale hâlâ kartın 2. ve 3. satırlarının arkasında. İlk turda kabul ettim, yazı okunuyor.
+5. **sahne359.png.** Kapı büyüdü ama adamların hâlâ yarısı kadar. Gerçek boyuna (adamın 3-4 katı) yaklaştırmak daha inandırıcı olur. Kuleleri yazı bandının altında tutarak yapılabilir.
+
+### Değerlendirme (sahibe gösterilecek)
+
+İlk turda geri çevirdiğim 1929 şapkası düzeldi:
+- Halil Edhem ile Deissmann artık dönemin fötrlerini takıyor.
+- Topkapı'nın kapısı Osmanlı saçağı ve tuğrasıyla daha doğru.
+- 1933 ve 1960 sahneleri (Kahle, Ohlmeyer) dönemine uygun.
+- Aden ve Umman kıyıları çıplak, kaleler kadrajın içinde, kenarlarda yarım nesne kalmadı.
+
+Tek bir yeni sorun var. Basra rıhtımına eklenen iki hurma, önlerindeki insanların yarısından kısa çizilmiş; videonun son karesinde oyuncak gibi duruyorlar. Grafiker bu hurmaları rıhtımdan kaldırıp uzak kıyıya doğru ölçekte koyduğunda video teslime hazır.

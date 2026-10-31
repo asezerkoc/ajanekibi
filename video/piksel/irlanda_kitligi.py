@@ -1450,3 +1450,855 @@ def sahne493():
     _bitir(no, kare)
 
 
+def lamba_tavan(t, x, ust, f, zincir=36):
+    """Bugünün tavan lambası: tavandan inen ince çubuk, konik metal şapka, altında sıcak ışık (titremez, hafif salınmaz)."""
+    d = ImageDraw.Draw(t)
+    for k in range(0, zincir, 2):
+        piksel(t, x, ust + k, hex2("#4a4a50"))
+    ky = ust + zincir
+    d.polygon([(x - 3, ky), (x + 3, ky), (x + 9, ky + 7), (x - 9, ky + 7)], fill=hex2("#2a3a3a"), outline=hex2("#141c1c"))
+    d.line([x - 7, ky + 7, x + 7, ky + 7], fill=hex2("#fff4d0"), width=2)
+    rnd = random.Random(int(x))
+    for r in range(4, 22, 3):
+        for a in range(0, 180, 10):
+            px_, py_ = x + math.cos(math.radians(a)) * r * 1.3, ky + 8 + math.sin(math.radians(a)) * r
+            if rnd.random() < 0.35 * (1 - r / 22):
+                piksel(t, px_, py_, hex2("#fff0c0", 50))
+
+
+def oturan_fesli(img, x, zemin, s, govde, fes="#a01e1c", sakal=None, yon=1, minder=None, gazete=False, sac="#3a2a1a"):
+    """Yeni figür: bağdaş kurup oturan fesli Osmanlı (timur_figur.oturan + fes; gazete=True elinde açık gazete)."""
+    oturan(img, x, zemin, s, govde=govde, bas=None, sakal=sakal, yon=yon, minder=minder)
+    d = ImageDraw.Draw(img)
+    y = zemin_y(zemin, x, 10 * s) - (int(1.6 * s) if minder else 0)
+    ust = y - int(9.5 * s)
+    by = ust - int(2.6 * s)
+    r = max(2, int(1.7 * s))
+    _sac(d, x, by, r, s, yon, sac)
+    _fes(d, img, x, by, r, s, yon, fes)
+    if gazete:
+        gx = x + int(2.2 * s) * yon
+        gx0, gx1 = min(gx, gx + int(5 * s) * yon), max(gx, gx + int(5 * s) * yon)
+        d.rectangle([gx0, y - int(8 * s), gx1, y - int(3.4 * s)], fill=hex2("#e8e2d0"), outline=hex2("#8a8270"))
+        for yy in range(y - int(7 * s), y - int(4 * s), max(2, int(0.7 * s))):
+            d.line([gx0 + 2, yy, gx1 - 2, yy], fill=hex2("#9a9480"))
+        d.rectangle([gx0 + 2, y - int(7.6 * s), gx1 - 2, y - int(7.1 * s)], fill=hex2("#3a3630"))
+
+
+def peyke(img, x, zemin, s=1.0, renk="#6a4a2a", ortu="#8a3a22"):
+    """Yeni figür: kahvehane peykesi (alçak, geniş ahşap oturak, üstü kilimli). Ayaklar zemine basar; üst y'yi döndürür."""
+    d = ImageDraw.Draw(img)
+    y = zemin_y(zemin, x, 16 * s)
+    temas_golgesi(img, x, y, 17 * s)
+    ust = y - int(3.4 * s)
+    for ax in (-7.5, 7.5):
+        d.rectangle([x + int(ax * s) - _u(0.6, s), ust, x + int(ax * s) + _u(0.6, s), y - 1], fill=hex2(_ac(renk, -0.3)))
+    d.rectangle([x - int(8.5 * s), ust - _u(1, s), x + int(8.5 * s), ust + _u(0.6, s)], fill=hex2(renk))
+    d.rectangle([x - int(8 * s), ust - _u(1.6, s), x + int(8 * s), ust - _u(1, s)], fill=hex2(ortu))
+    return ust - _u(1.6, s)
+
+
+def kahvehane(img, x0, x1, zemin, s=1.0, ahsap="#8a6a44"):
+    """Yeni figür: ahşap kahvehane cephesi: geniş açık önler (içi loş), sundurma saçağı, yazısız tabela. Düz zemine kurulur."""
+    d = ImageDraw.Draw(img)
+    y = duz_zemin(zemin, x0, x1, "kahvehane", tolerans=max(3, int(s)))
+    temel(img, zemin, x0, x1, y, "#4a3a2a")
+    h = int(16 * s)
+    d.rectangle([x0, y - h, x1, y - 1], fill=hex2(ahsap))
+    for x in range(x0, x1, max(3, int(2 * s))):
+        d.line([x, y - h, x, y - 1], fill=hex2(_ac(ahsap, -0.12)))
+    for kx in range(x0 + int(4 * s), x1 - int(8 * s), int(12 * s)):
+        d.rectangle([kx, y - int(10 * s), kx + int(8 * s), y - int(2 * s)], fill=hex2("#2a1e16"))
+        d.line([kx, y - int(6 * s), kx + int(8 * s), y - int(6 * s)], fill=hex2(_ac(ahsap, -0.3)))
+        piksel(img, kx + int(2 * s), y - int(4 * s), hex2("#f8c060"))
+    d.polygon([(x0 - int(2 * s), y - int(11 * s)), (x1 + int(2 * s), y - int(11 * s)), (x1, y - int(13.5 * s)), (x0, y - int(13.5 * s))],
+              fill=hex2("#6a3a2a"))
+    d.polygon([(x0 - int(1 * s), y - h), (x1 + int(1 * s), y - h), (x1 - int(3 * s), y - h - int(4 * s)), (x0 + int(3 * s), y - h - int(4 * s))],
+              fill=hex2("#9a4a32"))
+    cx = (x0 + x1) // 2
+    d.rectangle([cx - int(6 * s), y - int(15.6 * s), cx + int(6 * s), y - int(14 * s)], fill=hex2("#2a4a3a"), outline=hex2("#c8a040"))
+    return y - h - int(4 * s)
+
+
+def otel_cephesi(img, x0, x1, zemin, s=1.0, siva="#d8d0c0", plaket_x=None):
+    """Yeni figür: 18. yy (Georgian) üç katlı sıvalı otel cephesi: düz pencere dizileri, merkezde sütunlu kapı. plaket_x:
+    zemin kat duvarında yazısız bronz plaket (yalnız çizgiler). Düz zemine kurulur."""
+    d = ImageDraw.Draw(img)
+    y = duz_zemin(zemin, x0, x1, "otel", tolerans=max(3, int(s)))
+    temel(img, zemin, x0, x1, y, "#4a4440")
+    kh = int(8 * s)
+    h = 3 * kh + int(2 * s)
+    d.rectangle([x0, y - h, x1, y - 1], fill=hex2(siva))
+    d.rectangle([x0, y - h - _u(1.2, s), x1, y - h], fill=hex2(_ac(siva, 0.2)))
+    d.rectangle([x0, y - int(1.6 * s), x1, y - 1], fill=hex2(_ac(siva, -0.3)))
+    cx = (x0 + x1) // 2
+    for k in range(3):
+        fy = y - k * kh
+        for wx in range(x0 + int(5 * s), x1 - int(3 * s), int(9 * s)):
+            if k == 0 and (abs(wx - cx) < int(6 * s) or (plaket_x is not None and abs(wx - plaket_x) < int(7 * s))):
+                continue
+            d.rectangle([wx - int(1.6 * s), fy - kh + int(2 * s), wx + int(1.6 * s), fy - int(1.4 * s)], fill=hex2("#2e3a48"))
+            d.line([wx, fy - kh + int(2 * s), wx, fy - int(1.4 * s)], fill=hex2("#d8d8d0"))
+            d.line([wx - int(1.6 * s), fy - kh + int(4 * s), wx + int(1.6 * s), fy - kh + int(4 * s)], fill=hex2("#d8d8d0"))
+    d.rectangle([cx - int(2 * s), y - int(6.5 * s), cx + int(2 * s), y - 1], fill=hex2("#2a3a2a"))
+    d.chord([cx - int(2 * s), y - int(8.5 * s), cx + int(2 * s), y - int(4.5 * s)], 180, 360, fill=hex2("#e8e0c8"))
+    for k in (-1, 1):
+        d.rectangle([cx + k * int(3 * s) - _u(0.5, s), y - int(7 * s), cx + k * int(3 * s) + _u(0.5, s), y - 1], fill=hex2("#f0ece0"))
+    if plaket_x is not None:
+        px_ = plaket_x
+        d.rectangle([px_ - int(3 * s), y - int(6.5 * s), px_ + int(3 * s), y - int(2.5 * s)], fill=hex2("#a87a2a"), outline=hex2("#5a3a10"))
+        for yy in range(y - int(5.6 * s), y - int(3 * s), max(2, int(0.8 * s))):
+            d.line([px_ - int(2.2 * s), yy, px_ + int(2.2 * s), yy], fill=hex2("#e8c060"))
+    return y - h - _u(1.2, s)
+
+
+def _el(x, z, s, yon, kol):
+    """kisi() figürünün el ucu (timur_figur.kisi ile aynı formül; ayakta)."""
+    y = zemin_y(z, x, 6 * s)
+    ust = y - int(11 * s)
+    if kol > 0:
+        return x + int(3.5 * s) * yon, ust - int(4 * s * kol) + int(1 * s)
+    return x + int(2.5 * s) * yon, ust + int(5 * s)
+
+
+def bohca_el(t, x, z, s, yon, adim=None):
+    """Yürüyenin elinde sallanan bohça (eli kisi formülüyle bulunur; bohça elden sarkar)."""
+    y = zemin_y(z, x, 6 * s)
+    ust = y - int(11 * s)
+    sal = 0 if adim is None else math.sin(adim * 2 * math.pi) * 1.5 * s
+    ex, ey = x + int(2.5 * s) * yon - int(sal) * yon, ust + int(5 * s)
+    d = ImageDraw.Draw(t)
+    d.ellipse([ex - int(1.8 * s), ey, ex + int(1.8 * s), ey + int(3.2 * s)], fill=hex2("#8a7a5a"), outline=hex2(KOYU))
+    d.line([ex - int(1 * s), ey + int(0.6 * s), ex + int(1 * s), ey + int(2.6 * s)], fill=hex2("#5a4a32"))
+
+
+# --------------------------------------------------------------------------
+def sahne494():
+    """Kart 6: İstanbul, kahvehane önü. Peykede bağdaş kurmuş fesli adam gazete okur; yanında ayakta biri dinler.
+    Arkada ahşap kahvehane cephesi (düz kaldırıma oturur)."""
+    no = 494
+    gok(no, ["#7aa0d0", "#94b4dc", "#b2c8e4", "#d0dcea", "#ece8dc"], None, [(120, 418, 16), (400, 412, 18)])
+    uzak_tepe(no, ("#9aa6b4", "#8e9aaa"), 540)
+
+    def ekle(img, z):
+        figur(img, kahvehane, PAY + 150, PAY + 400, z, 3.6)
+    zemin_orta(no, 560, ["#b8ac94", "#aca088", "#a0947c", "#948870"], "kaldirim", ekle)
+    _bos(no, "on")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        u = figur(t, peyke, 168, z, round(k * 0.62, 1))
+        figur(t, oturan_fesli, 172, duz(u, t.width), round(k * 0.95, 1), govde="#4a3a2a", sakal="#3a2a1a", yon=1, gazete=True)
+        figur(t, beyefendi, 250, z, k, govde="#2a3a4a", bas="fes", bas_renk="#a8201e", sac="#2a1a12", biyik="#2a1a12", yon=-1,
+              kol=0.05 + 0.05 * (1 + SIN(f)))
+
+    _bitir(no, kare)
+
+
+GOK_IRL = ["#5a6470", "#6e7680", "#848a92", "#9ca0a4", "#b0b2b0"]
+TEPE_IRL = ("#4a5a46", "#42523e")
+
+
+def sahne495():
+    """Kart 7: İrlanda, 1845 sonbaharı. Kurşuni gök; tarlada kararmış, çökmüş patates fideleri; köylü kürekle kazar,
+    yanında şallı kadın boş sepetle bakar; geride saz damlı taş kulübe (düz zemine oturur)."""
+    no = 495
+    gok(no, GOK_IRL, None, [(100, 420, 22), (380, 416, 24)], ("#c8c8c8", "#a8aaac", "#8a8c90"))
+    uzak_tepe(no, TEPE_IRL, 540)
+
+    def ekle(img, z):
+        figur(img, kulube, PAY + 330, z, 3.4)
+        rnd = random.Random(5)
+        for row, y in enumerate(range(574, 600, 6)):
+            for x in range(4, GW, 9):
+                patates(img, x + rnd.randint(-2, 2), duz(y, GW), 1.0 + row * 0.25, 1.0, tohum=x + y)
+    _orta_gorunur(no, [(PAY + 330 - 45, PAY + 330 + 45)])
+    zemin_orta(no, 562, ["#5a4a36", "#524230", "#4a3c2a", "#423424"], "tarla", ekle)
+    _bos(no, "on")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        for x in range(124, 280, 13):
+            patates(t, x, z, round(k * 0.6, 1), 1.0, faz=f, tohum=x)
+        figur(t, beyefendi, 168, z, k, govde="#5a4a32", sac="#3a2a1a", sakal="#4a3420", yon=1, silah="kurek",
+              kol=0.25 + 0.2 * SIN(f))
+        figur(t, hanim, 246, z, k, elbise="#4a3a3a", bas="sal", bas_renk="#6a5a4a", yon=-1, silah="bohca")
+
+    _bitir(no, kare)
+
+
+def sahne496():
+    """Kart 8-9: göç yolu. Bohçalı aile (baba, şallı anne, çocuk) sola, limana yürür; geride damı çökmüş boş kulübe."""
+    no = 496
+    gok(no, GOK_IRL, None, [(140, 420, 22), (420, 418, 22)], ("#c8c8c8", "#a8aaac", "#8a8c90"))
+    uzak_tepe(no, TEPE_IRL, 540)
+
+    def ekle(img, z):
+        figur(img, kulube, PAY + 300, z, 3.4, cokmus=True)
+    _orta_gorunur(no, [(PAY + 300 - 45, PAY + 300 + 45)])
+    zemin_orta(no, 562, ["#6a6046", "#625840", "#5a503a", "#524834"], "toprak", ekle)
+    on_cimen(no, ["#3e4a32", "#465238", "#4e5a3e"], "#7a8a5a", boy=70)
+    k = K(no, 0.30)
+
+    def kare(t, z, i):
+        f = i / KARE
+        a1, a2, a3 = f, (f + 0.37) % 1, (f + 0.71) % 1
+        figur(t, beyefendi, 160, z, k, govde="#4a4234", sac="#2a2018", sakal="#3a2a1a", yon=-1, adim=a1)
+        bohca_el(t, 160, z, k, -1, a1)
+        figur(t, hanim, 205, z, round(k * 0.95, 1), elbise="#3a3a4a", bas="sal", bas_renk="#7a6a52", yon=-1, adim=a2)
+        figur(t, beyefendi, 244, z, round(k * 0.62, 1), govde="#6a5a40", sac="#8a5a2a", yon=-1, adim=a3)
+
+    _bitir(no, kare)
+
+
+def sahne497():
+    """Kart 10 ve 12: Londra, Ocak 1847. Yardım derneğinin odası: yeşil çizgili duvar kâğıdı, sisli pencere; masa başında
+    oturan başkan, ayakta konuşan üye, kâğıtlı kâtip."""
+    no = 497
+    oda(no, duvar="#3a5a4a", desen="cizgi", lambri="#4a2e1a", pencere=("#8a9098", "#c0c4c8"), pencere_x=(PAY + 222, PAY + 318),
+        tablo=(), zemin="tahta", zemin_renk="#5a3a24", hali="#5a2a2a")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, _kz(no))
+        oturan_masada(t, 200, z, k, beyefendi, **LONDRA_1, yon=1)
+        u = figur(t, masa, 200, z, k, ortu="#2a4a2a", gen=4.0, yuk=6.2)
+        for j, x in enumerate((186, 204)):
+            kagit(t, x, u, k * 0.4)
+        figur(t, beyefendi, 142, z, k, **LONDRA_2, yon=1, kol=0.25 + 0.12 * (1 + SIN(f)))
+        figur(t, beyefendi, 258, z, k, **KATIP_LON, yon=-1, silah="mektup", kol=0.3)
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne498():
+    """Kart 11: Kraliçe Victoria (27 yaşında; küçük taç, mavi kuşak) bağış kâğıdını uzatır; karşısında eğilen sekreter.
+    Kızıl damask duvarlı saray odası, altın çerçeveli tablolar, perdeler."""
+    no = 498
+    oda(no, duvar="#6a1e22", desen="damask", lambri="#e8dcc0", pencere=("#a8b8c8", "#e8eef4"), pencere_x=(PAY + 270,),
+        perde="#c8a040", tablo=((PAY + 215, "#4a5a3a"), (PAY + 325, "#3a4a6a")), zemin="parke", zemin_renk="#7a5232")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, _kz(no))
+        figur(t, beyefendi, 150, z, k, **LONDRA_1, yon=1, kol=0.15 + 0.05 * SIN(f))
+        figur(t, hanim, 226, z, k, **VICTORIA, yon=-1, silah="mektup", kol=0.3 + 0.04 * SIN(f))
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne499():
+    """Kart 13 ve 27: İstanbul, 1847 baharı. Kemerli pencereli divan salonu; fesli, nişanlı nazır bağış kesesini uzatır,
+    İngiliz elçisi Wellesley (koyu redingot, favori) eliyle konuşur (rivayet kartında 'araya girer')."""
+    no = 499
+    oda(no, duvar="#c8b890", desen="sade", lambri="#6a4a2a", pencere=("#8ab0d0", "#e0ecf4"), pencere_x=(PAY + 220, PAY + 320),
+        kemerli=True, zemin="tahta", zemin_renk="#6a4a30", hali="#2a4a6a")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, _kz(no))
+        figur(t, beyefendi, 150, z, k, **NAZIR, yon=1, kol=0.3)
+        ex, ey = _el(150, z, k, 1, 0.3)
+        figur(t, kese, ex + 3, duz(ey + int(3.4 * k * 0.5), t.width), round(k * 0.5, 1))
+        figur(t, beyefendi, 248, z, k, **WELLESLEY, yon=-1, kol=0.15 + 0.15 * (1 + SIN(f)))
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne500():
+    """Kart 14: Londra, derneğin yazıhanesi. Kâtip yüksek kürsüde açık deftere yazar; arkada raf dolusu defter."""
+    no = 500
+    oda(no, duvar="#8a7a5a", desen="sade", lambri="#4a3020", pencere=("#9aa0a8", "#d0d4d8"), pencere_x=(PAY + 300,),
+        zemin="tahta", zemin_renk="#5a3e26")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 210, 0, f, _kz(no))
+        figur(t, kursu, 172, z, round(k * 0.95, 1), egim=3.0)
+        figur(t, beyefendi, 240, z, k, **KATIP_LON, yon=-1, kol=0.12 + 0.04 * SIN(f, 2))
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne501():
+    """Kart 15: Osmanlı kâtibi minderde bağdaş kurmuş, rahledeki deftere kayıt düşer; çini kuşaklı oda, şamdan."""
+    no = 501
+    from timur import ic_mekan
+    ic_mekan(no, duvar=("#2a3a3a", "#344640", "#40524a"), kemer="#1a2620", cini="#2a6a9a", pencere=("#5a7a9a", "#a8c0d4"),
+             zemin_renk=("#6a5a42", "#5a4c38", "#4e4230"), hali=True)
+    k = K(no)
+    so = round(k * 1.05, 1)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 214, 0, f, _kz(no))
+        samdan(t, 142, z, f, round(k * 0.55, 1), 1)
+        figur(t, taht_yok, 0, z, 1) if False else None
+        from kalender import rahle
+        rahle(t, 192, z[0], round(so * 0.9, 1))
+        figur(t, oturan_fesli, 240, z, so, govde="#2a2a30", sakal="#3a2a1a", yon=-1, minder="#8a2a22")
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def taht_yok(*a, **k):
+    pass
+
+
+def _stand(d, img, x, y, s, renk="#5a3820"):
+    """Masa üstünde eğik kitap altlığı: ayağı masaya oturur; ön yüz izleyiciye dönük."""
+    d.polygon([(x - int(5 * s), y - int(1 * s)), (x + int(5 * s), y - int(1 * s)), (x + int(4.4 * s), y - int(8 * s)),
+               (x - int(4.4 * s), y - int(8 * s))], fill=hex2(renk))
+    d.rectangle([x - int(5.4 * s), y - int(1.2 * s), x + int(5.4 * s), y - 1], fill=hex2(_ac(renk, -0.25)))
+    return y - int(8 * s), y - int(1.4 * s)
+
+
+def sahne502():
+    """Kart 16: iki defter yan yana (yakın plan): solda kahverengi deri ciltli İngiliz defteri eğik altlıkta, sağda
+    kırmızı ciltli Osmanlı defteri rahlede; aralarında mum. Sayfalarda yalnız satır çizgileri."""
+    no = 502
+    oda(no, duvar="#2e3a34", desen="lambri", lambri=None, zemin="tahta", zemin_renk="#3e2c1e")
+    s = 5.4
+
+    def kare(t, z, i):
+        f = i / KARE
+        u = figur(t, masa, 200, z, s, renk="#4a2c18", gen=12.0, yuk=6.0)
+        d = ImageDraw.Draw(t)
+        a, b = _stand(d, t, 160, u, s * 0.85)
+        defter_sayfa(d, t, 160 - int(3.8 * s * 0.85), a + 2, 160 + int(3.8 * s * 0.85), b - 3, cilt="#5a3a22", kalin=2)
+        a, b = _stand(d, t, 240, u, s * 0.85, renk="#6a4426")
+        defter_sayfa(d, t, 240 - int(3.8 * s * 0.85), a + 2, 240 + int(3.8 * s * 0.85), b - 3, renk="#f4ecd4",
+                     satir="#8a6a5a", cilt="#8a1e1e", kalin=2)
+        d.rectangle([236, b - 3, 244, b - 1], fill=hex2("#e0b040"))
+        mum(t, 200, u, f, 2.2)
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne503():
+    """Kart 17-18: Dublin, 1847. Sarımsı duvarlı toplantı salonu, uzun pencereler, portreler. Masada oturan soylu
+    teşekkür mektubunu imzalar; iki beyefendi ayakta izler."""
+    no = 503
+    oda(no, duvar="#c8b878", desen="cizgi", lambri="#5a3a22", pencere=("#9aa8b4", "#dce4ea"), pencere_x=(PAY + 210, PAY + 330),
+        perde="#2a4a3a", tablo=((PAY + 270, "#5a4a3a"),), zemin="parke", zemin_renk="#6a4a2e")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        oturan_masada(t, 200, z, k, beyefendi, govde="#2a2a3a", sac="#9a9a98", favori=True, yon=1, kol=0.32 + 0.04 * SIN(f, 2))
+        u = figur(t, masa, 200, z, k, ortu="#3a2a4a", gen=4.4, yuk=6.2)
+        d = ImageDraw.Draw(t)
+        d.rectangle([194, u - int(0.8 * k), 214, u - 1], fill=hex2("#f0e6d0"), outline=hex2("#8a7a5a"))
+        piksel(t, 210, u - 2, hex2("#b8281e"))
+        figur(t, beyefendi, 140, z, k, govde="#3a3428", sac="#5a3a20", favori=True, yelek="#8a6a3a", yon=1, kol=0.05)
+        figur(t, beyefendi, 260, z, k, govde="#1e2a3a", sac="#2a1a12", favori=True, yon=-1)
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne504():
+    """Kart 19: bugün, kütüphane. Kitap rafı, camlı vitrinde mühürlü mektup; bugünün bir okuru eğilip bakar.
+    Tavan lambası (dönem dışı aletten kaçınılır: yalnız sade lamba)."""
+    no = 504
+    oda(no, duvar="#e0dcd2", desen="sade", lambri="#8a6a4a", zemin="parke", zemin_renk="#a8845a", isik="#fff0c8")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        lamba_tavan(t, 205, 0, f, _kz(no))
+        figur(t, raf, 146, z, round(k * 0.55, 1), tohum=504, kat=4, gen=8)
+        figur(t, vitrin, 207, z, round(k * 0.62, 1))
+        figur(t, hanim, 262, z, k, elbise="#3a5a6a", sac="#5a3a22", yon=-1, etek=0.75, topuz=False, kol=0.08)
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+SU_IRL = ("#5a7080", "#52687a", "#4a6072", "#42586a")
+GOK_DROG = ["#7a90a8", "#90a2b6", "#a8b6c4", "#c0cad0", "#d4d8d4"]
+
+
+def _drogheda(no, gok_r=GOK_DROG, su=SU_IRL, isik=False, tas="#6e6862"):
+    """Drogheda limanı (505-507 ortak): karşı kıyıda kasaba (uzak), Boyne nehri (orta, 548-600), önde taş rıhtım.
+    Karşı kıyının taş seddi suyun üst kenarındadır; kasaba suya değil sete oturur."""
+    gok(no, gok_r, None, [(100, 420, 20), (390, 414, 22)], ("#f0f0ec", "#d0d4d8", "#a8b0b8"))
+    kasaba_uzak(no, None, ("#4e6250", "#46584a"), ("#a8a098", "#988e86", "#b0a8a0", "#8a827c"), ufuk=544, isik=isik)
+
+    def arka(img):
+        d = ImageDraw.Draw(img)
+        d.rectangle([0, 544, GW, 550], fill=hex2("#5a5650"))                   # karşı kıyı seddi (kara)
+        d.line([0, 544, GW, 544], fill=hex2("#8a8680"))
+    liman_orta(no, su, tas=tas, ust_su=550, ekle_arka=arka)
+    _bos(no, "on")
+
+
+def sahne505():
+    """Kart 20: Drogheda, Mayıs 1847: Boyne nehri kıyısında liman (nehir ağzı değil). Önde taş rıhtım, çuvallar;
+    rıhtımda tüccar nehre bakar, hamal bekler; karşı kıyıda kasaba ve kilise kuleleri."""
+    no = 505
+    _drogheda(no)
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, cuval_yigini, 150, z, round(k * 0.42, 1), (2, 1))
+        figur(t, beyefendi, 205, z, k, govde="#2a2a2a", bas="silindir", sac="#5a3a20", favori=True, yon=1, kol=0.03 * (1 + SIN(f)))
+        figur(t, beyefendi, 258, z, k, govde="#5a4a3a", bas="kasket", bas_renk="#3a3a3a", sac="#3a2a1a", yon=-1)
+
+    _bitir(no, kare)
+
+
+def sahne506():
+    """Kart 21: üç yabancı yelkenli rıhtıma yanaşır. Gemiler insanın kat kat üstünde (insan s=1 ≈ 15 px, gemi s=2.8:
+    direk ≈ 100 px); gövdeler rıhtım kenarının ardında suya oturur; rıhtımda halat bekleyen üç küçük hamal."""
+    no = 506
+    _drogheda(no)
+    b = P(no)
+    ust = b["taban"] - b["h"]
+    rf = nehir_rengi(550, SU_IRL)
+    kenar = RIHTIM - ust                                     # rıhtım kenarının sprite satırı
+
+    def kare(t, z, i):
+        f = i / KARE
+        gemi_suda(t, 134, kenar - 18, 1.6, (f + 0.5) % 1, rf, ust, alt=kenar, acik=0.0, govde="#2a2420", serit="#c8b890")
+        gemi_suda(t, 250, kenar - 11, 2.1, (f + 0.25) % 1, rf, ust, yon=-1, alt=kenar, acik=0.5, govde="#1e1e24", serit="#d8d0b8")
+        gemi_suda(t, 180, kenar - 5, 2.7, f, rf, ust, alt=kenar, acik=0.0, govde="#241c18", serit="#e0d8c0", bayrak="#3a5a8a")
+        for j, x in enumerate((150, 196, 236)):
+            figur(t, beyefendi, x, z, 0.9, govde=("#5a4a3a", "#4a4a4a", "#6a5a40")[j], bas="kasket", bas_renk="#3a3a3a",
+                  yon=-1 if x > 190 else 1, kol=0.2 + 0.15 * SIN(f + j * 0.3))
+        d = ImageDraw.Draw(t)
+        d.line([150, z[0] - 10, 170, kenar - 8], fill=hex2("#6a5a3a"))      # yanaşan gemiden rıhtıma halat
+
+    _bitir(no, kare, esik=0.7)
+
+
+def sahne507():
+    """Kart 22-23: rıhtımda ambarların önü: buğday ve mısır çuvalları üst üste; defterli tüccar çuvalları sayar,
+    yanındaki tüccar kasabanın gazetesini açmış okur."""
+    no = 507
+    gok(no, GOK_DROG, None, [(110, 420, 20), (400, 414, 22)], ("#f0f0ec", "#d0d4d8", "#a8b0b8"))
+    uzak_tepe(no, ("#5e6e60", "#566658"), 540)
+
+    def ekle(img, z):
+        figur(img, ambar, PAY + 160, PAY + 260, z, 3.4)
+        figur(img, ambar, PAY + 270, PAY + 380, z, 3.2, tas="#7a7066")
+    zemin_orta(no, 560, ["#7a746c", "#6e6860", "#625c54", "#58524a"], "kaldirim", ekle)
+    _bos(no, "on")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, cuval_yigini, 148, z, round(k * 0.42, 1), (3, 2, 1), renk="#c8b080")
+        figur(t, beyefendi, 205, z, k, govde="#2a2a2a", bas="silindir", sac="#6a4a2a", favori=True, yon=-1, silah="mektup",
+              kol=0.28 + 0.04 * SIN(f))
+        figur(t, beyefendi, 258, z, k, govde="#3a3a2a", bas="silindir", sac="#8a8a88", favori=True, yelek="#6a2a2a", yon=-1,
+              gazete=True)
+
+    _bitir(no, kare)
+
+
+def sahne508():
+    """Kart 24: Selanik limanı (o yıllarda Osmanlı limanı). Rıhtımda Beyaz Kule, karşıda minareli şehir; rıhtıma
+    yanaşmış yelkenli (gövdesi rıhtım kenarının ardında suda)."""
+    no = 508
+    gok(no, ["#5a8ac8", "#78a2d4", "#98b8dc", "#bcd0e2", "#e0e4e0"], None, [(120, 418, 18), (430, 412, 16)])
+
+    def karsi(img, z):
+        d = ImageDraw.Draw(img)
+        rnd = random.Random(8)
+        renk = hex2("#c8bca8")
+        for x in range(0, W, 8):
+            hh = rnd.randint(4, 9)
+            d.rectangle([x, 540 - hh, x + 6, 540], fill=renk)
+            d.line([x, 540 - hh, x + 6, 540 - hh], fill=hex2("#a8442e"))
+        for x in (40, 200, 330, 470):
+            d.chord([x - 8, 526, x + 8, 542], 180, 360, fill=hex2("#9aa0a8"))
+            d.rectangle([x + 11, 516, x + 12, 540], fill=hex2("#e0d8c8"))
+            piksel(img, x + 11, 515, hex2("#9aa0a8"))
+    uzak_tepe(no, ("#8a9a7a", "#7e8e70"), 540, karsi)
+    su = ("#3a7ab0", "#3472a8", "#2e6aa0", "#286298")
+
+    def on_ekle(img, z):
+        figur(img, beyaz_kule, PAY + 205, z, 3.0)
+    liman_orta(no, su, tas="#c8bca4", kenar="#e8e0d0", ust_su=548, ekle_on=on_ekle)
+    _orta_gorunur(no, [(PAY + 205 - 24, PAY + 205 + 24)])
+    _bos(no, "on")
+    b = P(no)
+    ust = b["taban"] - b["h"]
+    rf = nehir_rengi(548, su)
+    kenar = RIHTIM - ust
+
+    def kare(t, z, i):
+        f = i / KARE
+        gemi_suda(t, 248, kenar - 5, 2.4, f, rf, ust, yon=-1, alt=kenar, acik=0.0, govde="#2a2420", serit="#e0d8c0")
+
+    _bitir(no, kare, esik=0.7)
+
+
+def sahne509():
+    """Kart 25: New York, 21 Temmuz 1849. Tuğla evli sokak; kasketli gazeteci çocuk gazeteyi havaya kaldırır,
+    silindir şapkalı beyefendi gazetesini okur."""
+    no = 509
+    gok(no, ["#5a8ac0", "#76a0cc", "#96b6d8", "#b8cce0", "#dce0e0"], None, [(100, 418, 16), (420, 412, 18)])
+    uzak_tepe(no, ("#9aa0a8", "#8e949c"), 540)
+
+    def ekle(img, z):
+        figur(img, tugla_evler, PAY + 140, PAY + 410, z, 2.6, tohum=509)
+    zemin_orta(no, 560, ["#8a8278", "#7e766c", "#726a60", "#665e56"], "kaldirim", ekle)
+    _bos(no, "on")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, beyefendi, 158, z, round(k * 0.66, 1), govde="#5a4a3a", bas="kasket", bas_renk="#4a4a4a", sac="#8a5a2a",
+              yon=1, silah="mektup", kol=0.7 + 0.25 * SIN(f, 2))
+        figur(t, beyefendi, 238, z, k, govde="#1e2230", bas="silindir", sac="#3a2a1a", favori=True, yon=-1, gazete=True)
+
+    _bitir(no, kare)
+
+
+def sahne510():
+    """Kart 26: basımhane. Demir el baskı makinesi; baskıcı kolu çeker (pres plakası iner kalkar), yanında basılı
+    kâğıt yığını. Tuğla duvar, küçük pencere."""
+    no = 510
+    oda(no, duvar="#7a4a3a", desen="tugla", lambri=None, pencere=("#9ab0c0", "#d8e4ea"), pencere_x=(PAY + 320,),
+        zemin="tahta", zemin_renk="#4a3624")
+    k = K(no)
+    sm = round(k * 0.62, 1)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 214, 0, f, _kz(no))
+        faz = (1 - math.cos(f * 2 * math.pi)) / 2
+        bag = figur(t, baski_makinesi, 172, z, sm, f)
+        kol = 0.1 + 0.35 * faz
+        figur(t, beyefendi, 252, z, k, govde="#4a4a52", sac="#3a2a1a", yelek="#7a6a4a", yon=-1, kol=kol)
+        el = _el(252, z, k, -1, kol)
+        d = ImageDraw.Draw(t)
+        d.line([*bag, *el], fill=hex2("#3a3a40"), width=2)
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne511():
+    """Kart 28: gece. Aynı kâtip kürsüsünde açık defter; üstünde katlanmış gazete; tek mum. Motif: defterde bin,
+    hikâye yolda."""
+    no = 511
+    oda(no, duvar="#1e2638", desen="lambri", lambri=None, pencere=("#0e1428", "#4a5a7a"), pencere_x=(PAY + 330,),
+        zemin="tahta", zemin_renk="#2a2420", isik="#f8c060")
+    s = 7.0
+
+    def kare(t, z, i):
+        f = i / KARE
+        u = figur(t, kursu, 200, z, s, egim=5.5)
+        mum(t, 160, u, f, 2.4)
+        d = ImageDraw.Draw(t)
+        y = zemin_y(z, 200, 14 * s) - int(8 * s) - int(1.4 * s)
+        g0, g1 = 196, 238
+        d.polygon([(g0, y - 2), (g1, y - 4), (g1 + 2, y - 24), (g0 + 3, y - 22)], fill=hex2("#ddd6c2"), outline=hex2("#6a6250"))
+        for yy in range(y - 19, y - 5, 3):
+            d.line([g0 + 6, yy, g1 - 4, yy - 1], fill=hex2("#8a8470"))
+        d.line([g0 + 6, y - 21, g1 - 4, y - 22], fill=hex2("#2a2620"), width=2)
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne512():
+    """Kart 29: Londra, 1851. Mavi-gri duvarlı çalışma odası, şömine; yazar masa başında biyografiyi yazar, masada
+    kitap yığını ve mum; yanda dolu raf."""
+    no = 512
+    oda(no, duvar="#4a5a7a", desen="cizgi", lambri="#3a2416", ocak=PAY + 330, zemin="tahta", zemin_renk="#5a3a24",
+        hali="#3a2a4a", tablo=((PAY + 230, "#6a5a3a"),))
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 206, 0, f, _kz(no))
+        figur(t, raf, 140, z, round(k * 0.55, 1), tohum=512, kat=4, gen=7)
+        oturan_masada(t, 222, z, k, beyefendi, govde="#2a2a34", sac="#7a7a78", favori=True, yon=-1, kol=0.3 + 0.03 * SIN(f, 2))
+        u = figur(t, masa, 222, z, k, renk="#4a2c18", gen=4.2, yuk=6.0)
+        figur(t, kitaplar_yigini, 206, duz(u, t.width), round(k * 0.55, 1), 3, 512)
+        mum(t, 240, u, f, 1.6)
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne513():
+    """Kart 30 ve 50: Drogheda, yıllar sonra (1930'lar). Sıvalı evli kasaba sokağı; kasketli üç adam konuşur
+    (biri eliyle anlatır)."""
+    no = 513
+    gok(no, ["#6a7a8e", "#808ea0", "#98a4b2", "#b0b8c0", "#c8ccca"], None, [(110, 420, 20), (400, 416, 20)],
+        ("#e8e8e4", "#c8ccd0", "#a0a6ae"))
+    uzak_tepe(no, ("#5a6a5c", "#526254"), 540)
+
+    def ekle(img, z):
+        figur(img, eski_ev_sirasi, PAY + 140, PAY + 410, z, 2.6, tohum=513)
+    zemin_orta(no, 560, ["#7a7670", "#6e6a64", "#625e58", "#56524e"], "kaldirim", ekle)
+    _bos(no, "on")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, beyefendi, 148, z, k, govde="#4a4234", bas="kasket", bas_renk="#5a5248", sac="#3a2a1a", yon=1)
+        figur(t, beyefendi, 205, z, k, govde="#2e3440", bas="kasket", bas_renk="#3a3a40", sac="#6a4a2a", yon=-1,
+              kol=0.2 + 0.2 * (1 + SIN(f)))
+        figur(t, beyefendi, 260, z, round(k * 0.97, 1), govde="#5a3a2a", bas="kasket", bas_renk="#4a3a2a", sac="#2a1a12",
+              biyik="#2a1a12", yon=-1)
+
+    _bitir(no, kare)
+
+
+def sahne514():
+    """Kart 32 (efsane): kasaba kapısı (iki kuleli barbakan), kemerin üstünde hilal ve yıldızlı kalkan. Bütün sahne
+    soluk mavi sis içinde, hayal gibi (491 ile aynı gece paleti)."""
+    no = 514
+    gok(no, ["#141c34", "#1e2a46", "#2a3a56", "#3a4a66", "#4a5a74"], yildiz=40)
+    kasaba_uzak(no, None, ("#26324a", "#222c42"), ("#34405a", "#303a52", "#3a465e"), ufuk=546, isik=True)
+    zemin_orta(no, 560, ["#3a465a", "#364256", "#323e50", "#2e3a4c"], "kaldirim")
+    _bos(no, "on")
+    s = 4.4
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kale_kapisi, 200, z, s, tas="#8a96aa", arma=("hilal", "#2a4a8a"))
+        rnd = random.Random(14)
+        for _ in range(240):
+            x = (rnd.randrange(t.width) + int(f * 24)) % t.width
+            y = rnd.randrange(t.height - 60, t.height)
+            piksel(t, x, y, hex2("#a8b4c8", 70))
+
+    _bitir(no, kare, esik=0.7)
+
+
+def sahne515():
+    """Kart 33: 1844. Tarihçi D'Alton (kır saçlı, favorili) çalışma odasında; masada açık kitabı ve belediye
+    başkanının mührü; elinde notları."""
+    no = 515
+    oda(no, duvar="#5a4630", desen="lambri", lambri=None, pencere=("#8a98a4", "#d0d8dc"), pencere_x=(PAY + 320,),
+        zemin="tahta", zemin_renk="#4a3222")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, _kz(no))
+        figur(t, raf, 140, z, round(k * 0.55, 1), tohum=515, kat=4, gen=7)
+        u = figur(t, masa, 202, z, k, renk="#5a3418", gen=3.8, yuk=6.2)
+        d = ImageDraw.Draw(t)
+        d.rectangle([188, u - 2, 206, u - 1], fill=hex2("#f0e6d0"), outline=hex2("#5a2e1e"))       # açık kitap
+        d.line([197, u - 3, 197, u - 1], fill=hex2("#8a7a5a"))
+        d.ellipse([210, u - 6, 218, u - 1], fill=hex2("#c8a040"), outline=hex2("#5a3a10"))       # mühür
+        d.rectangle([213, u - 10, 215, u - 6], fill=hex2("#5a3a20"))
+        figur(t, beyefendi, 258, z, k, govde="#2a2a2e", sac="#b8b8b4", favori=True, yon=-1, silah="mektup",
+              kol=0.3 + 0.04 * SIN(f))
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne516():
+    """Kart 34: mühür yakın planı. Kürsüde belge; kırmızı balmumu mühürde altın hilal ve yıldız (belediye başkanının
+    mührü, 1844 kaydı)."""
+    no = 516
+    oda(no, duvar="#3a2a22", desen="lambri", lambri=None, zemin="tahta", zemin_renk="#3e2c1e")
+    s = 7.0
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kursu, 200, z, s, defter=False, egim=5.5)
+        d = ImageDraw.Draw(t)
+        y = zemin_y(z, 200, 14 * s)
+        on_y, arka_y = y - int(8 * s), y - int(13.5 * s)
+        d.polygon([(166, on_y - 10), (234, on_y - 10), (230, arka_y + 3), (170, arka_y + 3)], fill=hex2("#f0e6d0"))
+        for yy in range(arka_y + 8, on_y - 26, 4):
+            d.line([176, yy, 226, yy], fill=hex2("#9a8a70"))
+        cx, cy, r = 200, on_y - 20, 13
+        d.ellipse([cx - r - 2, cy - r - 1, cx + r + 2, cy + r + 1], fill=hex2("#7a1410"))
+        d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=hex2("#a82018"))
+        d.ellipse([cx - 9, cy - 6, cx + 9, cy + 10], fill=hex2("#f0c850"))
+        d.ellipse([cx - 8, cy - 9, cx + 8, cy + 6], fill=hex2("#a82018"))
+        noktalar = []
+        for k2 in range(10):
+            a = -math.pi / 2 + k2 * math.pi / 5
+            rk = 4 if k2 % 2 == 0 else 1.8
+            noktalar.append((cx + math.cos(a) * rk, cy - 5 + math.sin(a) * rk))
+        d.polygon(noktalar, fill=hex2("#f0c850"))
+        parl = int(6 + 4 * SIN(f))
+        piksel(t, cx - parl, cy - r + 3, hex2("#ff8a70"))
+        mum(t, 160, arka_y, f, 2.4)
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne517():
+    """Kart 35-36: 13. yüzyıl. Kral John (taç, kızıl-altın kaftan, mavi pelerin, sakal) taş kalenin önünde; yanında
+    eski kraliyet aslanlı sancak, elinde hilal-yıldızlı nişan kalkanı."""
+    no = 517
+    gok(no, ["#6a8ab0", "#86a0c0", "#a4b8cc", "#c4d0d8", "#dcdcd4"], None, [(110, 420, 18), (410, 414, 20)])
+    uzak_tepe(no, ("#5a7a52", "#52704a"), 540)
+
+    def ekle(img, z):
+        figur(img, kale_kapisi, PAY + 305, z, 2.5, tas="#8a8478")
+    _orta_gorunur(no, [(PAY + 305 - 30, PAY + 305 + 30)])
+    zemin_orta(no, 560, ["#6a8a4a", "#5e7e42", "#52723a", "#466632"], "cayir", ekle)
+    on_cimen(no, ["#466632", "#52723a", "#5e7e42"], "#a8c870", boy=70)
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, sancak, 146, z, round(k * 0.5, 1), f, "#b8201e", "aslan")
+        figur(t, kisi, 232, z, k, govde="#8a1e22", bas="tac", bas_renk="#e0b040", sakal="#5a3a22", yon=-1, kol=0.2,
+              pelerin="#2a3a8a")
+        ex, ey = _el(232, z, k, -1, 0.2)
+        figur(t, arma_kalkani, ex - 2, ey + int(4 * k * 0.55), k * 0.55, "hilal", "#2a4a8a")
+
+    _bitir(no, kare)
+
+
+def sahne518():
+    """Kart 37: arşiv. Gri, penceresiz oda; boş raflar; arşivci elinde fenerle arar."""
+    no = 518
+    oda(no, duvar="#4a4a46", desen="sade", lambri=None, zemin="tas", zemin_renk="#4a4844", isik="#f8d890")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, raf, 146, z, round(k * 0.55, 1), dolu=False, tohum=518, kat=4, gen=7)
+        figur(t, raf, 256, z, round(k * 0.55, 1), dolu=False, tohum=519, kat=4, gen=7)
+        figur(t, beyefendi, 200, z, k, govde="#3a3a42", sac="#5a4a3a", yon=1, kol=0.35)
+        ex, ey = _el(200, z, k, 1, 0.35)
+        fener_el(t, ex, ey, f, k * 0.5)
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne519():
+    """Kart 38-39: kasabanın tarihçisi (bugün) kitaplarla dolu odasında; elinde açık kitap. Masada kitap yığını."""
+    no = 519
+    oda(no, duvar="#7a7a5e", desen="sade", lambri="#5a4026", pencere=("#a8b8c4", "#e0e8ec"), pencere_x=(PAY + 300,),
+        zemin="parke", zemin_renk="#7a5a3a", isik="#fff0c8")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        lamba_tavan(t, 205, 0, f, _kz(no))
+        figur(t, raf, 140, z, round(k * 0.55, 1), tohum=520, kat=4, gen=7)
+        u = figur(t, masa, 202, z, k, renk="#6a4a2a", gen=3.6, yuk=6.0)
+        figur(t, kitaplar_yigini, 196, duz(u, t.width), round(k * 0.55, 1), 4, 519)
+        figur(t, beyefendi, 258, z, k, govde="#5a3a2a", sac="#9a9a96", yon=-1, silah="mektup", kol=0.3 + 0.05 * SIN(f),
+              kravat=None, yaka="#d8d0c0")
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne520():
+    """Kart 40-42: Drogheda, 2 Mayıs 1995. West Street'te otel cephesi; zemin kat duvarında bronz plaket. Önde
+    belediye başkanı (altın zincir) ve Türk büyükelçisi yan yana."""
+    no = 520
+    gok(no, ["#6a90c0", "#84a4cc", "#a2bad8", "#c2d2e2", "#dfe4e4"], None, [(110, 418, 18), (420, 412, 18)])
+    uzak_tepe(no, ("#7a8a7a", "#6e7e70"), 540)
+
+    def ekle(img, z):
+        figur(img, otel_cephesi, PAY + 150, PAY + 400, z, 2.8, plaket_x=PAY + 270)
+    zemin_orta(no, 560, ["#8a8680", "#7e7a74", "#726e68", "#66625c"], "kaldirim", ekle)
+    _bos(no, "on")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, beyefendi, 160, z, k, govde="#24242a", sac="#6a6a68", yon=1, zincir=True, kravat="#7a1e22",
+              kol=0.03 * (1 + SIN(f)))
+        figur(t, beyefendi, 242, z, k, govde="#22283a", sac="#2a2018", biyik="#2a2018", yon=-1, kravat="#b8201e")
+
+    _bitir(no, kare)
+
+
+def sahne521():
+    """Kart 43-44: Ankara, 23 Mart 2010. Resmî yemek: beyaz örtülü uzun masa, oturan iki konuk; ortada İrlanda
+    Cumhurbaşkanı ayakta konuşur. Kristal avize."""
+    no = 521
+    oda(no, duvar="#e0d8c4", desen="damask", lambri="#c8b890", pencere=("#3a4a6a", "#8a9ab8"), pencere_x=(PAY + 215, PAY + 325),
+        perde="#7a1e22", zemin="parke", zemin_renk="#8a6a42", hali="#7a1e22", isik="#fff0c8")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, _kz(no))
+        oturan_masada(t, 146, z, k, beyefendi, govde="#22283a", sac="#5a5a58", yon=1, kravat="#2a3a6a")
+        figur(t, hanim, 200, z, k, elbise="#2a6a4a", sac="#c8a878", yon=1, etek=0.7, topuz=False, kol=0.25 + 0.15 * (1 + SIN(f)))
+        oturan_masada(t, 254, z, k, beyefendi, govde="#1e1e24", sac="#2a2018", biyik="#2a2018", yon=-1, kravat="#b8201e")
+        u = figur(t, masa, 200, z, k, ortu="#f4f0e6", gen=11.0, yuk=6.0)
+        for x in (146, 254):
+            kagit(t, x, u, k * 0.35, renk="#ffffff")
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne522():
+    """Kart 45: ertesi gün, ofis (2010). Aydınlık pencere; masada dizüstü bilgisayar; basın görevlisi düzeltme
+    metnini okur."""
+    no = 522
+    oda(no, duvar="#c8ccd0", desen="sade", lambri=None, pencere=("#b8d4ec", "#f4f8fc"), pencere_x=(PAY + 230,),
+        zemin="parke", zemin_renk="#a88a64", isik="#fff8e0")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        lamba_tavan(t, 210, 0, f, _kz(no))
+        u = figur(t, masa, 172, z, k, renk="#8a6a4a", gen=4.0, yuk=6.2)
+        figur(t, dizustu, 168, u, k * 0.7) if False else dizustu(t, 168, u, k * 0.7)
+        figur(t, beyefendi, 248, z, k, govde="#3a4a5a", sac="#4a3a2a", yon=-1, kravat="#5a2a3a", silah="mektup",
+              kol=0.32 + 0.03 * SIN(f))
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne523():
+    """Kart 46-47: 1861. Boş taht; iki yanda mumları kısalmış şamdanlar; koyu kızıl perdeler. Ağırbaşlı, kimse yok."""
+    no = 523
+    oda(no, duvar="#3a1a1e", desen="damask", lambri="#2a1a14", pencere=("#141a2a", "#2a3448"), pencere_x=(PAY + 210, PAY + 330),
+        perde="#4a1418", zemin="mermer", zemin_renk="#6a625a", hali="#4a1a1a", isik="#f8c060")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, samdan, 142, z, f, round(k * 0.6, 1), 3, 0.7) if False else samdan(t, 142, z, f, round(k * 0.6, 1), 3, 0.7)
+        samdan(t, 258, z, (f + 0.4) % 1, round(k * 0.6, 1), 3, 0.7)
+        figur(t, taht, 200, z, round(k * 0.62, 1), "#c8a040", "#5a1418")
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne524():
+    """Kart 48-49: belgeler masası (yakın plan): solda eğik altlıkta defter, ortada kese, sağda mühürlü teşekkür
+    mektubu; mum."""
+    no = 524
+    oda(no, duvar="#3a2e24", desen="lambri", lambri=None, zemin="tahta", zemin_renk="#3e2c1e")
+    s = 5.4
+
+    def kare(t, z, i):
+        f = i / KARE
+        u = figur(t, masa, 200, z, s, renk="#4a2c18", gen=12.0, yuk=6.0)
+        d = ImageDraw.Draw(t)
+        a, b = _stand(d, t, 158, u, s * 0.85)
+        defter_sayfa(d, t, 158 - int(3.8 * s * 0.85), a + 2, 158 + int(3.8 * s * 0.85), b - 3, cilt="#5a3a22", kalin=2)
+        figur(t, kese, 200, duz(u, t.width), 2.8)
+        a, b = _stand(d, t, 242, u, s * 0.85, renk="#6a4426")
+        d.rectangle([242 - int(3.4 * s * 0.85), a + 2, 242 + int(3.4 * s * 0.85), b - 3], fill=hex2("#f0e6d0"), outline=hex2("#8a7a5a"))
+        for yy in range(a + 6, b - 10, 3):
+            d.line([242 - int(2.8 * s * 0.85), yy, 242 + int(2.6 * s * 0.85), yy], fill=hex2("#9a8a70"))
+        d.ellipse([248, b - 12, 258, b - 3], fill=hex2("#a82018"), outline=hex2("#6a1010"))
+        mum(t, 222, u, f, 1.8)
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+SAHNELER = {n: globals()[f"sahne{n}"] for n in range(490, 525)}
+
+if __name__ == "__main__":
+    for n in ([int(a) for a in sys.argv[1:]] or sorted(SAHNELER)):
+        SAHNELER[n]()
+        print("sahne", n, "tamam")
