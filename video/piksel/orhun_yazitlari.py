@@ -496,6 +496,18 @@ def fotograf_makinesi(img, x, zemin, s=1.0, yon=-1):
               fill=hex2("#141418"))
 
 
+def asali(img, x, zemin, s=1.0, yon=1, kol=0.05, **kw):
+    """Yeni figür (KK 2. tur): asasına dayanan yaşlı. kisi + elden zemine inen asa (alt ucu zemine basar)."""
+    kisi(img, x, zemin, s, yon=yon, kol=kol, **kw)
+    d = ImageDraw.Draw(img)
+    y = zemin_y(zemin, x, 6 * s)
+    ust = y - int(11 * s)
+    ex = x + int(3.5 * s) * yon if kol > 0 else x + int(2.5 * s) * yon
+    ey = ust - int(4 * s * kol) + int(1 * s) if kol > 0 else ust + int(5 * s)
+    d.line([ex, ey - int(3 * s), ex + int(0.6 * s) * yon, y - 1], fill=hex2("#6a4a2a"), width=max(1, int(0.7 * s)))
+    piksel(img, ex, ey, hex2(TEN))
+
+
 def basortulu(img, x, zemin, s=1.0, govde="#8a2a2a", ortu="#e8e0d0", yon=1, kemer="#e0b040", **kw):
     """Yeni figür (KK revizyonu): başörtülü kadın. kisi (kadin=True, başlıksız) + yalnız alnı ve saçı örten,
     yüzü iki yandan çerçeveleyen örtü; göz satırı açık kalır."""
@@ -860,7 +872,7 @@ def sahne138():
         arka = duz(z[0] - 10, t.width)
         tas(t, 146, arka, st, kaplumbaga=False, tas_renk="#9a948a", tohum=6)
         tas(t, 190, arka, round(st * 0.9, 1), kaplumbaga=False, tas_renk="#8e887e", tohum=7)
-        figur(t, kisi, 258, z, K, **TONYUKUK, yon=-1, silah="sopa", kol=0.05 + 0.03 * SIN(f), kemer="#8a7a5a")
+        figur(t, asali, 258, z, K, **TONYUKUK, yon=-1, kol=0.05 + 0.03 * SIN(f), kemer="#8a7a5a")   # KK: asa yere basar
 
     _bitir(138, kare, yk, esik=0.7)
 
@@ -1084,19 +1096,27 @@ def sahne150():
     yk = 2.6
     K = _K(150, yk)
     _dis(150, "aksam")
-    st = _yazit_s(150, yk, 0.40, geri=14)
+    st = _yazit_s(150, yk, 0.36, geri=14)
+    TAS_X, BOSLUK = 160, 12
+    g = yeni(400, 230)
+    tas(g, TAS_X, duz(229 - 14, 400), st, tohum=1)
+    tas_sag = _bb(g)[2]
+    m = yeni(400, 230)
+    figur(m, fotograf_makinesi, 300, duz(229, 400), K, yon=-1)
+    MAK_X = tas_sag + BOSLUK + (300 - _bb(m)[0])            # objektif ucu = taşın sağ kenarı + BOSLUK
 
     def kare(t, z, i):
         f = i / KARE
-        # KK revizyonu: taş solda ve açıkta; levhalı makine taşın sağında, objektif taşa dönük
-        figur(t, avrupali, 128, z, K, govde="#3a3a46", sac="#e8e4dc", sakal="#e8e4dc", bas="kasket",
+        # KK 2. tur: makine taştan ayrı; objektif ucu ile taşın sağ kenarı arasında açık çimen (BOSLUK px).
+        # Rus subayı fotoğrafçının arkasında, arka sırada (eli boş; sopa kaldırıldı).
+        figur(t, avrupali, 124, z, K, govde="#3a3a46", sac="#e8e4dc", sakal="#e8e4dc", bas="kasket",
               bas_renk="#3a3a40", yon=1, silah="mektup", kol=0.3 + 0.04 * SIN(f))   # Radloff (solda, taşa döner)
-        tas(t, 175, duz(z[0] - 14, t.width), st, tohum=1)
-        figur(t, fotograf_makinesi, 221, z, K, yon=-1)                            # objektif taşa dönük
-        figur(t, avrupali, 246, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
+        tas(t, TAS_X, duz(z[0] - 14, t.width), st, tohum=1)
+        figur(t, avrupali, MAK_X + 52, duz(z[0] - 10, t.width), round(0.9 * K, 1), govde="#4a5a4a", sac="#3a2a1a",
+              bas="kalpak", bas_renk="#3a2a1a", yon=-1, kol=0.05)                 # Rus subayı (arka sıra)
+        figur(t, fotograf_makinesi, MAK_X, z, K, yon=-1)                         # objektif taşa dönük
+        figur(t, avrupali, MAK_X + 28, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
               bas_renk="#3a3a2a", yon=-1, kol=0.25)                               # Fin fotoğrafçı
-        figur(t, avrupali, 272, z, K, govde="#4a5a4a", sac="#3a2a1a", bas="kalpak", bas_renk="#3a2a1a", yon=-1,
-              silah="sopa")                                                       # Rus subayı
 
     _bitir(150, kare, yk, esik=0.75)
 

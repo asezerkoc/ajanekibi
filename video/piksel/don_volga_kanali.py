@@ -173,8 +173,8 @@ def _tsx_bantlari():
         taban = int(tb.group(1)) if tb else 630
         od = re.search(r"odakY: (\d+)", b)
         oy = int(od.group(1)) if od else taban - 12
-        km = re.search(r"kamera: (\d+)", b)
-        kam = int(km.group(1)) if km else 36
+        km = re.search(r"kamera: (-?\d+)", b)
+        kam = abs(int(km.group(1))) if km else 36
         dosya = re.search(r'dosya: "(\w+)"', b)
         alt = 0
         for m in re.finditer(r"satirlar: \[([^\]]*)\], sure: [\d.]+(?:, boy: (\d+))?", b):
