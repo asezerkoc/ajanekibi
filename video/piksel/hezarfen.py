@@ -1507,7 +1507,7 @@ def sahne392():
                     if py_ < y - 2:
                         piksel(t, px_, py_, hex2(renk, int(255 * (1 - q * 0.7))))
                         piksel(t, px_ + 1, py_, hex2(renk, int(160 * (1 - q))))
-        figur(t, kisi, 214, z, s, yon=1, silah="mesale", kol=0.35, **LAGARI)
+        figur(t, kisi, 214, z, round(0.95 * s, 1), yon=1, silah="mesale", kol=0.0, **LAGARI)
 
     _cek(392, kare)
 
