@@ -839,7 +839,7 @@ P = {n: _P(v) for n, v in {
     370: dict(yk=2.8, w=380, h=230, x=270, taban=632, fps=10),
     371: dict(yk=2.8, w=380, h=230, x=270, taban=632, fps=10),
     372: dict(yk=3.0, w=400, h=300, x=270, taban=634, fps=10),
-    373: dict(yk=2.8, w=420, h=230, x=[245, 295], taban=632, fps=14),
+    373: dict(yk=2.6, w=420, h=230, x=[245, 295], taban=632, fps=14),
     374: dict(yk=3.2, w=400, h=300, x=270, taban=634, fps=10),
     375: dict(yk=2.8, w=380, h=230, x=270, taban=632, fps=10),
     376: dict(yk=2.8, w=380, h=230, x=270, taban=632, fps=8),
@@ -1057,7 +1057,7 @@ def sahne373():
     _orta_duz(373, 592, ["#b8aa8c", "#ac9e80", "#a09274", "#948668", "#887a5c"], "kaldirim")
     _on_bos(373)
     p = P[373]
-    sa = round(s_kisi(p.yk, 0.24) * 2.9 / 2.6, 1)
+    sa = 3.9            # atlı (at + binici) kadrajın ~%33'ü; sarık yazı bandının altında kalır (insan/at oranı at s=2.9 ↔ kisi 2.6)
 
     def kare(t, z, i):
         f = i / KARE
@@ -1182,7 +1182,7 @@ def _galata_genis(no, gok, deniz, tepe, sil, zemin_renk, kenar, isik=False, gece
 
     _orta_duz(no, 562, list(zemin_renk), "kaldirim", ekle=ekle, kenar=kenar)
     _on_bos(no)
-    sk = 2.9
+    sk = 2.8
 
     def kare(t, z, i):
         f = i / KARE
