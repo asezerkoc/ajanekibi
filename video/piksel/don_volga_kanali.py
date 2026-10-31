@@ -51,7 +51,7 @@ MALTSEV = dict(govde="#4a5a6a", bas="kalpak", bas_renk="#2e241c", sakal="#a07a4a
 HAN = dict(govde="#5a2a6a", bas="sorguc", bas_renk="#2a1a14", sakal="#1e140e")                    # Devlet Giray: mor, sorguç
 YENICERI = dict(govde="#3a4a7a", bas="bork", bas_renk="#ece6d8", sakal="#2a1a12")
 AZAP = [dict(govde="#6a5a3a", bas="bork", bas_renk="#5a3a22", sakal="#2a1a12", kemer="#c8a060"),       # kazıcılar (azap, lağımcı)
-        dict(govde="#7a4a32", bas="sarik", bas_renk="#e8e0d0", sakal=None, kemer="#c8a060"),
+        dict(govde="#7a4a32", bas="bork", bas_renk="#c8b898", sakal=None, kemer="#c8a060"),
         dict(govde="#5a5a42", bas="bork", bas_renk="#7a5a3a", sakal="#3a2a1a", kemer="#c8a060")]
 NOGAY = dict(govde="#6a5a3a", bas="kalpak", bas_renk="#3a2a1a", sakal="#2a1a12")
 TATAR = dict(govde="#5a4a32", bas="kalpak", bas_renk="#2a1e14", sakal="#2a1a12")
@@ -762,10 +762,22 @@ def kilit(t, w, h, f, durum="kapali"):
         renk = hex2("#3a6a8a") if durum != "kapali" else hex2("#4a5a5e")
         d.line([a + ic, yy, b - ic, yy], fill=renk)
     rnd = random.Random(285)
+    if durum == "akiyor":                                                                   # haznenin tabanını kaplayan su dili
+        on_v = 0.55 + 0.35 * f
+        for v in range(int(on_v * 100)):
+            a, b, yy = kenar(v / 100)
+            ic = 3 + (yy - zy) * 0.1
+            d.line([a + ic, yy, b - ic, yy], fill=hex2("#4a86ae" if (v // 3) % 2 else "#3e78a0"))
+        a, b, yy = kenar(on_v)
+        for xx in range(int(a) + 4, int(b) - 4, 2):                                         # köpüklü ön kenar
+            for k in range(3):
+                piksel(t, xx + rnd.randint(-1, 1), yy - k + rnd.randint(0, 2), hex2("#f4fafc" if k < 2 else "#c8e4f0"))
     if durum in ("akiyor", "dolu"):                                                         # akan su çizgileri
-        for k in range(46):
+        for k in range(46 if durum == "dolu" else 90):
             u = rnd.uniform(0.12, 0.88)
             v = (k / 46 + f * (1.0 if durum == "dolu" else 2.0)) % 1
+            if durum == "akiyor":
+                v = ((k / 90 + f * 2.0) % 1) * (0.55 + 0.35 * f)
             a, b, yy = kenar(v ** 1.4)
             xx = a + (b - a) * u
             boy = 2 + v * 14
@@ -821,6 +833,82 @@ def kilit(t, w, h, f, durum="kapali"):
                 xx = cx - g + rnd.randint(0, 2 * g)
                 yy = zy - rnd.randint(0, 10) + int(((k * 7 + f * 40) % 12))
                 piksel(t, xx, yy, hex2("#f8fcfc"))
+
+
+def at_gozu(img, x, zemin, s=1.0, yon=1, renk="#6b3f24", bas=0.0):
+    """Atın başına okunur göz ve burun deliği (ciz.at'ın tek piksellik gözü büyük ölçekte görünmüyordu). ciz.at'ın
+    koordinatlarıyla (baş yukarıda, bas=0) aynı noktaya 1-2 piksellik koyu göz, üstüne ışık; burunda koyu delik."""
+    gen = int(22 * s)
+    y = zemin_y(zemin, x, gen * 0.8)
+    gy = y - max(3, int(7 * s))
+    p = lambda dx, dy: (x + int(round(dx * s)) * yon, gy + int(round(dy * s)))  # noqa: E731
+    d = ImageDraw.Draw(img)
+    r = max(1, int(0.35 * s))
+    gx, gyy = p(13 + 2 * bas, -14 + 15.5 * bas)
+    d.rectangle([gx - r, gyy - r, gx + r, gyy + r], fill=hex2("#141010"))
+    piksel(img, gx - r * yon, gyy - r, hex2("#e8e0d0"))
+    bx, by = p(17.3 + 1.2 * bas, -10 + 15.5 * bas)
+    d.rectangle([bx - r, by - r, bx + r, by + r], fill=hex2(_ac(renk, -0.5)))
+
+
+def yazi_takimi(img, x0, ust, s=1.0, f=0.0):
+    """Yeni figür (1569'a uygun masa yükü): masa üstünde (ust) kâğıt tomarı, açık sayfa, hokka ve tüy kalem; hepsi
+    masanın üst yüzüne oturur."""
+    d = ImageDraw.Draw(img)
+    d.rectangle([x0, ust - int(0.6 * s), x0 + int(5 * s), ust - 1], fill=hex2("#ece2c4"), outline=hex2("#a8946a"))
+    for k in range(3):
+        d.line([x0 + int(0.8 * s), ust - int(0.3 * s) - 0, x0 + int((1.5 + k * 1.1) * s), ust - int(0.3 * s)],
+               fill=hex2("#5a4a3a"))
+    rx = x0 + int(6.4 * s)
+    d.ellipse([rx - int(1.4 * s), ust - int(1.6 * s), rx + int(1.4 * s), ust - 1], fill=hex2("#e0d4b0"),
+              outline=hex2("#9a8460"))                                                        # sarılı tomar
+    hx = x0 + int(9 * s)
+    d.rectangle([hx - int(0.7 * s), ust - int(1.4 * s), hx + int(0.7 * s), ust - 1], fill=hex2("#2a2228"))  # hokka
+
+
+def kayik_perspektif(t, bx, by, s=1.0, by_arka=None, bx_arka=None):
+    """Yeni figür (sahne 254): karadan çekilen nehir gemisi, 3/4 görünüş: burun izleyiciye yakın (büyük), kıç geride
+    (küçük ve yüksekte). Gövde altındaki üç yuvarlak kütüğe oturur; kütükler kendi derinliklerindeki zemine basar.
+    Yatırılmış direk ve sarılı yelken güvertede. Dönen değer: burundaki halat halkası."""
+    d = ImageDraw.Draw(t)
+    sx_, sy_ = bx_arka, by_arka
+    sk = 0.5                                                                         # kıçta ölçek
+    kutuk = []
+    for k in range(3):
+        u = k / 2
+        lx, ly = bx + (sx_ - bx) * u, by + (sy_ - by) * u
+        sc = 1 + (sk - 1) * u
+        r = 2.6 * s * sc
+        kutuk.append((lx, ly, r, sc))
+    for lx, ly, r, sc in reversed(kutuk):
+        d.rectangle([lx - 7 * s * sc, ly - 2 * r, lx + 7 * s * sc, ly - 1], fill=hex2("#5a3e24"))
+        d.line([lx - 7 * s * sc, ly - 2 * r, lx + 7 * s * sc, ly - 2 * r], fill=hex2("#8a6640"))
+        d.ellipse([lx + 7 * s * sc - r, ly - 2 * r, lx + 7 * s * sc + r, ly - 1], fill=hex2("#c8a070"),
+                  outline=hex2("#3a2614"))
+        piksel(t, lx + 7 * s * sc, ly - r, hex2("#7a5a34"))
+    (b0x, b0y, r0, _), (b2x, b2y, r2, _) = kutuk[0], kutuk[2]
+    alt_on, alt_ar = b0y - 2 * r0, b2y - 2 * r2
+    h_on, h_ar = 12 * s, 12 * s * sk
+    gov = [(b0x + 3 * s, alt_on), (b0x + 6 * s, alt_on - h_on - 3 * s), (b2x - 2 * s * sk, alt_ar - h_ar), (b2x, alt_ar)]
+    d.polygon(gov, fill=hex2("#6a4428"))
+    for k in (0.3, 0.6):
+        d.line([(b0x + 3 * s + 1.5 * s * k * 2, alt_on - h_on * k), (b2x, alt_ar - h_ar * k)], fill=hex2("#4a2e18"))
+    ic = [(b0x + 6 * s, alt_on - h_on - 3 * s), (b0x - 3 * s, alt_on - h_on - 1 * s), (b2x - 5 * s * sk, alt_ar - h_ar),
+          (b2x - 2 * s * sk, alt_ar - h_ar)]
+    d.polygon(ic, fill=hex2("#3a2614"))
+    d.line([ic[0], ic[3]], fill=hex2("#a8784a"), width=_u(0.6, s))
+    d.line([ic[0], ic[1]], fill=hex2("#a8784a"), width=_u(0.5, s))
+    d.line([ic[1], ic[2]], fill=hex2("#8a6040"), width=_u(0.4, s))
+    m0 = (b0x - 1 * s, alt_on - h_on + 1 * s)
+    m1 = (b2x - 2 * s * sk, alt_ar - h_ar - 3 * s * sk)
+    d.line([m0, m1], fill=hex2("#4a2a16"), width=_u(0.9, s))
+    d.polygon([(m0[0] + (m1[0] - m0[0]) * 0.2, m0[1] + (m1[1] - m0[1]) * 0.2 - 1.6 * s),
+               (m0[0] + (m1[0] - m0[0]) * 0.75, m0[1] + (m1[1] - m0[1]) * 0.75 - 1.0 * s),
+               (m0[0] + (m1[0] - m0[0]) * 0.75, m0[1] + (m1[1] - m0[1]) * 0.75 + 0.4 * s),
+               (m0[0] + (m1[0] - m0[0]) * 0.2, m0[1] + (m1[1] - m0[1]) * 0.2 + 0.4 * s)], fill=hex2("#d8ccb0"))
+    hk = (b0x + 6 * s, alt_on - h_on - 2 * s)
+    d.ellipse([hk[0] - 0.8 * s, hk[1] - 0.8 * s, hk[0] + 0.8 * s, hk[1] + 0.8 * s], outline=hex2("#c8a040"))
+    return hk
 
 
 def sapli_kazma(img, x, zemin, s=1.0, yon=1, kurek=False):
@@ -964,12 +1052,13 @@ def _su_bandi(img, y0, y1, renkler=("#4a6a8a", "#42627e", "#3a5a74", "#325268"),
 def _ada(img, x0, x1, ust, su0, su1, cimen="#6a7a48", kum="#b8a070"):
     """Orta planda nehir adası: düz üst (ust), suya inen kumlu kenarlar; üstündeki yapı karaya oturur."""
     d = ImageDraw.Draw(img)
-    d.polygon([(x0 - 14, su1 - 2), (x0, ust), (x1, ust), (x1 + 14, su1 - 2)], fill=hex2(kum))
-    d.polygon([(x0 - 4, ust + 3), (x0 + 2, ust), (x1 - 2, ust), (x1 + 4, ust + 3), (x1 + 6, su1 - 6), (x0 - 6, su1 - 6)],
+    alt = su1 - 10                                                    # adanın önünde yakın kıyıya kadar su şeridi
+    d.polygon([(x0 - 12, alt), (x0, ust), (x1, ust), (x1 + 12, alt)], fill=hex2(kum))
+    d.polygon([(x0 - 4, ust + 3), (x0 + 2, ust), (x1 - 2, ust), (x1 + 4, ust + 3), (x1 + 6, alt - 4), (x0 - 6, alt - 4)],
               fill=hex2(cimen))
     d.line([x0 + 2, ust, x1 - 2, ust], fill=hex2(_ac(cimen, 0.25)))
-    for xx in range(x0 - 14, x1 + 15, 2):
-        piksel(img, xx, su1 - 1, hex2("#e8f0f0"))
+    for xx in range(x0 - 12, x1 + 13, 2):
+        piksel(img, xx, alt, hex2("#e8f0f0"))
 
 
 # ==========================================================================
@@ -981,7 +1070,7 @@ def sahne250():
     yk = 2.8
 
     def ekle(img, z):
-        for x, s_ in ((PAY + 272, 1.1),):
+        for x, s_ in ((PAY + 290, 1.0),):
             figur(img, kon_cadir, x, duz(586, img.width), s_, renk="#e8e0cc", serit="#b8281e")
         d = ImageDraw.Draw(img)
         d.ellipse([PAY + 196, 637, PAY + 214, 643], fill=hex2("#5a4028"))                # ilk vuruşun çukuru
@@ -1049,35 +1138,32 @@ def sahne253():
 
 
 def sahne254():
-    """Kart 7: Perevoloka, yaz: arkada kütükler üstünde karadan çekilen nehir teknesi ve yanında bir adam (gemi ölçeği);
-    önde tekneye dönük, halatı elden ele çeken üç adam (geri yaslanarak). Halat teknenin başındaki halkadan başlar."""
+    """Kart 7: Perevoloka, yaz. Karadan çekilen nehir gemisi 3/4 görünüşte: burnu öne, izleyiciye yakın; gövdesi geriye
+    uzanır, üç yuvarlak kütüğe oturur (kütükler kendi derinliklerindeki zemine basar). Kıçta gövdeye omzunu dayamış bir
+    adam iter (gemiyle aynı derinlikte, aynı ölçekte). Sağda, burunla aynı derinlikte iki adam halatı çeker; halat burun
+    halkasından ellerine iner. Burnun boyu insanın yarısından fazla, gemi derinlikte birkaç insan boyu uzanır."""
     yk = 2.8
-    sx = 270
-    bas = []
-
-    def ekle(img, z):
-        bas.append(figur(img, kayik_kutuk, PAY + 224, duz(590, img.width), 1.5, 1))
-        figur(img, kisi, PAY + 206, duz(590, img.width), 1.4, govde="#6a5a3a", bas="kalpak", bas_renk="#3a2a1a", yon=1, kol=0.3)
-    _gorunur(254, [190, 250], sx, sx, yk, pay=4)
-    _dis(254, "yaz", ekle=ekle)
+    _dis(254, "yaz")
     K = _K(254, yk, DT, ornek=NOGAY)
-    bx, by = bas[0]
-    blx, bly = _yerel(bx - PAY, sx, DW), by - (DT - DH)
     renkler = ("#6a5a3a", "#7a4a32", "#5a5a42")
 
     def kare(t, z, i):
         f = i / KARE
-        xs = (198, 232, 266)
-        noktalar = [(blx, bly)]
-        for j, x in enumerate(xs):
-            ph = (f + j * 0.33) % 1
-            k = 0.12 + 0.06 * SIN(ph)
+        y = z[0]
+        arka_y = y - 46
+        figur(t, kisi, 128, duz(arka_y, t.width), round(0.5 * K, 1), govde=renkler[2], bas="kalpak",
+              bas_renk="#3a2a1a", sakal="#2a1a12", yon=1, kol=0.32)                 # kıçta iten (geride, küçük)
+        hk = kayik_perspektif(t, 186, y, round(K / 4.2, 2), by_arka=arka_y, bx_arka=138)
+        noktalar = [hk]
+        for j, x in enumerate((236, 270)):
+            ph = (f + j * 0.45) % 1
+            k = 0.12 + 0.05 * SIN(ph)
             figur(t, kisi, x, z, K, govde=renkler[j], bas="kalpak", bas_renk="#3a2a1a", sakal="#2a1a12", yon=-1, kol=k)
-            ust = z[0] - int(11 * K)
+            ust = y - int(11 * K)
             noktalar.append((x - int(3.5 * K), ust - int(4 * K * k) + int(1 * K)))
         ImageDraw.Draw(t).line(noktalar, fill=hex2("#c8aa78"), width=_u(0.45, K))
 
-    _spr(254, DW, DH, kare, yk, kenar=False)
+    _spr(254, DW, DH, kare, yk)
 
 
 def sahne255():
@@ -1187,7 +1273,9 @@ def sahne258():
         f = i / KARE
         figur(t, atli, 236, duz(z[0] - 8, t.width), round(0.92 * sa, 1), -1, (f + 0.4) % 1, "#4a3a2a", "#1a120c",
               govde="#5a4a3a", bas="kalpak", bas_renk="#2a1e14", sakal=None, adim=0.45)
+        at_gozu(t, 236, duz(z[0] - 8, t.width), round(0.92 * sa, 1), -1, "#4a3a2a")
         figur(t, atli, 178, z, sa, -1, f, "#7a6a5a", "#2a2018", adim=0.45, **{k: v for k, v in MALTSEV.items() if k != "kemer"})
+        at_gozu(t, 178, z, sa, -1, "#7a6a5a")
 
     _spr(258, DW, DH, kare, yk, esik=0.7)
 
@@ -1206,7 +1294,8 @@ def sahne259():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, atli, 180, z, sa, -1, f, "#5a3a24", "#1a120c", adim=0.4, silah="mizrak" if False else None, **NOGAY)
+        figur(t, atli, 180, z, sa, -1, f, "#5a3a24", "#1a120c", adim=0.4, **NOGAY)
+        at_gozu(t, 180, z, sa, -1, "#5a3a24")
         figur(t, kisi, 270, z, K, **MALTSEV, yon=-1, adim=(f * 2) % 1, kol=0.12)
         d = ImageDraw.Draw(t)
         ust = z[0] - int(11 * K)
@@ -1225,19 +1314,21 @@ def sahne260():
     sx = 270
 
     def ekle(img, z):
-        _su_orta(img, 552)
+        _su_orta(img, 540)
         d = ImageDraw.Draw(img)
         d.rectangle([0, 590, img.width, img.height], fill=hex2("#7a5a3a"))                     # güverte
         for k, yy in enumerate(range(594, img.height, 7)):
             d.line([0, yy, img.width, yy], fill=hex2("#5e442c"))
         for xx in range(0, img.width, 22):                                                     # küpeşte direkleri
             d.rectangle([xx, 578, xx + 3, 592], fill=hex2("#5a3a22"))
-            d.line([xx + 2, 580, xx - 16, 560], fill=hex2("#3a2418"))                        # suya inen kürek
-            d.rectangle([xx - 19, 558, xx - 15, 562], fill=hex2("#3a2418"))
+            d.line([xx + 2, 578, xx - 10, 566], fill=hex2("#3a2418"))                        # küpeşteden suya inen kürek
+            d.polygon([(xx - 10, 566), (xx - 15, 562), (xx - 13, 560), (xx - 8, 564)], fill=hex2("#5a3a22"))  # suda pala
+            for k in range(3):
+                piksel(img, xx - 16 + k * 3, 567, hex2("#c8e0ec"))
         d.rectangle([0, 576, img.width, 580], fill=hex2("#8a6a44"))
         d.line([0, 576, img.width, 576], fill=hex2("#b8946a"))
         d.rectangle([0, 586, img.width, 590], fill=hex2("#8a2a1a"))
-    _dis(260, "yaz", ekle=ekle, orta_ust=(548, 552), on_=False)
+    _dis(260, "yaz", ekle=ekle, orta_ust=(536, 540), on_=False)
     K = _K(260, yk, DT, ornek=KASIM)
 
     def kare(t, z, i):
@@ -1249,8 +1340,15 @@ def sahne260():
         el = (mx - int(3 * 0.95 * K) - int(1.2 * K * SIN(f)), y - int(4.5 * 0.95 * K))
         d = ImageDraw.Draw(t)
         ry = 578 - (DT - DH)
-        d.line([el, (124, ry), (114, ry - 12)], fill=hex2("#4a2e18"), width=_u(0.5, K))
-        figur(t, kisi, 212, z, K, **YENICERI, yon=-1, silah="kilic", kol=0.0)
+        pala = (128, ry - 10)
+        d.line([el, (136, ry), pala], fill=hex2("#4a2e18"), width=_u(0.5, K))
+        d.polygon([pala, (pala[0] - int(1.6 * K), pala[1] - int(1.2 * K)), (pala[0] - int(1.0 * K), pala[1] - int(1.8 * K)),
+                   (pala[0] + int(0.4 * K), pala[1] - int(0.6 * K))], fill=hex2("#5a3a22"))      # suya giren kürek palası
+        figur(t, kisi, 222, z, K, **YENICERI, yon=-1, kol=0.0)
+        gy = z[0] - int(6.6 * K)                                                               # kınındaki kılıç (belde)
+        d.line([(222 + int(1.6 * K), gy), (222 + int(5.0 * K), gy + int(3.4 * K))], fill=hex2("#2a1a12"), width=_u(0.6, K))
+        d.line([(222 + int(1.0 * K), gy - int(0.5 * K)), (222 + int(1.8 * K), gy + int(0.3 * K))], fill=hex2("#e0b040"),
+               width=_u(0.5, K))
         figur(t, kisi, 256, z, K, **KASIM, yon=-1, kol=0.03 * (1 + SIN(f)))
 
     _spr(260, DW, DH, kare, yk)
@@ -1265,16 +1363,20 @@ def sahne261():
 
     def ekle(img, z):
         _su_orta(img, 556)
-        for x, s_ in ((PAY + 196, 0.9), (PAY + 330, 0.8)):
+        for x, s_ in ((PAY + 222, 0.7), (PAY + 320, 0.65)):
             figur(img, kadirga, x, 574, s_, 1, 0.3, tayfa=False)
+    _gorunur(261, [222 - 24, 222 + 25, 320 - 22, 320 + 24], 250, 290, yk, pay=2)          # arka kadırgalar kadrajda
     _dis(261, "yaz", ekle=ekle, orta_ust=(552, 556), on_=False)
     sg = min(2.6, _sigdir(261, lambda t, s, z: figur(t, kadirga, 280, z[0] - 30, s, 1, 0.0), G_T - 30))
 
+    def gemi_k(t, z, i):
+        figur(t, kadirga, 196, su, sg, 1, i / KARE)
+
     def kare(t, z, i):
-        f = i / KARE
-        figur(t, kadirga, 196, su, sg, 1, f)
+        gemi_k(t, z, i)
         _su_sprite(t, su, G_T, G_H, tohum=261)
 
+    _kadraj(261, gemi_k, G_W, G_H, yk, 0.75, kenar=True)                     # gemi kenar denetimi (su muaf)
     _spr(261, G_W, G_H, kare, yk, esik=0.4, kenar=False)
 
 
@@ -1294,7 +1396,9 @@ def sahne262():
         arka = duz(z[0] - 12, t.width)
         for x in (168, 236):
             figur(t, atli, x, arka, round(0.86 * sa, 1), 1, 0.0, "#5a3a24", "#1a120c", dur=True, **TATAR)
+            at_gozu(t, x, arka, round(0.86 * sa, 1), 1, "#5a3a24")
         figur(t, atli, 200, z, sa, 1, 0.0, "#e0d8c8", "#a89888", dur=True, kol=0.02 * (1 + SIN(f)), **HAN)
+        at_gozu(t, 200, z, sa, 1, "#e0d8c8")
 
     _spr(262, DW, DH, kare, yk, esik=0.7)
 
@@ -1314,6 +1418,7 @@ def sahne263():
     def kare(t, z, i):
         f = i / KARE
         figur(t, atli, 174, z, sa, 1, 0.0, "#e0d8c8", "#a89888", dur=True, kol=0.02 * (1 + SIN(f)), **HAN)
+        at_gozu(t, 174, z, sa, 1, "#e0d8c8")
 
     _spr(263, DW, DH, kare, yk, esik=0.7)
 
@@ -1520,6 +1625,7 @@ def sahne272():
             duman(t, 236 + k * 12, z[0] - 2, 16, 272 + k, faz=(f + k * 0.3) % 1, renk="#a89c88", ruzgar=0.4, genislik=1.2)
         figur(t, atli, 196, z, sa, -1, f, "#3a2a1e", "#1a120c", adim=0.8, govde="#6a3a2a", bas="bork", bas_renk="#e8e0d0",
               sakal="#2a1a12")
+        at_gozu(t, 196, z, sa, -1, "#3a2a1e")
 
     _spr(272, DW, DH, kare, yk, esik=0.7)
 
@@ -1642,10 +1748,14 @@ def sahne277():
     _dis(277, "firtina", ekle=ekle, orta_ust=(552, 556), on_=False)
     sg = min(2.4, _sigdir(277, lambda t, s, z: figur(t, kadirga, 280, z[0] - 30, s, 1, 0.0, hasar=1), G_T - 30))
 
+    def gemi_k(t, z, i):
+        figur(t, kadirga, 200, su, sg, -1, i / KARE, hasar=1)
+
     def kare(t, z, i):
-        f = i / KARE
-        figur(t, kadirga, 200, su, sg, -1, f, hasar=1)
+        gemi_k(t, z, i)
         _su_sprite(t, su, G_T, G_H, ("#4a5a6a", "#42525e", "#3a4a56", "#32424e"), tohum=277)
+
+    _kadraj(277, gemi_k, G_W, G_H, yk, 0.75, kenar=True)                     # gemi kenar denetimi (su muaf)
 
     _spr(277, G_W, G_H, kare, yk, esik=0.4, kenar=False)
 
@@ -1676,9 +1786,18 @@ def sahne279():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 250, 0, f, zincir=_kz(yk))
-        u = figur(t, masa, 226, z, round(0.85 * K, 1), yuk="kagit")
-        masa_mumu(t, 254, u, f, round(0.7 * K, 1))
-        figur(t, kisi, 170, z, K, **MALTSEV, yon=1, silah="mektup", kol=0.2 + 0.03 * SIN(f))
+        px = 168
+        el_x = px + int(2.5 * K)
+        ms = round(6.0 / 7.0 * K, 2)
+        mx = el_x - int(1.0 * K) + int(6.5 * ms)
+        u = figur(t, masa, mx, z, ms, yuk=None)                                       # fotoğrafsız masa
+        figur(t, kisi, px, z, K, **MALTSEV, yon=1, kol=0.0)
+        yazi_takimi(t, el_x - int(1.2 * K), u, round(0.8 * K, 1), f)
+        masa_mumu(t, mx + int(4.2 * ms), u, f, round(0.6 * K, 1))
+        d = ImageDraw.Draw(t)
+        ey = z[0] - int(6 * K)
+        uc = (el_x + int(0.6 * K) + int(0.3 * K * SIN(f, 2)), u - 1)                 # yazan tüy kalem
+        d.line([uc, (el_x - int(1.2 * K), ey - int(3.4 * K))], fill=hex2("#f0ece0"), width=_u(0.4, K))
 
     _spr(279, IW, IH, kare, yk)
 
@@ -1798,7 +1917,9 @@ def _heykel(no, kim):
 
     def kare(t, z, i):
         k = kim(i) if callable(kim) else kim
-        figur(t, heykel_kaide, 200, z, sh, k)
+        figur(t, heykel_kaide, 196, z, sh, k)
+        figur(t, kisi, 196 + int(15 * sh), z, round(0.55 * sh, 1), govde="#4a4a52", bas="kasket", bas_renk="#3a3a40",
+              yon=-1)                                                                      # ölçek için ziyaretçi
 
     _spr(no, DW, DH, kare, yk, esik=0.7)
 

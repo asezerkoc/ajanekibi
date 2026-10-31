@@ -247,9 +247,6 @@ def _sac(d, x, by, r, s, yon, renk, favori=False):
     d.chord([x - r - 1, by - r - 1, x + r + 1, by + r // 3], 180, 360, fill=hex2(renk))
     ax = x - r * yon
     d.rectangle([min(ax, ax + (r // 3) * yon), by - r // 2, max(ax, ax + (r // 3) * yon), by + r // 3], fill=hex2(renk))
-    if favori:                                                 # 1840'lar: ense tarafında, kulak hizasında uzun favori
-        fx = x - (r - 1) * yon
-        d.rectangle([min(fx, fx + _u(0.4, s) * yon), by, max(fx, fx + _u(0.4, s) * yon), by + int(r * 0.7)], fill=hex2(renk))
 
 
 def beyefendi(img, x, zemin, s=1.0, govde="#2a2a34", bas=None, bas_renk="#b8201e", sac="#3a2a1e", sakal=None,
@@ -285,7 +282,7 @@ def beyefendi(img, x, zemin, s=1.0, govde="#2a2a34", bas=None, bas_renk="#b8201e
             piksel(img, x + int(a * 1.8 * s), ust + int((1 - a * a) * 2.6 * s) + 1, hex2("#e8c040"))
         d.ellipse([x - _u(0.6, s), ust + int(2.4 * s), x + _u(0.6, s), ust + int(3.6 * s)], fill=hex2("#e8c040"))
     if bas != "fes" or True:
-        _sac(d, x, by, r, s, yon, sac, favori)
+        _sac(d, x, by, r, s, yon, sac)
     if biyik:
         bx0 = x + int(0.15 * s) * yon
         d.line([bx0 - _u(0.5, s), by + int(0.6 * s), bx0 + _u(0.9, s), by + int(0.6 * s)], fill=hex2(biyik))
@@ -1685,7 +1682,7 @@ def sahne498():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 200, 0, f, _kz(no))
-        figur(t, beyefendi, 150, z, k, **LONDRA_1, yon=1, kol=0.15 + 0.05 * SIN(f))
+        figur(t, beyefendi, 150, z, k, govde="#3a2a4a", sac="#5a3a20", yelek="#c8a040", yon=1, kol=0.15 + 0.05 * SIN(f))
         figur(t, hanim, 226, z, k, **VICTORIA, yon=-1, silah="mektup", kol=0.3 + 0.04 * SIN(f))
 
     _bitir(no, kare, orta_denetle=False)

@@ -1411,7 +1411,7 @@ def sahne222():
 
     def kare(t, z, i):
         f = i / KARE
-        ust = figur(t, saman_yigini, 122, 200, z, max(6, int(1.3 * so)))
+        ust = figur(t, saman_yigini, 126, 206, z, max(8, int(1.7 * so)))
         _oturan(t, 156, duz(ust, t.width), so, FIRUZ, yon=1)
         _kisi(t, 250, z, K, ASKER, yon=-1, silah="mesale", kol=0.35 + 0.03 * SIN(f))
 
@@ -1555,11 +1555,13 @@ def sahne230():
 
     def ekle(img, z):
         figur(img, ahir, PAY + 250, PAY + 420, duz(586), 2.2)
-        for x, g in ((196, EMIR1), (214, EMIR2)):
-            figur(img, kisi, PAY + x, duz(590), 2.1, **dict(g, yon=1))
+        # Görsel KK revizyonu: iki emîr uzakta, ovanın gerisinde (zemin = orta planın üst kenarı), Yakut'un başı ile atın
+        # başı arasındaki boşlukta; eskiden Yakut'un omzunun arkasında kalıp "omzunda duran adam" gibi okunuyordu.
+        for x, g in ((228, EMIR1), (241, EMIR2)):
+            figur(img, kisi, PAY + x, z, 1.5, **dict(g, yon=1))
 
-    _gorunur(no, [196, 214])
-    _dis(no, "gun", ekle=ekle)
+    _gorunur(no, [228, 241])
+    _dis(no, "gun", ekle=ekle, orta_ust=(534, 540))
     A = _A(no, 0.40)
     K = round(A * 1.0, 1)          # Görsel KK revizyonu: Yakut atlının yanında cılız kalıyordu (eski A·2,6/2,9)
 
