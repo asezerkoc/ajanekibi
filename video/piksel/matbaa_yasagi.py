@@ -1409,8 +1409,8 @@ def sahne183():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 166, z, K, **MEMUR, yon=1, kol=0.45 + 0.05 * SIN(f))
-        figur(t, kisi, 206, z, K, **YENICERI, yon=1, silah="mesale", kol=0.3)
+        figur(t, kisi, 136, z, K, **MEMUR, yon=1, kol=0.45 + 0.05 * SIN(f))
+        figur(t, kisi, 174, z, K, **YENICERI, yon=1, silah="mesale", kol=0.3)
 
     _spr(183, kare)
 
@@ -1843,9 +1843,9 @@ def sahne209():
     def kare(t, z, i):
         f = i / KARE
         _kandil(t, 196, f, zincir=_kz(p.yk))
-        figur(t, acik_kitap, 118, z, 2.7, "tek", f)
-        figur(t, acik_kitap, 183, z, 2.7, "oklid", f)
-        figur(t, acik_kitap, 266, z, 2.7, "vankulu", (f + 0.5) % 1)
+        figur(t, acik_kitap, 116, z, 2.6, "tek", f)
+        figur(t, acik_kitap, 180, z, 2.5, "oklid", f)
+        figur(t, acik_kitap, 266, z, 2.5, "vankulu", (f + 0.5) % 1)
 
     _spr(209, kare, esik=0.8)
 

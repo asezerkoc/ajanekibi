@@ -1408,7 +1408,7 @@ def sahne267():
 
     def ekle(img, z):
         _su_bandi(img, 562, 586, tohum=267)
-        figur(img, kadirga, PAY + 300, 578, 0.7, -1, 0.3, tayfa=False)
+        figur(img, kadirga, PAY + 222, 578, 0.7, -1, 0.3, tayfa=False)
     _dis(267, "aksam", ekle=ekle, orta_ust=(552, 560))
     K = _K(267, yk, DT, ornek=KASIM)
 
@@ -1530,7 +1530,7 @@ def sahne273():
 
     def ekle(img, z):
         figur(img, kon_cadir, PAY + 228, duz(586, img.width), 1.2, yikik=1)
-        figur(img, kon_cadir, PAY + 318, duz(586, img.width), 1.2)
+        figur(img, kon_cadir, PAY + 292, duz(586, img.width), 1.2)
     _dis(273, "gri", ekle=ekle)
     hava(273, "yagmur", 160, renk="#a8b4c4", egim=0.2)
     K = _K(273, yk, DT, ornek=AZAP[1])
