@@ -30,7 +30,7 @@ from PIL import ImageDraw  # noqa: E402
 from ciz import _ac, _esik, agac, duman, duz_zemin, figur, gunes, hex2, piksel, sehir, sirt, taslar, temas_golgesi, yeni, zemin_y  # noqa: E402
 from ciz import arazi, bulut  # noqa: E402
 from sahneler import duz, gokyuzu, kaydet, on, orta, sprite, uzak  # noqa: E402
-from timur_figur import _baslik, at, gemi, kisi, koy_evleri, oturan, sedir  # noqa: E402
+from timur_figur import atli, gemi, kisi, oturan, sedir  # noqa: E402
 from timur import ic_mekan, kandil, mumluk, su_ve_kiyi  # noqa: E402
 from kalender import kitaplar, rahle  # noqa: E402
 
@@ -847,7 +847,7 @@ P = {n: _P(v) for n, v in {
     378: dict(yk=2.8, w=380, h=230, x=270, taban=632, fps=8),
     379: dict(yk=2.6, w=400, h=230, x=270, taban=632, fps=10),
     380: dict(yk=2.8, w=380, h=230, x=270, taban=632, fps=8),
-    381: dict(yk=2.6, w=420, h=230, x=[215, 325], taban=650, fps=10, odak=622, yaziY=230),
+    381: dict(yk=2.6, w=420, h=230, x=[215, 325], taban=650, fps=10, odak=600, yaziY=230),
     382: dict(yk=2.8, w=380, h=230, x=270, taban=632, fps=10),
     383: dict(yk=2.8, w=400, h=300, x=270, taban=634, fps=8),
     384: dict(yk=2.8, w=400, h=300, x=270, taban=634, fps=8),
@@ -1061,9 +1061,7 @@ def sahne373():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, at, p.w // 2, z, sa, 1, "#ece6da", "#c8c0b0", eyer=True, faz=f, adim=0.45)
-        from timur_figur import atli as _atli  # binici at ile birlikte (kütüphanenin atli'si)
-        figur(t, _atli, p.w // 2, z, sa, 1, faz=f, at_renk="#ece6da", yele="#c8c0b0", adim=0.45, **MURAD)
+        figur(t, atli, p.w // 2, z, sa, 1, faz=f, at_renk="#ece6da", yele="#c8c0b0", adim=0.45, **MURAD)
 
     _cek(373, kare)
 
@@ -1123,7 +1121,7 @@ def sahne376():
     def kare(t, z, i):
         f = i / KARE
         d = ImageDraw.Draw(t)
-        kx, ky, r = 92, z[0], int(4.4 * s)                      # damın üstündeki kubbe: kasnak dama oturur
+        kx, ky, r = 122, z[0], int(4.4 * s)                      # damın üstündeki kubbe: kasnak dama oturur
         d.rectangle([kx - r - 3, ky - int(2.6 * s), kx + r + 3, ky - 1], fill=hex2("#b88a5e"))
         d.chord([kx - r, ky - int(2.6 * s) - r, kx + r, ky - int(2.6 * s) + r], 180, 360, fill=hex2("#3a8a9a"))
         d.line([kx, ky - int(2.6 * s) - r, kx, ky - int(2.6 * s) - r - _u(1.4, s)], fill=hex2("#e0b040"))
@@ -1182,8 +1180,8 @@ def _galata_genis(no, gok, deniz, tepe, sil, zemin_renk, kenar, isik=False, gece
         figur(img, sehir, PAY + 110, PAY + 430, duz(586), 0.9, duvar=_ac(zemin_renk[0], 0.1), golge=_ac(zemin_renk[0], -0.2),
               cati="#8a3a2a" if not gece else "#3a2a30", tohum=no)
 
-    orta(no, (560, 566), list(zemin_renk), kenar, ekle=ekle)
-    on(no, [zemin_renk[4], zemin_renk[3], zemin_renk[2]], kenar, boy=90)
+    _orta_duz(no, 562, list(zemin_renk), "kaldirim", ekle=ekle, kenar=kenar)
+    _on_bos(no)
     sk = 2.9
 
     def kare(t, z, i):
@@ -1227,7 +1225,7 @@ def sahne380():
     def kare(t, z, i):
         f = i / KARE
         figur(t, oturan, p.w // 2 + 20, z, s, yon=-1, minder="#c8a040", **MURAD)
-        figur(t, kisi, p.w // 2 + 78, z, round(0.92 * s_kisi(p.yk), 1), yon=-1, kol=0.02 * (1 + SIN(f)),
+        figur(t, kisi, p.w // 2 + 70, z, round(0.92 * s_kisi(p.yk), 1), yon=-1, kol=0.02 * (1 + SIN(f)),
               govde="#2a4a7a", bas="sarik", bas_renk="#e8e0d0", sakal=None)      # yanında ayakta bekleyen hizmetli
 
     _cek(380, kare)
@@ -1360,8 +1358,8 @@ def sahne386():
     _hilal(img, 196, 524, 9)
     kaydet(img, "sahne386-gokyuzu.png")
     _uzak_kara(386, 540, 556, ("#1e2440", "#1a2038", "#161c30"), None, ("#1e2230", "#1a1e2a", "#161a24"), 386)
-    orta(386, (566, 570), ["#2a2a36", "#24242e", "#1e1e28", "#1a1a22", "#16161c"], "#4a4a5a")
-    on(386, ["#16161c", "#1a1a22", "#1e1e28"], "#3a3a4a", boy=80)
+    _orta_duz(386, 566, ["#2a2a36", "#24242e", "#1e1e28", "#1a1a22", "#16161c"], "dam")
+    _on_bos(386)
     p = P[386]
 
     def kare(t, z, i):
@@ -1426,8 +1424,8 @@ def sahne390():
         f = i / KARE
         d = ImageDraw.Draw(t)
         _kandil(t, 200, f, 390)
-        ust = figur(t, sedir, 150, z, round(0.32 * s, 1), renk="#6a4a2a", ortu="#5a2a2a")
-        for kx in (110, 130, 152, 176, 194):
+        ust = figur(t, sedir, 150, z, round(0.5 * s, 1), renk="#6a4a2a", ortu="#5a2a2a")
+        for kx in (124, 140, 156, 172):
             kitaplar(t, kx, ust, round(0.55 * s, 1))
         y = z[0]                                                     # kapalı sandık: zemine oturur
         temas_golgesi(t, 262, y, int(9 * s))
@@ -1475,7 +1473,7 @@ def sahne391():
 def sahne392():
     """'Kaya Sultan'ın doğduğu gece. Sarayburnu'nda şenlik.': ışıklı köşk, fenerler; fişekçi küçük fişekleri ateşler,
     fişekler kıyıdan yükselir ve alçakta patlar (kıvılcımlar aşağı düşer)."""
-    _sarayburnu_gece(392, kosk_x=150)
+    _sarayburnu_gece(392, kosk_x=205)
     p = P[392]
     s = s_kisi(p.yk)
 
@@ -1546,9 +1544,9 @@ def _lagari_fisekte(t, x, z, f, sf, so, kalk=0, alev=0.0, kol=True):
 
 def sahne394():
     """'Lagari fişeğe biniyor ve padişaha sesleniyor': Lagari fişeğin tepesinde, kolunu soldaki ışıklı köşke kaldırır."""
-    _sarayburnu_gece(394, kosk_x=180)
+    _sarayburnu_gece(394, kosk_x=200)
     p = P[394]
-    _gorunur(394, [180], 270, 270, p.yk * 1.06, pay=0)
+    _gorunur(394, [200], 270, 270, p.yk * 1.06, pay=0)
 
     def kare(t, z, i):
         f = i / KARE
@@ -1561,7 +1559,7 @@ def sahne394():
 def sahne395():
     """'Fişek ateşleniyor. Göğe yükseliyor.': fitil yanar, dipten alev ve duman; fişek Lagari ile yükselip kadrajdan çıkar,
     sehpada yalnız duman kalır. (Yükselen fişeğin yazı bandından geçmesi bilinçli: 1 sn'lik hareket.)"""
-    _sarayburnu_gece(395, kosk_x=180)
+    _sarayburnu_gece(395, kosk_x=200)
     p = P[395]
 
     def kare(t, z, i):
@@ -1784,7 +1782,7 @@ def sahne403():
 
     _orta_duz(403, 562, ["#7e9c58", "#729050", "#668448", "#5a7840", "#4e6c38"], "pist", ekle=ekle)
     _on_bos(403)
-    su = 4.2
+    su = 5.6
 
     def kare(t, z, i):
         f = i / KARE

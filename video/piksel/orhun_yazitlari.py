@@ -803,7 +803,7 @@ def sahne140():
 
     def kare(t, z, i):
         f = i / KARE
-        for j, x in enumerate((134, 258)):
+        for j, x in enumerate((137, 258)):
             figur(t, avrupali, x, z, K, govde="#2a5a3a", sac="#3a2a1a", bas="sapka", bas_renk="#1a1a1e", yon=-1,
                   adim=(f + j * 0.5) % 1, silah="sopa")
         figur(t, avrupali, 196, z, K, govde="#2a4a8a", sac="#5a3a22", bas="sapka", bas_renk="#1a1a1e", yon=-1,
@@ -984,11 +984,11 @@ def sahne150():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, avrupali, 158, z, K, govde="#4a5a4a", sac="#3a2a1a", bas="kalpak", bas_renk="#3a2a1a", yon=-1,
+        figur(t, avrupali, 154, z, K, govde="#4a5a4a", sac="#3a2a1a", bas="kalpak", bas_renk="#3a2a1a", yon=-1,
               silah="sopa")                                                       # Rus subayı
-        figur(t, avrupali, 228, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
+        figur(t, avrupali, 222, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
               bas_renk="#3a3a2a", yon=-1, silah="kamera", kol=0.1)              # Fin fotoğrafçı
-        figur(t, avrupali, 274, z, K, govde="#3a3a46", sac="#e8e4dc", sakal="#e8e4dc", bas="kasket",
+        figur(t, avrupali, 270, z, K, govde="#3a3a46", sac="#e8e4dc", sakal="#e8e4dc", bas="kasket",
               bas_renk="#3a3a40", yon=-1, silah="mektup", kol=0.3 + 0.04 * SIN(f))  # Radloff
 
     _bitir(150, kare, yk, esik=0.75)
