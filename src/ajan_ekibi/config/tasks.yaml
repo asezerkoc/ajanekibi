@@ -8,12 +8,37 @@ arastirma_gorevi:
     Ajansın geçmişi (onaylanan işler ve ajans sahibinin geri bildirimleri):
     {gecmis}
 
-    Bu iş için araştırma yap. İçinde bulunduğumuz yıl {current_year}. İş bir konu
-    belirtmiyorsa ajans profilindeki konulardan, geçmişte işlenmemiş ve hedef kitle
-    için şu an en ilgi çekici olanı kendin seç ve neden seçtiğini yaz.
+    Bu iş için derin bir araştırma yap. İçinde bulunduğumuz yıl {current_year}. İş
+    bir konu belirtmiyorsa ajans profilindeki konulardan, geçmişte işlenmemiş ve
+    hedef kitle için şu an en ilgi çekici olanı kendin seç ve neden seçtiğini yaz.
+
+    Derin araştırma kuralları:
+    - Her iddia için en az iki bağımsız kaynak yaz; iddianın tarihini ve yerini
+      belirt. Tek kaynaklı bilgi "tek kaynak" diye işaretlenir.
+    - Kaynakları ikiye ayır: birincil (dönem kronikleri, belgeler, yazıtlar, kazı
+      ve arşiv raporları) ve ikincil (akademik makale, kitap, ansiklopedi). Her
+      kaynağın yazarını/adını ve dönemini yaz; düşman ya da taraflı anlatıları
+      ("düşman kaynağı", "saray tarihçisi") belirt.
+    - Kaynaklar çelişiyorsa bilgiyi ana metne koyma; "Tartışmalı" başlığı altında
+      her kaynağın ne dediğini yan yana ver.
+    - "Doğrulanmalı" deyip bırakma: kaynağı bulana kadar ara. Bulamadığın bilgiyi
+      "KAYNAKSIZ: metne girmesin" listesine al; o listedeki hiçbir bilgi gönderiye
+      giremez.
+    - Uydurma kaynak yazma. Emin olmadığın bir eseri ya da yazarı kaynak gösterme.
   expected_output: >
-    Türkçe bir araştırma özeti: seçilen konu ve gerekçesi, hedef kitle için en
-    önemli 5-10 bilgi (doğrulanmamış olanlar işaretli), gönderi için 3 fikir önerisi.
+    Türkçe, katmanlı bir araştırma raporu:
+    1) Konu ve gerekçe (iş konu vermediyse neden bu konu).
+    2) Zaman çizelgesi: tarih – yer – olay – kaynaklar (her satırda en az iki).
+    3) Kişiler: kim, rolü, kaderi; kaynaklarıyla.
+    4) Mekânlar: yer, o dönemdeki durumu, bugünkü karşılığı.
+    5) Rakamlar: ordu, nüfus, mesafe, para gibi sayılar; hangi kaynak hangi
+    rakamı veriyor.
+    6) Efsane ve gerçek: halk arasında anlatılanlar ile belgelerin söylediği.
+    7) Tartışmalı noktalar: çelişen kaynaklar yan yana.
+    8) Kaynakça: birincil ve ikincil ayrı listeler.
+    9) KAYNAKSIZ: metne girmesin (bulunamayan bilgiler).
+    10) Kanca adayı olgular: metin yazarı için en çarpıcı 5-8 gerçek, her biri
+    kaynaklı; gönderi için 3 fikir önerisi.
   agent: arastirmaci
 
 metin_gorevi:
@@ -32,13 +57,44 @@ metin_gorevi:
     Revizyon notu (boşsa ilk yazımdır):
     {revizyon_notu}
 
-    Araştırmaya dayanarak bir sosyal medya gönderisi metni yaz. Revizyon notu
-    varsa önceki metni bu nota göre yeniden yaz. Önceki metin:
+    Araştırmaya dayanarak bir sosyal medya gönderisi metni yaz. Yalnızca
+    araştırmada kaynaklı olan bilgileri kullan; "KAYNAKSIZ: metne girmesin"
+    listesindeki ve "Tartışmalı" başlığındaki bilgileri ya hiç kullanma ya da
+    "rivayete göre" / "kaynaklar ayrışıyor" diye açıkça işaretleyerek kullan.
+    Revizyon notu varsa önceki metni bu nota göre yeniden yaz. Önceki metin:
     {metin}
+
+    İlgi çekicilik kuralları (ajans sahibinin kararı; uymayan metin reddedilir):
+    1) Tek hikâye, tek soru: videoyu tek bir soru etrafında kur ("İki ok onu
+       nasıl dünya fatihi yaptı?"). Bir hayatın tamamını bir videoya sığdırma;
+       araştırmadaki en çarpıcı olayı seç, gerisini at ya da sonraki bölüme bırak.
+    2) Kanca formülü (ilk 3 saniye): bilgi verme, açık döngü kur. Cevabı en
+       sona sakla. Örnek: "Bu adamın mezarını açtıkları gün 4 milyon asker sınırı
+       geçti." Yıl, yer, doğum bilgisiyle açma.
+    3) Yapı: 0-3 sn kanca → 3-15 sn "neden umursamalısın" (bedel, tehlike) →
+       ortada bir "ama" dönüşü (beklenmeyen karar, yenilgi, ihanet) → sonda
+       kancanın cevabı + izleyiciye soru. Her 10 saniyede yeni bir merak.
+    4) Şimdiki zaman ve sahne: geçmiş zaman özeti değil, an. "1363, Sistan çölü.
+       Timur koyun çalıyor. Setin üstünden iki ok geliyor."
+    5) Çatışma, karar, bedel: ne istedi, neyi göze aldı, nerede kaybedecekti.
+       "Yenildi" değil, "neredeyse bitmişti".
+    6) Somut detay: "sağ dizine ok" değil, "ok dizine saplandı, bir daha düzgün
+       yürüyemedi; 600 yıl sonra iskeletinde hâlâ görünüyordu."
+    7) Bir bilgi, bir duygu: her cümle ya şaşırtır ya ürpertir ya güldürür.
+       Yalnızca bilgilendiren cümleyi sil.
+    8) Doğrudan hitap: "Sen olsan ne yapardın?", "Bunu bilmiyordun." Belgesel
+       tonu değil, karşısındakine anlatan biri.
+    9) Etiket ekonomisi: "kaynaklara göre / rivayete göre" bir kere ve zekice
+       ("Düşmanları bunu koyun çalarken yediğini yazar"). Her cümlede tekrarlama;
+       tartışmalı bilgi ayrıca açıklama metninde uyarıyla verilir.
+    10) Seslendirme ölçüsü: 90 sn Reels için 110-130 kelime; kısa cümleler,
+        her cümle ekranda bir satır olabilsin.
   expected_output: >
-    Türkçe gönderi metni: dikkat çekici ilk cümle (kanca), ana metin, harekete
-    geçirici kapanış, 5-8 uygun hashtag. Ayrıca videoda ekrana yazılacak 3-5 kısa
-    cümle ("ekran metinleri").
+    Türkçe gönderi metni: 1) seslendirme metni (110-130 kelime; kanca, bedel,
+    "ama" dönüşü, cevap, soru) ve metnin cevapladığı tek soru; 2) ekran
+    metinleri (her biri en çok 30 harflik 1-3 satır, seslendirmeyle bire bir);
+    3) gönderi açıklaması (kanca, kısa gövde, harekete geçirici kapanış,
+    tartışmalı bilgi uyarısı), 5-8 uygun hashtag, sabitlenecek ilk yorum.
   agent: metin_yazari
 
 editor_gorevi:
@@ -59,10 +115,25 @@ editor_gorevi:
 
     Metni kontrol et ve hedef kitleye göre düzenle: yazım, dil bilgisi, akış, ton
     ve araştırmayla tutarlılık. Revizyon notu varsa ona göre düzelt.
+
+    İlgi denetimi (ajans sahibinin kararı: "içerik basit kalıyor, seyirciyi
+    çekmiyor"). Şu sorulara "hayır" çıkıyorsa metni düzelt, düzelmiyorsa metin
+    yazarına geri gönder:
+    - İlk cümle bir açık döngü mü (cevabı sonda mı), yoksa yıl/yer bilgisi mi?
+    - Video tek bir soru etrafında mı, yoksa kronolojik olay listesi mi?
+    - Ortada bir "ama" dönüşü, bir çatışma ve bedel var mı?
+    - Her 10 saniyede (yaklaşık her 25 kelimede) yeni bir merak var mı?
+    - Şimdiki zaman ve sahne mi, geçmiş zaman özeti mi?
+    - Yalnızca bilgi veren, duygu taşımayan cümle kaldı mı? Sil.
+    - İzleyiciye doğrudan hitap var mı; sonda soru var mı?
+    - "Kaynaklara göre / rivayete göre" birden fazla mı? Teke indir, kalanını
+      açıklama metnindeki uyarıya taşı.
+    - Araştırmanın "KAYNAKSIZ" listesinden bilgi girmiş mi? Çıkar.
   expected_output: >
-    Düzenlenmiş gönderi metninin son hâli (kanca, ana metin, kapanış, hashtag'ler,
-    ekran metinleri) ve altında "Editör notları" başlığıyla yapılan değişikliklerin
-    kısa listesi.
+    Düzenlenmiş gönderi metninin son hâli (seslendirme metni, ekran metinleri,
+    gönderi açıklaması, hashtag'ler, ilk yorum) ve altında "Editör notları"
+    başlığıyla yapılan değişikliklerin kısa listesi; ayrıca "İlgi denetimi"
+    satırı: kanca, tek soru, dönüş, merak sıklığı, hitap için geçti/düzeltildi.
   agent: editor
 
 grafik_gorevi:
@@ -82,19 +153,34 @@ grafik_gorevi:
     {grafik}
 
     Metni ajansın görsel tarzında bir animasyona dönüştür. Önce
-    skills/remotion-effects/SKILL.md dosyasını oku, metne uyan 2-4 efekti seç ve
-    seçtiğin efektlerin referans dosyalarını oku. Dikey video (1080x1920, 30 fps,
-    15-30 saniye) tasarla.
+    skills/piksel-sahne/SKILL.md dosyasını oku; sonra
+    skills/piksel-sahne/references/sahne-katalogu.md içinden her sahneye en yakın
+    örnekleri, skills/piksel-sahne/references/fonksiyonlar.md içinden kullanacağın
+    figür ve yapı fonksiyonlarını, skills/piksel-sahne/references/sahne-tarifi.md
+    içinden teslim şablonunu oku. Ajansın imza tarzında (64-bit piksel sanatı)
+    dikey video (1080x1920, 60 fps) tasarla. Süre işte belirtilmişse o süreye uy,
+    belirtilmemişse 15-30 saniye yap; Reels için toplam 90 saniyeyi aşma.
+
+    Fizik kurallarına uy: çadırlar, binalar, insanlar, atlar ve her nesne zemine
+    oturur; havada asılı duran hiçbir şey olmaz. Görsel komutlarında ve kodda her
+    nesnenin zemin çizgisini belirt; katmanları üst üste koyarken nesnenin tabanını
+    o katmanın zeminine hizala. Hareketler yerçekimine, ağırlığa ve yöne uygun olsun
+    (atlar koşarken bacakları yere değer, toz yerden kalkar, duman yukarı çıkar).
   expected_output: >
-    Türkçe bir tasarım teslimi:
-    1) Sahne planı: her sahnenin süresi (saniye), kullanılan efekt, ekrandaki yazı,
-    hareket ve ses önerisi.
-    2) Görsel üretme komutları: her sahne için İngilizce, tarzın özelliklerini
-    anlatan, stüdyo ya da sanatçı adı içermeyen bir komut.
-    3) Remotion kodu: ajansın video/ stüdyosunda video/src/sahneler/<KisaAd>.tsx
-    olarak kaydedilecek tek bir bileşen. Efektleri "../effects/<Bilesen>"
-    yolundan içe aktar (bütün efektler orada kurulu), görselleri
-    video/public/ klasöründen staticFile ile kullan.
+    Türkçe bir tasarım teslimi (skills/piksel-sahne/references/sahne-tarifi.md
+    şablonunda):
+    1) Sahne planı: her sahnenin numarası (ajans genelinde benzersiz, yeni seri
+    71'den başlar), süresi (saniye), konusu, zemin çizgileri, hareket, kamera
+    (yakin/kamera) ve ses önerisi; ekrandaki yazılar.
+    2) Her sahne için sahneNN() Python tarifi: yalnızca fonksiyon referansındaki
+    fonksiyonlarla, katmanlar (gokyuzu/uzak/orta/on ya da ic_mekan) + kare(t, z, i)
+    + sprite(...) kalıbında; hepsi tek bir video/piksel/<seri>.py dosyasına girecek
+    biçimde, import satırlarıyla.
+    3) Seri nesnesi (TSX): etiket, kapak (ajans sahibi verdiyse), bolumler[] (her
+    Bolum: no, yakin, kamera, sprite {w,h,fps,x,taban}, hava/sarsinti gerekiyorsa,
+    yazilar[]) ve kapanis; video/src/sahneler/<Seri>.tsx olarak kaydedilecek.
+    4) Varsa "yeni figür isteği": kütüphanede olmayan figürün adı, boyu, zemine
+    nasıl bastığı, hangi sahnede gerektiği.
   agent: grafiker
 
 kalite_gorevi:
@@ -118,11 +204,52 @@ kalite_gorevi:
     {sahip_notu}
 
     İşi kontrol et: hedef kitleye uygun mu, marka sesine uygun mu, bilgiler
-    araştırmayla tutarlı mı, görsel tarz ajansın tarzı mı, kod kütüphanedeki
-    bileşenleri mi kullanıyor? Uygunsa onayla. Uygun değilse sorunu düzeltebilecek
+    araştırmayla tutarlı mı, metinde araştırmanın "KAYNAKSIZ: metne girmesin"
+    listesinden ya da işaretlenmemiş tartışmalı bir bilgi var mı (varsa iş uygun
+    değildir, metin yazarına döner), görsel tarz ajansın tarzı mı, sahne tarifleri yalnızca
+    skills/piksel-sahne/references/fonksiyonlar.md içindeki fonksiyonları mı
+    kullanıyor (uydurulmuş fonksiyon varsa iş uygun değildir), her sahnenin bir
+    sprite tabanı ve zemin çizgisi yazılı mı? Fizik kurallarına uyuyor mu: her nesne (çadır, bina,
+    insan, at) zemine oturuyor mu, havada duran bir şey var mı, katmanlarda
+    nesnelerin tabanı zemin çizgisine hizalı mı, hareketler yerçekimine uygun mu?
+    Havada duran tek bir nesne bile varsa iş uygun değildir. Uygunsa onayla. Uygun değilse sorunu düzeltebilecek
     tek birimi seç ve somut revizyon notları yaz.
   expected_output: >
     Kalite raporu: uygun (true/false), revize_birimi (metin_yazari, editor,
     grafiker ya da uygunsa yok) ve notlar (uygunsa kısa bir değerlendirme, değilse
     neyin neden ve nasıl düzeltileceği).
   agent: kalite_kontrol
+
+gorsel_kontrol_gorevi:
+  description: >
+    İş: {gorev}
+
+    Ajans profili:
+    {profil}
+
+    Düzenlenmiş metin:
+    {duzenlenmis_metin}
+
+    Grafikerin tasarımı (sahne planı ve kod):
+    {grafik}
+
+    Ajans sahibinin notu (boşsa yoktur; varsa mutlaka uygulanmış olmalı):
+    {sahip_notu}
+
+    Sana bu videonun render edilmiş kareleri resim olarak verildi. Her kareye tek
+    tek bak ve videoyu ajans sahibi izliyormuş gibi değerlendir:
+    - Fizik: her nesne (çadır, bina, insan, at, taş) zemine oturuyor mu? Havada
+      duran, zeminden kopuk, yanlış ölçekte ya da yanlış yöne bakan bir şey var mı?
+    - Tarz: görseller istenen tarzda mı (ajans sahibinin notu varsa o tarz), kalite
+      ve detay yeterli mi, sahneler birbiriyle tutarlı mı?
+    - Yazı: ekran metinleri ve altyazılar okunuyor mu, kesiliyor ya da üst üste
+      biniyor mu, Türkçe harfler (ç, ğ, ı, İ, ö, ş, ü, â) doğru mu?
+    - Hikaye: kare, sahne planındaki anına uyuyor mu?
+    Gördüğün bir sorunu hangi karede ve kadrajın neresinde gördüğünle yaz. Görmediğin
+    bir şeyi tahmin etme. Tek bir nesne havada duruyorsa ya da yazı okunmuyorsa iş
+    uygun değildir.
+  expected_output: >
+    Kalite raporu: uygun (true/false), revize_birimi (görsel ve kod sorunlarında
+    grafiker, metin sorunlarında metin_yazari ya da editor, uygunsa yok) ve notlar
+    (her sorun için kare, yer, sorun ve nasıl düzeltileceği; uygunsa kısa bir
+    değerlendirme).

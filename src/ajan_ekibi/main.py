@@ -7,7 +7,7 @@ import warnings
 from datetime import datetime
 from pathlib import Path
 
-from ajan_ekibi.crew import AjanEkibi, KaliteRaporu
+from ajan_ekibi.crew import AJAN_RENKLERI, GOREV_BIRIMI, AjanEkibi, KaliteRaporu, etiket
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
@@ -47,11 +47,13 @@ def _ekle(yol: Path, metin: str) -> None:
 
 
 def _adim(gorev_adi: str, durum: dict) -> str:
+    print(f"\n{etiket(GOREV_BIRIMI[gorev_adi], renkli=sys.stdout.isatty())} çalışıyor...\n")
     sonuc = AjanEkibi().tek_gorev(gorev_adi).kickoff(inputs=durum)
     return sonuc.raw
 
 
 def _kalite(durum: dict) -> KaliteRaporu:
+    print(f"\n{etiket('kalite_kontrol', renkli=sys.stdout.isatty())} çalışıyor...\n")
     sonuc = AjanEkibi().tek_gorev("kalite_gorevi").kickoff(inputs=durum)
     rapor = sonuc.pydantic
     if not isinstance(rapor, KaliteRaporu):
@@ -77,7 +79,7 @@ def _kalite_dongusu(durum: dict) -> KaliteRaporu:
             return rapor
         if tur == MAKS_REVIZYON:
             break
-        print(f"\n[Kalite kontrol] Revizyon {tur + 1}: {rapor.revize_birimi} -> {rapor.notlar}\n")
+        print(f"\n{etiket('kalite_kontrol')} Revizyon {tur + 1}: {etiket(rapor.revize_birimi)} -> {rapor.notlar}\n")
         durum["revizyon_notu"] = rapor.notlar
         _zinciri_calistir(REVIZYON_ZINCIRI[rapor.revize_birimi], durum)
         durum["revizyon_notu"] = ""
@@ -91,10 +93,12 @@ def _teslim_metni(durum: dict, rapor: KaliteRaporu, onay_durumu: str) -> str:
         f"- **Tarih:** {datetime.now():%Y-%m-%d %H:%M}\n"
         f"- **Durum:** {onay_durumu}\n"
         f"- **Kalite kontrol:** {'uygun' if rapor.uygun else 'revizyon sınırına ulaşıldı, son notlar aşağıda'}\n\n"
-        f"## Gönderi metni\n\n{durum['duzenlenmis_metin']}\n\n"
-        f"## Animasyon ve grafik\n\n{durum['grafik']}\n\n"
-        f"## Kalite kontrol notu\n\n{rapor.notlar}\n\n"
-        f"## Araştırma\n\n{durum['arastirma']}\n"
+        f"## {etiket('editor')} · Gönderi metni\n\n{durum['duzenlenmis_metin']}\n\n"
+        f"## {etiket('grafiker')} · Animasyon ve grafik\n\n{durum['grafik']}\n\n"
+        f"## {etiket('kalite_kontrol')} · Kalite kontrol notu\n\n{rapor.notlar}\n\n"
+        + (f"## {etiket('kalite_kontrol')} · Görsel kontrol (render edilen kareler)\n\n{durum['gorsel_kontrol']}\n\n"
+           if durum.get("gorsel_kontrol") else "")
+        + f"## {etiket('arastirmaci')} · Araştırma\n\n{durum['arastirma']}\n"
     )
 
 
@@ -233,6 +237,81 @@ def revize():
     yol = _kaydet(durum, rapor, "ONAY BEKLİYOR", yol)
     print(f"\nRevize edildi, onayını bekliyor: {yol}")
     return yol
+
+
+def _kontrol_sayfalari(kareler: list[Path], hedef: Path) -> list[Path]:
+    """Puts the frames on labelled 2x2 sheets: crewai marks every image for caching and Anthropic allows only 4."""
+    from PIL import Image, ImageDraw, ImageFont
+
+    hedef.mkdir(parents=True, exist_ok=True)
+    yazi = ImageFont.load_default(size=40)
+    sayfalar = []
+    for s in range(0, min(len(kareler), 12), 4):
+        resimler = [Image.open(p).convert("RGB") for p in kareler[s:s + 4]]
+        w, h = 540, int(540 * resimler[0].height / resimler[0].width)
+        sayfa = Image.new("RGB", (w * 2, (h + 60) * 2), "white")
+        for i, (p, im) in enumerate(zip(kareler[s:s + 4], resimler)):
+            x, y = (i % 2) * w, (i // 2) * (h + 60)
+            ImageDraw.Draw(sayfa).text((x + 10, y + 8), p.stem, fill="black", font=yazi)
+            sayfa.paste(im.resize((w, h)), (x, y + 60))
+        yol = hedef / f"sayfa-{s // 4 + 1}.png"
+        sayfa.save(yol)
+        sayfalar.append(yol)
+    return sayfalar
+
+
+def gorsel_kontrol():
+    """
+    Quality control looks at the rendered frames of a delivery's video:
+    uv run gorsel_kontrol teslimler/<file>.md <folder of frame images>
+    """
+    import tempfile
+
+    from crewai_files import ImageFile
+
+    if len(sys.argv) < 3:
+        raise Exception("Kullanım: uv run gorsel_kontrol teslimler/<dosya>.md <karelerin klasörü>")
+    yol = Path(sys.argv[1])
+    kareler = sorted(p for p in Path(sys.argv[2]).iterdir() if p.suffix.lower() in (".png", ".jpg", ".jpeg"))
+    if not kareler:
+        raise Exception(f"Klasörde kare yok: {sys.argv[2]}")
+    durum, _ = _yukle(yol)
+    print(f"\n{etiket('kalite_kontrol', renkli=sys.stdout.isatty())} {min(len(kareler), 12)} kareye bakıyor...\n")
+    sayfalar = _kontrol_sayfalari(kareler, Path(tempfile.mkdtemp(prefix="gorsel-kontrol-")))
+    gorev = AjanEkibi().tek_gorev("gorsel_kontrol_gorevi")
+    sonuc = gorev.kickoff(inputs=durum, input_files={p.stem: ImageFile(source=p) for p in sayfalar})
+    rapor = sonuc.pydantic
+    if not isinstance(rapor, KaliteRaporu):
+        rapor = KaliteRaporu.model_validate_json(sonuc.raw)
+    karar = "uygun" if rapor.uygun else f"UYGUN DEĞİL, düzeltecek birim: {etiket(rapor.revize_birimi)}"
+    durum["gorsel_kontrol"] = f"**Karar:** {karar}\n\n{rapor.notlar}"
+    # The owner still approves last; the delivery keeps waiting with the visual check written in
+    _kaydet(durum, rapor, "ONAY BEKLİYOR", yol)
+    print(f"\nGörsel kontrol: {karar}\n{rapor.notlar}\n\nTeslime yazıldı: {yol}")
+
+
+def tanis():
+    """
+    Each agent introduces itself and its job to the owner: uv run tanis
+    """
+    ekip = AjanEkibi()
+    akis = " → ".join(etiket(b) for b in AJAN_RENKLERI) + " → ajans sahibinin onayı"
+    satirlar = ["# SKONSTART ekibi\n", f"**İş akışı:** {akis}\n"]
+    for birim, r in AJAN_RENKLERI.items():
+        ajan = getattr(ekip, birim)()
+        cevap = ajan.kickoff(
+            "Ajans sahibine kendini tanıt. Türkçe, en fazla 5 cümle: kimsin, ekipte "
+            "hangi adımdan sorumlusun, işi kimden alıp kime veriyorsun ve sahibin "
+            f"senden ne bekleyebileceği. Ekibin iş akışı: {akis}. Kalite kontrol "
+            "uygun bulmadığı işi metin yazarına, editöre ya da grafikere geri "
+            f"gönderir. Ekipteki renk kodun {r['renk']} ({r['hex']})."
+        ).raw.strip()
+        print(f"\n{etiket(birim, renkli=sys.stdout.isatty())} ({r['renk']} {r['hex']})\n{cevap}\n")
+        satirlar.append(f"## {etiket(birim)} · {r['renk']} `{r['hex']}`\n\n{cevap}\n")
+    yol = KOK / "ekip" / "tanisma.md"
+    yol.parent.mkdir(parents=True, exist_ok=True)
+    yol.write_text("\n".join(satirlar), encoding="utf-8")
+    print(f"Tanışma kaydedildi: {yol}")
 
 
 def _ornek_girdiler() -> dict:
