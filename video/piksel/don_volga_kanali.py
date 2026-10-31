@@ -72,13 +72,44 @@ def _yuz_gozu(img, x, bas_y, s, yon, ten=None):
     _goz(img, gx, bas_y - int(0.4 * s), s)
 
 
+# Alet/silah boşluk denetimi (Görsel KK 3. tur): her karede çekili kılıç, mızrak, sopa (tüfek), kürek ve kazma uçları
+# ile diğer figürlerin gövde kutuları kaydedilir; bir uç başka bir figürün kutusuna 6 ızgara pikselinden (ekranda 12)
+# yakınsa betik durur (_alet_denetimi, _spr içinde 24 karenin hepsinde).
+_ALETLER, _GOVDELER = [], []
+
+
+def _kisi_aletleri(x, y, s, yon, silah, kol, diz):
+    yy = y + (int(3.6 * s) if diz else 0)
+    ust = yy - int(11 * s)
+    if kol > 0:
+        ex, ey = x + int(3.5 * s) * yon, ust - int(4 * s * kol) + int(1 * s)
+    else:
+        ex, ey = x + int(2.5 * s) * yon, ust + int(5 * s)
+    if silah == "kilic":
+        return [(ex + int(7 * s * (0.4 if kol > 0 else 1)) * yon, ey - int(7 * s * (1 if kol > 0 else 0.15)))]
+    if silah == "mizrak":
+        return [(ex, ey - int(20 * s)), (ex, ey + int(5 * s))]
+    if silah == "sopa":
+        return [(ex - int(1 * s) * yon, ey - int(8 * s)), (ex, ey + int(6 * s))]
+    if silah == "kurek":
+        return [(ex + int(1.6 * s) * yon, min(ey + int(8.5 * s), y - 2))]
+    if silah == "kazma":
+        return [(ex + int(4 * s) * yon, ey - int(5 * s))]
+    return []
+
+
 def kisi(img, x, zemin, s=1.0, *a, **kw):
-    """timur_figur.kisi + okunur göz (bkz. üstteki not)."""
+    """timur_figur.kisi + okunur göz (bkz. üstteki not); gövde kutusunu ve alet uçlarını boşluk denetimine kaydeder."""
     _KISI_ASIL(img, x, zemin, s, *a, **kw)
     b = _KISI_IMZA.bind(img, x, zemin, s, *a, **kw)
     b.apply_defaults()
     yon, diz = b.arguments["yon"], b.arguments["diz"]
     y = zemin_y(zemin, x, 6 * s)
+    kim = object()
+    _GOVDELER.append((kim, x - 3 * s, y - 17 * s, x + 3 * s, y))
+    for uc in _kisi_aletleri(x, y, s, yon, b.arguments["silah"], b.arguments["kol"], diz):
+        _ALETLER.append((kim, uc))
+    _SON_KISI[0] = kim
     egil = int(abs(math.sin((b.arguments["adim"] or 0) * 2 * math.pi)) * 0.8 * s) if (b.arguments["aksak"] and
                                                                                         b.arguments["adim"] is not None) else 0
     yy = y + egil + (int(3.6 * s) if diz else 0)
@@ -86,12 +117,13 @@ def kisi(img, x, zemin, s=1.0, *a, **kw):
 
 
 def oturan(img, x, zemin, s=1.0, *a, **kw):
-    """timur_figur.oturan + okunur göz."""
+    """timur_figur.oturan + okunur göz; gövde kutusunu boşluk denetimine kaydeder."""
     _OTURAN_ASIL(img, x, zemin, s, *a, **kw)
     b = _OTURAN_IMZA.bind(img, x, zemin, s, *a, **kw)
     b.apply_defaults()
     yon = b.arguments["yon"]
     y = zemin_y(zemin, x, 10 * s) - (int(1.6 * s) if b.arguments["minder"] else 0)
+    _GOVDELER.append((object(), x - 5 * s, y - 14 * s, x + 5 * s, y))
     _yuz_gozu(img, x, y - int(9.5 * s) - int(2.6 * s), s, yon, b.arguments["ten"])
 
 
@@ -109,6 +141,28 @@ def atli(img, x, zemin, s=1.0, *a, **kw):
     sek = 0 if b.arguments["dur"] else int(round(math.sin(b.arguments["faz"] * 4 * math.pi) * 0.5 * s))
     sy -= max(0, sek)
     _yuz_gozu(img, x, sy - int(11 * s), s, b.arguments["yon"])
+
+
+_SON_KISI = [None]
+
+
+def _alet_denetimi(no, kare, w, h, esik=6):
+    for i in range(KARE):
+        _ALETLER.clear()
+        _GOVDELER.clear()
+        t = yeni(w, h)
+        kare(t, duz(h - 1, w), i)
+        for kim, (ux, uy) in _ALETLER:
+            for kim2, x0, y0, x1, y1 in _GOVDELER:
+                if kim2 is kim:
+                    continue
+                dx = max(x0 - ux, 0, ux - x1)
+                dy = max(y0 - uy, 0, uy - y1)
+                if math.hypot(dx, dy) < esik:
+                    raise RuntimeError(f"Sahne {no}: kare {i}, alet/silah ucu ({int(ux)}, {int(uy)}) başka bir figürün "
+                                       f"gövdesine {math.hypot(dx, dy):.1f} px (en az {esik}); ucu uzaklaştır")
+    _ALETLER.clear()
+    _GOVDELER.clear()
 
 
 _tf.kisi = kisi          # atli'nin binicisi timur_figur içindeki kisi'yi çağırır
@@ -308,6 +362,7 @@ def _bant_alt(no, pay=8):
 def _spr(no, w, h, kare, yakin, esik=0.75, kenar=True, dosya="karakter", denetim=True):
     """Kadraj + kenar + taban (sahneler.sprite) + yazı bandı denetimi."""
     _kadraj(no, kare, w, h, yakin, esik, kenar)
+    _alet_denetimi(no, kare, w, h)
     sprite(no, dosya, w, h, KARE, kare, denetim)
     _bant_denetimi(no, w, h, dosya)
 
@@ -376,6 +431,8 @@ def kazici(img, x, zemin, s=1.0, faz=0.0, yon=1, govde="#6a5a3a", bas="bork", ba
     arka = P(bas_[0] - dik[0] * 2.0 * s, bas_[1] - dik[1] * 2.0 * s)
     d.line([*el, *P(*bas_)], fill=hex2("#6a4a2a"), width=_u(0.7, s))
     d.line([*arka, *on_], fill=hex2("#8a8a92"), width=_u(0.8, s))
+    for uc in (on_, arka, P(*bas_)):
+        _ALETLER.append((_SON_KISI[0], uc))
     piksel(img, on_[0], on_[1], hex2("#c8ccd4"))
     d.line([*omuz, *el], fill=hex2(_ac(govde, -0.3)), width=_u(1, s))
     piksel(img, el[0], el[1], hex2(TEN))
@@ -1153,8 +1210,6 @@ def sahne250():
     yk = 2.8
 
     def ekle(img, z):
-        for x, s_ in ((PAY + 346, 0.8),):
-            figur(img, kon_cadir, x, duz(586, img.width), s_, renk="#e8e0cc", serit="#b8281e")
         d = ImageDraw.Draw(img)
         d.ellipse([PAY + 196, 637, PAY + 214, 643], fill=hex2("#5a4028"))                # ilk vuruşun çukuru
     _dis(250, "safak", ekle=ekle)
@@ -1286,7 +1341,7 @@ def sahne256():
         f = i / KARE
         figur(t, deve, 172, duz(z[0] - 6, t.width), round(0.62 * K, 1), -1, 0.0, adim=0.0)
         figur(t, oturan, 258, z, round(0.95 * K, 1), **{k: v for k, v in HACI[1].items() if k != "kemer"}, yon=-1)
-        figur(t, kisi, 214, z, K, **HACI[0], yon=1, silah="sopa", kol=0.03 * (1 + SIN(f)))
+        figur(t, kisi, 214, z, K, **HACI[0], yon=-1, silah="sopa", kol=0.03 * (1 + SIN(f)))
 
     _spr(256, DW, DH, kare, yk)
 
@@ -1360,11 +1415,11 @@ def sahne258():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, atli, 236, duz(z[0] - 8, t.width), round(0.92 * sa, 1), -1, (f + 0.4) % 1, "#4a3a2a", "#1a120c",
+        figur(t, atli, 240, duz(z[0] - 10, t.width), round(0.88 * sa, 1), -1, (f + 0.4) % 1, "#4a3a2a", "#1a120c",
               govde="#5a4a3a", bas="kalpak", bas_renk="#2a1e14", sakal=None, adim=0.45)
-        at_gozu(t, 236, duz(z[0] - 8, t.width), round(0.92 * sa, 1), -1, "#4a3a2a")
-        figur(t, atli, 178, z, sa, -1, f, "#7a6a5a", "#2a2018", adim=0.45, **{k: v for k, v in MALTSEV.items() if k != "kemer"})
-        at_gozu(t, 178, z, sa, -1, "#7a6a5a")
+        at_gozu(t, 240, duz(z[0] - 10, t.width), round(0.88 * sa, 1), -1, "#4a3a2a")
+        figur(t, atli, 174, z, sa, -1, f, "#7a6a5a", "#2a2018", adim=0.45, **{k: v for k, v in MALTSEV.items() if k != "kemer"})
+        at_gozu(t, 174, z, sa, -1, "#7a6a5a")
 
     _spr(258, DW, DH, kare, yk, esik=0.7)
 
@@ -1628,7 +1683,7 @@ def sahne268():
     def kare(t, z, i):
         f = i / KARE
         for j, (x, ki) in enumerate(((150, YENICERI), (206, AZAP[0]), (262, YENICERI))):
-            figur(t, kisi, x, z, K, **ki, yon=1, adim=(f + j * 0.37) % 1, silah="kilic" if j == 1 else None)
+            figur(t, kisi, x, z, K, **ki, yon=1, adim=(f + j * 0.37) % 1)                 # kılıçlar kınında
 
     _spr(268, DW, DH, kare, yk)
 
@@ -1796,11 +1851,11 @@ def sahne276():
     yk = 2.8
 
     def ekle(img, z):
-        for k, x in enumerate((PAY + 290, PAY + 316, PAY + 342)):
+        for k, x in enumerate((PAY + 300, PAY + 326, PAY + 352)):
             duman(img, x + 10, 586, 18, 276 + k, faz=0.3, renk="#c8b088", ruzgar=0.4, genislik=1.4)
             figur(img, atli, x, duz(586 + k % 2, img.width), 1.0, -1, 0.3 + k * 0.2, "#3a2a1e", "#140e0a", silah="kilic",
                   kol=0.8, adim=0.8, **KAZAK)
-    _gorunur(276, [290, 352], 270, 270, yk, pay=-4)
+    _gorunur(276, [300, 362], 270, 270, yk, pay=-4)
     _dis(276, "sicak", ekle=ekle, dag=True, dag_y=(452, 486), tepe_y=490, ova_y=498)
     K = _K(276, yk, DT, ornek=YENICERI)
 
@@ -1953,10 +2008,8 @@ def sahne283():
     yk = 2.8
 
     def ekle(img, z):
-        figur(img, gozcu_kulesi, PAY + 303, duz(584, img.width), 1.1)
         figur(img, dikenli_tel, PAY + 140, PAY + 400, duz(596, img.width), 1.3)
         hendek_yarigi(img, PAY + 180, PAY + 362, renk="#6a5a44", tohum=283)
-    _gorunur(283, [296, 310], 270, 270, yk, pay=0)
     _dis(283, "sovyet", ekle=ekle)
     K = _K(283, yk, HT, ornek=GARDIYAN)
 

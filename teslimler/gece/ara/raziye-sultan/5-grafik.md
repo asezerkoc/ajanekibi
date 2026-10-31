@@ -184,3 +184,28 @@ Kalite kontrolün 8 zorunlu düzeltmesi (`6-kalite-gorsel.md`) ve ucuz iyileşti
 - `python3 -I video/piksel/raziye_sultan.py` 39 sahnenin hepsini hatasız çizdi. Taban, kadraj (yakin·1,06), `_gorunur` ve yazı bandı denetimleri geçti.
 - `npx tsc --noEmit -p .` temiz geçti.
 - Remotion karelerine tek tek baktım: 216, 219, 221, 222, 227, 229, 230, 233, 234, 235, 236 (ortası ve sahne sonu), 237, 246, 248. Gözlü yüzleri piksel yakınlaştırmasıyla da kontrol ettim (227, 230, 235). Zemine basmayan nesne, kesik figür ya da yazıya giren nesne görmedim.
+
+## Görsel KK revizyonu, 2. tur (31 Ekim 2026, 🟢 Grafiker)
+
+Bu turda da `RaziyeSultan.tsx` değişmedi; değişiklikler yalnızca `raziye_sultan.py` ve sprite/katman PNG'lerinde.
+
+**Zorunlu düzeltmeler**
+
+1. **Kısa tunikli Raziye (232, 237, 240, 245):** Bu betikteki `kisi` artık kütüphane figürünü sarıyor. `uzun=False` kalıbında tunik yy−6·s'de bitiyor, bacaklar ise y−5·s'den başlıyordu; aradaki satırlar saydam kalıyordu. Şimdi tunik eteğinin altından bacak başına kadar koyu şalvar dolduruluyor. Dört sahnede de gövde bacaklara bağlı.
+   **Yeni otomatik denetim (`_govde_denetimi`):** Bu betikte çizilen her ayakta/diz çökmüş figürde başın tepesinden ayak satırına kadar gövde şeridinin (x ± 2,5·s) her satırında opak piksel aranıyor. Boş satır varsa betik duruyor. Denetimi eski kalıpla sınadım: boşluğu yakaladı (satır 165).
+2. **220:** Peçeli Raziye orta planda daha büyük çiziliyor (s 3,2). Daha yüksek bir sekinin üstünde, kameranın sol yarısında duruyor ve kolu kalkık. Yürüyen üç kişi sprite'ın sağ yarısında (yerel x 216-268); orta plandaki kalabalık da Raziye'nin sağından başlıyor. Betik iki şeyi denetliyor:
+   - sahnenin başında ve sonunda (sx 245 ve 295) Raziye'nin sağ kenarı ilk yürüyenin solunda kalıyor;
+   - `_gorunur` Raziye'yi baştan sona kadraj içinde tutuyor.
+
+**İyileştirmeler**
+- **215, 218, 234, 246 (büyük sarıklılar):** Göz artık kalpaktaki gibi yukarı kaymıyor. Göz akının üstüne bir satır ten basılıyor; krem sarıkla göz akı birbirinden ayrılıyor.
+- **222:** Muhafızın meşalesi yeni `mesale_elde` figürüyle çiziliyor. Sapı 4,5·s (eskiden 7·s), alevi titriyor.
+- **237:** Kaçan askerler ovanın gerisine alındı (orta planın yükseltilmiş üst kenarı, s 1,3). Raziye'nin kolundan uzaktalar.
+
+**Denetim**
+- `python3 -I video/piksel/raziye_sultan.py`: 39 sahne hatasız. Gövde denetimi, taban, kadraj, görünürlük ve yazı bandı denetimleri geçti.
+- Remotion karelerine baktım:
+  - 220: başı (3840), ortası (3950) ve sonu (4065);
+  - 237: başı (10215) ve ortası (10341);
+  - 222, 232, 240, 245;
+  - 215, 218, 234, 246; 234 ve 246'da göz yakınlaştırmasıyla.

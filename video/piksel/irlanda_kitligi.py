@@ -162,7 +162,7 @@ def _bant(no, orta_denetle=True, pay=4, duvar=False):
                 gx1 = int(PAY + sx + (540 - sx) / z + 8)
                 for y in range(y0, y1 + 1):
                     if duvar:
-                        renkler = {px for px in ort.crop((gx0, y, gx1, y + 1)).getdata() if px[3] > 0}
+                        renkler = {px for px in ort.crop((gx0, y, gx1, y + 1)).get_flattened_data() if px[3] > 0}
                         if len(renkler) > 5:
                             raise RuntimeError(f"Sahne {no}: duvar süsü (pencere/perde/tablo/kapı) yazı bandında: y {y} "
                                                f"(bant {y0}-{y1}, {len(renkler)} renk)")
