@@ -831,7 +831,10 @@ def _spr(no, kare, ic=False, esik=0.75):
 def _gok(no, renkler, yildiz=0, y0=380, y1=560):
     """Gökyüzü + (gece) görünür bölgeye yıldız: sahneler.gokyuzu yıldızları y<300'e serper, yakın çekimde görünen gök
     y≈380-560 arasıdır. Ay ve güneş yok: yakın çekimde yazı bandına düşerdi."""
-    img = gokyuzu(no, renkler, None, (), ("#fff8ec", "#f4dcc8", "#d8a8a0"), 0)
+    img = yeni()                                    # gradyan görünür gök şeridine (y 360-600) sıkıştırılır
+    ImageDraw.Draw(img).rectangle([0, 0, img.width, 360], fill=hex2(renkler[0]))
+    ImageDraw.Draw(img).rectangle([0, 600, img.width, img.height], fill=hex2(renkler[-1]))
+    gradyan(img, renkler, 360, 600)
     if yildiz:
         rnd = random.Random(no * 13)
         for _ in range(yildiz):
@@ -1093,13 +1096,13 @@ def sahne215():
                   bas_renk="#8a8a90", adim=0.4)
 
     _dis(no, "gun", ekle=ekle)
-    A = _A(no, 0.40)
+    A = _A(no, 0.34)
     K = round(A * 2.6 / 2.9, 1)
 
     def kare(t, z, i):
         f = i / KARE
-        _kisi(t, 134, z, K, RAZ_PECE, yon=1)
-        figur(t, atli, 238, z, A, 1, faz=f, dur=True, govde=ILTUTMIS["govde"], bas="sarik", bas_renk="#f4f0e6",
+        _kisi(t, 136, z, K, RAZ_PECE, yon=1)
+        figur(t, atli, 222, z, A, 1, faz=f, dur=True, govde=ILTUTMIS["govde"], bas="sarik", bas_renk="#f4f0e6",
               sakal=ILTUTMIS["sakal"], kol=0.35 + 0.1 * SIN(f), at_renk="#e8e0d0", yele="#8a8478")
 
     _spr(no, kare)
@@ -1116,10 +1119,10 @@ def sahne216():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 196, 0, f, zincir=_kz(yk))
-        _kisi(t, 128, z, K, EMIR2, yon=1)
-        _kisi(t, 160, z, K, EMIR1, yon=1, kol=0.35 + 0.25 * max(0.0, SIN(f, 2)))
+        _kisi(t, 134, z, K, EMIR2, yon=1)
+        _kisi(t, 164, z, K, EMIR1, yon=1, kol=0.35 + 0.25 * max(0.0, SIN(f, 2)))
         _kisi(t, 228, z, K, ILTUTMIS, yon=-1, kol=0.1)
-        _kisi(t, 262, z, K, RAZ_PECE, yon=-1)
+        _kisi(t, 258, z, K, RAZ_PECE, yon=-1)
 
     _spr(no, kare, ic=True)
 
@@ -1155,7 +1158,7 @@ def sahne218():
         kandil(t, 200, 0, f, zincir=_kz(yk))
         figur(t, sehpa_tabut, 144, z, round(0.36 * K, 2))
         _kisi(t, 198, z, K, EMIR1, yon=1, kol=0.3 + 0.03 * SIN(f))
-        _tahtta(t, 256, z, so, FIRUZ)
+        _tahtta(t, 250, z, so, FIRUZ)
 
     _spr(no, kare, ic=True)
 
@@ -1172,8 +1175,8 @@ def sahne219():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 196, 0, f, zincir=_kz(yk))
-        _oturan(t, 140, z, so, FIRUZ, yon=1, minder="#8a6a2a")
-        figur(t, meyve_tepsisi, 188, z, round(0.75 * so, 1))
+        _oturan(t, 150, z, so, FIRUZ, yon=1, minder="#8a6a2a")
+        figur(t, meyve_tepsisi, 196, z, round(0.75 * so, 1))
         _kisi(t, 258, z, K, SAH_TERKEN, yon=-1, kol=0.05 + 0.03 * SIN(f))
 
     _spr(no, kare, ic=True)
@@ -1198,7 +1201,7 @@ def sahne220():
 
     def kare(t, z, i):
         f = i / KARE
-        for j, x in enumerate((122, 162, 204, 246)):
+        for j, x in enumerate((130, 168, 206, 244)):
             g, b, br = renk[j]
             _kisi(t, x, z, round(K * (0.96 if j % 2 else 1.0), 1), dict(govde=g, bas=b, bas_renk=br, sakal="#2a1a12"), yon=1,
                   adim=(f * 2 + j * 0.37) % 1, kemer=None, kol=0.5 if j == 1 else 0.0)
@@ -1218,9 +1221,9 @@ def sahne221():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 206, 0, f, zincir=_kz(yk))
-        _kisi(t, 132, z, K, SAH_TERKEN, yon=-1)
-        _kisi(t, 172, z, K, ASKER, yon=-1, silah="kalkan", kol=0.05)
-        _tahtta(t, 254, z, so, RAZ_O_PECE)
+        _kisi(t, 138, z, K, SAH_TERKEN, yon=-1)
+        _kisi(t, 178, z, K, ASKER, yon=-1, silah="kalkan", kol=0.05)
+        _tahtta(t, 248, z, so, RAZ_O_PECE)
 
     _spr(no, kare, ic=True)
 
@@ -1232,7 +1235,7 @@ def sahne222():
     K = _K(no, ic=True, govde=ASKER)
     so = round(K * 0.98, 1)
     rnd = random.Random(222)
-    saman = [(rnd.randint(100, 210), rnd.randint(0, 2), rnd.choice(("#c8b060", "#a89048", "#d8c070"))) for _ in range(90)]
+    saman = [(rnd.randint(124, 210), rnd.randint(0, 2), rnd.choice(("#c8b060", "#a89048", "#d8c070"))) for _ in range(90)]
 
     def kare(t, z, i):
         f = i / KARE
@@ -1406,14 +1409,14 @@ def sahne231():
     no = 231
     _dis(no, "gun", ekle=lambda img, z: figur(img, anadolu_kalesi, PAY + 150, PAY + 300, duz(586), 1.4, tas="#a86a4a", golge="#7a4a34"))
     _gorunur(no, [225], 290, 250)
-    A = _A(no, 0.40)
+    A = _A(no, 0.34)
     A2 = round(A * 0.9, 1)
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, atli, 250, duz(z[0] - 8, t.width), A2, -1, faz=(f + 0.37) % 1, govde="#5a5a6a", bas="migfer", bas_renk="#8a8a90",
+        figur(t, atli, 230, duz(z[0] - 8, t.width), A2, -1, faz=(f + 0.37) % 1, govde="#5a5a6a", bas="migfer", bas_renk="#8a8a90",
               sakal="#2a1a12", adim=0.45, at_renk="#5a3a24")
-        figur(t, atli, 168, z, A, -1, faz=f, govde=RAZ["govde"], bas="kulah", bas_renk=RAZ["bas_renk"], adim=0.45,
+        figur(t, atli, 172, z, A, -1, faz=f, govde=RAZ["govde"], bas="kulah", bas_renk=RAZ["bas_renk"], adim=0.45,
               at_renk="#e8e0d0", yele="#8a8478")
 
     _spr(no, kare)
@@ -1480,12 +1483,12 @@ def sahne235():
     """Kart 31: Raziye ve Altuniya yan yana atlı, Delhi'ye (sağa) yürür; Altuniya bir adım geride (arka sıra, küçük)."""
     no = 235
     _dis(no, "safak", ekle=lambda img, z: [figur(img, agac, PAY + x, duz(588), 1.1, tohum=x) for x in (180, 360)])
-    A = _A(no, 0.40)
+    A = _A(no, 0.34)
     A2 = round(A * 0.92, 1)
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, atli, 160, duz(z[0] - 8, t.width), A2, 1, faz=(f + 0.4) % 1, govde=ALTUNIYA["govde"], bas="kalpak",
+        figur(t, atli, 172, duz(z[0] - 8, t.width), A2, 1, faz=(f + 0.4) % 1, govde=ALTUNIYA["govde"], bas="kalpak",
               bas_renk=ALTUNIYA["bas_renk"], sakal=ALTUNIYA["sakal"], adim=0.45, at_renk="#4a2e1e")
         figur(t, atli, 226, z, A, 1, faz=f, govde=RAZ["govde"], bas="kulah", bas_renk=RAZ["bas_renk"], adim=0.45,
               at_renk="#e8e0d0", yele="#8a8478")
@@ -1506,14 +1509,14 @@ def sahne236():
 
     _gorunur(no, [320])
     _dis(no, "aksam", ekle=ekle, dag_y=(500, 518), tepe_y=522, ova_y=530, orta_ust=(556, 562))
-    A = _A(no, 0.38)
+    A = _A(no, 0.34)
     A2 = round(A * 0.92, 1)
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, atli, 160, duz(z[0] - 8, t.width), A2, 1, faz=0.0, dur=True, govde=ALTUNIYA["govde"], bas="kalpak",
+        figur(t, atli, 170, duz(z[0] - 8, t.width), A2, 1, faz=0.0, dur=True, govde=ALTUNIYA["govde"], bas="kalpak",
               bas_renk=ALTUNIYA["bas_renk"], sakal=ALTUNIYA["sakal"], at_renk="#4a2e1e")
-        figur(t, atli, 212, z, A, 1, faz=0.0, dur=True, govde=RAZ["govde"], bas="kulah", bas_renk=RAZ["bas_renk"],
+        figur(t, atli, 220, z, A, 1, faz=0.0, dur=True, govde=RAZ["govde"], bas="kulah", bas_renk=RAZ["bas_renk"],
               at_renk="#e8e0d0", yele="#8a8478", kol=0.04 * (1 + SIN(f)))
 
     _spr(no, kare)
@@ -1533,9 +1536,9 @@ def sahne237():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, cadir, 120, z, round(0.42 * K, 1), yikik=True)
-        _kisi(t, 210, z, K, ALTUNIYA, yon=1)
-        _kisi(t, 250, z, K, RAZ, yon=1, kol=0.04 * (1 + SIN(f)))
+        figur(t, cadir, 136, z, round(0.36 * K, 1), yikik=True)
+        _kisi(t, 216, z, K, ALTUNIYA, yon=1)
+        _kisi(t, 254, z, K, RAZ, yon=1, kol=0.04 * (1 + SIN(f)))
 
     _spr(no, kare)
 
@@ -1562,18 +1565,16 @@ def sahne238():
 
 
 def sahne239():
-    """Kart 36: yaklaşık yüz yıl sonra: Faslı gezgin İbn Battûta asasıyla Delhi'ye (sağa) yürür; arkasında yüklü deve;
+    """Kart 36: yaklaşık yüz yıl sonra: Faslı gezgin İbn Battûta asasıyla Delhi'ye (sağa) yürür;
     sağ geride Delhi'nin surları ve kubbeleri."""
     no = 239
     _dis(no, "gun", ekle=lambda img, z: figur(img, orta_asya_sehri, PAY + 330, PAY + 600, duz(586), 1.8, tohum=239,
                                              kerpic="#c08a6a", golge="#8a5a44", kubbe="#9a9a8a"))
     K = _K(no, govde=BATTUTA)
-    sd = round(K * 1.25 * 2.9 / 2.6 * 0.82, 1)
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, deve, 150, z, sd, 1, faz=(f * 2) % 1, renk="#b08a5a", yuk="#6a4a3a", adim=0.35)
-        _kisi(t, 236, z, K, BATTUTA, yon=1, adim=(f * 2) % 1, silah="sopa", kol=0.0)
+        _kisi(t, 200, z, K, BATTUTA, yon=1, adim=(f * 2) % 1, silah="sopa", kol=0.0)
 
     _spr(no, kare)
 
@@ -1601,7 +1602,7 @@ def sahne241():
     """Kart 38: gece, ağaç altı: Raziye yere serilmiş bohçaya başını koymuş uyur, giysisinde mücevherler parıldar; köylü
     ayakta ona bakar (şiddet gösterilmez)."""
     no = 241
-    _dis(no, "gece", ekle=lambda img, z: figur(img, agac, PAY + 220, duz(588), 1.6, tohum=241,
+    _dis(no, "gece", ekle=lambda img, z: figur(img, agac, PAY + 220, duz(588), 1.15, tohum=241,
                                               yaprak=("#1a2a2a", "#22343a", "#2a3e44"), govde="#2a2024"), yildiz=160)
     K = _K(no, govde=KOYLU, oran=0.28)
 
