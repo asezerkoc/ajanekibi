@@ -193,7 +193,7 @@ Yeni piksel hikâyeler için @pikseltarihim'i takip edin.
 
 ## 4. Sokollu Mehmed Paşa'nın Don-Volga kanalı ve Astrahan seferi (1569)
 
-**Video dosyası:** `teslimler/video/pikseltarihim-don-volga-kanali.mp4` (henüz render edilmedi; grafikte)
+**Video dosyası:** `teslimler/video/pikseltarihim-don-volga-kanali.mp4` (hazır, 4:20; görsel kalite kontrol UYGUN)
 
 **Kapak yazısı:** 383 Yıl / Akmayan Su / Sokollu'nun Don-Volga kanalı
 
