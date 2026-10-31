@@ -128,7 +128,7 @@ def _boyun(img, x0, x1, y0, y1, renk):
                 px[xx, yy] = renk
 
 
-def _goz(d, img, x, bas_y, s, yon, ten=None, yukari=0):
+def _goz(d, img, x, bas_y, s, yon, ten=None, yukari=0, ust_ten=False):
     """Görsel KK revizyonu: telefonda okunur göz. s >= 2.5: açık göz akı + bakış yönünde koyu bebek (koyu tende de
     seçilir), yüzün ön kenarından bir piksel içeride, başlığın kenarından bir piksel aşağıda; kütüphanenin eski tek
     pikselli / ince gözü önce ten rengiyle silinir. Küçük figürde başlığın üstüne yeniden basılan tek koyu piksel."""
@@ -143,6 +143,8 @@ def _goz(d, img, x, bas_y, s, yon, ten=None, yukari=0):
     gw = pw + max(1, _u(0.45, s))
     gh = max(2, _u(0.5, s))
     y0 = bas_y - int(round(0.3 * s)) - yukari
+    if ten is not None and ust_ten:                                        # sarıkla göz akı arasında bir ten satırı
+        d.rectangle([min(on, on - gw * yon), y0 - 1, max(on, on - gw * yon), y0 - 1], fill=ten)
     d.rectangle([min(on, on - (gw - 1) * yon), y0, max(on, on - (gw - 1) * yon), y0 + gh - 1], fill=hex2(GOZ_AKI))
     d.rectangle([min(on, on - (pw - 1) * yon), y0, max(on, on - (pw - 1) * yon), y0 + gh - 1], fill=hex2(KOYU))
 
@@ -156,11 +158,46 @@ def _baslik_gozlu(d, img, x, bas_y, r, s, yon, tur, renk):
     if ten[3] > 200 and tur != "ortu":
         n = _u(0.6, s)
         _boyun(img, x - n, x + n, bas_y + r - 1, bas_y + int(2.6 * s) + 1, ten)
-    # kalpak/sarık yukarı alındığı için orada yer var: göz bir piksel yukarı, sakalla arasında ten şeridi kalsın
-    _goz(d, img, x, bas_y, s, yon, ten if ten[3] > 200 else None, 1 if tur in ("kalpak", "sarik", "sarik_k") and s >= 2.5 else 0)
+    # kalpak yukarı alındığı için orada yer var: göz bir piksel yukarı, sakalla arasında ten şeridi kalsın. Sarıkta göz
+    # yerinde kalır, üstüne bir ten satırı basılır (2. tur: krem sarıkla göz akı birleşiyordu).
+    _goz(d, img, x, bas_y, s, yon, ten if ten[3] > 200 else None, 1 if tur == "kalpak" and s >= 2.5 else 0,
+         tur in ("sarik", "sarik_k"))
 
 
 _tf._baslik = _baslik_gozlu
+
+_ESKI_KISI = kisi
+
+
+def kisi(img, x, zemin, s=1.0, **kw):
+    """timur_figur.kisi + Görsel KK 2. tur düzeltmesi. Kısa tunikli kalıpta (uzun=False) tunik yy-6·s'de biter ama
+    bacaklar kalça noktasından (y-5·s) başlıyordu: arada saydam satırlar kalıyor, gövde havada duruyordu. Burada tunik
+    eteğinin altından bacak başlangıcının altına kadar şalvar (bacakların koyu rengi) doldurulur. Sonra her figürde
+    gövde sürekliliği denetlenir: başın tepesinden ayak satırına kadar gövde şeridinin (x ± 2,5·s) her satırında opak
+    piksel olmalı; dikey saydam boşluk varsa betik durur."""
+    _ESKI_KISI(img, x, zemin, s, **kw)
+    diz = kw.get("diz", False)
+    y = zemin_y(zemin, x, 6 * s)
+    if not kw.get("uzun", True) and not diz and not kw.get("aksak"):
+        d = ImageDraw.Draw(img)
+        alt, kalca = y - int(6 * s), y - int(5 * s)
+        koyu = hex2(_ac(kw.get("govde", "#3a5a8a"), -0.3))
+        d.polygon([(x - int(2.6 * s), alt + 1), (x + int(2.6 * s), alt + 1), (x + int(1.6 * s), kalca + int(1.2 * s)),
+                   (x - int(1.6 * s), kalca + int(1.2 * s))], fill=koyu)
+    _govde_denetimi(img, x, y, s)
+
+
+def _govde_denetimi(img, x, y, s):
+    a = img.getchannel("A").point(lambda v: 255 if v > 200 else 0)
+    x0, x1 = max(0, x - int(2.5 * s)), min(img.width, x + int(2.5 * s) + 1)
+    serit = a.crop((x0, 0, x1, y))
+    bb = serit.getbbox()
+    if not bb:
+        return
+    for yy in range(bb[1], y):
+        if not serit.crop((0, yy, x1 - x0, yy + 1)).getbbox():
+            raise RuntimeError(f"Figür (x={x}, s={s}): gövdede dikey saydam boşluk, satır {yy} (baş {bb[1]}, ayak {y - 1})")
+
 
 # ==========================================================================
 # KİŞİLER (renk kimlikleri bütün videoda aynı; Raziye kırmızı giymez: kaynaksız)

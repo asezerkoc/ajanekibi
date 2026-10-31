@@ -150,3 +150,25 @@ DonVolga.tsx'e dokunulmadı; ses hizalı süreler ve kartlar olduğu gibi kaldı
 - 254, 255, 260, 261, 263, 279, 285 ve 287'nin başlangıç ve son karelerine önizlemede tek tek bakıldı.
 - `npx tsc --noEmit -p .` temiz.
 - 276 ve 283 için KK'nın istediği temiz orta kareler render'da alınmalı.
+
+## Görsel KK 2. tur revizyonu (gözsüz yüzler ve küçük iyileştirmeler)
+
+DonVolga.tsx'e dokunulmadı.
+
+**Gözler (zorunlu düzeltme):**
+- `don_volga_kanali.py` içinde `kisi`, `oturan` ve `atli` için birer sarmalayıcı yazıldı. Figürü aynen çizip yüzün burun tarafına okunur bir göz ekliyorlar. Sarmalayıcılar `timur_figur`/`orhun_yazitlari` adlarını yalnızca bu betiğin sürecinde değiştiriyor; kütüphane dosyaları ve diğer seriler etkilenmiyor.
+- Küçük ölçekte (s < 3,5) börk ile sakal arasında yer kalmadığı için 4 satırlık bir ten şeridi açılıyor (sakalın üstü 2 piksel kısalıyor) ve içine 1×2 koyu göz konuyor.
+- Büyük ölçekte 0,4·s'lik bir ten bandı ve kare göz var.
+- Atlı binicilerin başını `atli` kendisi çizdiği için onlara ayrı sarmalayıcı yazıldı.
+- Böylece dosyadaki bütün insan yüzlerinde göz var: 272'deki ulak, 254'teki çekenler, 276'daki arka Kazak/Çerkes atlıları, orta plandaki küçük kalabalıklar, kazıcılar, oturanlar ve Perry dahil.
+
+**İyileştirmeler:**
+- 254: Kasım Paşa'nın kolu yanında (kol 0), eli gemi gövdesine uzanmıyor. Yedek kütükler sola alındı; ilk çeken kütüğe değmiyor.
+- 250: çadır küçültülüp sağ uzağa (ızgara x 346) alındı; Paşa'nın elinden uzakta, sırtının gerisinde.
+- 261: ana kadırga 4 piksel sola alındı; son yakınlaşmada mahmuz kenardan içeride. Kenar denetimi açık ve geçiyor.
+- 283: gözcü kulesi küçültülüp mahkûm ile gardiyanın arasına alındı. Kule çatısı gardiyanın kasketinin arkasına binmiyor; çift başlık görüntüsü kalktı.
+
+**Denetim:**
+- 40 sahnenin hepsi yeniden çizildi; taban, kadraj, kenar ve yazı bandı denetimleri geçti.
+- 254, 272 ve 276'nın yüzleri yakınlaştırılarak açıldı; 250, 257, 260 ve 283'e de bakıldı.
+- `npx tsc --noEmit -p .` temiz.
