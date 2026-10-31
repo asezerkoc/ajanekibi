@@ -585,9 +585,11 @@ def _boy(no, yk, cizim, hedef, ic=False, geri=0):
     return _s_sigdir(cizim, hm)
 
 
-def _K(no, yk, hedef=0.30, ic=False):
+def _K(no, yk, hedef=0.30, ic=False, tacli=False):
     """Ön sıradaki insanların ölçeği: başlıksız insan boyu kadrajın %30'u (başlıklılar biraz daha uzun);
     yazıya sığmıyorsa sığan en büyük ölçek."""
+    if tacli:                                     # sahnede taçlı Bilge Kağan var: tacın ucu da yazının altında kalsın
+        return _boy(no, yk, lambda t, s, z: figur(t, kisi, 280, z, s, **BILGE), hedef, ic)
     return _boy(no, yk, lambda t, s, z: figur(t, kisi, 280, z, s, govde="#2a2a34", bas=None, kemer=None), hedef, ic)
 
 
@@ -634,7 +636,7 @@ def sahne131():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 205, 0, f, zincir=_kz(yk))
-        figur(t, kitaplik, 150, duz(z[0] - 8, t.width), round(0.92 * K, 1), tohum=131)
+        figur(t, kitaplik, 155, duz(z[0] - 8, t.width), round(0.92 * K, 1), tohum=131)
         u = figur(t, masa, 205, z, K, yuk="kagit")
         masa_mumu(t, 172, u, f, round(0.8 * K, 1))
         figur(t, avrupali, 266, z, K, **THOMSEN, sac=THOMSEN_SAC, yon=-1, silah="mektup", kol=0.30 + 0.04 * SIN(f))
@@ -661,7 +663,7 @@ def sahne133():
     """Kart 6: Orhun Vadisi, 732. Yazıt taşı dikilmiş; iki işçi kaidenin dibine toprak atar, Bilge Kağan izler.
     Orta planda iki atlı bekler."""
     yk = 2.6
-    K = _K(133, yk)
+    K = _K(133, yk, tacli=True)
     sa = round(0.30 * K * 2.9 / 2.6, 1)
 
     def ekle(img, z):
@@ -693,11 +695,11 @@ def sahne134():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, hoyuk, 158, z, round(0.4 * K, 1))
-        figur(t, at, 222, z, round(0.7 * sa, 1), -1, "#5a3a24", "#1a120c", eyer=True, dur=True, bas=0.55 + 0.1 * SIN(f),
+        figur(t, hoyuk, 160, z, round(0.34 * K, 1))
+        figur(t, at, 222, z, round(0.6 * sa, 1), -1, "#5a3a24", "#1a120c", eyer=True, dur=True, bas=0.55 + 0.1 * SIN(f),
               kuyruk=0.5 * SIN(f, 2))
-        for j, x in enumerate((134, 264)):
-            figur(t, koyun, x, z, round(0.45 * K, 1), (1, -1)[j], (f + j * 0.37) % 1)
+        for j, x in enumerate((138, 262)):
+            figur(t, koyun, x, z, round(0.4 * K, 1), (1, -1)[j], (f + j * 0.37) % 1)
 
     _bitir(134, kare, yk, esik=0.7)
 
@@ -711,8 +713,8 @@ def sahne135():
 
     def kare(t, z, i):
         f = i / KARE
-        tas(t, 186, duz(z[0] - 14, t.width), st, tohum=3, isik=0.35 * (f > 0.5))
-        figur(t, oturan, 141, z, round(0.95 * K, 1), **YOLLIG, yon=1, el="kalem")
+        tas(t, 190, duz(z[0] - 14, t.width), st, tohum=3, isik=0.35 * (f > 0.5))
+        figur(t, oturan, 147, z, round(0.95 * K, 1), **YOLLIG, yon=1, el="kalem")
         figur(t, kisi, 246, z, K, govde="#6a5a3a", bas="bork", bas_renk="#4a3222", yon=-1, silah="kazma",
               kol=0.45 + 0.35 * SIN(f, 2), kemer=None)
 
@@ -801,10 +803,10 @@ def sahne140():
 
     def kare(t, z, i):
         f = i / KARE
-        for j, x in enumerate((136, 264)):
+        for j, x in enumerate((134, 258)):
             figur(t, avrupali, x, z, K, govde="#2a5a3a", sac="#3a2a1a", bas="sapka", bas_renk="#1a1a1e", yon=-1,
                   adim=(f + j * 0.5) % 1, silah="sopa")
-        figur(t, avrupali, 195, z, K, govde="#2a4a8a", sac="#5a3a22", bas="sapka", bas_renk="#1a1a1e", yon=-1,
+        figur(t, avrupali, 196, z, K, govde="#2a4a8a", sac="#5a3a22", bas="sapka", bas_renk="#1a1a1e", yon=-1,
               adim=(f + 0.25) % 1)
 
     _bitir(140, kare, yk, esik=0.75)
@@ -896,7 +898,7 @@ def sahne145():
     Arkada (orta planda) taş."""
     yk = 2.8
     K = _K(145, yk)
-    ekle = lambda img, z: tas(img, PAY + 300, duz(586), round(0.3 * K, 1), tohum=4)  # noqa: E731
+    ekle = lambda img, z: tas(img, PAY + 300, duz(586), round(0.25 * K, 1), tohum=4)  # noqa: E731
     _orta_kontrol(145, ekle, 270, 632, yk, YAZI_ALT[145])
     _dis(145, "gun", ekle=ekle)
 
@@ -935,7 +937,7 @@ def sahne147():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 150, 0, f, zincir=_kz(yk))
-        figur(t, kitaplik, 150, duz(z[0] - 8, t.width), round(0.92 * K, 1), tohum=147, renk="#5a3a22")
+        figur(t, kitaplik, 155, duz(z[0] - 8, t.width), round(0.92 * K, 1), tohum=147, renk="#5a3a22")
         figur(t, masa, 202, z, K, yuk="kagit", renk="#7a5030")
         figur(t, avrupali, 266, z, K, govde="#3a3026", sac="#4a3a2a", yon=-1, silah="mektup", kol=0.3 + 0.05 * SIN(f))
 
@@ -964,9 +966,9 @@ def sahne149():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 150, 0, f, zincir=_kz(yk))
-        u = figur(t, masa, 195, z, K, yuk="album")
-        masa_mumu(t, 236, u, f, round(0.8 * K, 1))
-        figur(t, avrupali, 270, z, K, **THOMSEN, sac=THOMSEN_SAC, yon=-1, silah="mektup", kol=0.22 + 0.05 * SIN(f))
+        u = figur(t, masa, 188, z, K, yuk="album")
+        masa_mumu(t, 228, u, f, round(0.8 * K, 1))
+        figur(t, avrupali, 264, z, K, **THOMSEN, sac=THOMSEN_SAC, yon=-1, silah="mektup", kol=0.22 + 0.05 * SIN(f))
 
     _bitir(149, kare, yk, ic=True, esik=0.7)
 
@@ -976,7 +978,7 @@ def sahne150():
     Hepsi taşa bakar; hiçbiri çözümü yayımlamaz."""
     yk = 2.6
     K = _K(150, yk)
-    ekle = lambda img, z: tas(img, PAY + 200, duz(586), round(0.34 * K, 1), tohum=1)  # noqa: E731
+    ekle = lambda img, z: tas(img, PAY + 200, duz(586), round(0.27 * K, 1), tohum=1)  # noqa: E731
     _orta_kontrol(150, ekle, 270, 632, yk, YAZI_ALT[150])
     _dis(150, "aksam", ekle=ekle)
 
@@ -1004,7 +1006,7 @@ def sahne151():
         for x, ph in ((140, 0.0), (262, 0.4)):
             kandil(t, x, 0, (f + ph) % 1, zincir=_kz(yk))
         arka = duz(z[0] - 12, t.width)
-        for j, x in enumerate((128, 156, 184)):
+        for j, x in enumerate((132, 159, 186)):
             figur(t, avrupali, x, arka, round(0.82 * K, 1), govde=("#2a2a34", "#3a2a2a", "#2a3a3a")[j],
                   sac=("#3a2a1a", "#c8c0b0", "#5a4a3a")[j], sakal=(None, "#c8c0b0", None)[j], yon=1)
         figur(t, avrupali, 252, z, K, **THOMSEN, sac=THOMSEN_SAC, yon=-1, kol=0.25 + 0.25 * max(0, SIN(f)))
@@ -1050,7 +1052,7 @@ def sahne153():
 def sahne154():
     """Kart 33: Bilge Kağan halkına seslenir, eli kalkık; önde iki dinleyici, orta planda halk."""
     yk = 2.6
-    K = _K(154, yk)
+    K = _K(154, yk, tacli=True)
 
     def ekle(img, z):
         kalabalik(img, duz(588), PAY + 176, PAY + 290, 10, 154, ("#3a5a8a", "#6a4a2a", "#2a5a3a", "#7a2a22"),
@@ -1105,7 +1107,7 @@ def sahne156():
 def sahne157():
     """Kart 37-38: Bilge Kağan taşının yanında halkını uyarır gibi elini kaldırır; orta planda yurtlar ve dumanları."""
     yk = 2.6
-    K = _K(157, yk)
+    K = _K(157, yk, tacli=True)
 
     def ekle(img, z):
         for x, s_ in ((300, 0.42), (348, 0.36)):

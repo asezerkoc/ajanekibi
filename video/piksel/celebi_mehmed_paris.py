@@ -11,13 +11,13 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from PIL import ImageDraw  # noqa: E402
 
-from ciz import KOYU, _ac, agac, cicek, duman, duz_zemin, figur, hex2, piksel, sehir, temas_golgesi, temel, yeni, zemin_y  # noqa: E402
+from ciz import _ac, agac, cicek, duman, duz_zemin, figur, hex2, piksel, sehir, temas_golgesi, temel, yeni, zemin_y  # noqa: E402
 from sahneler import GW, H, duz, gokyuzu, kaydet, on, orta, uzak  # noqa: E402
-from timur_figur import atli, gemi, kisi, otag, oturan, sedir  # noqa: E402
+from timur_figur import atli, gemi, kisi, otag, oturan  # noqa: E402
 from timur import agac_kavak, ates, ic_mekan, kalabalik, kandil, mumluk, su_ve_kiyi  # noqa: E402
 from kayip_mezar import muhafiz  # noqa: E402
 from kalender import kitaplar, rahle, taht  # noqa: E402
-from cem_sultan import _bb, _kz, _spr, s_atli, s_kisi, s_muhafiz, s_oturan  # noqa: E402
+from cem_sultan import _kz, _spr, s_kisi, s_oturan  # noqa: E402
 
 KARE = 24      # sprite kare sayısı (SKILL.md)
 PAY = 135      # orta/ön plan yan payı (SKILL.md)

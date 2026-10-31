@@ -880,10 +880,23 @@ def _sx(p):
     return p.x if not isinstance(p.x, list) else p.x
 
 
+_DENETIM = [False]     # yazı bandı denetiminde tavandan sarkan kandil sayılmaz (bilinçli istisna: zincir tavana kadar)
+
+
+def _kandil(t, x, f, no):
+    if not _DENETIM[0]:
+        p = P[no]
+        kandil(t, x, 0, f, zincir=_kz(p.yk, p.taban, p.h))
+
+
 def _cek(no, kare, esik=0.75, satir=3, serbest=0):
-    """Sprite'ı P[no] ayarlarıyla denetleyip yazar (görünür aralık + yazı bandı)."""
+    """Sprite'ı P[no] ayarlarıyla denetleyip yazar: görünür aralık (sahne sonundaki %6 yakınlaşma dahil) ve yazı bandı."""
     p = P[no]
-    _kadraj(no, kare, p.w, p.h, p.yk * 1.06, esik, p.taban, satir, serbest, odak=p.odak, yaziY=p.yaziY)
+    _DENETIM[0] = True
+    try:
+        _kadraj(no, kare, p.w, p.h, p.yk * 1.06, esik, p.taban, satir, serbest, odak=p.odak, yaziY=p.yaziY)
+    finally:
+        _DENETIM[0] = False
     sprite(no, "karakter", p.w, p.h, KARE, kare)
 
 
@@ -893,3 +906,936 @@ def _yerel(no, izgara_x, sx=None):
     if sx is None:
         sx = p.x[0] if isinstance(p.x, list) else p.x
     return izgara_x - (sx - p.w / 2)
+
+
+def _uzak_kara(no, kiyi, taban, tepe, sil, ova, tohum, cami=1, minare=10, kule=None, yogun=1.0):
+    """Uzak plan (yeni katman yardımcısı): tepeler, ufuk çizgisine oturan şehir silüeti ve dümdüz ova. Dikişsiz."""
+    img = yeni()
+    hat = sirt(kiyi, 5, tohum, 3, 0.6, w=W, dongulu=True)
+    arazi(img, hat, list(tepe))
+    if sil:
+        siluet(img, taban, tohum, sil, 0, W, yogun=yogun, cami=cami, minare_boy=minare)
+    if kule is not None:
+        d = ImageDraw.Draw(img)
+        r = 3
+        d.rectangle([kule - r, taban - 22, kule + r, taban - 1], fill=hex2(_ac(sil, -0.12)))
+        d.rectangle([kule - r - 1, taban - 24, kule + r + 1, taban - 22], fill=hex2(_ac(sil, -0.12)))
+        d.polygon([(kule - r - 1, taban - 24), (kule, taban - 31), (kule + r + 1, taban - 24)], fill=hex2(_ac(sil, -0.2)))
+    arazi(img, [taban] * W, list(ova), None, doku_tohum=no + 3)
+    kaydet(img, f"sahne{no}-uzak.png")
+    return img
+
+
+def _orta_deniz(no, ust, renkler):
+    """Orta plan deniz (kütüphanenin su_ve_kiyi'si, kumsalsız)."""
+    img = yeni(GW, H)
+    su_ve_kiyi(img, ust, renkler)
+    kaydet(img, f"sahne{no}-orta.png")
+    return img
+
+
+def ev(img, x, zemin, s=1.0, duvar="#c8a878", cati="#a8452e", isik=False):
+    """Yeni figür: İstanbul ahşap evi: düz zemine oturan iki katlı gövde, çıkma (cumba), kırma kiremit dam."""
+    d = ImageDraw.Draw(img)
+    g = int(6 * s)
+    y = duz_zemin(zemin, x - g, x + g, "ev", tolerans=max(3, int(s)))
+    temas_golgesi(img, x, y, 2 * g + 2, alfa=90)
+    h = int(9 * s)
+    d.rectangle([x - g, y - h, x + g, y - 1], fill=hex2(duvar))
+    d.rectangle([x - g - _u(1, s), y - h, x + g + _u(1, s), y - int(5 * s)], fill=hex2(_ac(duvar, -0.06)))   # çıkma kat
+    d.line([x - g - _u(1, s), y - int(5 * s), x + g + _u(1, s), y - int(5 * s)], fill=hex2(_ac(duvar, -0.3)))
+    pen = hex2("#f8c860") if isik else hex2("#3a2a22")
+    for px_ in (x - int(3.5 * s), x + int(1.5 * s)):
+        d.rectangle([px_, y - int(8 * s), px_ + _u(1.6, s), y - int(6 * s)], fill=pen)
+    d.rectangle([x - _u(1, s), y - int(3.6 * s), x + _u(1, s), y - 1], fill=hex2("#4a2a1a"))
+    d.polygon([(x - g - _u(2, s), y - h), (x - int(2 * s), y - h - int(4 * s)), (x + int(2 * s), y - h - int(4 * s)),
+               (x + g + _u(2, s), y - h)], fill=hex2(cati))
+    d.line([x - g - _u(2, s), y - h, x + g + _u(2, s), y - h], fill=hex2(_ac(cati, -0.3)))
+    return (x + int(3 * s), y - h - int(3 * s))                     # baca noktası
+
+
+def _toz(t, x, y, f, s=1.0, adet=6, renk="#d8c8a8"):
+    """Zeminden kalkan toz: puflar ayak hizasından doğar, yükselip yana açılır ve söner (yarı saydam)."""
+    for k in range(adet):
+        ph = (f + k / adet) % 1
+        yon = -1 if k % 2 else 1
+        px_ = x + yon * (1.5 + ph * 6) * s
+        py_ = y - 1 - ph * 4 * s
+        r = (0.6 + ph * 1.4) * s
+        alfa = int(150 * (1 - ph))
+        for yy in range(int(py_ - r), int(py_ + r) + 1):
+            for xx in range(int(px_ - r), int(px_ + r) + 1):
+                if (xx - px_) ** 2 + (yy - py_) ** 2 <= r * r and yy < y and _esik(xx, yy) < 0.6:
+                    piksel(t, xx, yy, hex2(renk, alfa))
+
+
+def _hilal(img, x, y, r, renk="#f4ecd0"):
+    k = yeni(img.width, img.height)
+    d = ImageDraw.Draw(k)
+    d.ellipse([x - r, y - r, x + r, y + r], fill=hex2(renk))
+    d.ellipse([x - r + int(r * 0.6), y - r - 1, x + r + int(r * 0.6), y + r - 1], fill=(0, 0, 0, 0))
+    img.alpha_composite(k)
+
+
+def _kanat_sehpasi(t, x, z, s):
+    """Yeni figür: kanat sehpası: iki ayağı zemine basan ahşap askı; tepedeki kola bir çift kartal kanadı asılı."""
+    d = ImageDraw.Draw(t)
+    y = z[0]
+    temas_golgesi(t, x, y, 12 * s)
+    ust = y - int(15 * s)
+    ah = hex2("#6a4428")
+    for ax in (-5, 5):
+        d.line([x + int(ax * s), y - 1, x + int(ax * 0.3 * s), ust], fill=ah, width=_u(0.7, s))
+    d.line([x - int(4 * s), y - int(5 * s), x + int(4 * s), y - int(5 * s)], fill=ah, width=_u(0.5, s))
+    d.rectangle([x - int(5 * s), ust - _u(0.8, s), x + int(5 * s), ust], fill=hex2("#8a5a34"))
+    kanat(t, x - int(4 * s), ust, -1, -84, 8.5 * s, s)
+    kanat(t, x + int(4 * s), ust, 1, -84, 8.5 * s, s)
+
+
+# ==========================================================================
+# SAHNELER
+# ==========================================================================
+def _kule_tepesi(no, gok, deniz, tepe, sil, ust=600, cami=2):
+    _gok(no, gok)
+    _uzak_deniz(no, 520, 536, tepe, sil, deniz, no, cami=cami)
+    _orta_duz(no, ust, TAS_SICAK, "tas", korkuluk=8)
+    _on_bos(no)
+
+
+def sahne370():
+    """Kanca ve kapak: Galata Kulesi'nin şerefesinde kartal kanatlı Hezarfen; aşağıda Boğaz, karşıda Üsküdar (lodos sabahı)."""
+    _kule_tepesi(370, SABAH, DENIZ_SABAH, ("#8a8aa4", "#7c7e98", "#70728c"), "#646884")
+    p = P[370]
+    s = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kanatli, p.w // 2, z, s, yon=1, acik=0.10 + 0.06 * (1 + SIN(f)), cirp=0.25 * SIN(f, 2))
+
+    _cek(370, kare)
+
+
+def sahne371():
+    """'Aşağıda Boğaz. Karşıda Üsküdar.': şerefede sola çekilmiş Hezarfen sağa, Üsküdar'a bakar; kanatlar yarı açık."""
+    _kule_tepesi(371, SABAH, DENIZ_SABAH, ("#8890a8", "#7a829c", "#6e7690"), "#5e6680", ust=606, cami=3)
+    p = P[371]
+    s = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kanatli, p.w // 2 - 34, z, s, yon=1, acik=0.40 + 0.08 * SIN(f), cirp=0.3 * SIN(f, 2))
+
+    _cek(371, kare)
+
+
+def _kosk_ic(no, pencere=("#5a8ab8", "#9ec0dc"), duvar=("#3a2e26", "#4a3a2e", "#5a4836"), cini="#2a6a8a", hali=True):
+    """Köşk odası (iç mekân): kemerli duvar, çini kuşak, denize bakan pencereler, kilim."""
+    ic_mekan(no, duvar=duvar, kemer="#2a1e16", cini=cini, pencere=pencere,
+             zemin_renk=("#5a4a3a", "#4a3c2e", "#3e3226"), isik="#f8c060", hali=hali)
+
+
+def sahne372():
+    """'Bu adam uçarsa padişah ona bir kese altın verecek.': köşk odasında minderde IV. Murad, önünde kese."""
+    _kosk_ic(372)
+    p = P[372]
+    s = s_oturan(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        _kandil(t, 196, f, 372)
+        mumluk(t, 292, z, f, 3)
+        figur(t, oturan, 228, z, s, yon=-1, minder="#c8a040", **MURAD)
+        figur(t, kese, 158, z, round(0.6 * s, 1))
+
+    _cek(372, kare)
+
+
+def sahne373():
+    """'İstanbul, Dördüncü Murad'ın gençlik yılları.': genç IV. Murad atıyla Haliç kıyısında; karşıda kubbeler, minareler."""
+    _gok(373, GUN)
+    _uzak_deniz(373, 518, 536, ("#9aa2b4", "#8e96a8", "#828a9c"), "#727a92", DENIZ_GUN, 373, cami=3, minare=15)
+    _orta_duz(373, 592, ["#b8aa8c", "#ac9e80", "#a09274", "#948668", "#887a5c"], "kaldirim")
+    _on_bos(373)
+    p = P[373]
+    sa = round(s_kisi(p.yk, 0.24) * 2.9 / 2.6, 1)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, at, p.w // 2, z, sa, 1, "#ece6da", "#c8c0b0", eyer=True, faz=f, adim=0.45)
+        from timur_figur import atli as _atli  # binici at ile birlikte (kütüphanenin atli'si)
+        figur(t, _atli, p.w // 2, z, sa, 1, faz=f, at_renk="#ece6da", yele="#c8c0b0", adim=0.45, **MURAD)
+
+    _cek(373, kare)
+
+
+def sahne374():
+    """'Adamın adı Ahmed Çelebi. Lakabı Hezarfen.': loş oda; Hezarfen ayakta, yanında sehpaya asılı kartal kanatları."""
+    ic_mekan(374, duvar=("#2a2a30", "#363640", "#44424e"), kemer="#1a1a20", cini="#4a5a6a",
+             pencere=("#2a3a5a", "#f4e0b0"), zemin_renk=("#4a4440", "#3e3834", "#322e2c"), isik="#e8b060", hali=False)
+    p = P[374]
+    s = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        _kandil(t, 200, f, 374)
+        mumluk(t, 128, z, f, 2)
+        _kanat_sehpasi(t, 250, z, round(0.95 * s, 1))
+        figur(t, kisi, 170, z, s, yon=1, kol=0.03 * (1 + SIN(f)), **HEZARFEN)
+
+    _cek(374, kare)
+
+
+def sahne375():
+    """Kurtuba, 9. yüzyıl, akşam: İbn Firnas sert iniş sonrası diz üstü; sol kanadı yere sarkmış, toz kalkar."""
+    _gok(375, AKSAM)
+    uzak(375, ["#7a5a6a", "#6a4e5e"], ["#8a6a5a", "#7a5e50"], ["#a07a58", "#906c4e", "#806044"], dag_y=(470, 500),
+         tepe_y=510, ova_y=528)
+    p = P[375]
+    K = s_kisi(p.yk)
+    _gorunur(375, [300], 270, 270, p.yk * 1.06)
+
+    def ekle(img, z):
+        figur(img, sehir, PAY + 205, PAY + 345, duz(588), round(0.42 * K, 1), duvar="#d8b888", golge="#a88a60",
+              cati="#b06a40", tohum=375)
+
+    orta(375, (560, 566), ["#b08a5a", "#a07c50", "#906e46", "#80603c", "#705432"], "#d8b07a", ekle=ekle)
+    on(375, ["#705432", "#80603c", "#906e46"], "#d8b07a", boy=110)
+
+    def kare(t, z, i):
+        f = i / KARE
+        _toz(t, p.w // 2 - 22, p.h, f, K * 0.8, 6)
+        _toz(t, p.w // 2 + 30, p.h, (f + 0.5) % 1, K * 0.7, 5)
+        figur(t, kanatli, p.w // 2, z, K, yon=-1, acik=0.35, cirp=0.05 * SIN(f), diz=True, sol_dus=1.0, **FIRNAS)
+
+    _cek(375, kare)
+
+
+def sahne376():
+    """Nişabur, 11. yüzyıl başı, kızıl akşam: sözlükçü Cevherî cami damında, kollarını açmış; yanında kubbe."""
+    _gok(376, KIZIL_GOK)
+    _uzak_kara(376, 534, 548, ("#6a3a4a", "#5e3442", "#522e3a"), "#4a2a36", ("#7a5a4a", "#6a4e40", "#5e4438"), 376,
+               cami=1, minare=9, yogun=1.0)
+    _orta_duz(376, 600, ["#a8805a", "#9c7650", "#906c48", "#846240", "#785838"], "dam", korkuluk=7)
+    _on_bos(376)
+    p = P[376]
+    s = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        d = ImageDraw.Draw(t)
+        kx, ky, r = 92, z[0], int(4.4 * s)                      # damın üstündeki kubbe: kasnak dama oturur
+        d.rectangle([kx - r - 3, ky - int(2.6 * s), kx + r + 3, ky - 1], fill=hex2("#b88a5e"))
+        d.chord([kx - r, ky - int(2.6 * s) - r, kx + r, ky - int(2.6 * s) + r], 180, 360, fill=hex2("#3a8a9a"))
+        d.line([kx, ky - int(2.6 * s) - r, kx, ky - int(2.6 * s) - r - _u(1.4, s)], fill=hex2("#e0b040"))
+        temas_golgesi(t, kx, ky, 2 * r + 8)
+        figur(t, kisi, 222, z, s, yon=1, kol=0.80 + 0.15 * SIN(f), pelerin="#3a2a4a", **CEVHERI)
+
+    _cek(376, kare)
+
+
+def sahne377():
+    """Okmeydanı, gündüz: Hezarfen kanatları sırtında sağa yürür; geride açık alanda taş minber."""
+    _gok(377, GUN)
+    uzak(377, ["#7a8aa8", "#6e7e9c"], ["#7a9a72", "#6e8e68"], ["#8aa86a", "#7e9c60", "#729056"], dag_y=(470, 500),
+         tepe_y=512, ova_y=530)
+    p = P[377]
+    s = s_kisi(p.yk)
+    _gorunur(377, [300], p.x[0], p.x[1], p.yk * 1.06)
+
+    def ekle(img, z):
+        figur(img, agac, PAY + 120, duz(584), round(0.32 * s, 1), tohum=3)
+        figur(img, tas_minber, PAY + 300, duz(588), round(0.85 * s, 1), yon=-1)
+
+    orta(377, (560, 566), ["#8aa860", "#7e9c58", "#729050", "#668448", "#5a7840"], "#b8d088", ekle=ekle)
+    on(377, ["#5a7840", "#668448", "#729050"], "#b8d088", boy=120)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kanatli, p.w // 2 - 20, z, s, yon=1, acik=0.0, adim=f)
+
+    _cek(377, kare)
+
+
+def sahne378():
+    """Minberin üst sahanlığı: Hezarfen kanatlarını açıp kapar (talim); uzakta Haliç ve küçük Galata Kulesi."""
+    _gok(378, GUN)
+    _uzak_kara(378, 536, 548, ("#7a90a0", "#6e8496", "#62788a"), "#6a7a90", ("#8aa86a", "#7e9c60", "#729056"), 378,
+               cami=1, minare=9, kule=300)
+    _orta_duz(378, 604, ["#d0c4ac", "#c4b8a0", "#b8ac94", "#aca088", "#a0947c"], "tas", korkuluk=6)
+    _on_bos(378)
+    p = P[378]
+    s = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kanatli, p.w // 2, z, s, yon=1, acik=0.55 - 0.42 * COS(f), cirp=0.2 * SIN(f, 2))
+
+    _cek(378, kare)
+
+
+def _galata_genis(no, gok, deniz, tepe, sil, zemin_renk, kenar, isik=False, gece=False, adam=True, yildiz=0, bugun=False):
+    _gok(no, gok, yildiz=yildiz)
+    _uzak_deniz(no, 520, 534, tepe, sil, deniz, no, cami=2, isik=isik)
+    p = P[no]
+
+    def ekle(img, z):
+        figur(img, sehir, PAY + 110, PAY + 430, duz(586), 0.9, duvar=_ac(zemin_renk[0], 0.1), golge=_ac(zemin_renk[0], -0.2),
+              cati="#8a3a2a" if not gece else "#3a2a30", tohum=no)
+
+    orta(no, (560, 566), list(zemin_renk), kenar, ekle=ekle)
+    on(no, [zemin_renk[4], zemin_renk[3], zemin_renk[2]], kenar, boy=90)
+    sk = 2.9
+
+    def kare(t, z, i):
+        f = i / KARE
+        cx = p.w // 2
+        for ex, dx in ((cx - 62, 4.2), (cx + 64, 4.0)):
+            baca = figur(t, ev, ex, z, dx, duvar="#c8a878" if not gece else "#5a4a44", cati="#a8452e" if not gece else "#4a2a2a",
+                         isik=isik)
+            duman(t, baca[0], baca[1], 30, no + ex, faz=f, renk="#d8d2c8" if not gece else "#6a6670", ruzgar=0.9, genislik=0.7)
+        serefe, a, b = figur(t, galata_kulesi, cx, z, sk, isik=isik)
+        if adam:                                                       # şerefede kanatlı adam (uzaktan, küçük)
+            figur(t, kanatli, b - 3, duz(serefe, t.width), 0.62, yon=1, acik=0.9, cirp=0.3 * SIN(f, 2))
+        if bugun:
+            d = ImageDraw.Draw(t)
+            for lx in (cx - 100, cx + 104):                            # bugünkü sokak lambaları (direk zemine dikili)
+                d.line([lx, z[0] - 1, lx, z[0] - 26], fill=hex2("#2a2a30"), width=2)
+                d.line([lx, z[0] - 26, lx + 5, z[0] - 26], fill=hex2("#2a2a30"))
+                d.rectangle([lx + 4, z[0] - 26, lx + 7, z[0] - 23], fill=hex2("#ffe8a0"))
+                temas_golgesi(t, lx, z[0], 5)
+
+    _cek(no, kare)
+
+
+def sahne379():
+    """'Sonra kule... altmış yedi metre. Lodos esiyor.': Galata Kulesi geniş çekim; şerefede küçük kanatlı adam, bacalardan
+    çıkan duman lodosla sağa yatar."""
+    _galata_genis(379, SABAH, DENIZ_SABAH, ("#8a8aa4", "#7c7e98", "#70728c"), "#646884",
+                  ["#a89a7a", "#9c8e70", "#908266", "#84765c", "#786a52"], "#d0c098")
+
+
+def sahne380():
+    """Sarayburnu, Sinan Paşa Köşkü'nün taşlığı: minderde oturan IV. Murad sola, Haliç'in karşısındaki Galata'ya bakar."""
+    _gok(380, SABAH)
+    _uzak_deniz(380, 520, 536, ("#8a8aa4", "#7c7e98", "#70728c"), "#646884", DENIZ_SABAH, 380, cami=1, kule=222)
+    _orta_duz(380, 598, TAS_SICAK, "tas", korkuluk=8)
+    _on_bos(380)
+    p = P[380]
+    s = s_oturan(p.yk)
+    _gorunur(380, [222], 270, 270, p.yk * 1.06)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, oturan, p.w // 2 + 20, z, s, yon=-1, minder="#c8a040", **MURAD)
+        figur(t, kisi, p.w // 2 + 78, z, round(0.92 * s_kisi(p.yk), 1), yon=-1, kol=0.02 * (1 + SIN(f)),
+              govde="#2a4a7a", bas="sarik", bas_renk="#e8e0d0", sakal=None)      # yanında ayakta bekleyen hizmetli
+
+    _cek(380, kare)
+
+
+def sahne381():
+    """'Adam atlıyor... Boğaz'ın üstünde süzülüyor.': kanatları açık Hezarfen lodosla sağa, Üsküdar'a süzülür.
+    Bu sahnede figürün havada olması doğrudur (süzülme); altında deniz, gölge yok."""
+    _gok(381, SABAH)
+    _uzak_deniz(381, 520, 534, ("#8a8aa4", "#7c7e98", "#70728c"), "#646884", DENIZ_SABAH, 381, cami=3)
+    _orta_deniz(381, 552, ("#3e628a", "#34567c", "#2c4c70", "#264466"))
+    _on_bos(381)
+    p = P[381]
+    s = s_kisi(p.yk, 0.30)
+    su = p.h - 14
+
+    def kare(t, z, i):
+        f = i / KARE
+        su_ve_kiyi(t, su, ("#264466",) * 4)                         # sprite'ın alt 14 satırı orta plandaki denizle aynı
+        ayak = su - 50 + int(round(3 * SIN(f)))
+        figur(t, kanatli, p.w // 2, duz(ayak, t.width), s, yon=1, acik=1.0, cirp=0.25 * SIN(f), havada=True)
+
+    _cek(381, kare, esik=0.5)
+
+
+def sahne382():
+    """Üsküdar, Doğancılar Meydanı: Hezarfen'in ayakları yere değer; kanatlar iner, ayak dibinden toz kalkar."""
+    _gok(382, SABAH)
+    _uzak_kara(382, 528, 546, ("#8a90a4", "#7e8498", "#72788c"), "#6a7088", ("#a0a088", "#949480", "#888876"), 382,
+               cami=1, minare=10)
+    p = P[382]
+    s = s_kisi(p.yk)
+
+    def ekle(img, z):
+        for x, dx in ((150, 3.0), (205, 3.2), (345, 3.0), (395, 3.1)):
+            figur(img, ev, PAY + x, duz(588), dx)
+        figur(img, kubbeli_cami, PAY + 275, duz(588), 2.0, minare=1)
+
+    _orta_duz(382, 572, ["#c0b090", "#b4a484", "#a89878", "#9c8c6c", "#908060"], "kaldirim", ekle=ekle)
+    _on_bos(382)
+
+    def kare(t, z, i):
+        f = i / KARE
+        _toz(t, p.w // 2 - 10, p.h, f, s * 0.8, 6)
+        _toz(t, p.w // 2 + 12, p.h, (f + 0.33) % 1, s * 0.7, 5)
+        figur(t, kanatli, p.w // 2, z, s, yon=1, acik=0.62 + 0.28 * COS(f), cirp=0.1 * SIN(f, 2), adim=0.22)
+
+    _cek(382, kare)
+
+
+def sahne383():
+    """'Padişah ödülünü veriyor: bir kese altın.': köşk odası; minderde IV. Murad, karşısında diz çökmüş Hezarfen, arada kese."""
+    _kosk_ic(383)
+    p = P[383]
+    so, sk = s_oturan(p.yk), s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        _kandil(t, 200, f, 383)
+        figur(t, oturan, 150, z, so, yon=1, minder="#c8a040", **MURAD)
+        figur(t, kese, 204, z, round(0.6 * so, 1))
+        figur(t, kisi, 252, z, sk, yon=-1, diz=True, kol=0.10 + 0.04 * SIN(f), **HEZARFEN)
+
+    _cek(383, kare)
+
+
+def sahne384():
+    """'Ve aynı nefeste hükmünü söylüyor': aynı oda kızıl akşamda; IV. Murad ayağa kalkmış, eliyle gösterir; Hezarfen diz üstü."""
+    _kosk_ic(384, pencere=("#a8484a", "#f0a080"), duvar=("#2e2020", "#3c2a28", "#4a3430"), cini="#6a2a2a")
+    p = P[384]
+    sk = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        _kandil(t, 206, f, 384)
+        figur(t, kisi, 156, z, sk, yon=1, kol=0.70 + 0.05 * SIN(f), pelerin="#4a1018", **MURAD)
+        figur(t, kese, 224, z, round(0.55 * sk, 1))
+        figur(t, kisi, 262, z, sk, yon=-1, diz=True, **HEZARFEN)
+
+    _cek(384, kare)
+
+
+def sahne385():
+    """'Cezayir... Hezarfen oraya gönderiliyor.': alacakaranlıkta kadırga batıya (sola), sürgüne yol alır."""
+    _gok(385, AKSAM)
+    _uzak_deniz(385, 528, 540, ("#5a4a6a", "#4e4260", "#443a56"), "#3e3654", DENIZ_AKSAM, 385, cami=0)
+    _orta_deniz(385, 556, ("#3e3660", "#363058", "#2e2a50", "#282448"))
+    _on_bos(385)
+    p = P[385]
+    sg = 3.4
+    su = p.h - 14
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, gemi, p.w // 2, su, sg, -1, f, govde="#3a2a22", yelken="#e8dcc0", hac=False)
+        su_ve_kiyi(t, su, ("#282448",) * 4)
+
+    _cek(385, kare, esik=0.4)
+
+
+def _cezayir_evleri(t, x0, x1, z, s, f, tohum):
+    """Cezayir'in beyaz, düz damlı kübik evleri (yeni figür; düz zemine oturur); bazı pencerelerde titreyen kandil ışığı."""
+    d = ImageDraw.Draw(t)
+    rnd = random.Random(tohum)
+    x = x0
+    while x < x1:
+        w = int(rnd.uniform(9, 15) * s)
+        h = int(rnd.uniform(8, 16) * s)
+        y = duz_zemin(z, x, x + w, "Cezayir evi", tolerans=3)
+        renk = _ac("#d8d8e4", rnd.uniform(-0.45, -0.3))
+        d.rectangle([x, y - h, x + w, y - 1], fill=hex2(renk))
+        d.line([x, y - h, x + w, y - h], fill=hex2(_ac(renk, 0.25)))
+        d.rectangle([x + w // 2 - _u(1, s), y - int(3.4 * s), x + w // 2 + _u(1, s), y - 1], fill=hex2("#1a1a2a"))
+        yan = (k for k in range(3))
+        for k in yan:
+            if rnd.random() < 0.55:
+                wx, wy = x + int((1.5 + k * 3.6) * s), y - h + int(2.4 * s)
+                if wx + _u(1.4, s) < x + w:
+                    yanik = rnd.random() < 0.6
+                    titre = 0.15 * SIN(f + rnd.random(), 1)
+                    d.rectangle([wx, wy, wx + _u(1.4, s), wy + _u(1.8, s)],
+                                fill=hex2(_ac("#f0b850", titre) if yanik else "#1e1e2e"))
+        temas_golgesi(t, x + w // 2, y, w, alfa=80)
+        x += w + int(rnd.uniform(0, 2) * s)
+
+
+def sahne386():
+    """'Hakkında bilinen son söz üç kelime: Orada merhum oldu.': Cezayir'de gece; beyaz evler, hilal. İnsan yok, mezar yok."""
+    img = _gok(386, GECE, yildiz=110)
+    _hilal(img, 196, 524, 9)
+    kaydet(img, "sahne386-gokyuzu.png")
+    _uzak_kara(386, 540, 556, ("#1e2440", "#1a2038", "#161c30"), None, ("#1e2230", "#1a1e2a", "#161a24"), 386)
+    orta(386, (566, 570), ["#2a2a36", "#24242e", "#1e1e28", "#1a1a22", "#16161c"], "#4a4a5a")
+    on(386, ["#16161c", "#1a1a22", "#1e1e28"], "#3a3a4a", boy=80)
+    p = P[386]
+
+    def kare(t, z, i):
+        f = i / KARE
+        _cezayir_evleri(t, 64, 336, z, 3.4, f, 386)
+        figur(t, kubbeli_cami, 214, z, 2.6, tas="#9a9aa8", kursun="#5a6070", minare=1, isik=True)
+
+    _cek(386, kare)
+
+
+def sahne387():
+    """'Kalması uygun değildi. Kalmadı.': gece Galata Kulesi; şerefe boş, pencerelerde ışık."""
+    _galata_genis(387, GECE, DENIZ_GECE, ("#1e2440", "#1a2038", "#161c30"), "#141a2e",
+                  ["#3a3644", "#34303e", "#2e2a38", "#282432", "#221e2c"], "#5a5468", isik=True, gece=True, adam=False,
+                  yildiz=90)
+
+
+def _kahire_odasi(no, pencere=("#1a2a4a", "#f4e8c0")):
+    ic_mekan(no, duvar=("#3a2c22", "#4a382a", "#5a4632"), kemer="#2a1c14", cini="#3a7a5a", pencere=pencere,
+             zemin_renk=("#5a4838", "#4a3c2e", "#3e3226"), isik="#f8c060", hali=True)
+
+
+def sahne388():
+    """'Tek bir adam: Evliya Çelebi.': Kahire'de yaşlı Evliya ayakta, elinde defter; mum ve kandil."""
+    _kahire_odasi(388)
+    p = P[388]
+    s = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        _kandil(t, 270, f, 388)
+        mumluk(t, 128, z, f, 3)
+        figur(t, kisi, 200, z, s, yon=1, silah="mektup", kol=0.30 + 0.05 * SIN(f), **EVLIYA)
+
+    _cek(388, kare)
+
+
+def sahne389():
+    """'Kahire'de, yaşlı bir adam.': Evliya minderde oturur, rahlede yazar; yanında kitap yığını."""
+    _kahire_odasi(389)
+    p = P[389]
+    s = s_oturan(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        _kandil(t, 200, f, 389)
+        mumluk(t, 290, z, f, 3)
+        kitaplar(t, 116, z[0], round(0.9 * s, 1))
+        figur(t, oturan, 180, z, s, yon=1, minder="#8a2a2a", **EVLIYA)
+        rahle(t, 180 + int(5.4 * s), z[0], round(0.9 * s, 1))
+
+    _cek(389, kare)
+
+
+def sahne390():
+    """'Başka hiçbir Osmanlı kroniği...': loş kütüphane; sedirde kitap yığınları, kapalı sandık, rulo mektuplar. İnsan yok."""
+    _kahire_odasi(390, pencere=None)
+    p = P[390]
+    s = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        d = ImageDraw.Draw(t)
+        _kandil(t, 200, f, 390)
+        ust = figur(t, sedir, 150, z, round(0.32 * s, 1), renk="#6a4a2a", ortu="#5a2a2a")
+        for kx in (110, 130, 152, 176, 194):
+            kitaplar(t, kx, ust, round(0.55 * s, 1))
+        y = z[0]                                                     # kapalı sandık: zemine oturur
+        temas_golgesi(t, 262, y, int(9 * s))
+        d.rectangle([262 - int(4.4 * s), y - int(5 * s), 262 + int(4.4 * s), y - 1], fill=hex2("#5a3a22"), outline=hex2("#2a1a10"))
+        d.rectangle([262 - int(4.4 * s), y - int(5.6 * s), 262 + int(4.4 * s), y - int(4.6 * s)], fill=hex2("#6a4a2a"))
+        for bx in (-3, 3):
+            d.line([262 + int(bx * s), y - int(5.6 * s), 262 + int(bx * s), y - 1], fill=hex2("#c8a040"))
+        for k, rx in enumerate((300, 318)):                           # rulo mektuplar: yere yatık
+            d.ellipse([rx - int(1.8 * s), y - int(1.6 * s) - 1, rx + int(1.8 * s), y - 1], fill=hex2("#e8dcc0"))
+            d.ellipse([rx + int(1.2 * s), y - int(1.6 * s) - 1, rx + int(2 * s), y - 1], fill=hex2("#c8b890"))
+            piksel(t, rx, y - int(0.8 * s), hex2("#c8302a"))
+        mumluk(t, 330, z, f, 1)
+
+    _cek(390, kare)
+
+
+def _sarayburnu_gece(no, kosk_x=None):
+    _gok(no, GECE, yildiz=110)
+    _uzak_deniz(no, 524, 538, ("#1e2440", "#1a2038", "#161c30"), "#141a2e", DENIZ_GECE, no, cami=2, isik=True)
+
+    def ekle(img, z):
+        if kosk_x is not None:
+            figur(img, kosk, PAY + kosk_x, duz(592), 2.6, isik=True, tas="#6a6474", ahsap="#4a3a34", kursun="#3a4250")
+
+    _orta_duz(no, 586 if kosk_x is not None else 598, TAS_GECE, "tas", korkuluk=0 if kosk_x is not None else 8, ekle=ekle)
+    _on_bos(no)
+
+
+def sahne391():
+    """'Lagari Hasan Çelebi. Fişekçi.': gece Sarayburnu'nda Lagari fişeğinin yanında; şenlik feneri."""
+    _sarayburnu_gece(391)
+    p = P[391]
+    s = s_kisi(p.yk)
+    sf = 5.0
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, fener, 300, z, round(0.6 * s, 1), f=f)
+        figur(t, fisek, 236, z, sf)
+        figur(t, kisi, 160, z, s, yon=1, kol=0.25 + 0.05 * SIN(f), **LAGARI)
+
+    _cek(391, kare)
+
+
+def sahne392():
+    """'Kaya Sultan'ın doğduğu gece. Sarayburnu'nda şenlik.': ışıklı köşk, fenerler; fişekçi küçük fişekleri ateşler,
+    fişekler kıyıdan yükselir ve alçakta patlar (kıvılcımlar aşağı düşer)."""
+    _sarayburnu_gece(392, kosk_x=150)
+    p = P[392]
+    s = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        d = ImageDraw.Draw(t)
+        y = z[0]
+        figur(t, fener, 70, z, round(0.55 * s, 1), f=f)
+        figur(t, fener, 320, z, round(0.55 * s, 1), f=(f + 0.4) % 1)
+        rx = 262                                                         # fişek sehpası (zemine basar)
+        d.line([rx - 8, y - 1, rx - 2, y - 16], fill=hex2("#6a4428"), width=2)
+        d.line([rx + 8, y - 1, rx + 2, y - 16], fill=hex2("#6a4428"), width=2)
+        d.rectangle([rx - 5, y - 18, rx + 5, y - 16], fill=hex2("#8a5a34"))
+        temas_golgesi(t, rx, y, 18)
+        for k in range(3):
+            ph = (f + k / 3) % 1
+            hx = rx + (k - 1) * 22
+            if ph < 0.45:                                                # yükselen fişek: kıvılcım kuyruğu sehpaya iner
+                yy = y - 18 - ph / 0.45 * 70
+                d.line([rx, y - 18, hx * ph / 0.45 + rx * (1 - ph / 0.45), yy], fill=hex2("#f8d070", 120))
+                d.rectangle([hx * ph / 0.45 + rx * (1 - ph / 0.45) - 1, yy - 3, hx * ph / 0.45 + rx * (1 - ph / 0.45) + 1, yy],
+                            fill=hex2("#e8601c"))
+            else:                                                        # patlama: kıvılcımlar açılır ve yerçekimiyle düşer
+                q = (ph - 0.45) / 0.55
+                cy = y - 88
+                renk = ("#ffd479", "#ffa486", "#a8e0ff")[k]
+                for a in range(0, 360, 30):
+                    r = 6 + q * 22
+                    px_ = hx + math.cos(math.radians(a + k * 10)) * r
+                    py_ = cy + math.sin(math.radians(a + k * 10)) * r + q * q * 18
+                    if py_ < y - 2:
+                        piksel(t, px_, py_, hex2(renk, int(255 * (1 - q * 0.7))))
+                        piksel(t, px_ + 1, py_, hex2(renk, int(160 * (1 - q))))
+        figur(t, kisi, 214, z, s, yon=1, silah="mesale", kol=0.35, **LAGARI)
+
+    _cek(392, kare)
+
+
+def sahne393():
+    """'Yedi kollu bir fişek. İçinde altmış dört kilo kadar barut macunu.': fişek yakın plan; yanında barut fıçıları."""
+    _sarayburnu_gece(393)
+    p = P[393]
+    s = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, fener, 290, z, round(0.6 * s, 1), f=f)
+        for fx, fs in ((112, 0.8), (140, 0.85), (125, 0.0)):
+            if fs:
+                figur(t, fici, fx, z, round(fs * s, 1))
+        figur(t, fisek, 210, z, 4.9)
+
+    _cek(393, kare)
+
+
+def _lagari_fisekte(t, x, z, f, sf, so, kalk=0, alev=0.0, kol=True):
+    """Lagari fişeğin oturağında bağdaş kurmuş (oturak fişeğin üstünde: figür ona basar); bir kolu padişaha kalkık."""
+    zz = duz(z[0] - kalk, t.width)
+    oturak = figur(t, fisek, x, zz, sf, alev=alev)
+    figur(t, oturan, x, duz(oturak, t.width), so, yon=-1, **LAGARI)
+    if kol:
+        d = ImageDraw.Draw(t)
+        oy = oturak - int(9 * so)
+        el = (x - int(4 * so), oy - int(3 * so) - int(1.2 * so * (1 + SIN(f))))
+        d.line([x - int(1 * so), oy + int(1 * so), *el], fill=hex2(_ac(LAGARI["govde"], -0.3)), width=_u(1, so))
+        piksel(t, el[0], el[1], hex2("#e8b890"))
+
+
+def sahne394():
+    """'Lagari fişeğe biniyor ve padişaha sesleniyor': Lagari fişeğin tepesinde, kolunu soldaki ışıklı köşke kaldırır."""
+    _sarayburnu_gece(394, kosk_x=180)
+    p = P[394]
+    _gorunur(394, [180], 270, 270, p.yk * 1.06, pay=0)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, fener, 300, z, 3.0, f=f)
+        _lagari_fisekte(t, 236, z, f, 3.0, 4.0)
+
+    _cek(394, kare)
+
+
+def sahne395():
+    """'Fişek ateşleniyor. Göğe yükseliyor.': fitil yanar, dipten alev ve duman; fişek Lagari ile yükselip kadrajdan çıkar,
+    sehpada yalnız duman kalır. (Yükselen fişeğin yazı bandından geçmesi bilinçli: 1 sn'lik hareket.)"""
+    _sarayburnu_gece(395, kosk_x=180)
+    p = P[395]
+
+    def kare(t, z, i):
+        f = i / KARE
+        x = 236
+        figur(t, fener, 300, z, 3.0, f=f)
+        if f < 0.4:
+            _lagari_fisekte(t, x, z, f, 3.0, 4.0, alev=0.3 + f * 1.6, kol=False)
+        else:
+            figur(t, fisek_sehpa, x, z, 3.0)
+            if f < 0.8:
+                kalk = int(((f - 0.4) / 0.4) ** 1.6 * 330)
+                k = yeni(t.width, t.height + 400)
+                _lagari_fisekte(k, x, duz(z[0] + 400, t.width), f, 3.0, 4.0, kalk=kalk, alev=1.0, kol=False)
+                t.alpha_composite(k.crop((0, 400, t.width, t.height + 400)))
+        for j in range(3):                                               # duman: sehpanın dibinden yükselir
+            duman(t, x - 10 + j * 10, z[0] - 4, 60, 395 + j, faz=(f + j * 0.3) % 1, renk="#8a8694", ruzgar=0.3, genislik=1.2)
+
+    _cek(395, kare, esik=0.5, serbest=6000)
+
+
+def fisek_sehpa(img, x, zemin, s=1.0):
+    """Fişek kalktıktan sonra boş kalan ahşap sehpa (fisek'in ayakları ve halkası; zemine basar)."""
+    d = ImageDraw.Draw(img)
+    y = duz_zemin(zemin, x - int(6 * s), x + int(6 * s), "fişek sehpası", tolerans=max(3, int(s)))
+    temas_golgesi(img, x, y, 13 * s)
+    ah = hex2("#6a4428")
+    halka = y - int(7 * s)
+    for ax in (-6, -2.5, 2.5, 6):
+        d.line([x + int(ax * s), y - 1, x + int(ax * 0.45 * s), halka], fill=ah, width=_u(0.8, s))
+    d.line([x - int(5 * s), y - int(2.5 * s), x + int(5 * s), y - int(2.5 * s)], fill=ah, width=_u(0.5, s))
+    d.rectangle([x - int(3.6 * s), halka - _u(0.8, s), x + int(3.6 * s), halka], fill=hex2("#5a3a22"))
+    for k in range(int(6 * s)):                                          # isli kenar
+        piksel(img, x - int(3 * s) + k, halka - _u(0.8, s), hex2("#2a2420"))
+
+
+def sahne396():
+    """'Lagari denize iniyor. Yüzerek padişahın önüne geliyor.': gece denizi; sağda düşüşün köpüklü halkası, Lagari sola,
+    ışıklı kıyıya yüzer."""
+    _gok(396, GECE, yildiz=110)
+    _uzak_deniz(396, 524, 538, ("#1e2440", "#1a2038", "#161c30"), "#141a2e", DENIZ_GECE, 396, cami=1, isik=True)
+    _orta_deniz(396, 552, ("#16223e", "#121c34", "#0e182c", "#0c1426"))
+    _on_bos(396)
+    p = P[396]
+    s = s_kisi(p.yk) * 1.3
+    su = p.h - 30
+
+    def kare(t, z, i):
+        f = i / KARE
+        su_ve_kiyi(t, su, ("#0c1426",) * 4)
+        hx = 320                                                         # düştüğü yer: genişleyen köpük halkası
+        for k in range(2):
+            r = 6 + ((f + k * 0.5) % 1) * 40
+            for a in range(0, 360, 6):
+                px_ = hx + math.cos(math.radians(a)) * r
+                py_ = su + 1 + math.sin(math.radians(a)) * r * 0.18
+                if py_ >= su:
+                    piksel(t, px_, py_, hex2("#c8dcec", int(200 * (1 - ((f + k * 0.5) % 1)))))
+        yuzen(t, 170, su, round(s, 1), -1, f)
+
+    _cek(396, kare, esik=0.4)
+
+
+def sahne397():
+    """'Ona da bir kese akçe. Ve sipahilik. Sürgün yok.': gece köşk odası; ıslak Lagari diz üstü, IV. Murad minderde, arada kese."""
+    _kosk_ic(397, pencere=("#14203a", "#c8d8f0"))
+    p = P[397]
+    so, sk = s_oturan(p.yk), s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        _kandil(t, 200, f, 397)
+        mumluk(t, 320, z, f, 3)
+        figur(t, oturan, 150, z, so, yon=1, minder="#c8a040", **MURAD)
+        figur(t, kese, 204, z, round(0.6 * so, 1), renk="#3a4a6a", sikke="#d8d8e0")
+        figur(t, kisi, 254, z, sk, yon=-1, diz=True, govde="#4a3418", bas=None, bas_renk="#2a1a12", sakal="#2a1a12")
+        if i % 6 < 3:                                                    # ıslak: elbiseden damla
+            piksel(t, 258, z[0] - int(2 * sk) + (i % 6), hex2("#a8c8e8"))
+
+    _cek(397, kare)
+
+
+def sahne398():
+    """'İki uçan adam. Biri sipahi oluyor. Öteki Cezayir'e yollanıyor.': solda kalkanlı sipahi Lagari (sola bakar),
+    sağda kanatları sırtında Hezarfen sağa, uzaktaki gemiye bakar."""
+    _gok(398, AKSAM)
+    _uzak_deniz(398, 520, 534, ("#5a4a6a", "#4e4260", "#443a56"), "#3e3654", DENIZ_AKSAM, 398, cami=1, gemi_x=330)
+    _orta_duz(398, 598, ["#8a7a7a", "#7e6e70", "#726466", "#665a5c", "#5a5052"], "tas", korkuluk=7)
+    _on_bos(398)
+    p = P[398]
+    s = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 160, z, s, yon=-1, silah="kalkan", kol=0.02 * (1 + SIN(f)), govde="#a8281e", bas="sarik",
+              bas_renk="#f4f0e6", sakal="#2a1a12", pelerin="#e0b040")
+        figur(t, kanatli, 262, z, s, yon=1, acik=0.0, cirp=0.1 * SIN(f))
+
+    _cek(398, kare)
+
+
+def sahne399():
+    """'İki bin dokuzda Discovery ekibi fişeği yeniden yapıyor. Fişek parçalanıyor.': çöl deney alanı, gündüz. Fitil yanar,
+    fişek sehpadan az kalkar ve alçakta parçalanır; parçalar yere düşer, manken sehpanın dibinde kalır (havalanmaz).
+    Sağda beton bariyer arkasında kameralı iki kişilik ekip."""
+    _gok(399, GUN)
+    uzak(399, ["#c0a080", "#b09474"], ["#c8a884", "#b89a78"], ["#d8c098", "#ccb48c", "#c0a880"], dag_y=(480, 506),
+         tepe_y=516, ova_y=532)
+    _orta_duz(399, 572, ["#dcc8a0", "#d0bc94", "#c4b088", "#b8a47c", "#ac9870"], "dam")
+    _on_bos(399)
+    p = P[399]
+    s = s_kisi(p.yk) * 0.9
+    sf = 3.0
+    rnd = random.Random(399)
+    parcalar = [(rnd.uniform(-1, 1), rnd.uniform(0.4, 1.0), rnd.choice(("#a8301e", "#e0b040", "#6a4428"))) for _ in range(14)]
+
+    def kare(t, z, i):
+        f = i / KARE
+        x = 150
+        y = z[0]
+        arka = duz(y - 10, t.width)
+        for j, kx in enumerate((300, 342)):                             # ekip: bariyerin arkasında (bir sıra geride)
+            figur(t, kisi, kx, arka, round(0.85 * s, 1), yon=-1, silah="kamera" if j == 0 else None, kol=0.2 if j else 0.0,
+                  govde="#2a3a5a" if j else "#5a5a52", bas="kasket", bas_renk="#2a2a30", sakal=None, kemer=None)
+        figur(t, beton_set, 280, 372, z, 3.0)
+        if f < 0.3:                                                      # ateşleme: sehpada fişek ve oturan manken
+            ot = figur(t, fisek, x, z, sf, alev=0.3 + f * 2.2)
+            figur(t, manken, x, duz(ot, t.width), 3.4, yon=1)
+        elif f < 0.5:                                                    # alçakta kalkış ve parçalanma
+            q = (f - 0.3) / 0.2
+            figur(t, fisek_sehpa, x, z, sf)
+            figur(t, manken, x - 22, z, 3.4, yatik=True)
+            cy = y - int(16 * sf) - int(q * 14)
+            for k, (yx, hz_, renk) in enumerate(parcalar):
+                px_ = x + yx * q * 60
+                py_ = cy - hz_ * 30 * q + 90 * q * q
+                if py_ < y - 1:
+                    ImageDraw.Draw(t).rectangle([px_ - 2, py_ - 1, px_ + 2, py_ + 1], fill=hex2(renk))
+            for a in range(0, 360, 20):
+                r = 4 + q * 26
+                piksel(t, x + math.cos(math.radians(a)) * r, cy + math.sin(math.radians(a)) * r, hex2("#ffd479", int(240 * (1 - q))))
+        else:                                                            # parçalar yerde, duman yükselir
+            figur(t, fisek_sehpa, x, z, sf)
+            figur(t, manken, x - 22, z, 3.4, yatik=True)
+            d = ImageDraw.Draw(t)
+            for k, (yx, hz_, renk) in enumerate(parcalar):
+                px_ = x + yx * 60
+                d.rectangle([px_ - 2, y - 3, px_ + 2, y - 1], fill=hex2(renk))
+        for j in range(2):
+            duman(t, x - 6 + j * 12, y - 6, 60, 399 + j, faz=(f + j * 0.5) % 1, renk="#bab4aa", ruzgar=0.4, genislik=1.1)
+
+    _cek(399, kare)
+
+
+def _tartisma_odasi(no):
+    ic_mekan(no, duvar=("#2e2a26", "#3a3530", "#48423a"), kemer="#1e1a16", cini="#5a4a3a",
+             pencere=("#2a3a5a", "#f4e0b0"), zemin_renk=("#4e443a", "#433a32", "#38302a"), isik="#f8c060", hali=False)
+
+
+SOL_HOCA = dict(govde="#3a3a48", bas="kalpak", bas_renk="#5a5a60", sakal="#8a8a8e")     # "rivayet" diyen
+SAG_HOCA = dict(govde="#6a4a2a", bas="kalpak", bas_renk="#2a1a12", sakal="#2a1a12")     # "erken havacılık" diyen
+
+
+def _tartisma(no, konusan):
+    _tartisma_odasi(no)
+    p = P[no]
+    s = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        _kandil(t, 200, f, no)
+        ust = figur(t, sedir, 200, z, round(0.22 * s, 1), renk="#5a3a22", ortu="#4a2a2a")
+        kitaplar(t, 190, ust, round(0.5 * s, 1))
+        kitaplar(t, 212, ust, round(0.45 * s, 1))
+        figur(t, kisi, 140, z, s, yon=1, silah="mektup", kol=(0.55 + 0.12 * SIN(f, 2)) if konusan == "sol" else 0.15,
+              **SOL_HOCA)
+        figur(t, kisi, 262, z, s, yon=-1, silah="mektup", kol=(0.55 + 0.12 * SIN(f, 2)) if konusan == "sag" else 0.15,
+              **SAG_HOCA)
+
+    _cek(no, kare)
+
+
+def sahne400():
+    """'Rivayet diyenler...': iki taraf karşı karşıya; soldaki konuşur, elindeki kitabı kaldırır."""
+    _tartisma(400, "sol")
+
+
+def sahne401():
+    """'Erken havacılık diyenler...': aynı oda; bu kez sağdaki konuşur."""
+    _tartisma(401, "sag")
+
+
+def sahne402():
+    """'Kaynaklar ayrışıyor. Biz karar vermiyoruz.': terazinin kefelerinde bir kitap ve bir kartal tüyü; kol hafifçe salınır."""
+    _tartisma_odasi(402)
+    p = P[402]
+    s = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        _kandil(t, 200, f, 402)
+        mumluk(t, 300, z, f, 3)
+        mumluk(t, 100, z, (f + 0.5) % 1, 3)
+        figur(t, terazi, 200, z, round(0.95 * s, 1), egim=0.03 * SIN(f))
+
+    _cek(402, kare)
+
+
+def sahne403():
+    """'Bugün Çatalca'da onun adını taşıyan bir havaalanı var.': çimenlik pistte küçük eğitim uçağı sağa ilerler, pervane döner;
+    geride hangar ve rüzgâr tulumu."""
+    _gok(403, GUN, bulutlar=[(130, 300, 24)])
+    uzak(403, ["#8a9ab0", "#7e8ea6"], ["#7a9a72", "#6e8e68"], ["#8aa86a", "#7e9c60", "#729056"], dag_y=(480, 508),
+         tepe_y=516, ova_y=530)
+    p = P[403]
+
+    def ekle(img, z):
+        figur(img, hangar, PAY + 120, PAY + 230, duz(574), 2.2)
+        figur(img, ruzgar_tulumu, PAY + 330, duz(576), 2.6, f=0.2)
+
+    _orta_duz(403, 562, ["#7e9c58", "#729050", "#668448", "#5a7840", "#4e6c38"], "pist", ekle=ekle)
+    _on_bos(403)
+    su = 4.2
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, ucak, p.w // 2, z, su, 1, f=f)
+
+    _cek(403, kare)
+
+
+def sahne404():
+    """'Bir sinema filmi var: İstanbul Kanatlarımın Altında.': karanlık salon; perdede kule ve süzülen adam, önde koltuklar."""
+    ic_mekan(404, duvar=("#14121a", "#1c1a24", "#24222e"), kemer="#0e0c12", cini="#2a1e2e", pencere=None,
+             zemin_renk=("#2a2228", "#241e22", "#1e181c"), isik="#f8c060", hali=False)
+    p = P[404]
+    s = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, perde, 200, duz(z[0] - 16, t.width), round(0.62 * s, 1), f=f)
+        figur(t, koltuk_sirasi, 96, 306, z, round(0.6 * s, 1), bas=(146, 236))
+
+    _cek(404, kare)
+
+
+def sahne405():
+    """'Padişah demişti... Neredeyse dört yüz yıl kaldı.': bugün, gün batımında Galata Kulesi; sokak lambaları yanar."""
+    _galata_genis(405, AKSAM, DENIZ_AKSAM, ("#5a4a6a", "#4e4260", "#443a56"), "#3e3654",
+                  ["#8a7a72", "#7e6e68", "#72625e", "#665854", "#5a4e4a"], "#c8a890", isik=True, adam=False, bugun=True)
+
+
+def sahne406():
+    """'Siz olsanız ona altın mı verirdiniz, sürgün mü?': Üsküdar kıyısında gün batımı; Hezarfen kanatları sırtında sola,
+    karşıdaki Galata'ya bakar; yanında kese, uzakta sürgün gemisi."""
+    _gok(406, AKSAM)
+    _uzak_deniz(406, 520, 536, ("#5a4a6a", "#4e4260", "#443a56"), "#3e3654", DENIZ_AKSAM, 406, cami=2, kule=200, gemi_x=340)
+    _orta_duz(406, 600, ["#9a8a7a", "#8e7e70", "#827266", "#76665c", "#6a5a52"], "tas", korkuluk=7)
+    _on_bos(406)
+    p = P[406]
+    s = s_kisi(p.yk)
+    _gorunur(406, [200], 270, 270, p.yk * 1.06)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kanatli, p.w // 2 + 16, z, s, yon=-1, acik=0.05 + 0.04 * (1 + SIN(f)), cirp=0.2 * SIN(f, 2))
+        figur(t, kese, p.w // 2 - 50, z, round(0.6 * s, 1))
+
+    _cek(406, kare)
+
+
+SAHNELER = {n: globals()[f"sahne{n}"] for n in range(370, 407)}
+
+if __name__ == "__main__":
+    for n in ([int(a) for a in sys.argv[1:]] or sorted(SAHNELER)):
+        SAHNELER[n]()
+        print(f"sahne{n} tamam")
