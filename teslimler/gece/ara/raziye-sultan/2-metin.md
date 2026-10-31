@@ -8,7 +8,7 @@
 
 Babasının "oğullarımdan iyi" dediği kadın neyi çıkarıp attı ve Delhi tahtı ona neye mal oldu?
 
-## 1. Seslendirme metni (445 kelime)
+## 1. Seslendirme metni (444 kelime)
 
 Delhi, Kasım 1236. Cuma namazı. Kalabalığın önüne bir kadın çıkıyor ve konuşuyor.
 
@@ -162,6 +162,6 @@ Yeni piksel hikâyeler için @pikseltarihim'i takip edin.
 
 - **Kullanılanlar:** Araştırmanın önerdiği 1 numaralı video fikri (peçe ekseni) ve sahne iskeleti 1-10 olduğu gibi; kanca adayları 1 (oğullarım zevke dalmış), 2 (Cuma namazı), 3 (sikke), 4 (peçe, fil), 5 (Minhâc'ın "ama"sı), 6 (Yakut, yalnızca Minhâc'ın yakınlık + kıskançlık cümlesiyle), 7 (zindancısıyla evlilik), 8 (ekmek ve üç mezar). 9 (1983 filmi) ve 10 (Minhâc'ın konumu) açıklama ve ilk yoruma gitti. Motif "Oğullarımdan iyi" üç kez döner (kart 11, 23, 57). Kaynak etiketi iki kez: "Minhâc yazıyor" (kart 8) ve "iki anlatım var" (kart 41).
 - **Atılanlar ve nedenleri:** Nûreddin Türk saldırısı ve Lahor isyanı (B düzeyi, akışı böler); İbn Battûta'nın "ilişki şüphesi" (tek kaynak, yüz yıl sonra; aşk yazılmadı); at anekdotu, 31 yaş, Cuma camisinin adı ve kırmızı giysi, hutbe, "Kırklar" (hepsi KAYNAKSIZ); ölüm günü (ayrışıyor, yalnızca "Ekim 1240"); "ilk Müslüman kadın hükümdar" (yanlış; "Delhi tahtına oturan tek kadın" dendi). Kancadaki "tarla" yalnızca İbn Battûta'ya dayandığı için "ova" (Kaithal, A düzeyi) yapıldı; tarla artık yalnızca İbn Battûta'nın anlatımı içinde geçiyor.
-- **Ölçüler:** Seslendirme 445 kelime (`wc -w`), ortalama cümle 4.2 kelime; açıklama 194 kelime. Açılış, onaylı Cem örneğindeki gibi yer-yıl kartı artı açık döngü ("neyi çıkarıp atacak? sona saklıyorum").
+- **Ölçüler:** Seslendirme 444 kelime (`wc -w`), ortalama cümle 4.2 kelime; açıklama 194 kelime. Açılış, onaylı Cem örneğindeki gibi yer-yıl kartı artı açık döngü ("neyi çıkarıp atacak? sona saklıyorum").
 - **Brif dışı karar (editör bilsin):** Kart sayısı 58, brifteki 25-40 aralığının üstünde. 445 kelimelik metin ≤30 harflik satırlarla ve bire bir koşuluyla 40 karta ancak her kart üç dolu satır olursa sığar; bu da okunurluğu bozar. Onaylı Cem örneğinde kart başına ~5 kelime vardı, burada ~7.7; Roger sesinde kart başına yaklaşık 4,5 saniye düşer. Editör isterse iki satırlık komşu kartlar birleştirilebilir.
 - **Riskler:** "Kadının ordusu yok. Yalnızca sesi var." (kart 3) o Cuma anının dramatize edilmiş özetidir; "Dört yıl önce halk onun için sarayı basmıştı" (kart 35) ile "Raziye Delhi'yi bir daha görmüyor" (kart 40) A düzeyi olgulardan türetilmiş keder cümleleridir, yeni iddia içermez. Minhâc ve İbn Battûta cümleleri tırnaksız anlam aktarımıdır; grafiker ekranda kaynak adını yazarsa "Raverty çevirisinden" notu düşülmeli.
