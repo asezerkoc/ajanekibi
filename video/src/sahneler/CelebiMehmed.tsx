@@ -5,7 +5,7 @@ import { ALTIN, KIZIL, Seri, SeriVideo, T_FPS, seriSure } from "./TimurSeri";
    teslimler/gece/ara/celebi-mehmed-paris/5-grafik.md; sahneler 290-321 (video/piksel/celebi_mehmed_paris.py).
    Kartlar kalite kontrolün nihai 45 kartıyla harfi harfine aynı; süreler tahmini (seslendirme 241 sn),
    ses/hizala_seri.py sese göre yeniden yazar. */
-// Kapak: sahne 290 katmanlarıyla yapılan ilk Bolum (2 sn, sessiz); logo ve @pikseltarihim alt bandını kapak bileşeni ekler.
+// Kapak: sahne 290 katmanlarıyla yapılan ilk Bolum (2 sn, sessiz); başlık kalite kontrolün onayladığı metin.
 export const CELEBI_MEHMED_SERI: Seri = {
   etiket: "PİKSEL TARİHİM · ÇELEBİ MEHMED",
   ses: "celebi-mehmed-paris-anlatim.mp3",
@@ -14,7 +14,7 @@ export const CELEBI_MEHMED_SERI: Seri = {
       no: 290, yakin: 2.8, kamera: 0, yaziY: 270,
       sprite: { w: 400, h: 220, fps: 8, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Paris'teki", "Elçi", "Bak, öğren, anlat"], sure: 2.0, boy: 112, renk: ALTIN },
+        { satirlar: ["Çelebi Mehmed", "Paris'te", "Bak, öğren, anlat"], sure: 2.0, boy: 112, renk: ALTIN },
       ],
     },
     // Toulon limanı, 1720 sonu: rıhtımda elçi ve Said, geride demirli gemi
@@ -77,7 +77,7 @@ export const CELEBI_MEHMED_SERI: Seri = {
     // İstanbul rıhtımı: baba ve oğul gemiye yürür
     {
       no: 297, yakin: 2.8, kamera: 10,
-      sprite: { w: 400, h: 220, fps: 16, x: [290, 262], taban: 632 },
+      sprite: { w: 400, h: 220, fps: 16, x: [282, 262], taban: 632 },
       yazilar: [
         { satirlar: ["Elçi, Yirmisekiz Çelebi Mehmed", "Efendi. Lakabı yeniçerilerin", "yirmi sekizinci ortasından."], sure: 6.98 }, // kart 9
         { satirlar: ["Yanında oğlu Said. O da", "bakacak, o da öğrenecek.", "Onları veba karşılar."], sure: 4.07, renk: KIZIL }, // kart 10

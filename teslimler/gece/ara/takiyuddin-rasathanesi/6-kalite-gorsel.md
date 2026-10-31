@@ -39,3 +39,18 @@ Bir yapı suyun üstünde duruyor (446), bir moloz yığını teras kenarından 
 ## Değerlendirme (sahibe gösterilecek)
 
 Video tarz, renk ve yazı bakımından onaylı işlerle aynı çizgide. Kapak net, 51 kartın hiçbiri figürlerle çakışmıyor, Türkçe harfler doğru. Gece sahneleri okunaklı. Ama iki karede fizik kuralı bozuluyor: Tycho'nun adadan ayrıldığı sahnede Uraniborg denizin üstünde duruyor, kapanıştaki "iki yıkıntı" karesinde de moloz terasın kenarından boşluğa taşıyor. Ayrıca Sokollu sahnesinde bir şamdan kenarda yarısından kesilmiş. Üçü de grafikere küçük, yerel düzeltmeler olarak geri gönderildi. Düzeltilmiş kareler tekrar kontrol edilmeden video size gelmeyecek.
+
+## 2. tur: UYGUN
+
+**Bakılan kareler (revizyon sonrası yeniden render):** `r2/sahne423`, `sahne428`, `sahne439`, `sahne444`, `sahne446`, `sahne448` · 31 Ekim 2026
+
+**3 zorunlu düzeltme yapılmış:**
+1. **446 (Uraniborg):** Bina artık suyun üstünde değil. Altında Hven adasının düz çimen şeridi var (x≈660-1030), iki yandan taşıyor, suya kumsal ve köpük çizgisiyle iniyor. Yelken binayı yalnızca sol kenarından örtüyor; "adadan ayrılış" baştan okunuyor.
+2. **448 (iki yıkıntı):** Sağdaki İstanbul Rasathanesi'nin molozu terasın içinde kalıyor (teras x≈560-1030, moloz x≈590-1010). Kenardan boşluğa taşma yok, sağ uç kadrajda. Soldaki Uraniborg yıkıntısı zemine oturuyor. Kart ("Aynı gökyüzü, iki gözlemevi. / İkisi de yok.") yıkıntılarla çakışmıyor.
+3. **439 (şamdan):** Şamdan x≈110-215'te, tamamen kadrajın içinde, ayağı halıya oturuyor. Sokollu'nun sediri de artık sağ kenarda kesilmiyor.
+
+**Yeni sorun yok:** 423'te Murad'ın sediri kadrajda, kesik şamdan kaldırılmış. 428 ve 444'te "â" harfi doğru çiziliyor ("hikâye", "Şehinşâhnâme"): şapka harfin üstünde, kesilme ya da kutu karakter yok. Bütün karelerde figürler, sedir ve rahle ayakları zemine oturuyor. Kartlar sarık, pencere ve figürlerle çakışmıyor. Tarz önceki sahnelerle aynı.
+
+**İyileştirme önerisi (ret nedeni değil):** 448'de yıkıntılar yakin 2.2 ile hâlâ kadraj yüksekliğinin ~%7'si; motif karesi olarak kabul edilebilir.
+
+**Değerlendirme (sahibe):** Üç düzeltme de yapıldı. Uraniborg artık adasının üstünde, kapanıştaki iki yıkıntı terasına ve zemine oturuyor, Sokollu sahnesindeki şamdan tam görünüyor. Şapkalı "â" harfi de kartlarda doğru çıkıyor. Video görsel kontrolden geçti.

@@ -1316,8 +1316,8 @@ def sahne318():
         figur(img, agac, PAY + 372, duz(584), 1.1, yaprak=("#2a3a2a", "#344a32", "#40583a"),
               govde="#2a1c14", tohum=41)
         for j, x in enumerate(range(PAY + 150, PAY + 400, 13)):                         # solgun laleler: önde, yere dikili
-            figur(img, cicek, x, duz(684 + (j % 3) * 6), round(0.34 * K, 1), faz=0.15 + 0.1 * (j % 4),
-                  renk=("#8a3a3a", "#7a3a4a", "#9a5a4a")[j % 3], orta="#6a5a3a")
+            figur(img, lale, x, duz(684 + (j % 3) * 6), round(0.34 * K, 1), faz=0.1 * (j % 4),
+                  renk=("#a83a3a", "#9a3a4a", "#b0603a")[j % 3], solgun=0.45 + 0.15 * (j % 3))
 
     orta(318, (532, 560), ["#3e4a36", "#36402e", "#2e3828", "#283022", "#20281c"], "#6a7a5a", ekle=ekle)
     on(318, ["#20281c", "#283022", "#2e3828"], "#6a7a5a", boy=60)
