@@ -98,7 +98,7 @@ def _bant_denetimi(no, w, h, taban, pay=4):
 
 def _spr2(no, w, h, kare, yakin, esik=0.75, taban=None):
     """cem_sultan._spr (kadraj + taban denetimi) + yazı bandı denetimi."""
-    _spr2(no, w, h, kare, yakin, esik)
+    _spr(no, w, h, kare, yakin, esik)
     _bant_denetimi(no, w, h, taban or (DT if h == DH else IT))
 
 
