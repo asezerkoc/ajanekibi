@@ -814,7 +814,7 @@ def sahne300():
          dag_y=(398, 446), tepe_y=466, ova_y=492)
     yk = 2.6
     _paris_orta(300, 300, PARIS_KALABALIK)
-    sa = 3.9                                   # atlı: başı yazı bandının altında kalan en büyük ölçek (bant denetimi)
+    sa = 3.8                                   # atlı: başı yazı bandının altında kalan en büyük ölçek (bant denetimi)
 
     def kare(t, z, i):
         f = i / KARE
@@ -1230,7 +1230,7 @@ def sahne316():
     catilar = []
 
     def ekle(img, z):
-        catilar.extend(figur(img, sehir, PAY + 100, PAY + 440, duz(586), round(0.55 * K, 1), duvar="#3a2e30",
+        catilar.extend(figur(img, sehir, PAY + 140, PAY + 400, duz(590), 2.0, duvar="#3a2e30",
                              golge="#241c20", cati="#4a2a24", tohum=316))
         kalabalik(img, duz(592), PAY + 150, PAY + 420, 16, 316, ("#2a2026", "#3a2a2a", "#2a2a3a"),
                   s=round(0.7 * K, 1), yon=1)
