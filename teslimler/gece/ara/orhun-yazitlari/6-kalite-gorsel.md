@@ -93,3 +93,6 @@ körüklü, ahşap bir fotoğraf makinesi var; kapaktaki uçan daireye benzeyen 
 16 sahneye de baktım; hepsi temiz, yazılar okunuyor, figürler yere basıyor. Tek bir sorun kaldı: Fin seferi sahnesinde (150) fotoğraf
 makinesinin objektifi taşın yazılı yüzüne girip birkaç harfi örtüyor, makine taşa dayanmış gibi görünüyor. Bu küçük bir yerleşim düzeltmesi;
 grafikere geri gönderildi, düzeltildikten sonra yalnız bu sahneye yeniden bakılıp size gelecek.
+
+## 3. tur: UYGUN
+2. turdaki tek zorunlu düzeltme (sahne 150: makine taşın harfli yüzünü örtüyor) yapıldı. Yeniden render edilen karede (kare 9519) taş solda tek başına ve açıkta, makine sağında, aradaki çimen görünüyor; objektif taşa dönük ama harflere değmiyor. 138'de Tonyukuk'un asası yere basıyor. Yeni sorun yok. Render'a gidebilir.

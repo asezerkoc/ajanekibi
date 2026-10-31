@@ -1230,7 +1230,7 @@ def sahne374():
         f = i / KARE
         _kandil(t, 200, f, 374)
         mumluk(t, 142, z, f, 2)
-        _kanat_sehpasi(t, 228, z, round(0.68 * s, 1))
+        _kanat_sehpasi(t, 222, z, round(0.66 * s, 1))
         figur(t, kisi, 170, z, s, yon=1, kol=0.03 * (1 + SIN(f)), **HEZARFEN)
 
     _cek(374, kare)
@@ -1275,7 +1275,7 @@ def sahne376():
     def kare(t, z, i):
         f = i / KARE
         d = ImageDraw.Draw(t)
-        kx, ky, r = 132, z[0], int(4.4 * s)                      # damın üstündeki kubbe: kasnak dama oturur
+        kx, ky, r = 142, z[0], int(4.4 * s)                      # damın üstündeki kubbe: kasnak dama oturur
         d.rectangle([kx - r - 3, ky - int(2.6 * s), kx + r + 3, ky - 1], fill=hex2("#b88a5e"))
         d.chord([kx - r, ky - int(2.6 * s) - r, kx + r, ky - int(2.6 * s) + r], 180, 360, fill=hex2("#3a8a9a"))
         d.line([kx, ky - int(2.6 * s) - r, kx, ky - int(2.6 * s) - r - _u(1.4, s)], fill=hex2("#e0b040"))
@@ -1346,7 +1346,7 @@ def sahne378():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kanatli, p.w // 2, z, s_, yon=1, acik=0.42 - 0.28 * COS(f), cirp=0.2 * SIN(f, 2))
+        figur(t, kanatli, p.w // 2, z, s_, yon=1, acik=0.40 - 0.25 * COS(f), cirp=0.15 * SIN(f, 2))
 
     _cek(378, kare)
 
@@ -1491,7 +1491,7 @@ def sahne384():
         _kandil(t, 206, f, 384)
         figur(t, kisi, 156, z, sk, yon=1, kol=0.70 + 0.05 * SIN(f), pelerin="#4a1018", **MURAD)
         figur(t, kese, 224, z, round(0.55 * sk, 1))
-        figur(t, kisi, 256, z, sk, yon=-1, diz=True, **HEZARFEN)
+        figur(t, kisi, 250, z, sk, yon=-1, diz=True, **HEZARFEN)
 
     _cek(384, kare)
 
@@ -1632,11 +1632,11 @@ def sahne390():
         for kx in (136, 152, 168, 184):
             kitaplar(t, kx, ust, round(0.55 * s, 1))
         y = z[0]                                                     # kapalı sandık: zemine oturur
-        temas_golgesi(t, 262, y, int(9 * s))
-        d.rectangle([262 - int(4.4 * s), y - int(5 * s), 262 + int(4.4 * s), y - 1], fill=hex2("#5a3a22"), outline=hex2("#2a1a10"))
-        d.rectangle([262 - int(4.4 * s), y - int(5.6 * s), 262 + int(4.4 * s), y - int(4.6 * s)], fill=hex2("#6a4a2a"))
+        temas_golgesi(t, 250, y, int(9 * s))
+        d.rectangle([250 - int(4.4 * s), y - int(5 * s), 250 + int(4.4 * s), y - 1], fill=hex2("#5a3a22"), outline=hex2("#2a1a10"))
+        d.rectangle([250 - int(4.4 * s), y - int(5.6 * s), 250 + int(4.4 * s), y - int(4.6 * s)], fill=hex2("#6a4a2a"))
         for bx in (-3, 3):
-            d.line([262 + int(bx * s), y - int(5.6 * s), 262 + int(bx * s), y - 1], fill=hex2("#c8a040"))
+            d.line([250 + int(bx * s), y - int(5.6 * s), 250 + int(bx * s), y - 1], fill=hex2("#c8a040"))
         for k, rx in enumerate((206, 224)):                           # rulo mektuplar: yere yatık
             d.ellipse([rx - int(1.8 * s), y - int(1.6 * s) - 1, rx + int(1.8 * s), y - 1], fill=hex2("#e8dcc0"))
             d.ellipse([rx + int(1.2 * s), y - int(1.6 * s) - 1, rx + int(2 * s), y - 1], fill=hex2("#c8b890"))
@@ -1819,7 +1819,7 @@ def sahne396():
                 py_ = su + 1 + math.sin(math.radians(a)) * r * 0.18
                 if py_ >= su:
                     piksel(t, px_, py_, hex2("#c8dcec", int(200 * (1 - ((f + k * 0.5) % 1)))))
-        yuzen(t, 168, su, round(s, 1), -1, f)
+        yuzen(t, 190, su, round(s, 1), -1, f)
 
     _cek(396, kare, esik=0.4, kenar_haric_alt=30)
 
@@ -1895,7 +1895,7 @@ def sahne399():
             figur(t, manken, x - 22, z, 3.4, yatik=True)
             cy = y - int(16 * sf) - int(q * 14)
             for k, (yx, hz_, renk) in enumerate(parcalar):
-                px_ = x + yx * q * 60
+                px_ = x + yx * q * 44
                 py_ = cy - hz_ * 30 * q + 90 * q * q
                 if py_ < y - 1:
                     ImageDraw.Draw(t).rectangle([px_ - 2, py_ - 1, px_ + 2, py_ + 1], fill=hex2(renk))
@@ -1907,7 +1907,7 @@ def sahne399():
             figur(t, manken, x - 22, z, 3.4, yatik=True)
             d = ImageDraw.Draw(t)
             for k, (yx, hz_, renk) in enumerate(parcalar):
-                px_ = x + yx * 60
+                px_ = x + yx * 44
                 d.rectangle([px_ - 2, y - 3, px_ + 2, y - 1], fill=hex2(renk))
         for j in range(2):
             duman(t, x - 6 + j * 12, y - 6, 60, 399 + j, faz=(f + j * 0.5) % 1, renk="#bab4aa", ruzgar=0.4, genislik=1.1)
