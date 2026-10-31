@@ -51,6 +51,23 @@ def _goz(img, gx, gy, s):
     ImageDraw.Draw(img).rectangle([gx, gy, gx + e - 1, gy + e - 1], fill=hex2("#120c0a"))
 
 
+def _yuz_gozu(img, x, bas_y, s, yon, ten=None):
+    """Yüzün burun tarafına göz. Küçük ölçekte (s < 3.5) börk/kalpak kenarı ile sakal arasında yer kalmadığı için
+    göz bölgesinde 4 satırlık ten şeridi açılır (sakalın üstü 2 piksel kısalır), içine 1x2 koyu göz konur; büyük
+    ölçekte 0,4·s'lik kare göz."""
+    d = ImageDraw.Draw(img)
+    if s < 3.5:
+        r = max(2, int(1.7 * s))
+        x0, x1 = sorted((x, x + (r - 1) * yon))
+        d.rectangle([x0, bas_y - 1, x1, bas_y + 2], fill=hex2(ten or TEN))
+        gx = x + max(1, int(1.0 * s)) * yon
+        d.rectangle([gx, bas_y, gx, bas_y + 1], fill=hex2("#120c0a"))
+        return
+    e = max(2, int(round(0.4 * s)))
+    gx = x + int(0.8 * s) * yon - (e - 1 if yon < 0 else 0)
+    _goz(img, gx, bas_y - int(0.5 * s), s)
+
+
 def kisi(img, x, zemin, s=1.0, *a, **kw):
     """timur_figur.kisi + okunur göz (bkz. üstteki not)."""
     _KISI_ASIL(img, x, zemin, s, *a, **kw)
@@ -61,10 +78,7 @@ def kisi(img, x, zemin, s=1.0, *a, **kw):
     egil = int(abs(math.sin((b.arguments["adim"] or 0) * 2 * math.pi)) * 0.8 * s) if (b.arguments["aksak"] and
                                                                                         b.arguments["adim"] is not None) else 0
     yy = y + egil + (int(3.6 * s) if diz else 0)
-    bas_y = yy - int(13.6 * s)
-    e = max(2, int(round(0.4 * s)))
-    gx = x + int(0.8 * s) * yon - (e - 1 if yon < 0 else 0)
-    _goz(img, gx, bas_y - int(0.5 * s), s)
+    _yuz_gozu(img, x, yy - int(13.6 * s), s, yon, b.arguments["ten"])
 
 
 def oturan(img, x, zemin, s=1.0, *a, **kw):
@@ -74,10 +88,23 @@ def oturan(img, x, zemin, s=1.0, *a, **kw):
     b.apply_defaults()
     yon = b.arguments["yon"]
     y = zemin_y(zemin, x, 10 * s) - (int(1.6 * s) if b.arguments["minder"] else 0)
-    bas_y = y - int(9.5 * s) - int(2.6 * s)
-    e = max(2, int(round(0.4 * s)))
-    gx = x + int(0.8 * s) * yon - (e - 1 if yon < 0 else 0)
-    _goz(img, gx, bas_y - int(0.5 * s), s)
+    _yuz_gozu(img, x, y - int(9.5 * s) - int(2.6 * s), s, yon, b.arguments["ten"])
+
+
+_ATLI_ASIL = _tf.atli
+_ATLI_IMZA = inspect.signature(_ATLI_ASIL)
+
+
+def atli(img, x, zemin, s=1.0, *a, **kw):
+    """timur_figur.atli + binicinin yüzünde okunur göz (atli kendi başını çizer; geometri aynen)."""
+    _ATLI_ASIL(img, x, zemin, s, *a, **kw)
+    b = _ATLI_IMZA.bind(img, x, zemin, s, *a, **kw)
+    b.apply_defaults()
+    yz = zemin_y(zemin, x, int(22 * s) * 0.8)
+    sy = yz - max(3, int(7 * s)) - int(8 * s)
+    sek = 0 if b.arguments["dur"] else int(round(math.sin(b.arguments["faz"] * 4 * math.pi) * 0.5 * s))
+    sy -= max(0, sek)
+    _yuz_gozu(img, x, sy - int(11 * s), s, b.arguments["yon"])
 
 
 _tf.kisi = kisi          # atli'nin binicisi timur_figur içindeki kisi'yi çağırır
