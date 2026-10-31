@@ -12,7 +12,7 @@ Fark: yeni araştırmacıların interneti var (kaynaklar URL'li); grafiker tarif
 → hizalama + bundle + 12 kare → 6-kalite-gorsel → düzeltme → render → `teslimler/video/pikseltarihim-<slug>.mp4` → `teslimler/gece/NN-<slug>.md`
 Son: `teslimler/gece/00-yayin-paketi.md` (10 açıklama, etiket, sabit yorum).
 
-## İlerleme (31 Ekim, 21:15)
+## İlerleme (31 Ekim, 21:35): TAMAM
 | # | slug | metin zinciri | grafik | ses (Metin) | görsel KK | video |
 |---|---|---|---|---|---|---|
 | 1 | orhun-yazitlari | ✅ | ✅ | ✅ | ✅ 3. tur | ✅ 4:07 |
@@ -24,7 +24,7 @@ Son: `teslimler/gece/00-yayin-paketi.md` (10 açıklama, etiket, sabit yorum).
 | 7 | hezarfen | ✅ | ✅ | ✅ | ✅ 2. tur | ✅ 3:55 |
 | 8 | takiyuddin-rasathanesi | ✅ | ✅ | ✅ | ✅ 2. tur | ✅ 4:02 |
 | 9 | toulon-1543 | ✅ | ✅ | ✅ | ✅ 2. tur | ✅ 4:21 |
-| 10 | irlanda-kitligi | ✅ | ✅ | ✅ | ✅ 3. tur | ⏳ sırada |
+| 10 | irlanda-kitligi | ✅ | ✅ | ✅ | ✅ 3. tur | ✅ 4:12 |
 
 Teslim dosyaları: `teslimler/gece/01-…10-*.md`; yayın paketi: `teslimler/gece/00-yayin-paketi.md`. Videolar: `teslimler/video/pikseltarihim-<slug>.mp4` (git dışında).
 

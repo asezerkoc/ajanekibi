@@ -2,7 +2,7 @@
 
 - **İş:** @pikseltarihim gece serisi, video 10/10
 - **Durum:** ONAY BEKLİYOR (gece vardiyası; ajans sahibi işi önceden onayladı, son onay sahibin)
-- **Video:** `teslimler/video/pikseltarihim-irlanda-kitligi.mp4` (süre: render sırasında; görsel kontrol 3. turda UYGUN verdi, dosya henüz yok)
+- **Video:** `teslimler/video/pikseltarihim-irlanda-kitligi.mp4` (süre: 4:12; görsel kontrol 3. turda UYGUN verdi)
 - **Seslendirme:** ElevenLabs "Metin" sesi
 
 ## 🔵 Araştırma özeti
@@ -158,7 +158,6 @@ Kaynak: `ara/irlanda-kitligi/5-grafik.md`. 35 sahne (490-524), 52 kart. Efsane s
 - **2. tur: UYGUN DEĞİL.** Dokuz maddeden sekizi tam: binalar insan ölçeğinde, üç gemi tek tek sayılıyor, kasketler döneme uygun, avize ve pencere sorunları yok. Kalan: 517'deki kale küçültülmüş ama ufka alınmamıştı, kral bir kale maketi tutuyor gibi duruyordu.
 - **3. tur: UYGUN.** 517'de kale kaldırıldı, taç başa oranlı; 506 ve 508'de gemiler ayrı ve ıstralyalar kısa; 494'te koni gibi duran figür yerine ayakta gazete okuyan adam. Kalan zorunlu düzeltme yok.
 
-Not: `00-yayin-paketi.md` bu videoyu "grafikte, görsel kalite kontrol yapılmadı" diye anıyor; o not paket yazıldığında geçerliydi. Görsel kontrol daha sonra 3 turda tamamlandı ve UYGUN verdi.
 
 ## Instagram paketi
 

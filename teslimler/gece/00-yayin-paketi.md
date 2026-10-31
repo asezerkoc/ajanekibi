@@ -8,7 +8,7 @@
 
 ## Genel not: video süresi (bir kez okunur, hepsi için geçerli)
 
-Bu serideki videoların hepsi 3 dakikadan uzun. Seslendirme 400-470 kelime; render edilen üç videonun süresi 4:02 ile 4:08 arasında (Orhun 4:07, Çelebi Mehmed 4:08, Takiyüddin 4:02). Diğerleri için kalite kontrolün tahmini 4:00-4:55. Bu süre sahibin kararı; videolar kısaltılmadı.
+Bu serideki videoların hepsi 3 dakikadan uzun. Seslendirme 400-470 kelime; on videonun süresi 3:55 ile 4:33 arasında. Bu süre sahibin kararı; videolar kısaltılmadı.
 
 Instagram'da 3 dakikadan uzun bir video Reels olarak değil, normal video gönderisi olarak yayımlanabilir. Bu durumda Reels sekmesine ve Reels akışına düşmeyebilir. Yükleme ekranında Instagram'ın hangi biçimi seçtiğine bakın. İki yol var:
 
@@ -31,7 +31,7 @@ Saatler **öneridir**. Hesabın etkileşim verisine dayanmıyor; bu analize bak�
 | 2 | Pazartesi 2 Kasım | 8. Takiyüddin Rasathanesi | 20:30 | Videosu hazır. Bilim tarihi; konu çeşitliliği. |
 | 3 | Salı 3 Kasım | 5. Çelebi Mehmed Paris'te | 20:30 | Videosu hazır. 1727 matbaa iznine giden yolu anlatır. |
 | 4 | Çarşamba 4 Kasım | 2. Matbaa yasağı | 20:30 | Bir önceki videonun devamı gibi okunur (aynı yıl: 1727). |
-| 5 | Perşembe 5 Kasım | 7. Hezarfen | 20:30 | Görsel kalite kontrolden geçti, render sırada. "Rivayet mi?" tartışması yorum getirir. |
+| 5 | Perşembe 5 Kasım | 7. Hezarfen | 20:30 | Hazır (3:55). "Rivayet mi?" tartışması yorum getirir. |
 | 6 | Cuma 6 Kasım | 3. Raziye Sultan | 20:30 | Osmanlı dışı bir Türk hanedanı; seriye çeşitlilik. |
 | 7 | Cumartesi 7 Kasım | 6. Piri Reis | 13:00 | Hafta sonu öğlen denemesi (öneri). |
 | 8 | Pazar 8 Kasım | 9. Toulon 1543 | 20:30 | Denizcilik konusu, Piri Reis'in ardından. |
@@ -40,7 +40,7 @@ Saatler **öneridir**. Hesabın etkileşim verisine dayanmıyor; bu analize bak�
 
 **10 Kasım'a paylaşım konmadı.** O gün Atatürk'ü anma günü. Hesabın eğlence tonundaki bir paylaşımı o güne denk getirmemek için 10. video 11 Kasım'a kaydırıldı.
 
-**Hazırlık durumu** (`00-durum.md`, 31 Ekim): Render edilmiş videolar `teslimler/video/` içinde Orhun, Çelebi Mehmed ve Takiyüddin. Diğer yedi videonun dosyası henüz yok. Matbaa ve Piri Reis görsel düzeltmede; Don-Volga, Toulon ve İrlanda grafikte. Takvim, hazır videoları öne alır. Bir video gününe yetişmezse sıradaki hazır video öne çekilir; paylaşım boş geçmez. Takvim kesinleşmeden önce her videonun 6-kalite-gorsel.md kararının "uygun" olduğu kontrol edilmeli. Görsel kalite kontrolün reddettiği bir video paylaşılmaz.
+**Hazırlık durumu** (31 Ekim, 21:35): On videonun hepsi `teslimler/video/` içinde hazır. Hepsi görsel kalite kontrolden "uygun" kararıyla geçti. Süreleri 3:55 ile 4:33 arasında.
 
 ---
 
@@ -463,7 +463,7 @@ Bunu biliyor muydunuz? Nice'in efsanevi kahramanı çamaşırcı Catherine Ségu
 
 ## 10. Abdülmecid'in İrlanda Büyük Kıtlığı yardımı: belge ile efsane (1847)
 
-**Video dosyası:** `teslimler/video/pikseltarihim-irlanda-kitligi.mp4` (henüz render edilmedi; grafikte, görsel kalite kontrol yapılmadı)
+**Video dosyası:** `teslimler/video/pikseltarihim-irlanda-kitligi.mp4` (hazır, 4:12; görsel kalite kontrol UYGUN)
 
 **Kapak yazısı:** Defterde / Bin Yazıyor / Bir iyilik nasıl efsane olur?
 
@@ -499,7 +499,7 @@ Bunu biliyor muydunuz? Kraliçe Victoria'nın "İrlanda'ya yalnızca beş sterli
 Kaynaklar: Christine Kinealy, Charity and the Great Hunger in Ireland (2013) · John D'Alton, The History of Drogheda (1844) · The Albion, New York, 21 Temmuz 1849 · Charles Mackay, Life and Times of Sir Robert Peel, c. 4 (1851) · Mike Dash, "Queen Victoria's £5" (2014) · Brendan Matthews, Drogheda & The Turkish Ships of 1847 · AramcoWorld, "An Irish Tale of Hunger and the Sultan" (2015) · Mary McAleese'in 23 Mart 2010 Ankara konuşması (president.ie) ve 24 Mart 2010 düzeltmesi (History Ireland, 2010) · Ahmet Öğreten'in Osmanlı arşiv belgesi açıklaması (Anadolu Ajansı, Şubat 2020) · TDV İslâm Ansiklopedisi, "Abdülmecid".
 ```
 
-**Editör notu:** Açıklama ve sabit yorum, kalite kontrolün "değişiklik gerekmedi" dediği metinle aynı. Kalite kontrol açıklamayı, ilk yorumu, etiketleri ve kaynakçayı da kontrol etmişti. Etiketlere 12 etiket eklendi. Bu video görsel kalite kontrolden henüz geçmedi (6-kalite-gorsel.md yok). O karar "uygun" olmadan paylaşılmaz.
+**Editör notu:** Açıklama ve sabit yorum, kalite kontrolün "değişiklik gerekmedi" dediği metinle aynı. Kalite kontrol açıklamayı, ilk yorumu, etiketleri ve kaynakçayı da kontrol etmişti. Etiketlere 12 etiket eklendi. Video görsel kalite kontrolden 3. turda "uygun" kararıyla geçti.
 
 ---
 
