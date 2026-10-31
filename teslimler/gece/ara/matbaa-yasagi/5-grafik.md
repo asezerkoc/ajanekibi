@@ -142,7 +142,7 @@ Hepsi `piksel()`, `hex2()`, ImageDraw ve mevcut figürlerle yazıldı.
 **Düzeltilenler:**
 
 - **190 beşik:** `timur.besik`'in kızak yayının altı zemin satırının altında kalıyordu ve sepet havada asılı gibi görünüyordu. Yeni `erdel_besigi` yazıldı: kızak her karede zemine değiyor. Annenin beyaz başörtüsü yüzü bir blok gibi kapatıyordu; koyu mavi yapıldı.
-- **171 / 181 boş rahle:** ilk çizimde iki kanat dik V ile çapraz ayaklardan oluşuyordu ve "iki X" gibi okunuyordu. Kanatlar kalın, sığ V biçiminde, ışıklı kenarlı, uç oymalı ve menteşeli olarak yeniden çizildi; şimdi rahle olarak okunuyor.
+- **171 / 181 boş rahle:** ilk çizimde iki kanat dik V ile çapraz ayaklardan oluşuyordu ve "iki X" gibi okunuyordu. Kanatlar kalın, sığ V biçiminde, ışıklı kenarlı, uç oymalı ve menteşeli olarak yeniden çizildi; şimdi rahle olarak okunuyor. Yeni kanatlar daha geniş olduğu için 181'de rahle soldan kadraj dışına taşıyordu; iki rahle küçültülüp ortaya çekildi ve yeniden denetlendi.
 - **187, 195, 200, 204 rahle ölçeği:** rahleler kâtibin elinin çok altında, oyuncak gibi kalıyordu. Rahle ölçeği oturan figürün ölçeğine eşitlendi, kalem ucu rahledeki kâğıda iniyor.
 - **174, 185, 191, 208 yürüyüş:** figür sprite'ın ortasında yürürken orta plandaki camiyi tam önünden kapatıyordu. Figür yerel x 170'e alındı, cami ve sur yolun sağına konuldu. Kamera figürü izlerken yapı kadraja giriyor. Yolun başı ve sonu ayrı ayrı denetlendi.
 - **191:** cami surun arkasında kalıp görünmüyordu. Cami arka zemine (y 580) ve daha büyük ölçekle alındı; kubbe ve minare surun üstünden görünüyor.

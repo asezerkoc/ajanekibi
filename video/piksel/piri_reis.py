@@ -1534,9 +1534,9 @@ def sahne357():
     def kare(t, z, i):
         f = i / KARE
         arka = duz(z[0] - 8, DW)
-        figur(t, deve, 262, arka, round(0.78 * sa, 1), -1, faz=(f + 0.3) % 1, adim=0.4)
-        figur(t, atli, 200, z, sa, -1, faz=f, at_renk="#6a4a32", yele="#2a1a12", adim=0.4, **SEYDI_O)
-        figur(t, kisi, 128, z, round(0.95 * K, 1), govde="#6a5a3a", bas="bork", bas_renk="#d8d0c0", sakal="#3a2a1a",
+        figur(t, deve, 246, arka, round(0.74 * sa, 1), -1, faz=(f + 0.3) % 1, adim=0.4)
+        figur(t, atli, 186, z, sa, -1, faz=f, at_renk="#6a4a32", yele="#2a1a12", adim=0.4, **SEYDI_O)
+        figur(t, kisi, 130, z, round(0.95 * K, 1), govde="#6a5a3a", bas="bork", bas_renk="#d8d0c0", sakal="#3a2a1a",
               yon=-1, adim=(f + 0.5) % 1)
 
     _spr2(357, DW, DH, kare, yk, esik=0.7)
@@ -1583,8 +1583,8 @@ def sahne359():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 168, z, K, **EDHEM, yon=1, adim=f)
-        figur(t, kisi, 124, z, round(0.97 * K, 1), govde="#4a3a2a", bas="sapka", bas_renk="#2a2a2a", sakal=None,
+        figur(t, kisi, 184, z, K, **EDHEM, yon=1, adim=f)
+        figur(t, kisi, 142, z, round(0.97 * K, 1), govde="#4a3a2a", bas="sapka", bas_renk="#2a2a2a", sakal=None,
               kemer=None, yon=1, adim=(f + 0.5) % 1)
 
     _spr2(359, DW, DH, kare, yk, esik=0.7)
@@ -1605,11 +1605,11 @@ def sahne360():
     def kare(t, z, i):
         f = i / KARE
         arka = duz(z[0] - 12, IW)
-        figur(t, kagit_destesi, 122, arka, round(0.32 * K, 1), kat=6, tohum=7)
-        figur(t, lamba, 286, arka, round(0.55 * K, 1), faz=f)
-        figur(t, harita_masasi, 204, z, round(0.6 * K, 1))
-        figur(t, kisi, 150, z, K, **EDHEM, yon=1, kol=0.1 + 0.04 * SIN(f))
-        figur(t, kisi, 260, z, round(0.97 * K, 1), **DEISSMANN, yon=-1, kol=0.32 + 0.05 * SIN(f + 0.3))
+        figur(t, kagit_destesi, 134, arka, round(0.32 * K, 1), kat=6, tohum=7)
+        figur(t, lamba, 282, arka, round(0.5 * K, 1), faz=f)
+        figur(t, harita_masasi, 208, z, round(0.56 * K, 1))
+        figur(t, kisi, 158, z, K, **EDHEM, yon=1, kol=0.1 + 0.04 * SIN(f))
+        figur(t, kisi, 258, z, round(0.97 * K, 1), **DEISSMANN, yon=-1, kol=0.32 + 0.05 * SIN(f + 0.3))
 
     _spr2(360, IW, IH, kare, yk)
 
