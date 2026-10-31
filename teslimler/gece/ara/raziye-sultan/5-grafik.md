@@ -154,3 +154,33 @@ Süreler tahminidir (sn, sahne arası 0,5 dahil).
 - 227'de fil grubu yazı bandı yüzünden kadrajın yaklaşık %30'u kadar. Fil insandan büyük olduğu için insanlar küçük.
 - 248'deki sehpa kadrajın %16'sı (nesne yakın planı).
 - 212, 217 ve 238 iki kez kullanılıyor (motif dönüşü ve kaynak etiketi).
+
+## Görsel KK revizyonu (31 Ekim 2026, 🟢 Grafiker)
+
+Kalite kontrolün 8 zorunlu düzeltmesi (`6-kalite-gorsel.md`) ve ucuz iyileştirme önerileri yapıldı. `RaziyeSultan.tsx` değişmedi: süreler, kartlar, yakin değerleri aynı. Değişen yalnızca `video/piksel/raziye_sultan.py` ve sprite/katman PNG'leri. Bu bölüm, yukarıdaki sahne planı tablosunda 222, 230, 233, 236 ve 248 satırlarının yerine geçer.
+
+**Zorunlu düzeltmeler**
+
+| # | Sahne | Ne yapıldı |
+|---|---|---|
+| 1-2 | 219, 221 (Şah Terken) | Başörtüsü artık alından başlıyor, göz açıkta: açık göz akı ve koyu bebek var. Örtü çenenin altını ve boynu sarıyor. Çene altındaki saydam delik kapandı. |
+| 3 | 235, 236, 237 (Altuniya) | Kalpak 0,4·s yukarı alındı, kürk kenarı alnın üstünde bitiyor. Göz akı ve bebek var. Gözle sakal arasında bir piksellik ten şeridi kalıyor. |
+| 4 | 230 (Yakut) | Yeni küçük sarık ("sarik_k") kaşa inmiyor. Koyu tende açık göz akı (#f2ece0) ve koyu bebek telefonda seçiliyor. 231'de Yakut yok, orada değişiklik gerekmedi. |
+| 5 | 227 (filbaşı) | Küçük sarık yukarıda, sakal kaldırıldı (genç, köse filbaşı). Göz akı ve bebek görünüyor. |
+| 6 | 248 | Beş dişli Avrupa tacı kaldırıldı. Yastıkta Raziye'nin videoda giydiği külah duruyor: koyu mor keçe, kürk kenar, altın süs, camgöbeği taş, ak sorguç. Son soruda Raziye'nin iki başlığı yan yana: peçe ve külah. |
+| 7 | 236 | İkili kadrajın soluna alındı (atlar kadrajın %30'u). Behram Şah'ın ordusu sağdaki boşlukta, ovanın gerisinde: yeşil flamalı 4 mızraklı atlı ve önlerinde miğferli yaya sırası. Hiçbir at başının arkasında kalmıyor. `_gorunur` ordunun bütün x'lerini sahne sonu yakınlaşmasında 20 px payla denetliyor; son atlı kadrajın içinde bitiyor. |
+| 8 | 222 (ve aynı gözle 233) | Yeni `_zindan` katmanı var. Kaba kesme taş duvar, yüksekte tek dar ve sivri tepeli mazgal (iki demir parmaklık, dışı gece), mazgaldan inen soluk ay ışığı, demir parmaklıklı kemerli hücre kapısı (kilitli), duvarda zincirli halka. Saray kemerleri ve yıldızlı büyük pencereler kaldırıldı. Fîrûz yeni `saman_yigini` figürünün üstünde oturuyor; yığın zemine basıyor, iki yanından taşıyor. 233 (Bathinda hücresi) de aynı katmanı kullanıyor; mazgal Raziye'nin baktığı tarafta (solda) ve kadraj içinde. |
+
+**Bütün figürlere uygulanan göz kuralı:** `timur_figur._baslik`, bu betik çalışırken sarmalanıyor (paylaşılan dosya değişmedi). s ≥ 2,5 olan her figüre peçe dışında açık göz akı ve bakış yönünde koyu bebek çiziliyor. Kütüphanenin eski tek pikselli gözü önce ten rengiyle siliniyor. Baş ile gövde arasındaki saydam pikseller boyunla dolduruluyor. Bu yüzden bütün figürlü sahnelerin sprite'ları yeniden çizildi; yüzler videonun her yerinde aynı dili konuşuyor.
+
+**Yapılan iyileştirme önerileri**
+- 230 ölçek: Yakut atlıyla aynı insan ölçeğinde (K = A; önceki değer A·2,6/2,9'du). Arkadaki iki emîr, Yakut'un omzunun arkasından ovanın gerisine (Yakut'un başı ile atın başı arasındaki boşluğa) alındı. Eskiden "omzunda duran adam" gibi okunuyorlardı.
+- 216 ve 229 emîrleri: EMIR2 artık kum rengi küçük sarıklı ve kır sakallı. Böylece kalpaklı EMIR1 ve börklü EMIR3'ten ayrılıyor.
+- 234 ve 246 sultanları: Nâsıreddin altın sarıklı ve sakalsız, Behram Şah ak sarıklı ve sakallı. Giysi renkleri de farklı (yeşil ve lacivert).
+- 216: İltutmış'ın bacak arasında kopuk blok gibi görünen pelerini bu sahnede kaldırıldı.
+- Yapılmayanlar: kapak hiyerarşisi `RaziyeSultan.tsx`'te (dokunma yasağı var). 232'deki binicisiz at ve 227'deki kamera yakınlığı ret nedeni değildi; bilinçli olarak bırakıldı.
+
+**Denetim**
+- `python3 -I video/piksel/raziye_sultan.py` 39 sahnenin hepsini hatasız çizdi. Taban, kadraj (yakin·1,06), `_gorunur` ve yazı bandı denetimleri geçti.
+- `npx tsc --noEmit -p .` temiz geçti.
+- Remotion karelerine tek tek baktım: 216, 219, 221, 222, 227, 229, 230, 233, 234, 235, 236 (ortası ve sahne sonu), 237, 246, 248. Gözlü yüzleri piksel yakınlaştırmasıyla da kontrol ettim (227, 230, 235). Zemine basmayan nesne, kesik figür ya da yazıya giren nesne görmedim.

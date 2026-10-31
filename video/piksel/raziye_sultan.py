@@ -12,6 +12,9 @@ Yeni figürler (bu dosyada; ciz.py'ye eklenmedi, yalnızca piksel()/hex2()/Image
   çiziciye bu betik çalışırken eklenir (dosya değişmez); fil_alay (timur_figur.fil + işlemeli çul + açık hevdec + üstünde
   oturan sultan + boynunda filbaşı), seki, revak, sikke_yuva (büyük sikke), ors, tepsi, sehpa_tabut, ahir, cadir, kubbe_turbe,
   harita_sehpasi, mezar_avlusu, levha, pece_yerde, uyuyan, acik_kitap, pece_ve_tac, meyve_tepsisi. Hepsi zemine oturur.
+Görsel KK revizyonu (6-kalite-gorsel.md): başlık çizicisi bütün figürlere okunur göz (açık göz akı + koyu bebek) ve
+  saydam boyun dolgusu ekler; sarık/kalpak/başörtüsü göz hizasından yukarı alındı; yeni başlık "sarik_k" (küçük sarık);
+  yeni figür saman_yigini ve zindan katmanı _zindan (222, 233); pece_ve_tac'ta Avrupa tacı yerine Raziye'nin külahı.
 """
 import math
 import random
