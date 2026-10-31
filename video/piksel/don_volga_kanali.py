@@ -437,8 +437,9 @@ def kayik_kutuk(img, x, zemin, s=1.0, yon=1):
     r = 1.6 * s
     for kx in (-8, 8):
         cx = x + kx * s
-        d.ellipse([cx - r, y - 2 * r, cx + r, y - 1], fill=hex2("#6a4a2a"), outline=hex2("#3a2614"))
-        piksel(img, cx, y - r, hex2("#c8a070"))
+        d.ellipse([cx - r, y - 2 * r, cx + r, y - 1], fill=hex2("#c8a070"), outline=hex2("#3a2614"))
+        d.ellipse([cx - r * 0.55, y - r - r * 0.55, cx + r * 0.55, y - r + r * 0.55], outline=hex2("#8a6640"))
+        piksel(img, cx, y - r, hex2("#6a4a2a"))
     ust = y - int(2 * r)
     P = lambda lx, ly: (x + lx * s * yon, ust + ly * s)  # noqa: E731
     govde = [P(-15, -6.5), P(-12, -5), P(12, -5), P(16, -7.5), P(13, -2), P(9, 0), P(-10, 0), P(-14, -3)]
@@ -1138,30 +1139,36 @@ def sahne253():
 
 
 def sahne254():
-    """Kart 7: Perevoloka, yaz. Karadan çekilen nehir gemisi 3/4 görünüşte: burnu öne, izleyiciye yakın; gövdesi geriye
-    uzanır, üç yuvarlak kütüğe oturur (kütükler kendi derinliklerindeki zemine basar). Kıçta gövdeye omzunu dayamış bir
-    adam iter (gemiyle aynı derinlikte, aynı ölçekte). Sağda, burunla aynı derinlikte iki adam halatı çeker; halat burun
-    halkasından ellerine iner. Burnun boyu insanın yarısından fazla, gemi derinlikte birkaç insan boyu uzanır."""
+    """Kart 7: Perevoloka, yaz. Geride (aynı zemin bandında, dünya y≈602) yandan görünen nehir gemisi üç yuvarlak kütüğün
+    üstünde; gemiyle aynı derinlikte, gemi ölçeğinde iki adam burun halkasına bağlı halatı omuzlarından geçirip sağa
+    çeker (gemi bu adamların yaklaşık dört boyu uzunluğunda, gövdesi bir boy yüksekliğinde). Önde, kadrajın %30'unu
+    tutan Kasım Paşa kıyıdan bu eski geçidi izler. Görsel KK revizyonu: önceki küçük tekne ve derinliksiz halat
+    kaldırıldı; gemi, çekenler ve halat aynı derinlikte."""
     yk = 2.8
     _dis(254, "yaz")
-    K = _K(254, yk, DT, ornek=NOGAY)
-    renkler = ("#6a5a3a", "#7a4a32", "#5a5a42")
+    K = _K(254, yk, DT, ornek=KASIM)
+    renkler = ("#6a5a3a", "#7a4a32")
 
     def kare(t, z, i):
         f = i / KARE
         y = z[0]
-        arka_y = y - 46
-        figur(t, kisi, 128, duz(arka_y, t.width), round(0.5 * K, 1), govde=renkler[2], bas="kalpak",
-              bas_renk="#3a2a1a", sakal="#2a1a12", yon=1, kol=0.32)                 # kıçta iten (geride, küçük)
-        hk = kayik_perspektif(t, 186, y, round(K / 4.2, 2), by_arka=arka_y, bx_arka=138)
+        arka = duz(y - 30, t.width)
+        ks = 2.1                                                                    # gemi derinliğindeki insan ölçeği
+        hk = figur(t, kayik_kutuk, 182, arka, 3.8, 1)
         noktalar = [hk]
-        for j, x in enumerate((236, 270)):
+        for j, x in enumerate((256, 276)):
             ph = (f + j * 0.45) % 1
-            k = 0.12 + 0.05 * SIN(ph)
-            figur(t, kisi, x, z, K, govde=renkler[j], bas="kalpak", bas_renk="#3a2a1a", sakal="#2a1a12", yon=-1, kol=k)
-            ust = y - int(11 * K)
-            noktalar.append((x - int(3.5 * K), ust - int(4 * K * k) + int(1 * K)))
-        ImageDraw.Draw(t).line(noktalar, fill=hex2("#c8aa78"), width=_u(0.45, K))
+            figur(t, kisi, x, arka, ks, govde=renkler[j], bas="kalpak", bas_renk="#3a2a1a", sakal="#2a1a12", yon=1,
+                  adim=0.15 + 0.1 * SIN(ph))
+            ust = arka[0] - int(11 * ks)
+            noktalar.append((x - int(1.2 * ks), ust + int(1 * ks)))
+        d = ImageDraw.Draw(t)
+        d.line(noktalar, fill=hex2("#4a3220"), width=2)
+        for kx in (232, 246):                                                     # burnun önüne dizilmiş yedek kütükler
+            r = 6
+            d.ellipse([kx - r, arka[0] - 2 * r, kx + r, arka[0] - 1], fill=hex2("#c8a070"), outline=hex2("#3a2614"))
+            d.ellipse([kx - 3, arka[0] - r - 3, kx + 3, arka[0] - r + 3], outline=hex2("#8a6640"))
+        figur(t, kisi, 136, z, K, **KASIM, yon=1, kol=0.03 * (1 + SIN(f)))
 
     _spr(254, DW, DH, kare, yk)
 
@@ -1344,10 +1351,10 @@ def sahne260():
         d.line([el, (136, ry), pala], fill=hex2("#4a2e18"), width=_u(0.5, K))
         d.polygon([pala, (pala[0] - int(1.6 * K), pala[1] - int(1.2 * K)), (pala[0] - int(1.0 * K), pala[1] - int(1.8 * K)),
                    (pala[0] + int(0.4 * K), pala[1] - int(0.6 * K))], fill=hex2("#5a3a22"))      # suya giren kürek palası
-        figur(t, kisi, 222, z, K, **YENICERI, yon=-1, kol=0.0)
+        figur(t, kisi, 204, z, K, **YENICERI, yon=-1, kol=0.0)
         gy = z[0] - int(6.6 * K)                                                               # kınındaki kılıç (belde)
-        d.line([(222 + int(1.6 * K), gy), (222 + int(5.0 * K), gy + int(3.4 * K))], fill=hex2("#2a1a12"), width=_u(0.6, K))
-        d.line([(222 + int(1.0 * K), gy - int(0.5 * K)), (222 + int(1.8 * K), gy + int(0.3 * K))], fill=hex2("#e0b040"),
+        d.line([(204 + int(1.6 * K), gy), (204 + int(5.0 * K), gy + int(3.4 * K))], fill=hex2("#2a1a12"), width=_u(0.6, K))
+        d.line([(204 + int(1.0 * K), gy - int(0.5 * K)), (204 + int(1.8 * K), gy + int(0.3 * K))], fill=hex2("#e0b040"),
                width=_u(0.5, K))
         figur(t, kisi, 256, z, K, **KASIM, yon=-1, kol=0.03 * (1 + SIN(f)))
 

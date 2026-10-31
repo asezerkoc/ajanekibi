@@ -110,3 +110,43 @@ Hepsi `zemin_y` ya da `duz_zemin` ile zemine oturuyor. Başka serilerden alınan
 - 274, 280, 282 ve 284-289'da insan figürü yok. Bunlar sakin motif ve anıt kareleri; ana nesne kadrajın büyük kısmını kaplıyor.
 
 **Kod tarafına not:** Root.tsx kaydı yapılmadı (brif gereği). Render öncesi Root kaydı ve `hizala_seri.py` ile ses hizalaması gerekiyor. `npx tsc --noEmit -p .` temiz.
+
+## Görsel KK revizyonu (6-kalite-gorsel.md: 4 zorunlu düzeltme ve öneriler)
+
+DonVolga.tsx'e dokunulmadı; ses hizalı süreler ve kartlar olduğu gibi kaldı. Bütün değişiklikler `don_volga_kanali.py` dosyasında ve sprite'larda.
+
+1. **Sahne 254 (Perevoloka): gemi ölçeği ve halat.**
+   - Küçük tekne ve derinliksiz halat kaldırıldı.
+   - Nehir gemisi artık yandan görünüyor ve geride (dünya y≈602). Yuvarlak kesitli üç kütüğe oturuyor; kütüklerin ucunda yıllık halka var, burnun önünde iki yedek kütük dizili.
+   - Gemiyle aynı derinlikte ve gemi ölçeğinde iki adam halatı omuzlarından geçirip çekiyor. Gemi bu adamların yaklaşık dört boyu uzunluğunda, gövdesi bir boy yüksekliğinde.
+   - Halat burun halkasından adamların omzuna, aynı derinlikte, eğimle iniyor.
+   - Önde Kasım Paşa (kadrajın %30'u) geçidi izliyor.
+   - Kural çakışması: 9:16 kadrajda dört-beş insan boyundaki bir gemiyle aynı derinlikteki insanlar %30 boyda olamıyor. Bu yüzden ölçeği gemi derinliğindeki küçük çekenler veriyor, %30 kuralını öndeki figür karşılıyor.
+2. **Sahne 260: kılıç.** Yeniçerinin kılıcı kınında, belde (yalnızca kabzası görünüyor). Nöbetçi Maltsev'den uzaklaştırıldı; hiçbir figür bir başkasına değmiyor.
+   - Ayrıca (öneri): su şeridi genişletildi. Küpeşteden inen arka kürekler ve Maltsev'in küreği artık suda bir palayla bitiyor.
+3. **Sahne 279: masa.**
+   - `orhun_yazitlari.masa` fotoğrafsız çağrılıyor (`yuk=None`); Orhun serisi değişmedi.
+   - Masa yükü yeni `yazi_takimi`: açık sayfa, sarılı kâğıt tomarı, hokka.
+   - Maltsev masanın başında duruyor, eli kâğıdın üstünde, tüy kalemle yazıyor; masada mum yanıyor.
+4. **Sahne 261: arka kadırga.**
+   - Arka kadırgalar ızgara x 222 ve 320'ye alındı ve küçültüldü (0,7 / 0,65).
+   - `_gorunur` denetimi sprite kaydırmasının başında (x 250) ve sonunda (x 290), son yakınlaşmayla geçiyor.
+   - 261 ve 277'de kenar denetimi gemiler için yeniden açık (`_kadraj`, kenar=True); yalnızca su muaf.
+
+**Önerilerden yapılanlar:**
+- **At gözleri:** yeni `at_gozu`, 2-3 piksellik koyu göz, ışık noktası ve burun deliği çiziyor. 258, 259, 262, 263 ve 272'deki bütün atlara eklendi.
+- **255 Astrahan adası:** ada yakın kıyıdan 10 piksellik bir su şeridiyle ayrıldı; önünde köpük çizgisi var (aynı yardımcı 270'te de kullanılıyor).
+- **285 su hücumu:** kapaktan çıkan mavi su dili haznenin tabanını kaplıyor ve sahne boyunca ilerliyor; ön kenarı köpüklü, akış çizgileri iki katına çıktı.
+- **287 "dev" heykel:** kaidenin yanına ölçek için küçük bir ziyaretçi silueti kondu (288'de de var).
+- **250:** uzaktaki çadır sağa alındı; kalkık kazma artık çadırın üstüne binmiyor.
+- **Azap kavuğu:** kazıcı azabın beyaz-kırmızı sarığı açık renkli börkle değişti (265, 266 ve diğer kazı sahneleri); paşalardan ayrışıyor.
+
+**Yapılmayanlar:**
+- **Kapak üçüncü satırı:** düzeltmesi TSX'te yapılmalı; TSX'e dokunma yasağı nedeniyle bırakıldı.
+- **266'da hendeğin ön dudağı:** sprite tabanı yarığın tabanında olduğu için ön dudak sprite'a çizilemiyor; bırakıldı.
+
+**Denetim:**
+- 40 sahnenin hepsi yeniden çizildi; taban, kadraj, kenar ve yazı bandı denetimlerinden hatasız geçti.
+- 254, 255, 260, 261, 263, 279, 285 ve 287'nin başlangıç ve son karelerine önizlemede tek tek bakıldı.
+- `npx tsc --noEmit -p .` temiz.
+- 276 ve 283 için KK'nın istediği temiz orta kareler render'da alınmalı.

@@ -88,8 +88,8 @@ def _baslik(d, img, x, bas_y, r, s, yon, tur, renk):
         # Görsel KK revizyonu: sarık 0,5·s yukarıda (kaşa inmez, göz açıkta kalır). "sarik_k" küçük sarık (Yakut, filbaşı,
         # emîr): daha dar ve alçak; yüz daha çok görünür, büyük kavuklu sultanlardan ayrılır. Kırmızı tepelik yalnızca büyükte.
         k = hex2(renk)
-        by = bas_y - (_u(0.5, s) if s >= 3 else 0)
-        yan, ust_ = (_u(0.9, s), _u(2.5, s)) if tur == "sarik_k" else (_u(1.6, s), _u(3.2, s))
+        by = bas_y - (_u(0.5, s) if s >= 2 else 0)
+        yan, ust_ = (_u(0.6, s), _u(2.3, s)) if tur == "sarik_k" else (_u(1.6, s), _u(3.2, s))
         d.ellipse([x - r - yan, by - r - ust_, x + r + yan, by - r + _u(1.2, s)], fill=k)
         d.line([x - r, by - r - _u(1, s), x + r, by - r - _u(2, s)], fill=hex2(_ac(renk, -0.15)))
         if tur == "sarik":
@@ -125,15 +125,21 @@ def _boyun(img, x0, x1, y0, y1, renk):
                 px[xx, yy] = renk
 
 
-def _goz(d, img, x, bas_y, s, yon):
+def _goz(d, img, x, bas_y, s, yon, ten=None):
     """Görsel KK revizyonu: telefonda okunur göz. s >= 2.5: açık göz akı + bakış yönünde koyu bebek (koyu tende de
-    seçilir); küçük figürde başlığın üstüne yeniden basılan tek koyu piksel."""
+    seçilir), yüzün ön kenarından bir piksel içeride, başlığın kenarından bir piksel aşağıda; kütüphanenin eski tek
+    pikselli / ince gözü önce ten rengiyle silinir. Küçük figürde başlığın üstüne yeniden basılan tek koyu piksel."""
     if s < 2.5:
         piksel(img, x + int(1 * s) * yon, bas_y, hex2(KOYU))
         return
-    on = x + int(round(1.15 * s)) * yon
-    gw, gh, pw = _u(0.95, s), max(2, _u(0.5, s)), max(2, _u(0.45, s))
-    y0 = bas_y - int(round(0.45 * s))
+    if ten is not None:
+        e0, e1 = x + int(0.6 * s) * yon, x + int(1 * s) * yon
+        d.rectangle([min(e0, e1), bas_y - int(0.3 * s), max(e0, e1), bas_y], fill=ten)
+    on = x + int(round(0.95 * s)) * yon
+    pw = max(2, _u(0.45, s))
+    gw = pw + max(1, _u(0.45, s))
+    gh = max(2, _u(0.5, s))
+    y0 = bas_y - int(round(0.3 * s))
     d.rectangle([min(on, on - (gw - 1) * yon), y0, max(on, on - (gw - 1) * yon), y0 + gh - 1], fill=hex2(GOZ_AKI))
     d.rectangle([min(on, on - (pw - 1) * yon), y0, max(on, on - (pw - 1) * yon), y0 + gh - 1], fill=hex2(KOYU))
 
@@ -147,7 +153,7 @@ def _baslik_gozlu(d, img, x, bas_y, r, s, yon, tur, renk):
     if ten[3] > 200 and tur != "ortu":
         n = _u(0.6, s)
         _boyun(img, x - n, x + n, bas_y + r - 1, bas_y + int(2.6 * s) + 1, ten)
-    _goz(d, img, x, bas_y, s, yon)
+    _goz(d, img, x, bas_y, s, yon, ten if ten[3] > 200 else None)
 
 
 _tf._baslik = _baslik_gozlu
@@ -233,7 +239,7 @@ def fil_alay(t, x, z, s=1.0, yon=1, faz=0.0, adim=0.28, kalpak_mahut=True):
     gy = zemin_y(z, x, 30 * s) - int(10 * s)
     mx = x + int(round(11.5 * s)) * yon
     figur(t, oturan, mx, duz(gy - int(round(18.6 * s)), t.width), round(0.92 * s, 2), govde="#6a5a3a", bas="sarik_k",
-          bas_renk="#e8e0cc", sakal="#2a1a12", yon=yon)
+          bas_renk="#e8e0cc", sakal=None, yon=yon)           # filbaşı genç ve köse: yüzü ve gözü okunsun (Görsel KK)
 
 
 def seki(img, x0, x1, zemin, h, tas="#b8a888"):
@@ -1621,7 +1627,7 @@ def sahne233():
     """Kart 28 (yavaş): Bathinda kale hücresi, gece (Görsel KK revizyonu: saray pencereleri yerine taş duvar, dar
     parmaklıklı mazgal ve demir kapı): Raziye taş zeminde oturur, başı soldaki mazgala dönük; yerde soğuk ay ışığı."""
     no = 233
-    _zindan(no, mazgal_x=206, kapi_x=334)
+    _zindan(no, mazgal_x=228, kapi_x=338)
     so = _S_oturan(no, RAZ_O, oran=0.26)
 
     def kare(t, z, i):
@@ -1671,26 +1677,31 @@ def sahne235():
 
 
 def sahne236():
-    """Kart 32 (yavaş): Ekim 1240, Kaithal ovası, alacakaranlık: Raziye ve Altuniya atlarında sağa bakar; karşıda (geride,
-    sağda) Behram Şah'ın ordusunun atlı ve yaya sırası."""
+    """Kart 32 (yavaş): Ekim 1240, Kaithal ovası, alacakaranlık: Raziye ve Altuniya atlarında sağa bakar; karşıda (sağda,
+    ovanın gerisinde) Behram Şah'ın ordusu: yeşil flamalı mızraklı atlı sırası ve önünde miğferli yaya sırası.
+    Görsel KK revizyonu: ordu eskiden Raziye'nin atının başının arkasında kalıyor, sağ kenarda kesiliyordu. Şimdi ikili
+    kadrajın soluna alındı (atlar %30 ölçekte), ordu sağdaki boşlukta, uzakta (orta planın yükseltilmiş üst kenarında)
+    ve son figürü sahne sonu yakınlaşmasında da kadraj içinde."""
     no = 236
+    ordu_atli = (322, 333, 344)
 
     def ekle(img, z):
-        kalabalik(img, duz(590), PAY + 300, PAY + 380, 7, 236, ("#3a3a44", "#4a3a2a"), s=1.6, yon=-1, bas="migfer")
-        for j, x in enumerate(range(296, 384, 22)):
-            figur(img, atli, PAY + x, duz(586), 1.2, -1, faz=(j * 0.3) % 1, dur=True, govde="#3a3a44", bas="migfer",
+        for j, x in enumerate(ordu_atli):
+            figur(img, atli, PAY + x, z, 1.1, -1, faz=(j * 0.3) % 1, dur=True, govde="#3a3a44", bas="migfer",
                   bas_renk="#8a8a90", silah="mizrak", bayrak="#2a6a3a")
+        zz = [v + 5 for v in z]                                                 # yaya sırası atlıların bir adım önünde
+        kalabalik(img, zz, PAY + 316, PAY + 346, 6, 236, ("#3a3a44", "#4a3a2a"), s=1.15, yon=-1, bas="migfer")
 
-    _gorunur(no, [320])
-    _dis(no, "aksam", ekle=ekle, dag_y=(500, 518), tepe_y=522, ova_y=530, orta_ust=(556, 562))
-    A = _A(no, 0.34)
+    _gorunur(no, list(ordu_atli) + [314, 344], pay=20)
+    _dis(no, "aksam", ekle=ekle, dag_y=(500, 518), tepe_y=522, ova_y=530, orta_ust=(536, 540))
+    A = _A(no, 0.30)
     A2 = round(A * 0.92, 1)
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, atli, 170, duz(z[0] - 8, t.width), A2, 1, faz=0.0, dur=True, govde=ALTUNIYA["govde"], bas="kalpak",
+        figur(t, atli, 156, duz(z[0] - 8, t.width), A2, 1, faz=0.0, dur=True, govde=ALTUNIYA["govde"], bas="kalpak",
               bas_renk=ALTUNIYA["bas_renk"], sakal=ALTUNIYA["sakal"], at_renk="#4a2e1e")
-        figur(t, atli, 220, z, A, 1, faz=0.0, dur=True, govde=RAZ["govde"], bas="kulah", bas_renk=RAZ["bas_renk"],
+        figur(t, atli, 180, z, A, 1, faz=0.0, dur=True, govde=RAZ["govde"], bas="kulah", bas_renk=RAZ["bas_renk"],
               at_renk="#e8e0d0", yele="#8a8478", kol=0.04 * (1 + SIN(f)))
 
     _spr(no, kare)

@@ -729,11 +729,18 @@ def rahip(img, x, zemin, s=1.0, govde="#1e1e24", ust="#ece8e0", yon=1, kol=0.0, 
           stol=None):
     """Yeni figür: rahip. Uzun cüppe (kemersiz), beyaz yaka; ust: cüppenin üstüne beyaz keten (surplis) rengi ya da
     None; stol: boyundan sarkan kuşak rengi. sapka=True: yolcu rahibin geniş kenarlı siyah şapkası, yoksa takke."""
-    kisi(img, x, zemin, s, govde=govde, bas="sapka" if sapka else "takke", bas_renk="#141418", sakal=None, yon=yon,
+    kisi(img, x, zemin, s, govde=govde, bas="sapka" if sapka else None, bas_renk="#141418", sakal=None, yon=yon,
          kol=kol, silah=silah, adim=adim, kemer=None)
     d = ImageDraw.Draw(img)
     y = zemin_y(zemin, x, 6 * s)
     u_ = y - int(11 * s)
+    if not sapka:                                                       # biret: dört köşeli, üç sırtlı kep ve ponpon
+        by = y - int(13.6 * s)
+        r = max(2, int(1.7 * s))
+        d.rectangle([x - r - 1, by - r - _u(1.8, s), x + r + 1, by - r + _u(0.4, s)], fill=hex2("#141418"))
+        for k in (-1, 0, 1):
+            d.line([x + k * r * 0.7, by - r - _u(2.6, s), x + k * r * 0.7, by - r - _u(1.8, s)], fill=hex2("#141418"), width=_u(0.5, s))
+        d.rectangle([x - _u(0.4, s), by - r - _u(3.2, s), x + _u(0.4, s), by - r - _u(2.6, s)], fill=hex2("#2a2a30"))
     if ust:                                                             # surplis: göğüsten kalçaya beyaz
         d.polygon([(x - int(2.6 * s), u_ + int(6.5 * s)), (x - int(2 * s), u_ + int(1 * s)), (x + int(2 * s), u_ + int(1 * s)),
                    (x + int(2.6 * s), u_ + int(6.5 * s))], fill=hex2(ust))
@@ -779,6 +786,30 @@ def kundak(img, x, y, s=1.0, yon=1):
     hx = x + int(2.2 * s) * yon
     d.ellipse([hx - int(1 * s), y - int(1.6 * s), hx + int(1 * s), y + int(0.2 * s)], fill=hex2("#e8b890"))
     piksel(img, hx + int(0.3 * s) * yon, y - int(0.8 * s), hex2("#5a3a2a"))
+
+
+def zirhli_atli(img, x, zemin, s=1.0, yon=1, faz=0.0, migfer="#b8c0c8", tuy=None, **kw):
+    """Yeni figür (KK revizyonu): 16. yy zırhlı süvari. timur_figur.atli (başlıksız) + yüzü açık morion miğfer:
+    yuvarlak kubbe, tepede sırt, iki ucu kalkık siperlik; göz ve sakal açıkta. tuy: miğferde tüy rengi."""
+    atli(img, x, zemin, s, yon, faz, bas=None, **kw)
+    d = ImageDraw.Draw(img)
+    yz = zemin_y(zemin, x, int(22 * s) * 0.8)
+    sy = yz - max(3, int(7 * s)) - int(8 * s)
+    sy -= max(0, int(round(math.sin(faz * 4 * math.pi) * 0.5 * s)))
+    by = sy - int(11 * s)
+    r = max(2, int(1.7 * s))
+    k = hex2(migfer)
+    d.chord([x - r - 1, by - r - _u(2.4, s), x + r + 1, by - _u(0.3, s)], 180, 360, fill=k)          # kubbe
+    d.polygon([(x - _u(1.4, s), by - r - _u(1.0, s)), (x, by - r - _u(2.6, s)), (x + _u(1.4, s), by - r - _u(1.0, s))], fill=k)  # sırt
+    d.line([x - r - _u(1.8, s), by - r - _u(0.6, s), x - r, by - r + _u(0.2, s), x + r, by - r + _u(0.2, s),
+            x + r + _u(1.8, s), by - r - _u(0.6, s)], fill=hex2(_ac(migfer, -0.25)), width=_u(0.5, s))  # kalkık siperlik
+    d.line([x - r, by - r - _u(1.6, s), x + r, by - r - _u(1.6, s)], fill=hex2(_ac(migfer, 0.3)))
+    if tuy:
+        for i in range(int(3 * s)):
+            piksel(img, x - (i // 2) * yon - 1, by - r - _u(2.6, s) - i + i * i // 12, hex2(tuy))
+            piksel(img, x - (i // 2) * yon - 2, by - r - _u(2.6, s) - i + i * i // 12, hex2(_ac(tuy, -0.2)))
+    ex = x + int(0.9 * s) * yon                                         # belirgin göz
+    d.rectangle([min(ex, ex + yon), by - 1, max(ex, ex + yon), by], fill=hex2("#1a100a"))
 
 
 def mizrak_omuz(img, x, zemin, s, yon, f=0.0):
@@ -964,6 +995,36 @@ def sokak_feneri(t, x, zemin, s=1.0, f=0.0, yanik=True):
                 px_, py_ = fx + math.cos(math.radians(a)) * r, fy + math.sin(math.radians(a)) * r
                 if py_ < y - 1 and _esik(int(px_), int(py_)) < 0.45 * g * (1 - r / (9 * s)):
                     piksel(t, px_, py_, hex2("#ffd479", 60))
+
+
+def el_feneri(t, x, zemin, s=1.0, yon=1, f=0.0):
+    """Yeni figür (KK revizyonu): kisi'nin elinde taşınan fener (x, zemin, s kisi'yle aynı). Halka elde, fener altında
+    sarkar; alev titrer, çevresine ışık düşer."""
+    ex, ey = _el(x, zemin, s, yon, 0.0)
+    _fener_ciz(t, ex, ey, s, f)
+
+
+def duvar_feneri(t, x, y, s=1.0, yon=1, f=0.0):
+    """Yeni figür (KK revizyonu): duvara çakılı demir kolda asılı fener (x, y = duvardaki çivi)."""
+    d = ImageDraw.Draw(t)
+    d.line([x, y, x + int(2.4 * s) * yon, y], fill=hex2("#2a2a2a"), width=_u(0.4, s))
+    d.line([x, y + int(1.2 * s), x + int(2.4 * s) * yon, y], fill=hex2("#2a2a2a"))
+    _fener_ciz(t, x + int(2.4 * s) * yon, y, s, f)
+
+
+def _fener_ciz(t, hx, hy, s, f):
+    d = ImageDraw.Draw(t)
+    d.line([hx, hy, hx, hy + int(0.8 * s)], fill=hex2("#2a2a2a"))
+    fy = hy + int(2.2 * s)
+    d.rectangle([hx - int(1 * s), fy - int(1.4 * s), hx + int(1 * s), fy + int(1.4 * s)], fill=hex2("#3a3a3a"))
+    d.polygon([(hx - int(1.2 * s), fy - int(1.4 * s)), (hx, fy - int(2.2 * s)), (hx + int(1.2 * s), fy - int(1.4 * s))], fill=hex2("#3a3a3a"))
+    g = 0.75 + 0.25 * SIN(f, 3)
+    d.rectangle([hx - int(0.5 * s), fy - int(0.8 * s), hx + int(0.5 * s), fy + int(0.8 * s)], fill=hex2("#ffd060"))
+    for r in range(int(2 * s), int(8 * s)):
+        for a in range(0, 360, 12):
+            px_, py_ = hx + math.cos(math.radians(a)) * r, fy + math.sin(math.radians(a)) * r
+            if _esik(int(px_), int(py_)) < 0.45 * g * (1 - r / (8 * s)):
+                piksel(t, px_, py_, hex2("#ffd479", 60))
 
 
 def tas_duvar(img, x0, x1, zemin, s=1.0, tas="#8a8070", tohum=1):
@@ -1248,9 +1309,10 @@ def sahne458():
     def kare(t, z, i):
         f = i / KARE
         arka = duz(z[0] - 8, t.width)
-        figur(t, atli, 230, arka, round(0.9 * sa, 1), -1, faz=(f + 0.5) % 1, at_renk="#3a2a22", yele="#1a120c", adim=0.55,
-              zirh="#a8b0b8", cul="#2a3a6a", **dict(SAVOY, govde="#2a3a6a"))
-        figur(t, atli, 170, z, sa, -1, faz=f, at_renk="#8a5a3a", yele="#2a1a12", adim=0.55, zirh="#b8c0c8", cul="#8a1e22", **SAVOY)
+        figur(t, zirhli_atli, 230, arka, round(0.9 * sa, 1), -1, (f + 0.5) % 1, "#8a929c", "#2a3a8a", at_renk="#3a2a22",
+              yele="#1a120c", adim=0.55, zirh="#a8b0b8", cul="#2a3a6a", govde="#2a3a6a", sakal="#5a3a22")
+        figur(t, zirhli_atli, 170, z, sa, -1, f, "#c0c8d0", "#e8e0d0", at_renk="#8a5a3a", yele="#2a1a12", adim=0.55,
+              zirh="#b8c0c8", cul="#8a1e22", govde=SAVOY["govde"], sakal=SAVOY["sakal"])
         for j in range(6):                                           # toynaklardan toz
             ph = (f + j / 6) % 1
             px_ = 170 + 20 + ph * 30 + j * 3
@@ -1403,15 +1465,15 @@ def sahne464():
     K = K_(464)
 
     def ekle(img, z):
-        figur(img, sehir, PAY + 300, PAY + 760, duz(588), 1.6, duvar="#8a8274", golge="#5e584e", cati="#6a3a30", tohum=464)
-        figur(img, kisi, PAY + 344, duz(592), round(0.7 * K, 1), **TOULONLU2, yon=-1)
-    orta(464, (560, 566), ["#6a6a4a", "#5e5e42", "#52523a", "#464632", "#3a3a2a"], "#9a9a6a", ekle=ekle)
+        figur(img, sehir, PAY + 300, PAY + 346, duz(556), 1.3, duvar="#8a8274", golge="#5e584e", cati="#6a3a30", tohum=464)
+        figur(img, kisi, PAY + 323, duz(558), 1.0, **TOULONLU2, yon=-1)        # kapının önünde kalan adam (uzakta, surla aynı ölçekte)
+    orta(464, (548, 552), ["#6a6a4a", "#5e5e42", "#52523a", "#464632", "#3a3a2a"], "#9a9a6a", ekle=ekle)
     on(464, ["#3a3a2a", "#464632", "#52523a"], "#8a8a5a", boy=80)
 
     def kare(t, z, i):
         f = i / KARE
-        kisiler = ((134, "k", "#6a2a3a", "#e8e0d0"), (163, "c", "#3a5a6a", "#4a2e1a"), (190, "k", "#4a5a3a", "#d8d0c0"),
-                   (219, "c", "#7a4a3a", "#6a3a1a"), (250, "k", "#5a3a5a", "#ece4d4"))
+        kisiler = ((136, "k", "#6a2a3a", "#e8e0d0"), (166, "c", "#3a5a6a", "#4a2e1a"), (194, "k", "#4a5a3a", "#d8d0c0"),
+                   (222, "c", "#7a4a3a", "#6a3a1a"))
         for j, (x, tur, g, r) in enumerate(kisiler):
             ad = (f + j * 0.37) % 1
             if tur == "k":
@@ -1434,8 +1496,8 @@ def sahne465():
     def kare(t, z, i):
         f = i / KARE
         figur(t, kuyu, 140, z, round(0.55 * K, 1), "#6a6470")
-        sokak_feneri(t, 210, z, round(0.55 * K, 1), f)
-        figur(t, kisi, 268, z, K, **TOULONLU2, yon=-1)
+        figur(t, kisi, 250, z, K, **TOULONLU2, yon=-1)
+        el_feneri(t, 250, z, K, -1, f)
 
     _spr(465, kare)
 
@@ -1482,20 +1544,17 @@ def sahne468():
     _uzak_kiyi(468, FARON, ("#9a8a6a", "#8a7a5e"), KARA, D_ALTIN, 542, dag_y=(452, 500), tepe_y=520, kasaba=_toulon())
 
     def ekle(img):
-        for sira, (su, s_, ara) in enumerate(((562, 0.36, 30), (571, 0.48, 40), (582, 0.62, 52))):
-            for x in range(-20 + sira * 13, GW + 20, ara):
+        for sira, (su, s_, ara) in enumerate(((561, 0.3, 40), (571, 0.4, 54), (586, 0.55, 74))):
+            for x in range(-20 + sira * 23, GW + 20, ara):
                 kadirga(img, x, su, s_, 1 if (x // ara) % 3 else -1, 0.0, mod="indik", kurek=False, kontur=sira > 0, **OSMANLI)
     _orta_deniz(468, 556, D_ALTIN, ekle=ekle)
     _bos_on(468)
     b = P(468)
     gem = [(200, b["h"] - 12, 1.4, 1, "indik", OSMANLI, dict(fener=3, kurek=False))]
     gk = _gemi_sp(468, 0, gem, D_ALTIN, 556)
-    sinir = _ust_sinir(468)
 
     def kare(t, z, i):
         gk(t, z, i)
-        su_w = b["taban"] - 12 + b["taban"] - b["h"] - (b["taban"] - b["h"])
-        duman(t, 200 - 40, b["h"] - 30, min(36, b["taban"] - 30 - sinir - 8), 468, faz=i / KARE, renk="#d8d0c4", ruzgar=0.4)
 
     _spr(468, kare)
 
@@ -1513,7 +1572,7 @@ def sahne469():
     def kare(t, z, i):
         f = i / KARE
         figur(t, katedral, 186, z, 1.9, "#8a8698", "#5a3a3a", True)
-        sokak_feneri(t, 262, z, 3.0, f)
+        duvar_feneri(t, 186 + int(9 * 1.9), z[0] - int(14 * 1.9), 2.6, 1, f)
 
     _spr(469, kare)
 
@@ -1570,7 +1629,7 @@ def sahne472():
         f = i / KARE
         if not _DENETIM[0]:
             kandil(t, 140, 0, f, zincir=_kz(P(472)["yk"]))
-        figur(t, kisi, 136, z, K, **TOULONLU, yon=1)
+        figur(t, kisi, 136, z, K, **dict(TOULONLU, bas="kalpak", bas_renk="#6a2a22"), yon=1)
         figur(t, basortulu, 166, z, round(0.95 * K, 1), "#3a5a7a", "#f0ece4", 1)
         figur(t, vaftiz_kurnasi, 204, z, round(0.55 * K, 1))
         kol = 0.4
@@ -1660,7 +1719,7 @@ def sahne477():
 # ==========================================================================
 # Kuşbakışı masa sahneleri: 478 harita, 481 kronikler, 485 minyatür
 # ==========================================================================
-HX0, HY0, HW, HH = 108, 140, 184, 159       # kâğıdın sprite içindeki yeri (görünür aralık ve yazı bandının altı)
+HX0, HY0, HW, HH = 108, 164, 184, 135       # kâğıdın sprite içindeki yeri (görünür aralık ve yazı bandının altı)
 
 
 def _kagit(t, x0, y0, w, h, renk="#d8bc8c"):
@@ -1748,8 +1807,10 @@ def kronik(t, x0, y0, w, h, sayi, renk="#e8dcc0", kapak="#5a2a1a", f=0.0):
                 d.line([xx, yy, min(xb, xx + L), yy], fill=hex2("#5a4a3a"))
                 xx += L + 2
     ol = 2
-    gen = len(sayi) * 4 * ol
-    _rakam(t, x0 + w * 3 // 4 - gen // 2, y0 + h // 2 - 5, sayi, "#8a1e12", ol)
+    gen = len(sayi) * 4 * ol - ol
+    bas_ = max(x0 + w // 2 + 3, x0 + w * 3 // 4 - gen // 2)            # cilt çizgisinden en az 2 px uzakta
+    assert bas_ + gen <= x0 + w - 1, "rakam sayfaya sığmıyor"
+    _rakam(t, bas_, y0 + h // 2 - 5, sayi, "#8a1e12", ol)
 
 
 def sahne478():
@@ -1766,8 +1827,8 @@ def sahne481():
 
     def kare(t, z, i):
         f = i / KARE
-        kronik(t, 112, 146, 86, 70, "8000")
-        kronik(t, 206, 150, 86, 70, "11000", renk="#e0d4b8", kapak="#2a3a4a")
+        kronik(t, 110, 152, 86, 70, "8000")
+        kronik(t, 204, 156, 86, 70, "11000", renk="#e0d4b8", kapak="#2a3a4a")
         _kagit(t, 150, 236, 100, 64, renk="#f0ece0")
         dd = ImageDraw.Draw(t)
         for yy in range(244, 296, 6):
@@ -1847,37 +1908,62 @@ def sahne485():
 # ==========================================================================
 # 479 · kart 41 · Lipari   480 · kart 42 yanan Lipari   483 · kart 47 sessiz alacakaranlık
 # ==========================================================================
+LIP_UST = 555           # Lipari kayasının düz tepesi (koyun karşı kıyısında)
+
+
 def _lipari(no, gok, bulut_renk, kara, su, kaya, gece=False, yildiz=0):
+    """Lipari (KK revizyonu): kale kayası koyun karşı kıyısında, aradaki su şeridi ve pus uzaklığı verir; yakın kıyı
+    588'den aşağısı (figürler, duvar, çalı). Kenarda kesilen ev yok."""
     _gok(no, gok, [(110, 404, 20), (430, 402, 22)], bulut_renk, yildiz=yildiz)
-    img = _uzak_kiyi(no, None, None, kara, su, 546, kara_kalin=2)
-
-    def vulkan(t):
-        d = ImageDraw.Draw(t)
-        for cx, r, hh in ((120, 46, 30), (420, 30, 18)):
-            d.polygon([(cx - r, 546), (cx - 8, 546 - hh), (cx + 8, 546 - hh), (cx + r, 546)], fill=hex2(_ac(kara[0], -0.1)))
-            d.line([cx - 8, 546 - hh, cx + 8, 546 - hh], fill=hex2(_ac(kara[0], 0.2)))
-    _sarili(img, vulkan)
-    kaydet(img, f"sahne{no}-uzak.png")
-    sonuc = {}
-
-    def ekle(img, z):
-        zt = kaya_tepe(img, PAY + 196, PAY + 352, PAY + 214, PAY + 334, 594, 556, kaya, tohum=no)
-        katedral(img, PAY + 300, zt, 0.8, tas=_ac(kaya[0], 0.15), cati="#7a4a3a" if gece else "#a0583a")
-        sonuc["sur"] = figur(img, anadolu_kalesi, PAY + 218, PAY + 330, zt, 0.5, tas=_ac(kaya[0], 0.1), golge=kaya[1])
-        for a_, b_, tt in ((-40, PAY + 196, no), (PAY + 352, GW + 40, no + 1)):
-            figur(img, provence_evleri, a_, b_, duz(596), 1.2, tohum=tt, kat=(2,), cati="#7a4a3a" if gece else "#b05a3a",
-                  sivalar=("#9a8a7a", "#8a7a6c") if gece else ("#ece0c8", "#e0d0b0", "#d8c4a0"))
+    _uzak_kiyi(no, None, None, kara, su, 546, kara_kalin=2)
     renk = (["#5a4a3a", "#504234", "#463a2e", "#3c3228", "#322a22"] if gece
             else ["#9a8a5a", "#8c7c50", "#7e6e46", "#70603e", "#625436"])
-    orta(no, (564, 568), renk, _ac(renk[0], 0.3), ekle=ekle)
+    yakin_ = orta(no, (586, 590), renk, _ac(renk[0], 0.3))
+    img = yeni(GW, H)
+    arazi(img, [566] * GW, [_ac(kara[0], 0.05), kara[1], kara[1]])                 # karşı kıyı şeridi
+    zt = kaya_tepe(img, PAY + 196, PAY + 352, PAY + 214, PAY + 334, 574, LIP_UST, kaya, tohum=no)
+    katedral(img, PAY + 300, zt, 0.62, tas=_ac(kaya[0], 0.15), cati="#7a4a3a" if gece else "#a0583a")
+    figur(img, anadolu_kalesi, PAY + 218, PAY + 330, zt, 0.5, tas=_ac(kaya[0], 0.1), golge=kaya[1])
+    for a_, b_, tt in ((PAY + 181, PAY + 196, no), (PAY + 350, PAY + 359, no + 1)):   # kayanın dibinde küçük evler
+        figur(img, provence_evleri, a_, b_, duz(575), 0.7, tohum=tt, kat=(2,), cati="#7a4a3a" if gece else "#b05a3a",
+              sivalar=("#9a8a7a", "#8a7a6c") if gece else ("#ece0c8", "#e0d0b0", "#d8c4a0"))
+    pus = hex2(gok[-1])                                                 # uzaklık pusu
+    px = img.load()
+    for y in range(400, 590):
+        for x in range(GW):
+            r_, g_, b_, a_ = px[x, y]
+            if a_:
+                px[x, y] = (int(r_ * 0.72 + pus[0] * 0.28), int(g_ * 0.72 + pus[1] * 0.28), int(b_ * 0.72 + pus[2] * 0.28), a_)
+    _su_doldur(img, 576, su, no + 9)
+    for y in range(576, H):
+        for x in range(GW):
+            if y > 600:
+                img.putpixel((x, y), (0, 0, 0, 0))
+    img.alpha_composite(yakin_)
+    kaydet(img, f"sahne{no}-orta.png")
     on(no, renk[::-1][:3], _ac(renk[0], 0.3), boy=70)
-    _gorunur(no, [(214, 334)])
-    return sonuc
+    _gorunur(no, [(181, 196), (214, 334), (350, 359)])
+
+
+def cali(img, x, zemin, s=1.0, renk=("#4a5a3a", "#5a6a44", "#6a7a50"), tohum=1, sal=0.0):
+    """Yeni figür (KK revizyonu): alçak çalı (kapari/sakız); dibi zemine oturur, üstü rüzgârla hafifçe salınır."""
+    d = ImageDraw.Draw(img)
+    y = zemin_y(zemin, x, 10 * s)
+    temas_golgesi(img, x, y, 11 * s)
+    rnd = random.Random(tohum)
+    for k in range(9):
+        dx = rnd.uniform(-4.5, 4.5) * s
+        dy = rnd.uniform(1.5, 5.5) * s
+        r = rnd.uniform(1.6, 2.6) * s
+        ox = dx + sal * (dy / 5.5) * s
+        d.ellipse([x + ox - r, y - dy - r, x + ox + r, min(y - 1, y - dy + r)], fill=hex2(renk[k % 3]))
 
 
 def _zeytin(t, z, f, gece=False):
-    figur(t, agac, 140, z, 0.8, ("#3a4a3a", "#4a5a44", "#5a6a50") if gece else ("#5a6a4a", "#6a7a5a", "#8a9a6e"),
-          "#4a3a2a", 479, 0.4 * SIN(f))
+    """(KK revizyonu) Zeytin yerine alçak çalılar: ön planda insandan kısa olması doğal."""
+    for j, x in enumerate((124, 276)):
+        figur(t, cali, x, z, 2.2, ("#2a3a2a", "#3a4a34", "#46563e") if gece else ("#4a5a3a", "#5a6a44", "#6a7a50"), 479 + j,
+              0.6 * SIN(f + j * 0.4))
 
 
 def sahne479():
@@ -1894,7 +1980,7 @@ def sahne479():
 def _kale_atesleri(no, n=5):
     b = P(no)
     ofs = b["xs"][0] - b["w"] // 2
-    return [(x - ofs, 556 - 11 - (b["taban"] - b["h"])) for x in range(226, 330, 104 // n)]
+    return [(x - ofs, LIP_UST - 9 - (b["taban"] - b["h"])) for x in range(226, 330, 104 // n)]
 
 
 def sahne480():
@@ -1914,12 +2000,12 @@ def sahne480():
             yangin(t, x, y + 1, (f + j * 0.29) % 1, 1.1, tohum=j)
         arka = duz(z[0] - 16, t.width)
         renk = ("#6a4a3a", "#4a4a5a", "#7a3a3a", "#5a5a3a", "#3a4a5a")
-        for j, x in enumerate((150, 172, 194, 216, 238)):
+        for j, x in enumerate((140, 162, 184, 206, 228)):
             if j % 2:
                 figur(t, basortulu, x, arka, kk, renk[j], "#d8d0c0", -1)
             else:
                 figur(t, kisi, x, arka, kk, govde=renk[j], bas="takke", bas_renk="#2a2a2a", sakal="#4a3a2a", yon=-1, kemer=None)
-        figur(t, kisi, 266, arka, kk, **LEVEND_B, yon=-1)
+        figur(t, kisi, 268, z, round(0.9 * K, 1), **LEVEND_B, yon=-1, silah="sopa")    # bekçi: önde, esirlere dönük
         tas_duvar(t, 0, b["w"] - 1, z, 3.0, tas="#4a4040", tohum=480)
         _zeytin(t, z, f, True)
 
@@ -2018,15 +2104,16 @@ def sahne486():
     _uzak_kiyi(486, ("#1a2238", "#161c30"), ("#202838", "#1a2230"), ("#2a2a34", "#24242e", "#1e1e28"), D_GECE, 542,
                dag_y=(452, 500), tepe_y=520, kasaba=_toulon(isik=True))
     _orta_deniz(486, 556, D_GECE, rihtim=600, rihtim_renk=("#3a3842", "#302e38", "#5a5866"),
-                ekle=lambda img: [kadirga(img, PAY + x, 568, 0.45, -1, 0.0, mod="indik", kurek=False, fener=3, isik=True,
-                                          **OSMANLI) for x in (312, 368, 470, 580)])
+                ekle=lambda img: [kadirga(img, PAY + 312, 570, 0.8, -1, 0.0, mod="indik", kurek=False, fener=3, isik=True,
+                                          **OSMANLI)])
     _bos_on(486)
+    _gorunur(486, [(312 - 41, 312 + 43)])
     K = K_(486)
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 168, z, K, **TOULONLU, yon=1, kol=0.02 * (1 + SIN(f)))
-        sokak_feneri(t, 124, z, round(0.55 * K, 1), f)
+        figur(t, kisi, 152, z, K, **TOULONLU, yon=1)
+        el_feneri(t, 152, z, K, 1, f)
 
     _spr(486, kare)
 
