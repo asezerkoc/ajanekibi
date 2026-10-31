@@ -2014,9 +2014,9 @@ def sahne283():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kazici, 130, z, K, f, 1, **MAHKUM[0])
-        figur(t, kurekci, 208, z, K, (f + 0.5) % 1, 1, **MAHKUM[1])
-        figur(t, kisi, 266, z, K, **GARDIYAN, yon=-1, silah="sopa", kol=0.02)
+        figur(t, kazici, 128, z, K, f, 1, **MAHKUM[0])
+        figur(t, kurekci, 214, z, K, (f + 0.5) % 1, 1, **MAHKUM[1])
+        figur(t, kisi, 270, z, K, **GARDIYAN, yon=-1, silah="sopa", kol=0.02)
 
     _spr(283, DW, 230, kare, yk)
 

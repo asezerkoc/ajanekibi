@@ -43,3 +43,52 @@ Gerekçe: dört sahnede yapı ya da kale, önünde duran insandan kısa (oyuncak
 ## Değerlendirme (sahibe gösterilecek)
 
 Video, ajansın piksel tarzını taşıyor; kartlar okunuyor, Türkçe karakterler doğru, figürler yere basıyor ve efsane ile belge ayrımı renk ve ışıkla zekice kurulmuş. Ama dört sahnede binalar ve kale, önündeki insanlardan kısa kalıp oyuncak gibi görünüyor. Gemi sahnelerinde üç gemi birbirine girdiği için hikâyenin merkezindeki "üç gemi" ekranda sayılamıyor. 1847 Drogheda'daki bir kasket bugünün şapkası gibi duruyor; ayrıca avize ve pencereler kadraja ve yazı alanına taşıyor. Grafiker bu dokuz noktayı düzeltince video yeniden kontrol edilecek. Bu kontrolde 494, 495, 507 ve 513 de özellikle ölçek ve kasket için incelenecek.
+
+## 2. tur
+
+**Bakılan kareler (23):** `r2/` içindeki 16 sahne ortası ve `kapak.png`, ayrıca 6 ek kare (`r2/ek/`): `k14700` ve `k14880` (491 kapanışı), `k6390` (507 sonu), `k10000` ve `k10450` (517 başı ve sonu), `k11940` (520 sonu).
+Klasör: `/tmp/claude-0/-home-user-ajanekibi/c16877a7-2389-58d4-b7bc-7d115caa39eb/scratchpad/qc-irlanda-kitligi/r2/`
+
+### Karar: UYGUN DEĞİL (revize_birimi: grafiker)
+
+Dokuz düzeltmeden sekizi tam. 517'deki kale hâlâ "kralın yanında minik kale" gibi okunuyor. Tek kalan iş bu ve küçük bir düzeltme.
+
+### İlk turun 9 maddesi
+
+| # | Sahne | Durum | Not |
+|---|---|---|---|
+| 1 | 496 | ✔ | Kulübe kalktı. Bel hizasındaki kuru taş duvar insan ölçeğinde, başlarla çakışmıyor. |
+| 2 | 509 | ✔ | Kapılar (≈ 640 px) silindir şapkalı adamdan yüksek. Tuğla cephe kadrajın tepesine uzanıyor, oyuncak izlenimi yok. |
+| 3 | 520 | ✔ | Yeşil kapı insandan yüksek. Plaket küçük ve göz hizasında. |
+| 4 | 517 | ✘ (kısmen) | Aşağıya bakın. |
+| 4b | 494, 495, 507, 513 | ✔ | 495'teki kulübe kalktı. 507'de çifte kapı silindir şapkadan yüksek. 513'te kapı ve pencereler insan ölçeğinde. 494 için aşağıdaki karara bakın. |
+| 5 | 506 | ✔ | Üç gemi ayrı ve sayılabilir: büyük, orta ve küçük gövde, her biri kendi su çizgisinde. Gövde altı rıhtımın üstünde suda. Baş ıstralyaları bir sonraki geminin direklerine uzanıyor ama gövdeler ve direk grupları açıkça ayrı. |
+| 6 | 491 | ✔ | Üç gemi ayrı ve sayılabilir, sisli gece paleti korunmuş. Kapanış karesinde (`k14700`, `k14880`) "efsanedeki üç gemi mi?" sorusunun altında üç gemi açıkça seçiliyor. Kart okunuyor, gemiler yazı bandına girmiyor. |
+| 7 | 505, 513, 509 | ✔ | 505'te hamal geniş kenarlı keçe şapkalı, dönemine uygun. 513'teki ve 509'daki gazeteci çocuğun kasketi basık, yumuşak, kısa siperlikli; beyzbol şapkası izlenimi yok. |
+| 8 | avizeler | ✔ | Kapak, 498, 499, 503, 521: tavanda yarım görünen nesne kalmamış. |
+| 9 | pencere ve yazı bandı | ✔ | Kapak, 498, 499, 503, 511, 521: pencere, perde, tablo ve kornişler kartın son satırının altından başlıyor. En yakın durum 511 (pencerenin üst kenarı y ≈ 560, son satır y ≈ 465): arada boşluk var. |
+
+### 494 kapı istisnası: kabul
+
+Kapı (≈ 605 px) ayaktaki adamın başından yüksek, fesiyle aşağı yukarı aynı boyda. Kapının iki yanındaki geniş vitrinler cepheye gerçek boyut veriyor ve sahne oyuncak gibi okunmuyor. Brifteki koşul ("kapı insandan yüksek ve oyuncak gibi okunmuyor") sağlanıyor; istisna kabul edildi.
+
+### Kalan zorunlu düzeltme (kare | yer | sorun | düzeltme)
+
+| # | Kare (sahne) | Yer | Sorun | Düzeltme |
+|---|---|---|---|---|
+| 1 | sahne517, k10000, k10450 (517) | orta, bayrakla kral arasında (x ≈ 420-590, y ≈ 780-950) | Kale küçültülmüş ama ufka alınmamış. Bayrağın ucuna ve kalkanın üst kenarına yapışık duruyor ve kralın yüzüyle aynı hizada. Sahnenin en parlak ve en keskin konturlu nesnesi; puslu değil. Bu yüzden derinlik okunmuyor: kral bir kale maketini tutuyor ya da kale havada duruyor gibi görünüyor. İlk turda kaçınılması istenen "kralın arkasında minik kale" görüntüsü sürüyor. | Kaleyi gerçekten uzağa al: tabanını tepe çizgisine (y ≈ 740-770) oturt, bayrağa, kalkana ve krala değmeyecek bir yere koy (ör. solda x ≈ 60-200 ya da kralın sağında). Rengini gökyüzü grisine yaklaştır, koyu konturu incelt ya da kaldır, gölgesini zayıflat. Böylece puslu ve uzak okunur. |
+
+### Yeni hata taraması
+
+Ölçek, gözsüz yüz, havada nesne, kenarda kesilme, yazı bandı, dönem dışı öğe ve figür çakışması için yeni bir hata bulunmadı. Bütün yüzlerde göz var. Kâğıt, kese, gazete ve bohça figürlerin elinde. 495'teki kürek ağzı elde tutuluyor. 507, 517 ve 520'de soluk görünen kart yazıları, kart geçişindeki solma anına denk gelmiş. Aynı sahnelerin başka anlarında (`k6390`, `k11940`) yazılar tam parlaklıkta.
+
+### İyileştirme önerileri (reddetme nedeni değil)
+
+- **Kapak:** Başlık ve alt başlık hâlâ aynı boyda, dört satır. Okunuyor ve figürlerle çakışmıyor. Gerçek boy farkı için TimurSeri.tsx'te ayrı alt başlık boyu verilmesi bir sonraki işte de önerilir.
+- **494:** Peykede oturan adamın kaftanı, peykenin üstüne yayılmış koni biçiminde bir kütle gibi duruyor. Bağdaş kuran bacaklar seçilmiyor. Daha net bir oturuş silueti iyi olur.
+- **506:** Öndeki iki geminin baş ıstralyaları bir sonraki geminin direklerine kadar uzanıyor. Kısaltılırsa gemiler daha da temiz ayrılır.
+- **517:** Taç hâlâ başa göre büyük (ilk turdaki not).
+
+### Değerlendirme (sahibe gösterilecek)
+
+Grafiker ilk turdaki dokuz noktanın sekizini temiz biçimde düzeltti. Binalar artık insan ölçeğinde, gemi sahnelerinde üç gemi tek tek sayılıyor ve kapanış sorusunun altında da üç gemi açıkça görünüyor. Beyzbol şapkası, yarım avizeler ve yazı bandına giren pencereler kalmadı. Kalan tek sorun 517'deki kale: küçültülmüş ama ufka alınmamış, bayrakla kalkanın arasında kral boyunda bir maket gibi duruyor. Kale tepe çizgisine taşınıp soluklaştırılınca video yayına hazır.
