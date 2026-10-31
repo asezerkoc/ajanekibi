@@ -12,12 +12,13 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from PIL import ImageDraw  # noqa: E402
 
-from ciz import (_ac, agac, cicek, duman, figur, hex2, piksel, sehir, taslar, temas_golgesi, tug,  # noqa: E402
+from ciz import (_ac, at, cicek, duman, figur, hex2, piksel, sehir, taslar, temas_golgesi, tug,  # noqa: E402
                  yeni, yurt, zemin_y)
 from sahneler import gokyuzu, uzak, orta, on, sprite, duz  # noqa: E402
-from timur_figur import kisi, oturan, atli, koyun, deve, yatan, otag  # noqa: E402
+from timur_figur import kisi, oturan, atli, koyun, deve, yatan  # noqa: E402
 from timur import ic_mekan, mumluk, kandil, kalabalik, hava, kar_ortusu  # noqa: E402
-from kayip_mezar import hoyuk  # noqa: E402
+from sahneler import GW  # noqa: E402
+from kayip_mezar import hoyuk, cam  # noqa: E402
 
 KARE = 24      # sprite kare sayısı (SKILL.md)
 PAY = 135      # orta/ön plan yan payı (SKILL.md)
@@ -70,10 +71,6 @@ def s_kisi(yakin, oran=0.30):
 
 def s_oturan(yakin, oran=0.26):
     return olcek("oturan", yakin, lambda t, s, z: figur(t, oturan, 280, z, s, **YOLLIG), oran)
-
-
-def s_yazit(yakin, oran=0.36, **kw):
-    return olcek(("yazit", tuple(sorted(kw.items()))), yakin, lambda t, s, z: tas(t, 280, z, s, **kw), oran)
 
 
 def _kz(yakin, taban=634, h=300):
@@ -519,14 +516,6 @@ def _oda(no, duvar, cini, pencere=None, zemin_renk=("#4a3a2e", "#3e3026", "#3226
     ic_mekan(no, duvar=duvar, kemer=kemer, cini=cini, pencere=pencere, zemin_renk=zemin_renk, isik="#f8c060", hali=hali)
 
 
-def _sigar(taban, yakin, yazi_alt, odak=None, pay=20):
-    """Yazının altına sığan en büyük figür oranı (kadraj yüksekliğine göre), sahne sonu yakınlaşmasıyla."""
-    oy = odak if odak is not None else taban - 12
-    z = yakin * 1.06
-    zemin_ekran = 2 * (oy + (taban - oy) * z)
-    return (zemin_ekran - yazi_alt - pay) / (1920 * 1.06)
-
-
 def _s_sigdir(cizim, hmax, s0=0.8, s1=12.0):
     """Çizimin kutu yüksekliği hmax'ı (ızgara) aşmayan en büyük s (0.1 adım)."""
     s, iyi = s0, s0
@@ -541,12 +530,654 @@ def _s_sigdir(cizim, hmax, s0=0.8, s1=12.0):
     return iyi
 
 
-def _arka_yazit(taban, yakin, yazi_alt, geri=14, oran_ust=None, odak=None, **kw):
-    """Arka sıradaki (zemini geri px yukarıda) yazıt taşının ölçeği: tepesi yazının altında kalır."""
+def _orta_kontrol(no, ekle, sx, taban, yakin, yazi_alt, odak=None):
+    """Orta plana eklenen nesnelerin görünür bölümdeki en yüksek pikseli yazının altında kalmalı."""
+    img = yeni(GW, 960)
+    ekle(img, duz(588))
+    a = int(PAY + sx - 270 / yakin)
+    b = int(PAY + sx + 270 / yakin)
+    bb = img.crop((a, 0, b, 960)).getchannel("A").getbbox()
+    if bb:
+        _orta_sinir(no, bb[1], taban, yakin, yazi_alt, odak)
+
+
+# Ekran yazısının alt kenarı (ekran px, 1080x1920): kartların satır sayısı, en uzun satırı, boy ve yaziY'den
+# TimurSeri.tsx Yazi bileşeninin formülüyle hesaplandı (sahne 130'a kapak yazısı dahil).
+YAZI_ALT = {130: 613, 131: 644, 132: 546, 133: 589, 134: 600, 135: 546, 136: 576, 137: 559, 138: 529, 139: 545,
+            140: 546, 141: 539, 142: 626, 143: 539, 144: 568, 145: 546, 146: 559, 147: 594, 148: 566, 149: 608,
+            150: 559, 151: 546, 152: 576, 153: 566, 154: 556, 155: 566, 156: 599, 157: 576, 158: 545, 159: 546,
+            160: 568, 161: 507}
+DIS = dict(w=400, h=230, taban=632)       # dış mekân sprite'ı (taban 632)
+IC = dict(w=400, h=300, taban=634)        # iç mekân sprite'ı (taban 634, kandil zinciri tavana)
+
+
+def _hmax(no, yk, taban, geri=0, odak=None):
+    """Zemini (taban - geri) olan bir figürün yazıya değmeden alabileceği en büyük boy (ızgara px), sahne sonu
+    yakınlaşmasıyla (yakin·1.06) ve 20 px payla."""
     oy = odak if odak is not None else taban - 12
-    z = yakin * 1.06
-    ust_izgara = oy + ((yazi_alt + 20) / 2 - oy) / z
-    hmax = (taban - geri) - ust_izgara
-    if oran_ust:
-        hmax = min(hmax, oran_ust * 960 / yakin)
-    return _s_sigdir(lambda t, s, z_: tas(t, 300, z_, s, **kw), hmax)
+    ust = oy + ((YAZI_ALT[no] + 20) / 2 - oy) / (yk * 1.06)
+    return (taban - geri) - ust
+
+
+def _boy(no, yk, cizim, hedef, ic=False, geri=0):
+    """Hedef oranı (kadraj yüksekliğinin) karşılayan en küçük ölçek; yazıya değecekse sığan en büyük ölçek."""
+    taban = IC["taban"] if ic else DIS["taban"]
+    hm = _hmax(no, yk, taban, geri)
+    hh = hedef * 960 / yk
+    if hh <= hm:
+        s = olcek(("boy", no, id(cizim)), yk, cizim, hedef)
+        t = yeni(600, 560)
+        cizim(t, s, duz(557, 600))
+        bb = _bb(t)
+        if bb[3] - bb[1] <= hm:
+            return s
+    return _s_sigdir(cizim, hm)
+
+
+def _K(no, yk, hedef=0.30, ic=False):
+    """Ön sıradaki insanların ölçeği: kadrajın %30'u; yazıya sığmıyorsa sığan en büyük ölçek."""
+    return _boy(no, yk, lambda t, s, z: figur(t, kisi, 280, z, s, **BILGE), hedef, ic)
+
+
+def _yazit_s(no, yk, hedef=0.38, geri=0, **kw):
+    """Yazıt taşı ölçeği (ön sırada ya da geri px arkada)."""
+    return _boy(no, yk, lambda t, s, z: tas(t, 280, z, s, **kw), hedef, geri=geri)
+
+
+def _bitir(no, kare, yk, ic=False, esik=0.75):
+    d = IC if ic else DIS
+    _ust_sinir(no, kare, d["w"], d["h"], d["taban"], yk, YAZI_ALT[no])
+    _spr(no, d["w"], d["h"], kare, yk, esik)
+
+
+# ==========================================================================
+# SAHNELER
+# ==========================================================================
+def sahne130():
+    """Kart 1-2 (ve kapak): Moğolistan bozkırı, şafak. Kaplumbağa kaideli yazıt taşı yalnız; harfleri yavaşça
+    ışıyıp söner (taş konuşuyor), çiçekler rüzgârda."""
+    yk = 2.8
+    ekle = lambda img, z: figur(img, taslar, PAY + 335, duz(588), 0.9)  # noqa: E731  uzakta ovoo
+    _orta_kontrol(130, ekle, 270, 632, yk, YAZI_ALT[130])
+    _dis(130, "safak", ekle=ekle)
+    s = _yazit_s(130, yk, 0.38)
+    K = _K(130, yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        tas(t, 185, z, s, isik=0.75, f=f, dalga=True, tohum=1)
+        for x, ph in ((116, 0.0), (288, 0.4)):
+            figur(t, cicek, x, z, round(0.32 * K, 1), (f + ph) % 1)
+
+    _bitir(130, kare, yk)
+
+
+def sahne131():
+    """Kart 3: Kopenhag, 1893, gece. Çalışma odası: kitaplık, masada kâğıtlar ve taşın fotoğrafı, mum;
+    Thomsen ayakta bir fotoğrafa bakar."""
+    _oda(131, duvar=("#2a2420", "#3a3028", "#4a3c30"), cini="#5a3a22", pencere=("#14203a", "#22304c"))
+    yk = 2.8
+    K = _K(131, yk, ic=True)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 205, 0, f, zincir=_kz(yk))
+        figur(t, kitaplik, 150, duz(z[0] - 8, t.width), round(0.92 * K, 1), tohum=131)
+        u = figur(t, masa, 205, z, K, yuk="kagit")
+        masa_mumu(t, 172, u, f, round(0.8 * K, 1))
+        figur(t, avrupali, 266, z, K, **THOMSEN, sac=THOMSEN_SAC, yon=-1, silah="mektup", kol=0.30 + 0.04 * SIN(f))
+
+    _bitir(131, kare, yk, ic=True, esik=0.7)
+
+
+def sahne132():
+    """Kart 4-5: Thomsen yakın plan; elli bir yaşında Danimarkalı dilbilimci, elinde fotoğraf. Tek şamdan, kandil."""
+    _oda(132, duvar=("#2a2420", "#3a3028", "#4a3c30"), cini="#5a3a22", pencere=("#14203a", "#22304c"))
+    yk = 3.2
+    K = _K(132, yk, 0.33, ic=True)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 262, 0, f, zincir=_kz(yk))
+        mumluk(t, 140, z, f, 3)
+        figur(t, avrupali, 210, z, K, **THOMSEN, sac=THOMSEN_SAC, yon=-1, silah="mektup", kol=0.32 + 0.05 * SIN(f))
+
+    _bitir(132, kare, yk, ic=True)
+
+
+def sahne133():
+    """Kart 6: Orhun Vadisi, 732. Yazıt taşı dikilmiş; iki işçi kaidenin dibine toprak atar, Bilge Kağan izler.
+    Orta planda iki atlı bekler."""
+    yk = 2.6
+    K = _K(133, yk)
+    sa = round(0.5 * K * 2.9 / 2.6, 1)
+
+    def ekle(img, z):
+        for x in (318, 348):
+            figur(img, atli, PAY + x, duz(586), sa, -1, dur=True, govde="#5a3a22", bas="bork", bas_renk="#3a2a1a")
+
+    _orta_kontrol(133, ekle, 270, 632, yk, YAZI_ALT[133])
+    _dis(133, "gun", ekle=ekle)
+    st = _yazit_s(133, yk, 0.40, geri=16)
+
+    def kare(t, z, i):
+        f = i / KARE
+        tas(t, 152, duz(z[0] - 16, t.width), st, tohum=2)
+        for j, (x, yon) in enumerate(((118, 1), (196, -1))):
+            ph = (f + j * 0.5) % 1
+            figur(t, kisi, x, z, K, govde=("#6a5a3a", "#4a5a6a")[j], bas="bork", bas_renk="#5a3a22", yon=yon,
+                  silah="kurek", kol=0.35 + 0.3 * SIN(ph), kemer=None)
+        figur(t, kisi, 268, z, K, **BILGE, yon=-1, kol=0.12)
+
+    _bitir(133, kare, yk, esik=0.7)
+
+
+def sahne134():
+    """Kart 7: Kül Tigin'in höyüğü, alacakaranlık. Eyerli, binicisiz atı başı önde bekler; koyunlar otlar (koyun yılı)."""
+    yk = 2.8
+    _dis(134, "aksam")
+    K = _K(134, yk)
+    sa = round(K * 2.9 / 2.6, 1)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, hoyuk, 160, z, round(0.36 * K, 1))
+        figur(t, at, 252, z, sa, -1, "#5a3a24", "#1a120c", eyer=True, dur=True, bas=0.55 + 0.1 * SIN(f),
+              kuyruk=0.5 * SIN(f, 2))
+        for j, x in enumerate((122, 196)):
+            figur(t, koyun, x, z, round(0.55 * K, 1), (1, -1)[j], (f + j * 0.37) % 1)
+
+    _bitir(134, kare, yk, esik=0.7)
+
+
+def sahne135():
+    """Kart 8-9: taş ustası çekiçle kazır; yazıcı Yollıg Tigin bağdaş kurmuş, yazıyı kâğıda yazar. Gündüz."""
+    yk = 2.8
+    _dis(135, "gun")
+    K = _K(135, yk)
+    st = _yazit_s(135, yk, 0.40, geri=14)
+
+    def kare(t, z, i):
+        f = i / KARE
+        tas(t, 182, duz(z[0] - 14, t.width), st, tohum=3, isik=0.35 * (f > 0.5))
+        figur(t, oturan, 135, z, round(0.95 * K, 1), **YOLLIG, yon=1, el="kalem")
+        figur(t, kisi, 246, z, K, govde="#6a5a3a", bas="bork", bas_renk="#4a3222", yon=-1, silah="kazma",
+              kol=0.45 + 0.35 * SIN(f, 2), kemer=None)
+
+    _bitir(135, kare, yk, esik=0.7)
+
+
+def sahne136():
+    """Kart 10: Bilge Kağan'ın otağı, gece. Kağan sedirde yatar (nefes yavaşlar), başucunda bir hizmetkâr; şamdan ve kandil."""
+    _oda(136, duvar=("#3a1614", "#4a1e1a", "#5a2620"), cini="#c8a040",
+         zemin_renk=("#5a3a2a", "#4a3022", "#3e281c"), kemer="#2a100c", hali=True)
+    yk = 2.8
+    K = _K(136, yk, ic=True)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 228, 0, f, zincir=_kz(yk))
+        mumluk(t, 118, z, f, 3)
+        figur(t, yatan, 182, z, round(0.62 * K, 1), govde="#7a1e22", bas=None, sakal="#2a1a12", yon=1,
+              ortu="#c8b890", nefes=0.5 + 0.5 * SIN(f))
+        figur(t, kisi, 270, z, K, govde="#2a2a3a", bas="bork", bas_renk="#2a1a14", yon=-1, kol=0.02, kemer=None)
+
+    _bitir(136, kare, yk, ic=True, esik=0.7)
+
+
+def sahne137():
+    """Kart 11: 735. Aynı vadide iki yazıt taşı yan yana: Kül Tigin'in ve Bilge Kağan'ın. Gündüz, rüzgârda çiçekler."""
+    yk = 2.6
+    _dis(137, "gun")
+    s = _yazit_s(137, yk, 0.36)
+    K = _K(137, yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        tas(t, 138, z, s, tohum=4)
+        tas(t, 246, z, s, tohum=5, tas_renk="#c0b8a6")
+        figur(t, cicek, 196, z, round(0.3 * K, 1), f)
+
+    _bitir(137, kare, yk, esik=0.7)
+
+
+def sahne138():
+    """Kart 12: Tuul vadisi. Yaşlı danışman Tonyukuk, sağlığında diktirdiği iki kaba dikili taşın yanında, asasına dayanır."""
+    yk = 2.8
+    _dis(138, "safak", dag_y=(410, 456))
+    K = _K(138, yk)
+    st = _yazit_s(138, yk, 0.36, geri=10, kaplumbaga=False, tas_renk="#9a948a")
+
+    def kare(t, z, i):
+        f = i / KARE
+        arka = duz(z[0] - 10, t.width)
+        tas(t, 140, arka, st, kaplumbaga=False, tas_renk="#9a948a", tohum=6)
+        tas(t, 186, arka, round(st * 0.9, 1), kaplumbaga=False, tas_renk="#8e887e", tohum=7)
+        figur(t, kisi, 258, z, K, **TONYUKUK, yon=-1, silah="sopa", kol=0.05 + 0.03 * SIN(f), kemer="#8a7a5a")
+
+    _bitir(138, kare, yk, esik=0.7)
+
+
+def sahne139():
+    """Kart 13: yüzyıllar. Kar fırtınası; kağanlık yıkılmış, taş yalnız. Tepesinde ve kaidesinde kar birikmiş,
+    harfleri hâlâ soluk ışıkla kıpırdar."""
+    yk = 2.8
+    _dis(139, "kar")
+    kar_ortusu(139)
+    hava(139, "kar", 260, renk="#f4f8ff", egim=0.45)
+    s = _yazit_s(139, yk, 0.38, kar=True)
+
+    def kare(t, z, i):
+        f = i / KARE
+        tas(t, 192, z, s, kar=True, isik=0.55, f=f, dalga=True, tohum=1)
+
+    _bitir(139, kare, yk, esik=0.7)
+
+
+def sahne140():
+    """Kart 14: Poltava, 1709. Barut dumanlı gri ova; İsveçli subay Strahlenberg iki Rus askerinin arasında
+    esir, sola yürür (tüfekler omuzda)."""
+    yk = 2.8
+
+    def ekle(img, z):
+        for k, x in enumerate((205, 330)):
+            duman(img, PAY + x, 586, 36, 140 + k, faz=0.0, renk="#b8b2a8", ruzgar=0.5, genislik=1.4)
+
+    _orta_kontrol(140, ekle, 270, 632, yk, YAZI_ALT[140])
+    _dis(140, "duman", ekle=ekle)
+    K = _K(140, yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        for j, x in enumerate((128, 262)):
+            figur(t, avrupali, x, z, K, govde="#2a5a3a", sac="#3a2a1a", bas="sapka", bas_renk="#1a1a1e", yon=-1,
+                  adim=(f + j * 0.5) % 1, silah="sopa")
+        figur(t, avrupali, 195, z, K, govde="#2a4a8a", sac="#5a3a22", bas="sapka", bas_renk="#1a1a1e", yon=-1,
+              adim=(f + 0.25) % 1)
+
+    _bitir(140, kare, yk, esik=0.75)
+
+
+def sahne141():
+    """Kart 15-16: Sibirya, Yenisey boyu, kar. Çamlar; Strahlenberg (kürk kalpak) garip işaretli kaba bir taşın
+    önünde durmuş, kâğıda kopyasını çıkarır."""
+    yk = 2.8
+
+    def ekle(img, z):
+        for x, s_ in ((205, 1.3), (232, 1.1), (338, 1.4)):
+            figur(img, cam, PAY + x, duz(588), s_, renk="#2a4a3e", isik="#e8f0f8")
+
+    _orta_kontrol(141, ekle, 270, 632, yk, YAZI_ALT[141])
+    _dis(141, "kar", ekle=ekle)
+    kar_ortusu(141)
+    hava(141, "kar", 160, renk="#f4f8ff", egim=0.2)
+    K = _K(141, yk)
+    st = _s_sigdir(lambda t, s, z_: tas(t, 300, z_, s, kaplumbaga=False, boy=0.75), 0.9 * 15.5 * K)
+
+    def kare(t, z, i):
+        f = i / KARE
+        tas(t, 150, z, st, kaplumbaga=False, boy=0.75, tas_renk="#8a8478", tohum=8, kar=True)
+        figur(t, avrupali, 236, z, K, govde="#2a4a8a", sac="#5a3a22", bas="kalpak", bas_renk="#4a3a2a", yon=-1,
+              silah="mektup", kol=0.30 + 0.06 * SIN(f, 2))
+
+    _bitir(141, kare, yk, esik=0.7)
+
+
+def sahne142():
+    """Kart 17: akşam. Solda kaba Yenisey taşı, sağda kaplumbağalı Orhun taşı: aynı harfler, ikisinde birden ışır."""
+    yk = 2.6
+    _dis(142, "aksam")
+    s = _yazit_s(142, yk, 0.36)
+    sy = _yazit_s(142, yk, 0.27, kaplumbaga=False, boy=0.75)
+
+    def kare(t, z, i):
+        f = i / KARE
+        tas(t, 140, z, sy, kaplumbaga=False, boy=0.75, tas_renk="#8a8478", tohum=8, isik=0.8, f=f, dalga=True)
+        tas(t, 240, z, s, tohum=1, isik=0.8, f=(f + 0.5) % 1, dalga=True)
+
+    _bitir(142, kare, yk, esik=0.7)
+
+
+def sahne143():
+    """Kart 18: Orhun Vadisi, 1889. Gezgin Yadrintsev taşın önünde durur, eliyle gösterir; arkada çadırı, yük atı
+    ve uzakta ikinci taş."""
+    yk = 2.6
+    K = _K(143, yk)
+
+    def ekle(img, z):
+        figur(img, cadir, PAY + 196, duz(586), round(0.42 * K, 1))
+        figur(img, at, PAY + 300, duz(586), round(0.5 * K * 2.9 / 2.6, 1), -1, "#7a5a3a", "#2a1a12", dur=True,
+              bas=0.8, yuk="#8a6a3a")
+        tas(img, PAY + 345, duz(584), round(0.42 * K, 1), tohum=9)
+
+    _orta_kontrol(143, ekle, 270, 632, yk, YAZI_ALT[143])
+    _dis(143, "gun", ekle=ekle)
+    st = _yazit_s(143, yk, 0.40, geri=14)
+
+    def kare(t, z, i):
+        f = i / KARE
+        tas(t, 150, duz(z[0] - 14, t.width), st, tohum=1)
+        figur(t, avrupali, 248, z, K, govde="#5a4a3a", sac="#3a2a1a", sakal="#3a2a1a", bas="kalpak",
+              bas_renk="#3a2a1a", yon=-1, kol=0.40 + 0.04 * SIN(f))
+
+    _bitir(143, kare, yk, esik=0.7)
+
+
+def sahne144():
+    """Kart 19: 1890, Fin-Ugor Cemiyeti'nin seferi. Fotoğrafçı tripodlu makinesini taşa çevirir; yanında
+    biri kopya çıkarır."""
+    yk = 2.8
+    _dis(144, "gun")
+    K = _K(144, yk)
+    st = _yazit_s(144, yk, 0.40, geri=14)
+
+    def kare(t, z, i):
+        f = i / KARE
+        tas(t, 140, duz(z[0] - 14, t.width), st, tohum=2)
+        figur(t, avrupali, 226, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
+              bas_renk="#3a3a2a", yon=-1, silah="kamera", kol=0.1)
+        figur(t, avrupali, 274, z, K, govde="#4a4a3a", sac="#5a3a22", yon=-1, silah="mektup", kol=0.3 + 0.06 * SIN(f, 2))
+
+    _bitir(144, kare, yk, esik=0.7)
+
+
+def sahne145():
+    """Kart 20: 1891, Rus seferi. Ortada ak sakallı Radloff, iki yanında Ruslar; hepsinin elinde kopya kâğıtları.
+    Arkada (orta planda) taş."""
+    yk = 2.8
+    K = _K(145, yk)
+    ekle = lambda img, z: tas(img, PAY + 300, duz(586), round(0.45 * K, 1), tohum=4)  # noqa: E731
+    _orta_kontrol(145, ekle, 270, 632, yk, YAZI_ALT[145])
+    _dis(145, "gun", ekle=ekle)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, avrupali, 136, z, K, govde="#4a5a4a", sac="#3a2a1a", bas="kalpak", bas_renk="#3a2a1a", yon=1,
+              silah="mektup", kol=0.3)
+        figur(t, avrupali, 262, z, K, govde="#5a5a4a", sac="#3a2a1a", sakal="#3a2a1a", bas="kalpak",
+              bas_renk="#2a2a2a", yon=-1, silah="mektup", kol=0.3 + 0.05 * SIN(f))
+        figur(t, avrupali, 200, z, K, govde="#3a3a46", sac="#e8e4dc", sakal="#e8e4dc", bas="kasket",
+              bas_renk="#3a3a40", yon=1, silah="mektup", kol=0.36 + 0.05 * SIN(f, 2))
+
+    _bitir(145, kare, yk, esik=0.75)
+
+
+def sahne146():
+    """Kart 21-22: Kül Tigin taşı yakın plan; ön yüzde Göktürk harfleri, yan yüzde Çince yazı soluk kızıl ışıkla
+    belirir (Çin imparatoru Xuanzong'un sözleri)."""
+    yk = 3.0
+    _dis(146, "gun")
+    s = _yazit_s(146, yk, 0.38, yuz="iki")
+
+    def kare(t, z, i):
+        f = i / KARE
+        tas(t, 190, z, s, yuz="iki", cin_isik=0.8 + 0.2 * (SIN(f) > 0), tohum=1)
+
+    _bitir(146, kare, yk, esik=0.7)
+
+
+def sahne147():
+    """Kart 23: Leiden, 1892, gündüz. Sinolog Schlegel masasında Çince yüzün kopyasını okur; arkada kitaplık."""
+    _oda(147, duvar=("#3a3a32", "#4a4a40", "#5a5a4e"), cini="#2a4a6a", pencere=("#8ab0d8", "#d8e8f4"))
+    yk = 2.8
+    K = _K(147, yk, ic=True)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 150, 0, f, zincir=_kz(yk))
+        figur(t, kitaplik, 150, duz(z[0] - 8, t.width), round(0.92 * K, 1), tohum=147, renk="#5a3a22")
+        figur(t, masa, 202, z, K, yuk="kagit", renk="#7a5030")
+        figur(t, avrupali, 266, z, K, govde="#3a3026", sac="#4a3a2a", yon=-1, silah="mektup", kol=0.3 + 0.05 * SIN(f))
+
+    _bitir(147, kare, yk, ic=True, esik=0.7)
+
+
+def sahne148():
+    """Kart 24: gece, bozkır. Taşın Türkçe yüzü karanlık ve sessiz; yalnız Çince yan yüz soluk ışır."""
+    yk = 2.8
+    _dis(148, "gece", yildiz=150)
+    s = _yazit_s(148, yk, 0.38, yuz="iki")
+
+    def kare(t, z, i):
+        tas(t, 190, z, s, yuz="iki", cin_isik=0.5, tas_renk="#a8a498", tohum=1)
+
+    _bitir(148, kare, yk, esik=0.7)
+
+
+def sahne149():
+    """Kart 25-26: Kopenhag, gece. Helsingfors albümü Thomsen'in masasında açık; Thomsen önündeki
+    bilinmeyen harflere bakar."""
+    _oda(149, duvar=("#2a2420", "#3a3028", "#4a3c30"), cini="#5a3a22", pencere=("#14203a", "#22304c"))
+    yk = 2.8
+    K = _K(149, yk, ic=True)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 150, 0, f, zincir=_kz(yk))
+        u = figur(t, masa, 195, z, K, yuk="album")
+        masa_mumu(t, 236, u, f, round(0.8 * K, 1))
+        figur(t, avrupali, 270, z, K, **THOMSEN, sac=THOMSEN_SAC, yon=-1, silah="mektup", kol=0.22 + 0.05 * SIN(f))
+
+    _bitir(149, kare, yk, ic=True, esik=0.7)
+
+
+def sahne150():
+    """Kart 27: bozkırda taşın önünde üç grup: Rus subayı, Türkolog Radloff ve fotoğraf makineli Fin.
+    Hepsi taşa bakar; hiçbiri çözümü yayımlamaz."""
+    yk = 2.6
+    K = _K(150, yk)
+    ekle = lambda img, z: tas(img, PAY + 172, duz(586), round(0.5 * K, 1), tohum=1)  # noqa: E731
+    _orta_kontrol(150, ekle, 270, 632, yk, YAZI_ALT[150])
+    _dis(150, "aksam", ekle=ekle)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, avrupali, 150, z, K, govde="#4a5a4a", sac="#3a2a1a", bas="kalpak", bas_renk="#3a2a1a", yon=-1,
+              silah="sopa")
+        figur(t, avrupali, 206, z, K, govde="#3a3a46", sac="#e8e4dc", sakal="#e8e4dc", bas="kasket",
+              bas_renk="#3a3a40", yon=-1, silah="mektup", kol=0.3 + 0.04 * SIN(f))
+        figur(t, avrupali, 270, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
+              bas_renk="#3a3a2a", yon=-1, silah="kamera", kol=0.1)
+
+    _bitir(150, kare, yk, esik=0.75)
+
+
+def sahne151():
+    """Kart 28-29: Danimarka Kraliyet Akademisi, 1893. Thomsen kürsüde konuşur, eli kalkar; solda dinleyiciler."""
+    _oda(151, duvar=("#2e2a3a", "#3a3648", "#484458"), cini="#c8a040", pencere=("#1a2a4a", "#26365a"),
+         zemin_renk=("#4a4040", "#3e3636", "#322c2c"))
+    yk = 2.8
+    K = _K(151, yk, ic=True)
+
+    def kare(t, z, i):
+        f = i / KARE
+        for x, ph in ((140, 0.0), (262, 0.4)):
+            kandil(t, x, 0, (f + ph) % 1, zincir=_kz(yk))
+        arka = duz(z[0] - 12, t.width)
+        for j, x in enumerate((128, 156, 184)):
+            figur(t, avrupali, x, arka, round(0.82 * K, 1), govde=("#2a2a34", "#3a2a2a", "#2a3a3a")[j],
+                  sac=("#3a2a1a", "#c8c0b0", "#5a4a3a")[j], sakal=(None, "#c8c0b0", None)[j], yon=1)
+        figur(t, avrupali, 252, z, K, **THOMSEN, sac=THOMSEN_SAC, yon=-1, kol=0.25 + 0.25 * max(0, SIN(f)))
+        figur(t, kursu, 226, z, K)
+
+    _bitir(151, kare, yk, ic=True, esik=0.7)
+
+
+def sahne152():
+    """Kart 30: gün doğumu, bozkır. Taşın bütün harfleri altın renginde yanar: bu kez biri anlıyor."""
+    yk = 2.8
+    _dis(152, "safak")
+    s = _yazit_s(152, yk, 0.38)
+    K = _K(152, yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        tas(t, 192, z, s, isik=1.0, tohum=1)
+        for x, ph in ((120, 0.2), (284, 0.7)):
+            figur(t, cicek, x, z, round(0.32 * K, 1), (f + ph) % 1, renk="#f4d24a")
+
+    _bitir(152, kare, yk, esik=0.7)
+
+
+def sahne153():
+    """Kart 31-32: üstte mavi gök, altta yağız (kara) yer; arada iki insan, bir erkek ve bir kadın, taşa bakar.
+    Taşın ilk harfleri ışır (Tengri)."""
+    yk = 2.6
+    _dis(153, "mavi")
+    K = _K(153, yk)
+    st = _yazit_s(153, yk, 0.40, geri=14)
+
+    def kare(t, z, i):
+        f = i / KARE
+        tas(t, 128, duz(z[0] - 14, t.width), st, tohum=1, isik=0.7, f=f, dalga=True)
+        figur(t, kisi, 222, z, K, **YOLLIG, yon=-1)
+        figur(t, kisi, 262, z, round(0.94 * K, 1), govde="#8a2a2a", bas="ortu", bas_renk="#c8a040", kadin=True,
+              yon=-1, kemer="#e0b040")
+
+    _bitir(153, kare, yk, esik=0.7)
+
+
+def sahne154():
+    """Kart 33: Bilge Kağan halkına seslenir, eli kalkık; önde iki dinleyici, orta planda halk."""
+    yk = 2.6
+    K = _K(154, yk)
+
+    def ekle(img, z):
+        kalabalik(img, duz(588), PAY + 176, PAY + 290, 10, 154, ("#3a5a8a", "#6a4a2a", "#2a5a3a", "#7a2a22"),
+                  s=round(0.5 * K, 1), yon=1)
+
+    _orta_kontrol(154, ekle, 270, 632, yk, YAZI_ALT[154])
+    _dis(154, "gun", ekle=ekle)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 132, z, K, govde="#4a5a6a", bas="bork", bas_renk="#5a3a22", yon=1, kemer=None)
+        figur(t, kisi, 176, z, round(0.94 * K, 1), govde="#8a5a2a", bas="ortu", bas_renk="#3a5a8a", kadin=True, yon=1)
+        figur(t, kisi, 262, z, K, **BILGE, yon=-1, kol=0.55 + 0.1 * SIN(f))
+
+    _bitir(154, kare, yk, esik=0.75)
+
+
+def sahne155():
+    """Kart 34-35: akşam. Çin elçisi bir Türk'e ipek uzatır; arkada (orta planda) ipek yüklü deve ve surlu Çin şehri."""
+    yk = 2.6
+    K = _K(155, yk)
+
+    def ekle(img, z):
+        figur(img, sehir, PAY + 250, PAY + 420, duz(588), round(0.45 * K, 1), duvar="#b89878", golge="#8a6a50",
+              cati="#3a5a4a", tohum=155)
+        figur(img, deve, PAY + 210, duz(586), round(0.42 * K * 2.9 / 2.6, 1), 1, yuk="#c8302a")
+
+    _orta_kontrol(155, ekle, 270, 632, yk, YAZI_ALT[155])
+    _dis(155, "aksam", ekle=ekle)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 140, z, K, **YOLLIG, yon=1, kol=0.15 + 0.1 * max(0, SIN(f)))
+        figur(t, ipek_sunan, 238, z, K, f=f, govde="#a8281e", bas="takke", bas_renk="#1a1a1e", sakal="#2a1a12",
+              yon=-1, kemer="#e0b040")
+
+    _bitir(155, kare, yk, esik=0.75)
+
+
+def sahne156():
+    """Kart 36: taşın iki yüzü aynı kadrajda: ön yüzde Göktürk harfleri altın, yan yüzde Çince yazı kızıl."""
+    yk = 3.0
+    _dis(156, "aksam")
+    s = _yazit_s(156, yk, 0.38, yuz="iki")
+
+    def kare(t, z, i):
+        f = i / KARE
+        tas(t, 188, z, s, yuz="iki", isik=1.0, f=f, dalga=True, cin_isik=1.0, tohum=1)
+
+    _bitir(156, kare, yk, esik=0.7)
+
+
+def sahne157():
+    """Kart 37-38: Bilge Kağan taşının yanında halkını uyarır gibi elini kaldırır; orta planda yurtlar ve dumanları."""
+    yk = 2.6
+    K = _K(157, yk)
+
+    def ekle(img, z):
+        for x, s_ in ((300, 0.42), (348, 0.36)):
+            b = figur(img, yurt, PAY + x, duz(588), round(s_ * K, 1))
+            duman(img, b[0], b[1], 14, 157 + x, faz=0.3)
+
+    _orta_kontrol(157, ekle, 270, 632, yk, YAZI_ALT[157])
+    _dis(157, "safak", ekle=ekle)
+    st = _yazit_s(157, yk, 0.40, geri=14)
+
+    def kare(t, z, i):
+        f = i / KARE
+        tas(t, 140, duz(z[0] - 14, t.width), st, tohum=1, isik=0.5, f=f, dalga=True)
+        figur(t, kisi, 240, z, K, **BILGE, yon=-1, kol=0.40 + 0.08 * SIN(f))
+
+    _bitir(157, kare, yk, esik=0.7)
+
+
+def sahne158():
+    """Kart 39: Petersburg, 1894. Radloff'un masasında basılmaya başlayan okumaları (kitap yığını); Radloff ayakta."""
+    _oda(158, duvar=("#2a3430", "#34403a", "#404c46"), cini="#6a2a2a", pencere=("#14203a", "#22304c"))
+    yk = 2.8
+    K = _K(158, yk, ic=True)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 150, 0, f, zincir=_kz(yk))
+        u = figur(t, masa, 190, z, K, yuk="kitap")
+        masa_mumu(t, 222, u, f, round(0.8 * K, 1))
+        figur(t, avrupali, 266, z, K, govde="#3a3a46", sac="#e8e4dc", sakal="#e8e4dc", yon=-1, silah="mektup",
+              kol=0.3 + 0.05 * SIN(f))
+
+    _bitir(158, kare, yk, ic=True, esik=0.7)
+
+
+def sahne159():
+    """Kart 40: Tuul vadisi, alacakaranlık. Tonyukuk'un iki taşı yalnız; kimse bilmiyor. Koyunlar otlar."""
+    yk = 2.8
+    _dis(159, "aksam", dag_y=(410, 456))
+    st = _yazit_s(159, yk, 0.36, kaplumbaga=False)
+    K = _K(159, yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        tas(t, 150, z, st, kaplumbaga=False, tas_renk="#9a948a", tohum=6)
+        tas(t, 198, z, round(st * 0.9, 1), kaplumbaga=False, tas_renk="#8e887e", tohum=7)
+        figur(t, koyun, 262, z, round(0.55 * K, 1), -1, f)
+
+    _bitir(159, kare, yk, esik=0.7)
+
+
+def sahne160():
+    """Kart 41: Kopenhag, şafak. Thomsen pencerenin önünde elinde kâğıtla durur; şafak ışığı odaya düşer."""
+    _oda(160, duvar=("#3a2c24", "#4a3a2e", "#5a4838"), cini="#5a3a22", pencere=("#e8a878", "#fff0c8"))
+    yk = 3.0
+    K = _K(160, yk, 0.32, ic=True)
+
+    def kare(t, z, i):
+        f = i / KARE
+        mumluk(t, 135, z, f, 1)
+        figur(t, avrupali, 210, z, K, **THOMSEN, sac=THOMSEN_SAC, yon=-1, silah="mektup", kol=0.4 + 0.04 * SIN(f))
+
+    _bitir(160, kare, yk, ic=True)
+
+
+def sahne161():
+    """Kart 42 (ve kapanış): gece, yıldızlı bozkır. Taşın harfleri yavaşça altın ışıkla akar."""
+    yk = 2.8
+    _dis(161, "gece", yildiz=170)
+    s = _yazit_s(161, yk, 0.38)
+
+    def kare(t, z, i):
+        f = i / KARE
+        tas(t, 192, z, s, isik=0.9, f=f, dalga=True, tas_renk="#aaa69a", tohum=1)
+
+    _bitir(161, kare, yk, esik=0.7)
+
+
+SAHNELER = {n: globals()[f"sahne{n}"] for n in range(130, 162)}
+
+if __name__ == "__main__":
+    for n in ([int(a) for a in sys.argv[1:]] or sorted(SAHNELER)):
+        SAHNELER[n]()
+        print("sahne", n, "tamam")
