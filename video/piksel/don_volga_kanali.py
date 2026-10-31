@@ -1054,9 +1054,9 @@ def sahne254():
     bas = []
 
     def ekle(img, z):
-        bas.append(figur(img, kayik_kutuk, PAY + 212, duz(590, img.width), 1.8, 1))
-        figur(img, kisi, PAY + 188, duz(590, img.width), 1.4, govde="#6a5a3a", bas="kalpak", bas_renk="#3a2a1a", yon=1, kol=0.3)
-    _gorunur(254, [182, 244], sx, sx, yk, pay=4)
+        bas.append(figur(img, kayik_kutuk, PAY + 220, duz(590, img.width), 1.8, 1))
+        figur(img, kisi, PAY + 197, duz(590, img.width), 1.4, govde="#6a5a3a", bas="kalpak", bas_renk="#3a2a1a", yon=1, kol=0.3)
+    _gorunur(254, [190, 250], sx, sx, yk, pay=4)
     _dis(254, "yaz", ekle=ekle)
     K = _K(254, yk, DT, ornek=NOGAY)
     bx, by = bas[0]
