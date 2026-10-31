@@ -11,7 +11,7 @@ export const CELEBI_MEHMED_SERI: Seri = {
   ses: "celebi-mehmed-paris-anlatim.mp3",
   bolumler: [
     { // KAPAK (hizala_seri bu bloğu atlar: kapak yazıları anlatımda yok)
-      no: 290, yakin: 2.6, kamera: 0,
+      no: 290, yakin: 2.8, kamera: 0, yaziY: 270,
       sprite: { w: 400, h: 220, fps: 8, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Paris'teki", "Elçi", "Bak, öğren, anlat"], sure: 2.0, boy: 112, renk: ALTIN },
@@ -19,7 +19,7 @@ export const CELEBI_MEHMED_SERI: Seri = {
     },
     // Toulon limanı, 1720 sonu: rıhtımda elçi ve Said, geride demirli gemi
     {
-      no: 290, yakin: 2.6, kamera: 8,
+      no: 290, yakin: 2.8, kamera: 8,
       sprite: { w: 400, h: 220, fps: 8, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Toulon limanı, 1720'nin sonu.", "Osmanlı elçisi karantinada.", "Paris'e gidemiyor."], sure: 5.97 }, // kart 1
@@ -101,7 +101,7 @@ export const CELEBI_MEHMED_SERI: Seri = {
     },
     // Paris, Mart 1721: kalabalık sokakta atlı elçi ve Said
     {
-      no: 300, yakin: 2.8, kamera: 12,
+      no: 300, yakin: 2.6, kamera: 12,
       sprite: { w: 400, h: 220, fps: 16, x: [250, 290], taban: 632 },
       yazilar: [
         { satirlar: ["Mart 1721. Paris.", "Sefaretname'ye göre", "şehir onu görmeye koşar."], sure: 4.87 }, // kart 13
@@ -277,7 +277,7 @@ export const CELEBI_MEHMED_SERI: Seri = {
     },
     // 1742: Said aynı Paris sokağında yalnız atlı
     {
-      no: 320, yakin: 2.8, kamera: 12,
+      no: 320, yakin: 2.6, kamera: 12,
       sprite: { w: 400, h: 220, fps: 18, x: [250, 290], taban: 632 },
       yazilar: [
         { satirlar: ["Bir iz daha var. 1742.", "Paris'e bir Osmanlı", "elçisi daha gelir. Adı Said."], sure: 5.58, renk: ALTIN }, // kart 42

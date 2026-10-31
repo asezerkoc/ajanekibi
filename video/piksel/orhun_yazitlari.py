@@ -94,7 +94,8 @@ def _kadraj(no, kare, w, h, yakin, esik):
         if not toplam or (bb[1] <= 1 and ust_satir > 12):
             raise RuntimeError(f"Sahne {no}: sprite yüksekliği (h={h}) yetmiyor ya da kare boş")
         tam = alfa.point(lambda v: 255 if v > 200 else 0).getbbox()      # tam opak pikseller (ışık halesi hariç)
-        if tam and (tam[0] < a + 2 or tam[2] > b - 2):
+        y2 = 270 / (yakin * 1.06)                                        # sahne sonu yakınlaşmasında görünen yarım
+        if tam and (tam[0] < w / 2 - y2 + 2 or tam[2] > w / 2 + y2 - 2):
             raise RuntimeError(f"Sahne {no}: kare {i}, figürler x {tam[0]}-{tam[2]}, görünür aralık {a}-{b}: "
                                "kenarda kesilen figür var")
         ici = sum(alfa.crop((a, 0, b, h)).histogram()[1:])
@@ -606,7 +607,7 @@ def sahne130():
     def kare(t, z, i):
         f = i / KARE
         tas(t, 185, z, s, isik=0.75, f=f, dalga=True, tohum=1)
-        for x, ph in ((116, 0.0), (288, 0.4)):
+        for x, ph in ((128, 0.0), (272, 0.4)):
             figur(t, cicek, x, z, round(0.32 * K, 1), (f + ph) % 1)
 
     _bitir(130, kare, yk)
@@ -662,8 +663,8 @@ def sahne133():
 
     def kare(t, z, i):
         f = i / KARE
-        tas(t, 152, duz(z[0] - 16, t.width), st, tohum=2)
-        for j, (x, yon) in enumerate(((118, 1), (196, -1))):
+        tas(t, 156, duz(z[0] - 16, t.width), st, tohum=2)
+        for j, (x, yon) in enumerate(((124, 1), (198, -1))):
             ph = (f + j * 0.5) % 1
             figur(t, kisi, x, z, K, govde=("#6a5a3a", "#4a5a6a")[j], bas="bork", bas_renk="#5a3a22", yon=yon,
                   silah="kurek", kol=0.35 + 0.3 * SIN(ph), kemer=None)
@@ -681,10 +682,10 @@ def sahne134():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, hoyuk, 152, z, round(0.4 * K, 1))
-        figur(t, at, 230, z, round(0.7 * sa, 1), -1, "#5a3a24", "#1a120c", eyer=True, dur=True, bas=0.55 + 0.1 * SIN(f),
+        figur(t, hoyuk, 158, z, round(0.4 * K, 1))
+        figur(t, at, 222, z, round(0.7 * sa, 1), -1, "#5a3a24", "#1a120c", eyer=True, dur=True, bas=0.55 + 0.1 * SIN(f),
               kuyruk=0.5 * SIN(f, 2))
-        for j, x in enumerate((128, 276)):
+        for j, x in enumerate((134, 264)):
             figur(t, koyun, x, z, round(0.45 * K, 1), (1, -1)[j], (f + j * 0.37) % 1)
 
     _bitir(134, kare, yk, esik=0.7)
@@ -699,8 +700,8 @@ def sahne135():
 
     def kare(t, z, i):
         f = i / KARE
-        tas(t, 182, duz(z[0] - 14, t.width), st, tohum=3, isik=0.35 * (f > 0.5))
-        figur(t, oturan, 135, z, round(0.95 * K, 1), **YOLLIG, yon=1, el="kalem")
+        tas(t, 186, duz(z[0] - 14, t.width), st, tohum=3, isik=0.35 * (f > 0.5))
+        figur(t, oturan, 141, z, round(0.95 * K, 1), **YOLLIG, yon=1, el="kalem")
         figur(t, kisi, 246, z, K, govde="#6a5a3a", bas="bork", bas_renk="#4a3222", yon=-1, silah="kazma",
               kol=0.45 + 0.35 * SIN(f, 2), kemer=None)
 
@@ -717,7 +718,7 @@ def sahne136():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 228, 0, f, zincir=_kz(yk))
-        mumluk(t, 118, z, f, 3)
+        mumluk(t, 126, z, f, 3)
         figur(t, yatan, 176, z, round(0.62 * K, 1), govde="#7a1e22", bas=None, sakal="#2a1a12", yon=1,
               ortu="#c8b890", nefes=0.5 + 0.5 * SIN(f))
         figur(t, kisi, 258, z, K, govde="#2a2a3a", bas="bork", bas_renk="#2a1a14", yon=-1, kol=0.02, kemer=None)
@@ -734,8 +735,8 @@ def sahne137():
 
     def kare(t, z, i):
         f = i / KARE
-        tas(t, 138, z, s, tohum=4)
-        tas(t, 246, z, s, tohum=5, tas_renk="#c0b8a6")
+        tas(t, 142, z, s, tohum=4)
+        tas(t, 245, z, s, tohum=5, tas_renk="#c0b8a6")
         figur(t, cicek, 196, z, round(0.3 * K, 1), f)
 
     _bitir(137, kare, yk, esik=0.7)
@@ -751,8 +752,8 @@ def sahne138():
     def kare(t, z, i):
         f = i / KARE
         arka = duz(z[0] - 10, t.width)
-        tas(t, 140, arka, st, kaplumbaga=False, tas_renk="#9a948a", tohum=6)
-        tas(t, 186, arka, round(st * 0.9, 1), kaplumbaga=False, tas_renk="#8e887e", tohum=7)
+        tas(t, 146, arka, st, kaplumbaga=False, tas_renk="#9a948a", tohum=6)
+        tas(t, 190, arka, round(st * 0.9, 1), kaplumbaga=False, tas_renk="#8e887e", tohum=7)
         figur(t, kisi, 258, z, K, **TONYUKUK, yon=-1, silah="sopa", kol=0.05 + 0.03 * SIN(f), kemer="#8a7a5a")
 
     _bitir(138, kare, yk, esik=0.7)
@@ -789,7 +790,7 @@ def sahne140():
 
     def kare(t, z, i):
         f = i / KARE
-        for j, x in enumerate((128, 262)):
+        for j, x in enumerate((136, 264)):
             figur(t, avrupali, x, z, K, govde="#2a5a3a", sac="#3a2a1a", bas="sapka", bas_renk="#1a1a1e", yon=-1,
                   adim=(f + j * 0.5) % 1, silah="sopa")
         figur(t, avrupali, 195, z, K, govde="#2a4a8a", sac="#5a3a22", bas="sapka", bas_renk="#1a1a1e", yon=-1,
@@ -832,7 +833,7 @@ def sahne142():
 
     def kare(t, z, i):
         f = i / KARE
-        tas(t, 140, z, sy, kaplumbaga=False, boy=0.75, tas_renk="#8a8478", tohum=8, isik=0.8, f=f, dalga=True)
+        tas(t, 145, z, sy, kaplumbaga=False, boy=0.75, tas_renk="#8a8478", tohum=8, isik=0.8, f=f, dalga=True)
         tas(t, 240, z, s, tohum=1, isik=0.8, f=(f + 0.5) % 1, dalga=True)
 
     _bitir(142, kare, yk, esik=0.7)
@@ -873,10 +874,10 @@ def sahne144():
 
     def kare(t, z, i):
         f = i / KARE
-        tas(t, 140, duz(z[0] - 14, t.width), st, tohum=2)
-        figur(t, avrupali, 226, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
+        tas(t, 144, duz(z[0] - 14, t.width), st, tohum=2)
+        figur(t, avrupali, 222, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
               bas_renk="#3a3a2a", yon=-1, silah="kamera", kol=0.1)
-        figur(t, avrupali, 274, z, K, govde="#4a4a3a", sac="#5a3a22", yon=-1, silah="mektup", kol=0.3 + 0.06 * SIN(f, 2))
+        figur(t, avrupali, 267, z, K, govde="#4a4a3a", sac="#5a3a22", yon=-1, silah="mektup", kol=0.3 + 0.06 * SIN(f, 2))
 
     _bitir(144, kare, yk, esik=0.7)
 
@@ -972,11 +973,11 @@ def sahne150():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, avrupali, 176, z, K, govde="#4a5a4a", sac="#3a2a1a", bas="kalpak", bas_renk="#3a2a1a", yon=-1,
+        figur(t, avrupali, 168, z, K, govde="#4a5a4a", sac="#3a2a1a", bas="kalpak", bas_renk="#3a2a1a", yon=-1,
               silah="sopa")
-        figur(t, avrupali, 226, z, K, govde="#3a3a46", sac="#e8e4dc", sakal="#e8e4dc", bas="kasket",
+        figur(t, avrupali, 220, z, K, govde="#3a3a46", sac="#e8e4dc", sakal="#e8e4dc", bas="kasket",
               bas_renk="#3a3a40", yon=-1, silah="mektup", kol=0.3 + 0.04 * SIN(f))
-        figur(t, avrupali, 280, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
+        figur(t, avrupali, 270, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
               bas_renk="#3a3a2a", yon=-1, silah="kamera", kol=0.1)
 
     _bitir(150, kare, yk, esik=0.75)
@@ -1013,7 +1014,7 @@ def sahne152():
     def kare(t, z, i):
         f = i / KARE
         tas(t, 192, z, s, isik=1.0, tohum=1)
-        for x, ph in ((120, 0.2), (284, 0.7)):
+        for x, ph in ((130, 0.2), (270, 0.7)):
             figur(t, cicek, x, z, round(0.32 * K, 1), (f + ph) % 1, renk="#f4d24a")
 
     _bitir(152, kare, yk, esik=0.7)
@@ -1029,9 +1030,9 @@ def sahne153():
 
     def kare(t, z, i):
         f = i / KARE
-        tas(t, 128, duz(z[0] - 14, t.width), st, tohum=1, isik=0.7, f=f, dalga=True)
-        figur(t, kisi, 222, z, K, **YOLLIG, yon=-1)
-        figur(t, kisi, 262, z, round(0.94 * K, 1), govde="#8a2a2a", bas="ortu", bas_renk="#e8e0d0", kadin=True,
+        tas(t, 140, duz(z[0] - 14, t.width), st, tohum=1, isik=0.7, f=f, dalga=True)
+        figur(t, kisi, 226, z, K, **YOLLIG, yon=-1)
+        figur(t, kisi, 264, z, round(0.94 * K, 1), govde="#8a2a2a", bas="ortu", bas_renk="#e8e0d0", kadin=True,
               yon=-1, kemer="#e0b040")
 
     _bitir(153, kare, yk, esik=0.7)

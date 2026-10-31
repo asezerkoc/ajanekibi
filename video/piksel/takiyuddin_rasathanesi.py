@@ -1104,7 +1104,7 @@ def sahne429():
 # 430 (kart 28): Ağustos 1578, Çıldır: ordu doğuya (sağa) yürür.
 # --------------------------------------------------------------------------
 def sahne430():
-    """Ağustos 1578, Çıldır yolunda: yaz öğleden sonrası, yüksek yayla; kızıl sancaklı atlı ve börklü yaya asker sağa
+    """Ağustos 1578, Çıldır yolunda: yaz öğleden sonrası, yüksek yayla; kızıl kaftanlı atlı ve börklü yaya asker sağa
     (doğuya) yürür, toynakların dibinden toz kalkar."""
     _gok(430, ["#6a8ab8", "#8aa2c4", "#a8b8cc", "#c8c8c8", "#dcd0b8", "#e8d8b0"])
     uzak(430, ["#8a8aa0", "#7a7a94"], ["#9a9488", "#8e887c"], ["#b8a070", "#a89464", "#98885a"],
@@ -1119,9 +1119,9 @@ def sahne430():
         f = i / KARE
         arka = duz(z[0] - 12, t.width)
         figur(t, kisi, 120, arka, round(0.85 * K, 1), govde="#3a5a8a", bas="bork", bas_renk="#f4f0e6", sakal="#3a2a1a",
-              yon=1, adim=(f + 0.3) % 1, silah="mizrak")
+              yon=1, adim=(f + 0.3) % 1, silah="kalkan")
         figur(t, atli, 205, z, sa, 1, faz=f, at_renk="#6b3f24", yele="#2b1a12", govde="#8a1e22", bas="sarik",
-              bas_renk="#f4f0e6", sakal="#2a1a12", silah="mizrak", bayrak="#c8302a", adim=0.45)
+              bas_renk="#f4f0e6", sakal="#2a1a12", silah="kilic", adim=0.45)    # mızrak/sancak yok: yazı bandına girmesin
         figur(t, kisi, 286, z, K, govde="#3a5a8a", bas="bork", bas_renk="#f4f0e6", sakal="#3a2a1a", yon=1,
               adim=(f + 0.6) % 1)
         _toz(t, 168, 299, f, 22, 430, genislik=1.2, renk="#c8b48a")
@@ -1479,7 +1479,7 @@ def sahne445():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, minyatur_kitap, 205, z, 7.6)
+        figur(t, minyatur_kitap, 205, z, 6.2)
         mumluk(t, 112, z, f, 2)
 
     _spr(445, 400, 300, kare, yk, esik=0.8)
