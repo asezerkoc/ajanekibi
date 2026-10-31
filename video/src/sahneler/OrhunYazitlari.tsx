@@ -133,7 +133,7 @@ export const ORHUN_SERI: Seri = {
         { satirlar: ["Bunlar Orhun'daki taşlar", "değil. Ama yazı akraba.", "Çözüme daha", "yüz altmış üç yıl var."], sure: 5.48, renk: ALTIN }, // kart 17
       ],
     },
-    // Kart 18: 1889, Yadrintsev taşı bulur; çadır, yük atı.
+    // Kart 18: 1889, Yadrintsev taşı bulur; arkada çadırı ve ikinci taş.
     {
       no: 143, yakin: 2.6, kamera: 10,
       sprite: { w: 400, h: 230, fps: 10, x: 270, taban: 632 },
