@@ -12,19 +12,21 @@ Fark: yeni araştırmacıların interneti var (kaynaklar URL'li); grafiker tarif
 → hizalama + bundle + 12 kare → 6-kalite-gorsel → düzeltme → render → `teslimler/video/pikseltarihim-<slug>.mp4` → `teslimler/gece/NN-<slug>.md`
 Son: `teslimler/gece/00-yayin-paketi.md` (10 açıklama, etiket, sabit yorum).
 
-## İlerleme (31 Ekim, son güncelleme)
+## İlerleme (31 Ekim, 21:15)
 | # | slug | metin zinciri | grafik | ses (Metin) | görsel KK | video |
 |---|---|---|---|---|---|---|
-| 1 | orhun-yazitlari | ✅ | ✅ | ✅ | ✅ 3. tur | ⏳ render |
-| 2 | matbaa-yasagi | ✅ | 🔁 düzeltme | ✅ | ❌ 1. tur | |
-| 3 | raziye-sultan | ✅ | ✅ | ✅ | ⏳ | |
-| 4 | don-volga-kanali | ✅ | ⏳ | ✅ | | |
-| 5 | celebi-mehmed-paris | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 6 | piri-reis | ✅ | 🔁 düzeltme | ✅ | ❌ 1. tur | |
-| 7 | hezarfen | ✅ | ✅ | ✅ | ✅ 2. tur | ⏳ sırada |
-| 8 | takiyuddin-rasathanesi | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 9 | toulon-1543 | ✅ | ⏳ | ✅ | | |
-| 10 | irlanda-kitligi | ✅ | ⏳ | ✅ | | |
+| 1 | orhun-yazitlari | ✅ | ✅ | ✅ | ✅ 3. tur | ✅ 4:07 |
+| 2 | matbaa-yasagi | ✅ | ✅ | ✅ | ✅ 2. tur | ✅ 4:33 |
+| 3 | raziye-sultan | ✅ | ✅ | ✅ | ✅ 3. tur | ✅ 4:18 |
+| 4 | don-volga-kanali | ✅ | ✅ | ✅ | ✅ 4. tur | ⏳ render |
+| 5 | celebi-mehmed-paris | ✅ | ✅ | ✅ | ✅ 2. tur | ✅ 4:08 |
+| 6 | piri-reis | ✅ | ✅ | ✅ | ✅ 3. tur | ✅ 4:30 |
+| 7 | hezarfen | ✅ | ✅ | ✅ | ✅ 2. tur | ✅ 3:55 |
+| 8 | takiyuddin-rasathanesi | ✅ | ✅ | ✅ | ✅ 2. tur | ✅ 4:02 |
+| 9 | toulon-1543 | ✅ | ✅ | ✅ | ✅ 2. tur | ✅ 4:21 |
+| 10 | irlanda-kitligi | ✅ | ✅ | ✅ | ✅ 3. tur | ⏳ sırada |
+
+Teslim dosyaları: `teslimler/gece/01-…10-*.md`; yayın paketi: `teslimler/gece/00-yayin-paketi.md`. Videolar: `teslimler/video/pikseltarihim-<slug>.mp4` (git dışında).
 
 Kesintiler: abonelik kullanım sınırı iki kez doldu (05:30 ve 08:40 civarı; 10 paralel ajan fazlaydı). 14:24'ten itibaren
 model Opus 5.5, aynı anda en çok 5 ajan.
