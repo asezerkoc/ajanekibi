@@ -280,10 +280,10 @@ def kazici(img, x, zemin, s=1.0, faz=0.0, yon=1, govde="#6a5a3a", bas="bork", ba
     kisi(img, x, zemin, s, govde=govde, bas=bas, bas_renk=bas_renk, sakal=sakal, yon=yon, kemer=kemer, diz=diz)
     d, y, yy, ust, omuz = _kol_sil(img, x, zemin, s, yon, govde, kemer, diz)
     sw = (0.5 - 0.5 * math.cos(2 * math.pi * faz)) ** 1.5
-    hx = (1.5 + 3.0 * sw) * s
+    hx = (2.6 + 1.9 * sw) * s
     hy = (ust - 3.5 * s) * (1 - sw) + (yy - 5.5 * s) * sw
     L = 7 * s
-    a_r = math.atan2(-1.0, -0.4)
+    a_r = math.atan2(-1.0, -0.12)
     a_v = _vurus_acisi(yy - 5.5 * s, L, s, y)
     a = a_r + (a_v - a_r) * sw
     P = lambda lx, ly: (x + lx * yon, ly)  # noqa: E731
@@ -874,7 +874,7 @@ PALET = {
                       tepe=["#5a3a44", "#4e323c"], ova=["#6a4a3e", "#5e4036", "#52382e"],
                       orta=["#6a5636", "#5e4c30", "#52422a", "#463824", "#3a2e1e"], kenar="#e0a060"),
 }
-SARAY = dict(duvar=("#2a3a2e", "#344a38", "#425a46"), kemer="#1a2a1e", cini="#2a6a9a", pencere=("#6a9ac8", "#f4e8c0"),
+SARAY = dict(duvar=("#2a3a2e", "#344a38", "#425a46"), kemer="#1a2a1e", cini="#2a6a9a", pencere=("#6a9ac8", "#7aa6d0"),
              zemin_renk=("#6a5a48", "#5a4c3c", "#4c4032"), isik="#f8c060", hali=True)
 MOSKOVA = dict(duvar=("#4a3020", "#5a3a26", "#6a462e"), kemer="#2a1a10", cini="#8a5a2a", pencere=("#14203a", "#22304c"),
                zemin_renk=("#5a4030", "#4c3628", "#402e22"), isik="#f8c060", hali=False)
@@ -892,16 +892,31 @@ def _gok(no, renkler, yildiz=0, y0=380, y1=490):
     kaydet(img, f"sahne{no}-gokyuzu.png")
 
 
-def _dis(no, p, ekle=None, dag_y=(474, 488), tepe_y=490, ova_y=496, yildiz=0, orta_ust=(548, 560), on_boy=130, on_=True):
+def _dis(no, p, ekle=None, dag=False, dag_y=(474, 488), tepe_y=490, ova_y=496, yildiz=0, orta_ust=(548, 560), on_boy=130, on_=True):
     P = PALET[p]
     _gok(no, P["gok"], yildiz)
-    uzak(no, P["dag"], P["tepe"], P["ova"], dag_y=dag_y, tepe_y=tepe_y, ova_y=ova_y)
+    if dag:
+        uzak(no, P["dag"], P["tepe"], P["ova"], dag_y=dag_y, tepe_y=tepe_y, ova_y=ova_y)
+    else:
+        _uzak_duz(no, P["tepe"], P["ova"], tepe_y, ova_y)
     orta(no, orta_ust, P["orta"], P["kenar"], ekle=ekle)
     if on_:
         o = P["orta"]
         on(no, [o[4], o[3], o[2]], P["kenar"], boy=on_boy)
     else:
         _bos_on(no)
+
+
+def _uzak_duz(no, tepe_renk, ova_renk, tepe_y=490, ova_y=496):
+    """Uzak plan, ağaçsız düz bozkır: dağ yok; ufukta çok alçak, yumuşak sırtlar ve dümdüz ova (dikişsiz)."""
+    from ciz import arazi, cayir_dokusu, sirt
+    img = yeni()
+    tepe = sirt(tepe_y, 4, no + 50, 2, 0, w=540, dongulu=True)
+    arazi(img, tepe, tepe_renk)
+    arazi(img, [ova_y] * 540, ova_renk, None, doku_tohum=no + 3)
+    cayir_dokusu(img, [ova_y] * 540, ova_renk, no + 4, yogunluk=0.02)
+    kaydet(img, f"sahne{no}-uzak.png")
+    return img
 
 
 def _sigdir(no, cizim, taban, geri=0, pay=6, s1=12.0, s0=1.0):
@@ -964,7 +979,7 @@ def sahne250():
     yk = 2.8
 
     def ekle(img, z):
-        for x, s_ in ((PAY + 330, 1.2), (PAY + 362, 1.1), (PAY + 160, 1.1)):
+        for x, s_ in ((PAY + 214, 1.2), (PAY + 246, 1.1)):
             figur(img, kon_cadir, x, duz(586, img.width), s_, renk="#e8e0cc", serit="#b8281e")
         d = ImageDraw.Draw(img)
         d.ellipse([PAY + 196, 637, PAY + 214, 643], fill=hex2("#5a4028"))                # ilk vuruşun çukuru
@@ -973,7 +988,7 @@ def sahne250():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kazici, 150, z, K, (f * 2) % 1 if False else f, 1, **AZAP[0])
+        figur(t, kazici, 150, z, K, f, 1, **AZAP[0])
         figur(t, kisi, 252, duz(z[0] - 8, t.width), round(0.95 * K, 1), **KASIM, yon=-1, kol=0.04 * (1 + SIN(f)))
 
     _spr(250, DW, 230, kare, yk)
@@ -1032,16 +1047,16 @@ def sahne253():
 
 
 def sahne254():
-    """Kart 7: Perevoloka, yaz: arkada kütükler üstünde karadan çekilen tekne ve onu iten iki adam (gemi ölçeğinde);
-    önde halatı omzundan geçirip sağa çeken üç adam. Halat teknenin başındaki halkadan önce çekene uzanır."""
+    """Kart 7: Perevoloka, yaz: arkada kütükler üstünde karadan çekilen nehir teknesi ve yanında bir adam (gemi ölçeği);
+    önde tekneye dönük, halatı elden ele çeken üç adam (geri yaslanarak). Halat teknenin başındaki halkadan başlar."""
     yk = 2.8
     sx = 270
     bas = []
 
     def ekle(img, z):
-        bas.append(figur(img, kayik_kutuk, PAY + 186, duz(590, img.width), 2.2, 1))
-        for x in (PAY + 140, PAY + 152):
-            figur(img, kisi, x, duz(590, img.width), 1.5, govde="#6a5a3a", bas="kalpak", bas_renk="#3a2a1a", yon=1, kol=0.3)
+        bas.append(figur(img, kayik_kutuk, PAY + 212, duz(590, img.width), 1.8, 1))
+        figur(img, kisi, PAY + 188, duz(590, img.width), 1.4, govde="#6a5a3a", bas="kalpak", bas_renk="#3a2a1a", yon=1, kol=0.3)
+    _gorunur(254, [182, 244], sx, sx, yk, pay=4)
     _dis(254, "yaz", ekle=ekle)
     K = _K(254, yk, DT, ornek=NOGAY)
     bx, by = bas[0]
@@ -1050,17 +1065,15 @@ def sahne254():
 
     def kare(t, z, i):
         f = i / KARE
-        d = ImageDraw.Draw(t)
-        xs = (196, 228, 260)
+        xs = (198, 232, 266)
         noktalar = [(blx, bly)]
         for j, x in enumerate(xs):
             ph = (f + j * 0.33) % 1
-            noktalar.append((x - int(1.5 * K), z[0] - int(10.2 * K) + int(0.3 * K * SIN(ph))))
-        for j, x in enumerate(xs):
-            ph = (f + j * 0.33) % 1
-            figur(t, kisi, x, z, K, govde=renkler[j], bas="kalpak", bas_renk="#3a2a1a", sakal="#2a1a12", yon=1,
-                  kol=0.18 + 0.08 * SIN(ph))
-        d.line(noktalar, fill=hex2("#b89a6a"), width=_u(0.5, K))
+            k = 0.12 + 0.06 * SIN(ph)
+            figur(t, kisi, x, z, K, govde=renkler[j], bas="kalpak", bas_renk="#3a2a1a", sakal="#2a1a12", yon=-1, kol=k)
+            ust = z[0] - int(11 * K)
+            noktalar.append((x - int(3.5 * K), ust - int(4 * K * k) + int(1 * K)))
+        ImageDraw.Draw(t).line(noktalar, fill=hex2("#c8aa78"), width=_u(0.45, K))
 
     _spr(254, DW, DH, kare, yk, kenar=False)
 
@@ -1072,15 +1085,15 @@ def sahne255():
 
     def ekle(img, z):
         _su_bandi(img, 556, 600, tohum=255)
-        _ada(img, PAY + 236, PAY + 344, 572, 556, 600)
-        figur(img, ahsap_kale, PAY + 244, PAY + 336, duz(572, img.width), 1.5)
+        _ada(img, PAY + 270, PAY + 362, 572, 556, 600)
+        figur(img, ahsap_kale, PAY + 278, PAY + 354, duz(572, img.width), 1.4)
     _dis(255, "aksam", ekle=ekle, orta_ust=(550, 556))
     K = _K(255, yk, DT, ornek=STRELETS)
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 236, duz(z[0] - 8, t.width), round(0.94 * K, 1), **STRELETS, yon=-1, silah="sopa", kol=0.02)
-        figur(t, kisi, 170, z, K, **STRELETS, yon=-1, silah="sopa", kol=0.02 + 0.02 * (1 + SIN(f)))
+        figur(t, kisi, 184, duz(z[0] - 8, t.width), round(0.94 * K, 1), **STRELETS, yon=-1, silah="sopa", kol=0.02)
+        figur(t, kisi, 132, z, K, **STRELETS, yon=-1, silah="sopa", kol=0.02 + 0.02 * (1 + SIN(f)))
 
     _spr(255, DW, DH, kare, yk)
 
@@ -1094,7 +1107,7 @@ def sahne256():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, deve, 162, duz(z[0] - 6, t.width), round(0.62 * K, 1), 1, 0.0, adim=0.0)
+        figur(t, deve, 162, duz(z[0] - 6, t.width), round(0.62 * K, 1), -1, 0.0, adim=0.0)
         figur(t, oturan, 258, z, round(0.95 * K, 1), **{k: v for k, v in HACI[1].items() if k != "kemer"}, yon=-1)
         figur(t, kisi, 214, z, K, **HACI[0], yon=1, silah="sopa", kol=0.03 * (1 + SIN(f)))
 

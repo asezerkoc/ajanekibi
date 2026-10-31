@@ -133,3 +133,30 @@ Katman yardımcıları (yeni): `_uzak_deniz` (karşı kıyı tepeleri + kıyıya
 - Seslendirme yaklaşık 4 dakika; kısaltma yapılmadı (sahibin kararı).
 
 **Son durum:** `python3 -I video/piksel/hezarfen.py` 37 sahneyi hatasız çiziyor (fizik, kadraj ve yazı bandı denetimleri geçti). `cd video && npx tsc --noEmit -p .` temiz (çıkış 0). Kart metinleri 4-kalite-metin.md ile 47/47 aynı.
+
+## Görsel KK revizyonu (6-kalite-gorsel.md'ye yanıt)
+
+**Zorunlu düzeltmeler**
+1. **370/371 (kapak, kart 1, kart 2, kart 37), şerefe:** Sarayburnu taşlığıyla aynı olan döşeme kaldırıldı. Yeni katmanlar:
+   - `_orta_serefe`: dar, kavisli gri şerefe döşemesi. Uzak kenarı kemer gibi kıvrılır, kesme taş babalı korkuluk bu kenarda. Hezarfen'in ayakları döşemede (632).
+   - `_on_serefe`: kadrajın en altında yakındaki gölgeli korkuluk.
+   - `_uzak_kule_alti`: korkuluğun ötesinde, çok aşağıda, yukarıdan bakılmış küçük Galata damları (kiremit kırma çatılar, perspektifli sıralar) ve deniz suru. Onların ötesinde Boğaz ve Üsküdar.
+
+   380 kendi sarı taşlığını korudu; artık yanında bir de Sinan Paşa Köşkü var.
+2. **378 (kart 12), minber:** Hezarfen 377'deki taş minberin dar üst sahanlığında duruyor (sahanlık ±30 px, figürden biraz geniş). Kesme taş gövde çayıra (732) oturuyor, 10 basamaklı merdiven ve korkuluğu sola, çayıra iniyor. Uzakta küçük Galata Kulesi kaldı. Kanat açıp kapama genliği kenara taşmayacak kadar daraltıldı.
+3. **381/382, kanat uçları:**
+   - 381: kayma [250, 300] → [264, 276], figür ölçeği 4.2. Açık kanatlar uçtan uca görünür aralıkta. Yükseklik ipucu olarak çok aşağıda denize soluk bir gölge eklendi.
+   - 382: yakin 2.8 → 2.6, ölçek %28, kanat açıklığı 0.32-0.68.
+   - **Kenar denetimi** (`_kadraj`, bütün sahnelere uygulanıyor): 24 karenin hepsinde, sahne başı ve sonu sx'leri için, sahne sonundaki ×1,06 yakınlaşmayla, görünür aralığın sol ve sağ kenarından 8 px + kamera paralaksı payı içeride opak figür pikseli varsa çizim durur. Denetim dışında kalanlar yalnızca tam genişlikteki su bantları (381, 385, 396) ve sinema koltuk sırası (404).
+   - Bu denetim, ilk çalıştırmada 23 sahnede kenarda kesilen nesne buldu: mum, fener, kitap yığını, sandık, kanat sehpası, ekip, uçak kuyruğu, kubbe, fişek parçaları. Hepsi görünür aralığa alındı ya da çıkarıldı.
+
+**Uygulanan iyileştirmeler**
+- 403: kayma [240, 300], uçak ölçeği 4.6, hangar kaydırıldı. Uçak ve hangar artık kesilmiyor.
+- 386: hilal sahne başında tam görünecek yere alındı. Cezayir evleri ayrı konturlu figürler, kapı kemeri, parmaklıklı pencere ve dam korkuluğu var. Alt üçte bir boş siyah değil, kaldırım.
+- 385: pruvada köpük, kıçta iz var; gidiş yönü (sola) okunuyor.
+- 396: kol başın yanından yatay çıkıyor (ponpon görüntüsü gitti). Düz noktalı çizgi yerine omuz çevresinde dalgalı köpük ve suyun içinde V izi var.
+- 375: İbn Firnas'ın başında Osmanlı kavuğu yerine sade baş örtüsü. Figür %15 büyütüldü.
+- 399: ekipteki iki kişi ayrıştı: kasket ve kızıl bere, sakal.
+- 400/401: kenardaki mumlar kaldırıldı; kandil konuşanın üstünde.
+
+**Değişmeyenler:** Hezarfen.tsx'te `sure` değerlerine ve kart metinlerine dokunulmadı. TSX'te yalnızca şu üç değer değişti: 381 sprite x, 382 yakin, 403 sprite x. Sahnelerin hepsi (370-406) yeni denetimlerle hatasız çiziliyor; `npx tsc --noEmit -p .` temiz (çıkış 0).
