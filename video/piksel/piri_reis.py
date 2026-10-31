@@ -15,8 +15,8 @@ sys.path.insert(0, str(Path(__file__).parent))
 from PIL import Image, ImageDraw  # noqa: E402
 
 from ciz import _ac, _esik, duman, duz_zemin, figur, gunes, hex2, piksel, temas_golgesi, temel, yeni, zemin_y  # noqa: E402
-from ciz import W, H, sprite_sayfasi  # noqa: E402
-from sahneler import GW, duz, gokyuzu, kaydet, on, orta, uzak  # noqa: E402
+from ciz import W, H, _esik as _e, arazi, cayir_dokusu, sirt, sprite_sayfasi  # noqa: E402,F401
+from sahneler import GW, duz, gokyuzu, kaydet, on, orta  # noqa: E402
 from timur_figur import anadolu_kalesi, atli, deve, gemi, kisi, koy_evleri, otag, oturan  # noqa: E402
 from timur import ic_mekan, kandil, lamba, mumluk  # noqa: E402
 from kalender import kitaplar, rahle, taht  # noqa: E402
@@ -52,12 +52,13 @@ CAVUS = dict(govde="#8a2a2a", bas="bork", bas_renk="#ece6d8", sakal="#2a1a12")
 KUBAD = dict(govde="#6a4a1a", bas="sarik", bas_renk="#f2ece0", sakal="#1a1a1a")
 SEYDI = dict(govde="#2a3a6a", bas="sarik", bas_renk="#f2ece0", sakal="#2a1a12", pelerin="#6a1e22")
 SEYDI_O = {k: v for k, v in SEYDI.items() if k != "pelerin"}
-ESIR = dict(govde="#8a7a5a", bas="takke", bas_renk="#6a4a2a", sakal="#6a4a2a", kemer=None)  # İspanyol esir: başı açık
-EDHEM = dict(govde="#2a2a34", bas="sapka", bas_renk="#3a3a40", sakal="#d8d0c8", kemer=None)
-DEISSMANN = dict(govde="#4a4038", bas="takke", bas_renk="#e0dcd4", sakal="#e0dcd4", kemer=None)
-KAHLE = dict(govde="#3a4a3a", bas="takke", bas_renk="#5a4a3a", sakal=None, kemer=None)
-OHLMEYER = dict(govde="#4a5a7a", bas="kasket", bas_renk="#34405a", sakal=None, kemer="#c8c8d0")
-HAPGOOD = dict(govde="#5a4a3a", bas="takke", bas_renk="#9a9a98", sakal=None, kemer=None)
+ESIR = dict(govde="#8a7a5a", bas="sac", bas_renk="#6a4a2a", sakal="#6a4a2a", kemer=None)  # İspanyol esir: başı açık
+EDHEM = dict(govde="#2a2a34", bas="fotr", bas_renk="#3a3a40", sakal="#9a968e", biyik=True, kemer=None)  # kır sakal, bıyık
+DEISSMANN = dict(govde="#4a4038", bas="sac", bas_renk="#e8e4dc", sakal="#ece8e0", kemer=None)          # ak saç, ak sakal
+DEISSMANN_D = dict(DEISSMANN, bas="fotr", bas_renk="#5a4a3a")                                        # dışarıda fötrlü
+KAHLE = dict(govde="#3a4a3a", bas="sac", bas_renk="#5a4a3a", sakal=None, kemer=None)
+OHLMEYER = dict(govde="#4a5a7a", bas="kep", bas_renk="#34405a", sakal=None, kemer="#c8c8d0")
+HAPGOOD = dict(govde="#5a4a3a", bas="sac", bas_renk="#9a9a98", sakal=None, kemer=None)
 
 YELKEN = "#e8dcc0"     # Osmanlı kadırgası
 GOVDE = "#4a2e1e"
@@ -173,6 +174,67 @@ def _hava(no, yogunluk=300, renk="#b8c8e0", egim=0.3, parlama=(5, 6, 17)):
 # ==========================================================================
 # YENİ FİGÜRLER (ciz.py'ye eklenmedi; yalnızca bu seride)
 # ==========================================================================
+def kisi20(img, x, zemin, s=1.0, bas="fotr", bas_renk="#3a3a40", biyik=False, **kw):
+    """Yeni figür: 20. yüzyıl kişisi. timur_figur.kisi gövdesi (başlıksız) + bu seriye özgü başlık:
+    "fotr" alçak, tepesi ortadan çökük, koyu bantlı, dar ve hafif kıvrık kenarlı fötr (kenar ≈ başın 1,3 katı);
+    "kep" 1960 subay kepi (yüksek, öne yayvan taç, koyu bant, dar siper, altın arma); "sac" başı açık, saç.
+    biyik=True: kır bıyık. Başın yeri kisi ile aynı formülden (ayakta, diz=False)."""
+    yon = kw.get("yon", 1)
+    kisi(img, x, zemin, s, bas=None, **{k: v for k, v in kw.items() if k != "bas"})
+    d = ImageDraw.Draw(img)
+    y = zemin_y(zemin, x, 6 * s)
+    by = y - int(13.6 * s)
+    r = max(2, int(1.7 * s))
+    k = hex2(bas_renk)
+    if biyik:
+        d.line([x - _u(0.4, s) + yon, by + _u(0.6, s), x + int(1.4 * s) * yon, by + _u(0.6, s)], fill=hex2("#b8b4ac"),
+               width=_u(0.5, s))
+    if bas == "sac":
+        d.chord([x - r - 1, by - r - 1, x + r + 1, by + r // 2], 180, 360, fill=k)
+        d.rectangle([x - r - 1 if yon > 0 else x + r - _u(0.6, s), by - _u(0.4, s), x - r + _u(0.6, s) if yon > 0 else x + r + 1,
+                     by + _u(0.8, s)], fill=k)                                     # ense
+    elif bas == "fotr":
+        ky = by - r + _u(0.5, s)                                                   # kenar satırı
+        kw_ = int(r * 1.3) + 1
+        d.rectangle([x - kw_, ky, x + kw_, ky + _u(0.5, s) - 1], fill=k)
+        piksel(img, x - kw_, ky - 1, k)                                            # kenar uçları hafif kıvrık
+        piksel(img, x + kw_, ky - 1, k)
+        ty = ky - _u(2.0, s)                                                       # alçak taç
+        d.rounded_rectangle([x - r + 1, ty, x + r - 1, ky], radius=_u(0.6, s), fill=k)
+        d.rectangle([x - r + 1, ky - _u(0.6, s), x + r - 1, ky - 1], fill=hex2("#14100e"))   # bant
+        d.line([x - _u(0.6, s), ty, x + _u(0.6, s), ty], fill=hex2(_ac(bas_renk, -0.35)))   # tepedeki çöküntü
+        piksel(img, x, ty + 1, hex2(_ac(bas_renk, -0.35)))
+    elif bas == "kep":
+        bt = by - r + _u(0.6, s)
+        d.rectangle([x - r, bt - _u(1.0, s), x + r, bt], fill=hex2("#1a1e2a"))     # bant
+        d.ellipse([x - r - _u(0.8, s), bt - _u(2.6, s), x + r + _u(0.8, s), bt - _u(0.8, s)], fill=k)  # yüksek taç
+        d.line([x, bt + 1, x + (r + _u(1.0, s)) * yon, bt + 1], fill=hex2("#0e0e14"), width=_u(0.5, s))  # dar siper
+        piksel(img, x, bt - _u(1.6, s), hex2("#e0b040"))                           # arma
+
+
+def sandalyede(img, x, zemin, s=1.0, yon=1, ag="#4a3020", **kw):
+    """Yeni figür: sandalyede oturan kişi (kisi20 gövdesi). Sandalyenin dört ayağı zemine basar; kalça oturağa
+    oturur, uyluk öne yatay, baldır dik iner, ayak zemine basar. Üst gövde kisi20'den kesilip oturağa indirilir."""
+    d = ImageDraw.Draw(img)
+    y = zemin_y(zemin, x, 8 * s)
+    temas_golgesi(img, x, y, 10 * s)
+    oy = y - int(4.6 * s)                                                          # oturak üstü
+    arka = x - int(2.6 * s) * yon
+    d.rectangle([min(arka, arka + _u(0.8, s) * yon), oy - int(8 * s), max(arka, arka + _u(0.8, s) * yon), y - 1], fill=hex2(ag))
+    d.line([x + int(2.6 * s) * yon, oy, x + int(2.6 * s) * yon, y - 1], fill=hex2(ag), width=_u(0.8, s))
+    d.rectangle([min(arka, x + int(3 * s) * yon), oy, max(arka, x + int(3 * s) * yon), oy + _u(0.8, s)], fill=hex2(_ac(ag, 0.2)))
+    t = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    kisi20(t, x, zemin, s, yon=yon, **kw)
+    kalca = y - int(5 * s)
+    ust = t.crop((0, 0, img.width, kalca))
+    img.alpha_composite(ust, (0, oy - kalca))
+    govde = kw.get("govde", "#3a5a8a")
+    diz = (x + int(3.4 * s) * yon, oy - _u(0.6, s))
+    d.line([x, oy - _u(0.6, s), *diz], fill=hex2(_ac(govde, -0.3)), width=_u(1.4, s))
+    d.line([*diz, diz[0], y - 1], fill=hex2("#3a3028"), width=_u(1.2, s))
+    d.line([diz[0], y - 1, diz[0] + _u(1, s) * yon, y - 1], fill=hex2("#14100c"))
+
+
 PARSOMEN = "#d8bc8c"     # ceylan derisi
 MUREKKEP = "#4a2a1a"
 
@@ -799,7 +861,27 @@ def _masa_ustu(no, renk="#6a4426", tur="ahsap", isik=None):
 
 
 def _sahne_gok(no, renkler, bulutlar=(), bulut_renk=("#fff8ec", "#f4dcc8", "#d8a8a0"), yildiz=0):
+    """Bulutlar yalnızca kadrajın ortasına (x 190-350) konur: kenarda yarısı kesik bulut kalmasın."""
+    bulutlar = [(min(350, max(190, x)), y, b) for x, y, b in bulutlar][:1]
     return gokyuzu(no, renkler, None, bulutlar, bulut_renk, yildiz)
+
+
+def uzak(no, dag_renk, tepe_renk, ova_renk, dag_y=(346, 420), tepe_y=440, ova_y=480, kenar=None):
+    """sahneler.uzak'ın bu seriye uyarlanmış kopyası: sırtlar pürüzsüz ve çıplak (kayalık, çöl tepeleri); sahneler.uzak
+    sırta pürüz (iğne yapraklı ağaç silüeti) verir, Aden, Umman ve Mısır kıyısında ağaç olmaz."""
+    img = yeni()
+    dag = sirt(dag_y[1], (dag_y[1] - dag_y[0]) / 2, no, 3, 0.6, w=W, dongulu=True)
+    arazi(img, dag, dag_renk, kenar)
+    tepe = sirt(tepe_y, 10, no + 50, 5, 0, w=W, dongulu=True)
+    arazi(img, tepe, tepe_renk)
+    for y in range(ova_y - 4, ova_y):
+        for x in range(W):
+            if (ova_y - y) / 5 < _e(x, y) * 0.9:
+                img.putpixel((x, y), hex2(_ac(ova_renk[0], 0.12)))
+    arazi(img, [ova_y] * W, ova_renk, None, doku_tohum=no + 3)
+    cayir_dokusu(img, [ova_y] * W, ova_renk, no + 4, yogunluk=0.02)
+    kaydet(img, f"sahne{no}-uzak.png")
+    return img
 
 
 # ==========================================================================
@@ -905,8 +987,7 @@ def sahne332():
     (kızıl kaftan) kıyıyı gösterir, genç Piri yanında; uzakta İspanya kıyısında kale ve bir kadırga daha."""
     _sahne_gok(332, ["#4a7ab8", "#6a94c8", "#8aacd4", "#aac4dc", "#c8d8e0"], [(120, 404, 22), (400, 410, 20)],
                ("#ffffff", "#eef2f6", "#c8d4e0"))
-    _deniz_uzak(332, None, ["#3a6a9a", "#346292", "#2e5a88"], ["#9a8a6a", "#8a7a5e"], kale=(300, 360, 0.55, "#c8b898"),
-                gemiler=[(160, 0.8, YELKEN, False)])
+    _deniz_uzak(332, None, ["#3a6a9a", "#346292", "#2e5a88"], ["#9a8a6a", "#8a7a5e"], kale=(300, 360, 0.55, "#c8b898"))
     _guverte(332)
     _bos_on(332)
     yk = 2.6
@@ -1008,7 +1089,7 @@ def sahne335():
         kandil(t, 262, 0, f, zincir=_kz(yk))
         mumluk(t, 292, z, f, 2)
         figur(t, oturan, 168, z, so, yon=1, el="kalem", minder="#8a2a2a", **PIRI_1513)
-        figur(t, harita_masasi, 168 + int(10.5 * so), z, round(0.5 * so, 1))
+        figur(t, harita_masasi, 168 + int(8.2 * so), z, round(0.5 * so, 1))
 
     _spr2(335, IW, IH, kare, yk)
 
@@ -1139,7 +1220,7 @@ def sahne341():
     _sahne_gok(341, ["#5a88c0", "#78a0cc", "#9ab8d4", "#bccad4", "#dcd8c4"], [(110, 404, 22), (420, 410, 18)],
                ("#ffffff", "#eef2f6", "#c8d4e0"))
     _deniz_uzak(341, None, ["#3a72a0", "#346a98", "#2e628e"], ["#d0b888", "#c4ac7c"], dag_y=(478, 486), tepe_y=487,
-                ova_y=490, gemiler=[(380, 0.7, YELKEN, False)])
+                ova_y=490)
     _guverte(341, ahsap="#8a5a36")
     _bos_on(341)
     yk = 2.6
@@ -1189,7 +1270,7 @@ def sahne342():
 RIHTIM = 600
 
 
-def _liman(no, su_renk, kenar, gemiler, ekle=None, tas="#7a6e60"):
+def _liman(no, su_renk, kenar, gemiler, ekle=None, tas="#7a6e60", hurmalar=()):
     """Orta plan: deniz (556'dan), demirli kadırgalar su çizgisine oturur; önde düz taş rıhtım (600)."""
     def _ekle(img, z):
         d = ImageDraw.Draw(img)
@@ -1213,6 +1294,8 @@ def _liman(no, su_renk, kenar, gemiler, ekle=None, tas="#7a6e60"):
         for bx in (PAY + 110, PAY + 300, PAY + 450):                          # babalar: rıhtıma oturur
             d.rectangle([bx - 3, RIHTIM - 7, bx + 3, RIHTIM + 1], fill=hex2("#3a3634"))
             d.rectangle([bx - 4, RIHTIM - 9, bx + 4, RIHTIM - 7], fill=hex2("#4a4644"))
+        for x, s_, egim, yap in hurmalar:                                     # rıhtımdaki hurmalar: düzensiz aralık
+            figur(img, hurma, PAY + x, duz(RIHTIM + 6), s_, egim=egim, yaprak=yap, gov=_ac(yap[0], -0.1))
     orta(no, (552, 556), [su_renk[0]] * 5, su_renk[0], ekle=_ekle)
     _bos_on(no)
 
@@ -1239,10 +1322,7 @@ def sahne343():
 
 def _basra_uzak(no, gok, ova, hurma_renk):
     img = uzak(no, [ova[0], ova[1]], [ova[1], ova[0]], ova, dag_y=(484, 490), tepe_y=490, ova_y=494)
-    for x in range(10, W, 23):                                             # karşı kıyıda hurmalık
-        figur(img, hurma, x + (x * 7) % 9, duz(492, W), 0.32 + 0.06 * ((x // 23) % 3), yaprak=hurma_renk,
-              gov=_ac(hurma_renk[0], -0.2))
-    kaydet(img, f"sahne{no}-uzak.png")
+    kaydet(img, f"sahne{no}-uzak.png")      # karşı kıyı alçak ve düz; hurmalar rıhtımda (yazı bandının altında)
 
 
 BASRA_FILO = [(150, 584, 1.4, YELKEN), (205, 588, 1.6, YELKEN), (262, 584, 1.4, YELKEN), (318, 588, 1.6, YELKEN),
@@ -1256,7 +1336,8 @@ def sahne349():
                ("#f0c8b8", "#d09898", "#a07080"))
     _basra_uzak(349, None, ["#6a5a70", "#5e5066", "#54465c"], ("#2a2a2a", "#34302e", "#3e3a34"))
     _liman(349, ("#6a5a7a", "#5e5070", "#544866", "#4a405c"), "#a89aa8",
-           sorted(BASRA_FILO, key=lambda g: g[1]), tas="#5a5258")
+           sorted(BASRA_FILO, key=lambda g: g[1]), tas="#5a5258",
+           hurmalar=[(186, 1.5, 1, ("#2a2a2a", "#34302e", "#3e3a34")), (352, 1.35, -1, ("#2a2a2a", "#34302e", "#3e3a34"))])
     yk = 2.8
     K = s_kisi(yk)
 
@@ -1274,7 +1355,8 @@ def sahne354():
                ("#ffffff", "#eef0f4", "#c8ccd8"))
     _basra_uzak(354, None, ["#7a94a8", "#728ca0", "#6a8498"], ("#3a4a32", "#46583a", "#526642"))
     _liman(354, ("#6a8aa4", "#62829c", "#5a7a94", "#52728c"), "#c8c8c0", sorted(BASRA_FILO, key=lambda g: g[1]),
-           tas="#8a8478")
+           tas="#8a8478", hurmalar=[(190, 1.5, 1, ("#3a5a2a", "#4a6a32", "#5a7a3a")),
+                                    (356, 1.35, -1, ("#3a5a2a", "#4a6a32", "#5a7a3a"))])
     yk = 2.8
     K = s_kisi(yk)
 
@@ -1324,7 +1406,7 @@ def sahne345():
                ("#ffffff", "#f4ece0", "#d8ccb8"))
     uzak(345, ["#8a6a4a", "#7a5c40"], ["#9a7a58", "#8a6c4c"], ["#3a72a0", "#346a98", "#2e6290"],
          dag_y=(444, 476), tepe_y=482, ova_y=494)
-    _kiyi_orta(345, SU_GUN, "#8a6a4a", lambda img, z: figur(img, anadolu_kalesi, PAY + 300, PAY + 430, z, 1.4,
+    _kiyi_orta(345, SU_GUN, "#8a6a4a", lambda img, z: figur(img, anadolu_kalesi, PAY + 226, PAY + 326, z, 1.25,
                                                               tas="#c8b490", golge="#9a8a6a"))
     _bos_on(345)
     _deniz_sprite(345, [(96, SU - 14, 2.2, 1, YELKEN, False, 0.3), (176, SU - 14, 2.2, 1, YELKEN, False, 0.7),
@@ -1340,7 +1422,7 @@ def sahne346():
     _deniz_uzak(346, None, ["#4a6a90", "#446288", "#3e5a80"], ["#8a8a8a", "#7a7a7a"], dag_y=(486, 490), tepe_y=490,
                 ova_y=492, gemiler=[(250, 0.55, None, True), (282, 0.5, None, True), (314, 0.55, None, True)])
     _kiyi_orta(346, ["#3e6288", "#385a80", "#325278", "#2c4a70"], "#a08a6a",
-               lambda img, z: figur(img, anadolu_kalesi, PAY + 90, PAY + 250, z, 1.5, tas="#b8a888", golge="#8a7a62"))
+               lambda img, z: figur(img, anadolu_kalesi, PAY + 186, PAY + 316, z, 1.4, tas="#b8a888", golge="#8a7a62"))
     _bos_on(346)
     _deniz_sprite(346, [(126, SU - 12, 2.4, -1, YELKEN, False, 0.4), (200, SU, 3.0, -1, YELKEN, False, 0.0)],
                   ["#325278", "#2c4a70", "#264268", "#203a60"], 2.4)

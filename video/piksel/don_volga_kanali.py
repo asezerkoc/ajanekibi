@@ -1183,9 +1183,9 @@ def sahne258():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, atli, 262, duz(z[0] - 8, t.width), round(0.92 * sa, 1), -1, (f + 0.4) % 1, "#4a3a2a", "#1a120c",
+        figur(t, atli, 236, duz(z[0] - 8, t.width), round(0.92 * sa, 1), -1, (f + 0.4) % 1, "#4a3a2a", "#1a120c",
               govde="#5a4a3a", bas="kalpak", bas_renk="#2a1e14", sakal=None, adim=0.45)
-        figur(t, atli, 166, z, sa, -1, f, "#7a6a5a", "#2a2018", adim=0.45, **{k: v for k, v in MALTSEV.items() if k != "kemer"})
+        figur(t, atli, 178, z, sa, -1, f, "#7a6a5a", "#2a2018", adim=0.45, **{k: v for k, v in MALTSEV.items() if k != "kemer"})
 
     _spr(258, DW, DH, kare, yk, esik=0.7)
 
@@ -1247,7 +1247,7 @@ def sahne260():
         el = (mx + int(3 * 0.95 * K) + int(1.2 * K * SIN(f)), y - int(4.5 * 0.95 * K))
         d = ImageDraw.Draw(t)
         d.line([el, (el[0] - int(0.9 * K * 10), (590 - (DT - DH)) - 2)], fill=hex2("#4a2e18"), width=_u(0.5, K))
-        figur(t, kisi, 124, z, K, **YENICERI, yon=1, silah="kilic", kol=0.0)
+        figur(t, kisi, 130, z, K, **YENICERI, yon=1, silah="kilic", kol=0.0)
         figur(t, kisi, 256, z, K, **KASIM, yon=-1, kol=0.03 * (1 + SIN(f)))
 
     _spr(260, DW, DH, kare, yk)
@@ -1411,10 +1411,10 @@ def sahne267():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, okuz, 152, z, round(0.55 * K, 1), -1, "#5a4030", 0.0)
+        figur(t, okuz, 160, z, round(0.55 * K, 1), -1, "#5a4030", 0.0)
         figur(t, top_, 206, z, round(0.42 * K, 1), -1)
         d = ImageDraw.Draw(t)
-        d.line([(170, z[0] - int(0.55 * K * 5)), (184, z[0] - int(0.42 * K * 3))], fill=hex2("#8a6a44"), width=_u(0.35, K))
+        d.line([(178, z[0] - int(0.55 * K * 5)), (188, z[0] - int(0.42 * K * 3))], fill=hex2("#8a6a44"), width=_u(0.35, K))
         figur(t, kisi, 258, z, K, **KASIM, yon=-1, kol=0.55 + 0.04 * SIN(f))
 
     _spr(267, DW, DH, kare, yk, esik=0.7)

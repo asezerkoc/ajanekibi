@@ -230,6 +230,52 @@ def _gorunur(no, xler, pay=12, ara=False):
                 raise RuntimeError(f"Sahne {no}: orta plan figürü x={x} görünür aralık [{int(a)}, {int(b)}] dışında (sx={sx})")
 
 
+UFUK = 576         # dış mekân ufku (uzak plandaki ova çizgisi); yapılı dış sahnelerde ufuk alçak tutulur
+YAPI_ZEMIN = 580   # orta plan yapılarının düz zemini (ufkun hemen önü: yapılar açıkça geride)
+
+
+def _fig_boy(K):
+    t = yeni(300, 300)
+    figur(t, kisi, 150, duz(299, 300), K, govde="#5a4a3a", bas="sarik", bas_renk="#ece6d8", sakal="#4a3a2a")
+    bb = _bb(t)
+    return bb[3] - bb[1]
+
+
+def yapi_olcek(no, ad, taban_y, kapi_h, K, figur_taban=632, ufuk=UFUK):
+    """Ölçek kuralı (görsel KK): geride duran yapının kapısı, o derinlikte duran bir insanın boyundan küçük olamaz.
+    O derinlikteki insan boyu = (yapı tabanı − ufuk) / (figür tabanı − ufuk) × öndeki figürün boyu. Kural bozulursa
+    betik durur (yapıyı büyüt ya da ufka yaklaştır)."""
+    gerek = (taban_y - ufuk) / (figur_taban - ufuk) * _fig_boy(K)
+    if kapi_h < gerek:
+        raise RuntimeError(f"Sahne {no}: {ad} kapısı {kapi_h} px, o derinlikte insan {gerek:.1f} px: oyuncak ölçek")
+
+
+def _kandil(t, x, f, zincir):
+    """Kandil + kesintisiz, bir ton açık zincir (koyu duvarda zincir kopuk ve görünmez kalmasın: kandil havada
+    asılı gibi algılanmasın)."""
+    sal = math.sin(f * 2 * math.pi) * 1.5
+    for k in range(0, zincir):
+        piksel(t, x + sal * k / zincir, k, hex2("#b8a060"))
+    kandil(t, x, 0, f, zincir=zincir)
+
+
+def kadin(img, x, zemin, s=1.0, govde="#6a2a2a", ortu_renk="#3a3a6a", yon=1, kol=0.0, kemer="#e0b040", ten="#d6a07a"):
+    """Yeni figür: başörtülü kadın. timur_figur.kisi gövdesi (uzun entari), başörtüsü başın üstünü ve ensesini örter,
+    yüzün önü açık (göz görünür), çene altında koyu blok yok."""
+    kisi(img, x, zemin, s, govde=govde, bas=None, sakal=None, yon=yon, kol=kol, kadin=True, kemer=kemer, ten=ten)
+    d = ImageDraw.Draw(img)
+    y = zemin_y(zemin, x, 6 * s)
+    by = y - int(13.6 * s)
+    r = max(2, int(1.7 * s))
+    k = hex2(ortu_renk)
+    d.chord([x - r - 1, by - r - 1, x + r + 1, by + r // 2], 180, 360, fill=k)                       # tepe
+    ax = x - r * yon                                                                              # ense: yüzün karşı yanı
+    _r(d, ax - _u(0.4, s) * yon, by - r // 2, x - int(0.3 * s) * yon, by + r + _u(1.4, s), fill=k)
+    d.polygon([(ax - _u(0.6, s) * yon, by + r), (x + int(0.5 * s) * yon, y - int(11 * s)), (ax - _u(1.2, s) * yon, y - int(9.5 * s))],
+              fill=k)                                                                             # omuza inen uç
+    _r(d, x + int(0.6 * s) * yon, by - int(0.3 * s), x + int(0.6 * s) * yon + _u(0.3, s), by, fill=hex2(KOYU))   # göz
+
+
 def _el(x, z, s, yon, kol, adim=None):
     """kisi() figürünün el ucu (timur_figur.kisi ile aynı formül; ayakta ya da yürürken, diz=False)."""
     y = zemin_y(z, x, 6 * s)
@@ -590,7 +636,9 @@ def acik_kitap(img, x, zemin, s=1.0, sayfa="oklid", f=0.0):
         d.ellipse([L0 + int(5 * s), ust + int(1.5 * s), L0 + int(10 * s), ust + int(6.5 * s)], outline=hex2("#8a1e1e"))  # daire
         d.line([L0 + int(1 * s), ust + int(3 * s), L1 - int(1 * s), alt - int(2 * s)], fill=hex2("#2a2a2a"))
         _tugra(img, (R0 + R1) // 2, ust + int(2.4 * s), s * 0.9)                               # izin fermanı (453. sayfa)
-        _satirlar(img, R0 + _u(0.6, s), ust + int(4 * s), R1 - _u(0.6, s), alt, aralik=max(2, _u(1, s)), tohum=453, rtl=True)
+        _satirlar(img, R0 + _u(0.6, s), ust + int(4 * s), R1 - _u(0.6, s), alt - int(1.4 * s), aralik=max(2, _u(1, s)), tohum=453, rtl=True)
+        if s >= 4:                                                                             # sayfa numarası: 453
+            _rakam(img, "453", R1 - int(3.6 * s), alt + int(0.2 * s), max(1, int(s / 4)))
     elif sayfa == "vankulu":
         _tugra(img, (L0 + L1) // 2, ust + int(2.6 * s), s * 0.95)
         _satirlar(img, L0 + _u(0.6, s), ust + int(4.2 * s), L1 - _u(0.6, s), alt, aralik=max(2, _u(1, s)), tohum=1729, rtl=True)
@@ -619,6 +667,19 @@ def acik_kitap(img, x, zemin, s=1.0, sayfa="oklid", f=0.0):
             _satirlar(img, a0, ust, m - 1, alt, aralik=2, tohum=a0)
             _satirlar(img, m + 1, ust, a1, alt, aralik=2, tohum=a1)
             _r(d, a0, ust, a0 + _u(1, s), ust + _u(1, s), fill=hex2("#a8281e"))
+
+
+_RAKAM = {"3": ["111", "001", "011", "001", "111"], "4": ["101", "101", "111", "001", "001"], "5": ["111", "100", "111", "001", "111"]}
+
+
+def _rakam(img, metin, x, y, p=1, renk="#3a2a1a"):
+    """3×5 piksel rakam (sayfa numarası); p: piksel boyu."""
+    d = ImageDraw.Draw(img)
+    for i, c in enumerate(metin):
+        for sy, satir in enumerate(_RAKAM[c]):
+            for sx, b in enumerate(satir):
+                if b == "1":
+                    _r(d, x + (i * 4 + sx) * p, y + sy * p, x + (i * 4 + sx) * p + p - 1, y + sy * p + p - 1, fill=hex2(renk))
 
 
 def kurutma_ipi(img, x0, x1, zemin, s=1.0, f=0.0, adet=5):
@@ -827,14 +888,21 @@ def saray_kapisi(img, x, zemin, s=1.0, tas="#d8d0c0", kursun="#7a8490"):
     _r(d, x - int(9 * s), y - int(16 * s), x + int(9 * s), y - 1, fill=t, outline=tk)                     # kapı gövdesi
     d.polygon([(x - int(11 * s), y - int(16 * s)), (x + int(11 * s), y - int(16 * s)), (x + int(9 * s), y - int(18 * s)),
                (x - int(9 * s), y - int(18 * s))], fill=hex2(kursun))                                         # saçak
+    for k in range(-int(9 * s), int(9 * s), _u(1.2, s)):                                                  # çini şerit (lacivert-yeşil)
+        _r(d, x + k, y - int(15.4 * s), x + k + _u(0.6, s), y - int(14.6 * s), fill=hex2("#2a4a8a" if (k // _u(1.2, s)) % 2 else "#2a7a6a"))
+    d.chord([x - int(5.2 * s), y - int(14.2 * s), x + int(5.2 * s), y - int(4 * s)], 180, 360, fill=hex2("#2a6a7a"))   # çini kemer bordürü
+    _r(d, x - int(5.2 * s), y - int(9.1 * s), x + int(5.2 * s), y - 1, fill=hex2("#2a6a7a"))
     _r(d, x - int(3.4 * s), y - int(9 * s), x + int(3.4 * s), y - 1, fill=hex2("#3a2a20"))                   # kemerli kapı
     d.chord([x - int(3.4 * s), y - int(12.4 * s), x + int(3.4 * s), y - int(5.6 * s)], 180, 360, fill=hex2("#3a2a20"))
     d.arc([x - int(4.2 * s), y - int(13.2 * s), x + int(4.2 * s), y - int(4.8 * s)], 180, 360, fill=hex2("#c8a040"))
-    _tugra(img, x, y - int(13.6 * s), s * 0.45, renk="#c8a040", altin="#e8d080")                           # kapı üstü tuğra
+    _r(d, x - int(3 * s), y - int(16 * s), x + int(3 * s), y - int(12.6 * s), fill=hex2("#2a3a5a"))         # tuğra levhası
+    _tugra(img, x, y - int(13.2 * s), s * 0.8, renk="#e0b040", altin="#f8e8a0")                            # kapı üstü tuğra
     for k in (-1, 1):                                                                                     # sekizgen kuleler
         cx = x + k * int(13 * s)
         _r(d, cx - int(4 * s), y - int(22 * s), cx + int(4 * s), y - 1, fill=t)
         d.line([cx - int(1.4 * s), y - int(22 * s), cx - int(1.4 * s), y - 1], fill=tk)
+        d.polygon([(cx - int(5.2 * s), y - int(22 * s)), (cx + int(5.2 * s), y - int(22 * s)), (cx + int(4.4 * s), y - int(23 * s)),
+                   (cx - int(4.4 * s), y - int(23 * s))], fill=hex2(_ac(kursun, -0.15)))                    # kule saçağı
         d.line([cx + int(1.4 * s), y - int(22 * s), cx + int(1.4 * s), y - 1], fill=tk)
         _r(d, cx - int(0.6 * s), y - int(19 * s), cx + int(0.6 * s), y - int(16 * s), fill=hex2("#2a3040"))
         d.polygon([(cx - int(4.6 * s), y - int(22 * s)), (cx, y - int(30 * s)), (cx + int(4.6 * s), y - int(22 * s))], fill=hex2(kursun))
@@ -902,27 +970,35 @@ def sunak(img, x, zemin, s=1.0, f=0.0):
     hy = ust - _u(0.8, s)
     _r(d, x - _u(0.4, s), hy - int(6 * s), x + _u(0.4, s), hy, fill=hex2("#c8a040"))
     _r(d, x - int(1.8 * s), hy - int(4.8 * s), x + int(1.8 * s), hy - int(4.2 * s), fill=hex2("#c8a040"))
-    for px_, py_ in ((x, hy - int(6.4 * s)), (x - int(2 * s), hy - int(4.5 * s)), (x + int(2 * s), hy - int(4.5 * s))):
-        _r(d, px_ - _u(0.5, s), py_ - _u(0.3, s), px_ + _u(0.5, s), py_ + _u(0.3, s), fill=hex2("#e0b040"))
+    for (px_, py_), (ux, uy) in (((x, hy - int(6 * s)), (0, -1)), ((x - int(1.8 * s), hy - int(4.5 * s)), (-1, 0)),
+                                 ((x + int(1.8 * s), hy - int(4.5 * s)), (1, 0))):
+        # Ermeni haçı: her kolun ucu dışa doğru genişleyen çatal, uçlarında küçük toplar
+        a, L = _u(1.0, s), _u(1.0, s)
+        qx, qy = -uy, ux                                                    # kola dik yön
+        d.polygon([(px_ - ux * L // 2, py_ - uy * L // 2), (px_ + ux * L + qx * a, py_ + uy * L + qy * a),
+                   (px_ + ux * L - qx * a, py_ + uy * L - qy * a)], fill=hex2("#e0b040"))
+        for e in (-1, 1):
+            piksel(img, px_ + ux * L + qx * a * e, py_ + uy * L + qy * a * e, hex2("#f8d860"))
     _r(d, x - int(1 * s), hy - _u(0.5, s), x + int(1 * s), hy, fill=hex2("#a88030"))
     for k in (-1, 1):
         _masa_mumu(img, x + k * int(3.6 * s), hy + 1, (f + 0.3 * k) % 1, s * 0.5)
 
 
-def sahaf_tezgahi(img, x, zemin, s=1.0, tohum=1):
+def sahaf_tezgahi(img, x, zemin, s=1.0, tohum=1, sundurma=True):
     """Yeni figür: çarşıda sahaf/kopyacı tezgâhı: tahta tezgâhın ayakları ve sundurmanın iki direği zemine basar; tezgâhta
     yatık el yazması kitaplar. Dönen değer: tezgâh üstü y."""
     d = ImageDraw.Draw(img)
     g = int(9 * s)
     y = zemin_y(zemin, x, g)
     temas_golgesi(img, x, y, 2 * g + 2)
-    for k in (-1, 1):                                                                    # sundurma direkleri
-        _r(d, x + k * g - _u(0.4, s), y - int(17 * s), x + k * g + _u(0.4, s), y - 1, fill=hex2(AGAC))
-    d.polygon([(x - g - int(2 * s), y - int(16 * s)), (x + g + int(2 * s), y - int(16 * s)), (x + g, y - int(18 * s)),
-               (x - g, y - int(18 * s))], fill=hex2("#8a3a2a"))
-    for k in range(-g - int(2 * s), g + int(2 * s), _u(2, s)):
-        d.line([x + k, y - int(16 * s), x + k, y - int(15 * s)], fill=hex2("#e0c8a0" if (k // _u(2, s)) % 2 else "#8a3a2a"))
-    ust = y - int(7 * s)
+    if sundurma:
+        for k in (-1, 1):                                                                # sundurma direkleri
+            _r(d, x + k * g - _u(0.4, s), y - int(17 * s), x + k * g + _u(0.4, s), y - 1, fill=hex2(AGAC))
+        d.polygon([(x - g - int(2 * s), y - int(16 * s)), (x + g + int(2 * s), y - int(16 * s)), (x + g, y - int(18 * s)),
+                   (x - g, y - int(18 * s))], fill=hex2("#8a3a2a"))
+        for k in range(-g - int(2 * s), g + int(2 * s), _u(2, s)):
+            d.line([x + k, y - int(16 * s), x + k, y - int(15 * s)], fill=hex2("#e0c8a0" if (k // _u(2, s)) % 2 else "#8a3a2a"))
+    ust = y - int(8.5 * s)
     _r(d, x - g + _u(1, s), ust, x + g - _u(1, s), y - 1, fill=hex2(_ac(AGAC, -0.15)), outline=hex2(_ac(AGAC, -0.45)))
     _r(d, x - g, ust - _u(0.8, s), x + g, ust, fill=hex2(_ac(AGAC, 0.2)))
     rnd = random.Random(tohum)
@@ -1113,7 +1189,7 @@ def sahne170():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 262, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 262, f, zincir=_kz(p.yk))
         _yazar(t, z, 158, s, f, THEVET, ("kagit", "hokka", "kitap", "mum"))
 
     _spr(170, kare)
@@ -1126,7 +1202,7 @@ def sahne171():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 200, f, zincir=_kz(p.yk))
         figur(t, bos_rahle, 200, z, 5.4)
         mumluk(t, 132, z, f, 1)
 
@@ -1142,7 +1218,7 @@ def sahne172():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 250, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 250, f, zincir=_kz(p.yk))
         figur(t, raf, 132, z, K * 0.95, "kitap", 172)
         _yazar(t, z, 186, s, f, THEVET, ("kagit", "hokka", "mum"))
         mumluk(t, 284, z, f, 3)
@@ -1159,7 +1235,7 @@ def sahne173():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 250, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 250, f, zincir=_kz(p.yk))
         _yazar(t, z, 146, s, f, THEVET, ("kagit", "basili", "hokka"))
         figur(t, kitap_yigini, 262, z, s * 0.9, 7, 173)
         mumluk(t, 236, z, f, 2)
@@ -1208,7 +1284,7 @@ def sahne176():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 196, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 196, f, zincir=_kz(p.yk))
         _pres_sahnesi(t, z, f, 196, K, 1, 196 - int(8 * K), K, NAHMIAS1)
         figur(t, kisi, 196 + int(12.4 * K), z, K, **NAHMIAS2, yon=-1, silah="mektup", kol=0.3)
 
@@ -1223,7 +1299,7 @@ def sahne177():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 268, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 268, f, zincir=_kz(p.yk))
         arka = duz(z[0] - 14, t.width)
         figur(t, kurutma_ipi, 122, 282, arka, K, f, 6)
         figur(t, acik_kitap, 200, z, 3.2, "ibrani", f)
@@ -1240,7 +1316,7 @@ def sahne178():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 205, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 205, f, zincir=_kz(p.yk))
         figur(t, sunak, 128, duz(z[0] - 14, t.width), K * 0.7, f)
         _pres_sahnesi(t, z, f, 208, K, 1, 208 - int(8 * K), K, ABGAR)
         figur(t, kisi, 208 + int(12.4 * K), z, round(K * 0.88, 1), **ABGAR_OGUL, yon=-1, silah="mektup", kol=0.3)
@@ -1257,7 +1333,7 @@ def sahne179():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 205, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 205, f, zincir=_kz(p.yk))
         ust = figur(t, sedir, 258, z, round(0.75 * so, 1), renk="#7a4a2a", ortu="#8a1e22")
         figur(t, oturan, 258, duz(ust, t.width), so, **MURAD, yon=-1, minder="#c8a040")
         figur(t, kisi, 160, z, K, **KATIP, yon=1, diz=True, silah="mektup", kol=0.35 + 0.03 * SIN(f))
@@ -1273,7 +1349,7 @@ def sahne180():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 200, f, zincir=_kz(p.yk))
         figur(t, acik_kitap, 200, z, 5.0, "oklid", f)
 
     _spr(180, kare, esik=0.8)
@@ -1286,7 +1362,7 @@ def sahne181():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 194, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 194, f, zincir=_kz(p.yk))
         figur(t, bos_rahle, 156, z, 2.9)
         figur(t, acik_kitap, 244, z, 2.9, "oklid", f)
 
@@ -1302,7 +1378,7 @@ def sahne182():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 186, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 186, f, zincir=_kz(p.yk))
         figur(t, kitap_yigini, 124, z, K * 0.9, 9, 182)
         _pres_sahnesi(t, z, f, 214, K, -1, 214 + int(8 * K), K, METAKSAS)
 
@@ -1337,7 +1413,7 @@ def sahne184():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 205, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 205, f, zincir=_kz(p.yk))
         figur(t, kisi, 128, duz(z[0] - 10, t.width), round(K * 0.88, 1), **CIZVIT, yon=1)
         figur(t, kisi, 166, z, K, **CIZVIT, yon=1, silah="mektup", kol=0.35 + 0.04 * SIN(f))
         figur(t, kisi, 240, z, K, **MEMUR, yon=-1, kol=0.25)
@@ -1367,7 +1443,7 @@ def sahne186():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 262, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 262, f, zincir=_kz(p.yk))
         _yazar(t, z, 160, s, f, MARSIGLI, ("kagit", "hokka", "kitap"), masa_renk="#7a4a2a")
         mumluk(t, 270, z, f, 3)
 
@@ -1382,7 +1458,7 @@ def sahne187():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 200, f, zincir=_kz(p.yk))
         for j, (x, kw) in enumerate(((136, KOPYACI), (222, KOPYACI2))):
             figur(t, oturan, x, z, s, **kw, yon=1, el="kalem", minder="#8a2a2a")
             rahle(t, x + int(7.2 * s), z[0], s)
@@ -1399,7 +1475,7 @@ def sahne188():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 200, f, zincir=_kz(p.yk))
         _yazar(t, z, 178, s, f, THEVET, ("kagit", "mum"), yon=-1)
         _yazar(t, z, 222, s, (f + 0.4) % 1, MARSIGLI, ("kagit", "hokka"), yon=1, masa_renk="#7a4a2a")
 
@@ -1434,7 +1510,7 @@ def sahne190():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 205, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 205, f, zincir=_kz(p.yk))
         figur(t, kisi, 160, z, K, **KADIN_ERDEL, yon=1, kol=0.12 + 0.05 * SIN(f))
         figur(t, erdel_besigi, 234, z, round(K * 0.62, 1), f)
         mumluk(t, 280, z, f, 1)
@@ -1485,7 +1561,7 @@ def sahne193():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 205, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 205, f, zincir=_kz(p.yk))
         ust = figur(t, sedir, 258, z, round(0.75 * so, 1), renk="#7a4a2a", ortu="#2a6a3a")
         figur(t, oturan, 258, duz(ust, t.width), so, **SADRAZAM, yon=-1, minder="#c8a040")
         figur(t, kisi, 160, z, K, **IBRAHIM, yon=1, diz=True, silah="mektup", kol=0.35 + 0.03 * SIN(f))
@@ -1502,7 +1578,7 @@ def sahne194():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 200, f, zincir=_kz(p.yk))
         _pres_sahnesi(t, z, f, 196, K, 1, 196 - int(8 * K), K, FRANSIZ)
         figur(t, kisi, 196 + int(13 * K), z, K, **SAID, yon=-1, kol=0.08 * (1 + SIN(f)))
 
@@ -1517,7 +1593,7 @@ def sahne195():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 228, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 228, f, zincir=_kz(p.yk))
         figur(t, oturan, 168, z, s, **SEYHULISLAM, yon=1, el="kalem", minder="#2a5a3a")
         rahle(t, 168 + int(7.2 * s), z[0], s)
         _kalem(t, _oturan_el(168, z, s, 1), s, 1, f)
@@ -1535,7 +1611,7 @@ def sahne196():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 200, f, zincir=_kz(p.yk))
         ust = figur(t, taht, 256, z, round(0.62 * so, 1), renk="#c8a040", ortu="#2a4a7a")
         figur(t, oturan, 256, duz(ust, t.width), so, **AHMED, yon=-1, minder="#8a1e22")
         figur(t, kisi, 158, z, K, **IBRAHIM, yon=1, diz=True, silah="mektup", kol=0.4 + 0.03 * SIN(f))
@@ -1552,7 +1628,7 @@ def sahne197():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 210, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 210, f, zincir=_kz(p.yk))
         figur(t, tahta_pres, 168, duz(z[0] - 16, t.width), round(K * 0.7, 1), faz=(f + 0.5) % 1, yon=-1)
         _pres_sahnesi(t, z, f, 222, K, -1, 222 + int(8 * K), K, BASKICI)
         figur(t, kisi, 126, z, K, **IBRAHIM, yon=1, kol=0.3 + 0.04 * SIN(f))
@@ -1568,7 +1644,7 @@ def sahne198():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 228, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 228, f, zincir=_kz(p.yk))
         figur(t, acik_kitap, 180, z, 3.9, "vankulu", f)
         figur(t, cilt, 262, z, 3.4)
 
@@ -1585,7 +1661,7 @@ def sahne199():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 196, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 196, f, zincir=_kz(p.yk))
         _pres_sahnesi(t, z, f, 206, ps, 1, 206 - int(8 * ps), K, BASKICI, dict(tugra=True))
 
     _spr(199, kare, esik=0.72)
@@ -1599,7 +1675,7 @@ def sahne200():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 200, f, zincir=_kz(p.yk))
         for j, (x, yon, kw) in enumerate(((138, 1, HATTAT), (262, -1, HATTAT2))):
             figur(t, oturan, x, z, s, **kw, yon=yon, el="kalem", minder="#8a6a2a")
             rahle(t, x + int(7.2 * s) * yon, z[0], s)
@@ -1615,7 +1691,7 @@ def sahne201():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 200, f, zincir=_kz(p.yk))
         figur(t, acik_kitap, 200, z, 4.6, "resim", f)
 
     _spr(201, kare, esik=0.8)
@@ -1630,7 +1706,7 @@ def sahne202():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 268, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 268, f, zincir=_kz(p.yk))
         figur(t, tahta_pres, 196, z, K, faz=0.0, yon=1, kagit=False, ag=True)
         figur(t, kitap_yigini, 124, z, K * 0.9, 6, 202, True)
 
@@ -1665,7 +1741,7 @@ def sahne204():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 208, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 208, f, zincir=_kz(p.yk))
         figur(t, raf, 128, z, K * 0.95, "yigin", 204)
         figur(t, kitap_yigini, 166, z, K * 0.85, 12, 2041)
         figur(t, oturan, 206, z, s, **KATIP, yon=1, el="kalem", minder="#5a2a4a")
@@ -1684,7 +1760,7 @@ def sahne205():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 200, f, zincir=_kz(p.yk))
         figur(t, raf, 140, z, K * 0.95, "yigin", 205, True)
         figur(t, raf, 258, z, K * 0.95, "kitap", 2051, True)
         figur(t, kitap_yigini, 199, z, K * 0.85, 11, 2052, True)
@@ -1701,7 +1777,7 @@ def sahne206():
 
     def kare(t, z, i):
         f = i / KARE
-        sarkit_lamba(t, 258, 0, f, zincir=_kz(p.yk))
+        sarkit_lamba(t, 258, f, zincir=_kz(p.yk))
         figur(t, raf, 136, z, K * 0.95, "arsiv", 206)
         figur(t, modern_kisi, 198, z, K, govde="#3a4a5a", sac="#7a5a3a", yon=1, kadin=True, silah="mektup",
               kol=0.3 + 0.03 * SIN(f))
@@ -1751,7 +1827,7 @@ def sahne209():
 
     def kare(t, z, i):
         f = i / KARE
-        kandil(t, 196, 0, f, zincir=_kz(p.yk))
+        _kandil(t, 196, f, zincir=_kz(p.yk))
         figur(t, acik_kitap, 122, z, 2.3, "tek", f)
         figur(t, acik_kitap, 194, z, 2.3, "oklid", f)
         figur(t, acik_kitap, 266, z, 2.3, "vankulu", (f + 0.5) % 1)
