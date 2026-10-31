@@ -869,8 +869,9 @@ def _masa_ustu(no, renk="#6a4426", tur="ahsap", isik=None):
 
 
 def _sahne_gok(no, renkler, bulutlar=(), bulut_renk=("#fff8ec", "#f4dcc8", "#d8a8a0"), yildiz=0):
-    """Bulutlar yalnızca kadrajın ortasına (x 190-350) konur: kenarda yarısı kesik bulut kalmasın."""
-    bulutlar = [(min(350, max(190, x)), y, b) for x, y, b in bulutlar][:1]
+    """Bulut konmaz: yakın kamerada bulutlar ya kadraj kenarında yarım kalıyor ya da etiket bandına düşüyordu
+    (görsel KK). Gökyüzü yalnızca titreşimli gradyan."""
+    bulutlar = []
     return gokyuzu(no, renkler, None, bulutlar, bulut_renk, yildiz)
 
 
@@ -1345,7 +1346,7 @@ def sahne349():
     _basra_uzak(349, None, ["#6a5a70", "#5e5066", "#54465c"], ("#2a2a2a", "#34302e", "#3e3a34"))
     _liman(349, ("#6a5a7a", "#5e5070", "#544866", "#4a405c"), "#a89aa8",
            sorted(BASRA_FILO, key=lambda g: g[1]), tas="#5a5258",
-           hurmalar=[(186, 1.5, 1, ("#2a2a2a", "#34302e", "#3e3a34")), (352, 1.35, -1, ("#2a2a2a", "#34302e", "#3e3a34"))])
+           hurmalar=[(202, 1.5, 1, ("#2a2a2a", "#34302e", "#3e3a34")), (340, 1.35, -1, ("#2a2a2a", "#34302e", "#3e3a34"))])
     yk = 2.8
     K = s_kisi(yk)
 
@@ -1363,8 +1364,8 @@ def sahne354():
                ("#ffffff", "#eef0f4", "#c8ccd8"))
     _basra_uzak(354, None, ["#7a94a8", "#728ca0", "#6a8498"], ("#3a4a32", "#46583a", "#526642"))
     _liman(354, ("#6a8aa4", "#62829c", "#5a7a94", "#52728c"), "#c8c8c0", sorted(BASRA_FILO, key=lambda g: g[1]),
-           tas="#8a8478", hurmalar=[(190, 1.5, 1, ("#3a5a2a", "#4a6a32", "#5a7a3a")),
-                                    (356, 1.35, -1, ("#3a5a2a", "#4a6a32", "#5a7a3a"))])
+           tas="#8a8478", hurmalar=[(202, 1.5, 1, ("#3a5a2a", "#4a6a32", "#5a7a3a")),
+                                    (340, 1.35, -1, ("#3a5a2a", "#4a6a32", "#5a7a3a"))])
     yk = 2.8
     K = s_kisi(yk)
 
@@ -1788,7 +1789,7 @@ def sahne364():
     def kare(t, z, i):
         f = i / KARE
         figur(t, lamba, 268, z, round(0.6 * K, 1), faz=f)
-        figur(t, sandalyede, 228, z, K, yon=-1, silah="mektup", kol=0.12 + 0.05 * SIN(f, 2), **OHLMEYER)
+        figur(t, sandalyede, 228, z, K, yon=-1, silah="mektup", kol=0.02 + 0.02 * (1 + SIN(f, 2)), **OHLMEYER)
         top = figur(t, masa, 176, z, round(0.62 * K, 1), ortu="#3a4a5a")
         d = ImageDraw.Draw(t)                                              # masada mektup kâğıdı ve kalem
         d.rectangle([168, top - 2, 184, top - 1], fill=hex2("#f0ece0"))

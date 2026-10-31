@@ -1793,7 +1793,7 @@ def sahne206():
 
     def kare(t, z, i):
         f = i / KARE
-        sarkit_lamba(t, 258, f, zincir=_kz(p.yk))
+        sarkit_lamba(t, 258, 0, f, zincir=_kz(p.yk))
         figur(t, raf, 136, z, K * 0.95, "arsiv", 206)
         figur(t, modern_kisi, 198, z, K, govde="#3a4a5a", sac="#7a5a3a", yon=1, kadin=True, silah="mektup",
               kol=0.3 + 0.03 * SIN(f))

@@ -161,3 +161,29 @@ Zemin: dış mekânda sprite tabanı 632, iç mekânda 634. Bu satırlar ayaklar
 **Açık kalan, kalite kontrolün karar vereceği noktalar:**
 - Dış mekân sahnelerinde uzak plandaki tepeler, kıyı ve uzak gemiler yazının arkasında kalıyor. Bu, onaylı Çelebi işindeki gibi; motor uzak planı sürekli kaydırdığı için uzak gemiler de akar.
 - Deniz sprite'larının su kenarı yerel x 0 ve 400'de, görünür alanın çok dışında kalıyor.
+
+## Görsel KK revizyonu (6-kalite-gorsel.md)
+
+PiriReis.tsx'teki `sure` değerlerine ve kart metinlerine dokunulmadı; onlar sese hizalı. Bütün düzeltmeler `piri_reis.py` içinde yapıldı.
+
+**Zorunlu düzeltme (359, 360):** 1929 figürleri için yeni `kisi20` figürü yazıldı. Gövde kütüphanedeki `kisi`'den geliyor, başlık bu seriye özgü:
+- **fötr:** alçak yuvarlatılmış taç, tepede çöküntü, koyu bant, başın yaklaşık 1,3 katı genişlikte dar ve uçları hafif kıvrık kenar.
+- **kep:** 1960 subay kepi.
+- **saç:** başı açık.
+
+Çelebi ve Cem dosyalarındaki `sapka`ya dokunulmadı. Halil Edhem fötrlü; kır sakalı ve kır bıyığı var. 359'daki ikinci figür artık Deissmann: aynı palto ve ak sakal, dışarıda fötrlü. 360'ta aynı kişi içeride başı açık, ak saçlı.
+
+**İyileştirmeler:**
+1. **Bâbüsselâm (359):** Kapı 1,3'ten 1,8'e, yani yaklaşık 1,4 kat büyütüldü; kuleler artık adamların başını geçiyor. Kapıya ahşap altlı, kurşun kaplı geniş Osmanlı saçağı eklendi; kemerin üstünde yeşil-altın tuğra panosu var. Taş rengi kırık beyaz-açık gri.
+2. **Kahle (362):** Başı açık.
+3. **Ohlmeyer (364):** 1960 subay kepi takıyor (yüksek taç, dar siper, altın arma). Yeni `sandalyede` figürüyle lambanın yanında, masanın başında oturuyor; masada mektup kâğıdı ve kalem var.
+4. **349 ve 354, karşı kıyı:** Hurmalar yazı bandından tamamen çıkarıldı. Karşı kıyı alçak ve düz. Düzensiz aralıkla iki hurma rıhtıma dikildi; tabanları y 606'da, yazı bandının çok altında.
+5. **Uzak plan:** Bütün sahnelerde uzak plan, seriye özgü bir `uzak` kopyasıyla çıplak, pürüzsüz sırtlara çevrildi; çam silüeti yok (Aden, Maskat, Süveyş, Mısır, Basra ve diğerleri).
+6. **Kaleler:** Maskat kalesi kadrajın içine alındı (`PAY+226..326`, sprite sx'in iki ucunda da görünür). Hürmüz kalesi de içeri alındı (`PAY+186..316`); iki kulesi ve kapısı tam görünüyor.
+7. **Kenardaki gök cismi:** Sağ üstte yarısı kesik görünen şey bulutmuş. Kadrajın ortasına alınınca bulutlar etiket bandına düştü; bu yüzden bütün sahnelerden bulut kaldırıldı. 332 ve 341'deki, kenarda yarım kalan uzak gemiler de kaldırıldı.
+8. **335:** Masa Piri'ye yaklaştırıldı; kalemli eli parşömenin üstüne uzanıyor.
+
+**Denetim:**
+- `python3 -I video/piksel/piri_reis.py` 38 sahnenin hepsini yeniden çizdi (çıkış 0); taban, kadraj ve yazı bandı denetimleri geçti.
+- Önizleyiciyle şu sahnelere baktım: 332, 335, 338, 344, 345, 346, 349, 354, 359, 360, 362, 364, 366.
+- `npx tsc --noEmit -p .` temiz.

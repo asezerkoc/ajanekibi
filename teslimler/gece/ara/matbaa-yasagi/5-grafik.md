@@ -160,3 +160,27 @@ Hepsi `piksel()`, `hex2()`, ImageDraw ve mevcut figürlerle yazıldı.
 - Saray kapısı ve kâğıthane mimarisi temsilî, belgeye dayanmıyor.
 - Kart 7-9'daki "bugün" sahnesi bugünün İstanbul'unda bir rehber ve iki turist.
 - Root.tsx kaydı ve render kod tarafına kalıyor.
+
+## Görsel KK revizyonu (6-kalite-gorsel.md, UYGUN DEĞİL → 4 zorunlu düzeltme)
+
+MatbaaYasagi.tsx'e dokunulmadı: `sure` değerleri (sese hizalı), kart metinleri, yakin ve sprite değerleri aynı kaldı. Düzeltmelerin hepsi `matbaa_yasagi.py` içinde yapıldı. 40 sahne yeniden çizildi, otomatik denetimlerin hepsinden geçti. `npx tsc --noEmit -p .` temiz.
+
+**Yeni ölçek kuralı (otomatik denetim, `yapi_olcek`):** Geride duran yapının kapısı, o derinlikte duran bir insanın boyundan küçük olamaz. O derinlikteki insan boyu şöyle hesaplanıyor: (yapı tabanı − ufuk) / (figür tabanı − ufuk) × öndeki figürün ölçülen boyu. Kural bozulursa betik durur.
+
+Yapılı dış sahnelerde ufuk alçaltıldı (uzak plan ovası y 576). Yapılar ufkun hemen önündeki düz zemine (y 580) kuruldu. Böylece açıkça uzakta duruyorlar, yazı bandının altında kalıyorlar ve hiçbir figüre değmiyorlar. Kural şu sahnelerde uygulandı ve geçti: 174, 175, 183, 185, 191, 192, 203, 207 ve 208.
+
+1. **192 saray kapısı:** Kapı ufkun önüne alındı, kurala göre ölçeklendi (s 1,8, kapı 22 px; gereken 8,5 px). İbrahim ve görevli kapının iki yanına açıldı, kolları indirildi; artık sura değen el yok. Osmanlı ayrıntısı eklendi: lacivert levha üstünde büyük altın tuğra, kemer çevresinde yeşil-mavi çini bordür, lacivert-yeşil çini şerit, kurşun saçak ve kule saçakları. Sekizgen yüz çizgileri zaten vardı.
+2. **203 Yalova:** Kâğıthane, çark ve oluk sprite içinde ufkun önündeki zemine (y 580) alındı. Bu, orta plan yapılarıyla aynı derinlik; çark dönmeye devam ediyor. Ölçek kurala göre ayarlandı. Ustanın kolu indirildi, artık çarka uzanmıyor. Yaşlı İbrahim kenardan içeri alındı (yerel x 114'ten 140'a).
+3. **190 anne:** `kisi(bas="ortu")` yerine yeni `kadin` figürü yazıldı. Başörtüsü başın tepesini, enseyi ve omzu örtüyor; yüzün önü açık, göz pikseli var. Çene altındaki koyu blok kalktı. Anne beşiğe yaklaştı, eli beşiğin kenarına değiyor. Haç gibi görünen tek kollu şamdan, üç mumlu şamdanla değiştirildi ve sola alındı.
+4. **183 ve 191:** 183'te Pera evi ufkun önüne alındı (s 1,6, kurala uygun). Figürler sola çekildi, meşale evin damıyla üst üste gelmiyor. 191'de sur ufkun önüne alındı (kapı 22 px, kurala uygun) ve cami surun ardında ufka oturtuldu. Genç İbrahim'in gövdesini ortadan bölen asa kaldırıldı.
+
+**Ucuz iyileştirmeler:**
+- **204:** Döküm kâtibine ayırt edici görünüm verildi: kırmızı takke, sakalsız, deniz yeşili kaftan. İbrahim'le karışmıyor.
+- **209:** Belgeler büyütüldü (2,3'ten 2,5-2,6'ya). Öklid ile Vankulu arasına boşluk bırakıldı.
+- **178:** Sunaktaki haç Ermeni haçı oldu: kolların ucu genişleyen çatal biçiminde.
+- **184:** Görevli Cizvit'in yanına alındı, eli mektuba değiyor.
+- **180:** Öklid sayfasının alt köşesine "453" sayfa numarası eklendi (3×5 piksel rakam).
+- **Kandil zinciri:** Bütün iç mekânlarda zincir bir ton açık ve kesintisiz çiziliyor (`_kandil`).
+- **207:** Sundurma kaldırıldı; satıcının başı damın üstünden taşıyordu. Tezgâh insan beli yüksekliğine çıkarıldı.
+
+**Göz denetimi:** Önizleme betiğiyle 174, 175, 176, 178, 180, 183, 184, 185, 190, 191, 192, 203, 204, 206, 207, 208 ve 209 açılıp bakıldı. Yapılar ufukta ve figürlerden ayrı duruyor, yazı bandına giren yok, figürler kenardan kesilmiyor.

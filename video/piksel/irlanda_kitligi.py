@@ -226,9 +226,9 @@ def _fes(d, img, x, by, r, s, yon, renk="#b8201e", sorguc=False):
         gy = (alt + tepe) // 2 + 1
         d.ellipse([gx - _u(0.45, s), gy - _u(0.45, s), gx + _u(0.45, s), gy + _u(0.45, s)], fill=hex2("#f0f4ff"),
                   outline=hex2("#e0b040"))
-        for i in range(_u(2.4, s)):
-            piksel(img, gx + (i * i // 10) * yon, gy - 1 - i, hex2("#f8f6f0"))
-            piksel(img, gx + (i * i // 10) * yon + 1, gy - 1 - i, hex2("#d8d4cc"))
+        for i in range(_u(1.5, s)):
+            piksel(img, gx - (i * i // 30) * yon, gy - 1 - i, hex2("#f8f6f0"))
+            piksel(img, gx - (i * i // 30) * yon + 1, gy - 1 - i, hex2("#d8d4cc"))
 
 
 def _silindir(d, x, by, r, s, renk="#16161c"):
@@ -254,7 +254,7 @@ def _sac(d, x, by, r, s, yon, renk, favori=False):
 
 def beyefendi(img, x, zemin, s=1.0, govde="#2a2a34", bas=None, bas_renk="#b8201e", sac="#3a2a1e", sakal=None,
               favori=False, biyik=None, yon=1, adim=None, kol=0.0, silah=None, yaka="#f0ece4", kravat=None,
-              nisan=False, sorguc=False, zincir=False, yelek=None):
+              nisan=False, sorguc=False, zincir=False, yelek=None, gazete=False):
     """Yeni figür: 19-20. yüzyıl erkeği. timur_figur.kisi gövdesi (kemersiz, diz hizasında biten setre/redingot) +
     beyaz yaka, düğme dizisi, saç (ve favori/bıyık), başlık: 'fes' (sorguc=True: padişahın elmas iğneli sorguçlu fesi),
     'silindir' (silindir şapka), 'kasket'. nisan: göğüste altın nişan; zincir: belediye başkanı zinciri; kravat: modern
@@ -287,8 +287,19 @@ def beyefendi(img, x, zemin, s=1.0, govde="#2a2a34", bas=None, bas_renk="#b8201e
     if bas != "fes" or True:
         _sac(d, x, by, r, s, yon, sac, favori)
     if biyik:
-        d.rectangle([x + int(0.1 * s) * yon - (_u(0.9, s) if yon < 0 else 0), by + int(0.55 * s),
-                     x + int(0.1 * s) * yon + (_u(0.9, s) if yon > 0 else 0), by + int(0.55 * s) + _u(0.3, s)], fill=hex2(biyik))
+        bx0 = x + int(0.15 * s) * yon
+        d.line([bx0 - _u(0.5, s), by + int(0.6 * s), bx0 + _u(0.9, s), by + int(0.6 * s)], fill=hex2(biyik))
+    if gazete:                                                          # iki eliyle açık tuttuğu gazete (sütun çizgili)
+        gx0, gx1 = x - int(2.8 * s), x + int(2.8 * s)
+        gy0, gy1 = ust + int(1.4 * s), ust + int(6 * s)
+        d.rectangle([gx0, gy0, gx1, gy1], fill=hex2("#e8e2d0"), outline=hex2("#8a8270"))
+        d.line([x, gy0, x, gy1], fill=hex2("#b0a890"))
+        for cx in (gx0 + _u(0.6, s), x + _u(0.6, s)):
+            d.rectangle([cx, gy0 + _u(0.6, s), cx + int(2 * s), gy0 + _u(1.2, s)], fill=hex2("#3a3630"))
+            for yy in range(gy0 + int(1.8 * s), gy1 - 1, max(2, int(0.7 * s))):
+                d.line([cx, yy, cx + int(2 * s), yy], fill=hex2("#9a9480"))
+        for k in (gx0, gx1):
+            piksel(img, k, gy0 + int(2 * s), hex2(TEN))
     if bas == "fes":
         _fes(d, img, x, by, r, s, yon, bas_renk, sorguc)
     elif bas == "silindir":
@@ -298,7 +309,7 @@ def beyefendi(img, x, zemin, s=1.0, govde="#2a2a34", bas=None, bas_renk="#b8201e
 
 
 def hanim(img, x, zemin, s=1.0, elbise="#2a3a6a", sac="#3a2418", bas=None, bas_renk="#e0b040", yon=1, kol=0.0,
-          silah=None, kusak=None, etek=1.0, adim=None):
+          silah=None, kusak=None, etek=1.0, adim=None, topuz=True):
     """Yeni figür: uzun etekli kadın (19. yy ve bugün). Çan biçimli etek zemine değer (ayak ucu görünür), dar korsaj,
     ortadan ayrılmış saç ve ensede topuz; bas: 'tac' (küçük taç), 'sal' (başı ve omuzları örten yün şal; göz açık).
     kusak: omuzdan çapraz şerit (kraliçe). etek: etek genişliği çarpanı (modern elbise için <1)."""
@@ -356,7 +367,11 @@ def hanim(img, x, zemin, s=1.0, elbise="#2a3a6a", sac="#3a2418", bas=None, bas_r
     d.chord([x - r - 1, by - r - 1, x + r + 1, by + r // 2], 180, 360, fill=hex2(sac))
     d.line([x, by - r, x, by - r // 2], fill=hex2(_ac(sac, 0.25)))                                      # ortadan ayrık
     tx = x - (r + _u(0.6, s)) * yon                                                                      # topuz
-    d.ellipse([tx - _u(0.9, s), by - _u(0.6, s), tx + _u(0.9, s), by + _u(1.2, s)], fill=hex2(sac))
+    if topuz:
+        d.ellipse([tx - _u(0.9, s), by - _u(0.6, s), tx + _u(0.9, s), by + _u(1.2, s)], fill=hex2(sac))
+    else:                                                                                                # bugün: kısa saç
+        d.rectangle([min(x - r * yon, x - r * yon - _u(0.5, s) * yon), by - r // 2, max(x - r * yon, x - r * yon - _u(0.5, s) * yon),
+                     by + r // 2], fill=hex2(sac))
     if bas == "tac":
         tr = int(r * 0.75)
         d.rectangle([x - tr, by - r - _u(1.2, s), x + tr, by - r + _u(0.2, s)], fill=hex2(bas_renk))
@@ -504,7 +519,7 @@ def defter_sayfa(d, img, x0, y0, x1, y1, renk="#f2ead4", satir="#9a8a70", cilt="
     d.line([orta_ + (x1 - orta_) * 2 // 3, y0 + 1, orta_ + (x1 - orta_) * 2 // 3, y1 - 1], fill=hex2("#c8a0a0"))
 
 
-def kursu(img, x, zemin, s=1.0, renk="#5a3820", defter=True, cilt="#5a2e1e", mum=None):
+def kursu(img, x, zemin, s=1.0, renk="#5a3820", defter=True, cilt="#5a2e1e", mum=None, egim=2.5):
     """Yeni figür: yüksek kâtip kürsüsü (ayakta yazılır). Dört ayak zemine basar, eğik üst tabla izleyiciye dönük;
     tablada açık defter (satır çizgili). Dönen değer: tabla arka kenarının y'si (mürekkep hokkası buraya)."""
     d = ImageDraw.Draw(img)
@@ -512,7 +527,7 @@ def kursu(img, x, zemin, s=1.0, renk="#5a3820", defter=True, cilt="#5a2e1e", mum
     temas_golgesi(img, x, y, 15 * s)
     w2 = int(7 * s)
     on_y = y - int(8 * s)
-    arka_y = y - int(10.5 * s)
+    arka_y = y - int((8 + egim) * s)
     k = hex2(_ac(renk, -0.35))
     for ax in (-w2 + int(0.5 * s), w2 - int(1.5 * s)):
         d.rectangle([x + ax, on_y, x + ax + _u(1, s), y - 1], fill=k)
@@ -1275,3 +1290,163 @@ def kasaba_uzak(no, gok_alt, tepe, ev_renk, ufuk=546, kilise=True, su=None, isik
                 d.rectangle([kx - 4, ufuk - 26, kx + 4, ufuk], fill=hex2(kr))
                 d.polygon([(kx - 4, ufuk - 26), (kx + 4, ufuk - 26), (kx, ufuk - 40)], fill=hex2(_ac(kr, -0.2)))
     return uzak_tepe(no, tepe, ufuk, ekle, su)
+
+
+# ==========================================================================
+# KİŞİLER (renk kimlikleri bütün videoda aynı)
+# ==========================================================================
+PADISAH = dict(govde="#1e2a4a", bas="fes", bas_renk="#b8201e", sac="#2a1a12", biyik="#2a1a12", nisan=True, sorguc=True)
+KATIP_OS = dict(govde="#2a2a30", bas="fes", bas_renk="#a01e1c", sac="#3a2a1a", sakal="#3a2a1a")
+NAZIR = dict(govde="#3a2a3a", bas="fes", bas_renk="#a8201e", sac="#4a4a4a", sakal="#8a8a88", nisan=True)
+WELLESLEY = dict(govde="#1a1a24", sac="#6a4a2a", favori=True, yelek="#8a7a5a")
+LONDRA_1 = dict(govde="#2a2a2a", sac="#8a8a88", favori=True, yelek="#5a2a2a")
+LONDRA_2 = dict(govde="#3a3428", sac="#3a2418", favori=True)
+KATIP_LON = dict(govde="#3a3a40", sac="#5a3a20")
+VICTORIA = dict(elbise="#2a3a7a", sac="#2a1a12", bas="tac", bas_renk="#e8c040", kusak="#4a7ad0")
+SU_GECE = ("#1e2a40", "#1a2638", "#162232", "#121e2c")
+
+
+def gemi_suda(t, x, su_y, s, f, su_renk, dunya_ust, yon=1, alt=None, **kw):
+    """Yelkenli + gövdenin suya batık kısmını örten, orta plandaki suyla AYNI renkte yerel su yaması (dikiş görünmez),
+    su çizgisinde köpük. su_renk(dunya_y) → renk."""
+    figur(t, yelkenli, x, su_y, s, yon, f, **kw)
+    d = ImageDraw.Draw(t)
+    x0, x1 = int(x - 20 * s), int(x + 20 * s)
+    for y in range(su_y + 1, min(t.height if alt is None else alt, su_y + int(2 * s) + 3)):
+        d.line([x0, y, x1, y], fill=hex2(su_renk(dunya_ust + y)))
+    su_cizgisi(t, x - 17 * s, x + 17 * s, su_y + 1, f)
+
+
+def nehir_rengi(y0, renkler, adim=12):
+    return lambda y: renkler[min(len(renkler) - 1, max(0, y - y0) // adim)]
+
+
+def nehir_orta(no, y0, renkler, adim=12, ekle=None):
+    """Orta plan tamamen su (nehir/deniz): y0'dan aşağısı, nehir_rengi ile aynı bantlar; parıltılar yarı saydam."""
+    img = yeni(GW, H)
+    d = ImageDraw.Draw(img)
+    rf = nehir_rengi(y0, renkler, adim)
+    for y in range(y0, H):
+        d.line([0, y, GW, y], fill=hex2(rf(y)))
+    rnd = random.Random(no)
+    for _ in range(360):
+        x, y = rnd.randrange(GW), rnd.randrange(y0 + 2, H)
+        for k in range(rnd.randint(2, 3 + (y - y0) // 12)):
+            piksel(img, x + k, y, hex2(_ac(renkler[0], 0.35), 120))
+    if ekle:
+        ekle(img)
+    kaydet(img, f"sahne{no}-orta.png")
+
+
+# ==========================================================================
+# SAHNELER
+# ==========================================================================
+def sahne490():
+    """Kapak + kart 1: İstanbul, saray odası (1847). Genç padişah (fes, sorguç, lacivert setre, nişan, hafif bıyık)
+    masadaki bağış kesesini gösterir; karşısında fesli kâtip kâğıdı almak için elini uzatır. Avize-kandil."""
+    no = 490
+    oda(no, duvar="#2e4a42", desen="damask", lambri="#c8bca0", pencere=("#9ab8d0", "#e8f0f4"), pencere_x=(PAY + 210, PAY + 330),
+        kemerli=True, perde="#7a1e22", zemin="mermer", zemin_renk="#b8ae9a", hali="#8a2a2a")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, _kz(no))
+        figur(t, beyefendi, 140, z, k, **KATIP_OS, yon=1, kol=0.22 + 0.04 * SIN(f))
+        u = figur(t, masa, 192, z, k, renk="#5a3418", gen=3.6, yuk=6.4)
+        figur(t, kese, 182, duz(u, t.width), round(k * 0.55, 1))
+        kagit(t, 200, u, k * 0.45, muhur=True)
+        figur(t, beyefendi, 252, z, k, **PADISAH, yon=-1, kol=0.12 + 0.05 * (1 + SIN(f)))
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne491():
+    """Kart 2, 31, 52 (efsane): gece, sisli nehir; üç yelkenli soluk, hayal gibi (soğuk gri-mavi), yelkenleri yarı açık.
+    Karşı kıyıda soluk kasaba ışıkları. Hilal-yıldız yok (yalnızca 514'te kalkan üstünde)."""
+    no = 491
+    gok(no, ["#0a0e22", "#121a34", "#1c2846", "#283654", "#36445e"], yildiz=60)
+    kasaba_uzak(no, None, ("#1e2a36", "#1a2430"), ("#2a3442", "#26303c", "#303a48"), ufuk=546, isik=True)
+    nehir_orta(no, 552, SU_GECE)
+    _bos(no, "on")
+    b = P(no)
+    ust = b["taban"] - b["h"]
+    rf = nehir_rengi(552, SU_GECE)
+    soluk = dict(govde="#5a6a80", serit="#9aa8bc", yelken="#b4c0d0")
+
+    def kare(t, z, i):
+        f = i / KARE
+        h = t.height
+        gemi_suda(t, 152, h - 30, 1.5, (f + 0.5) % 1, rf, ust, acik=0.6, **soluk)
+        gemi_suda(t, 238, h - 18, 2.0, (f + 0.25) % 1, rf, ust, yon=-1, acik=0.6, **soluk)
+        gemi_suda(t, 178, h - 7, 2.7, f, rf, ust, acik=0.7, **soluk)
+        rnd = random.Random(7)
+        for _ in range(260):                                        # sis: yarı saydam, yana süzülür
+            x = (rnd.randrange(t.width) + int(f * 24)) % t.width
+            y = rnd.randrange(h - 70, h)
+            piksel(t, x, y, hex2("#a8b4c8", 70))
+
+    _bitir(no, kare, esik=0.7)
+
+
+def sahne492():
+    """Kart 3 ve 51 (motif): kâtip kürsüsünde açık defter yakın plan; satır çizgileri, rakam yok. Hokka, tüy kalem, mum."""
+    no = 492
+    oda(no, duvar="#3a2c22", desen="lambri", lambri=None, zemin="tahta", zemin_renk="#4a3424", isik="#f8c060")
+    s = 7.0
+
+    def kare(t, z, i):
+        f = i / KARE
+        u = figur(t, kursu, 200, z, s, egim=5.5)
+        mum(t, 160, u, f, 2.4)
+
+    _bitir(no, kare, orta_denetle=False)
+
+
+def sahne493():
+    """Kart 4-5: İstanbul, 1847 baharı. Saray bahçesinin taş korkuluklu terasında erguvanlar çiçekte; padişah sağa yürür,
+    arkasında kâtip. Korkuluğun ötesinde Boğaz, karşı kıyıda puslu tepeler ve ince minareli silüet (uzak plan)."""
+    no = 493
+    gok(no, ["#6a8ac0", "#86a2cc", "#a6bcd8", "#c6d4e0", "#e2e2dc"], None, [(110, 420, 18), (420, 410, 16)])
+
+    def karsi(img, z):
+        d = ImageDraw.Draw(img)
+        rnd = random.Random(4)
+        renk = hex2("#7a8aa0")
+        for x in range(0, W, 9):
+            hh = rnd.randint(3, 7)
+            d.rectangle([x, 520 - hh, x + 7, 520], fill=renk)
+        for x in (60, 230, 400):
+            d.chord([x - 9, 508, x + 9, 526], 180, 360, fill=renk)
+            d.rectangle([x + 13, 500, x + 14, 520], fill=renk)
+            piksel(img, x + 13, 499, renk)
+    uzak_tepe(no, ("#8a9aac", "#7e8ea2"), 520, karsi, su=(521, ("#5a86b0", "#4e7ca8", "#4672a0")))
+
+    def ekle(img, z):
+        d = ImageDraw.Draw(img)
+        y = z[0] - 30
+        d.rectangle([0, y - 10, GW, y], fill=hex2("#d8d0bc"))                         # taş korkuluk (terasın kenarı)
+        d.rectangle([0, y - 12, GW, y - 10], fill=hex2("#ece6d6"))
+        for x in range(4, GW, 9):
+            d.rectangle([x, y - 8, x + 3, y - 2], fill=hex2("#b0a690"))
+        rnd = random.Random(493)
+        for x in range(0, GW, 7):                                                     # korkuluk dibinde çiçekli erguvan çalıları
+            for _ in range(3):
+                cx, cy = x + rnd.randint(-3, 3), y + 2 - rnd.randint(0, 8)
+                r = rnd.randint(3, 5)
+                d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=hex2(rnd.choice(("#a83a7a", "#c8508e", "#e07aa8", "#b8467e"))))
+            piksel(img, x, y + 4, hex2("#4a3022"))
+        for x in range(0, GW, 5):
+            d.line([x, y + 3, x, y + 6], fill=hex2("#5a6a3a"))
+    zemin_orta(no, 560, ["#c8bca4", "#bcb098", "#b0a48c", "#a49880"], "kaldirim", ekle)
+    _bos(no, "on")
+    k = K(no)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, beyefendi, 160, z, round(k * 0.96, 1), **KATIP_OS, yon=1, adim=(f + 0.5) % 1)
+        figur(t, beyefendi, 222, z, k, **PADISAH, yon=1, adim=f)
+
+    _bitir(no, kare)
+
+

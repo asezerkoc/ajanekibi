@@ -35,3 +35,46 @@ Havada duran nesne ve okunmayan yazı yok. Kartların hepsi okunuyor ve Türkçe
 ## Değerlendirme (sahibe gösterilecek)
 
 Video genel olarak SKONSTART tarzında. 64-bit piksel çizim, konturlu figürler ve sıcak mum ışıklı iç mekânlar sahneden sahneye tutarlı. 49 kartın hepsi okunuyor ve Türkçe harfler doğru. Presler, rahleler, beşik ve kitap yığınları zemine oturuyor. Kurgu, "fermanı gören yok" motifini boş rahleden üç belgeye kadar düzgün taşıyor. Ama dış mekânlardaki yapılar figürlerin yanında maket gibi küçük kalıyor. Saray kapısı insanın yarısı boyunda ve bir Avrupa şatosunu andırıyor. Yalova'daki kâğıthanenin kapısı ustanın beline yetişmiyor. Kolozsvár'daki anne figürü de sakallı ve gözsüz görünüyor. Grafiker bu dört noktayı düzeltince video tekrar kontrol edilecek; düzeltilmeden size gönderilmeyecek.
+
+## 2. tur
+
+**Bakılan kareler:** `qc-matbaa-yasagi/r2/` klasöründeki kapak ile 174, 175, 178, 180, 183, 184, 185, 190, 191, 192, 203, 204, 207, 208 ve 209 sahnelerinin orta kareleri. Bunlara ek olarak iki kare render ettim: `ek-sahne176.png` (kandil zinciri) ve `ek-sahne206.png`. Bütün kareler tek tek açıldı.
+
+### Karar: UYGUN
+
+**Gerekçe: ilk turdaki 4 zorunlu düzeltmenin hepsi karelerde yapılmış.**
+
+1. **Sahne 192, saray kapısı:** Kapı artık ufkun önünde, açıkça uzakta duruyor. Önde duran figürlerle ölçek çelişkisi kalmadı. Sura değen el de yok. Kapının üstünde altın tuğra ve lacivert levha var, kemerin çevresinde çini bordür, saçakta lacivert-yeşil şerit var. Yapı artık Avrupa şatosu gibi okunmuyor.
+2. **Sahne 203, Yalova:** Kâğıthane, çark ve oluk ufuk derinliğine alınmış, maket gibi durmuyorlar. Ustanın eli çarka değmiyor (arada yaklaşık 60 px var). Yaşlı İbrahim kenardan içeri alınmış, sarığın solu x≈140'ta.
+3. **Sahne 190, anne:** Sakal gibi okunan blok kalkmış. Göz pikseli var, başörtüsü düzgün. Figür artık kadın olarak okunuyor. Haça benzeyen şamdan, üç mumlu şamdanla değiştirilmiş.
+4. **Sahne 183 ve 191:** Pera evi ve sur ufkun önünde, figürlerle ölçek çelişkisi yok. 183'teki meşale damla çakışmıyor. 191'de gövdeyi ortadan bölen asa kaldırılmış.
+
+Ölçek kuralının uygulandığı öteki sahneler de temiz: 174, 175, 185, 207 ve 208. 207'de tezgâh bel hizasında, satıcının başı damdan taşmıyor.
+
+Düzeltmeler yeni hata getirmemiş. Havada duran nesne, gözsüz yüz, kenarda kesilen figür, yazı bandına giren nesne ya da dönem dışı öğe görmedim. 206'daki modern lamba ve çelik raf 2017 arşiv sahnesine ait, dönem dışı değil.
+
+Ucuz iyileştirmeler de görünüyor:
+- 178'de Ermeni haçı var.
+- 180'de sayfa numarası "453" okunuyor.
+- 184'te görevlinin eli mektuba değiyor.
+- 204'teki kâtip kırmızı takkeli ve sakalsız, İbrahim'le karışmıyor.
+- 209'da belgeler büyümüş ve aralarında boşluk var.
+- Kapaktaki kandil zinciri kesintisiz.
+
+175 ve 206 karelerinde kart soluk görünüyor. Bunun nedeni orta karenin iki kart arasındaki geçişe denk gelmesi. Kart metinleri ve süreler bu turda değişmedi ve 1. turda okunur bulundu.
+
+### Kalan zorunlu düzeltmeler
+
+Yok.
+
+### İyileştirme önerileri (ret nedeni değil)
+
+- **Sahne 192:** Sağdaki figürün sarığı sağ kenara yaklaşık 8 px, soldakinin sarığı sol kenara yaklaşık 22 px uzaklıkta. Kesilme yok ama kenara çok yakınlar. İki figür 30-40 px içeri alınabilir.
+- **Sahne 203:** Raporda "ustanın kolu indirildi" deniyor, ama karede kol hâlâ yatay uzanıyor. Ucu oluğun ağzına yakın duruyor (x≈540'a karşı x≈555). Hata değil: işaret ediyormuş gibi okunuyor.
+- **Sahne 190:** Annenin eli beşiğin yaklaşık 100 px üstünde kalıyor, kenarına değmiyor. Eli 80-100 px aşağı indirmek "beşiği sallıyor" anlamını güçlendirir.
+- **İç mekânlar (176, 178, 184, 190, 204, 209):** Kandil kadrajın üst kenarına yapışık ve zinciri kadraj dışında kalıyor. Tavana asılı olduğu yine de okunuyor; kapaktaki gibi biraz aşağı indirilirse zincir de görünür.
+- **Sahne 209:** Belgeler hâlâ kadraj yüksekliğinin yalnızca yaklaşık %16'sını kaplıyor. `yakin` değeri biraz daha artırılabilir.
+
+### Değerlendirme (sahibe gösterilecek)
+
+Grafiker ilk turdaki dört sorunun hepsini düzeltti. Saray kapısı, Pera evi, sur ve Yalova kâğıthanesi artık ufukta, gerçek uzaklıklarında duruyor. Figürlerin yanında maket gibi görünmüyorlar. Saray kapısı tuğrası ve çinileriyle Osmanlı yapısı olarak okunuyor. Kolozsvár'daki anne artık gözlü, başörtülü bir kadın. Düzeltmeler yeni bir hata getirmedi; kalan notlar küçük estetik öneriler. Video size gönderilebilir.
