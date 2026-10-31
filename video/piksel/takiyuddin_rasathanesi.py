@@ -571,7 +571,7 @@ KILIC_ALI = dict(govde="#7a1e22", bas="sarik", bas_renk="#f4f0e6", sakal="#9a908
 SEYHULISLAM = dict(govde="#2a4a3a", bas="sarik", bas_renk="#fbf8f0", sakal="#ece8e0")
 SOKOLLU = dict(govde="#2a6a3a", bas="sarik", bas_renk="#f8f4ea", sakal="#d8d0c8")
 SINAN = dict(govde="#6a5a44", bas="sarik", bas_renk="#f0ebe0", sakal="#e0dcd4")
-LEVEND = dict(govde="#a8281e", bas="kalpak", bas_renk="#4a3222", sakal="#3a2a1a")       # donanma topçusu
+LEVEND = dict(govde="#a8281e", bas="kalpak", bas_renk="#4a3222", sakal="#6a4a30")       # donanma topçusu
 KATIP = dict(govde="#5a4a6a", bas="sarik", bas_renk="#ece6d8", sakal="#4a3a2a")
 NAKKAS = dict(govde="#6a3a2a", bas="sarik", bas_renk="#ece6d8", sakal="#2a1a12")
 MUNECCIM = dict(govde="#4a3a6a", bas="sarik", bas_renk="#f4f0e6", sakal="#2a1a12")      # sonraki müneccimbaşı
@@ -621,3 +621,944 @@ def _cimen(t, z, f, renkler, tohum, x0=0, x1=None, boy=6):
     """Sprite'ın zemin satırında rüzgârla salınan çimen (dibi zemine basar)."""
     from ciz import cimen_tutamlari
     cimen_tutamlari(t, z, renkler, tohum, 0.45, boy, x0, x1, ruzgar=0.6 * SIN(f))
+
+
+# Ortak paletler
+KIS = ["#24243e", "#3e3a58", "#5a506e", "#7a6680", "#987a88", "#b08e8e"]          # Ocak 1580: kış alacakaranlığı
+KIS_DAG, KIS_TEPE = ["#4e4a66", "#44405c"], ["#5a5470", "#4e4a64"]
+KIS_DENIZ = ["#44506e", "#3c4864", "#34405a"]
+KIS_ORTA = ["#5a5a4a", "#4e4e40", "#424236", "#36362e", "#2c2c26"]
+GUN_IST = ["#4a7ab8", "#6a92c4", "#8aaad0", "#a8c0dc", "#c4d4e4", "#d8e2ea"]       # İstanbul gündüz
+ALTIN_SAAT = ["#4a3a6a", "#8a5a7a", "#c8786a", "#e89a6a", "#f4bc7a", "#f8d494"]
+GECE_DAG, GECE_TEPE = ["#1a2240", "#161d38"], ["#1e2846", "#19223e"]
+GECE_DENIZ = ["#1a2a4a", "#162440", "#121e38"]
+GECE_ORTA = ["#2a3440", "#242d38", "#1e2630", "#182028", "#121a20"]
+
+
+def _gece_ortasi(no, ust=(540, 552), ekle=None, renkler=GECE_ORTA, kenar="#5a6a84"):
+    orta(no, ust, renkler, kenar, ekle=ekle)
+    on(no, [renkler[-1], renkler[-2], renkler[-3]], kenar, boy=120)
+
+
+# --------------------------------------------------------------------------
+# 410 (kapak + kart 1-2): yıkım anı (anlatıya göre). Sağ geride terastaki rasathane, solda topçu ve top.
+# --------------------------------------------------------------------------
+def _rasathane_orta(cx, s, yikik=0.0, teras_h=10, isik=False, zemin_y_=588, genis=(62, 58)):
+    """Orta plana teras + rasathane çizen ekle fonksiyonu (cx: ızgara x'i)."""
+    def ekle(img, z):
+        ust = figur(img, teras, PAY + cx - genis[0], PAY + cx + genis[1], duz(zemin_y_), teras_h)
+        figur(img, rasathane, PAY + cx, duz(ust), s, yikik=yikik, isik=isik)
+    return ekle
+
+
+def sahne410():
+    """Kanca: Ocak 1580, kış alacakaranlığı. Tophane sırtında terastaki rasathane kısmen yıkık, dibinden toz kalkar;
+    solda donanmanın topçusu ve namlusu binaya dönük tunç top ateşler (anlatıya göre)."""
+    _gok(410, KIS)
+    uzak(410, KIS_DAG, KIS_TEPE, KIS_DENIZ, dag_y=(436, 470), tepe_y=478, ova_y=494)
+    yk = 2.6
+    K = s_kisi(yk, 0.30)
+    _gorunur(410, [272, 356], 270, 270, yk)
+    orta(410, (540, 552), KIS_ORTA, "#8a8a70", ekle=_rasathane_orta(314, 1.9, yikik=0.35))
+    on(410, [KIS_ORTA[-1], KIS_ORTA[-2], KIS_ORTA[-3]], "#8a8a70", boy=120)
+    st = round(0.72 * K, 1)
+
+    def kare(t, z, i):
+        f = i / KARE
+        for j, mx in enumerate((248, 288)):                          # moloz noktalarından toz (ızgara 318 ve 358)
+            _toz(t, mx, 246, (f + j * 0.45) % 1, 54, 410 + j, genislik=2.0)
+        figur(t, kisi, 132, z, K, **LEVEND, yon=1, kol=0.45 + 0.05 * SIN(f))      # topçu binayı gösterir
+        ates = max(0.0, 1 - f / 0.12) if f < 0.12 else 0.0
+        mx, my = figur(t, top_, 196, z, st, 1, ates=ates)
+        duman(t, mx + 4, my, 44, 7, faz=f, renk="#d8d0c8", ruzgar=0.45, genislik=1.2)   # namlu dumanı yukarı çıkar
+
+    _spr(410, 400, 300, kare, yk, esik=0.7)
+
+
+# --------------------------------------------------------------------------
+# 411 (kart 3-4): Tophane'nin yukarısı, alacakaranlık; bina sağlam (üç yıl önce kurulan yapı), pencerelerde kandil.
+# --------------------------------------------------------------------------
+def sahne411():
+    """'Tophane'nin yukarısı, İstanbul': alacakaranlıkta terasın üstünde sağlam rasathane, pencerelerde kandil ışığı;
+    arkada Boğaz ve karşı kıyının tepeleri. İnsan yok; terasın dibinde çimen rüzgârda salınır."""
+    _gok(411, ["#1e1e3e", "#3a3058", "#6a4a6e", "#a0607a", "#c8807e", "#e0a088"], yildiz=40, y0=380, y1=470)
+    uzak(411, ["#4a3e60", "#403656"], ["#54466a", "#4a3e60"], ["#3a4870", "#344066", "#2e385c"],
+         dag_y=(470, 500), tepe_y=506, ova_y=516)
+    orta(411, (548, 556), ["#4a5040", "#40463a", "#363c32", "#2e322a", "#262a22"], "#7a8a68")
+    on(411, ["#262a22", "#2e322a", "#363c32"], "#7a8a68", boy=120)
+    yk = 2.2
+    s = 3.4
+
+    def kare(t, z, i):
+        f = i / KARE
+        ust = figur(t, teras, 96, 314, z, 16)
+        figur(t, rasathane, 205, duz(ust, t.width), s, isik=True)
+        _cimen(t, z, f, ["#5a6a48", "#4a5a3c", "#6a7a54"], 411, 60, 340, boy=7)
+
+    _spr(411, 400, 300, kare, yk, esik=0.85)
+
+
+# --------------------------------------------------------------------------
+# 412 (kart 5-6): gece, terasta Takiyüddin halkalı kürenin başında; sağ geride ışıklı rasathane.
+# --------------------------------------------------------------------------
+def sahne412():
+    """'Kuran: Takiyüddin': gece; Takiyüddin halkalı kürenin (armilla) yanında ona döner, iç halka yavaşça döner;
+    sağ geride terastaki rasathanenin pencereleri yanar."""
+    _gok(412, GECE, yildiz=160, y0=360, y1=560)
+    uzak(412, GECE_DAG, GECE_TEPE, GECE_DENIZ, dag_y=(470, 500), tepe_y=506, ova_y=516)
+    yk = 2.6
+    K = s_kisi(yk)
+    _gorunur(412, [301, 359], 270, 270, yk)
+    _gece_ortasi(412, (540, 552), ekle=_rasathane_orta(330, 1.3, isik=True, teras_h=8, genis=(40, 38)))
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, armilla, 150, z, 3.6, faz=f * 0.5)
+        figur(t, kisi, 215, z, K, **TAKI, yon=-1, kol=0.2 + 0.04 * SIN(f))
+
+    _spr(412, 400, 300, kare, yk)
+
+
+# --------------------------------------------------------------------------
+# 413 (kart 7): soru. Gece; sağda terastaki rasathane, solda karanlıkta ona dönük tek bir top.
+# --------------------------------------------------------------------------
+def sahne413():
+    """'Padişahın kendi gözlemevi hedef oldu': gece, terasın üstünde ışıklı rasathane; sol önde namlusu binaya dönük
+    tunç top (topçu yok: tehdit, olay değil)."""
+    _gok(413, ["#0a0818", "#160e2a", "#24163a", "#36204a", "#4a2a52", "#5e3456"], yildiz=120, y0=330, y1=560)
+    uzak(413, ["#24183a", "#1e1432"], ["#2a1c40", "#241838"], ["#1e2444", "#1a203c", "#161c34"],
+         dag_y=(486, 510), tepe_y=514, ova_y=524)
+    orta(413, (556, 562), ["#2e2a36", "#28242e", "#221e28", "#1c1822", "#16121c"], "#5a4a6a")
+    on(413, ["#16121c", "#1c1822", "#221e28"], "#5a4a6a", boy=100)
+    yk = 2.2
+
+    def kare(t, z, i):
+        f = i / KARE
+        ust = figur(t, teras, 150, 318, z, 14)
+        figur(t, rasathane, 238, duz(ust, t.width), 2.9, isik=(i % 12) != 5)    # kandil titrer
+        figur(t, top_, 108, z, 3.6, 1, egim=0.24)
+        _cimen(t, z, f, ["#3a3446", "#2e2a3a", "#4a4256"], 413, 70, 150, boy=6)
+
+    _spr(413, 400, 300, kare, yk, esik=0.85)
+
+
+# --------------------------------------------------------------------------
+# 414 (kart 8-9): Hven adası, 1576. Kral II. Frederik adayı Tycho'ya verir; arkada yükselen Uraniborg.
+# --------------------------------------------------------------------------
+KUZEY = ["#5a7aa8", "#7a96bc", "#9ab0cc", "#b8c8da", "#d0dae4", "#e0e6ea"]
+KUZEY_DENIZ = ["#4a6a8a", "#42627e", "#3a5a74"]
+HVEN_ORTA = ["#5a8a4a", "#4e7e42", "#44723a", "#3a6632", "#305a2a"]
+
+
+def sahne414():
+    """Hven, 1576: deniz ortasında yeşil ada; Kral II. Frederik (taçlı) belgeyi Tycho'ya uzatır, Tycho krala döner;
+    arkada düz zeminde Uraniborg."""
+    _gok(414, KUZEY)
+    uzak(414, ["#7a8aa4", "#6e7e98"], ["#8a9aa8", "#7e8e9c"], KUZEY_DENIZ, dag_y=(476, 500), tepe_y=504, ova_y=512)
+    yk = 2.8
+    K = s_kisi(yk)
+    _gorunur(414, [270], 270, 270, yk)
+    orta(414, (536, 548), HVEN_ORTA, "#9ac078",
+         ekle=lambda img, z: figur(img, uraniborg, PAY + 270, duz(588), 1.4))
+    on(414, [HVEN_ORTA[-1], HVEN_ORTA[-2], HVEN_ORTA[-3]], "#9ac078", boy=120)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 148, z, K, **FREDERIK, yon=1, silah="mektup", kol=0.42 + 0.03 * SIN(f), pelerin="#2a2a6a")
+        figur(t, kisi, 246, z, K, **TYCHO, yon=-1, kol=0.05 + 0.03 * SIN(f), pelerin="#6a2a2a")
+        _cimen(t, z, f, ["#6a9a52", "#5a8a46", "#7aaa5e"], 414, 90, 310, boy=6)
+
+    _spr(414, 400, 300, kare, yk)
+
+
+# --------------------------------------------------------------------------
+# 415 (kart 10): Uraniborg büyük plan, altın saat; çimen salınır.
+# --------------------------------------------------------------------------
+def sahne415():
+    """'Tycho oraya Uraniborg'u kuruyor': altın saatte Hven'de Uraniborg; kırmızı tuğla, bakır kubbeler."""
+    _gok(415, ["#5a5a8a", "#8a7a9a", "#c0909a", "#e0a890", "#f0c49a", "#f6d8a8"])
+    uzak(415, ["#8a7a9a", "#7e6e90"], ["#9a8a9a", "#8e7e90"], ["#6a7a9a", "#5e6e90", "#526288"],
+         dag_y=(486, 506), tepe_y=510, ova_y=518)
+    orta(415, (550, 556), HVEN_ORTA, "#b8d088")
+    on(415, [HVEN_ORTA[-1], HVEN_ORTA[-2], HVEN_ORTA[-3]], "#b8d088", boy=120)
+    yk = 2.2
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, uraniborg, 200, z, 3.0)
+        _cimen(t, z, f, ["#6a9a52", "#5a8a46", "#8aba66"], 415, 60, 340, boy=8)
+
+    _spr(415, 400, 300, kare, yk, esik=0.85)
+
+
+# --------------------------------------------------------------------------
+# 416 (kart 11): iki gözlemci, iki dev alet, teleskop yok. Solda Tycho ve çeyrek daire, sağda Takiyüddin ve armilla.
+# --------------------------------------------------------------------------
+def sahne416():
+    """'Tycho da Takiyüddin de çıplak gözle, dev aletlerle bakıyor': aynı gece göğü altında solda Tycho duvar çeyrek
+    dairesinin yayında, sağda Takiyüddin halkalı kürenin yanında. Teleskop hiçbir yerde yok."""
+    _gok(416, GECE, yildiz=200, y0=340, y1=580)
+    uzak(416, GECE_DAG, GECE_TEPE, GECE_DENIZ, dag_y=(480, 506), tepe_y=510, ova_y=520)
+    _gece_ortasi(416, (548, 556))
+    yk = 2.4
+    K = s_kisi(yk, 0.30)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, ceyrek_daire, 160, z, 3.4, -1, aci=0.55 + 0.05 * SIN(f))
+        figur(t, kisi, 118, z, K, **TYCHO, yon=1, kol=0.3, pelerin="#6a2a2a")
+        figur(t, armilla, 276, z, 3.6, faz=f * 0.5)
+        figur(t, kisi, 220, z, K, **TAKI, yon=1, kol=0.3)
+
+    _spr(416, 400, 300, kare, yk, esik=0.8)
+
+
+# --------------------------------------------------------------------------
+# 417 (kart 12-13) ve 448 (kart 49-50): aynı gökyüzü, iki gözlemevi (solda Uraniborg, sağda İstanbul Rasathanesi).
+# --------------------------------------------------------------------------
+def _iki_gozlemevi(no, yikik):
+    _gok(no, GECE, yildiz=240, y0=320, y1=590)
+    uzak(no, GECE_DAG, GECE_TEPE, GECE_DENIZ, dag_y=(500, 526), tepe_y=530, ova_y=540)
+    _gece_ortasi(no, (566, 572))
+    yk = 2.0
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, uraniborg, 126, z, 2.2, yikik=yikik[0], isik=not yikik[0])
+        ust = figur(t, teras, 224, 332, z, 10)
+        figur(t, rasathane, 280, duz(ust, t.width), 2.2, yikik=yikik[1], isik=not yikik[1])
+        _cimen(t, z, f, ["#3a4a5a", "#2e3e4e", "#4a5a6a"], no, 60, 340, boy=7 if yikik[0] else 5)
+
+    _spr(no, 400, 300, kare, yk, esik=0.9)
+
+
+def sahne417():
+    """'Aynı gökyüzü, iki gözlemevi': tek yıldızlı gece göğü altında yan yana Uraniborg (Hven) ve İstanbul
+    Rasathanesi; ikisinin de pencereleri yanar."""
+    _iki_gozlemevi(417, (0.0, 0.0))
+
+
+# --------------------------------------------------------------------------
+# 418 (kart 14-15): Şam, 1559: Takiyüddin rahlede saat kitabını yazar; yanında mekanik masa saati.
+# --------------------------------------------------------------------------
+def sahne418():
+    """Şam, 1559: taş oda, kandil; Takiyüddin minderde oturup rahlede yazar, yanında sehpada mekanik masa saati."""
+    ic_mekan(418, duvar=("#4a3a2a", "#5a4632", "#6a543a"), kemer="#3a2a1a", cini="#2a7a8a",
+             zemin_renk=("#6a5a44", "#5a4c3a", "#4a3e30"), isik="#f8c060", hali=True)
+    yk = 3.0
+    s = s_oturan(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, zincir=_kz(yk))
+        mumluk(t, 112, z, f, 2)
+        figur(t, oturan, 168, z, s, **TAKI, yon=1, el="kalem", minder="#8a2a2a")
+        rahle(t, 222, z[0], 3.6)
+        figur(t, masa_saati, 272, z, 4.4, f=f)
+
+    _spr(418, 400, 300, kare, yk)
+
+
+# --------------------------------------------------------------------------
+# 419 (kart 16): Şam gecesi: Takiyüddin yıldızları gösterir, yanında masa saati; arkada Şam'ın kubbeleri.
+# --------------------------------------------------------------------------
+def sahne419():
+    """'Saati gökyüzüne bağlamak': Şam'da gece avlu; Takiyüddin eliyle yıldızları gösterir, yanında sehpada
+    mekanik saat; arkada düz ovada şehrin kubbeleri ve damları."""
+    _gok(419, GECE, yildiz=200, y0=360, y1=560)
+    uzak(419, GECE_DAG, GECE_TEPE, ["#2a2a3a", "#242432", "#1e1e2a"], dag_y=(480, 506), tepe_y=510, ova_y=520)
+    yk = 2.6
+    K = s_kisi(yk)
+    _gorunur(419, [190, 350], 270, 270, yk, pay=0)
+    _gece_ortasi(419, (540, 552), renkler=["#3a3430", "#322c28", "#2a2622", "#22201c", "#1c1a16"], kenar="#6a5e50",
+                 ekle=lambda img, z: figur(img, orta_asya_sehri, PAY + 170, PAY + 370, duz(588), 1.3, tohum=419,
+                                           kerpic="#7a6a5a", golge="#5a4c40", kubbe="#4a6a7a"))
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 168, z, K, **TAKI, yon=1, kol=0.75 + 0.05 * SIN(f))
+        figur(t, masa_saati, 236, z, 5.0, f=f)
+
+    _spr(419, 400, 300, kare, yk)
+
+
+# --------------------------------------------------------------------------
+# 420 (kart 17): İstanbul, 1571: Takiyüddin elinde beratıyla sağa yürür; arkada cami ve şehir.
+# --------------------------------------------------------------------------
+def sahne420():
+    """İstanbul, 1571: gündüz; müneccimbaşı Takiyüddin elinde belgeyle yürür; arkada düz zeminde kurşun kubbeli cami."""
+    _gok(420, GUN_IST, [(120, 330, 22)], ("#ffffff", "#e8eef4", "#c8d4e0"))
+    uzak(420, ["#7a8ab0", "#6e7ea4"], ["#8a9aa8", "#7e8e9c"], ["#4a7aa8", "#42709c", "#3a6690"],
+         dag_y=(476, 500), tepe_y=504, ova_y=512)
+    yk = 2.8
+    K = s_kisi(yk)
+    _gorunur(420, [300], 255, 285, yk)
+    orta(420, (536, 548), ["#7a8a5a", "#6e7e50", "#627246", "#56663e", "#4a5a36"], "#b0c088",
+         ekle=lambda img, z: figur(img, osmanli_camii, PAY + 290, duz(588), 1.4))
+    on(420, ["#4a5a36", "#56663e", "#627246"], "#b0c088", boy=120)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 190, z, K, **TAKI, yon=1, adim=f, silah="mektup")
+
+    _spr(420, 400, 300, kare, yk)
+
+
+# --------------------------------------------------------------------------
+# 421 (kart 18): Semerkant: Uluğ Bey elinde yıldız cetveli; arkada gözlemevi ve mavi kubbe.
+# --------------------------------------------------------------------------
+def sahne421():
+    """Semerkant (Uluğ Bey'in zamanı, geçmiş): altın saat; Uluğ Bey elinde cetvel; arkada silindir gözlemevi ve
+    Gür-i Emir'in mavi kubbesi, ikisi de düz ovada."""
+    _gok(421, ALTIN_SAAT)
+    uzak(421, ["#8a6a7a", "#7e5e70"], ["#a07a70", "#946e66"], ["#c8a070", "#b89464", "#a88458"],
+         dag_y=(476, 500), tepe_y=504, ova_y=512)
+    yk = 2.8
+    K = s_kisi(yk)
+    _gorunur(421, [215, 320], 270, 270, yk)
+
+    def ekle(img, z):
+        figur(img, gur_i_emir, PAY + 215, duz(584), 0.9, mavi="#2a7ab8", tugla="#b89868")
+        figur(img, ulugbey_rasathanesi, PAY + 322, duz(590), 1.5)
+
+    orta(421, (536, 548), ["#c8a060", "#b89054", "#a88048", "#98703e", "#886036"], "#e8c888", ekle=ekle)
+    on(421, ["#886036", "#98703e", "#a88048"], "#e8c888", boy=120)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 168, z, K, **ULUGBEY, yon=1, silah="mektup", kol=0.35 + 0.03 * SIN(f), pelerin="#2a3a5a")
+
+    _spr(421, 400, 300, kare, yk)
+
+
+# --------------------------------------------------------------------------
+# 422 (kart 19): Semerkant gecesi: Uluğ Bey gözlemevi büyük plan.
+# --------------------------------------------------------------------------
+def sahne422():
+    """'Uluğ Bey bu cetvel için orada bir gözlemevi kurmuştu': gece; üç katlı silindir gözlemevi, ortasında dev
+    meridyen yayının yuvası; yıldızlar."""
+    _gok(422, GECE, yildiz=220, y0=330, y1=580)
+    uzak(422, GECE_DAG, GECE_TEPE, ["#2a2632", "#24202c", "#1e1a26"], dag_y=(486, 510), tepe_y=514, ova_y=524)
+    _gece_ortasi(422, (552, 560), renkler=["#3a3430", "#322c28", "#2a2622", "#22201c", "#1c1a16"], kenar="#6a5e50")
+    yk = 2.2
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, ulugbey_rasathanesi, 200, z, 3.3, tugla="#a8906a", mavi="#2a6aa8")
+        _cimen(t, z, f, ["#4a4436", "#3a362c", "#5a5444"], 422, 60, 340, boy=6)
+
+    _spr(422, 400, 300, kare, yk, esik=0.85)
+
+
+# --------------------------------------------------------------------------
+# 423 (kart 20): saray: III. Murad sedirde; Takiyüddin diz çöküp kitabını sunar; yerde kitaplar.
+# --------------------------------------------------------------------------
+def _saray(no, pencere=None):
+    ic_mekan(no, duvar=("#2a3a3a", "#344a46", "#405a54"), kemer="#1a2a28", cini="#2a8a9a",
+             pencere=pencere, zemin_renk=("#6a4a3a", "#5a3e30", "#4a3428"), isik="#f8c060", hali=True)
+
+
+def sahne423():
+    """'Padişah Üçüncü Murad kitabı ve resmi seven bir hükümdar. Onay veriyor.': saray odası; III. Murad sedirde
+    oturur, Takiyüddin önünde diz çöküp kitabını sunar; yanda yığılı kitaplar."""
+    _saray(423)
+    yk = 2.8
+    K = s_kisi(yk)
+    so = s_oturan(yk, 0.26)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, zincir=_kz(yk))
+        ust = figur(t, sedir, 258, z, round(0.75 * so, 1), renk="#7a4a2a", ortu="#8a1e22")
+        figur(t, oturan, 258, duz(ust, t.width), so, **MURAD, yon=-1, minder="#c8a040")
+        figur(t, kisi, 158, z, K, **TAKI, yon=1, diz=True, silah="mektup", kol=0.35 + 0.03 * SIN(f))
+        kitaplar(t, 112, z[0], 4.0)
+        mumluk(t, 312, z, f, 3)
+
+    _spr(423, 400, 300, kare, yk)
+
+
+# --------------------------------------------------------------------------
+# 424 (kart 21): Tophane'nin yukarısı, 1577: çeyrek daire kurulur; Takiyüddin yön verir, işçi kazar.
+# --------------------------------------------------------------------------
+def sahne424():
+    """1577: gündüz, Tophane sırtı; taş ayaklı çeyrek daire yerine oturtulur; Takiyüddin eliyle gösterir, işçi kazma
+    sallar; sağ geride terastaki rasathane."""
+    _gok(424, GUN_IST, [(400, 330, 22)], ("#ffffff", "#e8eef4", "#c8d4e0"))
+    uzak(424, ["#7a8ab0", "#6e7ea4"], ["#8a9aa8", "#7e8e9c"], ["#4a7aa8", "#42709c", "#3a6690"],
+         dag_y=(476, 500), tepe_y=504, ova_y=512)
+    yk = 2.6
+    K = s_kisi(yk)
+    _gorunur(424, [300, 352], 270, 270, yk)
+    orta(424, (536, 548), ["#8a8a5a", "#7e7e50", "#727246", "#66663e", "#5a5a36"], "#c0c088",
+         ekle=_rasathane_orta(328, 1.3, teras_h=8, genis=(40, 38)))
+    on(424, ["#5a5a36", "#66663e", "#727246"], "#c0c088", boy=120)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 122, z, K, **TAKI, yon=1, kol=0.45)
+        figur(t, ceyrek_daire, 196, z, 3.0, 1, aci=0.4)
+        figur(t, taslar, 255, z, 2.6)
+        figur(t, kisi, 288, z, K, govde="#6a4a2a", bas="bork", bas_renk="#4a3222", sakal=None, yon=-1,
+              silah="kazma", kol=0.5 + 0.4 * SIN(f))
+
+    _spr(424, 400, 300, kare, yk, esik=0.72)
+
+
+# --------------------------------------------------------------------------
+# 425-427: Kasım 1577 kuyruklu yıldızı. Ufuk alçak tutulur ki yıldız yazının altında, figürlerin yanında görünsün.
+# --------------------------------------------------------------------------
+ALCAK_UZAK = dict(dag_y=(548, 570), tepe_y=574, ova_y=584)
+
+
+def sahne425():
+    """Kasım 1577, İstanbul gecesi: terastaki rasathanenin üstünde, gökte uzun kuyruklu yıldız belirir. İnsan yok."""
+    _gok(425, GECE, yildiz=260, y0=320, y1=590, kuyruk=(252, 528, 62, -2.6))
+    uzak(425, GECE_DAG, GECE_TEPE, GECE_DENIZ, **ALCAK_UZAK)
+    _gece_ortasi(425, (598, 604))
+    yk = 2.0
+
+    def kare(t, z, i):
+        f = i / KARE
+        ust = figur(t, teras, 214, 334, z, 12)
+        figur(t, rasathane, 272, duz(ust, t.width), 2.4, isik=True)
+        _cimen(t, z, f, ["#3a4a5a", "#2e3e4e", "#4a5a6a"], 425, 60, 340, boy=5)
+
+    _spr(425, 400, 300, kare, yk, esik=0.9)
+
+
+def sahne426():
+    """Hven, 13 Kasım 1577 gecesi: Tycho çeyrek dairenin yanında elini kuyruklu yıldıza kaldırır; gökte alçakta Ay,
+    daha yukarıda kuyruklu yıldız (ölçümün sonucu: yıldız Ay'ın ötesinde)."""
+    _gok(426, GECE, yildiz=240, y0=320, y1=590, ay=(178, 552, 7), kuyruk=(352, 516, 56, -2.6))
+    uzak(426, ["#1c2440", "#182038"], ["#202a46", "#1b243e"], ["#1a2c48", "#16263e", "#122036"], **ALCAK_UZAK)
+    _gece_ortasi(426, (598, 604), renkler=["#24382e", "#1e3028", "#182822", "#12201c", "#0e1a16"], kenar="#4a6a5a")
+    yk = 2.2
+    K = s_kisi(yk, 0.30)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, ceyrek_daire, 232, z, 3.6, 1, aci=0.62 + 0.04 * SIN(f))
+        figur(t, kisi, 166, z, K, **TYCHO, yon=1, kol=0.62 + 0.05 * SIN(f), pelerin="#6a2a2a")
+
+    _spr(426, 400, 300, kare, yk, esik=0.85)
+
+
+def sahne427():
+    """İstanbul, aynı günlerin gecesi: Takiyüddin halkalı kürenin yanında kuyruklu yıldıza bakar, elini kaldırır."""
+    _gok(427, GECE, yildiz=240, y0=320, y1=590, kuyruk=(206, 528, 50, -2.6))
+    uzak(427, GECE_DAG, GECE_TEPE, GECE_DENIZ, **ALCAK_UZAK)
+    _gece_ortasi(427, (598, 604))
+    yk = 2.2
+    K = s_kisi(yk, 0.30)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, armilla, 286, z, 3.6, faz=f * 0.5)
+        figur(t, kisi, 212, z, K, **TAKI, yon=-1, kol=0.62 + 0.05 * SIN(f))
+
+    _spr(427, 400, 300, kare, yk, esik=0.85)
+
+
+# --------------------------------------------------------------------------
+# 428 (kart 26): kaynaklar ayrışıyor: kâtip iki kitap arasında yazar.
+# --------------------------------------------------------------------------
+def sahne428():
+    """'Kaynaklar ayrışıyor': gece, kâtip odası; vakanüvis rahlede yazar, iki yanında ayrı kitap yığınları."""
+    ic_mekan(428, duvar=("#2a2a34", "#343440", "#40404e"), kemer="#1a1a22", cini="#5a3a6a",
+             pencere=("#0a1228", "#cfd8e8"), zemin_renk=("#4a4440", "#3e3834", "#322e2c"), isik="#e8b060",
+             hali=False)
+    yk = 3.0
+    s = s_oturan(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, zincir=_kz(yk))
+        kitaplar(t, 118, z[0], 4.2)
+        figur(t, oturan, 178, z, s, **KATIP, yon=1, el="kalem", minder="#5a2a4a")
+        rahle(t, 232, z[0], 3.6)
+        kitaplar(t, 284, z[0], 4.2)
+
+    _spr(428, 400, 300, kare, yk)
+
+
+def sahne429():
+    """'Takiyüddin yıldızı Osmanlı'nın zaferine yoruyor' (anlatıya göre): gece, saray odası; Takiyüddin eliyle
+    gökyüzünü gösterir, III. Murad sedirde dinler; pencerelerde yıldızlar."""
+    _saray(429, pencere=("#0a1228", "#cfd8e8"))
+    yk = 2.8
+    K = s_kisi(yk)
+    so = s_oturan(yk, 0.26)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 210, 0, f, zincir=_kz(yk))
+        ust = figur(t, sedir, 262, z, round(0.75 * so, 1), renk="#7a4a2a", ortu="#8a1e22")
+        figur(t, oturan, 262, duz(ust, t.width), so, **MURAD, yon=-1, minder="#c8a040")
+        figur(t, kisi, 160, z, K, **TAKI, yon=1, kol=0.85 + 0.08 * SIN(f))
+
+    _spr(429, 400, 300, kare, yk)
+
+
+# --------------------------------------------------------------------------
+# 430 (kart 28): Ağustos 1578, Çıldır: ordu doğuya (sağa) yürür.
+# --------------------------------------------------------------------------
+def sahne430():
+    """Ağustos 1578, Çıldır yolunda: yaz öğleden sonrası, yüksek yayla; kızıl sancaklı atlı ve börklü yaya asker sağa
+    (doğuya) yürür, toynakların dibinden toz kalkar."""
+    _gok(430, ["#6a8ab8", "#8aa2c4", "#a8b8cc", "#c8c8c8", "#dcd0b8", "#e8d8b0"])
+    uzak(430, ["#8a8aa0", "#7a7a94"], ["#9a9488", "#8e887c"], ["#b8a070", "#a89464", "#98885a"],
+         dag_y=(450, 494), tepe_y=500, ova_y=512)
+    orta(430, (536, 548), ["#b89a60", "#a88c56", "#987e4c", "#887044", "#78623a"], "#e0c888")
+    on(430, ["#78623a", "#887044", "#987e4c"], "#e0c888", boy=120)
+    yk = 2.6
+    K = s_kisi(yk, 0.30)
+    sa = s_atli(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        arka = duz(z[0] - 12, t.width)
+        figur(t, kisi, 120, arka, round(0.85 * K, 1), govde="#3a5a8a", bas="bork", bas_renk="#f4f0e6", sakal="#3a2a1a",
+              yon=1, adim=(f + 0.3) % 1, silah="mizrak")
+        figur(t, atli, 205, z, sa, 1, faz=f, at_renk="#6b3f24", yele="#2b1a12", govde="#8a1e22", bas="sarik",
+              bas_renk="#f4f0e6", sakal="#2a1a12", silah="mizrak", bayrak="#c8302a", adim=0.45)
+        figur(t, kisi, 286, z, K, govde="#3a5a8a", bas="bork", bas_renk="#f4f0e6", sakal="#3a2a1a", yon=1,
+              adim=(f + 0.6) % 1)
+        _toz(t, 168, 299, f, 22, 430, genislik=1.2, renk="#c8b48a")
+
+    _spr(430, 400, 300, kare, yk, esik=0.7)
+
+
+# --------------------------------------------------------------------------
+# 431 (kart 29): veba: yaslılar örtülü tabutun yanında; biri tepedeki rasathaneyi gösterir.
+# --------------------------------------------------------------------------
+def sahne431():
+    """'Sonra İstanbul'a veba geliyor. Parmaklar rasathaneyi gösteriyor.': soğuk akşam; yeşil örtülü tabutun başında
+    iki yaslı; biri eliyle sağ gerideki terastaki rasathaneyi gösterir."""
+    _gok(431, ["#1a1e30", "#2a2e44", "#3e3e56", "#54506a", "#6a6070", "#7e7076"])
+    uzak(431, ["#3a3a54", "#32324a"], ["#42405a", "#3a3850"], ["#2e3a54", "#2a344c", "#242e44"],
+         dag_y=(476, 500), tepe_y=504, ova_y=514)
+    yk = 2.6
+    K = s_kisi(yk, 0.30)
+    _gorunur(431, [306, 358], 270, 270, yk)
+    orta(431, (540, 552), ["#3e4038", "#363830", "#2e302a", "#262822", "#1e201c"], "#6a6a5a",
+         ekle=_rasathane_orta(332, 1.3, teras_h=8, genis=(40, 38)))
+    on(431, ["#1e201c", "#262822", "#2e302a"], "#6a6a5a", boy=120)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, ortulu_tabut, 160, z, 3.6)
+        figur(t, kisi, 112, z, K, govde="#2a2a32", bas="ortu", bas_renk="#3a3440", sakal=None, yon=1, kadin=True,
+              kol=0.02 * (1 + SIN(f)))
+        figur(t, kisi, 230, z, K, govde="#3a3a2a", bas="sarik", bas_renk="#d8d4c8", sakal="#5a4a3a", yon=1,
+              kol=0.72 + 0.04 * SIN(f))
+
+    _spr(431, 400, 300, kare, yk, esik=0.75)
+
+
+# --------------------------------------------------------------------------
+# 432 (kart 30): Şeyhülislam karşı çıkar.
+# --------------------------------------------------------------------------
+def sahne432():
+    """'Şeyhülislam Kadızâde Ahmed Efendi karşı çıkıyor' (anlatıya göre): koyu yeşil çinili oda; ak sakallı
+    şeyhülislam ayakta elini kaldırır; yerde kitaplar, mum."""
+    ic_mekan(432, duvar=("#24302a", "#2e3c34", "#3a4a40"), kemer="#16201a", cini="#3a7a5a",
+             zemin_renk=("#4a4a3e", "#3e3e34", "#32322a"), isik="#e8c070", hali=True)
+    yk = 3.0
+    K = s_kisi(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 270, 0, f, zincir=_kz(yk))
+        mumluk(t, 122, z, f, 2)
+        figur(t, kisi, 200, z, K, **SEYHULISLAM, yon=-1, kol=0.62 + 0.06 * SIN(f), pelerin="#e8e2d4")
+        kitaplar(t, 268, z[0], 4.2)
+
+    _spr(432, 400, 300, kare, yk)
+
+
+# --------------------------------------------------------------------------
+# 433 (kart 31): Ocak 1580: Kaptan-ı Derya Kılıç Ali Paşa kıyıda; arkada donanmanın kadırgaları.
+# --------------------------------------------------------------------------
+H_DENIZ = 300
+SU_Y = H_DENIZ - 16
+
+
+def _gemi_denetimi(s, su, w, h):
+    """Gövde su çizgisine ulaşmalı (havada gemi olmaz)."""
+    for f in (0.0, 0.25, 0.5, 0.75):
+        g = yeni(w, h)
+        figur(g, gemi, w // 2, su, s, 1, f)
+        if _bb(g)[3] < su:
+            raise RuntimeError(f"Gemi suya ulaşmıyor: alt={_bb(g)[3]}, su_y={su}")
+
+
+def sahne433():
+    """Ocak 1580, kış alacakaranlığı: Kaptan-ı Derya Kılıç Ali Paşa kıyıdaki taş rıhtımda, elinde kılıç; arkasında
+    koyda donanmanın iki kadırgası su çizgisine oturur."""
+    _gok(433, KIS)
+    uzak(433, KIS_DAG, KIS_TEPE, KIS_DENIZ, dag_y=(470, 498), tepe_y=504, ova_y=514)
+
+    def ekle(img, z):
+        su_ve_kiyi(img, 560, renkler=("#3c4864", "#34405a", "#2c3850", "#243046"))
+        for x, s_ in ((PAY + 220, 1.9), (PAY + 330, 1.6)):
+            figur(img, gemi, x, 572, s_, -1, 0.0, govde="#3a2a22", yelken="#e8dcc0", hac=False)
+        img_d = ImageDraw.Draw(img)
+        img_d.rectangle([0, 600, img.width, img.height], fill=hex2("#5a5448"))           # rıhtım (düz taş)
+        for xx in range(0, img.width, 14):
+            img_d.line([xx, 600, xx, 610], fill=hex2("#46403a"))
+        img_d.line([0, 600, img.width, 600], fill=hex2("#8a8270"))
+
+    orta(433, (536, 548), KIS_ORTA, "#8a8a70", ekle=ekle)
+    on(433, ["#3a362e", "#46403a", "#504a40"], "#8a8270", boy=100)
+    yk = 2.8
+    K = s_kisi(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 200, z, K, **KILIC_ALI, yon=1, silah="kilic", kol=0.3 + 0.03 * SIN(f), pelerin="#1e2a4a")
+
+    _spr(433, 400, 300, kare, yk)
+
+
+# --------------------------------------------------------------------------
+# 434 (kart 32): İnebahtı, 1571: kızıl dumanlar arasından kadırgalar kaçar.
+# --------------------------------------------------------------------------
+def sahne434():
+    """İnebahtı, 1571: kızıl gün batımı; ufukta savaş dumanları yükselir; Kılıç Ali'nin kadırgası öne, sağa
+    (kurtuluşa) yol alır."""
+    _gok(434, ["#2a1a2e", "#5a2a3a", "#9a3a3a", "#c85a3a", "#e0824a", "#eca060"])
+    img = uzak(434, ["#4a2a3a", "#40243a"], ["#5a3040", "#4e2a38"], ["#5a3a4a", "#4e3242", "#422a3a"],
+               dag_y=(486, 508), tepe_y=512, ova_y=520)
+    for x, b in ((120, 70), (210, 50), (430, 64)):                     # ufuktaki yanan gemilerden yükselen duman
+        figur(img, gemi, x, 528, 0.8, 1, 0.0, govde="#2a1a1a", yelken="#3a2a2a", hac=False)
+        duman(img, x, 516, b, x, faz=0.3, renk="#3a2a2e", ruzgar=0.3, genislik=1.6)
+    kaydet(img, "sahne434-uzak.png")
+    orta(434, (552, 556), ["#4a3048", "#422a40", "#3a2438", "#321e30", "#2a1a28"], "#a06a6a",
+         ekle=lambda img, z: su_ve_kiyi(img, 552, renkler=("#5a3a4a", "#4e3242", "#422a3a", "#36222e")))
+    on(434, ["#2a1a28", "#321e30", "#3a2438"], "#a06a6a", boy=40)
+    yk = 2.4
+    sg = 3.6
+    _gemi_denetimi(sg, SU_Y, 400, H_DENIZ)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, gemi, 200, SU_Y, sg, 1, f, govde="#3a2a22", yelken="#c8b898", hac=False)
+        su_ve_kiyi(t, SU_Y, renkler=("#5a3a4a", "#4e3242", "#422a3a", "#36222e"))
+
+    _spr(434, 400, H_DENIZ, kare, yk, esik=0.4)
+
+
+# --------------------------------------------------------------------------
+# 435 (kart 33): Kılıç Ali Paşa yıkımı yönetir; top ateşler, rasathane daha çok yıkılmış, toz kalkar.
+# --------------------------------------------------------------------------
+def sahne435():
+    """'Şimdi bir gözlemevini yıkıyor' (anlatıya göre): Kılıç Ali Paşa kılıcıyla binayı gösterir, önündeki top ateşler;
+    sağ gerideki rasathane büyük ölçüde yıkık, molozdan toz kalkar."""
+    _gok(435, KIS)
+    uzak(435, KIS_DAG, KIS_TEPE, KIS_DENIZ, dag_y=(436, 470), tepe_y=478, ova_y=494)
+    yk = 2.6
+    K = s_kisi(yk, 0.30)
+    _gorunur(435, [272, 356], 270, 270, yk)
+    orta(435, (540, 552), KIS_ORTA, "#8a8a70", ekle=_rasathane_orta(314, 1.9, yikik=0.65))
+    on(435, [KIS_ORTA[-1], KIS_ORTA[-2], KIS_ORTA[-3]], "#8a8a70", boy=120)
+    st = round(0.72 * K, 1)
+
+    def kare(t, z, i):
+        f = i / KARE
+        for j, mx in enumerate((198, 248, 288)):
+            _toz(t, mx, 246, (f + j * 0.33) % 1, 60, 435 + j, genislik=2.2)
+        figur(t, kisi, 130, z, K, **KILIC_ALI, yon=1, silah="kilic", kol=0.55 + 0.05 * SIN(f), pelerin="#1e2a4a")
+        ates = max(0.0, 1 - (f - 0.5) / 0.12) if 0.5 <= f < 0.62 else 0.0
+        mx, my = figur(t, top_, 200, z, st, 1, ates=ates)
+        duman(t, mx + 4, my, 44, 9, faz=(f + 0.5) % 1, renk="#d8d0c8", ruzgar=0.45, genislik=1.2)
+
+    _spr(435, 400, 300, kare, yk, esik=0.7)
+
+
+# --------------------------------------------------------------------------
+# 436 (kart 34): Tophane-i Âmire: top döküm ocağı, bacalardan duman; önde yeni dökülmüş namlular.
+# --------------------------------------------------------------------------
+def sahne436():
+    """'Semtin adı zaten top döküm ocağından geliyor: Tophane.': akşam; kurşun kubbeli döküm ocağı, ocak ağızları
+    kızıl, iki bacadan duman yukarı çıkar. İnsan yok."""
+    _gok(436, ["#2a2440", "#4a3a5a", "#7a4a5a", "#a85a50", "#c87a58", "#d8986a"])
+    uzak(436, ["#4a3a5a", "#403250"], ["#54406a", "#4a3860"], ["#3a4a6a", "#344264", "#2e3a5a"],
+         dag_y=(486, 510), tepe_y=514, ova_y=524)
+    orta(436, (556, 562), ["#5a4a3e", "#4e4036", "#42362e", "#382e26", "#2e261e"], "#9a7a5a")
+    on(436, ["#2e261e", "#382e26", "#42362e"], "#9a7a5a", boy=100)
+    yk = 2.2
+
+    def kare(t, z, i):
+        f = i / KARE
+        bacalar = figur(t, dokumhane, 200, z, 2.9)
+        for j, (bx, by) in enumerate(bacalar):
+            duman(t, bx, by, 60, 436 + j, faz=(f + j * 0.5) % 1, renk="#8a8088", ruzgar=0.3, genislik=1.3)
+
+    _spr(436, 400, 300, kare, yk, esik=0.8)
+
+
+# --------------------------------------------------------------------------
+# 437 (kart 35): Mimar Sinan elinde planla; arkada Kılıç Ali Paşa Camii (bugün ayakta).
+# --------------------------------------------------------------------------
+def sahne437():
+    """Tophane: altın saat; Mimar Sinan elinde planla durur; arkada düz zeminde Kılıç Ali Paşa Camii, tek minareli."""
+    _gok(437, ALTIN_SAAT)
+    uzak(437, ["#8a6a8a", "#7e5e7e"], ["#9a7a8a", "#8e6e7e"], ["#5a7a9a", "#527090", "#4a6686"],
+         dag_y=(476, 500), tepe_y=504, ova_y=514)
+    yk = 2.8
+    K = s_kisi(yk)
+    _gorunur(437, [262, 330], 270, 270, yk)
+    orta(437, (540, 552), ["#a89a70", "#9a8c64", "#8c7e58", "#7e704e", "#706244"], "#e0d0a0",
+         ekle=lambda img, z: figur(img, osmanli_camii, PAY + 284, duz(588), 1.35))
+    on(437, ["#706244", "#7e704e", "#8c7e58"], "#e0d0a0", boy=120)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 170, z, K, **SINAN, yon=1, silah="mektup", kol=0.3 + 0.03 * SIN(f))
+
+    _spr(437, 400, 300, kare, yk)
+
+
+# --------------------------------------------------------------------------
+# 438 (kart 36): yer bilinmiyor: boş sırt, dağınık taşlar, rüzgârda çimen.
+# --------------------------------------------------------------------------
+def sahne438():
+    """'Rasathanenin kesin yeri bile bilinmiyor': soluk akşam, boş tepe; otların arasında dağınık taşlar. Bina yok."""
+    _gok(438, ["#3a4060", "#5a5a78", "#7a7088", "#9a8890", "#b8a098", "#c8b0a0"])
+    uzak(438, ["#5a5a78", "#50506e"], ["#62627a", "#585870"], ["#4a5a7a", "#42526e", "#3a4a64"],
+         dag_y=(486, 510), tepe_y=514, ova_y=524)
+    orta(438, (556, 562), ["#5a6a48", "#4e5e40", "#445438", "#3a4a30", "#304028"], "#9aaa78")
+    on(438, ["#304028", "#3a4a30", "#445438"], "#9aaa78", boy=120)
+    yk = 2.4
+
+    def kare(t, z, i):
+        f = i / KARE
+        for x, s_ in ((140, 2.2), (215, 1.6), (262, 2.6)):
+            figur(t, taslar, x, z, s_)
+        _cimen(t, z, f, ["#7a8a5a", "#6a7a4e", "#8a9a66"], 438, 70, 330, boy=12)
+
+    _spr(438, 400, 300, kare, yk, esik=0.85)
+
+
+# --------------------------------------------------------------------------
+# 439 (kart 37-38): 11 Ekim 1579: Sokollu divanda; dilekçeli bir derviş önünde diz çöker (suikastın öncesi).
+# --------------------------------------------------------------------------
+def _divan(no):
+    ic_mekan(no, duvar=("#3a2a2a", "#4a3634", "#5a4440"), kemer="#2a1a1a", cini="#8a2a2a",
+             pencere=("#2a3a5a", "#f4d8a0"), zemin_renk=("#5a4a3a", "#4a3c2e", "#3e3226"), isik="#f8c060", hali=True)
+
+
+def sahne439():
+    """11 Ekim 1579: divan odası, akşam; sadrazam Sokollu Mehmed Paşa sedirde oturur; önünde elinde dilekçeyle diz
+    çökmüş bir derviş. Ölüm anı gösterilmez."""
+    _divan(439)
+    yk = 2.8
+    K = s_kisi(yk)
+    so = s_oturan(yk, 0.26)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 205, 0, f, zincir=_kz(yk))
+        ust = figur(t, sedir, 262, z, round(0.75 * so, 1), renk="#7a4a2a", ortu="#2a6a3a")
+        figur(t, oturan, 262, duz(ust, t.width), so, **SOKOLLU, yon=-1, minder="#c8a040")
+        figur(t, kisi, 160, z, K, govde="#5a4a32", bas="bork", bas_renk="#7a6448", sakal="#3a2a1a", yon=1, diz=True,
+              silah="mektup", kol=0.3 + 0.03 * SIN(f))
+        mumluk(t, 112, z, f, 3)
+
+    _spr(439, 400, 300, kare, yk)
+
+
+# --------------------------------------------------------------------------
+# 440 (kart 39): rasathane yıkılıyor (büyük plan): kule kırık, kubbe yok, molozdan toz kalkar.
+# --------------------------------------------------------------------------
+def sahne440():
+    """'Üç ay sonra rasathane yıkılıyor': Ocak 1580, gri gün; terastaki rasathane büyük plan, kubbesi düşmüş, kule
+    kırık; molozdan toz yükselir. İnsan yok."""
+    _gok(440, KIS)
+    uzak(440, KIS_DAG, KIS_TEPE, KIS_DENIZ, dag_y=(486, 510), tepe_y=514, ova_y=524)
+    orta(440, (556, 562), KIS_ORTA, "#8a8a70")
+    on(440, [KIS_ORTA[-1], KIS_ORTA[-2], KIS_ORTA[-3]], "#8a8a70", boy=100)
+    yk = 2.2
+
+    def kare(t, z, i):
+        f = i / KARE
+        ust = figur(t, teras, 92, 318, z, 16)
+        _, _, molozlar = figur(t, rasathane, 205, duz(ust, t.width), 3.4, yikik=0.7)
+        for j, (mx, my) in enumerate(molozlar):
+            _toz(t, mx, ust, (f + j * 0.33) % 1, 70, 440 + j, genislik=2.4)
+
+    _spr(440, 400, 300, kare, yk, esik=0.8)
+
+
+# --------------------------------------------------------------------------
+# 441 (kart 40): boş koltuk: divanda boş sedir, kandil.
+# --------------------------------------------------------------------------
+def sahne441():
+    """'Bağ mı, tesadüf mü? Belgesi yok.': aynı divan odası, gece; sadrazamın sediri boş, minder dokunulmamış."""
+    _divan(441)
+    yk = 2.8
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 205, 0, f, zincir=_kz(yk))
+        figur(t, bos_sedir, 225, z, 4.6, ortu="#2a6a3a")
+        mumluk(t, 128, z, f, 1)
+
+    _spr(441, 400, 300, kare, yk, esik=0.7)
+
+
+# --------------------------------------------------------------------------
+# 442 (kart 41): yaşlı Takiyüddin gece odasında yalnız; yanında masa saati.
+# --------------------------------------------------------------------------
+def sahne442():
+    """'Takiyüddin beş yıl daha yaşıyor. 1585'te İstanbul'da ölüyor.': gece, sade oda; ak sakallı Takiyüddin
+    minderde yalnız oturur; yanında mekanik saati, tek mum."""
+    ic_mekan(442, duvar=("#1e1e28", "#282834", "#34323e"), kemer="#12121a", cini="#2a3a5a",
+             pencere=("#0a1228", "#cfd8e8"), zemin_renk=("#3e3a40", "#34303a", "#2a2630"), isik="#d8a860", hali=True)
+    yk = 3.2
+    s = s_oturan(yk, 0.30)
+
+    def kare(t, z, i):
+        f = i / KARE
+        mumluk(t, 128, z, f, 1)
+        figur(t, oturan, 198, z, s, **TAKI_YASLI, yon=1, minder="#4a3a5a")
+        figur(t, masa_saati, 262, z, 3.8, f=f)
+
+    _spr(442, 400, 300, kare, yk)
+
+
+# --------------------------------------------------------------------------
+# 443 (kart 42): makam sürer: yeni müneccimbaşı damda halkalı küreyle gökyüzüne bakar.
+# --------------------------------------------------------------------------
+def sahne443():
+    """'Osmanlı'da gökyüzüne bakmak bitmiyor': yıldızlı gece; sonraki müneccimbaşı halkalı kürenin başında eliyle
+    gökyüzünü gösterir."""
+    _gok(443, GECE, yildiz=240, y0=330, y1=580)
+    uzak(443, GECE_DAG, GECE_TEPE, GECE_DENIZ, dag_y=(480, 506), tepe_y=510, ova_y=520)
+    _gece_ortasi(443, (548, 556))
+    yk = 2.6
+    K = s_kisi(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, armilla, 250, z, 3.4, faz=f * 0.5)
+        figur(t, kisi, 180, z, K, **MUNECCIM, yon=1, kol=0.7 + 0.05 * SIN(f))
+
+    _spr(443, 400, 300, kare, yk)
+
+
+# --------------------------------------------------------------------------
+# 444-445 (kart 43-46): Şehinşâhnâme minyatürü: nakkaş çizer; sonra sayfa yakın plan.
+# --------------------------------------------------------------------------
+def _nakkashane(no):
+    ic_mekan(no, duvar=("#3a3028", "#4a3c32", "#5a4a3c"), kemer="#2a2018", cini="#2a6a8a",
+             pencere=("#5a7aa0", "#f4e8c8"), zemin_renk=("#6a5a48", "#5a4c3c", "#4a3e32"), isik="#f8d080", hali=True)
+
+
+def sahne444():
+    """1581 dolayı, nakkaşhane: nakkaş minderde oturup rahledeki Şehinşâhnâme sayfasına rasathane minyatürünü çizer."""
+    _nakkashane(444)
+    yk = 2.8
+    s = s_oturan(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, zincir=_kz(yk))
+        figur(t, oturan, 150, z, s, **NAKKAS, yon=1, el="kalem", minder="#8a2a2a")
+        figur(t, minyatur_kitap, 248, z, 4.6)
+
+    _spr(444, 400, 300, kare, yk)
+
+
+def sahne445():
+    """'Aletleri bugün en iyi orada görüyoruz': rahledeki açık sayfa yakın plan; minyatürde sarıklı gökbilimciler,
+    yay ve küre; yanda mum titrer."""
+    _nakkashane(445)
+    yk = 2.8
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, minyatur_kitap, 205, z, 7.6)
+        mumluk(t, 112, z, f, 2)
+
+    _spr(445, 400, 300, kare, yk, esik=0.8)
+
+
+# --------------------------------------------------------------------------
+# 446 (kart 47): 1597: Tycho'nun gemisi Hven'den ayrılır; arkada Uraniborg.
+# --------------------------------------------------------------------------
+def sahne446():
+    """1597: soğuk gri gün; Tycho'yu götüren gemi sola (Avrupa'ya) yol alır; arkada adada Uraniborg."""
+    _gok(446, ["#5a6478", "#727c8e", "#8a92a0", "#a2a8b2", "#b8bcc2", "#c8cacc"])
+    img = uzak(446, ["#6a7488", "#5e687c"], ["#56744a", "#4c6a42"], ["#4a5e74", "#42566a", "#3a4e60"],
+               dag_y=(492, 512), tepe_y=520, ova_y=530)
+    kaydet(img, "sahne446-uzak.png")
+    orta(446, (548, 552), ["#4a5e74", "#42566a", "#3a4e60", "#324656", "#2a3e4c"], "#8aa0b4",
+         ekle=lambda img, z: (su_ve_kiyi(img, 552, renkler=("#4a5e74", "#42566a", "#3a4e60", "#324656")),
+                              figur(img, uraniborg, PAY + 300, duz(552), 1.0)))
+    on(446, ["#2a3e4c", "#324656", "#3a4e60"], "#8aa0b4", boy=40)
+    yk = 2.4
+    sg = 3.4
+    _gemi_denetimi(sg, SU_Y, 400, H_DENIZ)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, gemi, 200, SU_Y, sg, -1, f, govde="#3a2a22", yelken="#e8e4d8", hac=False)
+        su_ve_kiyi(t, SU_Y, renkler=("#4a5e74", "#42566a", "#3a4e60", "#324656"))
+
+    _spr(446, 400, H_DENIZ, kare, yk, esik=0.4)
+
+
+# --------------------------------------------------------------------------
+# 447 (kart 48): Uraniborg bakımsız, yıkık; otlar sarmış.
+# --------------------------------------------------------------------------
+def sahne447():
+    """'Uraniborg bakımsız kalıyor, zamanla yıkılıyor': kapalı gri gün; kubbeleri düşmüş, duvarları kırık Uraniborg,
+    dibinde tuğla molozu, uzun otlar rüzgârda."""
+    _gok(447, ["#4a5466", "#5e687a", "#727a8a", "#868c98", "#9aa0a8", "#aab0b4"])
+    uzak(447, ["#5a6476", "#4e586a"], ["#5a6a5a", "#4e5e4e"], ["#4a5a6a", "#42525e", "#3a4a54"],
+         dag_y=(486, 510), tepe_y=514, ova_y=524)
+    orta(447, (556, 562), ["#4a6a40", "#406036", "#36562e", "#2e4c28", "#264222"], "#8aa070")
+    on(447, ["#264222", "#2e4c28", "#36562e"], "#8aa070", boy=120)
+    yk = 2.2
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, uraniborg, 200, z, 3.0, yikik=0.65)
+        _cimen(t, z, f, ["#6a8a52", "#5a7a46", "#7a9a5e"], 447, 60, 340, boy=12)
+
+    _spr(447, 400, 300, kare, yk, esik=0.85)
+
+
+def sahne448():
+    """'Aynı gökyüzü, iki gözlemevi. İkisi de yok.': aynı yıldızlı gök altında iki yıkıntı yan yana; uzun otlar."""
+    _iki_gozlemevi(448, (0.75, 0.85))
+
+
+# --------------------------------------------------------------------------
+# 449 (kart 51): soru: gece, Tophane sırtında terasın üstünde moloz; gökte kuyruklu yıldız.
+# --------------------------------------------------------------------------
+def sahne449():
+    """Son soru: gece, Tophane sırtı; boş terasın üstünde moloz yığınları; gökte 1577'nin kuyruklu yıldızı
+    (dört olası sebebin ilki gökte asılı kalır)."""
+    _gok(449, GECE, yildiz=260, y0=320, y1=590, kuyruk=(150, 534, 56, -2.6))
+    uzak(449, GECE_DAG, GECE_TEPE, GECE_DENIZ, **ALCAK_UZAK)
+    _gece_ortasi(449, (598, 604))
+    yk = 2.0
+
+    def kare(t, z, i):
+        f = i / KARE
+        ust = figur(t, teras, 170, 330, z, 12)
+        figur(t, rasathane, 254, duz(ust, t.width), 2.4, yikik=0.95)
+        _cimen(t, z, f, ["#3a4a5a", "#2e3e4e", "#4a5a6a"], 449, 60, 340, boy=8)
+
+    _spr(449, 400, 300, kare, yk, esik=0.85)
+
+
+SAHNELER = {n: globals()[f"sahne{n}"] for n in range(410, 450)}
+
+if __name__ == "__main__":
+    for n in ([int(a) for a in sys.argv[1:]] or sorted(SAHNELER)):
+        SAHNELER[n]()
+        print(f"sahne {n} tamam")
