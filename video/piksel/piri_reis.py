@@ -799,3 +799,330 @@ def _masa_ustu(no, renk="#6a4426", tur="ahsap", isik=None):
 
 def _sahne_gok(no, renkler, bulutlar=(), bulut_renk=("#fff8ec", "#f4dcc8", "#d8a8a0"), yildiz=0):
     return gokyuzu(no, renkler, None, bulutlar, bulut_renk, yildiz)
+
+
+# ==========================================================================
+# 330 · KAPAK + kart 1 · Kahire, alacakaranlık: avluda yaşlı denizci; karşısında fermanı tutan çavuş
+# 352 · kart 29, 52-53 · aynı avlu, gece, boş: yere bırakılmış fener (idam gösterilmez)
+# ==========================================================================
+def _kahire_avlu(no, gok, ova, orta_renk, kenar, ev="#c8a878", tas="#d8cdb8", kubbe="#8a96a0", gece=False):
+    _sahne_gok(no, gok, [(110, 404, 20), (430, 408, 18)] if not gece else [],
+               ("#f0c8b8", "#d09898", "#a07080"), yildiz=0)
+    uzak(no, [_ac(ova[0], -0.1), _ac(ova[0], -0.15)], [_ac(ova[1], -0.05), _ac(ova[1], -0.1)], ova,
+         dag_y=(420, 456), tepe_y=470, ova_y=492)
+
+    def ekle(img, z):
+        figur(img, koy_evleri, PAY + 20, PAY + 520, duz(586), 2.2, tohum=no, kerpic=ev)
+        figur(img, osmanli_camii, PAY + 360, duz(584), 1.3, tas=tas, kubbe=kubbe)
+        figur(img, osmanli_camii, PAY + 150, duz(586), 1.0, tas=tas, kubbe=kubbe, minare=False)
+        d = ImageDraw.Draw(img)                                             # avlu duvarı: alçak, düz zemine
+        d.rectangle([0, 596, GW, 606], fill=hex2(_ac(ev, -0.2)))
+        d.line([0, 596, GW, 596], fill=hex2(_ac(ev, 0.15)))
+
+    orta(no, (556, 560), orta_renk, kenar, ekle=ekle)
+    _bos_on(no)
+
+
+KAHIRE_GOK = ["#2a2448", "#4a3460", "#7a4a6a", "#b0646e", "#d88a70", "#e8a878"]
+KAHIRE_ORTA = ["#b89a72", "#aa8c66", "#9c7e5a", "#8e704e", "#806444"]
+
+
+def sahne330():
+    """'Seksenini geçmiş bir denizci...': Kahire, alacakaranlık; taş avluda yaşlı kaptan (ak sakal) dimdik durur,
+    karşısında börklü çavuş fermanı açmış tutar. Geride kerpiç damlar, kubbe ve minare."""
+    _kahire_avlu(330, KAHIRE_GOK, ["#a07a6a", "#94705e", "#886654"], KAHIRE_ORTA, "#e0c098")
+    yk = 2.8
+    K = s_kisi(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 168, z, K, **PIRI_YASLI, yon=1, kol=0.02 * (1 + SIN(f)))
+        figur(t, kisi, 240, z, round(0.97 * K, 1), **CAVUS, yon=-1, silah="mektup", kol=0.36 + 0.03 * SIN(f))
+
+    _spr2(330, DW, DH, kare, yk)
+
+
+def sahne352():
+    """'Haritayı çizen adamın boynu vuruluyor.' (idam gösterilmez): aynı avlu, gece; kimse yok. Kaptanın durduğu
+    yerde yere bırakılmış tek fener yanar."""
+    _kahire_avlu(352, ["#06081a", "#0e1230", "#1a1c40", "#2a2448", "#3a2c50"], ["#3a3448", "#34303f", "#2e2a38"],
+                 ["#4a4050", "#423a48", "#3a3440", "#322e38", "#2a2830"], "#7a6a80", ev="#5a5060", tas="#6a6474",
+                 kubbe="#3a4250", gece=True)
+    _yildiz_ekle(352, 80, 384, 470)
+    yk = 2.8
+    K = s_kisi(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, fener, 168, z, round(0.42 * K, 1), f=f)
+
+    _spr2(352, DW, DH, kare, yk, esik=0.5)
+
+
+# ==========================================================================
+# 331 · kart 2-3, 51 · Bugün, Topkapı: vitrinde parşömen harita; iki ziyaretçi bakar
+# ==========================================================================
+def sahne331():
+    """'Harita bugün Topkapı'da.': müze odası, çini kuşaklı duvar; ortada eğik camlı vitrin, içinde parşömen. Solda ve
+    sağda bugünün iki ziyaretçisi vitrine bakar."""
+    ic_mekan(331, duvar=("#2a3a3a", "#344a48", "#425a56"), kemer="#1a2a28", cini="#2a6a9a",
+             pencere=("#8ab0c8", "#c8dcec"), zemin_renk=("#6a5a4a", "#5a4c3e", "#4a3e32"), isik="#f8e0a0", hali=False)
+    yk = 2.8
+    K = s_kisi(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, vitrin, 200, z, round(0.46 * K, 1))
+        figur(t, kisi, 136, z, round(0.95 * K, 1), govde="#b84a3a", bas="ortu", bas_renk="#2a3a5a", sakal=None, yon=1,
+              kadin=True, kemer=None, kol=0.02 * (1 + SIN(f)))
+        figur(t, kisi, 262, z, K, govde="#3a5a7a", bas="takke", bas_renk="#2a1a12", sakal=None, yon=-1, kemer=None,
+              kol=0.05 + 0.04 * SIN(f + 0.4))
+
+    _spr2(331, IW, IH, kare, yk)
+
+
+# ==========================================================================
+# 332 · kart 4 · Korsan kadırgasının güvertesi: genç Piri ve amcası Kemal Reis; uzakta İspanya kıyısı ve kale
+# ==========================================================================
+def _deniz_uzak(no, gok_alt, deniz, tepe, dag_y=(452, 476), tepe_y=480, ova_y=490, kale=None, gemiler=()):
+    img = uzak(no, [tepe[0], tepe[1]], [tepe[1], tepe[0]], deniz, dag_y=dag_y, tepe_y=tepe_y, ova_y=ova_y)
+    d = ImageDraw.Draw(img)
+    if kale:
+        x0, x1, s_, tas = kale
+        d.rectangle([x0 - 16, ova_y - 4, x1 + 16, ova_y], fill=hex2(tepe[1]))           # kıyı şeridi: düz
+        figur(img, anadolu_kalesi, x0, x1, duz(ova_y - 3, W), s_, tas=tas, golge=_ac(tas, -0.25), kapi=True)
+    for x, s_, yelken, port in gemiler:
+        if port:
+            portekiz_gemisi(img, x, ova_y + int(6 * s_), s_, 1, 0.0)
+        else:
+            figur(img, gemi, x, ova_y + int(6 * s_), s_, 1, 0.0, govde=GOVDE, yelken=yelken, hac=False)
+    kaydet(img, f"sahne{no}-uzak.png")
+
+
+def sahne332():
+    """'Gençliğinde amcası Kemal Reis'in yanında korsan,': parlak gün; kadırganın güvertesi, arkada küpeşte. Kemal Reis
+    (kızıl kaftan) kıyıyı gösterir, genç Piri yanında; uzakta İspanya kıyısında kale ve bir kadırga daha."""
+    _sahne_gok(332, ["#4a7ab8", "#6a94c8", "#8aacd4", "#aac4dc", "#c8d8e0"], [(120, 404, 22), (400, 410, 20)],
+               ("#ffffff", "#eef2f6", "#c8d4e0"))
+    _deniz_uzak(332, None, ["#3a6a9a", "#346292", "#2e5a88"], ["#9a8a6a", "#8a7a5e"], kale=(300, 380, 0.8, "#c8b898"),
+                gemiler=[(160, 0.8, YELKEN, False)])
+    _guverte(332)
+    _bos_on(332)
+    yk = 2.6
+    K = s_kisi(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, halat, 122, z, round(0.32 * K, 1))
+        figur(t, fici, 286, z, round(0.4 * K, 1))
+        figur(t, kisi, 168, z, round(0.95 * K, 1), **PIRI_GENC, yon=1, kol=0.03 * (1 + SIN(f)))
+        figur(t, kisi, 234, z, K, **KEMAL, yon=-1, silah="kilic", kol=0.25 + 0.05 * SIN(f))
+
+    _spr2(332, DW, DH, kare, yk)
+
+
+# ==========================================================================
+# 333 · kart 5 · Fırtına: iki kadırga kabaran denizde; yağmur ve şimşek parıltısı (batış çizilmez)
+# ==========================================================================
+FIRTINA_SU = ["#2a3a4a", "#24343f", "#1e2e38", "#182830", "#142228"]
+
+
+def _deniz_sprite(no, gemiler, renkler, yk, esik=0.5, kopuk=1.0, ekle=None):
+    """Deniz sprite'ı: gemiler (x, su_y, s, yon, yelken, portekiz, faz_kayma) arkadan öne çizilir; her geminin
+    su çizgisinden aşağısı suyla örtülür (gövdenin altı suda)."""
+    sirali = sorted(gemiler, key=lambda g: g[1])
+    for g in sirali:
+        _gemi_denetimi(g[2], g[1], SW, SH, g[0])
+
+    def kare(t, z, i):
+        f = i / KARE
+        if ekle:
+            ekle(t, f, "arka")
+        for j, (x, su, s_, yon, yelken, port, kay) in enumerate(sirali):
+            ff = (f + kay) % 1
+            if port:
+                portekiz_gemisi(t, x, su, s_, yon, ff)
+            else:
+                figur(t, gemi, x, su, s_, yon, ff, govde=GOVDE, yelken=yelken, hac=False)
+            _su(t, su, renkler, f, tohum=no + j, dalga=kopuk)
+        if ekle:
+            ekle(t, f, "on")
+
+    _spr2(no, SW, SH, kare, yk, esik=esik, taban=ST)
+
+
+def sahne333():
+    """'Amcası fırtınada gemisiyle batıyor.': kurşuni fırtına; iki kadırga kabaran dalgalarda iner kalkar, yağmur
+    yana yağar, şimşek gökyüzünü bir an aydınlatır. Batış anı çizilmez."""
+    _sahne_gok(333, ["#141a24", "#1c2430", "#262e3a", "#303846", "#3a4250"], [(130, 404, 24), (420, 400, 26)],
+               ("#5a6474", "#46505e", "#343c48"))
+    _deniz_uzak(333, None, ["#2a3a48", "#263442", "#222e3c"], ["#30384a", "#2a3242"], dag_y=(470, 486), tepe_y=488)
+    _orta_deniz(333, 552, ["#2a3a48", "#263442", "#222e3c", "#1e2a36", "#1a2630"], kenar="#8aa0b8")
+    _bos_on(333)
+    _hava(333, 320, "#a8b8cc", 0.35)
+    _deniz_sprite(333, [(150, SU, 3.0, 1, "#c8bca0", False, 0.0), (262, SU - 14, 2.3, 1, "#b8ac90", False, 0.4)],
+                  FIRTINA_SU, 2.4, kopuk=2.0)
+
+
+# ==========================================================================
+# 334 · kart 6 · Gelibolu kıyısı, akşam: Piri kasabaya yürür
+# ==========================================================================
+def sahne334():
+    """'Piri Gelibolu'ya çekiliyor ve kalemi eline alıyor.': altın akşam; boğaz kıyısında Gelibolu'nun kerpiç ve taş
+    evleri, bir cami; Piri kıyı yolunda kasabaya (sağa) yürür."""
+    _sahne_gok(334, ["#4a5a8a", "#7a7a9a", "#b0909a", "#d8a890", "#ecc498"], [(120, 404, 20), (420, 408, 22)],
+               ("#fff4e4", "#f0d4c0", "#d0a8a0"))
+    _deniz_uzak(334, None, ["#6a7aa0", "#62729a", "#5a6a92"], ["#7a7a90", "#6e6e86"], dag_y=(452, 476), tepe_y=480,
+                ova_y=492)
+
+    def ekle(img, z):
+        figur(img, koy_evleri, PAY + 210, PAY + 560, duz(588), 2.2, tohum=334, kerpic="#d8b890")
+        figur(img, osmanli_camii, PAY + 380, duz(586), 1.2, tas="#e0d4c0")
+
+    orta(334, (556, 560), ["#9a9a6a", "#8c8c5e", "#7e7e54", "#70704a", "#626240"], "#d8d0a0", ekle=ekle)
+    on(334, ["#626240", "#70704a", "#7e7e54"], "#d8d0a0", boy=90)
+    yk = 2.8
+    K = s_kisi(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 200, z, K, **PIRI_1513, yon=1, adim=f)
+
+    _spr2(334, DW, DH, kare, yk, esik=0.7)
+
+
+# ==========================================================================
+# 335 · kart 7-8 · Gelibolu, 1513 baharı: Piri minderde, alçak masada ceylan derisi parşömen
+# ==========================================================================
+def sahne335():
+    """'Önünde ceylan derisi bir parşömen.' / 'İmzası: Kemal Reis'in yeğeni Piri.': akşam, sıcak oda; Piri minderde
+    oturur, kalemi elinde; önündeki alçak masada parşömen harita (360'taki masayla aynı çizim)."""
+    ic_mekan(335, duvar=("#3a2a22", "#4a3628", "#5a4230"), kemer="#2a1a14", cini="#2a6a8a",
+             pencere=("#2a3a6a", "#f0d8b0"), zemin_renk=("#5a4a3a", "#4a3c2e", "#3e3226"), isik="#f8c060", hali=True)
+    yk = 3.0
+    so = s_oturan(yk, 0.30)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 262, 0, f, zincir=_kz(yk))
+        mumluk(t, 292, z, f, 2)
+        figur(t, oturan, 160, z, so, yon=1, el="kalem", minder="#8a2a2a", **{k: v for k, v in PIRI_1513.items()})
+        figur(t, harita_masasi, 222, z, round(0.85 * so, 1))
+
+    _spr2(335, IW, IH, kare, yk)
+
+
+# ==========================================================================
+# 336 · kart 9-10 · Kuşbakışı masa: kalem kenara kaynakları yazar; yanda eski haritalar (rulolar) ve Arap haritası
+# 337 · kart 11, 50 · aynı masa: dört Portekiz haritası ve Kolomb'un haritası da masada (Kolomb'unki parlar)
+# ==========================================================================
+def _yakin_masa(no, kaynak=1, el=False, vurgu=None, renk=PARSOMEN, tur="ahsap", masa="#6a4426", isik="#1a0e06",
+                ps=1.05, px=150, esik=0.6, kalem_renk="#2a5a6a"):
+    _masa_ustu(no, masa, tur, isik)
+    yk = 2.2
+
+    def kare(t, z, i):
+        f = i / KARE
+        if kaynak >= 1:
+            for x, y in ((252, 152), (266, 164), (248, 176)):
+                eski_tomar(t, x, duz(y, SW), 1.1)
+            arap_haritasi(t, 286, duz(214, SW), 1.15)
+        if kaynak >= 2:
+            for j, (x, y) in enumerate(((238, 236), (262, 240), (244, 256), (270, 260))):
+                portekiz_haritasi(t, x, duz(y, SW), 1.15, tohum=j)
+            kolomb_haritasi(t, 268, duz(292, SW), 1.3, f=f)
+        n = figur(t, parsomen_harita, px, z, ps, renk=renk, vurgu=vurgu, f=f, kontur="#2a1a10")
+        if el:
+            hokka(t, 232, duz(298, SW), 1.0)
+            ux, uy = n["not"]
+            yazan_el(t, (ux + 2, uy + 8), 1.0, f, kol=kalem_renk)
+
+    _spr2(no, SW, SH, kare, yk, esik=esik, taban=IT, orta_bant=False)
+
+
+def sahne336():
+    """'Kenara kaynaklarını yazıyor: yirmi kadar harita.' / 'eski haritalar, bir Arap haritası': kuşbakışı ahşap masa;
+    ceylan derisi parşömen, kenar notunu yazan el ve kalem, hokka; sağda dürülmüş eski haritalar ve yuvarlak Arap haritası."""
+    _yakin_masa(336, kaynak=1, el=True)
+
+
+def sahne337():
+    """'dört Portekiz haritası. Bir de Kolomb'un haritası.': aynı masa; dört portolan ve altın çerçeveli Kolomb haritası
+    da eklenmiş. El yok: kaynaklar masada."""
+    _yakin_masa(337, kaynak=2, el=False)
+
+
+# ==========================================================================
+# 338 · kart 12 · Gece odası: amcasının İspanyol esiri anlatır, Piri minderde yazar
+# ==========================================================================
+def sahne338():
+    """'Kolomb'la üç kez o topraklara gitmiş. Anlattıklarını Piri not ediyor.': gece, mum ışığı; solda başı açık
+    İspanyol esir eliyle uzakları gösterir, sağda Piri minderde rahlesine yazar."""
+    ic_mekan(338, duvar=("#2a2230", "#362c3c", "#44384a"), kemer="#1a1420", cini="#6a3a2a",
+             pencere=("#0e1430", "#f4f0d8"), zemin_renk=("#4a3c38", "#3e322e", "#322824"), isik="#f8c060", hali=True)
+    yk = 3.0
+    K = s_kisi(yk, 0.30)
+    so = s_oturan(yk, 0.30)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 205, 0, f, zincir=_kz(yk))
+        mumluk(t, 290, z, f, 1)
+        figur(t, kisi, 146, z, K, **ESIR, yon=1, kol=0.35 + 0.2 * SIN(f))
+        figur(t, oturan, 252, z, so, yon=-1, el="kalem", minder="#8a2a2a", **PIRI_GENC)
+        rahle(t, 252 - int(4.2 * so), z[0], round(0.95 * so, 1))
+
+    _spr2(338, IW, IH, kare, yk)
+
+
+# ==========================================================================
+# 339 · kart 13 · Mısır, 1517: otağ önünde tahtta Yavuz; diz çökmüş Piri haritayı sunar; uzakta piramitler
+# ==========================================================================
+def sahne339():
+    """'Mısır, 1517. Yavuz Memlükleri yeni yenmiş. Piri haritayı padişaha sunuyor.': sıcak öğleden sonra; çöl ovası,
+    ufukta piramitler; otağın önünde tahtta Yavuz Sultan Selim, önünde diz çökmüş Piri elinde haritayla."""
+    _sahne_gok(339, ["#6a90c0", "#8aa8c8", "#b0bcc4", "#d8ccb0", "#ecd8a8"], [(110, 404, 20), (430, 408, 18)],
+               ("#fff8ec", "#f4e4cc", "#d8c0a0"))
+    img = uzak(339, ["#c8a878", "#bc9c6c"], ["#d0b080", "#c4a474"], ["#d8bc88", "#ccb07c", "#c0a470"],
+               dag_y=(470, 484), tepe_y=486, ova_y=494)
+    for x, s_ in ((96, 1.2), (130, 0.8), (440, 1.0)):
+        piramit(img, x, duz(494, W), s_)
+    kaydet(img, "sahne339-uzak.png")
+
+    def ekle(img, z):
+        figur(img, otag, PAY + 270, duz(586), 1.8, "#c8302a", "#e0b040", faz=0.2, acik=True)
+
+    orta(339, (552, 558), ["#d0b07a", "#c4a46e", "#b89862", "#ac8c58", "#a0804e"], "#f0d8a0", ekle=ekle)
+    on(339, ["#a0804e", "#ac8c58", "#b89862"], "#f0d8a0", boy=60)
+    yk = 2.8
+    K = s_kisi(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        ust = figur(t, taht, 245, z, round(0.62 * K, 1), renk="#c8a040", ortu="#8a1e22")
+        figur(t, oturan, 245, duz(ust, t.width), round(0.62 * K, 1), yon=-1, minder="#2a6a3a", **YAVUZ)
+        figur(t, kisi, 170, z, K, **PIRI_1513, yon=1, diz=True, silah="mektup", kol=0.4 + 0.03 * SIN(f))
+
+    _spr2(339, DW, DH, kare, yk)
+
+
+# ==========================================================================
+# 340 · kart 14 · Saray hazinesi: sandığın üstünde dürülmüş harita; raflarda rulolar; tek kandil
+# ==========================================================================
+def sahne340():
+    """'Harita saraya giriyor. Dört yüz yılı aşkın unutulacak.': loş hazine odası; ortada demir kuşaklı sandık, üstünde
+    dürülmüş parşömen; arkada rulo dolu raflar. Kimse yok, tek kandil sallanır."""
+    ic_mekan(340, duvar=("#1e1a1a", "#282220", "#322a26"), kemer="#120e0c", cini="#5a4a2a",
+             pencere=None, zemin_renk=("#3e3830", "#342e28", "#2a2620"), isik="#c89040", hali=False)
+    yk = 3.0
+    K = s_kisi(yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        arka = duz(z[0] - 12, IW)
+        kandil(t, 200, 0, f, zincir=_kz(yk))
+        figur(t, kitap_rafi, 142, arka, round(0.55 * K, 1), rulo=True, tohum=1)
+        figur(t, kitap_rafi, 262, arka, round(0.55 * K, 1), rulo=True, tohum=2)
+        figur(t, sandik, 202, z, round(0.6 * K, 1))
+
+    _spr2(340, IW, IH, kare, yk, esik=0.6)

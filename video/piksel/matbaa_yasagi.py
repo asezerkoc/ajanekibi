@@ -820,7 +820,7 @@ def kagithane(img, x, zemin, s=1.0, f=0.0):
     o0, o1 = cx - int(14 * s), cx + int(9 * s)
     for ox in (o0 + _u(1, s), cx - int(6 * s), o1 - _u(1, s)):
         _r(d, ox - _u(0.5, s), oy, ox + _u(0.5, s), y - 1, fill=hex2(_ac(AGAC, -0.3)))
-    cy = oy + int(1.6 * s) - R
+    cy = oy - int(0.5 * s) - R                                                           # çarkın altı oluğun suyunda
     # çark: çember, kaşıklar, göbek ve mil (mil duvara girer)
     a0 = f * 2 * math.pi
     d.ellipse([cx - R, cy - R, cx + R, cy + R], outline=hex2("#5a3a1e"), width=_u(1.0, s))
@@ -926,3 +926,797 @@ def _kalem(t, el, s, yon, f):
     ex, ey = el
     dx = int(0.5 * s * SIN(f, 2))
     d.line([ex, ey, ex + int(1.6 * s) * yon + dx, ey + int(1.4 * s)], fill=hex2("#c8a878"), width=_u(0.35, s))
+
+
+def osmanli_camii(img, x, zemin, s=1.0, tas="#d8cdb8", kubbe="#8a96a0"):
+    """takiyuddin_rasathanesi.py'den kopya (onaylı figür): kare gövde, yan yarım kubbeler, merkezî kurşun kubbe,
+    sağda tek kalem minare (şerefeli, külahlı). Düz zemine kurulur."""
+    d = ImageDraw.Draw(img)
+    y = duz_zemin(zemin, x - int(22 * s), x + int(26 * s), "cami", tolerans=max(3, int(s)))
+    temas_golgesi(img, x + int(2 * s), y, 50 * s)
+    t, tk = hex2(tas), hex2(_ac(tas, -0.22))
+    kb, kbk = hex2(kubbe), hex2(_ac(kubbe, -0.2))
+    d.rectangle([x - int(20 * s), y - int(12 * s), x + int(20 * s), y - 1], fill=t)
+    for yy in range(y - int(12 * s) + _u(3, s), y - 1, _u(3, s)):
+        d.line([x - int(20 * s), yy, x + int(20 * s), yy], fill=tk)
+    for px in (-15, -9, 9, 15):
+        d.rectangle([x + int(px * s) - _u(1, s), y - int(9 * s), x + int(px * s) + _u(1, s), y - int(5 * s)], fill=hex2("#2a3040"))
+        d.chord([x + int(px * s) - _u(1, s), y - int(10 * s), x + int(px * s) + _u(1, s), y - int(8 * s)], 180, 360, fill=hex2("#2a3040"))
+    d.rectangle([x - _u(2.4, s), y - int(8 * s), x + _u(2.4, s), y - 1], fill=hex2("#3a2a20"))
+    d.chord([x - _u(2.4, s), y - int(10 * s), x + _u(2.4, s), y - int(6 * s)], 180, 360, fill=hex2("#3a2a20"))
+    for yon in (-1, 1):
+        cx = x + int(12 * s) * yon
+        d.rectangle([cx - int(6 * s), y - int(14 * s), cx + int(6 * s), y - int(12 * s)], fill=t)
+        d.chord([cx - int(6 * s), y - int(19 * s), cx + int(6 * s), y - int(10 * s)], 180, 360, fill=kb)
+    d.rectangle([x - int(10 * s), y - int(18 * s), x + int(10 * s), y - int(12 * s)], fill=t, outline=tk)
+    for px in range(-8, 9, 4):
+        d.rectangle([x + int(px * s) - _u(0.5, s), y - int(17 * s), x + int(px * s) + _u(0.5, s), y - int(14 * s)], fill=hex2("#2a3040"))
+    d.chord([x - int(10 * s), y - int(29 * s), x + int(10 * s), y - int(8 * s)], 180, 360, fill=kb)
+    for r in (-6, -2, 2, 6):
+        d.line([x + int(r * s), y - int(18 * s), x + int(r * 0.4 * s), y - int(28 * s)], fill=kbk)
+    d.line([x, y - int(29 * s), x, y - int(32 * s)], fill=hex2("#e0b040"), width=_u(0.5, s))
+    mx = x + int(24 * s)
+    d.rectangle([mx - _u(1.8, s), y - int(40 * s), mx + _u(1.8, s), y - 1], fill=t)
+    d.line([mx + _u(1.8, s), y - int(40 * s), mx + _u(1.8, s), y - 1], fill=tk)
+    d.rectangle([mx - _u(3, s), y - int(31 * s), mx + _u(3, s), y - int(30 * s)], fill=hex2(_ac(tas, -0.1)))
+    d.polygon([(mx - _u(2, s), y - int(40 * s)), (mx, y - int(48 * s)), (mx + _u(2, s), y - int(40 * s))], fill=kb)
+    d.rectangle([mx - _u(2.6, s), y - int(3 * s), mx + _u(2.6, s), y - 1], fill=tk)
+
+
+# ==========================================================================
+# KATMAN YARDIMCILARI
+# ==========================================================================
+ODA = {
+    # duvar (3), kemer, çini kuşağı, pencere (cam, nokta), zemin (3), ışık, halı
+    "paris": (("#2e2620", "#3a3028", "#463a30"), "#221a14", "#5a3a2a", ("#0a1228", "#2a3858"), ("#5a4630", "#4a3a28", "#3e3020"), "#f0b860", False),
+    "bologna": (("#3a2a22", "#4a3628", "#5a4434"), "#2a1a12", "#6a4a2a", ("#1a2a4a", "#3a4a6a"), ("#6a5038", "#5a432e", "#4a3826"), "#f8c870", False),
+    "ist": (("#4a3a2a", "#5a4632", "#6a523a"), "#2a1e14", "#2a5a7a", None, ("#6a5a48", "#5a4c3c", "#4a3e32"), "#f8c060", False),
+    "kilise": (("#34343e", "#40404a", "#4c4c58"), "#20202a", "#7a2a2a", ("#1a2a4a", "#4a5a7a"), ("#5a5a5e", "#4c4c50", "#3e3e42"), "#f0c070", False),
+    "saray": (("#2a3a3a", "#344a46", "#405a54"), "#1a2a28", "#2a8a9a", None, ("#6a4a3a", "#5a3e30", "#4a3428"), "#f8c060", True),
+    "saray2": (("#3a2a2a", "#4a3634", "#5a4440"), "#2a1a1a", "#8a2a2a", ("#2a3a5a", "#f4d8a0"), ("#5a4a3a", "#4a3c2e", "#3e3226"), "#f8c060", True),
+    "ahsap": (("#4a3424", "#5a402c", "#6a4c34"), "#2a1a10", "#7a3a2a", ("#0e1630", "#cfd8e8"), ("#6a5440", "#5a4634", "#4a3a2a"), "#f8c060", False),
+    "pera": (("#3a3030", "#463a38", "#524442"), "#241c1a", "#3a4a6a", ("#0e1630", "#2a3a5a"), ("#5a4a3a", "#4a3c2e", "#3e3226"), "#f0b860", False),
+    "yesil": (("#24302a", "#2e3c34", "#3a4a40"), "#16201a", "#3a7a5a", None, ("#4a4a3e", "#3e3e34", "#32322a"), "#e8c070", True),
+    "nakkas": (("#3a3028", "#4a3c32", "#5a4a3c"), "#2a2018", "#2a6a8a", ("#5a7aa0", "#f4e8c8"), ("#6a5a48", "#5a4c3c", "#4a3e32"), "#f8d080", True),
+    "paris_gun": (("#6a5a48", "#7a6a56", "#8a7a64"), "#4a3a2a", "#3a4a6a", ("#8ab0d8", "#c8dcf0"), ("#7a6a54", "#6a5a46", "#5a4c3a"), "#f8e0a0", False),
+    "depo": (("#2a2622", "#34302a", "#3e3832"), "#1a1612", "#4a3a2a", ("#2a2a30", "#6a6458"), ("#4a443a", "#3e3830", "#322e28"), "#d8b070", False),
+    "arsiv": (("#4a5056", "#565c62", "#62686e"), "#30363c", "#2a4a6a", None, ("#6a6458", "#5a5448", "#4a463c"), "#fff0b0", False),
+}
+
+
+def _oda(no, tur):
+    duvar, kemer, cini, pencere, zemin_renk, isik, hali = ODA[tur]
+    ic_mekan(no, duvar=duvar, kemer=kemer, cini=cini, pencere=pencere, zemin_renk=zemin_renk, isik=isik, hali=hali)
+
+
+def _gok(no, renkler, gunes_=None, bulutlar=(), bulut_renk=("#fff8ec", "#f4dcc8", "#d8a8a0"), yildiz=0, y0=380, y1=560):
+    """Gökyüzü + görünür bölgeye (y0-y1) yıldızlar (ciz.yildizlar yalnızca y<300'e serper; yakın çekimde görünen gök
+    y≈380-560 arasıdır)."""
+    img = gokyuzu(no, renkler, gunes_, bulutlar, bulut_renk, 0)
+    if yildiz:
+        rnd = random.Random(no * 13)
+        for _ in range(yildiz):
+            x, y = rnd.randrange(img.width), rnd.randrange(y0, y1)
+            piksel(img, x, y, hex2("#fff8e0", rnd.choice((110, 170, 255))))
+    kaydet(img, f"sahne{no}-gokyuzu.png")
+
+
+def _cimen(t, z, f, renkler, tohum, x0=0, x1=None, boy=6):
+    """Sprite'ın zemin satırında rüzgârla salınan çimen (dibi zemine basar)."""
+    cimen_tutamlari(t, z, renkler, tohum, 0.45, boy, x0, x1, ruzgar=0.6 * SIN(f))
+
+
+# Dış mekân paletleri
+GUN = ["#4a7ab8", "#6a92c4", "#8aaad0", "#a8c0dc", "#c4d4e4", "#d8e2ea"]
+IKINDI = ["#5a7aa8", "#7a94b8", "#a0aec4", "#c8c0bc", "#e0c8a8", "#ecd4a8"]
+SAFAK = ["#2a3058", "#4a4a74", "#7a5a7e", "#b8707a", "#e09a7a", "#f4c08a"]
+ALACA = ["#1e1e3e", "#3a3058", "#6a4a6e", "#a0607a", "#c8807e", "#e0a088"]
+GECE = ["#070a1c", "#0e1430", "#162046", "#1e2c5a", "#28386a", "#324478"]
+BULUT_GUN = ("#ffffff", "#e8eef4", "#c8d4e0")
+DENIZ = (["#7a8ab0", "#6e7ea4"], ["#8a9aa8", "#7e8e9c"], ["#4a7aa8", "#42709c", "#3a6690"])
+CAYIR = (["#7a8a5a", "#6e7e50", "#627246", "#56663e", "#4a5a36"], "#b0c088")
+SOKAK = (["#9a8a70", "#8c7c64", "#7e6e58", "#70604c", "#625442"], "#c8b898")
+
+
+def _dis(no, gok, uzak_renk, orta_renk, ekle=None, gunes_=None, bulutlar=(), bulut_renk=BULUT_GUN, yildiz=0,
+         dag_y=(476, 500), tepe_y=504, ova_y=512, ust=(536, 548), on_boy=120):
+    _gok(no, gok, gunes_, bulutlar, bulut_renk, yildiz)
+    uzak(no, *uzak_renk, dag_y=dag_y, tepe_y=tepe_y, ova_y=ova_y)
+    renkler, kenar = orta_renk
+    orta(no, ust, renkler, kenar, ekle=ekle)
+    on(no, [renkler[-1], renkler[-2], renkler[-3]], kenar, boy=on_boy)
+
+
+def _istanbul(cami_x, cami_s=1.3, evler=()):
+    """Orta plan: düz zeminde kurşun kubbeli cami ve ahşap evler (ızgara x; PAY eklenir)."""
+    def ekle(img, z):
+        for ex, es in evler:
+            figur(img, ahsap_ev, PAY + ex, duz(588), es)
+        if cami_x is not None:
+            figur(img, osmanli_camii, PAY + cami_x, duz(588), cami_s)
+    return ekle
+
+
+def _masa_ust(z, s):
+    return zemin_y(z, 0, 1) - int(6.6 * s)
+
+
+def _yazar(t, z, x, s, f, kisi_kw, esya, yon=1, masa_renk="#6a4426"):
+    """Sandalyede yazan kişi + önündeki masa (masa öne çizilir, dizleri örter)."""
+    mu = _masa_ust(z, s)
+    figur(t, sandalyeli, x, z, s, yon=yon, f=f, masa_ust=mu, **kisi_kw)
+    figur(t, yazi_masasi, x + int(7 * s) * yon, z, s, esya=esya, f=f, yon=yon, renk=masa_renk)
+
+
+def _pres_sahnesi(t, z, f, px, ps, yon, baskici_x, K, baskici_kw, pres_kw=None):
+    """Tahta pres + kolu çeken baskıcı (kol fazı plakayla aynı; demir kol vidadan baskıcının eline bağlı)."""
+    kol = 0.2 + 0.25 * (1 - math.cos(f * 2 * math.pi)) / 2
+    vida = figur(t, tahta_pres, px, z, ps, faz=f, yon=yon, kol_el=True, **(pres_kw or {}))
+    figur(t, kisi, baskici_x, z, K, yon=yon, kol=kol, **baskici_kw)
+    _pres_kolu(t, vida, _el(baskici_x, z, K, yon, kol))
+
+
+# ==========================================================================
+# SAHNELER
+# ==========================================================================
+def sahne170():
+    """Kapak + kart 1-2. Paris, 1584, gece: André Thevet sandalyede, masasında tüy kalemle yazıyor; masada kâğıt, hokka,
+    kitaplar ve mum; tavandan kandil. Kartlar onun yazdığı cümleyi verir."""
+    _oda(170, "paris")
+    p = P(170)
+    s = s_sandalye(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 262, 0, f, zincir=_kz(p.yk))
+        _yazar(t, z, 158, s, f, THEVET, ("kagit", "hokka", "kitap", "mum"))
+
+    _spr(170, kare)
+
+
+def sahne171():
+    """Kart 3 (motif): 'fermanı gören yok': loş oda, kandilin altında üstü boş rahle; yanda tek mum."""
+    _oda(171, "depo")
+    p = P(171)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        figur(t, bos_rahle, 200, z, 5.4)
+        mumluk(t, 132, z, f, 1)
+
+    _spr(171, kare, esik=0.7)
+
+
+def sahne172():
+    """Kart 4: Paris, 1584: Thevet'in çalışma odası: solda kitap rafı, ortada masasında yazan Thevet, sağda şamdan."""
+    _oda(172, "paris")
+    p = P(172)
+    s = s_sandalye(p.yk, 0.28)
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 250, 0, f, zincir=_kz(p.yk))
+        figur(t, raf, 132, z, K * 0.95, "kitap", 172)
+        _yazar(t, z, 186, s, f, THEVET, ("kagit", "hokka", "mum"))
+        mumluk(t, 284, z, f, 3)
+
+    _spr(172, kare, esik=0.72)
+
+
+def sahne173():
+    """Kart 5: Thevet yazarken masasında açık basılı kitap (Gutenberg'i anlatıyor); cezayı kendi kalemiyle 'araya
+    sıkıştırıyor': iddia onun sayfasında, olgu gibi değil."""
+    _oda(173, "paris")
+    p = P(173)
+    s = s_sandalye(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 250, 0, f, zincir=_kz(p.yk))
+        _yazar(t, z, 146, s, f, THEVET, ("kagit", "basili", "hokka"))
+        figur(t, kitap_yigini, 262, z, s * 0.9, 7, 173)
+        mumluk(t, 236, z, f, 2)
+
+    _spr(173, kare, esik=0.72)
+
+
+def sahne174():
+    """Kart 6: 1550'ler, İstanbul, gündüz: gezgin Thevet elinde değnekle sağa yürüyor; arkada düz zeminde kurşun
+    kubbeli cami, uzakta Boğaz ve karşı kıyı."""
+    _dis(174, GUN, DENIZ, CAYIR, ekle=_istanbul(270, 1.3, [(170, 1.6)]), bulutlar=[(120, 330, 22)])
+    p = P(174)
+    _gorunur(174, [270])
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 200, z, K, **THEVET, yon=1, adim=f, silah="sopa")
+        _cimen(t, z, f, ["#6a8a52", "#5a7a46", "#7a9a5e"], 174, 0, 400)
+
+    _spr(174, kare)
+
+
+def sahne175():
+    """Kart 7-9: bugün, İstanbul: rehber turistlere anlatıyor (kolu hareketli); arkada cami, Boğaz."""
+    _dis(175, GUN, DENIZ, SOKAK, ekle=_istanbul(300, 1.3, [(205, 1.5)]), bulutlar=[(400, 330, 22)])
+    p = P(175)
+    _gorunur(175, [300])
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, modern_kisi, 150, z, K, govde="#a83a3a", sac="#6a4a2a", yon=1, kadin=True)
+        figur(t, modern_kisi, 184, z, K, govde="#3a5a7a", sac="#2a1a12", yon=1)
+        figur(t, modern_kisi, 250, z, K, govde="#2a4a3a", sac="#4a3a2a", yon=-1, kol=0.35 + 0.15 * SIN(f))
+
+    _spr(175, kare)
+
+
+def sahne176():
+    """Kart 10-11: İstanbul, 13 Aralık 1493: Nahmias kardeşler tahta presin başında; biri kolu çekiyor, öbürü tablanın
+    ucunda yeni kâğıdı tutuyor. Yanda basılmış kitap yığını."""
+    _oda(176, "ist")
+    p = P(176)
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 196, 0, f, zincir=_kz(p.yk))
+        _pres_sahnesi(t, z, f, 196, K, 1, 196 - int(8 * K), K, NAHMIAS1)
+        figur(t, kisi, 196 + int(12.4 * K), z, K, **NAHMIAS2, yon=-1, silah="mektup", kol=0.3)
+
+    _spr(176, kare)
+
+
+def sahne177():
+    """Kart 12: basılmış İbranice kitap rahlede açık (son satırda tarihli kolofon); arkada ipte kuruyan sayfalar."""
+    _oda(177, "ist")
+    p = P(177)
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 268, 0, f, zincir=_kz(p.yk))
+        arka = duz(z[0] - 14, t.width)
+        figur(t, kurutma_ipi, 122, 282, arka, K * 0.8, f, 6)
+        figur(t, acik_kitap, 200, z, 3.8, "ibrani", f)
+
+    _spr(177, kare, esik=0.7)
+
+
+def sahne178():
+    """Kart 13: 1567, İstanbul'da bir kilise: Ermeni usta Abgar Venedik'ten getirdiği presi çekiyor, oğlu tablanın
+    ucunda kâğıdı tutuyor; geride sunak, haç ve mumlar."""
+    _oda(178, "kilise")
+    p = P(178)
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 205, 0, f, zincir=_kz(p.yk))
+        figur(t, sunak, 128, duz(z[0] - 14, t.width), K * 0.7, f)
+        _pres_sahnesi(t, z, f, 208, K, 1, 208 - int(8 * K), K, ABGAR)
+        figur(t, kisi, 208 + int(12.4 * K), z, round(K * 0.88, 1), **ABGAR_OGUL, yon=-1, silah="mektup", kol=0.3)
+
+    _spr(178, kare)
+
+
+def sahne179():
+    """Kart 14: 1588, saray: III. Murad sedirde oturuyor; kâtip önünde diz çökmüş, fermanı alıyor."""
+    _oda(179, "saray")
+    p = P(179)
+    K = s_kisi(p.yk)
+    so = s_oturan(p.yk, 0.24)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 205, 0, f, zincir=_kz(p.yk))
+        ust = figur(t, sedir, 258, z, round(0.75 * so, 1), renk="#7a4a2a", ortu="#8a1e22")
+        figur(t, oturan, 258, duz(ust, t.width), so, **MURAD, yon=-1, minder="#c8a040")
+        figur(t, kisi, 160, z, K, **KATIP, yon=1, diz=True, silah="mektup", kol=0.35 + 0.03 * SIN(f))
+        mumluk(t, 120, z, f, 3)
+
+    _spr(179, kare)
+
+
+def sahne180():
+    """Kart 15-16: Roma'da basılmış Öklid rahlede açık: solda üçgen ve daire, sağ sayfada (453.) tuğralı izin fermanı."""
+    _oda(180, "depo")
+    p = P(180)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        figur(t, acik_kitap, 200, z, 5.0, "oklid", f)
+
+    _spr(180, kare, esik=0.8)
+
+
+def sahne181():
+    """Kart 17 (motif): kandilin iki yanında iki rahle: soldaki boş (yasak fermanı), sağdakinde açık Öklid (izin fermanı)."""
+    _oda(181, "depo")
+    p = P(181)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 194, 0, f, zincir=_kz(p.yk))
+        figur(t, bos_rahle, 142, z, 3.6)
+        figur(t, acik_kitap, 240, z, 3.1, "oklid", f)
+
+    _spr(181, kare, esik=0.8)
+
+
+def sahne182():
+    """Kart 18: 1627, Pera: kiralık ahşap evde Rum rahip Metaksas presin kolunu çekiyor; yerde kitap yığını;
+    pencerede gece."""
+    _oda(182, "pera")
+    p = P(182)
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 186, 0, f, zincir=_kz(p.yk))
+        figur(t, kitap_yigini, 124, z, K * 0.9, 9, 182)
+        _pres_sahnesi(t, z, f, 214, K, -1, 214 + int(8 * K), K, METAKSAS)
+
+    _spr(182, kare)
+
+
+def sahne183():
+    """Kart 19: Ocak 1628, Pera, karlı gece: ahşap evin kapısına makamlar geliyor: meşaleli yeniçeri ve evi gösteren
+    görevli. Kar yağıyor."""
+    karli = (["#dfe6f0", "#d0d8e6", "#c0cadc", "#b0bccf", "#a2aec4"], "#f4f8ff")
+    _dis(183, GECE, (["#2a3450", "#242e48"], ["#3a4660", "#344058"], ["#c8d2e2", "#bcc6d8", "#b0bace"]), karli,
+         ekle=_istanbul(None, 1.0, [(300, 2.6)]), yildiz=0)
+    hava(183, "kar", 180)
+    p = P(183)
+    _gorunur(183, [300])
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 166, z, K, **MEMUR, yon=1, kol=0.45 + 0.05 * SIN(f))
+        figur(t, kisi, 206, z, K, **YENICERI, yon=1, silah="mesale", kol=0.3)
+
+    _spr(183, kare)
+
+
+def sahne184():
+    """Kart 20: Cizvitlerin kışkırtması: loş bir odada Cizvit rahip bir Osmanlı görevlisine mektup uzatıyor, geride
+    ikinci Cizvit bekliyor."""
+    _oda(184, "pera")
+    p = P(184)
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 205, 0, f, zincir=_kz(p.yk))
+        figur(t, kisi, 128, duz(z[0] - 10, t.width), round(K * 0.88, 1), **CIZVIT, yon=1)
+        figur(t, kisi, 166, z, K, **CIZVIT, yon=1, silah="mektup", kol=0.35 + 0.04 * SIN(f))
+        figur(t, kisi, 240, z, K, **MEMUR, yon=-1, kol=0.25)
+
+    _spr(184, kare)
+
+
+def sahne185():
+    """Kart 21: 1679, İstanbul, ikindi: Bolognalı Marsigli elinde defterle sağa yürüyor; arkada cami ve ahşap evler."""
+    _dis(185, IKINDI, DENIZ, SOKAK, ekle=_istanbul(260, 1.3, [(170, 1.5), (350, 1.6)]), bulutlar=[(430, 320, 20)])
+    p = P(185)
+    _gorunur(185, [260])
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 200, z, K, **MARSIGLI, yon=1, adim=f, silah="mektup")
+
+    _spr(185, kare)
+
+
+def sahne186():
+    """Kart 22: Marsigli sonra masasında yazıyor (Bologna): sandalyede, tüy kalemle; masada kâğıt, hokka, kitaplar."""
+    _oda(186, "bologna")
+    p = P(186)
+    s = s_sandalye(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 262, 0, f, zincir=_kz(p.yk))
+        _yazar(t, z, 160, s, f, MARSIGLI, ("kagit", "hokka", "kitap"), masa_renk="#7a4a2a")
+        mumluk(t, 270, z, f, 3)
+
+    _spr(186, kare, esik=0.72)
+
+
+def sahne187():
+    """Kart 23: kopyacılar: iki kâtip minderde bağdaş kurmuş, rahle başında kamış kalemle yazıyor."""
+    _oda(187, "nakkas")
+    p = P(187)
+    s = s_oturan(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        for j, (x, kw) in enumerate(((136, KOPYACI), (222, KOPYACI2))):
+            figur(t, oturan, x, z, s, **kw, yon=1, el="kalem", minder="#8a2a2a")
+            rahle(t, x + int(6.6 * s), z[0], 3.6)
+            _kalem(t, _oturan_el(x, z, s, 1), s, 1, (f + j * 0.37) % 1)
+
+    _spr(187, kare)
+
+
+def sahne188():
+    """Kart 24: sırt sırta iki masa: solda Paris'te yazan Thevet, sağda İstanbul'da yaşamış Marsigli; ikisi de yazıyor."""
+    _oda(188, "paris")
+    p = P(188)
+    s = s_sandalye(p.yk, 0.26)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        _yazar(t, z, 178, s, f, THEVET, ("kagit", "mum"), yon=-1)
+        _yazar(t, z, 222, s, (f + 0.4) % 1, MARSIGLI, ("kagit", "hokka"), yon=1, masa_renk="#7a4a2a")
+
+    _spr(188, kare, esik=0.72)
+
+
+def sahne189():
+    """Kart 25: alacakaranlıkta toprak yolda tek bir adam elinde değnekle sağa yürüyor (izlenecek adam); geride ağaçlar."""
+    def ekle(img, z):
+        patika(img, duz(588), 0, GW, 30, "#8a6a4a", 189)
+        for x, sk in ((150, 0.9), (380, 1.0)):
+            figur(img, agac, PAY + x, duz(588), sk, ("#2a3a2a", "#3a4a32", "#4a5a3a"), "#3a2418", 189 + x)
+    _dis(189, ALACA, (["#4a3e60", "#403656"], ["#54466a", "#4a3e60"], ["#5a4a5a", "#504252", "#463a4a"]),
+         (["#4a5a3a", "#425234", "#3a4a2e", "#324228", "#2a3a22"], "#8a8a6a"), ekle=ekle,
+         dag_y=(486, 506), tepe_y=510, ova_y=518)
+    p = P(189)
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 200, z, K, **YOLCU, yon=1, adim=f, silah="sopa")
+        _cimen(t, z, f, ["#4a5a3a", "#3a4a2e", "#5a6a46"], 189, 0, 400)
+
+    _spr(189, kare)
+
+
+def sahne190():
+    """Kart 26: Kolozsvár, Erdel, 1670'ler, kış: ahşap odada anne beşiği sallıyor; beşikte kundaklı bebek."""
+    _oda(190, "ahsap")
+    p = P(190)
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 205, 0, f, zincir=_kz(p.yk))
+        figur(t, kisi, 160, z, K, **KADIN_ERDEL, yon=1, kol=0.12 + 0.05 * SIN(f))
+        figur(t, besik, 232, z, round(K * 0.75, 1), 0.12 * SIN(f))
+        mumluk(t, 280, z, f, 1)
+
+    _spr(190, kare)
+
+
+def sahne191():
+    """Kart 27: genç adam (Macar giysili) değnekle İstanbul'a yürüyor; arkada sur ve kubbeli cami."""
+    def ekle(img, z):
+        figur(img, osmanli_camii, PAY + 290, duz(588), 1.3)
+        figur(img, anadolu_kalesi, PAY + 200, PAY + 380, duz(588), 1.2, "#b8b0a0", "#8a8478", True)
+    _dis(191, GUN, DENIZ, CAYIR, ekle=ekle, bulutlar=[(90, 330, 20)])
+    p = P(191)
+    _gorunur(191, [290])
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 200, z, K, **IBRAHIM_MACAR, yon=1, adim=f, silah="sopa")
+        _cimen(t, z, f, ["#6a8a52", "#5a7a46", "#7a9a5e"], 191, 0, 400)
+
+    _spr(191, kare)
+
+
+def sahne192():
+    """Kart 28: saray kapısının önünde İbrahim (sarıklı, müteferrika) ve bir saray görevlisi."""
+    _dis(192, GUN, DENIZ, SOKAK, ekle=lambda img, z: figur(img, saray_kapisi, PAY + 270, duz(588), 2.4),
+         bulutlar=[(430, 330, 20)])
+    p = P(192)
+    _gorunur(192, [270])
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 162, z, K, **IBRAHIM, yon=1, kol=0.1 + 0.04 * SIN(f))
+        figur(t, kisi, 246, z, K, **MEMUR, yon=-1)
+
+    _spr(192, kare)
+
+
+def sahne193():
+    """Kart 29: 1726: sadrazam sedirde oturuyor; İbrahim önünde diz çökmüş, risalesini sunuyor."""
+    _oda(193, "saray2")
+    p = P(193)
+    K = s_kisi(p.yk)
+    so = s_oturan(p.yk, 0.24)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 205, 0, f, zincir=_kz(p.yk))
+        ust = figur(t, sedir, 258, z, round(0.75 * so, 1), renk="#7a4a2a", ortu="#2a6a3a")
+        figur(t, oturan, 258, duz(ust, t.width), so, **SADRAZAM, yon=-1, minder="#c8a040")
+        figur(t, kisi, 160, z, K, **IBRAHIM, yon=1, diz=True, silah="mektup", kol=0.35 + 0.03 * SIN(f))
+        mumluk(t, 120, z, f, 3)
+
+    _spr(193, kare)
+
+
+def sahne194():
+    """Kart 30: Paris, 1720, gündüz: bir matbaada baskıcı presi çekiyor; genç Said Efendi tablanın ucunda izliyor."""
+    _oda(194, "paris_gun")
+    p = P(194)
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        _pres_sahnesi(t, z, f, 196, K, 1, 196 - int(8 * K), K, FRANSIZ)
+        figur(t, kisi, 196 + int(13 * K), z, K, **SAID, yon=-1, kol=0.08 * (1 + SIN(f)))
+
+    _spr(194, kare)
+
+
+def sahne195():
+    """Kart 31: şeyhülislam minderde oturmuş, rahlede fetvayı yazıyor ('olur'); yanda kitaplar, şamdan."""
+    _oda(195, "yesil")
+    p = P(195)
+    s = s_oturan(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 228, 0, f, zincir=_kz(p.yk))
+        figur(t, oturan, 168, z, s, **SEYHULISLAM, yon=1, el="kalem", minder="#2a5a3a")
+        rahle(t, 168 + int(6.6 * s), z[0], 3.8)
+        _kalem(t, _oturan_el(168, z, s, 1), s, 1, f)
+        kitaplar(t, 266, z[0], 4.2)
+
+    _spr(195, kare)
+
+
+def sahne196():
+    """Kart 32: Temmuz 1727: III. Ahmed tahtta; İbrahim önünde diz çökmüş, beratı alıyor."""
+    _oda(196, "saray")
+    p = P(196)
+    K = s_kisi(p.yk)
+    so = s_oturan(p.yk, 0.22)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        ust = figur(t, taht, 256, z, round(0.62 * so, 1), renk="#c8a040", ortu="#2a4a7a")
+        figur(t, oturan, 256, duz(ust, t.width), so, **AHMED, yon=-1, minder="#8a1e22")
+        figur(t, kisi, 158, z, K, **IBRAHIM, yon=1, diz=True, silah="mektup", kol=0.4 + 0.03 * SIN(f))
+
+    _spr(196, kare)
+
+
+def sahne197():
+    """Kart 33: 16 Aralık 1727, Yavuz Selim semti, İbrahim'in evi: önde baskıcı presi çekiyor, geride ikinci tezgâh;
+    İbrahim sağda eliyle gösteriyor. Pencerede kış gecesi."""
+    _oda(197, "ahsap")
+    p = P(197)
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 210, 0, f, zincir=_kz(p.yk))
+        figur(t, tahta_pres, 262, duz(z[0] - 14, t.width), round(K * 0.75, 1), faz=(f + 0.5) % 1, yon=1)
+        _pres_sahnesi(t, z, f, 180, K, 1, 180 - int(8 * K), K, BASKICI)
+        figur(t, kisi, 272, z, K, **IBRAHIM, yon=-1, kol=0.3 + 0.04 * SIN(f))
+
+    _spr(197, kare)
+
+
+def sahne198():
+    """Kart 34-35: 31 Ocak 1729: Vankulu Lügati'nin birinci cildi rahlede açık (ilk sayfada tuğralı ferman, karşıda
+    fetva); ikinci cilt yanda yere yatık."""
+    _oda(198, "nakkas")
+    p = P(198)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 228, 0, f, zincir=_kz(p.yk))
+        figur(t, acik_kitap, 180, z, 3.9, "vankulu", f)
+        figur(t, cilt, 262, z, 3.4)
+
+    _spr(198, kare, esik=0.8)
+
+
+def sahne199():
+    """Kart 36: pres kendi iznini basıyor: yakın plan; baskıcı kolu çekiyor, tablanın ucunda dik duran yeni basılmış
+    sayfada tuğra."""
+    _oda(199, "ahsap")
+    p = P(199)
+    K = s_kisi(p.yk)
+    ps = round(K * 1.05, 1)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 196, 0, f, zincir=_kz(p.yk))
+        _pres_sahnesi(t, z, f, 206, ps, 1, 206 - int(8 * ps), K, BASKICI, dict(tugra=True))
+
+    _spr(199, kare, esik=0.72)
+
+
+def sahne200():
+    """Kart 37: hattatlar: iki hattat karşılıklı minderde, rahle başında kamış kalemle yazıyor (kalabalık yok)."""
+    _oda(200, "yesil")
+    p = P(200)
+    s = s_oturan(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        for j, (x, yon, kw) in enumerate(((138, 1, HATTAT), (262, -1, HATTAT2))):
+            figur(t, oturan, x, z, s, **kw, yon=yon, el="kalem", minder="#8a6a2a")
+            rahle(t, x + int(6.6 * s) * yon, z[0], 3.4)
+            _kalem(t, _oturan_el(x, z, s, yon), s, yon, (f + j * 0.41) % 1)
+
+    _spr(200, kare)
+
+
+def sahne201():
+    """Kart 38: Târîh-i Hind-i Garbî rahlede açık: sol sayfada tahta baskı gemi resmi, sağda yazı."""
+    _oda(201, "nakkas")
+    p = P(201)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        figur(t, acik_kitap, 200, z, 4.6, "resim", f)
+
+    _spr(201, kare, esik=0.8)
+
+
+def sahne202():
+    """Kart 39: 1742: tezgâhlar susuyor: boş odada pres duruyor, tablası boş, köşesinde örümcek ağı; yerde tozlu
+    kitap yığını. İnsan yok."""
+    _oda(202, "depo")
+    p = P(202)
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 268, 0, f, zincir=_kz(p.yk))
+        figur(t, tahta_pres, 196, z, K, faz=0.0, yon=1, kagit=False, ag=True)
+        figur(t, kitap_yigini, 124, z, K * 0.9, 6, 202, True)
+
+    _spr(202, kare, esik=0.72)
+
+
+def sahne203():
+    """Kart 40: 1745, Yalova, ilkbahar: kâğıthanenin çarkı oluktaki suyla dönüyor; yaşlı İbrahim değneğiyle, Lehistanlı
+    usta çarkı gösteriyor."""
+    _dis(203, GUN, (["#7a9ab0", "#6e8ea4"], ["#6a8a6a", "#5e7e5e"], ["#6a8a52", "#5e7e48", "#527240"]), CAYIR,
+         bulutlar=[(110, 330, 22), (430, 350, 18)])
+    p = P(203)
+    K = s_kisi(p.yk, 0.30)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kagithane, 264, z, 2.4, f)
+        figur(t, kisi, 118, z, K, **IBRAHIM_YASLI, yon=1, silah="sopa")
+        figur(t, kisi, 150, z, K, **USTA_LEH, yon=1, kol=0.5 + 0.05 * SIN(f))
+        _cimen(t, z, f, ["#6a8a52", "#5a7a46", "#7a9a5e"], 203, 0, 160)
+
+    _spr(203, kare, esik=0.72)
+
+
+def sahne204():
+    """Kart 41: 1 Nisan 1747: depoda miras dökümü: raflar ve yerde kitap yığınları; kâtip minderde oturup rahlede
+    sayıyor (ölüm gösterilmez)."""
+    _oda(204, "depo")
+    p = P(204)
+    K = s_kisi(p.yk)
+    s = s_oturan(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 208, 0, f, zincir=_kz(p.yk))
+        figur(t, raf, 128, z, K * 0.95, "yigin", 204)
+        figur(t, kitap_yigini, 166, z, K * 0.85, 12, 2041)
+        figur(t, oturan, 206, z, s, **KATIP, yon=1, el="kalem", minder="#5a2a4a")
+        rahle(t, 206 + int(6.6 * s), z[0], 3.4)
+        _kalem(t, _oturan_el(206, z, s, 1), s, 1, f)
+        figur(t, kitap_yigini, 276, z, K * 0.85, 13, 2042)
+
+    _spr(204, kare)
+
+
+def sahne205():
+    """Kart 42: tozlanan raflar: kimse yok; tozlu raflar, yerde tozlu kitap yığınları, köşelerde örümcek ağı."""
+    _oda(205, "depo")
+    p = P(205)
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 200, 0, f, zincir=_kz(p.yk))
+        figur(t, raf, 140, z, K * 0.95, "yigin", 205, True)
+        figur(t, raf, 258, z, K * 0.95, "kitap", 2051, True)
+        figur(t, kitap_yigini, 199, z, K * 0.85, 11, 2052, True)
+
+    _spr(205, kare)
+
+
+def sahne206():
+    """Kart 43-44: bugün, arşiv okuma salonu: tarihçi Kathryn Schwartz arşiv rafının önünde bir belgeyi okuyor; masada
+    belgeler ve kutu; tavanda modern lamba."""
+    _oda(206, "arsiv")
+    p = P(206)
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        sarkit_lamba(t, 258, 0, f, zincir=_kz(p.yk))
+        figur(t, raf, 136, z, K * 0.95, "arsiv", 206)
+        figur(t, modern_kisi, 198, z, K, govde="#3a4a5a", sac="#7a5a3a", yon=1, kadin=True, silah="mektup",
+              kol=0.3 + 0.03 * SIN(f))
+        figur(t, yazi_masasi, 258, z, K * 0.85, esya=("belge",), yon=1, renk="#8a7a64")
+
+    _spr(206, kare)
+
+
+def sahne207():
+    """Kart 45: çarşıda kopyacının tezgâhı: sundurma altında el yazması kitaplar; tezgâhın ardında yaşlı satıcı, önde tek
+    bir alıcı bakıyor (alıcı az)."""
+    _dis(207, IKINDI, DENIZ, SOKAK, ekle=_istanbul(None, 1.0, [(140, 1.6), (380, 1.6)]), bulutlar=[(430, 330, 20)])
+    p = P(207)
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 244, z, K, **SAHAF, yon=-1, kol=0.12 + 0.05 * SIN(f))
+        figur(t, sahaf_tezgahi, 234, z, round(K * 0.85, 1), 207)
+        figur(t, kisi, 150, z, K, **ALICI, yon=1, kol=0.2)
+
+    _spr(207, kare)
+
+
+def sahne208():
+    """Kart 46-47: şafak: alıcı kolunun altında ip bağlı kitaplarla sağa yürüyor; geride İbrahim'in ahşap evi; güneş
+    ufukta doğuyor (yazı bandının çok altında)."""
+    _dis(208, SAFAK, (["#5a4a6a", "#504262"], ["#6a5272", "#5e4a68"], ["#7a6a7a", "#6e5e70", "#625466"]), SOKAK,
+         ekle=_istanbul(None, 1.0, [(190, 1.9)]), gunes_=(420, 566, 12, ["#fff4c0", "#ffd890"]),
+         dag_y=(552, 560), tepe_y=564, ova_y=570, ust=(578, 584))
+    p = P(208)
+    K = s_kisi(p.yk)
+
+    def kare(t, z, i):
+        f = i / KARE
+        figur(t, kisi, 200, z, K, **ALICI, yon=1, adim=f)
+        kitap_bohcasi(t, _el(200, z, K, 1, 0.0), K, 1)
+
+    _spr(208, kare)
+
+
+def sahne209():
+    """Kart 48-49: üç belge yan yana: solda rahlede Thevet'in tek sayfası, ortada Öklid'in içindeki ferman, sağda
+    Vankulu'nun başındaki tuğralı sayfa; tavanda kandil."""
+    _oda(209, "depo")
+    p = P(209)
+
+    def kare(t, z, i):
+        f = i / KARE
+        kandil(t, 196, 0, f, zincir=_kz(p.yk))
+        rahle(t, 120, z[0], 4.4)
+        figur(t, acik_kitap, 190, z, 2.3, "oklid", f)
+        figur(t, acik_kitap, 266, z, 2.3, "vankulu", (f + 0.5) % 1)
+
+    _spr(209, kare, esik=0.8)
+
+
+SAHNELER = {n: globals()[f"sahne{n}"] for n in range(170, 210)}
+
+if __name__ == "__main__":
+    for n in ([int(a) for a in sys.argv[1:] if a.isdigit()] or sorted(SAHNELER)):
+        SAHNELER[n]()
+        print(f"sahne {n} tamam")

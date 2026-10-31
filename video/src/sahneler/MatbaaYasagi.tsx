@@ -55,7 +55,7 @@ export const MATBAA_SERI: Seri = {
     // 174: 1550'ler, İstanbul: gezgin Thevet yürüyor
     {
       no: 174, yakin: 2.6, kamera: 8,
-      sprite: { w: 400, h: 230, fps: 16, x: [235, 305], taban: 632 },
+      sprite: { w: 400, h: 230, fps: 12, x: [225, 315], taban: 632 },
       yazilar: [
         { satirlar: ["Thevet Osmanlı ülkesini", "gezmiş ama fermanı görmemiş."], sure: 4.04 }, // kart 6
       ],
@@ -147,7 +147,7 @@ export const MATBAA_SERI: Seri = {
     // 185: 1679, İstanbul: Marsigli yürüyor
     {
       no: 185, yakin: 2.6, kamera: 8,
-      sprite: { w: 400, h: 230, fps: 16, x: [235, 305], taban: 632 },
+      sprite: { w: 400, h: 230, fps: 12, x: [225, 315], taban: 632 },
       yazilar: [
         { satirlar: ["1679. Bolognalı Marsigli", "aylarca İstanbul'da kalıyor."], sure: 4.11 }, // kart 21
       ],
@@ -179,7 +179,7 @@ export const MATBAA_SERI: Seri = {
     // 189: Alacakaranlıkta yolda tek bir adam: onu izleyin
     {
       no: 189, yakin: 2.6, kamera: 8,
-      sprite: { w: 400, h: 230, fps: 16, x: [230, 305], taban: 632 },
+      sprite: { w: 400, h: 230, fps: 12, x: [225, 315], taban: 632 },
       yazilar: [
         { satirlar: ["Asıl soru: Müslüman Osmanlılar", "neden 1729'a kadar", "kendi kitaplarını basmadı?", "Cevap için bir adamı izleyin."], sure: 7.76, boy: 72, renk: ALTIN }, // kart 25
       ],
@@ -195,7 +195,7 @@ export const MATBAA_SERI: Seri = {
     // 191: Genç adam İstanbul'a geliyor
     {
       no: 191, yakin: 2.6, kamera: 8,
-      sprite: { w: 400, h: 230, fps: 16, x: [235, 305], taban: 632 },
+      sprite: { w: 400, h: 230, fps: 12, x: [225, 315], taban: 632 },
       yazilar: [
         { satirlar: ["Yıllar sonra İstanbul'a", "geliyor, Müslüman oluyor.", "Adı artık İbrahim."], sure: 5.11 }, // kart 27
       ],
@@ -333,7 +333,7 @@ export const MATBAA_SERI: Seri = {
     // 208: Şafak: kitaplarını alan bir alıcı yürüyor (erken gelen)
     {
       no: 208, yakin: 2.6, kamera: 8,
-      sprite: { w: 400, h: 230, fps: 16, x: [235, 305], taban: 632 },
+      sprite: { w: 400, h: 230, fps: 12, x: [225, 315], taban: 632 },
       yazilar: [
         { satirlar: ["Sabev'in hesabı: her on", "nüshadan yaklaşık yedisi", "satılmış."], sure: 4.40, renk: ALTIN }, // kart 46
         { satirlar: ["İbrahim sadece", "erken gelmişti."], sure: 2.47, renk: ALTIN }, // kart 47
