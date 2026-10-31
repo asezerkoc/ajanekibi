@@ -22,44 +22,44 @@ Motif kartları ("Taş konuşuyor. Kimse anlamıyor." 2, 13; "Bu kez Kopenhag'da
 
 ## Sahne planı
 
-Süreler tahminidir (Σ ≈ 246 sn: kapak 2,5 + anlatım ≈240 + kapanış 3); `video/ses/hizala_seri.py` sese göre yeniden yazar
+Süreler artık sese hizalı (`video/ses/hizala_seri.py`; ilk teslimde tahminiydi)
 (betiğin TSX ayrıştırıcısıyla denendi: kapak atlanır, 42 kart bulunur). Kartlar 4-kalite-metin.md ile harfi harfine aynı,
 aynı sırada; en uzun satır 30 harf. Bütün dış sahnelerde ana sprite 400x230, iç sahnelerde 400x300.
 
 | No | Süre (sn) | Konu | Zemin çizgileri | yakin / kamera | Hareket | Kartlar |
 |---|---|---|---|---|---|---|
-| 130 | 7.6 | Moğolistan bozkırı, şafak. Kaplumbağa kaideli yazıt taşı yalnız; harfleri yavaşça ışıyıp söner (taş konuşuyor), çiçekler rüzgârda. | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 8 | fps 8 | 1, 2 (2 ALTIN) |
-| 131 | 8.9 | Kopenhag, 1893, gece. Çalışma odası: kitaplık, masada kâğıtlar ve taşın fotoğrafı, mum; Thomsen ayakta bir fotoğrafa bakar. | iç mekân: taş döşeme; sprite tabanı 634; arka sıra taban−8 | 2.8 / 6 | fps 10, yaziY 240 | 3 |
-| 132 | 11.1 | Thomsen yakın plan; elli bir yaşında Danimarkalı dilbilimci, elinde fotoğraf. Tek şamdan, kandil. | iç mekân: taş döşeme; sprite tabanı 634 | 3.2 / 6 | fps 10 | 4, 5 (5 ALTIN) |
-| 133 | 5.8 | Orhun Vadisi, 732. Yazıt taşı dikilmiş; iki işçi kaidenin dibine toprak atar, Bilge Kağan izler. Orta planda iki atlı bekler. | sprite tabanı 632; orta plan duz(584-588); arka sıra taban−16 | 2.6 / 10 | fps 12 | 6 |
-| 134 | 4.8 | Kül Tigin'in höyüğü, alacakaranlık. Eyerli, binicisiz atı başı önde bekler; koyunlar otlar (koyun yılı). | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 8 | fps 10 | 7 |
-| 135 | 7.5 | taş ustası çekiçle kazır; yazıcı Yollıg Tigin bağdaş kurmuş, yazıyı kâğıda yazar. Gündüz. | sprite tabanı 632; orta plan duz(584-588); arka sıra taban−14 | 2.8 / 8 | fps 12 | 8, 9 |
-| 136 | 5.2 | Bilge Kağan'ın otağı, gece. Kağan sedirde yatar (nefes yavaşlar), başucunda bir hizmetkâr; şamdan ve kandil. | iç mekân: taş döşeme; sprite tabanı 634 | 2.8 / 6 | fps 8 | 10 (10 KIZIL) |
-| 137 | 7.8 | 735. Aynı vadide iki yazıt taşı yan yana: Kül Tigin'in ve Bilge Kağan'ın. Gündüz, rüzgârda çiçekler. | sprite tabanı 632; orta plan duz(584-588) | 2.6 / 10 | fps 10, yaziY 240 | 11 |
-| 138 | 6.7 | Tuul vadisi. Yaşlı danışman Tonyukuk, sağlığında diktirdiği iki kaba dikili taşın yanında, asasına dayanır. | sprite tabanı 632; orta plan duz(584-588); arka sıra taban−10 | 2.8 / 8 | fps 10 | 12 |
-| 139 | 6.3 | yüzyıllar. Kar fırtınası; kağanlık yıkılmış, taş yalnız. Tepesinde ve kaidesinde kar birikmiş, harfleri hâlâ soluk ışıkla kıpırdar. | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 6 | fps 8, kar katmanı (hava 10), yaziY 240 | 13 (13 ALTIN) |
-| 140 | 6.2 | Poltava, 1709. Barut dumanlı gri ova; İsveçli subay Strahlenberg iki Rus askerinin arasında esir, sola yürür (tüfekler omuzda). | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 10 | fps 16, x 300→240 | 14 (14 KIZIL) |
-| 141 | 13.4 | Sibirya, Yenisey boyu, kar. Çamlar; Strahlenberg (kürk kalpak) garip işaretli kaba bir taşın önünde durmuş, kâğıda kopyasını çıkarır. | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 8 | fps 10, kar katmanı (hava 10) | 15, 16 |
+| 130 | 7.9 | Moğolistan bozkırı, şafak. Kaplumbağa kaideli yazıt taşı yalnız; harfleri yavaşça ışıyıp söner (taş konuşuyor), küçük kır çiçekleri rüzgârda. | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 8 | fps 8 | 1, 2 (2 ALTIN) |
+| 131 | 8.7 | Kopenhag, 1893, gece. Çalışma odası: kitaplık, masada kâğıtlar ve taşın fotoğrafı, mum; Thomsen ayakta bir fotoğrafa bakar. | iç mekân: taş döşeme; sprite tabanı 634; arka sıra taban−8 | 2.8 / 6 | fps 10, yaziY 240 | 3 |
+| 132 | 11.3 | Thomsen yakın plan; elli bir yaşında Danimarkalı dilbilimci, elinde fotoğraf. Tek şamdan, kandil. | iç mekân: taş döşeme; sprite tabanı 634 | 3.2 / 6 | fps 10 | 4, 5 (5 ALTIN) |
+| 133 | 5.7 | Orhun Vadisi, 732. Yazıt taşı dikilmiş; iki işçi kaidenin dibine toprak atar, Bilge Kağan izler. Orta planda iki atlı bekler. | sprite tabanı 632; orta plan duz(584-588); arka sıra taban−16 | 2.6 / 10 | fps 12 | 6 |
+| 134 | 4.6 | Kül Tigin'in höyüğü, alacakaranlık. Eyerli, binicisiz atı başı önde bekler; koyunlar otlar (koyun yılı). | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 8 | fps 10 | 7 |
+| 135 | 7.6 | taş ustası çekiçle kazır; yazıcı Yollıg Tigin bağdaş kurmuş, yazıyı kâğıda yazar. Gündüz. | sprite tabanı 632; orta plan duz(584-588); arka sıra taban−14 | 2.8 / 8 | fps 12 | 8, 9 |
+| 136 | 5.3 | Bilge Kağan'ın otağı, gece. Kağan sedirde yatar (nefes yavaşlar); yatağın arkasında, başucunda bir hizmetkâr; tavanda kandil. | iç mekân: taş döşeme; sprite tabanı 634; arka sıra taban−12 | 2.8 / 6 | fps 8 | 10 (10 KIZIL) |
+| 137 | 6.9 | 735. Aynı vadide iki yazıt taşı yan yana: Kül Tigin'in ve Bilge Kağan'ın. Gündüz, rüzgârda çiçekler. | sprite tabanı 632; orta plan duz(584-588) | 2.6 / 10 | fps 10, yaziY 240 | 11 |
+| 138 | 7.7 | Tuul vadisi. Yaşlı danışman Tonyukuk, sağlığında diktirdiği iki kaba dikili taşın yanında, asasına dayanır. | sprite tabanı 632; orta plan duz(584-588); arka sıra taban−10 | 2.8 / 8 | fps 10 | 12 |
+| 139 | 5.7 | yüzyıllar. Kar fırtınası; kağanlık yıkılmış, taş yalnız. Tepesinde ve kaidesinde kar birikmiş, harfleri hâlâ soluk ışıkla kıpırdar. | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 6 | fps 8, kar katmanı (hava 10), yaziY 240 | 13 (13 ALTIN) |
+| 140 | 6.2 | Poltava, 1709. Barut dumanlı gri ova; İsveçli subay Strahlenberg (mavi, silahsız, elleri bağlı) iki Rus askerinin arasında esir, sola yürür; arkadaki asker ipini tutar (üç köşeli şapkalar, tüfekler omuzda). | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 10 | fps 16, x 300→240 | 14 (14 KIZIL) |
+| 141 | 13.6 | Sibirya, Yenisey boyu, kar. Çamlar; Strahlenberg (kürk kalpak) garip işaretli kaba bir taşın önünde durmuş, kâğıda kopyasını çıkarır. | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 8 | fps 10, kar katmanı (hava 10) | 15, 16 |
 | 142 | 6.0 | akşam. Solda kaba Yenisey taşı, sağda kaplumbağalı Orhun taşı: aynı harfler, ikisinde birden ışır. | sprite tabanı 632; orta plan duz(584-588) | 2.6 / 8 | fps 8, yaziY 240 | 17 (17 ALTIN) |
-| 143 | 7.7 | Orhun Vadisi, 1889. Gezgin Yadrintsev taşın önünde durur, eliyle gösterir; arkada çadırı ve uzakta ikinci taş. | sprite tabanı 632; orta plan duz(584-588); arka sıra taban−14 | 2.6 / 10 | fps 10 | 18 |
-| 144 | 6.5 | 1890, Fin-Ugor Cemiyeti'nin seferi. Fotoğrafçı tripodlu makinesini taşa çevirir; yanında biri kopya çıkarır. | sprite tabanı 632; orta plan duz(584-588); arka sıra taban−14 | 2.8 / 8 | fps 10, yaziY 240 | 19 |
-| 145 | 5.7 | 1891, Rus seferi. Ortada ak sakallı Radloff, iki yanında Ruslar; hepsinin elinde kopya kâğıtları. Arkada (orta planda) taş. | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 8 | fps 10 | 20 |
-| 146 | 11.5 | Kül Tigin taşı yakın plan; ön yüzde Göktürk harfleri, yan yüzde Çince yazı soluk kızıl ışıkla belirir (Çin imparatoru Xuanzong'un sözleri). | sprite tabanı 632; orta plan duz(584-588) | 3.0 / 6 | fps 8, yaziY 240 | 21, 22 |
-| 147 | 7.7 | Leiden, 1892, gündüz. Sinolog Schlegel masasında Çince yüzün kopyasını okur; arkada kitaplık. | iç mekân: taş döşeme; sprite tabanı 634; arka sıra taban−8 | 2.8 / 6 | fps 10, yaziY 240 | 23 |
-| 148 | 4.3 | gece, bozkır. Taşın Türkçe yüzü karanlık ve sessiz; yalnız Çince yan yüz soluk ışır. | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 6 | fps 8 | 24 (24 KIZIL) |
-| 149 | 11.4 | Kopenhag, gece. Helsingfors albümü Thomsen'in masasında açık; Thomsen önündeki bilinmeyen harflere bakar. | iç mekân: taş döşeme; sprite tabanı 634 | 2.8 / 6 | fps 10, yaziY 240 | 25, 26 |
-| 150 | 7.5 | bozkırda taşın önünde üç grup: Rus subayı, Türkolog Radloff ve fotoğraf makineli Fin. Hepsi taşa bakar; hiçbiri çözümü yayımlamaz. | sprite tabanı 632; orta plan duz(584-588) | 2.6 / 8 | fps 10, yaziY 240 | 27 (27 KIZIL) |
-| 151 | 12.4 | Danimarka Kraliyet Akademisi, 1893. Thomsen kürsüde konuşur, eli kalkar; solda dinleyiciler. | iç mekân: taş döşeme; sprite tabanı 634; arka sıra taban−12 | 2.8 / 6 | fps 10 | 28, 29 (28 ALTIN) |
-| 152 | 4.8 | gün doğumu, bozkır. Taşın bütün harfleri altın renginde yanar: bu kez biri anlıyor. | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 8 | fps 10 | 30 (30 ALTIN) |
-| 153 | 9.7 | üstte mavi gök, altta yağız (kara) yer; arada iki insan, bir erkek ve bir kadın, taşa bakar. Taşın ilk harfleri ışır (Tengri). | sprite tabanı 632; orta plan duz(584-588); arka sıra taban−14 | 2.6 / 8 | fps 8 | 31, 32 (32 ALTIN) |
+| 143 | 7.5 | Orhun Vadisi, 1889. Gezgin Yadrintsev taşın önünde durur, eliyle gösterir; arkada çadırı ve uzakta ikinci taş. | sprite tabanı 632; orta plan duz(584-588); arka sıra taban−14 | 2.6 / 10 | fps 10 | 18 |
+| 144 | 6.8 | 1890, Fin-Ugor Cemiyeti'nin seferi. Fotoğrafçı levhalı (körüklü, örtülü) makinesini taşa çevirir; yanında biri kopya çıkarır. | sprite tabanı 632; orta plan duz(584-588); arka sıra taban−14 | 2.8 / 8 | fps 10, yaziY 240 | 19 |
+| 145 | 5.6 | 1891, Rus seferi. Ortada ak sakallı Radloff, iki yanında Ruslar; hepsinin elinde kopya kâğıtları. Arkada (orta planda) taş. | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 8 | fps 10 | 20 |
+| 146 | 11.6 | Kül Tigin taşı yakın plan; ön yüzde Göktürk harfleri, yan yüzde Çince yazı soluk kızıl ışıkla belirir (Çin imparatoru Xuanzong'un sözleri). | sprite tabanı 632; orta plan duz(584-588) | 3.0 / 6 | fps 8, yaziY 240 | 21, 22 |
+| 147 | 7.9 | Leiden, 1892, gündüz. Sinolog Schlegel masasında Çince yüzün kopyasını okur; arkada kitaplık. | iç mekân: taş döşeme; sprite tabanı 634; arka sıra taban−8 | 2.8 / 6 | fps 10, yaziY 240 | 23 |
+| 148 | 4.1 | gece, bozkır. Taşın Türkçe yüzü karanlık ve sessiz; yalnız Çince yan yüz soluk ışır. | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 6 | fps 8 | 24 (24 KIZIL) |
+| 149 | 11.7 | Kopenhag, gece. Helsingfors albümü Thomsen'in masasında açık; Thomsen önündeki bilinmeyen harflere bakar. | iç mekân: taş döşeme; sprite tabanı 634 | 2.8 / 6 | fps 10, yaziY 240 | 25, 26 |
+| 150 | 7.5 | bozkırda taşın iki yanında üç grup: solda Türkolog Radloff, sağda levhalı makinesi taşa dönük Fin fotoğrafçı ve Rus subayı. Hepsi taşa bakar; hiçbiri çözümü yayımlamaz. | sprite tabanı 632; orta plan duz(584-588); arka sıra taban−14 | 2.6 / 8 | fps 10, yaziY 240 | 27 (27 KIZIL) |
+| 151 | 12.8 | Danimarka Kraliyet Akademisi, 1893. Thomsen kürsüde konuşur, eli kalkar; solda dinleyiciler. | iç mekân: taş döşeme; sprite tabanı 634; arka sıra taban−12 | 2.8 / 6 | fps 10 | 28, 29 (28 ALTIN) |
+| 152 | 4.9 | gün doğumu, bozkır. Taşın bütün harfleri altın renginde yanar: bu kez biri anlıyor. | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 8 | fps 10 | 30 (30 ALTIN) |
+| 153 | 9.4 | üstte mavi gök, altta yağız (kara) yer; arada iki insan, bir erkek ve bir kadın, taşa bakar. Taşın ilk harfleri ışır (Tengri). | sprite tabanı 632; orta plan duz(584-588); arka sıra taban−14 | 2.6 / 8 | fps 8 | 31, 32 (32 ALTIN) |
 | 154 | 5.1 | Bilge Kağan halkına seslenir, eli kalkık; önde iki dinleyici, orta planda halk. | sprite tabanı 632; orta plan duz(584-588) | 2.6 / 8 | fps 10 | 33 |
-| 155 | 8.5 | akşam. Çin elçisi bir Türk'e ipek uzatır; arkada (orta planda) surlu Çin şehri. | sprite tabanı 632; orta plan duz(584-588) | 2.6 / 8 | fps 10 | 34, 35 (35 KIZIL) |
-| 156 | 6.0 | taşın iki yüzü aynı kadrajda: ön yüzde Göktürk harfleri altın, yan yüzde Çince yazı kızıl. | sprite tabanı 632; orta plan duz(584-588) | 3.0 / 6 | fps 8, yaziY 240 | 36 (36 KIZIL) |
-| 157 | 9.6 | Bilge Kağan taşının yanında halkını uyarır gibi elini kaldırır; orta planda yurtlar ve dumanları. | sprite tabanı 632; orta plan duz(584-588); arka sıra taban−14 | 2.6 / 8 | fps 10 | 37, 38 (38 ALTIN) |
-| 158 | 7.9 | Petersburg, 1894. Radloff'un masasında basılmaya başlayan okumaları (kitap yığını); Radloff ayakta. | iç mekân: taş döşeme; sprite tabanı 634 | 2.8 / 6 | fps 10, yaziY 240 | 39 |
-| 159 | 7.1 | Tuul vadisi, alacakaranlık. Tonyukuk'un iki taşı yalnız; kimse bilmiyor. Koyunlar otlar. | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 8 | fps 10 | 40 (40 ALTIN) |
-| 160 | 6.8 | Kopenhag, şafak. Thomsen pencerenin önünde elinde kâğıtla durur; şafak ışığı odaya düşer. | iç mekân: taş döşeme; sprite tabanı 634 | 3.0 / 6 | fps 10, yaziY 240 | 41 (41 ALTIN) |
-| 161 | 2.9 | gece, yıldızlı bozkır. Taşın harfleri yavaşça altın ışıkla akar. | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 6 | fps 8 | 42 (42 ALTIN) |
+| 155 | 8.2 | akşam. Çin elçisi bir Türk'e ipek uzatır; arkada (orta planda) kıvrık saçaklı kapı kuleli Çin suru. | sprite tabanı 632; orta plan duz(584-588) | 2.6 / 8 | fps 10 | 34, 35 (35 KIZIL) |
+| 156 | 5.8 | taşın iki yüzü aynı kadrajda: ön yüzde Göktürk harfleri altın, yan yüzde Çince yazı kızıl. | sprite tabanı 632; orta plan duz(584-588) | 3.0 / 6 | fps 8, yaziY 240 | 36 (36 KIZIL) |
+| 157 | 10.4 | Bilge Kağan taşının yanında halkını uyarır gibi elini kaldırır; orta planda yurtlar ve dumanları. | sprite tabanı 632; orta plan duz(584-588); arka sıra taban−14 | 2.6 / 8 | fps 10 | 37, 38 (38 ALTIN) |
+| 158 | 7.3 | Petersburg, 1894. Radloff'un masasında basılmaya başlayan okumaları (kitap yığını); Radloff ayakta. | iç mekân: taş döşeme; sprite tabanı 634 | 2.8 / 6 | fps 10, yaziY 240 | 39 |
+| 159 | 7.5 | Tuul vadisi, alacakaranlık. Tonyukuk'un iki taşı yalnız; kimse bilmiyor. Koyunlar otlar. | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 8 | fps 10 | 40 (40 ALTIN) |
+| 160 | 6.4 | Kopenhag, şafak. Thomsen pencerenin önünde elinde kâğıtla durur; şafak ışığı odaya düşer. | iç mekân: taş döşeme; sprite tabanı 634 | 3.0 / 6 | fps 10, yaziY 240 | 41 (41 ALTIN) |
+| 161 | 3.9 | gece, yıldızlı bozkır. Taşın harfleri yavaşça altın ışıkla akar. | sprite tabanı 632; orta plan duz(584-588) | 2.8 / 6 | fps 8 | 42 (42 ALTIN) |
 Kapanış: "Piksel Tarih / @pikseltarihim", "Yorumlara yaz, arkadaşına gönder", 3 sn, arka sahne 161 (gece).
 
 ## Yeni figürler (hepsi orhun_yazitlari.py içinde, `ciz.piksel/hex2` + PIL ile; ciz.py'ye eklenmedi)
