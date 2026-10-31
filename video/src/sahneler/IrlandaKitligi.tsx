@@ -11,10 +11,11 @@ export const IRLANDA_SERI: Seri = {
   ses: "irlanda-kitligi-anlatim.mp3",
   bolumler: [
     { // KAPAK (hizala_seri bu bloğu atlar: kapak yazıları anlatımda yok)
-      no: 490, yakin: 2.8, kamera: 0, yaziY: 270,
+      no: 490, yakin: 2.8, kamera: 0, yaziY: 215,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
+      // görsel KK: alt başlık iki kısa satıra bölündü; böylece sığdırma hesabı başlığı küçültmüyor (başlık 68 yerine 88 boyda)
       yazilar: [
-        { satirlar: ["Defterde", "Bin Yazıyor", "Bir iyilik nasıl efsane olur?"], sure: 2.0, boy: 112, renk: ALTIN },
+        { satirlar: ["Defterde", "Bin Yazıyor", "Bir iyilik nasıl", "efsane olur?"], sure: 2.0, boy: 88, renk: ALTIN },
       ],
     },
     // İstanbul, saray odası: genç padişah masada bağış kesesini mühürlü kâğıtla gönderir

@@ -1357,7 +1357,7 @@ def _insan_boy(k):
     return bb[3] - bb[1]
 
 
-DUVAR_TABAN = 622          # cephenin oturduğu satır: figürlerin (632) 10 px gerisinde, aynı derinlikte
+DUVAR_TABAN = 627          # cephenin oturduğu satır: figürlerin (632) 10 px gerisinde, aynı derinlikte
 
 
 def cephe(no, renkler, stil, ogeler, k, gok_renk=None):
@@ -1407,7 +1407,7 @@ def cephe(no, renkler, stil, ogeler, k, gok_renk=None):
             else:
                 piksel(img, x + gw - 4, taban - kh // 2, hex2("#e0b040"))
         elif tur in ("pencere", "vitrin"):
-            pw = int(kh * (0.26 if tur == "pencere" else 0.42))
+            pw = int(kh * (0.24 if tur == "pencere" else 0.3))
             ph = int(kh * (0.55 if tur == "pencere" else 0.62))
             alt = taban - int(kh * 0.2)
             d.rectangle([x - pw - 3, alt - ph - 3, x + pw + 3, alt + 3], fill=hex2("#e8e2d4" if stil != "ahsap" else "#5a3a22"))
@@ -1421,6 +1421,11 @@ def cephe(no, renkler, stil, ogeler, k, gok_renk=None):
             d.rectangle([x - pw, py - int(pw * 0.8), x + pw, py + int(pw * 0.8)], fill=hex2("#a87a2a"), outline=hex2("#5a3a10"))
             for yy in range(py - int(pw * 0.8) + 3, py + int(pw * 0.8) - 1, 3):
                 d.line([x - pw + 3, yy, x + pw - 3, yy], fill=hex2("#e8c060"))
+    kenar = []
+    for tur, wx, _r in ogeler:
+        yar = {"kapi": kh * 0.21, "cifte_kapi": kh * 0.35, "pencere": kh * 0.24, "vitrin": kh * 0.3, "plaket": hb * 0.11}[tur] + 3
+        kenar.append((PAY + wx - yar, PAY + wx + yar))
+    _orta_gorunur(no, kenar, pay=4)                                           # kapı/pencere kadraj kenarında kesilmez
     zemin_ust = taban
     for y in range(zemin_ust, H):                                             # kaldırım
         d.line([0, y, GW, y], fill=hex2(_ac("#8a8478", -0.1 * min(1, (y - taban) / 120))))
@@ -1729,7 +1734,7 @@ def sahne494():
     no = 494
     k = K(no)
     cephe(no, ("#8a6a44", "#7a5c3a", "#9a7a52"), "ahsap",
-          [("vitrin", 205, "#3a2a1e"), ("kapi", 270, "#4a2e1a"), ("vitrin", 335, "#3a2a1e")], k)
+          [("vitrin", 222, "#3a2a1e"), ("kapi", 270, "#4a2e1a"), ("vitrin", 316, "#3a2a1e")], k)
 
     def kare(t, z, i):
         f = i / KARE
@@ -1739,6 +1744,10 @@ def sahne494():
               kol=0.05 + 0.05 * (1 + SIN(f)))
 
     _bitir(no, kare, duvar=True)
+
+
+GOK_IRL = ["#5a6470", "#6e7680", "#848a92", "#9ca0a4", "#b0b2b0"]
+TEPE_IRL = ("#4a5a46", "#42523e")
 
 
 def sahne495():
@@ -2017,7 +2026,7 @@ def sahne507():
     buğday ve mısır çuvalları üst üste; defterli tüccar sayar, yanındaki tüccar kasabanın gazetesini okur."""
     no = 507
     k = K(no)
-    cephe(no, ("#7a7066", "#625a52", "#8a8076"), "tas", [("cifte_kapi", 205, "#3a2a1a"), ("pencere", 300, "#2a2a30")], k)
+    cephe(no, ("#7a7066", "#625a52", "#8a8076"), "tas", [("cifte_kapi", 232, "#3a2a1a"), ("pencere", 320, "#2a2a30")], k)
 
     def kare(t, z, i):
         f = i / KARE
@@ -2079,7 +2088,7 @@ def sahne509():
     no = 509
     k = K(no)
     cephe(no, ("#8a3a2a", "#6a2a1e", "#9a4a34"), "tugla",
-          [("kapi", 200, "#2a2a30"), ("pencere", 268, "#2a3440"), ("kapi", 335, "#3a2a1a")], k)
+          [("kapi", 212, "#2a2a30"), ("pencere", 270, "#2a3440"), ("kapi", 325, "#3a2a1a")], k)
 
     def kare(t, z, i):
         f = i / KARE
@@ -2159,8 +2168,8 @@ def sahne513():
     yumuşak yassı kasketli üç adam konuşur (biri eliyle anlatır)."""
     no = 513
     k = K(no)
-    cephe(no, ("#c8bca4", "#b0a48c", "#d8ccb4"), "siva", [("pencere", 200, "#2a3440"), ("kapi", 268, "#7a1e22"),
-                                                        ("pencere", 335, "#2a3440")], k)
+    cephe(no, ("#c8bca4", "#b0a48c", "#d8ccb4"), "siva", [("pencere", 218, "#2a3440"), ("kapi", 268, "#7a1e22"),
+                                                        ("pencere", 320, "#2a3440")], k)
 
     def kare(t, z, i):
         f = i / KARE
@@ -2260,7 +2269,7 @@ def sahne517():
     uzak_tepe(no, ("#5a7a52", "#52704a"), 540)
 
     def ekle(img, z):
-        figur(img, kale_kapisi, PAY + 262, duz(563), 1.0, tas="#a8aab0")     # görsel KK: kale ufukta, uzakta ve puslu
+        figur(img, kale_kapisi, PAY + 262, duz(563), 1.0, tas="#b4bac8")     # görsel KK: kale ufukta, uzakta ve puslu
     _orta_gorunur(no, [(PAY + 262 - 13, PAY + 262 + 13)])
     zemin_orta(no, 560, ["#6a8a4a", "#5e7e42", "#52723a", "#466632"], "cayir", ekle)
     on_cimen(no, ["#466632", "#52723a", "#5e7e42"], "#a8c870", boy=70)
@@ -2318,7 +2327,7 @@ def sahne520():
     no = 520
     k = K(no)
     cephe(no, ("#d8d0c0", "#c8c0b0", "#e8e0d0"), "siva",
-          [("pencere", 200, "#2e3a48"), ("plaket", 271, None), ("kapi", 318, "#2a3a2a")], k)
+          [("pencere", 218, "#2e3a48"), ("plaket", 271, None), ("kapi", 318, "#2a3a2a")], k)
 
     def kare(t, z, i):
         f = i / KARE

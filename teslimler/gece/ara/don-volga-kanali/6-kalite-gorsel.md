@@ -70,3 +70,44 @@ Birinci turdaki dört zorunlu düzeltme yapılmış ve kabul edildi. Ancak iki k
 ### Değerlendirme (sahibe gösterilecek)
 
 Grafiker ilk turdaki dört hatayı düzeltti. Perevoloka'daki gemi artık kütüklerin üstünde, halatla çekilen gerçek bir nehir gemisi. Kadırgadaki kılıç kınında, Moskova masasındaki fotoğraf yerini hokka, kâğıt ve muma bıraktı, Don'daki kadırgaların hepsi kadrajda. Ok saldırısı ve 1948 sahnelerine bu turda temiz karelerde baktım; ikisi de sorunsuz. Geriye tek tür bir hata kaldı: Rus takviyesi sahnesindeki atlının ve Perevoloka'da gemiyi çeken iki adamın yüzünde göz yok. Birkaç piksellik bu düzeltme yapılınca video size gösterilebilir.
+
+## 3. tur
+
+**Bakılan kareler:** r3 klasöründeki 13 sahne ortası (250, 252, 254, 256, 258, 260, 261, 265, 268, 272, 276, 279, 283) ve 6 ek render (`r3ek/`): 250'nin başı ve sonu (kare 200, 930), 254'ün sonu (2378), 261'in son yakınlaşması (5250), 268'in başı ve sonu (7545, 7950). Yüzler, çadır, kılıç ve gözcü kulesi piksel yakınlaştırmasıyla açıldı (`r3z/`). 250'nin son karesindeki soluk yazı, kartlar arası geçiş efekti.
+
+### Karar: UYGUN DEĞİL (revize_birimi: grafiker)
+
+Gözler tamam: 2. turun iki zorunlu düzeltmesi kabul edildi. Ancak sahnelerin yeniden çizilmesiyle yeni bir hata çıktı, ayrıca iki eski sorun tam çözülmedi. 268'de bir askerin çekili kılıcının ucu yanındaki askerin kaftanına dayanıyor (1. turda 260'ta reddedilen hatanın aynısı). 283'te küçültülen gözcü kulesi şimdi dikenli telin üstünde duran oyuncak bir kule gibi görünüyor. 250'deki çadır ise Paşa'nın böğrüne değiyor.
+
+### 2. turun zorunlu düzeltmeleri
+
+| # | Sahne | Durum | Not |
+|---|---|---|---|
+| 1 | 272 atlı | **Kabul** | Börkün kenarının altında, burun tarafında 2×2'lik koyu bir göz var (`r3z/272yuz.png`). Yüz bozulmamış, sakal ve ten bandı düzgün. |
+| 2 | 254 çekenler | **Kabul** | İki çekenin de ten şeridinde koyu birer göz var (`r3z/254cek.png`). Börk ile sakal arasında açılan şerit maske etkisini kaldırmış. Ortadaki karede de, son karede de (2378) aynı. |
+| – | 276 arka atlılar (öneriydi) | **Uygulanmış** | İki Kazak/Çerkes atlısının yüzünde de göz pikseli seçiliyor. Öndeki askerin gözü de yerinde. |
+
+### Zorunlu düzeltmeler (kare | yer | sorun | düzeltme)
+
+| # | Kare / sahne | Kadrajın neresi | Sorun | Düzeltme |
+|---|---|---|---|---|
+| 1 | `r3/sahne268.png`, `r3ek/k7545.png`, `r3ek/k7950.png` · sahne 268 (ordu Astrahan'a, kart "Ordu karadan Astrahan'a") | Orta ile sağ asker arası, sahne ortasında x 670-820, y 1110-1150 | Ortadaki askerin çekili kılıcı yatay uzanıyor ve ucu sağdaki askerin kaftanına dayanıyor. Sahnenin başında, ortasında ve sonunda hep böyle; arkadaşını bıçaklıyormuş gibi okunuyor. 1. turda 260'ta reddedilen hatanın aynısı. | Kılıcı kınına sok ya da ucunu yere doğru indir. Ucu yanındaki askerden en az 12 piksel (540 ızgarada 6) uzakta kalsın. Yürüyüş animasyonunun bütün karelerinde denetle. |
+| 2 | `r3/sahne283.png` · sahne 283 (1948, Gulag) | Ortadaki mahkûm ile gardiyan arası, x 690-775, y 855-1005 (`r3z/283kule.png`) | Küçültülen gözcü kulesi şimdi bir insan kafası kadar (~145 px; insanlar ~500 px). Ayakları dikenli telin üst kenarında bitiyor, yani tel üstünde duran bir oyuncak kule ya da kuş evi gibi görünüyor. Kürek sapı ile tüfeğin arasına da sıkışmış. Ölçek ve zemin hatası. | Kuleyi kaldır ya da ufka (zemin çizgisi y≈800) dayalı, figürlerin başından ve aletlerden uzak bir yere al. Bacakları ufuk zeminine otursun, telin üstüne binmesin. Uzak plan ölçeği tutarlı olsun: ufuktaki bir kule, arka plandaki çadır ya da atlılarla kıyaslanacak boyda olmalı. |
+| 3 | `r3/sahne250.png`, `r3ek/k200.png`, `r3ek/k930.png` · sahne 250 (ilk kazma) | Paşa'nın sağ böğrü, sahne ortasında x 905-1050, y 935-1015 (`r3z/250cadir.png`) | Çadır küçültülüp sağa alınmış, ama şimdi Paşa'nın sırtındaki elinin/böğrünün hizasında. Sol germe ipi gövdesine değiyor ve sahne boyunca öyle kalıyor. Paşa koltuğunun altında bir çadır maketi taşıyormuş gibi okunuyor. Sahnenin sonunda (kare 930) sağ ip kadrajın kenarına kadar uzanıyor (x≈1078). 2. turdaki "Paşa'nın elinde çadır maketi" sorunu çözülmedi, yalnızca öbür ele geçti. | Çadırı figürlerin hizasından çıkar. Ya ufka (taban y≈820-840) al ve iki figürün arasındaki boşluğa koy (x 450-650), ya da sahneden kaldır. Kamera kaymasının bütün karelerinde figürlere ve kadraj kenarına en az 30 piksel uzak kalsın. |
+
+### Diğer kontroller (yeni hata yok)
+
+- **254:** Kasım Paşa'nın kolu yanında, eli gemiye uzanmıyor. İlk çeken kütükten ayrı. Gemi kütüklere, çekenler zemine oturuyor. Son karede (2378) sağdaki çeken kenara ~30 piksel kalıyor; kesilmiyor. **Kabul.**
+- **261:** Sahne ortasında ve son yakınlaşmada (5250) üç kadırga da kadrajda. Ana kadırganın mahmuzu sağ kenardan ~25 piksel, sol arka kadırganın feneri sol kenardan ~80 piksel içeride. **Kabul.**
+- **283:** Gardiyanın miğferindeki çift başlık görüntüsü kalktı. Ama kulenin yeni yeri yeni bir hata getirdi (bkz. zorunlu 2).
+- **252, 256, 258, 260, 272, 279:** Gözler yüzü bozmamış. Figürler zemine oturuyor, ölçek tutarlı, yazı bandı kafalara ve direklere binmiyor, kenarda kesilen nesne yok. 252 ve 279'da tavana asılı avize üst kenarda kesiliyor; tavandan sarktığı için doğal.
+
+### İyileştirme önerileri
+
+- **265 (`r3z/265alet.png`):** Soldaki kazıcının elindeki sap yatay uzanıp ortadaki adamın kürek sapını kesiyor ve kaftanında bitiyor; ucunda alet başı görünmüyor. İki adam tek bir T biçimli aleti tutuyormuş gibi okunuyor. Soldaki kazıcıya başı görünen bir kürek ya da kazma ver, sapı ortadaki adama değmeden bitsin.
+- **276:** Soldaki arka atlının başı öndeki askerin yüzünün hemen solunda duruyor (x 640-690, y 870-940); uzaktan ikinci bir yüz gibi okunuyor. Arka atlıyı 60-80 piksel sola almak katmanları ayırır. Kalkanı tutan el/kol da görünmüyor; kalkan sakalın önünde asılı gibi. Kalkanın kenarına tutan bir el eklenmesi iyi olur.
+- **258:** Öndeki atın kuyruğu arkadaki atın bacaklarının önünden geçiyor; katman doğru ama iki at birbirine yapışık okunuyor. Arkadaki atlıyı 40 piksel sağa almak yeterli.
+
+### Değerlendirme (sahibe gösterilecek)
+
+Grafiker gözsüz yüzleri düzeltti: Rus takviyesi sahnesindeki atlının, Perevoloka'da gemiyi çeken adamların ve ok saldırısındaki arka atlıların yüzünde artık göz var, yüzler bozulmamış. Perevoloka ve Don'daki kadırgalar sahneleri de temiz. Ancak bütün sahneler yeniden çizilince üç yerde sorun kaldı. Astrahan'a yürüyen orduda bir askerin kılıcının ucu yanındaki askere dayanıyor. 1948 sahnesindeki gözcü kulesi dikenli telin üstünde duran bir oyuncağa döndü. İlk kazma sahnesindeki çadır da Paşa'nın koltuğunun altında taşınıyormuş gibi görünüyor. Bu üçü düzelince video size gösterilebilir.
