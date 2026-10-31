@@ -12,6 +12,7 @@ import { C29_FPS, C29_KARE, Cumhuriyet29 } from "./sahneler/Cumhuriyet29";
 import { KAL_KARE, Kalender } from "./sahneler/Kalender";
 import { KAL_LP_KARE, KalenderLowPoly } from "./sahneler/KalenderLowPoly";
 import { CEM_KARE, CemSultan } from "./sahneler/CemSultan";
+import { HEZARFEN_KARE, Hezarfen } from "./sahneler/Hezarfen";
 import { ORHUN_KARE, OrhunYazitlari } from "./sahneler/OrhunYazitlari";
 import { CELEBI_MEHMED_KARE, CelebiMehmed } from "./sahneler/CelebiMehmed";
 import { TAKIYUDDIN_KARE, Takiyuddin } from "./sahneler/Takiyuddin";
@@ -44,6 +45,7 @@ export const Root: React.FC = () => (
 		<Composition id="Takiyuddin" component={Takiyuddin} durationInFrames={TAKIYUDDIN_KARE} fps={T_FPS} width={1080} height={1920} />
 		<Composition id="CelebiMehmed" component={CelebiMehmed} durationInFrames={CELEBI_MEHMED_KARE} fps={T_FPS} width={1080} height={1920} />
 		<Composition id="OrhunYazitlari" component={OrhunYazitlari} durationInFrames={ORHUN_KARE} fps={T_FPS} width={1080} height={1920} />
+		<Composition id="Hezarfen" component={Hezarfen} durationInFrames={HEZARFEN_KARE} fps={T_FPS} width={1080} height={1920} />
 		<Composition id="KalenderLowPoly" component={KalenderLowPoly} durationInFrames={KAL_LP_KARE} fps={T_FPS} width={1080} height={1920} />
 		<Composition id="Fetih1453" component={Fetih1453} durationInFrames={F_KARE} fps={F_FPS} width={1920} height={1080} />
 	</>
