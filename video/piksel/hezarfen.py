@@ -1070,7 +1070,7 @@ def _kanat_sehpasi(t, x, z, s):
 def _uzak_kule_alti(no, tohum, deniz=DENIZ_SABAH, tepe=("#8a8aa4", "#7c7e98", "#70728c"), sil="#646884"):
     """Kulenin tepesinden bakış (yeni uzak katman): ufukta Üsküdar tepeleri ve silüeti, Boğaz; çok aşağıda, yukarıdan
     bakılmış küçük Galata damları ve deniz suru (perspektifle yakına doğru büyüyen sıralar). Dikişsiz."""
-    img = _uzak_deniz(no, 512, 526, tepe, sil, deniz, tohum, cami=2, minare=10)
+    img = _uzak_deniz(no, 518, 532, tepe, sil, deniz, tohum, cami=2, minare=8)
     d = ImageDraw.Draw(img)
     rnd = random.Random(tohum + 21)
     sur = 556                                                         # Galata'nın deniz suru: kıyıya oturan alçak duvar
@@ -1338,7 +1338,6 @@ def sahne378():
             d.line([x1 - 11, y0, x1, y0], fill=hex2(_ac(tas, 0.25)))
         d.line([cx - g - 2, 612, cx - g - 2 - n * 11, taban_ - 22], fill=hex2(_ac(tas, -0.3)), width=3)   # merdiven korkuluğu
         d.rectangle([cx + g - 1, 612, cx + g + 2, 633], fill=hex2(_ac(tas, -0.1)))                       # sahanlığın sağ babası
-        figur(img, agac, PAY + 360, duz(600), 2.0, tohum=5)
 
     orta(378, (556, 562), ["#8aa860", "#7e9c58", "#729050", "#668448", "#5a7840"], "#b8d088", ekle=ekle)
     on(378, ["#5a7840", "#668448", "#729050"], "#b8d088", boy=120)

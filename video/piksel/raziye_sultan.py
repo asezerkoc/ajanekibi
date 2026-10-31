@@ -1437,9 +1437,9 @@ def sahne232():
 
     def kare(t, z, i):
         f = i / KARE
-        _kisi(t, 136, z, K, ASKER, yon=-1, silah="kalkan", kol=0.05)
-        _kisi(t, 182, z, K, RAZ, yon=-1)
-        _kisi(t, 226, z, K, ASKER, yon=-1, silah="kalkan", kol=0.05 + 0.02 * SIN(f))
+        _kisi(t, 150, z, K, ASKER, yon=-1, silah="kalkan", kol=0.05)
+        _kisi(t, 196, z, K, RAZ, yon=-1)
+        _kisi(t, 240, z, K, ASKER, yon=-1, silah="kalkan", kol=0.05 + 0.02 * SIN(f))
 
     _spr(no, kare)
 
@@ -1488,9 +1488,9 @@ def sahne235():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, atli, 167, duz(z[0] - 8, t.width), A2, 1, faz=(f + 0.4) % 1, govde=ALTUNIYA["govde"], bas="kalpak",
+        figur(t, atli, 170, duz(z[0] - 8, t.width), A2, 1, faz=(f + 0.4) % 1, govde=ALTUNIYA["govde"], bas="kalpak",
               bas_renk=ALTUNIYA["bas_renk"], sakal=ALTUNIYA["sakal"], adim=0.45, at_renk="#4a2e1e")
-        figur(t, atli, 220, z, A, 1, faz=f, govde=RAZ["govde"], bas="kulah", bas_renk=RAZ["bas_renk"], adim=0.45,
+        figur(t, atli, 216, z, A, 1, faz=f, govde=RAZ["govde"], bas="kulah", bas_renk=RAZ["bas_renk"], adim=0.45,
               at_renk="#e8e0d0", yele="#8a8478")
 
     _spr(no, kare)

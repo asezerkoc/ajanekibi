@@ -112,14 +112,14 @@ export const HEZARFEN_SERI: Seri = {
     // Boğaz üstünde süzülüş (havada olması doğru)
     {
       no: 381, yakin: 2.6, kamera: 14, odakY: 600, yaziY: 230,
-      sprite: { w: 420, h: 230, fps: 10, x: [250, 300], taban: 650 },
+      sprite: { w: 420, h: 230, fps: 10, x: [264, 276], taban: 650 },
       yazilar: [
         { satirlar: ["Adam atlıyor. Lodos", "kanatların altına giriyor.", "Boğaz'ın üstünde süzülüyor."], sure: 5.88 }, // kart 15
       ],
     },
     // Üsküdar, Doğancılar: ayaklar yere değer
     {
-      no: 382, yakin: 2.8, kamera: 8,
+      no: 382, yakin: 2.6, kamera: 8,
       sprite: { w: 380, h: 230, fps: 10, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Üsküdar, Doğancılar Meydanı.", "Ayakları yere değiyor.", "Yaşıyor."], sure: 3.65, renk: ALTIN }, // kart 16
@@ -301,7 +301,7 @@ export const HEZARFEN_SERI: Seri = {
     // bugün: Hezarfen Havaalanı, küçük uçak
     {
       no: 403, yakin: 2.6, kamera: 14,
-      sprite: { w: 420, h: 230, fps: 16, x: [220, 310], taban: 632 },
+      sprite: { w: 420, h: 230, fps: 16, x: [240, 300], taban: 632 },
       yazilar: [
         { satirlar: ["Ama şunu biliyoruz. Bugün", "Çatalca'da onun adını taşıyan", "bir havaalanı var."], sure: 5.25 }, // kart 43
       ],

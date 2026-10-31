@@ -1025,8 +1025,8 @@ def sahne253():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, harita_sehpasi, 206, z, sh, f)
-        mumluk(t, 276, z, f, 3)
+        figur(t, harita_sehpasi, 190, z, sh, f)
+        mumluk(t, 258, z, f, 3)
 
     _spr(253, IW, IH, kare, yk)
 
@@ -1094,8 +1094,8 @@ def sahne256():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, deve, 150, duz(z[0] - 6, t.width), round(0.62 * K, 1), 1, 0.0, adim=0.0)
-        figur(t, oturan, 262, z, round(0.95 * K, 1), **{k: v for k, v in HACI[1].items() if k != "kemer"}, yon=-1)
+        figur(t, deve, 162, duz(z[0] - 6, t.width), round(0.62 * K, 1), 1, 0.0, adim=0.0)
+        figur(t, oturan, 258, z, round(0.95 * K, 1), **{k: v for k, v in HACI[1].items() if k != "kemer"}, yon=-1)
         figur(t, kisi, 214, z, K, **HACI[0], yon=1, silah="sopa", kol=0.03 * (1 + SIN(f)))
 
     _spr(256, DW, DH, kare, yk)
