@@ -421,7 +421,7 @@ Bunu biliyor muydunuz? Rasathane yıkıldı ama müneccimbaşılık makamı Osma
 
 ## 9. Barbaros'un donanması Toulon'da kışlıyor (1543-44)
 
-**Video dosyası:** `teslimler/video/pikseltarihim-toulon-1543.mp4` (henüz render edilmedi; grafikte)
+**Video dosyası:** `teslimler/video/pikseltarihim-toulon-1543.mp4` (hazır, 4:21; görsel kalite kontrol UYGUN)
 
 **Kapak yazısı:** Barbaros / Toulon'da / Küçük Konstantinopolis
 
