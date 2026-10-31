@@ -629,7 +629,7 @@ def piramit(img, x, zemin, s=1.0, renk="#c8a870"):
         d.line([x - int(20 * s) + int(k * 1.25), y - k, x + int(k * 0.4), y - k], fill=hex2(_ac(renk, -0.08)))
 
 
-def babusselam(img, x, zemin, s=1.0, tas="#d8d0c0", kursun="#5a6470"):
+def babusselam(img, x, zemin, s=1.0, tas="#cfcac0", kursun="#5a6470"):
     """Yeni figür: Topkapı Sarayı'nın Bâbüsselâm (Orta Kapı): iki sekizgen kule, sivri kurşun külahlar, aralarında
     kemerli kapı ve saçak; iki yanda alçak sur. Düz zemine kurulur."""
     d = ImageDraw.Draw(img)
@@ -647,11 +647,19 @@ def babusselam(img, x, zemin, s=1.0, tas="#d8d0c0", kursun="#5a6470"):
         d.polygon([(kx - int(6 * s), y - int(26 * s)), (kx, y - int(38 * s)), (kx + int(6 * s), y - int(26 * s))], fill=hex2(kursun))
         d.line([kx, y - int(38 * s), kx + int(6 * s), y - int(26 * s)], fill=hex2(_ac(kursun, -0.25)))
     d.rectangle([x - int(7 * s), y - int(18 * s), x + int(7 * s), y - 1], fill=t)                         # kapı gövdesi
-    d.polygon([(x - int(9 * s), y - int(18 * s)), (x + int(9 * s), y - int(18 * s)), (x + int(7 * s), y - int(21 * s)),
-               (x - int(7 * s), y - int(21 * s))], fill=hex2(kursun))                                      # saçak
     d.rectangle([x - int(3.4 * s), y - int(10 * s), x + int(3.4 * s), y - 1], fill=hex2("#2a2420"))
     d.chord([x - int(3.4 * s), y - int(13.4 * s), x + int(3.4 * s), y - int(6.6 * s)], 180, 360, fill=hex2("#2a2420"))
-    d.rectangle([x - int(5 * s), y - int(16 * s), x + int(5 * s), y - int(15 * s)], fill=hex2("#2a6a5a"))    # yazı kuşağı
+    d.rectangle([x - int(4.6 * s), y - int(17 * s), x + int(4.6 * s), y - int(13.8 * s)], fill=hex2("#1e5a48"),
+                outline=hex2("#c8a040"))                                                                    # tuğra panosu
+    for k in range(-3, 4):
+        piksel(img, x + int(k * 1.1 * s), y - int(15.4 * s) - (k % 2), hex2("#e0b848"))
+    # geniş Osmanlı saçağı: koyu ahşap alt yüz, kurşun kaplı üst, iki yana taşar
+    d.rectangle([x - int(13 * s), y - int(19.5 * s), x + int(13 * s), y - int(18 * s)], fill=hex2("#3a2416"))
+    for k in range(-12, 13, 2):
+        piksel(img, x + int(k * s), y - int(18.2 * s), hex2("#6a4a2a"))
+    d.polygon([(x - int(14 * s), y - int(19.5 * s)), (x + int(14 * s), y - int(19.5 * s)), (x + int(9 * s), y - int(23 * s)),
+               (x - int(9 * s), y - int(23 * s))], fill=hex2(kursun))
+    d.line([x - int(14 * s), y - int(19.5 * s), x + int(14 * s), y - int(19.5 * s)], fill=hex2(_ac(kursun, 0.3)))
 
 
 def fener(img, x, zemin, s=1.0, f=0.0):
@@ -1150,7 +1158,7 @@ def sahne338():
         f = i / KARE
         kandil(t, 205, 0, f, zincir=_kz(yk))
         mumluk(t, 290, z, f, 1)
-        figur(t, kisi, 146, z, K, **ESIR, yon=1, kol=0.35 + 0.2 * SIN(f))
+        figur(t, kisi20, 146, z, K, **ESIR, yon=1, kol=0.35 + 0.2 * SIN(f))
         figur(t, oturan, 252, z, so, yon=-1, el="kalem", minder="#8a2a2a", **PIRI_GENC)
         rahle(t, 252 - int(4.2 * so), z[0], round(0.95 * so, 1))
 
@@ -1656,7 +1664,7 @@ def sahne359():
          dag_y=(440, 470), tepe_y=478, ova_y=494)
 
     def ekle(img, z):
-        figur(img, babusselam, PAY + 308, duz(586), 1.3)
+        figur(img, babusselam, PAY + 290, duz(586), 1.8)
 
     orta(359, (556, 560), ["#a8a090", "#9c9484", "#908878", "#847c6c", "#787060"], "#d8d0c0", ekle=ekle)
     on(359, ["#4a5a3a", "#566a42", "#62784a"], "#a8c888", boy=60)
@@ -1665,9 +1673,8 @@ def sahne359():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 184, z, K, **EDHEM, yon=1, adim=f)
-        figur(t, kisi, 142, z, round(0.97 * K, 1), govde="#4a3a2a", bas="sapka", bas_renk="#2a2a2a", sakal=None,
-              kemer=None, yon=1, adim=(f + 0.5) % 1)
+        figur(t, kisi20, 184, z, K, **EDHEM, yon=1, adim=f)
+        figur(t, kisi20, 142, z, round(0.97 * K, 1), **DEISSMANN_D, yon=1, adim=(f + 0.5) % 1)
 
     _spr2(359, DW, DH, kare, yk, esik=0.7)
 
@@ -1690,8 +1697,8 @@ def sahne360():
         figur(t, kagit_destesi, 134, arka, round(0.32 * K, 1), kat=6, tohum=7)
         figur(t, lamba, 274, arka, round(0.5 * K, 1), faz=f)
         figur(t, harita_masasi, 208, z, round(0.56 * K, 1))
-        figur(t, kisi, 158, z, K, **EDHEM, yon=1, kol=0.1 + 0.04 * SIN(f))
-        figur(t, kisi, 258, z, round(0.97 * K, 1), **DEISSMANN, yon=-1, kol=0.32 + 0.05 * SIN(f + 0.3))
+        figur(t, kisi20, 158, z, K, **EDHEM, yon=1, kol=0.1 + 0.04 * SIN(f))
+        figur(t, kisi20, 258, z, round(0.97 * K, 1), **DEISSMANN, yon=-1, kol=0.32 + 0.05 * SIN(f + 0.3))
 
     _spr2(360, IW, IH, kare, yk)
 
@@ -1765,7 +1772,7 @@ def sahne362():
         figur(t, kitap_rafi, 254, arka, round(0.55 * K, 1), dolu=True, tohum=9)
         top = figur(t, masa, 170, z, round(0.5 * K, 1), ortu="#3a4a3a")
         kitaplar(t, 166, top, round(0.4 * K, 1))
-        figur(t, kisi, 236, z, K, **KAHLE, yon=-1, silah="mektup", kol=0.34 + 0.04 * SIN(f))
+        figur(t, kisi20, 236, z, K, **KAHLE, yon=-1, silah="mektup", kol=0.34 + 0.04 * SIN(f))
 
     _spr2(362, IW, IH, kare, yk)
 
@@ -1780,10 +1787,13 @@ def sahne364():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, lamba, 136, z, round(0.6 * K, 1), faz=f)
-        top = figur(t, masa, 178, z, round(0.5 * K, 1), ortu="#3a4a5a")
-        kitaplar(t, 176, top, round(0.3 * K, 1))
-        figur(t, kisi, 240, z, K, **OHLMEYER, yon=-1, silah="mektup", kol=0.36 + 0.04 * SIN(f))
+        figur(t, lamba, 268, z, round(0.6 * K, 1), faz=f)
+        figur(t, sandalyede, 228, z, K, yon=-1, silah="mektup", kol=0.12 + 0.05 * SIN(f, 2), **OHLMEYER)
+        top = figur(t, masa, 176, z, round(0.62 * K, 1), ortu="#3a4a5a")
+        d = ImageDraw.Draw(t)                                              # masada mektup kâğıdı ve kalem
+        d.rectangle([168, top - 2, 184, top - 1], fill=hex2("#f0ece0"))
+        d.line([180, top - 6, 186, top - 2], fill=hex2("#1a1a1a"))
+        kitaplar(t, 160, top, round(0.26 * K, 1))
 
     _spr2(364, IW, IH, kare, yk)
 
@@ -1803,7 +1813,7 @@ def sahne366():
         for x, s_ in ((196, 0.6), (258, 0.72)):
             top = figur(t, masa, x, z, round(0.42 * K, 1), ortu="#4a3a5a")
             kitaplar(t, x, top, round(s_ * K, 1))
-        figur(t, kisi, 150, z, K, **HAPGOOD, yon=1, silah="mektup", kol=0.3 + 0.04 * SIN(f))
+        figur(t, kisi20, 150, z, K, **HAPGOOD, yon=1, silah="mektup", kol=0.3 + 0.04 * SIN(f))
 
     _spr2(366, IW, IH, kare, yk)
 

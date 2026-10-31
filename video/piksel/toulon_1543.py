@@ -176,7 +176,7 @@ def _kadraj(no, kare, esik=0.995):
         _DENETIM[0] = False
 
 
-def _bant_denetimi(no):
+def _bant_denetimi(no, orta_bant=True):
     """Yazı bandı denetimi: kartların kapladığı ekran satırları dünya y'sine çevrilir; sprite'ta ve orta planda bu
     satırlarda görünür sütunlarda opak piksel (satır başına 2'den fazla) varsa betik durur."""
     spr = Image.open(PUB / f"sahne{no}-karakter.png").convert("RGBA").getchannel("A")
@@ -198,7 +198,7 @@ def _bant_denetimi(no):
                             if n > 2:
                                 raise RuntimeError(f"Sahne {no}: sprite (kare {i}) yazı bandına giriyor: dünya y {y} "
                                                    f"(bant {y0}-{y1}, yakin {z:.2f}); figürü küçült ya da alçalt")
-                    for y in range(y0, y1 + 1):
+                    for y in range(y0, y1 + 1) if orta_bant else ():
                         n = sum(ort.crop((PAY + int(a), y, PAY + int(bb), y + 1)).histogram()[1:])
                         if n > 2:
                             raise RuntimeError(f"Sahne {no}: orta plandaki yapı yazı bandına giriyor: y {y} (bant {y0}-{y1})")
@@ -217,11 +217,11 @@ def _gorunur(no, araliklar, pay=3):
                                        f"[{int(a)}, {int(bb)}] dışına taşıyor (sx {sx}, yakin {z:.2f})")
 
 
-def _spr(no, kare, esik=0.995):
+def _spr(no, kare, esik=0.995, orta_bant=True):
     b = P(no)
     _kadraj(no, kare, esik)
     sprite(no, "karakter", b["w"], b["h"], KARE, kare)
-    _bant_denetimi(no)
+    _bant_denetimi(no, orta_bant)
 
 
 def K_(no, oran=0.32):
@@ -785,11 +785,11 @@ def mizrak_omuz(img, x, zemin, s, yon, f=0.0):
     d = ImageDraw.Draw(img)
     ex, ey = _el(x, zemin, s, yon, 0.0)
     ey -= int(1 * s)
-    L = 19 * s
-    ux, uy = ex + L * 0.86 * yon, ey - L * 0.5 + SIN(f) * 0.3 * s
-    bx, by = ex - 4 * s * 0.86 * yon, ey + 4 * s * 0.5
+    L = 12 * s
+    ux, uy = ex + L * 0.77 * yon, ey - L * 0.64 + SIN(f) * 0.3 * s
+    bx, by = ex - 3 * s * 0.77 * yon, ey + 3 * s * 0.64
     d.line([bx, by, ux, uy], fill=hex2("#5a3a22"), width=_u(0.7, s))
-    d.polygon([(ux, uy), (ux + 2.6 * s * 0.86 * yon, uy - 2.6 * s * 0.5), (ux + 0.4 * s * yon, uy + 0.9 * s)], fill=hex2("#c8ccd0"))
+    d.polygon([(ux, uy), (ux + 2.4 * s * 0.77 * yon, uy - 2.4 * s * 0.64), (ux + 0.4 * s * yon, uy + 0.9 * s)], fill=hex2("#c8ccd0"))
 
 
 # ==========================================================================
@@ -1194,7 +1194,7 @@ def sahne456():
 
     def kare(t, z, i):
         f = i / KARE
-        for j, (x, kk) in enumerate(((132, FR_ASKER), (186, FR_ASKER2), (240, FR_ASKER))):
+        for j, (x, kk) in enumerate(((140, FR_ASKER), (178, FR_ASKER2), (216, FR_ASKER))):
             ad = (f + j * 0.37) % 1
             figur(t, kisi, x, z, K, **kk, yon=1, adim=ad)
             mizrak_omuz(t, x, z, K, 1, ad)
@@ -1212,7 +1212,7 @@ def sahne457():
     b = P(457)
     sinir = _ust_sinir(457)
     ates = [(x - PAY - (b["xs"][0] - b["w"] // 2), y - (b["taban"] - b["h"])) for x, y in damlar
-            if 150 < x - PAY < 400][::2]
+            if 124 <= x - PAY - (b["xs"][0] - b["w"] // 2) <= 262][::2]
     kale_x = _yerel(457, 280)
     kale_y = 552 - int(0.75 * 22) - (b["taban"] - b["h"])
 
@@ -1247,12 +1247,12 @@ def sahne458():
     def kare(t, z, i):
         f = i / KARE
         arka = duz(z[0] - 8, t.width)
-        figur(t, atli, 250, arka, round(0.9 * sa, 1), -1, faz=(f + 0.5) % 1, at_renk="#3a2a22", yele="#1a120c", adim=0.55,
+        figur(t, atli, 238, arka, round(0.9 * sa, 1), -1, faz=(f + 0.5) % 1, at_renk="#3a2a22", yele="#1a120c", adim=0.55,
               zirh="#a8b0b8", cul="#2a3a6a", **dict(SAVOY, govde="#2a3a6a"))
-        figur(t, atli, 175, z, sa, -1, faz=f, at_renk="#8a5a3a", yele="#2a1a12", adim=0.55, zirh="#b8c0c8", cul="#8a1e22", **SAVOY)
+        figur(t, atli, 163, z, sa, -1, faz=f, at_renk="#8a5a3a", yele="#2a1a12", adim=0.55, zirh="#b8c0c8", cul="#8a1e22", **SAVOY)
         for j in range(6):                                           # toynaklardan toz
             ph = (f + j / 6) % 1
-            px_ = 175 + 22 + ph * 30 + j * 3
+            px_ = 163 + 22 + ph * 30 + j * 3
             piksel(t, px_, z[0] - 1 - int(ph * 8), hex2("#c8b890", int(200 * (1 - ph))))
             piksel(t, px_ + 1, z[0] - 2 - int(ph * 6), hex2("#d8c8a0", int(160 * (1 - ph))))
 
@@ -1352,10 +1352,10 @@ def sahne462():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 120, z, K, **TOULONLU, yon=1)
-        figur(t, basortulu, 156, z, round(0.95 * K, 1), "#7a3a3a", "#e8e0d0", 1)
-        figur(t, cocuk, 186, z, round(0.62 * K, 1), "#5a6a3a", "#5a3a1e", 1)
-        figur(t, kisi, 262, z, K, **MUNADI, yon=-1, silah="mektup", kol=0.42 + 0.04 * SIN(f))
+        figur(t, kisi, 136, z, K, **TOULONLU, yon=1)
+        figur(t, basortulu, 168, z, round(0.95 * K, 1), "#7a3a3a", "#e8e0d0", 1)
+        figur(t, cocuk, 196, z, round(0.62 * K, 1), "#5a6a3a", "#5a3a1e", 1)
+        figur(t, kisi, 254, z, K, **MUNADI, yon=-1, silah="mektup", kol=0.42 + 0.04 * SIN(f))
 
     _spr(462, kare)
 
@@ -1366,10 +1366,10 @@ def sahne474():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 122, z, K, **TOULONLU, yon=1, kol=0.55 + 0.25 * SIN(f))
-        figur(t, basortulu, 160, z, round(0.95 * K, 1), "#3a4a6a", "#ece6dc", 1)
-        figur(t, kisi, 196, z, K, **TOULONLU2, yon=1, kol=0.35 + 0.2 * SIN(f + 0.4))
-        figur(t, kisi, 266, z, K, **MEMUR, yon=-1, silah="mektup", kol=0.42 + 0.04 * SIN(f))
+        figur(t, kisi, 138, z, K, **TOULONLU, yon=1, kol=0.55 + 0.25 * SIN(f))
+        figur(t, basortulu, 170, z, round(0.95 * K, 1), "#3a4a6a", "#ece6dc", 1)
+        figur(t, kisi, 202, z, K, **TOULONLU2, yon=1, kol=0.35 + 0.2 * SIN(f + 0.4))
+        figur(t, kisi, 254, z, K, **MEMUR, yon=-1, silah="mektup", kol=0.42 + 0.04 * SIN(f))
 
     _spr(474, kare)
 
@@ -1386,10 +1386,10 @@ def sahne463():
         f = i / KARE
         if not _DENETIM[0]:
             kandil(t, 200, 0, f, zincir=_kz(P(463)["yk"]))
-        figur(t, kisi, 122, z, K, **KONSUL2, yon=1, kol=0.05)
-        figur(t, kisi, 166, z, K, **KONSUL, yon=1, kol=0.35 + 0.15 * SIN(f))
-        figur(t, kilise_kursusu, 232, z, round(0.62 * K, 1), -1, f, True)
-        figur(t, kisi, 268, z, K, **KATIP, yon=-1, kol=0.22 + 0.03 * SIN(f, 3))
+        figur(t, kisi, 138, z, K, **KONSUL2, yon=1, kol=0.05)
+        figur(t, kisi, 174, z, K, **KONSUL, yon=1, kol=0.35 + 0.15 * SIN(f))
+        figur(t, kilise_kursusu, 226, z, round(0.62 * K, 1), -1, f, True)
+        figur(t, kisi, 258, z, K, **KATIP, yon=-1, kol=0.22 + 0.03 * SIN(f, 3))
 
     _spr(463, kare)
 
@@ -1410,8 +1410,8 @@ def sahne464():
 
     def kare(t, z, i):
         f = i / KARE
-        kisiler = ((140, "k", "#6a2a3a", "#e8e0d0"), (172, "c", "#3a5a6a", "#4a2e1a"), (214, "k", "#4a5a3a", "#d8d0c0"),
-                   (244, "c", "#7a4a3a", "#6a3a1a"), (276, "k", "#5a3a5a", "#ece4d4"))
+        kisiler = ((134, "k", "#6a2a3a", "#e8e0d0"), (163, "c", "#3a5a6a", "#4a2e1a"), (190, "k", "#4a5a3a", "#d8d0c0"),
+                   (219, "c", "#7a4a3a", "#6a3a1a"), (250, "k", "#5a3a5a", "#ece4d4"))
         for j, (x, tur, g, r) in enumerate(kisiler):
             ad = (f + j * 0.37) % 1
             if tur == "k":
@@ -1467,10 +1467,10 @@ def sahne467():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 130, z, K, **TANIK, yon=1, kol=0.12 + 0.03 * SIN(f))
-        figur(t, fici, 212, z, round(0.5 * K, 1))
-        figur(t, kisi, 236, z, K, **LEVEND_A, yon=-1, kol=0.03 * (1 + SIN(f)))
-        figur(t, kisi, 272, z, round(0.97 * K, 1), **LEVEND_C, yon=-1, kol=0.25 + 0.05 * SIN(f + 0.3))
+        figur(t, kisi, 140, z, K, **TANIK, yon=1, kol=0.12 + 0.03 * SIN(f))
+        figur(t, fici, 194, z, round(0.5 * K, 1))
+        figur(t, kisi, 222, z, K, **LEVEND_A, yon=-1, kol=0.03 * (1 + SIN(f)))
+        figur(t, kisi, 256, z, round(0.97 * K, 1), **LEVEND_C, yon=-1, kol=0.25 + 0.05 * SIN(f + 0.3))
 
     _spr(467, kare)
 
@@ -1571,14 +1571,13 @@ def sahne472():
         f = i / KARE
         if not _DENETIM[0]:
             kandil(t, 140, 0, f, zincir=_kz(P(472)["yk"]))
-        figur(t, kisi, 116, z, K, **TOULONLU, yon=1)
-        figur(t, basortulu, 150, z, round(0.95 * K, 1), "#3a5a7a", "#f0ece4", 1)
-        figur(t, vaftiz_kurnasi, 196, z, round(0.55 * K, 1))
+        figur(t, kisi, 136, z, K, **TOULONLU, yon=1)
+        figur(t, basortulu, 166, z, round(0.95 * K, 1), "#3a5a7a", "#f0ece4", 1)
+        figur(t, vaftiz_kurnasi, 204, z, round(0.55 * K, 1))
         kol = 0.4
-        figur(t, rahip, 240, z, K, "#1e1e24", "#ece8e0", -1, kol, stol="#6a2a6a")
-        ex, ey = _el(240, z, K, -1, kol)
+        figur(t, rahip, 248, z, K, "#1e1e24", "#ece8e0", -1, kol, stol="#6a2a6a")
+        ex, ey = _el(248, z, K, -1, kol)
         figur(t, kundak, ex - int(1 * K), ey - 1 + int(SIN(f) * 0.6), round(0.85 * K, 1), -1)
-        mumluk(t, 280, z, (f + 0.3) % 1, 3)
 
     _spr(472, kare)
 
@@ -1592,10 +1591,10 @@ def sahne473():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 112, z, K, **EKMEKCI, yon=1, kol=0.3 + 0.06 * SIN(f))
-        figur(t, tezgah, 162, z, round(0.45 * K, 1), "ekmek", "#3a6a8a")
-        figur(t, kisi, 220, z, K, **LEVEND_B, yon=-1, kol=0.32 + 0.04 * SIN(f + 0.3))
-        figur(t, kisi, 266, z, K, **TOULONLU2, yon=-1, kol=0.02 * (1 + SIN(f)))
+        figur(t, kisi, 150, duz(z[0] - 10, t.width), round(0.95 * K, 1), **EKMEKCI, yon=1, kol=0.3 + 0.06 * SIN(f))
+        figur(t, tezgah, 152, z, round(0.45 * K, 1), "ekmek", "#3a6a8a")
+        figur(t, kisi, 214, z, K, **LEVEND_B, yon=-1, kol=0.32 + 0.04 * SIN(f + 0.3))
+        figur(t, kisi, 256, z, K, **TOULONLU2, yon=-1, kol=0.02 * (1 + SIN(f)))
 
     _spr(473, kare)
 
@@ -1612,12 +1611,11 @@ def sahne475():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 110, z, K, **MEMUR, yon=1, kol=0.3 + 0.05 * SIN(f))
-        figur(t, altin_sandigi, 158, z, round(0.55 * K, 1), f)
-        figur(t, ipek_toplari, 190, z, round(0.5 * K, 1))
-        figur(t, cuval, 214, z, round(0.55 * K, 1))
-        figur(t, fici, 234, z, round(0.5 * K, 1))
-        figur(t, kisi, 268, z, K, **BARBAROS, yon=-1, kol=0.03 * (1 + SIN(f + 0.5)))
+        figur(t, kisi, 138, z, K, **MEMUR, yon=1, kol=0.3 + 0.05 * SIN(f))
+        figur(t, altin_sandigi, 176, z, round(0.55 * K, 1), f)
+        figur(t, ipek_toplari, 207, z, round(0.45 * K, 1))
+        figur(t, cuval, 230, z, round(0.5 * K, 1))
+        figur(t, kisi, 258, z, K, **BARBAROS, yon=-1, kol=0.03 * (1 + SIN(f + 0.5)))
 
     _spr(475, kare)
 
@@ -1685,8 +1683,14 @@ def harita(t, f):
     d = ImageDraw.Draw(t)
     U = lambda u, v: (x0 + u * w, y0 + v * h)  # noqa: E731
     pu = U(0.3, 0.72)
-    for a in range(0, 360, 22):                                         # kerte hatları
-        d.line([pu, (pu[0] + math.cos(math.radians(a)) * 220, pu[1] + math.sin(math.radians(a)) * 220)], fill=hex2("#c8a878"))
+    kl = yeni(t.width, t.height)
+    dk = ImageDraw.Draw(kl)
+    for a in range(0, 360, 22):                                         # kerte hatları (kâğıda kırpılır)
+        dk.line([pu, (pu[0] + math.cos(math.radians(a)) * 220, pu[1] + math.sin(math.radians(a)) * 220)], fill=hex2("#c8a878"))
+    maske = Image.new("L", t.size, 0)
+    ImageDraw.Draw(maske).rectangle([x0 + 1, y0 + 1, x0 + w - 3, min(t.height - 1, y0 + h - 3)], fill=255)
+    kl.putalpha(Image.composite(kl.getchannel("A"), Image.new("L", t.size, 0), maske))
+    t.alpha_composite(kl)
     _kagit_kenar = [x0, y0, x0 + w - 2, y0 + h - 2]
     kara = "#b8a070"
     for poly in ([(0, 0), (0.4, 0), (0.38, 0.1), (0.24, 0.12), (0.1, 0.16), (0, 0.15)],
@@ -1755,7 +1759,7 @@ def sahne478():
     def kare(t, z, i):
         harita(t, i / KARE)
 
-    _spr(478, kare)
+    _spr(478, kare, orta_bant=False)
 
 
 def sahne481():
@@ -1773,7 +1777,7 @@ def sahne481():
         dd.line([246, 290 - int(SIN(f) * 2), 266, 270 - int(SIN(f) * 2)], fill=hex2("#f0f0f0"), width=2)  # tüy kalem
         dd.line([246, 290 - int(SIN(f) * 2), 248, 288 - int(SIN(f) * 2)], fill=hex2("#2a1a10"))
 
-    _spr(481, kare)
+    _spr(481, kare, orta_bant=False)
 
 
 def minyatur(t, f):
@@ -1838,7 +1842,7 @@ def sahne485():
     def kare(t, z, i):
         minyatur(t, i / KARE)
 
-    _spr(485, kare)
+    _spr(485, kare, orta_bant=False)
 
 
 # ==========================================================================
@@ -1873,7 +1877,7 @@ def _lipari(no, gok, bulut_renk, kara, su, kaya, gece=False, yildiz=0):
 
 
 def _zeytin(t, z, f, gece=False):
-    figur(t, agac, 108, z, 1.0, ("#3a4a3a", "#4a5a44", "#5a6a50") if gece else ("#5a6a4a", "#6a7a5a", "#8a9a6e"),
+    figur(t, agac, 140, z, 0.8, ("#3a4a3a", "#4a5a44", "#5a6a50") if gece else ("#5a6a4a", "#6a7a5a", "#8a9a6e"),
           "#4a3a2a", 479, 0.4 * SIN(f))
 
 
@@ -1956,7 +1960,7 @@ def sahne482():
         d = ImageDraw.Draw(t)
         y = z[0]
         s = 0.62 * K                                                    # kömürleşmiş raf
-        x0, x1 = 110, 110 + int(18 * s)
+        x0, x1 = 128, 128 + int(18 * s)
         temas_golgesi(t, (x0 + x1) // 2, y, x1 - x0 + 2)
         d.rectangle([x0, y - int(30 * s), x1, y - 1], fill=hex2("#1a1210"))
         for k in (x0, x1 - int(1.2 * s)):
@@ -1967,7 +1971,7 @@ def sahne482():
                 if (k + sy) % 3:
                     d.rectangle([k, sy - int(2.6 * s), k + 2, sy - 1], fill=hex2("#2a1e1a"))
         d.line([x0 + 3, y - int(20 * s), x0 + 9, y - int(26 * s)], fill=hex2("#0a0606"), width=2)
-        for j, (px_, w_) in enumerate(((170, 14), (205, 10), (236, 16), (270, 12))):   # yerde yanan kâğıtlar
+        for j, (px_, w_) in enumerate(((202, 12), (226, 10), (248, 14), (268, 10))):   # yerde yanan kâğıtlar
             d.polygon([(px_ - w_ // 2, y - 1), (px_ + w_ // 2, y - 1), (px_ + w_ // 2 - 2, y - 4), (px_ - w_ // 2 + 3, y - 4)],
                       fill=hex2("#c8b890" if j % 2 else "#a89870"))
             d.line([px_ - w_ // 2, y - 2, px_ - w_ // 2 + 4, y - 3], fill=hex2("#2a1a10"))
@@ -2022,8 +2026,8 @@ def sahne486():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 160, z, K, **TOULONLU, yon=1, kol=0.02 * (1 + SIN(f)))
-        sokak_feneri(t, 112, z, round(0.55 * K, 1), f)
+        figur(t, kisi, 200, z, K, **TOULONLU, yon=1, kol=0.02 * (1 + SIN(f)))
+        sokak_feneri(t, 140, z, round(0.55 * K, 1), f)
 
     _spr(486, kare)
 

@@ -1002,3 +1002,276 @@ def fener_el(t, ex, ey, f, s=1.0):
             px_, py_ = ex + math.cos(math.radians(a)) * r * 1.2, fy + int(1.3 * s) + math.sin(math.radians(a)) * r
             if rnd.random() < 0.35 * (1 - r / (9 * s)):
                 piksel(t, px_, py_, hex2("#ffd479", 50))
+
+
+# ==========================================================================
+# KATMAN YARDIMCILARI
+# ==========================================================================
+def _bos(no, kat):
+    kaydet(yeni(GW if kat in ("orta", "on") else W, H), f"sahne{no}-{kat}.png")
+
+
+FL = 596          # iç mekânda duvar ile döşemenin birleştiği satır (orta plan); sprite tabanı 634 bunun 38 px önünde
+
+
+def oda(no, duvar="#4a5a4a", desen="cizgi", lambri="#5a3a22", pencere=("#8a9aa8", "#c8d4dc"), pencere_x=(), zemin="tahta",
+        zemin_renk="#6a4a2e", hali=None, tablo=(), perde=None, kemerli=False, isik="#f8d890", ocak=None, raflar=()):
+    """İç mekân (Batı tarzı oda, 19. yy - bugün): duvar ve döşeme tek parça hâlinde ORTA planda (810 geniş) durur; böylece
+    duvar paralaksla kaymaz, döşemeyle birlikte hareket eder. Gökyüzü ve uzak katmanları duvarın düz rengi.
+    desen: 'cizgi' (çizgili duvar kâğıdı), 'damask' (çiçekli), 'tugla', 'sade', 'lambri' (ahşap kaplama).
+    pencere_x: orta plan x'lerinde dikdörtgen (kemerli=True: kemerli) pencereler; tablo: (x, renk) çerçeveli resimler;
+    perde: pencere perdeleri rengi; ocak: şömine x'i; zemin: 'tahta', 'parke', 'tas', 'mermer'; hali: halı rengi."""
+    g = yeni()
+    gradyan(g, [_ac(duvar, -0.25), _ac(duvar, -0.15)])
+    kaydet(g, f"sahne{no}-gokyuzu.png")
+    kaydet(g, f"sahne{no}-uzak.png")
+    o = yeni(GW, H)
+    d = ImageDraw.Draw(o)
+    gradyan(o, [_ac(duvar, -0.22), _ac(duvar, -0.05), duvar], 0, FL)
+    rnd = random.Random(no)
+    if desen == "cizgi":
+        for x in range(0, GW, 12):
+            d.line([x, 0, x, FL], fill=hex2(_ac(duvar, 0.07)), width=3)
+    elif desen == "damask":
+        for y in range(10, FL, 22):
+            for x in range((y // 22) % 2 * 11, GW, 22):
+                d.polygon([(x, y - 4), (x + 3, y), (x, y + 4), (x - 3, y)], fill=hex2(_ac(duvar, 0.12)))
+                piksel(o, x, y, hex2(_ac(duvar, 0.3)))
+    elif desen == "tugla":
+        for y in range(0, FL, 6):
+            d.line([0, y, GW, y], fill=hex2(_ac(duvar, -0.18)))
+            for x in range((y // 6) % 2 * 7, GW, 14):
+                d.line([x, y, x, y + 6], fill=hex2(_ac(duvar, -0.18)))
+    elif desen == "lambri":
+        for x in range(0, GW, 18):
+            d.line([x, 0, x, FL], fill=hex2(_ac(duvar, -0.15)))
+            d.line([x + 1, 0, x + 1, FL], fill=hex2(_ac(duvar, 0.08)))
+    d.rectangle([0, 0, GW, 6], fill=hex2(_ac(duvar, -0.3)))
+    if lambri:                                                          # alt ahşap kaplama ve süpürgelik
+        d.rectangle([0, FL - 34, GW, FL], fill=hex2(lambri))
+        d.line([0, FL - 34, GW, FL - 34], fill=hex2(_ac(lambri, 0.35)), width=2)
+        for x in range(8, GW, 36):
+            d.rectangle([x, FL - 28, x + 26, FL - 6], outline=hex2(_ac(lambri, -0.25)))
+    for px_ in pencere_x:
+        x0, x1, y0, y1 = px_ - 22, px_ + 22, 500, FL - 40
+        if perde:
+            d.rectangle([x0 - 10, y0 - 14, x1 + 10, y1 + 4], fill=hex2(perde))
+        d.rectangle([x0 - 3, y0 - 3, x1 + 3, y1 + 4], fill=hex2(_ac(duvar, 0.35)))
+        if kemerli:
+            d.chord([x0 - 3, y0 - 25, x1 + 3, y0 + 19], 180, 360, fill=hex2(_ac(duvar, 0.35)))
+            d.chord([x0, y0 - 22, x1, y0 + 22], 180, 360, fill=hex2(pencere[0]))
+        gradyan_kutu(o, x0, y0, x1, y1, pencere)
+        d.line([px_, y0 - (22 if kemerli else 0), px_, y1], fill=hex2(_ac(duvar, 0.2)), width=2)
+        for yy in range(y0 + 14, y1, 14):
+            d.line([x0, yy, x1, yy], fill=hex2(_ac(duvar, 0.2)))
+        d.rectangle([x0 - 5, y1 + 2, x1 + 5, y1 + 5], fill=hex2(_ac(duvar, 0.45)))
+        if perde:
+            for k in (-1, 1):
+                ex = px_ + k * 26
+                d.polygon([(ex, y0 - 14), (ex + k * 10, y0 - 14), (ex + k * 12, y1 + 4), (ex + k * 4, y1 + 4)], fill=hex2(perde))
+                d.line([ex + k * 7, y0 - 10, ex + k * 8, y1], fill=hex2(_ac(perde, -0.2)))
+        for k in range(0, 30, 2):                                       # pencereden düşen ışık
+            for yy in range(y1 + 6, FL + 70, 3):
+                if _esik(px_ - 15 + k, yy) < 0.16 * (1 - (yy - y1) / 160):
+                    piksel(o, px_ - 15 + k + (yy - y1) // 10, yy, hex2(pencere[1], 50))
+    for tx, tr in tablo:                                                # çerçeveli resim (yazısız)
+        d.rectangle([tx - 15, 508, tx + 15, 540], fill=hex2("#c8a040"))
+        d.rectangle([tx - 12, 511, tx + 12, 537], fill=hex2(tr))
+        d.rectangle([tx - 12, 528, tx + 12, 537], fill=hex2(_ac(tr, -0.2)))
+        d.ellipse([tx - 4, 515, tx + 4, 527], fill=hex2(_ac(tr, 0.3)))
+    if ocak is not None:                                                # şömine: döşemeye oturur
+        d.rectangle([ocak - 26, FL - 40, ocak + 26, FL], fill=hex2("#d8d0c0"))
+        d.rectangle([ocak - 30, FL - 44, ocak + 30, FL - 40], fill=hex2("#e8e0d0"))
+        d.rectangle([ocak - 15, FL - 28, ocak + 15, FL], fill=hex2("#1e1410"))
+        for k in range(-10, 11, 3):
+            piksel(o, ocak + k, FL - 3 - abs(k) // 4, hex2("#e8701c"))
+    # döşeme
+    zr = zemin_renk
+    for y in range(FL, H):
+        d.line([0, y, GW, y], fill=hex2(_ac(zr, -0.18 * min(1, (y - FL) / 200))))
+    if zemin in ("tahta", "parke"):
+        y, ara = FL, 3.0
+        while y < H:
+            d.line([0, y, GW, y], fill=hex2(_ac(zr, -0.3)))
+            if zemin == "parke":
+                for x in range(int((y // 3) % 2 * 10), GW, 20):
+                    d.line([x, y, x, y + int(ara)], fill=hex2(_ac(zr, -0.25)))
+            ara = ara * 1.15 + 0.3
+            y += int(ara)
+    elif zemin in ("tas", "mermer"):
+        y, ara, k = FL, 4.0, 0
+        while y < H:
+            d.line([0, y, GW, y], fill=hex2(_ac(zr, -0.2)))
+            for x in range(k % 2 * int(ara * 2), GW, int(ara * 4)):
+                d.line([x, y, x, y + int(ara)], fill=hex2(_ac(zr, -0.2)))
+            ara = ara * 1.2 + 0.4
+            y += int(ara)
+            k += 1
+    if hali:
+        d.rectangle([PAY + 150, FL + 14, PAY + 390, H], fill=hex2(hali))
+        d.rectangle([PAY + 156, FL + 18, PAY + 384, H], outline=hex2("#e0b040"))
+        for y in range(FL + 30, H, 26):
+            for x in range(PAY + 170, PAY + 380, 26):
+                d.polygon([(x, y - 5), (x + 5, y), (x, y + 5), (x - 5, y)], fill=hex2(_ac(hali, -0.25)))
+    for r in range(40, 200, 16):                                        # sıcak ışık halkası
+        for a in range(0, 360, 4):
+            px_, py_ = PAY + 270 + math.cos(math.radians(a)) * r * 1.6, FL + 40 + math.sin(math.radians(a)) * r * 0.35
+            if py_ > FL and _esik(int(px_), int(py_)) < 0.22 * (1 - r / 200):
+                piksel(o, px_, py_, hex2(isik, 45))
+    kaydet(o, f"sahne{no}-orta.png")
+    _bos(no, "on")
+
+
+def gradyan_kutu(img, x0, y0, x1, y1, renkler):
+    k = yeni(x1 - x0 + 1, y1 - y0 + 1)
+    gradyan(k, list(renkler))
+    img.paste(k, (x0, y0), k)
+
+
+def gok(no, renkler, gunes_=None, bulutlar=(), bulut_renk=("#fff8ec", "#e8e0d8", "#c8c0c0"), yildiz=0, sis=None):
+    img = gokyuzu(no, renkler, gunes_, bulutlar, bulut_renk, 0)
+    if yildiz:
+        rnd = random.Random(no)
+        for _ in range(yildiz):
+            x, y = rnd.randrange(W), rnd.randrange(380, 540)
+            piksel(img, x, y, hex2("#fff8e0", rnd.choice((110, 170, 240))))
+    kaydet(img, f"sahne{no}-gokyuzu.png")
+    return img
+
+
+def uzak_tepe(no, tepe=("#5a7a5a", "#4e6e50"), ufuk=548, ekle=None, su=None):
+    """Uzak plan: yumuşak yeşil İrlanda tepeleri (dikişsiz) ve ufuk çizgisi; ekle(img, zemin) ufka oturan yapılar;
+    su: (y, renkler) ufuktan aşağısı su (karşı kıyı)."""
+    img = yeni()
+    hat = sirt(ufuk - 14, 10, no, 3, 0.6, w=W, dongulu=True)
+    arazi(img, hat, list(tepe))
+    d = ImageDraw.Draw(img)
+    d.rectangle([0, ufuk, W, H], fill=hex2(tepe[-1]))
+    if ekle:
+        ekle(img, duz(ufuk, W))
+    if su:
+        sy, renkler = su
+        for y in range(sy, H):
+            d.line([0, y, W, y], fill=hex2(renkler[min(len(renkler) - 1, (y - sy) // 10)]))
+    kaydet(img, f"sahne{no}-uzak.png")
+    return img
+
+
+def zemin_orta(no, ust, renkler, tur="cayir", ekle=None, kenar=None, su=None):
+    """Orta plan (810 geniş): düz zemin. tur: 'cayir' (çimen dokulu), 'tarla' (sürülmüş sırtlar), 'kaldirim' (arnavut
+    kaldırımı), 'toprak' (yol). su: (y0, y1, renkler) ust'ün üstünde, y0-y1 arasında nehir/deniz şeridi (orta planın
+    gerisinde karşı kıyı uzak plandadır). ekle(img, z): zemine oturan yapılar ve figürler (z = düz zemin)."""
+    img = yeni(GW, H)
+    d = ImageDraw.Draw(img)
+    rnd = random.Random(no)
+    if su:
+        y0, y1, sr = su
+        for y in range(y0, y1):
+            d.line([0, y, GW, y], fill=hex2(sr[min(len(sr) - 1, (y - y0) // 10)]))
+        for _ in range(240):
+            x, y = rnd.randrange(GW), rnd.randrange(y0 + 1, y1)
+            for k in range(rnd.randint(2, 6)):
+                piksel(img, x + k, y, hex2(_ac(sr[0], 0.3), 150))
+    rk = lambda y: renkler[min(len(renkler) - 1, int((y - ust) / 24))]  # noqa: E731
+    for y in range(ust, H):
+        d.line([0, y, GW, y], fill=hex2(rk(y)))
+    if tur == "kaldirim":
+        y, ara, k = ust + 2, 2.5, 0
+        while y < H:
+            d.line([0, y, GW, y], fill=hex2(_ac(rk(y), -0.18)))
+            adim = max(3, int(ara * 2.2))
+            for x in range((k % 2) * adim // 2, GW, adim):
+                d.line([x, y - int(ara) + 1, x, y - 1], fill=hex2(_ac(rk(y), -0.14)))
+            ara = ara * 1.14 + 0.3
+            y += int(ara)
+            k += 1
+    elif tur == "tarla":
+        y, ara = ust + 3, 3.0
+        while y < H:
+            d.line([0, y, GW, y], fill=hex2(_ac(rk(y), -0.22)), width=max(1, int(ara / 3)))
+            d.line([0, y - int(ara / 2), GW, y - int(ara / 2)], fill=hex2(_ac(rk(y), 0.08)))
+            ara = ara * 1.16 + 0.4
+            y += int(ara)
+    elif tur in ("cayir", "toprak"):
+        for _ in range(3000):
+            x, y = rnd.randrange(GW), rnd.randrange(ust + 1, H)
+            dy = (y - ust) / 300
+            if tur == "cayir":
+                d.line([x, y, x + rnd.choice((-1, 0, 1)), y - 1 - int(dy * 4)], fill=hex2(_ac(rk(y), rnd.choice((-0.12, 0.1)))))
+            else:
+                piksel(img, x, y, hex2(_ac(rk(y), rnd.choice((-0.1, 0.08)))))
+    d.line([0, ust, GW, ust], fill=hex2(kenar or _ac(renkler[0], 0.2)))
+    if ekle:
+        ekle(img, duz(ust + 30))
+    kaydet(img, f"sahne{no}-orta.png")
+    return img
+
+
+def on_cimen(no, renkler, isik, boy=90):
+    from sahneler import on
+    on(no, renkler, isik, boy)
+
+
+RIHTIM = 600      # liman sahnelerinde orta plandaki taş rıhtımın üst kenarı
+
+
+def liman_orta(no, su_renk, tas="#6a6460", kenar="#a8a4a0", ust_su=548, ekle_arka=None, ekle_on=None):
+    """Orta plan liman: ust_su'dan rıhtıma kadar nehir/deniz, RIHTIM'den aşağısı düz taş rıhtım (derzli), rıhtım
+    kenarında babalar. ekle_arka(img): suyun üstündeki kıyı şeridine (karşı kıyı) oturan nesneler; ekle_on(img, z):
+    rıhtıma oturan nesneler."""
+    img = yeni(GW, H)
+    d = ImageDraw.Draw(img)
+    for y in range(ust_su, RIHTIM):
+        d.line([0, y, GW, y], fill=hex2(su_renk[min(len(su_renk) - 1, (y - ust_su) // 12)]))
+    rnd = random.Random(no)
+    for _ in range(320):
+        x, y = rnd.randrange(GW), rnd.randrange(ust_su + 2, RIHTIM - 2)
+        for k in range(rnd.randint(2, 3 + (y - ust_su) // 10)):
+            piksel(img, x + k, y, hex2(_ac(su_renk[0], 0.3), 140))
+    if ekle_arka:
+        ekle_arka(img)
+    d.rectangle([0, RIHTIM, GW, H], fill=hex2(tas))
+    d.rectangle([0, RIHTIM, GW, RIHTIM + 2], fill=hex2(kenar))
+    d.rectangle([0, RIHTIM + 3, GW, RIHTIM + 9], fill=hex2(_ac(tas, -0.25)))      # rıhtım duvarının yüzü
+    y, ara, k = RIHTIM + 10, 3.0, 0
+    while y < H:
+        d.line([0, y, GW, y], fill=hex2(_ac(tas, -0.12)))
+        adim = int(ara * 5)
+        for x in range((k % 2) * adim // 2, GW, adim):
+            d.line([x, y, x, y + int(ara)], fill=hex2(_ac(tas, -0.12)))
+        ara = ara * 1.2 + 0.4
+        y += int(ara)
+        k += 1
+    for bx in range(PAY + 40, PAY + 520, 120):
+        babalar(d, bx, RIHTIM + 2, 2.0)
+    if ekle_on:
+        ekle_on(img, duz(RIHTIM + 30))
+    kaydet(img, f"sahne{no}-orta.png")
+    return img
+
+
+def kasaba_uzak(no, gok_alt, tepe, ev_renk, ufuk=546, kilise=True, su=None, isik=False):
+    """Uzak plan: yeşil tepeler ve ufuk çizgisine (karşı kıyıya) oturan kasaba silüeti: damlar, bacalar, sivri kilise
+    kulesi. Yatayda dikişsiz."""
+    def ekle(img, z):
+        d = ImageDraw.Draw(img)
+        rnd = random.Random(no + 5)
+        x = 0
+        while x < W:
+            w = rnd.randint(7, 13)
+            h = rnd.randint(6, 12)
+            rk = rnd.choice(ev_renk)
+            d.rectangle([x, ufuk - h, min(W - 1, x + w), ufuk], fill=hex2(rk))
+            d.polygon([(x, ufuk - h), (min(W - 1, x + w), ufuk - h), (min(W - 1, x + w - 2), ufuk - h - 3), (x + 2, ufuk - h - 3)],
+                      fill=hex2(_ac(rk, -0.35)))
+            if rnd.random() < 0.5:
+                d.rectangle([x + 3, ufuk - h - 5, x + 4, ufuk - h - 3], fill=hex2(_ac(rk, -0.3)))
+            if isik and rnd.random() < 0.6:
+                piksel(img, x + 3, ufuk - h // 2, hex2("#f8c860"))
+            x += w + rnd.randint(1, 3)
+        if kilise:
+            for kx in (120, 390):
+                kr = _ac(ev_renk[0], -0.2)
+                d.rectangle([kx - 4, ufuk - 26, kx + 4, ufuk], fill=hex2(kr))
+                d.polygon([(kx - 4, ufuk - 26), (kx + 4, ufuk - 26), (kx, ufuk - 40)], fill=hex2(_ac(kr, -0.2)))
+    return uzak_tepe(no, tepe, ufuk, ekle, su)

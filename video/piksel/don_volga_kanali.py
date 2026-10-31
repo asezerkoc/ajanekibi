@@ -709,8 +709,10 @@ def heykel_kaide(img, x, zemin, s=1.0, kim="stalin", tunc="#3a3834"):
     t, ta = hex2(tunc), hex2(_ac(tunc, 0.3))
     d.rectangle([x - int(3.4 * s), ty - int(1 * s), x + int(3.4 * s), ty - 1], fill=hex2(_ac(tunc, -0.2)))
     if kim == "stalin":
-        d.polygon([(x - int(3.2 * s), ty - int(1 * s)), (x - int(2.2 * s), ty - int(13 * s)), (x + int(2.2 * s), ty - int(13 * s)),
-                   (x + int(3.2 * s), ty - int(1 * s))], fill=t)
+        d.polygon([(x - int(3.2 * s), ty - int(1 * s)), (x - int(2.9 * s), ty - int(12.2 * s)), (x - int(2.2 * s), ty - int(13 * s)),
+                   (x + int(2.2 * s), ty - int(13 * s)), (x + int(2.9 * s), ty - int(12.2 * s)), (x + int(3.2 * s), ty - int(1 * s))], fill=t)
+        d.rectangle([x - int(1.6 * s), ty - int(17 * s), x + int(1.6 * s), ty - int(16 * s)], fill=t)                # asker kasketi
+        d.rectangle([x - int(0.4 * s), ty - int(16.2 * s), x + int(2.4 * s), ty - int(15.8 * s)], fill=t)
         d.line([x - int(2.0 * s), ty - int(12 * s), x - int(2.9 * s), ty - int(2 * s)], fill=ta)
         d.line([x + int(1.8 * s), ty - int(12 * s), x, ty - int(8.5 * s)], fill=hex2(_ac(tunc, -0.3)), width=_u(0.8, s))
         d.line([x, ty - int(12.6 * s), x, ty - int(1.5 * s)], fill=hex2(_ac(tunc, -0.25)))
@@ -1240,14 +1242,15 @@ def sahne260():
 
     def kare(t, z, i):
         f = i / KARE
-        mx = 182
+        mx = 156
         figur(t, oturan, mx, z, round(0.95 * K, 1), govde=MALTSEV["govde"], bas="kalpak", bas_renk="#2e241c",
-              sakal="#a07a4a", yon=1, minder="#5a3a22")
+              sakal="#a07a4a", yon=-1, minder="#5a3a22")
         y = z[0] - int(1.6 * 0.95 * K)
-        el = (mx + int(3 * 0.95 * K) + int(1.2 * K * SIN(f)), y - int(4.5 * 0.95 * K))
+        el = (mx - int(3 * 0.95 * K) - int(1.2 * K * SIN(f)), y - int(4.5 * 0.95 * K))
         d = ImageDraw.Draw(t)
-        d.line([el, (el[0] - int(0.9 * K * 10), (590 - (DT - DH)) - 2)], fill=hex2("#4a2e18"), width=_u(0.5, K))
-        figur(t, kisi, 130, z, K, **YENICERI, yon=1, silah="kilic", kol=0.0)
+        ry = 578 - (DT - DH)
+        d.line([el, (124, ry), (114, ry - 12)], fill=hex2("#4a2e18"), width=_u(0.5, K))
+        figur(t, kisi, 212, z, K, **YENICERI, yon=-1, silah="kilic", kol=0.0)
         figur(t, kisi, 256, z, K, **KASIM, yon=-1, kol=0.03 * (1 + SIN(f)))
 
     _spr(260, DW, DH, kare, yk)
@@ -1411,10 +1414,7 @@ def sahne267():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, okuz, 160, z, round(0.55 * K, 1), -1, "#5a4030", 0.0)
-        figur(t, top_, 206, z, round(0.42 * K, 1), -1)
-        d = ImageDraw.Draw(t)
-        d.line([(178, z[0] - int(0.55 * K * 5)), (188, z[0] - int(0.42 * K * 3))], fill=hex2("#8a6a44"), width=_u(0.35, K))
+        figur(t, top_, 172, z, round(0.6 * K, 1), -1)
         figur(t, kisi, 258, z, K, **KASIM, yon=-1, kol=0.55 + 0.04 * SIN(f))
 
     _spr(267, DW, DH, kare, yk, esik=0.7)
@@ -1529,8 +1529,8 @@ def sahne273():
     yk = 2.8
 
     def ekle(img, z):
-        figur(img, kon_cadir, PAY + 196, duz(586, img.width), 1.2, yikik=1)
-        figur(img, kon_cadir, PAY + 300, duz(586, img.width), 1.2)
+        figur(img, kon_cadir, PAY + 228, duz(586, img.width), 1.2, yikik=1)
+        figur(img, kon_cadir, PAY + 318, duz(586, img.width), 1.2)
     _dis(273, "gri", ekle=ekle)
     hava(273, "yagmur", 160, renk="#a8b4c4", egim=0.2)
     K = _K(273, yk, DT, ornek=AZAP[1])
@@ -1601,21 +1601,21 @@ def sahne276():
     yk = 2.8
 
     def ekle(img, z):
-        for k, x in enumerate((PAY + 318, PAY + 340, PAY + 362)):
+        for k, x in enumerate((PAY + 290, PAY + 316, PAY + 342)):
             duman(img, x + 10, 586, 18, 276 + k, faz=0.3, renk="#c8b088", ruzgar=0.4, genislik=1.4)
             figur(img, atli, x, duz(586 + k % 2, img.width), 1.0, -1, 0.3 + k * 0.2, "#3a2a1e", "#140e0a", silah="kilic",
                   kol=0.8, adim=0.8, **KAZAK)
-    _gorunur(276, [318, 362], 270, 270, yk, pay=-4)
+    _gorunur(276, [290, 352], 270, 270, yk, pay=-4)
     _dis(276, "sicak", ekle=ekle, dag=True, dag_y=(452, 486), tepe_y=490, ova_y=498)
     K = _K(276, yk, DT, ornek=YENICERI)
 
     def kare(t, z, i):
         f = i / KARE
         figur(t, yatan_asker, 168, z, round(0.55 * K, 1), "#3a4a7a", "#ece6d8", 1)
-        figur(t, kisi, 246, z, K, **YENICERI, yon=1, silah="kalkan", kol=0.45)
+        figur(t, kisi, 232, z, K, **YENICERI, yon=1, silah="kalkan", kol=0.45)
         for k in range(3):
             ff = (f + k / 3) % 1
-            ok_ucusu(t, 300, 470 - (DT - DH) + k * 14 - 400, 120, 560 - (DT - DH) - 400 + k * 10, ff)
+            ok_ucusu(t, 262, 104 + k * 14, 118, 172 + k * 8, ff)
 
     _spr(276, DW, DH, kare, yk, esik=0.7)
 
