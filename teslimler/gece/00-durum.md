@@ -1,35 +1,29 @@
 # Gece vardiyası (30→31 Ekim 2026) · DURUM
 
-**Engel:** Anthropic API kredisi bitti. Üç paralel işçi 19:58'de aynı anda durdu:
-`Your credit balance is too low to access the Anthropic API` (hata, 1., 5. ve 8. konuların metin yazarı adımında).
-Bu hata ajansın anahtarıyla (`SKONSTART_API_KEY`) yapılan her çağrıda dönüyor; ekip çalışamıyor.
+**03:30 · Sahibin kararı:** CrewAI ekibi (Anthropic API kredisi bitti) devre dışı. İşi Claude Code oturumu, beş alt ajana bölünerek
+kendisi yürütüyor: 🔵 araştırmacı, 🟠 metin yazarı, 🟣 editör, 🟢 grafiker, 🔴 kalite kontrol. API kredisi gerekmiyor.
+Roller aynı kuralları kullanıyor (config/agents.yaml, config/tasks.yaml, ajans profili, hafıza); alt ajanların
+brifleri sahibin gece kararlarını (≥3 dk, 400-470 kelime, niş ve derin, havada cümle yok, hata yok) taşıyor.
 
-**Sahibin yapması gereken:** console.anthropic.com → Plans & Billing → kredi yükle. Başka bir şey gerekmez.
+Fark: yeni araştırmacıların interneti var (kaynaklar URL'li); grafiker tarifi yazmakla kalmıyor, çiziyor ve sprite'lara bakıp düzeltiyor.
 
-**Kredi gelince otomatik devam:** oturum saatte bir uyanıp API'yi yokluyor (başarısız çağrı ücretsiz; bulut
-konteyneri boşta kalınca kapandığı için sürekli çalışan bekçi tutulamıyor). Kredi görüldüğü saatte üç işçi yeniden
-başlar. İşçiler kayıtlı adımlardan devam eder; biten araştırmalar yeniden yaptırılmaz.
+## Zincir (her konu)
+1-arastirma → 2-metin → 3-editor → 4-kalite-metin (kapı) → 5-grafik (py + tsx, çizim denetimi) → seslendirme (ElevenLabs "Metin – Calm Narrator")
+→ hizalama + bundle + 12 kare → 6-kalite-gorsel → düzeltme → render → `teslimler/video/pikseltarihim-<slug>.mp4` → `teslimler/gece/NN-<slug>.md`
+Son: `teslimler/gece/00-yayin-paketi.md` (10 açıklama, etiket, sabit yorum).
 
-Kontroller: 22:57 kredi yok · 00:00 sıradaki kontrol.
+## İlerleme
+| # | slug | araştırma | metin | editör | kalite | grafik | ses | görsel KK | video |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | orhun-yazitlari | ✅ (CrewAI, kurtarıldı) | ⏳ | | | | | | |
+| 2 | matbaa-yasagi | ⏳ | | | | | | | |
+| 3 | raziye-sultan | ⏳ | | | | | | | |
+| 4 | don-volga-kanali | ⏳ | | | | | | | |
+| 5 | celebi-mehmed-paris | ✅ (CrewAI, kurtarıldı) | ⏳ | | | | | | |
+| 6 | piri-reis | ⏳ | | | | | | | |
+| 7 | hezarfen | ⏳ | | | | | | | |
+| 8 | takiyuddin-rasathanesi | ✅ (CrewAI, kurtarıldı) | ⏳ | | | | | | |
+| 9 | toulon-1543 | ⏳ | | | | | | | |
+| 10 | irlanda-kitligi | ⏳ | | | | | | | |
 
-## Kurtarılan iş (yeniden ödenmeyecek)
-
-| Konu | Adım | Dosya |
-|---|---|---|
-| 1 Orhun yazıtları (Thomsen) | 🔵 Araştırma tamam (2.766 kelime) | `teslimler/gece/ara/orhun-yazitlari/1-arastirma.md` |
-| 5 Çelebi Mehmed Paris | 🔵 Araştırma tamam (2.305 kelime) | `teslimler/gece/ara/celebi-mehmed-paris/1-arastirma.md` |
-| 8 Takiyüddin Rasathanesi | 🔵 Araştırma tamam (2.438 kelime) | `teslimler/gece/ara/takiyuddin-rasathanesi/1-arastirma.md` |
-| diğer 7 konu | başlamadı | — |
-
-Her adımın çıktısı artık `teslimler/gece/ara/<konu>/<adım>.md` olarak kaydediliyor (1-arastirma, 2-metin, 3-editor, 4-grafik).
-
-## Plan (değişmedi)
-
-10 konu: Orhun yazıtları · matbaa "yasağı" · Raziye Sultan · Don-Volga kanalı · Çelebi Mehmed'in Paris sefareti ·
-Piri Reis · Hezarfen · Takiyüddin Rasathanesi · Barbaros Toulon'da · İrlanda kıtlığı yardımı.
-
-Her konu: araştırma → metin (400-470 kelime, ≥3 dk) → editör (sahip isteği denetimi) → kalite kapısı → grafiker → kalite →
-`teslimler/gece/NN-konu.md`. Sonra: ElevenLabs "Metin – Calm Narrator" seslendirme → hizalama → render → `teslimler/video/pikseltarihim-<konu>.mp4`
-→ tek dosyada 10 Instagram açıklaması + etiket + sabit yorum (`teslimler/gece/00-yayin-paketi.md`).
-
-Süre tahmini kredi geldikten sonra: metin zinciri konu başına ~25-40 dk (3 paralel), ses + render konu başına ~15 dk.
+Geçmiş: 19:58 CrewAI işçileri kredi hatasıyla durdu; 22:57-03:07 saatlik kontrollerde kredi gelmedi; 03:30 sahip "kendin ajans ol" dedi.
