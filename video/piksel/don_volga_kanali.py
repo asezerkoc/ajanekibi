@@ -1428,7 +1428,7 @@ def sahne261():
     sg = min(2.6, _sigdir(261, lambda t, s, z: figur(t, kadirga, 280, z[0] - 30, s, 1, 0.0), G_T - 30))
 
     def gemi_k(t, z, i):
-        figur(t, kadirga, 188, su, sg, 1, i / KARE)
+        figur(t, kadirga, 192, su, sg, 1, i / KARE)
 
     def kare(t, z, i):
         gemi_k(t, z, i)
