@@ -600,13 +600,20 @@ def perde(img, x, zemin, s=1.0, f=0.0):
     for j in range(ust + 2, alt - 2):                                     # alt yarı daha açık (ufuk)
         if j > (ust + alt) / 2:
             d.line([x - g + 2, j, x + g - 2, j], fill=hex2(_ac("#6a7aa0", p + (j - (ust + alt) / 2) / (alt - ust))))
-    ky = alt - 3                                                          # perdede kule silüeti
-    kx = x - int(6 * s)
-    d.rectangle([kx - 2, ky - int(9 * s), kx + 2, ky], fill=hex2("#14141c"))
-    d.polygon([(kx - 3, ky - int(9 * s)), (kx, ky - int(12 * s)), (kx + 3, ky - int(9 * s))], fill=hex2("#14141c"))
-    ux, uy = x + int(5 * s), ust + int(7 * s) + int(SIN(f) * 1)          # perdede süzülen kanatlı adam
-    d.line([ux - int(5 * s), uy - 1, ux + int(5 * s), uy - 1], fill=hex2("#14141c"), width=2)
-    d.line([ux, uy - 2, ux, uy + int(2 * s)], fill=hex2("#14141c"), width=2)
+    ky = alt - 3                                                          # perdede Galata Kulesi silüeti
+    kx = x - int(7 * s)
+    kr = max(2, int(1.6 * s))
+    sil = hex2("#14141c")
+    d.rectangle([kx - kr, ky - int(9 * s), kx + kr, ky], fill=sil)
+    d.rectangle([kx - kr - 1, ky - int(9.6 * s), kx + kr + 1, ky - int(9 * s)], fill=sil)
+    d.polygon([(kx - kr - 1, ky - int(9.6 * s)), (kx, ky - int(12.4 * s)), (kx + kr + 1, ky - int(9.6 * s))], fill=sil)
+    d.rectangle([x - g + 2, ky - int(1.5 * s), x + g - 2, alt - 2], fill=hex2("#22263a"))   # perdede kıyı ve deniz
+    ux, uy = x + int(5 * s), ust + int(8 * s) + int(SIN(f) * 1)          # perdede süzülen kanatlı adam silüeti
+    for yn in (-1, 1):
+        d.polygon([(ux, uy), (ux + yn * int(6 * s), uy - int(1.2 * s)), (ux + yn * int(5 * s), uy + int(0.8 * s)),
+                   (ux + yn * int(2 * s), uy + int(1 * s))], fill=sil)
+    d.rectangle([ux - 1, uy - int(1.8 * s), ux + 1, uy + int(2.6 * s)], fill=sil)
+    d.ellipse([ux - 2, uy - int(2.6 * s), ux + 2, uy - int(1.6 * s)], fill=sil)
 
 
 def koltuk_sirasi(img, x0, x1, zemin, s=1.0, bas=(), renk="#6a1e22"):
