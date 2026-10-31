@@ -1110,7 +1110,7 @@ def sahne157():
     K = _K(157, yk, tacli=True)
 
     def ekle(img, z):
-        for x, s_ in ((300, 0.42), (348, 0.36)):
+        for x, s_ in ((282, 0.42), (330, 0.32)):
             b = figur(img, yurt, PAY + x, duz(588), round(s_ * K, 1))
             duman(img, b[0], b[1], 14, 157 + x, faz=0.3)
 

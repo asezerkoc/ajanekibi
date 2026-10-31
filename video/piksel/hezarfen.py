@@ -1028,7 +1028,7 @@ def sahne371():
     _cek(371, kare)
 
 
-def _kosk_ic(no, pencere=("#5a8ab8", "#9ec0dc"), duvar=("#3a2e26", "#4a3a2e", "#5a4836"), cini="#2a6a8a", hali=True):
+def _kosk_ic(no, pencere=("#5a8ab8", "#6e9cc8"), duvar=("#3a2e26", "#4a3a2e", "#5a4836"), cini="#2a6a8a", hali=True):
     """Köşk odası (iç mekân): kemerli duvar, çini kuşak, denize bakan pencereler, kilim."""
     ic_mekan(no, duvar=duvar, kemer="#2a1e16", cini=cini, pencere=pencere,
              zemin_renk=("#5a4a3a", "#4a3c2e", "#3e3226"), isik="#f8c060", hali=hali)
@@ -1294,7 +1294,7 @@ def sahne383():
 
 def sahne384():
     """'Ve aynı nefeste hükmünü söylüyor': aynı oda kızıl akşamda; IV. Murad ayağa kalkmış, eliyle gösterir; Hezarfen diz üstü."""
-    _kosk_ic(384, pencere=("#a8484a", "#f0a080"), duvar=("#2e2020", "#3c2a28", "#4a3430"), cini="#6a2a2a")
+    _kosk_ic(384, pencere=("#a8484a", "#b85a54"), duvar=("#2e2020", "#3c2a28", "#4a3430"), cini="#6a2a2a")
     p = P[384]
     sk = s_kisi(p.yk)
 
@@ -1625,7 +1625,7 @@ def sahne396():
 
 def sahne397():
     """'Ona da bir kese akçe. Ve sipahilik. Sürgün yok.': gece köşk odası; ıslak Lagari diz üstü, IV. Murad minderde, arada kese."""
-    _kosk_ic(397, pencere=("#14203a", "#c8d8f0"))
+    _kosk_ic(397, pencere=("#14203a", "#e8e0b0"))
     p = P[397]
     so, sk = s_oturan(p.yk), s_kisi(p.yk)
 
