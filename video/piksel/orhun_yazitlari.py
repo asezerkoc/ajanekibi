@@ -114,27 +114,23 @@ def _gorunur(no, xler, sx0, sx1, yakin, pay=12):
                                    f"[{int(a)}, {int(b)}] dışında (sx={sx})")
 
 
-def _ust_sinir(no, kare, w, h, taban, yakin, yazi_alt, odak=None):
-    """Yazı bandı denetimi: sprite'taki en yüksek opak piksel, sahne sonundaki yakınlaşmada (yakin·1.06)
-    bile ekran yazısının alt kenarının (yazi_alt, ekran px) altında kalmalı. Kandil zinciri (tavandan
-    sarkan 1 px çizgi) sayılmaz: yalnız 3 px'ten geniş satırlar ölçülür."""
+def _ust_sinir(no, kare, w, h, taban, yakin, yazi_alt, odak=None, bant_ust=230):
+    """Yazı bandı denetimi: sprite'ta 3 px'ten geniş opak satırların hiçbiri, sahne başında da sonundaki
+    yakınlaşmada da (yakin·1.06) ekran yazısının bandına (ekran y bant_ust .. yazi_alt+12) düşmemeli.
+    Kandil zinciri 1 px olduğu için sayılmaz; kandilin kendisi bandın üstünde (kadrajın tepesinde) kalır."""
     oy = odak if odak is not None else taban - 12
-    z = yakin * 1.06
     for i in (0, 6, 12, 18):
         t = yeni(w, h)
         kare(t, duz(h - 1, w), i)
-        a = t.getchannel("A")
-        px = a.load()
+        px = t.getchannel("A").load()
         for y in range(h):
-            if sum(1 for x in range(w) if px[x, y] > 0) > 3:
-                ust = taban - h + y
-                break
-        else:
-            continue
-        ekran = 2 * (oy + (ust - oy) * z)
-        if ekran < yazi_alt + 12:
-            raise RuntimeError(f"Sahne {no}: figür tepesi ekran y={int(ekran)}, yazının alt kenarı {yazi_alt}; "
-                               "figürü küçült ya da yakin'i düşür")
+            if sum(1 for x in range(w) if px[x, y] > 0) <= 3:
+                continue
+            for z in (yakin, yakin * 1.06):
+                ekran = 2 * (oy + (taban - h + y - oy) * z)
+                if bant_ust <= ekran <= yazi_alt + 12:
+                    raise RuntimeError(f"Sahne {no}: kare {i}, sprite satırı {y} ekran y={int(ekran)} yazı bandında "
+                                       f"({bant_ust}-{yazi_alt}); figürü küçült")
 
 
 def _orta_sinir(no, ust_y, taban, yakin, yazi_alt, odak=None):
