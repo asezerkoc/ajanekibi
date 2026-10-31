@@ -760,6 +760,18 @@ def pece_ve_tac(img, x, zemin, s=1.0, f=0.0):
                 piksel(img, px_ + a_, py_ + b_, hex2("#fff4c0", 200))
 
 
+def mesale_elde(img, ex, ey, s, yon, f=0.0):
+    """Yeni figür (Görsel KK 2. tur, 222): elde tutulan kısa meşale. Sap elden 4,5·s öne-yukarı (kütüphanedekinin
+    üçte ikisi), ucunda katranlı bez sargı ve f ile titreyen alev."""
+    d = ImageDraw.Draw(img)
+    uc = (ex + int(1.3 * s) * yon, ey - int(4.5 * s))
+    d.line([ex, ey + int(1 * s), *uc], fill=hex2("#5a3216"), width=_u(0.9, s))
+    d.rectangle([uc[0] - _u(0.8, s), uc[1], uc[0] + _u(0.8, s), uc[1] + _u(1.2, s)], fill=hex2("#3a2010"))
+    t = 1 + 0.12 * SIN(f, 3)
+    for r, renk in ((2.2, "#e8601c"), (1.4, "#f8a030"), (0.7, "#fff0a0")):
+        d.polygon([(uc[0] - r * s * 0.5, uc[1]), (uc[0], uc[1] - r * s * 1.4 * t), (uc[0] + r * s * 0.5, uc[1])], fill=hex2(renk))
+
+
 def kitap_elde(img, x, z0, s, yon, kol):
     """Diz çökmüş kisi'nin (diz=True) uzattığı elde ciltli kitap (Tabakât-ı Nâsırî'nin sunuluşu)."""
     d = ImageDraw.Draw(img)
@@ -1403,25 +1415,32 @@ def sahne219():
 
 
 def sahne220():
-    """Kart 13: o Cuma: halk sağa, sarayın kapısına yürür (kalabalık sarayı basıyor); geride taş sekide kolunu kaldırmış
-    peçeli Raziye. Sprite sağa kayar, yürüyenlerin adımı kaymayla uyumlu."""
+    """Kart 13: o Cuma: peçeli Raziye solda, taş sekinin üstünde kolunu kaldırıp halka seslenir; halk sağa, sarayın
+    kapısına yürür (kalabalık sarayı basıyor). Sprite sağa kayar (kamera onu izler), yürüyenlerin adımı kaymayla uyumlu.
+    Görsel KK 2. tur: Raziye eskiden yürüyenlerin arkasında kalıyordu. Şimdi orta planda daha büyük (s 3,2) ve kameranın
+    sol yarısında; yürüyenler sprite'ın sağ yarısında (yerel x 220-276) ve sahnenin başından sonuna Raziye'nin önüne
+    geçmiyor. `_gorunur` Raziye'yi baştan sona kadraj içinde, ayrıca yürüyenlerle çakışmadan denetler."""
     no = 220
+    rx, rs = 228, 3.2
 
     def ekle(img, z):
         figur(img, orta_asya_sehri, PAY + 300, PAY + 560, duz(586), 1.8, tohum=220, kerpic="#c08a6a", golge="#8a5a44", kubbe="#9a9a8a")
-        u = figur(img, seki, PAY + 210, PAY + 240, duz(590), 5)
-        figur(img, kisi, PAY + 225, duz(u), 2.2, **dict(RAZ_PECE, yon=1, kol=0.7))
-        kalabalik(img, duz(592), PAY + 250, PAY + 330, 9, 220, ("#5a4a3a", "#3a4a5a", "#6a5a4a"), s=2.0, yon=1, bas="sarik", adim=0.3)
+        u = figur(img, seki, PAY + rx - 16, PAY + rx + 16, duz(590), 7)
+        figur(img, kisi, PAY + rx, duz(u), rs, **dict(RAZ_PECE, yon=1, kol=0.75))
+        kalabalik(img, duz(592), PAY + 262, PAY + 334, 9, 220, ("#5a4a3a", "#3a4a5a", "#6a5a4a"), s=2.0, yon=1, bas="sarik", adim=0.3)
 
-    _gorunur(no, [225], 245, 295)
+    _gorunur(no, [rx - 12, rx + 14], 245, 295, pay=6)
     _dis(no, "gun", ekle=ekle)
     K = _K(no)
-    renk = (("#5a4a3a", "sarik", "#e8e0d0"), ("#3a4a5a", "kalpak", "#3a2a1a"), ("#6a5a3a", "sarik", "#f0e8d8"),
-            ("#4a3a4a", "bork", "#5a3a22"))
+    yuruyen = (216, 242, 268)
+    for sx in (245, 295):                                   # Raziye'nin sağ kenarı (kol dahil) ilk yürüyenin solunda kalmalı
+        if rx + int(3.8 * rs) - sx + 200 >= yuruyen[0] - int(3.2 * K):
+            raise RuntimeError(f"Sahne 220: Raziye (sx {sx}) yürüyenlerin arkasında kalıyor")
+    renk = (("#5a4a3a", "sarik", "#e8e0d0"), ("#6a5a3a", "sarik", "#f0e8d8"), ("#4a3a4a", "bork", "#5a3a22"))
 
     def kare(t, z, i):
         f = i / KARE
-        for j, x in enumerate((130, 168, 206, 244)):
+        for j, x in enumerate(yuruyen):
             g, b, br = renk[j]
             _kisi(t, x, z, round(K * (0.96 if j % 2 else 1.0), 1), dict(govde=g, bas=b, bas_renk=br, sakal="#2a1a12"), yon=1,
                   adim=(f * 2 + j * 0.37) % 1, kemer=None, kol=0.5 if j == 1 else 0.0)
@@ -1460,7 +1479,9 @@ def sahne222():
         f = i / KARE
         ust = figur(t, saman_yigini, 126, 206, z, max(8, int(1.7 * so)))
         _oturan(t, 156, duz(ust, t.width), so, FIRUZ, yon=1)
-        _kisi(t, 250, z, K, ASKER, yon=-1, silah="mesale", kol=0.35 + 0.03 * SIN(f))
+        kol = 0.35 + 0.03 * SIN(f)
+        _kisi(t, 250, z, K, ASKER, yon=-1, kol=kol)
+        figur(t, mesale_elde, *_el(250, z[0], K, -1, kol), K, -1, f)          # 2. tur: kısa meşale (kütüphanedeki boy kadar uzundu)
 
     _spr(no, kare, ic=True)
 
@@ -1754,10 +1775,11 @@ def sahne237():
     no = 237
 
     def ekle(img, z):
-        kalabalik(img, duz(592), PAY + 300, PAY + 360, 12, 237, ("#3a3a44", "#4a3a2a"), s=1.6, yon=1, bas="migfer", adim=0.6)
+        # 2. tur: kaçan askerler ovanın gerisinde (orta planın yükseltilmiş üst kenarı), Raziye'nin kolundan uzakta
+        kalabalik(img, z, PAY + 300, PAY + 346, 11, 237, ("#3a3a44", "#4a3a2a"), s=1.3, yon=1, bas="migfer", adim=0.6)
 
-    _gorunur(no, [320])
-    _dis(no, "kizil", ekle=ekle, dag_y=(500, 518), tepe_y=522, ova_y=530, orta_ust=(556, 562))
+    _gorunur(no, [300, 346])
+    _dis(no, "kizil", ekle=ekle, dag_y=(500, 518), tepe_y=522, ova_y=530, orta_ust=(534, 538))
     K = _K(no, govde=ALTUNIYA)
 
     def kare(t, z, i):

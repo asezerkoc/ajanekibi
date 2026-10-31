@@ -1314,8 +1314,6 @@ def liman_orta(no, su_renk, tas="#6a6460", kenar="#a8a4a0", ust_su=548, ekle_ark
         ara = ara * 1.2 + 0.4
         y += int(ara)
         k += 1
-    for bx in range(PAY + 40, PAY + 520, 120):
-        babalar(d, bx, RIHTIM + 2, 2.0)
     if ekle_on:
         ekle_on(img, duz(RIHTIM + 30))
     kaydet(img, f"sahne{no}-orta.png")
@@ -1529,7 +1527,7 @@ def sahne491():
         f = i / KARE
         h = t.height
         # görsel KK revizyonu: üç gemi sayılabilir; derinlikte ve yanda ayrı, direk grupları birbirini kesmez
-        gemi_suda(t, 268, h - 34, 1.1, (f + 0.5) % 1, rf, ust, yon=-1, acik=0.6, **soluk)      # en geride, sağda
+        gemi_suda(t, 263, h - 34, 1.1, (f + 0.5) % 1, rf, ust, yon=-1, acik=0.6, **soluk)      # en geride, sağda
         gemi_suda(t, 220, h - 20, 1.5, (f + 0.25) % 1, rf, ust, acik=0.6, **soluk)             # ortada
         gemi_suda(t, 156, h - 7, 2.0, f, rf, ust, acik=0.7, **soluk)                           # önde, solda
         rnd = random.Random(7)
