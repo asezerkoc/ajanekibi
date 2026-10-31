@@ -5,7 +5,7 @@ Kullanım: python3 -I video/piksel/takiyuddin_rasathanesi.py [sahne numaraları]
 
 Yeni figürler (bu dosyada; ciz.py'ye eklenmedi, yalnızca piksel()/hex2()/ImageDraw ve mevcut figürlerle):
   teras, rasathane, ceyrek_daire, armilla, top_, kuyruklu_yildiz, uraniborg, osmanli_camii, ulugbey_rasathanesi,
-  dokumhane, masa_saati, minyatur_kitap, bos_sedir. Hepsi zemine oturur (duz_zemin / zemin_y); gökteki tek nesneler
+  dokumhane, masa_saati, minyatur_kitap, bos_sedir, ortulu_tabut, kesme_taslar. Hepsi zemine oturur (duz_zemin / zemin_y); gökteki tek nesneler
   kuyruklu yıldız, ay ve yıldızlardır (gökyüzü katmanına çizilir).
 """
 import math
@@ -475,6 +475,20 @@ def ortulu_tabut(img, x, zemin, s=1.0, ortu="#2a5a3a"):
         d.line([x + int(kx * s), g0 - int(5.4 * s), x + int(kx * s), g0], fill=hex2(_ac(ortu, -0.25)))
 
 
+def kesme_taslar(img, x, zemin, s=1.0, tohum=1, tas=TAS):
+    """Yeni figür: otların arasında dağınık, yarı gömülü kesme taş blokları (yıkıntı izi). Her blok zemine oturur."""
+    d = ImageDraw.Draw(img)
+    y = zemin_y(zemin, x, 14 * s)
+    temas_golgesi(img, x, y, 16 * s)
+    rnd = random.Random(tohum)
+    for k in range(3):
+        bx = x + int((k - 1) * 5 * s) + rnd.randint(-2, 2)
+        w, h = int(rnd.uniform(3.5, 5) * s), int(rnd.uniform(2, 3.2) * s)
+        renk = rnd.choice([tas, _ac(tas, -0.12), _ac(tas, 0.08)])
+        d.rectangle([bx - w // 2, y - h, bx + w // 2, y - 1], fill=hex2(renk), outline=hex2(_ac(tas, -0.35)))
+        d.line([bx - w // 2 + 1, y - h + 1, bx + w // 2 - 1, y - h + 1], fill=hex2(_ac(renk, 0.2)))
+
+
 # ==========================================================================
 # ÖLÇEK VE KADRAJ YARDIMCILARI (Cem Sultan dosyasının kalıbı: video/piksel/cem_sultan.py)
 # Yeni çizim fonksiyonu DEĞİL: figürü boş yüzeye çizip alfa kanalından ölçer.
@@ -563,9 +577,9 @@ def _gorunur(no, xler, sx0, sx1, yakin, pay=12):
 # ==========================================================================
 TAKI = dict(govde="#2a5a6a", bas="sarik", bas_renk="#f4f0e6", sakal="#3a2a1a")          # Takiyüddin
 TAKI_YASLI = dict(TAKI, sakal="#e0dcd4")
-TYCHO = dict(govde="#2a2a36", bas="sapka", bas_renk="#1a1a22", sakal="#c8903a", kemer="#c8a040")
+TYCHO = dict(govde="#2a2a36", bas="sapka", bas_renk="#1a1a22", sakal="#7a4a24", kemer="#c8a040")
 FREDERIK = dict(govde="#8a1e22", bas="tac", bas_renk="#e0b040", sakal="#a87a4a")
-MURAD = dict(govde="#8a1e22", bas="sarik", bas_renk="#f8f4ea", sakal="#a8522a")         # III. Murad
+MURAD = dict(govde="#8a1e22", bas="sarik", bas_renk="#f8f4ea", sakal="#4a2a16")         # III. Murad
 ULUGBEY = dict(govde="#3a5a8a", bas="sorguc", bas_renk="#2a1a14", sakal="#2a1a12")
 KILIC_ALI = dict(govde="#7a1e22", bas="sarik", bas_renk="#f4f0e6", sakal="#9a9088")
 SEYHULISLAM = dict(govde="#2a4a3a", bas="sarik", bas_renk="#fbf8f0", sakal="#ece8e0")
@@ -708,8 +722,8 @@ def sahne412():
     uzak(412, GECE_DAG, GECE_TEPE, GECE_DENIZ, dag_y=(470, 500), tepe_y=506, ova_y=516)
     yk = 2.6
     K = s_kisi(yk)
-    _gorunur(412, [301, 359], 270, 270, yk)
-    _gece_ortasi(412, (540, 552), ekle=_rasathane_orta(330, 1.3, isik=True, teras_h=8, genis=(40, 38)))
+    _gorunur(412, [291, 349], 270, 270, yk)
+    _gece_ortasi(412, (540, 552), ekle=_rasathane_orta(320, 1.3, isik=True, teras_h=8, genis=(40, 38)))
 
     def kare(t, z, i):
         f = i / KARE
@@ -734,10 +748,10 @@ def sahne413():
 
     def kare(t, z, i):
         f = i / KARE
-        ust = figur(t, teras, 150, 318, z, 14)
-        figur(t, rasathane, 238, duz(ust, t.width), 2.9, isik=(i % 12) != 5)    # kandil titrer
-        figur(t, top_, 108, z, 3.6, 1, egim=0.24)
-        _cimen(t, z, f, ["#3a3446", "#2e2a3a", "#4a4256"], 413, 70, 150, boy=6)
+        ust = figur(t, teras, 166, 318, z, 14)
+        figur(t, rasathane, 246, duz(ust, t.width), 2.8, isik=(i % 12) != 5)    # kandil titrer
+        figur(t, top_, 132, z, 3.6, 1, egim=0.24)
+        _cimen(t, z, f, ["#3a3446", "#2e2a3a", "#4a4256"], 413, 80, 166, boy=6)
 
     _spr(413, 400, 300, kare, yk, esik=0.85)
 
@@ -800,15 +814,15 @@ def sahne416():
     _gok(416, GECE, yildiz=200, y0=340, y1=580)
     uzak(416, GECE_DAG, GECE_TEPE, GECE_DENIZ, dag_y=(480, 506), tepe_y=510, ova_y=520)
     _gece_ortasi(416, (548, 556))
-    yk = 2.4
+    yk = 2.2
     K = s_kisi(yk, 0.30)
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, ceyrek_daire, 160, z, 3.4, -1, aci=0.55 + 0.05 * SIN(f))
-        figur(t, kisi, 118, z, K, **TYCHO, yon=1, kol=0.3, pelerin="#6a2a2a")
-        figur(t, armilla, 276, z, 3.6, faz=f * 0.5)
-        figur(t, kisi, 220, z, K, **TAKI, yon=1, kol=0.3)
+        figur(t, ceyrek_daire, 166, z, 3.2, -1, aci=0.55 + 0.05 * SIN(f))
+        figur(t, kisi, 128, z, K, **TYCHO, yon=1, kol=0.3, pelerin="#6a2a2a")
+        figur(t, armilla, 280, z, 3.4, faz=f * 0.5)
+        figur(t, kisi, 228, z, K, **TAKI, yon=1, kol=0.3)
 
     _spr(416, 400, 300, kare, yk, esik=0.8)
 
@@ -824,9 +838,9 @@ def _iki_gozlemevi(no, yikik):
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, uraniborg, 126, z, 2.2, yikik=yikik[0], isik=not yikik[0])
-        ust = figur(t, teras, 224, 332, z, 10)
-        figur(t, rasathane, 280, duz(ust, t.width), 2.2, yikik=yikik[1], isik=not yikik[1])
+        figur(t, uraniborg, 134, z, 2.1, yikik=yikik[0], isik=not yikik[0])
+        ust = figur(t, teras, 222, 322, z, 10)
+        figur(t, rasathane, 274, duz(ust, t.width), 2.1, yikik=yikik[1], isik=not yikik[1])
         _cimen(t, z, f, ["#3a4a5a", "#2e3e4e", "#4a5a6a"], no, 60, 340, boy=7 if yikik[0] else 5)
 
     _spr(no, 400, 300, kare, yk, esik=0.9)
@@ -853,8 +867,8 @@ def sahne418():
         kandil(t, 200, 0, f, zincir=_kz(yk))
         mumluk(t, 112, z, f, 2)
         figur(t, oturan, 168, z, s, **TAKI, yon=1, el="kalem", minder="#8a2a2a")
-        rahle(t, 222, z[0], 3.6)
-        figur(t, masa_saati, 272, z, 4.4, f=f)
+        rahle(t, 220, z[0], 5.5)
+        figur(t, masa_saati, 262, z, 4.4, f=f)
 
     _spr(418, 400, 300, kare, yk)
 
@@ -899,7 +913,7 @@ def sahne420():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 190, z, K, **TAKI, yon=1, adim=f, silah="mektup")
+        figur(t, kisi, 160, z, K, **TAKI, yon=1, adim=f, silah="mektup")
 
     _spr(420, 400, 300, kare, yk)
 
@@ -915,10 +929,10 @@ def sahne421():
          dag_y=(476, 500), tepe_y=504, ova_y=512)
     yk = 2.8
     K = s_kisi(yk)
-    _gorunur(421, [215, 320], 270, 270, yk)
+    _gorunur(421, [205, 322], 270, 270, yk)
 
     def ekle(img, z):
-        figur(img, gur_i_emir, PAY + 215, duz(584), 0.9, mavi="#2a7ab8", tugla="#b89868")
+        figur(img, gur_i_emir, PAY + 205, duz(584), 0.9, mavi="#2a7ab8", tugla="#b89868")
         figur(img, ulugbey_rasathanesi, PAY + 322, duz(590), 1.5)
 
     orta(421, (536, 548), ["#c8a060", "#b89054", "#a88048", "#98703e", "#886036"], "#e8c888", ekle=ekle)
@@ -926,7 +940,7 @@ def sahne421():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 168, z, K, **ULUGBEY, yon=1, silah="mektup", kol=0.35 + 0.03 * SIN(f), pelerin="#2a3a5a")
+        figur(t, kisi, 238, z, K, **ULUGBEY, yon=-1, silah="mektup", kol=0.35 + 0.03 * SIN(f), pelerin="#2a3a5a")
 
     _spr(421, 400, 300, kare, yk)
 
@@ -972,7 +986,7 @@ def sahne423():
         ust = figur(t, sedir, 258, z, round(0.75 * so, 1), renk="#7a4a2a", ortu="#8a1e22")
         figur(t, oturan, 258, duz(ust, t.width), so, **MURAD, yon=-1, minder="#c8a040")
         figur(t, kisi, 158, z, K, **TAKI, yon=1, diz=True, silah="mektup", kol=0.35 + 0.03 * SIN(f))
-        kitaplar(t, 112, z[0], 4.0)
+        kitaplar(t, 128, z[0], 4.0)
         mumluk(t, 312, z, f, 3)
 
     _spr(423, 400, 300, kare, yk)
@@ -996,10 +1010,10 @@ def sahne424():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 122, z, K, **TAKI, yon=1, kol=0.45)
+        figur(t, kisi, 134, z, K, **TAKI, yon=1, kol=0.45)
         figur(t, ceyrek_daire, 196, z, 3.0, 1, aci=0.4)
-        figur(t, taslar, 255, z, 2.6)
-        figur(t, kisi, 288, z, K, govde="#6a4a2a", bas="bork", bas_renk="#4a3222", sakal=None, yon=-1,
+        figur(t, kesme_taslar, 236, z, 2.6, 4)
+        figur(t, kisi, 274, z, K, govde="#6a4a2a", bas="bork", bas_renk="#4a3222", sakal=None, yon=-1,
               silah="kazma", kol=0.5 + 0.4 * SIN(f))
 
     _spr(424, 400, 300, kare, yk, esik=0.72)
@@ -1054,8 +1068,8 @@ def sahne427():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, armilla, 286, z, 3.6, faz=f * 0.5)
-        figur(t, kisi, 212, z, K, **TAKI, yon=-1, kol=0.62 + 0.05 * SIN(f))
+        figur(t, armilla, 272, z, 3.4, faz=f * 0.5)
+        figur(t, kisi, 198, z, K, **TAKI, yon=-1, kol=0.62 + 0.05 * SIN(f))
 
     _spr(427, 400, 300, kare, yk, esik=0.85)
 
@@ -1074,10 +1088,10 @@ def sahne428():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 200, 0, f, zincir=_kz(yk))
-        kitaplar(t, 118, z[0], 4.2)
+        kitaplar(t, 136, z[0], 4.2)
         figur(t, oturan, 178, z, s, **KATIP, yon=1, el="kalem", minder="#5a2a4a")
         rahle(t, 232, z[0], 3.6)
-        kitaplar(t, 284, z[0], 4.2)
+        kitaplar(t, 266, z[0], 4.2)
 
     _spr(428, 400, 300, kare, yk)
 
@@ -1104,27 +1118,32 @@ def sahne429():
 # 430 (kart 28): Ağustos 1578, Çıldır: ordu doğuya (sağa) yürür.
 # --------------------------------------------------------------------------
 def sahne430():
-    """Ağustos 1578, Çıldır yolunda: yaz öğleden sonrası, yüksek yayla; kızıl kaftanlı atlı ve börklü yaya asker sağa
-    (doğuya) yürür, toynakların dibinden toz kalkar."""
+    """Ağustos 1578, Çıldır yolunda: yaz öğleden sonrası, yüksek yayla; börklü yeniçeriler kılıç ve kalkanla sağa
+    (doğuya) yürür, ayaklarının dibinden toz kalkar; geride düz ovada küçük atlı birlikler aynı yöne gider."""
     _gok(430, ["#6a8ab8", "#8aa2c4", "#a8b8cc", "#c8c8c8", "#dcd0b8", "#e8d8b0"])
     uzak(430, ["#8a8aa0", "#7a7a94"], ["#9a9488", "#8e887c"], ["#b8a070", "#a89464", "#98885a"],
          dag_y=(450, 494), tepe_y=500, ova_y=512)
-    orta(430, (536, 548), ["#b89a60", "#a88c56", "#987e4c", "#887044", "#78623a"], "#e0c888")
-    on(430, ["#78623a", "#887044", "#987e4c"], "#e0c888", boy=120)
     yk = 2.6
     K = s_kisi(yk, 0.30)
-    sa = s_atli(yk)
+    _gorunur(430, [215, 330], 245, 290, yk, pay=0)
+
+    def ekle(img, z):
+        for j, x in enumerate((215, 255, 300, 330)):                  # geride atlılar (küçük ve yüksekte)
+            figur(img, atli, PAY + x, duz(584), 1.5, 1, faz=j * 0.27, govde="#8a1e22", bas="sarik",
+                  bas_renk="#f4f0e6", sakal="#2a1a12", adim=0.45)
+
+    orta(430, (536, 548), ["#b89a60", "#a88c56", "#987e4c", "#887044", "#78623a"], "#e0c888", ekle=ekle)
+    on(430, ["#78623a", "#887044", "#987e4c"], "#e0c888", boy=120)
+    yen = dict(govde="#3a5a8a", bas="bork", bas_renk="#f4f0e6", sakal="#3a2a1a")
 
     def kare(t, z, i):
         f = i / KARE
         arka = duz(z[0] - 12, t.width)
-        figur(t, kisi, 120, arka, round(0.85 * K, 1), govde="#3a5a8a", bas="bork", bas_renk="#f4f0e6", sakal="#3a2a1a",
-              yon=1, adim=(f + 0.3) % 1, silah="kalkan")
-        figur(t, atli, 205, z, sa, 1, faz=f, at_renk="#6b3f24", yele="#2b1a12", govde="#8a1e22", bas="sarik",
-              bas_renk="#f4f0e6", sakal="#2a1a12", silah="kilic", adim=0.45)    # mızrak/sancak yok: yazı bandına girmesin
-        figur(t, kisi, 286, z, K, govde="#3a5a8a", bas="bork", bas_renk="#f4f0e6", sakal="#3a2a1a", yon=1,
-              adim=(f + 0.6) % 1)
-        _toz(t, 168, 299, f, 22, 430, genislik=1.2, renk="#c8b48a")
+        figur(t, kisi, 212, arka, round(0.88 * K, 1), **yen, yon=1, adim=(f + 0.5) % 1, silah="kalkan")
+        figur(t, kisi, 160, z, K, **yen, yon=1, adim=f, silah="kalkan")
+        figur(t, kisi, 262, z, K, **yen, yon=1, adim=(f + 0.3) % 1, silah="kilic")
+        for j, x in enumerate((150, 252)):
+            _toz(t, x, 299, (f + j * 0.5) % 1, 16, 430 + j, genislik=1.0, renk="#c8b48a")
 
     _spr(430, 400, 300, kare, yk, esik=0.7)
 
@@ -1140,17 +1159,17 @@ def sahne431():
          dag_y=(476, 500), tepe_y=504, ova_y=514)
     yk = 2.6
     K = s_kisi(yk, 0.30)
-    _gorunur(431, [306, 358], 270, 270, yk)
+    _gorunur(431, [294, 346], 270, 270, yk)
     orta(431, (540, 552), ["#3e4038", "#363830", "#2e302a", "#262822", "#1e201c"], "#6a6a5a",
-         ekle=_rasathane_orta(332, 1.3, teras_h=8, genis=(40, 38)))
+         ekle=_rasathane_orta(320, 1.3, teras_h=8, genis=(40, 38)))
     on(431, ["#1e201c", "#262822", "#2e302a"], "#6a6a5a", boy=120)
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, ortulu_tabut, 160, z, 3.6)
-        figur(t, kisi, 112, z, K, govde="#2a2a32", bas="ortu", bas_renk="#3a3440", sakal=None, yon=1, kadin=True,
+        figur(t, ortulu_tabut, 174, z, 3.6)
+        figur(t, kisi, 126, z, K, govde="#2a2a32", bas="ortu", bas_renk="#3a3440", sakal=None, yon=1, kadin=True,
               kol=0.02 * (1 + SIN(f)))
-        figur(t, kisi, 230, z, K, govde="#3a3a2a", bas="sarik", bas_renk="#d8d4c8", sakal="#5a4a3a", yon=1,
+        figur(t, kisi, 240, z, K, govde="#3a3a2a", bas="sarik", bas_renk="#d8d4c8", sakal="#5a4a3a", yon=1,
               kol=0.72 + 0.04 * SIN(f))
 
     _spr(431, 400, 300, kare, yk, esik=0.75)
@@ -1170,7 +1189,7 @@ def sahne432():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 270, 0, f, zincir=_kz(yk))
-        mumluk(t, 122, z, f, 2)
+        mumluk(t, 136, z, f, 2)
         figur(t, kisi, 200, z, K, **SEYHULISLAM, yon=-1, kol=0.62 + 0.06 * SIN(f), pelerin="#e8e2d4")
         kitaplar(t, 268, z[0], 4.2)
 
@@ -1201,7 +1220,7 @@ def sahne433():
 
     def ekle(img, z):
         su_ve_kiyi(img, 560, renkler=("#3c4864", "#34405a", "#2c3850", "#243046"))
-        for x, s_ in ((PAY + 220, 1.9), (PAY + 330, 1.6)):
+        for x, s_ in ((PAY + 225, 1.25), (PAY + 318, 1.1)):
             figur(img, gemi, x, 572, s_, -1, 0.0, govde="#3a2a22", yelken="#e8dcc0", hac=False)
         img_d = ImageDraw.Draw(img)
         img_d.rectangle([0, 600, img.width, img.height], fill=hex2("#5a5448"))           # rıhtım (düz taş)
@@ -1238,7 +1257,7 @@ def sahne434():
          ekle=lambda img, z: su_ve_kiyi(img, 552, renkler=("#5a3a4a", "#4e3242", "#422a3a", "#36222e")))
     on(434, ["#2a1a28", "#321e30", "#3a2438"], "#a06a6a", boy=40)
     yk = 2.4
-    sg = 3.6
+    sg = 2.6
     _gemi_denetimi(sg, SU_Y, 400, H_DENIZ)
 
     def kare(t, z, i):
@@ -1291,7 +1310,7 @@ def sahne436():
 
     def kare(t, z, i):
         f = i / KARE
-        bacalar = figur(t, dokumhane, 200, z, 2.9)
+        bacalar = figur(t, dokumhane, 200, z, 3.4)
         for j, (bx, by) in enumerate(bacalar):
             duman(t, bx, by, 60, 436 + j, faz=(f + j * 0.5) % 1, renk="#8a8088", ruzgar=0.3, genislik=1.3)
 
@@ -1324,7 +1343,7 @@ def sahne437():
 # 438 (kart 36): yer bilinmiyor: boş sırt, dağınık taşlar, rüzgârda çimen.
 # --------------------------------------------------------------------------
 def sahne438():
-    """'Rasathanenin kesin yeri bile bilinmiyor': soluk akşam, boş tepe; otların arasında dağınık taşlar. Bina yok."""
+    """'Rasathanenin kesin yeri bile bilinmiyor': soluk akşam, boş tepe; otların arasında dağınık kesme taşlar. Bina yok."""
     _gok(438, ["#3a4060", "#5a5a78", "#7a7088", "#9a8890", "#b8a098", "#c8b0a0"])
     uzak(438, ["#5a5a78", "#50506e"], ["#62627a", "#585870"], ["#4a5a7a", "#42526e", "#3a4a64"],
          dag_y=(486, 510), tepe_y=514, ova_y=524)
@@ -1334,8 +1353,8 @@ def sahne438():
 
     def kare(t, z, i):
         f = i / KARE
-        for x, s_ in ((140, 2.2), (215, 1.6), (262, 2.6)):
-            figur(t, taslar, x, z, s_)
+        for x, s_, tohum in ((136, 5.0, 1), (206, 4.0, 2), (262, 5.6, 3)):
+            figur(t, kesme_taslar, x, z, s_, tohum)
         _cimen(t, z, f, ["#7a8a5a", "#6a7a4e", "#8a9a66"], 438, 70, 330, boy=12)
 
     _spr(438, 400, 300, kare, yk, esik=0.85)
@@ -1465,8 +1484,8 @@ def sahne444():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 200, 0, f, zincir=_kz(yk))
-        figur(t, oturan, 150, z, s, **NAKKAS, yon=1, el="kalem", minder="#8a2a2a")
-        figur(t, minyatur_kitap, 248, z, 4.6)
+        figur(t, oturan, 146, z, s, **NAKKAS, yon=1, el="kalem", minder="#8a2a2a")
+        figur(t, minyatur_kitap, 234, z, 3.2)
 
     _spr(444, 400, 300, kare, yk)
 
@@ -1479,8 +1498,8 @@ def sahne445():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, minyatur_kitap, 205, z, 6.2)
-        mumluk(t, 112, z, f, 2)
+        figur(t, minyatur_kitap, 214, z, 4.8)
+        mumluk(t, 126, z, f, 2)
 
     _spr(445, 400, 300, kare, yk, esik=0.8)
 
@@ -1491,9 +1510,8 @@ def sahne445():
 def sahne446():
     """1597: soğuk gri gün; Tycho'yu götüren gemi sola (Avrupa'ya) yol alır; arkada adada Uraniborg."""
     _gok(446, ["#5a6478", "#727c8e", "#8a92a0", "#a2a8b2", "#b8bcc2", "#c8cacc"])
-    img = uzak(446, ["#6a7488", "#5e687c"], ["#56744a", "#4c6a42"], ["#4a5e74", "#42566a", "#3a4e60"],
-               dag_y=(492, 512), tepe_y=520, ova_y=530)
-    kaydet(img, "sahne446-uzak.png")
+    uzak(446, ["#6a7488", "#5e687c"], ["#56744a", "#4c6a42"], ["#4a5e74", "#42566a", "#3a4e60"],
+         dag_y=(492, 512), tepe_y=520, ova_y=530)
     orta(446, (548, 552), ["#4a5e74", "#42566a", "#3a4e60", "#324656", "#2a3e4c"], "#8aa0b4",
          ekle=lambda img, z: (su_ve_kiyi(img, 552, renkler=("#4a5e74", "#42566a", "#3a4e60", "#324656")),
                               figur(img, uraniborg, PAY + 300, duz(552), 1.0)))
@@ -1525,7 +1543,7 @@ def sahne447():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, uraniborg, 200, z, 3.0, yikik=0.65)
+        figur(t, uraniborg, 200, z, 3.3, yikik=0.65)
         _cimen(t, z, f, ["#6a8a52", "#5a7a46", "#7a9a5e"], 447, 60, 340, boy=12)
 
     _spr(447, 400, 300, kare, yk, esik=0.85)
@@ -1542,15 +1560,15 @@ def sahne448():
 def sahne449():
     """Son soru: gece, Tophane sırtı; boş terasın üstünde moloz yığınları; gökte 1577'nin kuyruklu yıldızı
     (dört olası sebebin ilki gökte asılı kalır)."""
-    _gok(449, GECE, yildiz=260, y0=320, y1=590, kuyruk=(150, 534, 56, -2.6))
+    _gok(449, GECE, yildiz=260, y0=320, y1=590, kuyruk=(244, 526, 56, -2.6))
     uzak(449, GECE_DAG, GECE_TEPE, GECE_DENIZ, **ALCAK_UZAK)
     _gece_ortasi(449, (598, 604))
     yk = 2.0
 
     def kare(t, z, i):
         f = i / KARE
-        ust = figur(t, teras, 170, 330, z, 12)
-        figur(t, rasathane, 254, duz(ust, t.width), 2.4, yikik=0.95)
+        ust = figur(t, teras, 150, 306, z, 12)
+        figur(t, rasathane, 230, duz(ust, t.width), 2.4, yikik=0.95)
         _cimen(t, z, f, ["#3a4a5a", "#2e3e4e", "#4a5a6a"], 449, 60, 340, boy=8)
 
     _spr(449, 400, 300, kare, yk, esik=0.85)

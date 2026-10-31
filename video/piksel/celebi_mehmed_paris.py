@@ -672,8 +672,8 @@ def sahne294():
     def kare(t, z, i):
         f = i / KARE
         arka = duz(z[0] - 10, DW)
-        figur(t, kisi, 128, arka, round(0.9 * K, 1), govde="#8a2a2a", bas="sapka", bas_renk="#1a1a22", sakal=None, yon=1)   # Venedik
-        figur(t, kisi, 160, z, K, govde="#e8e0c8", bas="sapka", bas_renk="#2a2a2a", sakal="#5a3a22", yon=1,
+        figur(t, kisi, 132, arka, round(0.9 * K, 1), govde="#8a2a2a", bas="sapka", bas_renk="#1a1a22", sakal=None, yon=1)   # Venedik
+        figur(t, kisi, 178, z, K, govde="#e8e0c8", bas="sapka", bas_renk="#2a2a2a", sakal="#5a3a22", yon=1,
               kol=0.12 + 0.04 * SIN(f), kemer="#2a2a2a")                                                                # Habsburg
         figur(t, kisi, 248, z, K, **SADRAZAM, yon=-1, silah="mektup", kol=0.38 + 0.06 * SIN(f))                        # Osmanlı
 
@@ -735,16 +735,16 @@ def sahne297():
     K = s_kisi(yk)
 
     def yeniceriler(img, z):
-        for x in (296, 316):
+        for x in (326, 342):
             figur(img, kisi, PAY + x, duz(RIHTIM + 6), round(0.8 * K, 1), **YENICERI, yon=-1)
 
-    _liman_orta(297, ("#4e5e76", "#44546c", "#3a4a62", "#324058"), "#b8b8c0", 215, 2.0, "#e8e4d8", ekle=yeniceriler)
+    _liman_orta(297, ("#4e5e76", "#44546c", "#3a4a62", "#324058"), "#b8b8c0", 230, 2.0, "#e8e4d8", ekle=yeniceriler)
     _bos_on(297)
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 228, z, round(0.92 * K, 1), **SAID, yon=-1, adim=(f + 0.5) % 1)
-        figur(t, kisi, 190, z, K, **ELCI_K, yon=-1, adim=f)
+        figur(t, kisi, 212, z, round(0.92 * K, 1), **SAID, yon=-1, adim=(f + 0.5) % 1)
+        figur(t, kisi, 172, z, K, **ELCI_K, yon=-1, adim=f)
 
     _spr2(297, DW, DH, kare, yk)
 
@@ -786,7 +786,7 @@ def sahne298():
 def sahne299():
     """'Heyet Toulon'da tutulur. Karantina.': gece, soğuk taş oda; elçi minderde tek mumun ışığında yazar."""
     _yazan_elci(299, 3.0, ("#22262e", "#2c323c", "#383e4a"), ("#0e1630", "#c8d0e0"), "#3a4a5a",
-                ("#45444a", "#3a393e", "#2f2e34"), kandil_x=280, hali=False, mum=1)
+                ("#45444a", "#3a393e", "#2f2e34"), kandil_x=262, hali=False, mum=1)
 
 
 # ==========================================================================
@@ -819,9 +819,9 @@ def sahne300():
     def kare(t, z, i):
         f = i / KARE
         arka = duz(z[0] - 8, DW)
-        figur(t, atli, 150, arka, round(0.9 * sa, 1), 1, faz=(f + 0.5) % 1, at_renk="#8a6a4a", yele="#3a2a1a",
+        figur(t, atli, 161, arka, round(0.9 * sa, 1), 1, faz=(f + 0.5) % 1, at_renk="#8a6a4a", yele="#3a2a1a",
               adim=0.4, **SAID)
-        figur(t, atli, 225, z, sa, 1, faz=f, at_renk="#e8e0d0", yele="#a8a090", adim=0.4,
+        figur(t, atli, 223, z, sa, 1, faz=f, at_renk="#e8e0d0", yele="#a8a090", adim=0.4,
               **{k: v for k, v in ELCI.items()})
 
     _spr2(300, DW, DH, kare, yk, esik=0.7)
@@ -996,10 +996,10 @@ def sahne307():
     def kare(t, z, i):
         f = i / KARE
         figur(t, kadran, 142, z, round(0.55 * K, 1))
-        figur(t, teleskop, 208, z, round(0.6 * K, 1), yon=1, aci=0.5)
-        figur(t, kisi, 178, z, round(0.95 * K, 1), govde="#2a2a3a", bas="sapka", bas_renk="#1a1a1a", sakal=None,
+        figur(t, teleskop, 200, z, round(0.6 * K, 1), yon=1, aci=0.5)
+        figur(t, kisi, 170, z, round(0.95 * K, 1), govde="#2a2a3a", bas="sapka", bas_renk="#1a1a1a", sakal=None,
               yon=1, kol=0.55 + 0.08 * SIN(f))                                          # astronom dürbünü gösterir
-        figur(t, kisi, 272, z, K, **ELCI_K, yon=-1, kol=0.03 * (1 + SIN(f)))
+        figur(t, kisi, 256, z, K, **ELCI_K, yon=-1, kol=0.03 * (1 + SIN(f)))
 
     _spr2(307, DW, DH, kare, yk, esik=0.7)
 
@@ -1092,7 +1092,7 @@ def sahne310():
     def kare(t, z, i):
         f = i / KARE
         figur(t, havuz, 165, z, round(0.48 * K, 1), faz=f)
-        for j, x in enumerate((112, 128, 210, 226)):
+        for j, x in enumerate((122, 136, 206, 220)):
             figur(t, cicek, x, z, round(0.32 * K, 1), faz=(f + j * 0.3) % 1, renk="#d8302a", orta="#f4d24a")
         figur(t, kisi, 262, z, K, **ELCI_K, yon=-1, kol=0.03 * (1 + SIN(f)))
 
@@ -1113,7 +1113,7 @@ def sahne311():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 205, 0, f, zincir=_kz(yk))
-        mumluk(t, 284, z, f, 3)
+        mumluk(t, 276, z, f, 3)
         figur(t, kisi, 150, z, K, **SEYHULISLAM, yon=1, silah="mektup", kol=0.35 + 0.05 * SIN(f))
         figur(t, oturan, 240, z, so, yon=-1, el="kalem", minder="#8a2a2a", govde="#3a5a8a", bas="sarik",
               bas_renk="#ece6d8", sakal="#2a1a12")
@@ -1154,7 +1154,7 @@ def sahne312():
         f = i / KARE
         arka = duz(z[0] - 14, IW)
         kandil(t, 200, 0, f, zincir=_kz(yk))
-        for j, x in enumerate((128, 200, 272)):                                     # üç ayrı tezgâh (arkada)
+        for j, x in enumerate((134, 200, 266)):                                     # üç ayrı tezgâh (arkada)
             figur(t, baski_tezgahi, x, arka, sp, faz=(f + j * 0.33) % 1)
         for j, (x, yon) in enumerate(((140, 1), (204, -1), (262, -1))):               # baskıcılar basılı sayfa tutar
             figur(t, kisi, x, z, K, yon=yon, silah="mektup", kol=0.30 + 0.05 * SIN(f + j * 0.3), **baskicilar[j])
@@ -1208,7 +1208,7 @@ def sahne315():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 205, 0, f, zincir=_kz(yk))
-        figur(t, kitap_rafi, 142, z, round(0.6 * K, 1), dolu=False)
+        figur(t, kitap_rafi, 148, z, round(0.6 * K, 1), dolu=False)
         mumluk(t, 178, z, f, 1)
         figur(t, kisi, 255, z, K, **ELCI_K, yon=1, kol=0.02 * (1 + SIN(f)))
 
@@ -1243,10 +1243,10 @@ def sahne316():
         f = i / KARE
         for j, (x, y, b) in enumerate(dumanlar):
             duman(t, x, y, b, 316 + j, faz=(f + j * 0.3) % 1, renk="#3a2a2a", ruzgar=0.3)
-        ates(t, 132, z, f, round(0.5 * K, 1))
+        ates(t, 138, z, f, round(0.5 * K, 1))
         renk = ("#5a2a22", "#3a3a4a", "#6a4a2a")
         bas = (("kalpak", "#3a2a1a"), ("sarik", "#c8c0b0"), ("kalpak", "#5a3a22"))
-        for j, x in enumerate((178, 220, 262)):
+        for j, x in enumerate((168, 208, 248)):
             figur(t, kisi, x, z, K, govde=renk[j], bas=bas[j][0], bas_renk=bas[j][1],
                   sakal="#2a1a12", yon=1, adim=(f + j * 0.37) % 1, silah="mesale", kol=0.0)
 
@@ -1267,8 +1267,8 @@ def sahne317():
         f = i / KARE
         kandil(t, 268, 0, f, zincir=_kz(yk))
         mumluk(t, 128, z, f, 1)
-        figur(t, taht, 200, z, round(0.62 * K, 1), renk="#c8a040", ortu="#8a1e22")
-        figur(t, kavuk_yerde, 252, z, round(0.85 * K, 1))
+        figur(t, taht, 188, z, round(0.62 * K, 1), renk="#c8a040", ortu="#8a1e22")
+        figur(t, kavuk_yerde, 250, z, round(0.85 * K, 1))
 
     _spr2(317, IW, IH, kare, yk, esik=0.6)
 
@@ -1291,7 +1291,7 @@ def sahne318():
         figur(img, agac, PAY + 372, duz(584), 1.1, yaprak=("#2a3a2a", "#344a32", "#40583a"),
               govde="#2a1c14", tohum=41)
         for j, x in enumerate(range(PAY + 150, PAY + 400, 13)):                         # solgun laleler: önde, yere dikili
-            figur(img, cicek, x, duz(652 + (j % 3) * 6), round(0.34 * K, 1), faz=0.15 + 0.1 * (j % 4),
+            figur(img, cicek, x, duz(684 + (j % 3) * 6), round(0.34 * K, 1), faz=0.15 + 0.1 * (j % 4),
                   renk=("#8a3a3a", "#7a3a4a", "#9a5a4a")[j % 3], orta="#6a5a3a")
 
     orta(318, (532, 560), ["#3e4a36", "#36402e", "#2e3828", "#283022", "#20281c"], "#6a7a5a", ekle=ekle)
@@ -1318,11 +1318,11 @@ def sahne319():
         f = i / KARE
         arka = duz(z[0] - 12, IW)
         kandil(t, 200, 0, f, zincir=_kz(yk))
-        figur(t, kitap_rafi, 132, arka, round(0.5 * K, 1), dolu=True, tohum=3)
-        figur(t, kitap_rafi, 268, arka, round(0.5 * K, 1), dolu=True, tohum=4)
+        figur(t, kitap_rafi, 140, arka, round(0.5 * K, 1), dolu=True, tohum=3)
+        figur(t, kitap_rafi, 258, arka, round(0.5 * K, 1), dolu=True, tohum=4)
         for x, ortu, s_ in ((206, "#2a3a8a", 0.72), (258, "#8a1e22", 0.62)):              # Fransa 1757 (mavi), İstanbul 1866 (kırmızı)
             top = figur(t, masa, x, z, round(0.42 * K, 1), ortu=ortu)
-            kitaplar(t, x, top, round(s_ * K * 0.5, 1))
+            kitaplar(t, x, top, round(s_ * K, 1))
         figur(t, kisi, 148, z, K, govde="#5a4a3a", bas="sapka", bas_renk="#1a1a1a", sakal=None, yon=1,
               silah="mektup", kol=0.28 + 0.04 * SIN(f))
 

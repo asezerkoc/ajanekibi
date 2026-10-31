@@ -73,7 +73,7 @@ export const TAKIYUDDIN_SERI: Seri = {
     },
     // 416: İki gözlemci, iki dev alet (teleskop yok)
     {
-      no: 416, yakin: 2.4, kamera: 8, yaziY: 220,
+      no: 416, yakin: 2.2, kamera: 8, yaziY: 220,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Teleskop henüz yok;", "ona daha otuz yıl var.", "Tycho da Takiyüddin de", "çıplak gözle, dev aletlerle", "bakıyor."], sure: 6.54, boy: 72 }, // kart 11

@@ -188,7 +188,10 @@ def _yazit_govde(img, x, zemin, s=1.0, yuz="runik", kaplumbaga=True, tas_renk="#
         for ax in (-8, 6):
             d.rectangle([x + int(ax * s), y - int(3 * s), x + int((ax + 3) * s), y - 1], fill=hex2(_ac(kab, -0.2)))
         # kabuk: alt kenarı düz (zemine bir piksel kala), üstü kubbe
-        d.chord([x - int(11 * s), y - int(9 * s), x + int(11 * s), y + int(3 * s)], 180, 360, fill=hex2(kab))
+        kk = max(2, int(1.2 * s)) if kar else 0              # kar: önce beyaz kubbe, sonra kk px aşağıda kabuk
+        if kar:
+            d.chord([x - int(11 * s), y - int(9 * s), x + int(11 * s), y + int(3 * s)], 180, 360, fill=hex2("#eef2fa"))
+        d.chord([x - int(11 * s), y - int(9 * s) + kk, x + int(11 * s), y + int(3 * s) + kk], 180, 360, fill=hex2(kab))
         d.rectangle([x - int(11 * s), y - int(3 * s), x + int(11 * s), y - int(1 * s)], fill=hex2(_ac(kab, -0.15)))
         # kabuk deseni (altıgen izler)
         for kx in range(-8, 9, 4):
@@ -218,8 +221,15 @@ def _yazit_govde(img, x, zemin, s=1.0, yuz="runik", kaplumbaga=True, tas_renk="#
             d.rectangle([sol + dx, ust + dy, sag + dx, gy + dy - 1], fill=yan)
             d.chord([sol + dx, ust - tep + dy, sag + dx, ust + tep + dy], 180, 360, fill=yan)
         d.rectangle([sol, ust, sag, gy], fill=on_)
-        # kemerli, ejder kabartmalı tepe
-        d.chord([sol, ust - tep, sag, ust + tep], 180, 360, fill=hex2(_ac(tas_renk, -0.08)))
+        # kemerli, ejder kabartmalı tepe (kar: önce beyaz kemer, sonra kk px aşağıda taş kemer)
+        kk = max(2, int(1.2 * s)) if kar else 0
+        if kar:
+            for dx in range(yan_g, -1, -1):
+                d.chord([sol + dx, ust - tep - round(kay * dx / max(1, yan_g)), sag + dx, ust + tep - round(kay * dx / max(1, yan_g))],
+                        180, 360, fill=hex2("#f4f8ff"))
+            d.chord([sol + yan_g, ust - tep + kk - kay, sag + yan_g, ust + tep + kk - kay], 180, 360, fill=yan)
+        d.chord([sol, ust - tep + kk, sag, ust + tep + kk], 180, 360, fill=hex2(_ac(tas_renk, -0.08)))
+        d.rectangle([sol, ust, sag, ust + kk], fill=hex2(_ac(tas_renk, -0.08)))
         for a in range(200, 341, 20):                          # ejder kıvrımları
             cx_, cy_ = (sol + sag) / 2, ust
             for r in ((gen / 2) * 0.55, (gen / 2) * 0.85):
@@ -230,7 +240,12 @@ def _yazit_govde(img, x, zemin, s=1.0, yuz="runik", kaplumbaga=True, tas_renk="#
         rnd = random.Random(tohum)
         kaba = [(sol, gy), (sol - 1, ust + int(4 * s)), (sol + int(1.5 * s), ust + rnd.randint(0, 3)),
                 (sol + gen // 2, ust - int(1.5 * s)), (sag - int(1 * s), ust + rnd.randint(1, 4)), (sag, ust + int(5 * s)), (sag, gy)]
-        d.polygon(kaba, fill=on_)
+        if kar:                                             # tepede kar: önce beyaz, sonra 1-2 px aşağı kaymış taş
+            d.polygon(kaba, fill=hex2("#f4f8ff"))
+            k_ = max(2, int(1.2 * s))
+            d.polygon([(px_, min(py_ + k_, gy)) for px_, py_ in kaba], fill=on_)
+        else:
+            d.polygon(kaba, fill=on_)
         d.polygon([(sag, ust + int(5 * s)), (sag + yan_g, ust + int(6 * s)), (sag + yan_g, gy - 1), (sag, gy)], fill=yan)
         for _ in range(int(12 * s)):                            # aşınma lekeleri
             piksel(img, rnd.randint(sol + 2, sag - 2), rnd.randint(ust + int(5 * s), gy - 2), hex2(_ac(tas_renk, -0.12)))
@@ -267,11 +282,6 @@ def _yazit_govde(img, x, zemin, s=1.0, yuz="runik", kaplumbaga=True, tas_renk="#
                             if cin_glifler is not None:
                                 cin_glifler.append((sx_ + i_, yy + j))
                 yy += 6
-    if kar:                                                 # tepede ve kabukta biriken kar
-        d.chord([sol, ust - int(6 * s) if kaplumbaga else ust - int(2 * s), sag + yan_g,
-                 ust - int(3 * s) if kaplumbaga else ust + int(2 * s)], 180, 360, fill=hex2("#f4f8ff"))
-        if kaplumbaga:
-            d.chord([x - int(10 * s), y - int(9 * s), x + int(10 * s), y - int(5 * s)], 180, 360, fill=hex2("#e8eef8"))
     return gl
 
 
@@ -840,14 +850,12 @@ def sahne142():
 
 
 def sahne143():
-    """Kart 18: Orhun Vadisi, 1889. Gezgin Yadrintsev taşın önünde durur, eliyle gösterir; arkada çadırı, yük atı
-    ve uzakta ikinci taş."""
+    """Kart 18: Orhun Vadisi, 1889. Gezgin Yadrintsev taşın önünde durur, eliyle gösterir; arkada çadırı ve
+    uzakta ikinci taş."""
     yk = 2.6
     K = _K(143, yk)
 
     def ekle(img, z):
-        figur(img, at, PAY + 186, duz(586), round(0.36 * K * 2.9 / 2.6, 1), 1, "#7a5a3a", "#2a1a12", dur=True,
-              bas=0.8, yuk="#8a6a3a")
         figur(img, cadir, PAY + 262, duz(586), round(0.55 * K, 1))
         tas(img, PAY + 352, duz(584), round(0.26 * K, 1), tohum=9)
 
@@ -973,12 +981,12 @@ def sahne150():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, avrupali, 168, z, K, govde="#4a5a4a", sac="#3a2a1a", bas="kalpak", bas_renk="#3a2a1a", yon=-1,
-              silah="sopa")
-        figur(t, avrupali, 220, z, K, govde="#3a3a46", sac="#e8e4dc", sakal="#e8e4dc", bas="kasket",
-              bas_renk="#3a3a40", yon=-1, silah="mektup", kol=0.3 + 0.04 * SIN(f))
-        figur(t, avrupali, 270, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
-              bas_renk="#3a3a2a", yon=-1, silah="kamera", kol=0.1)
+        figur(t, avrupali, 158, z, K, govde="#4a5a4a", sac="#3a2a1a", bas="kalpak", bas_renk="#3a2a1a", yon=-1,
+              silah="sopa")                                                       # Rus subayı
+        figur(t, avrupali, 228, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
+              bas_renk="#3a3a2a", yon=-1, silah="kamera", kol=0.1)              # Fin fotoğrafçı
+        figur(t, avrupali, 274, z, K, govde="#3a3a46", sac="#e8e4dc", sakal="#e8e4dc", bas="kasket",
+              bas_renk="#3a3a40", yon=-1, silah="mektup", kol=0.3 + 0.04 * SIN(f))  # Radloff
 
     _bitir(150, kare, yk, esik=0.75)
 
