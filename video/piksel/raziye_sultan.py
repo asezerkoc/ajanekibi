@@ -68,18 +68,22 @@ def _baslik(d, img, x, bas_y, r, s, yon, tur, renk):
         gx = x + _u(0.7, s) * yon
         d.rectangle([min(gx, gx + _u(0.3, s) * yon), bas_y - _u(0.4, s), max(gx, gx + _u(0.3, s) * yon), bas_y], fill=hex2(KOYU))
     elif tur == "kulah":
-        # Yeni figür: Raziye'nin külahı (Minhâc: kaba ve külah). Sivri, hafif geriye yatık keçe külah, altın şerit, tepede
-        # altın düğme; yüz açık, ensede omza inen koyu saç (peçesiz kadın).
+        # Yeni figür: Raziye'nin külahı (Minhâc: kaba ve külah). Başa oturan, tepesi yuvarlatılmış alçak keçe külah
+        # (boyu yaklaşık baş kadar), kalın koyu kürk kenar ve önde küçük altın süs; yüz açık, ensede omza inen koyu saç.
         sac = hex2("#2a1a12")
         a0, a1 = x - (r + _u(0.6, s)) * yon, x - (r - _u(1.1, s)) * yon
         d.rectangle([min(a0, a1), bas_y - _u(0.8, s), max(a0, a1), bas_y + r + _u(1.8, s)], fill=sac)
-        d.polygon([(x - r - _u(0.7, s), bas_y - r + _u(0.9, s)), (x - _u(0.9, s) * yon, bas_y - r - _u(5.2, s)),
-                   (x + r + _u(0.7, s), bas_y - r + _u(0.9, s))], fill=hex2(renk))
-        d.line([x - _u(0.9, s) * yon, bas_y - r - _u(5.2, s), x + r + _u(0.4, s), bas_y - r + _u(0.6, s)], fill=hex2(_ac(renk, 0.25)))
-        d.rectangle([x - r - _u(0.7, s), bas_y - r - _u(0.1, s), x + r + _u(0.7, s), bas_y - r + _u(0.9, s)], fill=hex2(ALTIN_R))
-        piksel(img, x, bas_y - r + _u(0.4, s), hex2("#2a8a8a"))                                  # şeritte taş
-        tx, ty = x - _u(0.9, s) * yon, bas_y - r - _u(5.2, s)
-        d.rectangle([tx - _u(0.4, s), ty - _u(0.6, s), tx + _u(0.4, s), ty], fill=hex2(ALTIN_R))
+        k = hex2(renk)
+        tepe = bas_y - r - _u(3.4, s)
+        d.polygon([(x - r - _u(0.4, s), bas_y - r + _u(0.6, s)), (x - r + _u(0.4, s), tepe + _u(1.2, s)), (x - _u(0.6, s), tepe),
+                   (x + _u(0.6, s), tepe), (x + r - _u(0.4, s), tepe + _u(1.2, s)), (x + r + _u(0.4, s), bas_y - r + _u(0.6, s))], fill=k)
+        d.line([x - r + _u(0.6, s) * (yon < 0) + _u(0.4, s), tepe + _u(1.4, s), x - _u(0.4, s), tepe + _u(0.4, s)], fill=hex2(_ac(renk, 0.25)))
+        d.rectangle([x - r - _u(0.8, s), bas_y - r - _u(0.3, s), x + r + _u(0.8, s), bas_y - r + _u(1.0, s)], fill=hex2("#5a4030"))
+        for kx in range(x - r - _u(0.8, s), x + r + _u(0.8, s), 2):            # kürk dokusu
+            piksel(img, kx, bas_y - r - _u(0.3, s), hex2("#7a5a42"))
+        sx_ = x + _u(0.8, s) * yon
+        d.rectangle([sx_ - _u(0.4, s), bas_y - r - _u(1.6, s), sx_ + _u(0.4, s), bas_y - r - _u(0.3, s)], fill=hex2(ALTIN_R))
+        piksel(img, sx_, bas_y - r - _u(1.0, s), hex2("#2a8a8a"))
     else:
         _ESKI_BASLIK(d, img, x, bas_y, r, s, yon, tur, renk)
 
@@ -416,7 +420,8 @@ def kubbe_turbe(img, x, zemin, s=1.0, tas="#c8b89a", kubbe="#a89a84"):
     d.rectangle([x - int(7 * s), y - int(16 * s), x + int(7 * s), y - int(14 * s)], fill=hex2(_ac(tas, -0.08)))
     d.chord([x - int(7 * s), y - int(23 * s), x + int(7 * s), y - int(9 * s)], 180, 360, fill=hex2(kubbe))
     d.arc([x - int(5 * s), y - int(21 * s), x + int(3 * s), y - int(11 * s)], 200, 260, fill=hex2(_ac(kubbe, 0.3)))
-    d.line([x, y - int(16 * s), x, y - int(18.5 * s)], fill=hex2(ALTIN_R), width=_u(0.5, s))
+    d.line([x, y - int(23 * s), x, y - int(25.5 * s)], fill=hex2(ALTIN_R), width=_u(0.5, s))
+    piksel(img, x + 1, y - int(25.5 * s), hex2(ALTIN_R))
     for k in range(int(18 * s)):
         piksel(img, x - int(9 * s) + k, y - 1 - (k % 3 == 0), hex2(_ac(tas, -0.3)))
 
@@ -479,17 +484,17 @@ def mezar_avlusu(img, x, zemin, s=1.0, tas="#c8b498"):
         dx0, dx1 = x + k * gen, x + k * (gen - int(5 * s))
         d.polygon([(dx0, y - int(12 * s)), (dx1, arka_y - int(18 * s)), (dx1, arka_y), (dx0, y - 1)], fill=hex2(_ac(tas, -0.12 if k < 0 else -0.18)))
         d.line([dx0, y - int(12 * s), dx1, arka_y - int(18 * s)], fill=hex2(_ac(tas, 0.2)))
-    for k, (mx, ml, mh) in enumerate(((-7, 6, 4.5), (6, 5, 3.6))):           # iki kabir: basamaklı beyaz mermer
+    for k, (mx, ml, mh) in enumerate(((-7.5, 6, 6.0), (7, 5, 5.0))):           # iki kabir: basamaklı beyaz mermer
         cx = x + int(mx * s)
-        by = y - int(3.5 * s)
+        by = y - int(3 * s)
         d.rectangle([cx - int(ml * s), by - int(mh * 0.45 * s), cx + int(ml * s), by], fill=hex2("#e8e2d6"), outline=hex2("#8a8478"))
         d.rectangle([cx - int((ml - 1.2) * s), by - int(mh * s), cx + int((ml - 1.2) * s), by - int(mh * 0.45 * s)], fill=hex2("#f4f0e8"),
                     outline=hex2("#8a8478"))
         d.line([cx - int((ml - 2) * s), by - int(mh * s) - 1, cx + int((ml - 2) * s), by - int(mh * s) - 1], fill=hex2("#d8d2c4"))
     for k in (-1, 1):                                                       # ön alçak duvar, ortada giriş
         a, b = (x - gen, x - int(4 * s)) if k < 0 else (x + int(4 * s), x + gen)
-        d.rectangle([a, y - int(3.5 * s), b, y - 1], fill=hex2(_ac(tas, -0.05)), outline=koyu)
-        d.line([a, y - int(3.5 * s), b, y - int(3.5 * s)], fill=hex2(_ac(tas, 0.25)))
+        d.rectangle([a, y - int(2.2 * s), b, y - 1], fill=hex2(_ac(tas, -0.05)), outline=koyu)
+        d.line([a, y - int(2.2 * s), b, y - int(2.2 * s)], fill=hex2(_ac(tas, 0.25)))
 
 
 def levha(img, x, zemin, s=1.0):
@@ -534,8 +539,9 @@ def uyuyan(img, x, zemin, s=1.0, yon=1, f=0.0):
     temas_golgesi(img, x, y, 20 * s)
     nef = int(round((0.5 + 0.5 * SIN(f)) * 0.4 * s))
     g = hex2(RAZ["govde"])
-    bx = x - int(8 * s) * yon                                               # baş tarafı (bohça)
-    d.ellipse([min(bx, bx - int(3.6 * s) * yon), y - int(2.6 * s), max(bx, bx - int(3.6 * s) * yon), y - 1], fill=hex2("#8a7a5a"))
+    bx = x - int(5.6 * s) * yon                                             # baş tarafı: yere konmuş bohça (yastık)
+    d.ellipse([min(bx, bx - int(4.6 * s) * yon), y - int(2.2 * s), max(bx, bx - int(4.6 * s) * yon), y - 1], fill=hex2("#8a7a5a"))
+    d.line([bx - int(0.6 * s) * yon, y - int(1.6 * s), bx - int(4 * s) * yon, y - int(1.6 * s)], fill=hex2("#6a5a3e"))
     d.polygon([(x - int(6 * s) * yon, y - int(1 * s)), (x - int(5 * s) * yon, y - int(4.2 * s) - nef), (x + int(3 * s) * yon, y - int(4 * s) - nef),
                (x + int(4 * s) * yon, y - int(1 * s))], fill=g)
     d.rectangle([min(x + int(3 * s) * yon, x + int(9 * s) * yon), y - int(2 * s), max(x + int(3 * s) * yon, x + int(9 * s) * yon), y - 1],
@@ -543,12 +549,12 @@ def uyuyan(img, x, zemin, s=1.0, yon=1, f=0.0):
     d.rectangle([min(x + int(9 * s) * yon, x + int(10.2 * s) * yon), y - int(1.6 * s), max(x + int(9 * s) * yon, x + int(10.2 * s) * yon), y - 1],
                 fill=hex2(KOYU))
     d.line([x - int(5 * s) * yon, y - int(2.4 * s), x + int(3 * s) * yon, y - int(2.4 * s)], fill=hex2(ALTIN_R))   # kemer
-    hx, hy = x - int(7.4 * s) * yon, y - int(3.4 * s)
     r = max(2, int(1.7 * s))
+    hx, hy = x - int(7.6 * s) * yon, y - int(2.0 * s) - r
     d.ellipse([hx - r, hy - r, hx + r, hy + r], fill=hex2(TEN))
     d.rectangle([min(hx, hx - r * yon), hy - r, max(hx, hx - r * yon), hy + r], fill=hex2("#2a1a12"))         # saç
     d.line([hx + int(0.4 * s) * yon, hy - _u(0.2, s), hx + int(1.2 * s) * yon, hy - _u(0.2, s)], fill=hex2(KOYU))  # kapalı göz
-    kx = x - int(12.5 * s) * yon                                           # külah yerde yan yatmış
+    kx = x + int(14.5 * s) * yon                                           # külah ayak ucunda yerde yan yatmış
     d.polygon([(kx, y - 1), (kx - int(4.5 * s) * yon, y - int(1.2 * s)), (kx, y - int(2.6 * s))], fill=hex2(RAZ["bas_renk"]))
     d.line([kx, y - 1, kx, y - int(2.6 * s)], fill=hex2(ALTIN_R), width=_u(0.6, s))
     for k, (mx, my) in enumerate(((-3, -3.2), (-1, -3.6), (1, -3.4), (-2, -2.4), (0.5, -2.6))):
