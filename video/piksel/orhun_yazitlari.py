@@ -586,8 +586,9 @@ def _boy(no, yk, cizim, hedef, ic=False, geri=0):
 
 
 def _K(no, yk, hedef=0.30, ic=False):
-    """Ön sıradaki insanların ölçeği: kadrajın %30'u; yazıya sığmıyorsa sığan en büyük ölçek."""
-    return _boy(no, yk, lambda t, s, z: figur(t, kisi, 280, z, s, **BILGE), hedef, ic)
+    """Ön sıradaki insanların ölçeği: başlıksız insan boyu kadrajın %30'u (başlıklılar biraz daha uzun);
+    yazıya sığmıyorsa sığan en büyük ölçek."""
+    return _boy(no, yk, lambda t, s, z: figur(t, kisi, 280, z, s, govde="#2a2a34", bas=None, kemer=None), hedef, ic)
 
 
 def _yazit_s(no, yk, hedef=0.38, geri=0, **kw):
