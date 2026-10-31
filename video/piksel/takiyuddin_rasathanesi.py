@@ -454,3 +454,170 @@ def bos_sedir(img, x, zemin, s=1.0, renk="#7a4a2a", ortu="#2a6a3a", minder="#c8a
     d.rounded_rectangle([x - int(9 * s), ust - int(6 * s), x - int(6 * s), ust], radius=_u(1, s), fill=hex2(_ac(minder, -0.15)),
                         outline=hex2(_ac(minder, -0.4)))
     return ust
+
+
+def ortulu_tabut(img, x, zemin, s=1.0, ortu="#2a5a3a"):
+    """Yeni figür: veba sahnesi için yeşil örtülü ahşap tabut: iki alçak sehpanın üstünde; sehpaların ayakları
+    zemine basar, örtünün kenarları sehpaların yanından sarkar."""
+    d = ImageDraw.Draw(img)
+    y = zemin_y(zemin, x, 26 * s)
+    temas_golgesi(img, x, y, 28 * s)
+    ah = hex2("#5a3a1e")
+    for sx_ in (-9, 9):
+        d.rectangle([x + int(sx_ * s) - int(3 * s), y - int(4 * s), x + int(sx_ * s) + int(3 * s), y - int(3.2 * s)], fill=ah)
+        for ax in (-2, 2):
+            d.line([x + int((sx_ + ax) * s), y - int(3.2 * s), x + int((sx_ + ax * 1.2) * s), y - 1], fill=ah, width=_u(0.6, s))
+    g0 = y - int(4 * s)
+    d.polygon([(x - int(13 * s), g0), (x - int(12 * s), g0 - int(5 * s)), (x + int(12 * s), g0 - int(6 * s)),
+               (x + int(13 * s), g0)], fill=hex2(ortu))
+    d.line([x - int(12 * s), g0 - int(5 * s), x + int(12 * s), g0 - int(6 * s)], fill=hex2(_ac(ortu, 0.25)))
+    for kx in (-6, 0, 6):                                                                         # örtü kıvrımları
+        d.line([x + int(kx * s), g0 - int(5.4 * s), x + int(kx * s), g0], fill=hex2(_ac(ortu, -0.25)))
+
+
+# ==========================================================================
+# ÖLÇEK VE KADRAJ YARDIMCILARI (Cem Sultan dosyasının kalıbı: video/piksel/cem_sultan.py)
+# Yeni çizim fonksiyonu DEĞİL: figürü boş yüzeye çizip alfa kanalından ölçer.
+# ==========================================================================
+def _bb(img):
+    return img.getchannel("A").getbbox()
+
+
+_ONBELLEK = {}
+
+
+def olcek(ad, yakin, cizim, oran=0.32):
+    """Figür kutusu kadraj yüksekliğinin >= oran'ı olan en küçük s (0.1 adım). Görünen ızgara yüksekliği = 960/yakin."""
+    anahtar = (ad, yakin, oran)
+    if anahtar in _ONBELLEK:
+        return _ONBELLEK[anahtar]
+    hedef = oran * 960 / yakin
+    s = 2.0
+    while s <= 9.0:
+        t = yeni(560, 420)
+        cizim(t, round(s, 1), duz(417, 560))
+        bb = _bb(t)
+        if bb and bb[1] <= 1:
+            break
+        if bb and bb[3] - bb[1] >= hedef:
+            _ONBELLEK[anahtar] = round(s, 1)
+            return _ONBELLEK[anahtar]
+        s += 0.1
+    raise RuntimeError(f"olcek({ad}, yakin={yakin}): %{int(oran * 100)} boya ulaşılamadı")
+
+
+def s_kisi(yakin, oran=0.32):
+    return olcek("kisi", yakin, lambda t, s, z: figur(t, kisi, 280, z, s, **TAKI, yon=1), oran)
+
+
+def s_oturan(yakin, oran=0.30):
+    return olcek("oturan", yakin, lambda t, s, z: figur(t, oturan, 280, z, s, **TAKI, yon=-1, minder="#c8a040"), oran)
+
+
+def s_atli(yakin):
+    """İnsan/at oranı: atlı 2.9 ↔ kisi 2.6 (SKILL.md)."""
+    return round(s_kisi(yakin, 0.24) * 2.9 / 2.6, 1)
+
+
+def _kz(yakin, taban=634, h=300):
+    """Kandil zinciri: sprite'ın üst kenarından (tavan) kadrajın üst kenarının biraz altına."""
+    ust_gorunen = (taban - 12) * (1 - 1 / yakin)
+    return max(40, int(ust_gorunen - (taban - h)) + 10)
+
+
+def _kadraj(no, kare, w, h, yakin, esik):
+    """Görünür aralık yerel x = w/2 ± 270/yakin. Opak piksellerin en az `esik` oranı içeride olmalı; figür sprite'ın
+    üstüne değmemeli (kesik baş = hata)."""
+    yarim = 270 / yakin
+    a, b = max(int(w / 2 - yarim), 0), min(int(w / 2 + yarim), w)
+    for i in (0, 12):
+        t = yeni(w, h)
+        kare(t, duz(h - 1, w), i)
+        alfa = t.getchannel("A")
+        toplam = sum(alfa.histogram()[1:])
+        bb = alfa.getbbox()
+        ust_satir = sum(alfa.crop((0, 0, w, 2)).histogram()[1:])
+        if not toplam or (bb[1] <= 1 and ust_satir > 12):
+            raise RuntimeError(f"Sahne {no}: sprite yüksekliği (h={h}) yetmiyor ya da kare boş")
+        ici = sum(alfa.crop((a, 0, b, h)).histogram()[1:])
+        if ici / toplam < esik:
+            raise RuntimeError(f"Sahne {no}: figürlerin %{int(100 * ici / toplam)}'i görünür aralıkta (x {a}-{b})")
+
+
+def _spr(no, w, h, kare, yakin, esik=0.75):
+    _kadraj(no, kare, w, h, yakin, esik)
+    sprite(no, "karakter", w, h, KARE, kare)      # taban_denetimi varsayılan açık
+
+
+def _gorunur(no, xler, sx0, sx1, yakin, pay=12):
+    """Orta plandaki önemli figürlerin ızgara x'i, sprite'ın başlangıç ve bitiş sx değerlerinde görünür aralıkta."""
+    for sx in (sx0, sx1):
+        a, b = sx - 270 / yakin + pay, sx + 270 / yakin - pay
+        for x in xler:
+            if not a <= x <= b:
+                raise RuntimeError(f"Sahne {no}: orta plan figürü x={x} görünür aralık [{int(a)}, {int(b)}] dışında")
+
+
+# ==========================================================================
+# KİŞİLER (renk kimlikleri bütün sahnelerde aynı)
+# ==========================================================================
+TAKI = dict(govde="#2a5a6a", bas="sarik", bas_renk="#f4f0e6", sakal="#3a2a1a")          # Takiyüddin
+TAKI_YASLI = dict(TAKI, sakal="#e0dcd4")
+TYCHO = dict(govde="#2a2a36", bas="sapka", bas_renk="#1a1a22", sakal="#c8903a", kemer="#c8a040")
+FREDERIK = dict(govde="#8a1e22", bas="tac", bas_renk="#e0b040", sakal="#a87a4a")
+MURAD = dict(govde="#8a1e22", bas="sarik", bas_renk="#f8f4ea", sakal="#a8522a")         # III. Murad
+ULUGBEY = dict(govde="#3a5a8a", bas="sorguc", bas_renk="#2a1a14", sakal="#2a1a12")
+KILIC_ALI = dict(govde="#7a1e22", bas="sarik", bas_renk="#f4f0e6", sakal="#9a9088")
+SEYHULISLAM = dict(govde="#2a4a3a", bas="sarik", bas_renk="#fbf8f0", sakal="#ece8e0")
+SOKOLLU = dict(govde="#2a6a3a", bas="sarik", bas_renk="#f8f4ea", sakal="#d8d0c8")
+SINAN = dict(govde="#6a5a44", bas="sarik", bas_renk="#f0ebe0", sakal="#e0dcd4")
+LEVEND = dict(govde="#a8281e", bas="kalpak", bas_renk="#4a3222", sakal="#3a2a1a")       # donanma topçusu
+KATIP = dict(govde="#5a4a6a", bas="sarik", bas_renk="#ece6d8", sakal="#4a3a2a")
+NAKKAS = dict(govde="#6a3a2a", bas="sarik", bas_renk="#ece6d8", sakal="#2a1a12")
+MUNECCIM = dict(govde="#4a3a6a", bas="sarik", bas_renk="#f4f0e6", sakal="#2a1a12")      # sonraki müneccimbaşı
+
+# ==========================================================================
+# KATMAN YARDIMCILARI
+# ==========================================================================
+GECE = ["#070a1c", "#0e1430", "#162046", "#1e2c5a", "#28386a", "#324478"]
+GECE_BULUT = ("#4a5a80", "#34446a", "#243458")
+
+
+def _gok(no, renkler, bulutlar=(), bulut_renk=("#fff8ec", "#f4dcc8", "#d8a8a0"), gunes_=None, yildiz=0,
+         y0=300, y1=600, ay=None, kuyruk=None):
+    """Gökyüzü + görünür bölgeye (y0-y1) yıldızlar + ay + kuyruklu yıldız. ciz.yildizlar yalnızca y<300'e serper;
+    yakın çekimde görünen gök y≈380-600 arasıdır, yıldızlar oraya da serpilir."""
+    img = gokyuzu(no, renkler, gunes_, bulutlar, bulut_renk, 0)
+    if yildiz:
+        rnd = random.Random(no * 13)
+        for _ in range(yildiz):
+            x, y = rnd.randrange(img.width), rnd.randrange(y0, y1)
+            a = rnd.choice((110, 170, 255))
+            piksel(img, x, y, hex2("#fff8e0", a))
+            if a == 255 and rnd.random() < 0.35:
+                for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                    piksel(img, x + dx, y + dy, hex2("#fff8e0", 80))
+    if ay:
+        gunes(img, ay[0], ay[1], ay[2], ["#f4f0e0", "#b8c4dc"])
+    if kuyruk:
+        kuyruklu_yildiz(img, *kuyruk, tohum=no)
+    kaydet(img, f"sahne{no}-gokyuzu.png")
+
+
+def _uzak_deniz(no, dag, tepe, deniz, dag_y, tepe_y, ova_y, gemiler=(), kenar=None):
+    """Uzak plan: karşı kıyı tepeleri ve önünde düz deniz (ova rengi su). gemiler: [(x, s, yelken)] su çizgisine oturur."""
+    img = uzak(no, dag, tepe, deniz, dag_y=dag_y, tepe_y=tepe_y, ova_y=ova_y, kenar=kenar)
+    for x, s, yelken in gemiler:
+        figur(img, gemi, x, ova_y + int(6 * s), s, 1, 0.0, govde="#3a2a22", yelken=yelken, hac=False)
+    kaydet(img, f"sahne{no}-uzak.png")
+
+
+def _toz(t, x, y, f, boy, tohum, genislik=1.4, renk="#b8aa94"):
+    """Yıkıntıdan yükselen toz: yerden (y) başlar, yukarı çıkar (ciz.duman)."""
+    duman(t, x, y, boy, tohum, faz=f, renk=renk, ruzgar=0.25, genislik=genislik)
+
+
+def _cimen(t, z, f, renkler, tohum, x0=0, x1=None, boy=6):
+    """Sprite'ın zemin satırında rüzgârla salınan çimen (dibi zemine basar)."""
+    from ciz import cimen_tutamlari
+    cimen_tutamlari(t, z, renkler, tohum, 0.45, boy, x0, x1, ruzgar=0.6 * SIN(f))

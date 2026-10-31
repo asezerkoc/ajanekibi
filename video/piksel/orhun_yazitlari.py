@@ -646,7 +646,7 @@ def sahne133():
     Orta planda iki atlı bekler."""
     yk = 2.6
     K = _K(133, yk)
-    sa = round(0.5 * K * 2.9 / 2.6, 1)
+    sa = round(0.38 * K * 2.9 / 2.6, 1)
 
     def ekle(img, z):
         for x in (318, 348):
