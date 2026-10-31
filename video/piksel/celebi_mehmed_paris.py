@@ -497,6 +497,31 @@ def sahne_tahtasi(img, x, zemin, s=1.0, f=0.0):
     return on_ust - derin // 2
 
 
+def lale(img, x, zemin, s=1.0, faz=0.0, renk="#d8302a", solgun=0.0):
+    """Yeni figür: lale. Dik sap zemine dikili, dibinde iki uzun mızrak yaprak; tepede kapalı, uzun kadeh biçimli çanak
+    (üç taç yaprak, uçları sivri). solgun 0-1: sap tepeden yana eğilir, çanak sarkar, renk solar. faz: hafif salınım."""
+    d = ImageDraw.Draw(img)
+    y = zemin_y(zemin, x, 3 * s)
+    temas_golgesi(img, x, y, 3 * s)
+    yesil = _ac("#4a7a3a", -0.25 * solgun)
+    boy = 11 * s
+    sal = math.sin(faz * 2 * math.pi) * 0.6 * s
+    egik = solgun * 3.5 * s
+    tx, ty = x + sal + egik, y - boy + solgun * 2 * s
+    d.line([x, y - 1, x + sal * 0.4, y - boy * 0.5, tx, ty], fill=hex2(yesil), width=max(1, int(0.6 * s)))
+    for k in (-1, 1):                                                                # mızrak yapraklar
+        d.polygon([(x, y - 1), (x + k * 2.2 * s, y - 4.5 * s), (x + k * 1.2 * s, y - 7 * s), (x + k * 0.4 * s, y - 3 * s)],
+                  fill=hex2(_ac(yesil, 0.15)))
+    renk = _ac(renk, -0.3 * solgun)
+    cw, ch = 1.6 * s, 4.2 * s
+    cx, cy = tx + egik * 0.25, ty + solgun * 1.5 * s                                  # solgun: çanak sarkar
+    d.polygon([(cx - cw, cy - ch * 0.75), (cx - cw * 0.9, cy - ch * 0.2), (cx, cy + 0.4 * s), (cx + cw * 0.9, cy - ch * 0.2),
+               (cx + cw, cy - ch * 0.75), (cx + cw * 0.45, cy - ch * 0.45), (cx, cy - ch), (cx - cw * 0.45, cy - ch * 0.45)],
+              fill=hex2(renk))
+    d.line([cx, cy - ch * 0.9, cx, cy - 1], fill=hex2(_ac(renk, -0.25)))               # orta taç yaprağın çizgisi
+    piksel(img, cx - cw * 0.6, cy - ch * 0.5, hex2(_ac(renk, 0.35)))                   # ışık
+
+
 def cit(img, x0, x1, zemin, s=1.0, renk="#6a4a2a"):
     """Yeni figür: ahşap karantina çiti. Kazıklar zemine çakılı (dibinde temas gölgesi), üstte iki yatay kalas."""
     d = ImageDraw.Draw(img)
@@ -526,7 +551,7 @@ def _duman_noktalari(no, noktalar, sx, w, h, taban, en=None, boy=30):
 # ==========================================================================
 # 290 · KAPAK + kart 1 · Toulon limanı, 1720 sonu: rıhtımda elçi ve oğlu; geride demirli gemi
 # ==========================================================================
-SU290 = 590      # orta planda gemi su çizgisi
+SU290 = 572      # orta planda gemi su çizgisi: ufka yakın (uzak gemi), rıhtım kenarından (600) uzakta
 RIHTIM = 600     # orta planda taş rıhtımın üst kenarı (sprite tabanı 632 bunun içinde)
 
 
@@ -557,13 +582,13 @@ def sahne290():
          dag_y=(398, 446), tepe_y=470, ova_y=500)
     yk = 2.8
     K = s_kisi(yk, 0.30)
-    _liman_orta(290, ("#3e4a78", "#36426e", "#2e3a64", "#28325a"), "#a8a4b4", 215, 2.0, "#e8dcc8")
+    _liman_orta(290, ("#3e4a78", "#36426e", "#2e3a64", "#28325a"), "#a8a4b4", 205, 1.2, "#e8dcc8")
     _bos_on(290)
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 262, z, round(0.92 * K, 1), **SAID, yon=-1, kol=0.02 * (1 + SIN(f + 0.3)))
-        figur(t, kisi, 194, z, K, **ELCI_K, yon=-1, kol=0.03 * (1 + SIN(f)))
+        figur(t, kisi, 270, z, round(0.92 * K, 1), **SAID, yon=-1, kol=0.02 * (1 + SIN(f + 0.3)))
+        figur(t, kisi, 214, z, K, **ELCI_K, yon=-1, kol=0.03 * (1 + SIN(f)))
 
     _spr2(290, DW, DH, kare, yk)
 
@@ -735,16 +760,16 @@ def sahne297():
     K = s_kisi(yk)
 
     def yeniceriler(img, z):
-        for x in (326, 342):
+        for x in (322, 336):
             figur(img, kisi, PAY + x, duz(RIHTIM + 6), round(0.8 * K, 1), **YENICERI, yon=-1)
 
-    _liman_orta(297, ("#4e5e76", "#44546c", "#3a4a62", "#324058"), "#b8b8c0", 230, 2.0, "#e8e4d8", ekle=yeniceriler)
+    _liman_orta(297, ("#4e5e76", "#44546c", "#3a4a62", "#324058"), "#b8b8c0", 208, 1.2, "#e8e4d8", ekle=yeniceriler)
     _bos_on(297)
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kisi, 212, z, round(0.92 * K, 1), **SAID, yon=-1, adim=(f + 0.5) % 1)
-        figur(t, kisi, 172, z, K, **ELCI_K, yon=-1, adim=f)
+        figur(t, kisi, 238, z, round(0.92 * K, 1), **SAID, yon=-1, adim=(f + 0.5) % 1)
+        figur(t, kisi, 196, z, K, **ELCI_K, yon=-1, adim=f)
 
     _spr2(297, DW, DH, kare, yk)
 
@@ -964,7 +989,7 @@ def sahne306():
         arka = duz(z[0] - 14, IW)
         ust = figur(t, sahne_tahtasi, 238, arka, round(0.42 * K, 1), f=f)
         zt = duz(ust, IW)
-        figur(t, kisi, 220, zt, round(0.85 * K, 1), govde="#e8d8f0", bas="tac", bas_renk="#e0b040", sakal=None,
+        figur(t, kisi, 220, zt, round(0.85 * K, 1), govde="#e8d8f0", bas="sorguc", bas_renk="#8a2a6a", sakal=None,
               yon=1, kol=0.45 + 0.25 * SIN(f), kadin=True, pelerin="#8a2a6a")       # şarkıcı
         figur(t, kisi, 262, zt, round(0.85 * K, 1), govde="#2a5a8a", bas="migfer", bas_renk="#c8c8d0", sakal=None,
               yon=-1, kol=0.35 + 0.25 * SIN(f + 0.5), pelerin="#c8a040")            # kahraman kılığında şarkıcı
@@ -1093,7 +1118,7 @@ def sahne310():
         f = i / KARE
         figur(t, havuz, 165, z, round(0.48 * K, 1), faz=f)
         for j, x in enumerate((122, 136, 206, 220)):
-            figur(t, cicek, x, z, round(0.32 * K, 1), faz=(f + j * 0.3) % 1, renk="#d8302a", orta="#f4d24a")
+            figur(t, lale, x, z, round(0.32 * K, 1), faz=(f + j * 0.3) % 1, renk=("#d8302a", "#e8c040")[j % 2])
         figur(t, kisi, 262, z, K, **ELCI_K, yon=-1, kol=0.03 * (1 + SIN(f)))
 
     _spr2(310, DW, DH, kare, yk, esik=0.7)
@@ -1115,8 +1140,8 @@ def sahne311():
         kandil(t, 205, 0, f, zincir=_kz(yk))
         mumluk(t, 276, z, f, 3)
         figur(t, kisi, 150, z, K, **SEYHULISLAM, yon=1, silah="mektup", kol=0.35 + 0.05 * SIN(f))
-        figur(t, oturan, 240, z, so, yon=-1, el="kalem", minder="#8a2a2a", govde="#3a5a8a", bas="sarik",
-              bas_renk="#ece6d8", sakal="#2a1a12")
+        figur(t, oturan, 240, z, so, yon=-1, el="kalem", minder="#3a5a3a", govde="#7a4a22", bas="takke",
+              bas_renk="#2a5a3a", sakal="#c8c0b0")                                 # kâtip: kahverengi, takke, kır sakal
         rahle(t, 240 - int(4.2 * so), z[0], round(0.95 * so, 1))
 
     _spr2(311, IW, IH, kare, yk)
@@ -1210,7 +1235,7 @@ def sahne315():
         kandil(t, 205, 0, f, zincir=_kz(yk))
         figur(t, kitap_rafi, 148, z, round(0.6 * K, 1), dolu=False)
         mumluk(t, 178, z, f, 1)
-        figur(t, kisi, 255, z, K, **ELCI_K, yon=1, kol=0.02 * (1 + SIN(f)))
+        figur(t, kisi, 250, z, K, **ELCI_K, yon=-1, kol=0.02 * (1 + SIN(f)))
 
     _spr2(315, IW, IH, kare, yk)
 
@@ -1245,7 +1270,7 @@ def sahne316():
             duman(t, x, y, b, 316 + j, faz=(f + j * 0.3) % 1, renk="#3a2a2a", ruzgar=0.3)
         ates(t, 138, z, f, round(0.5 * K, 1))
         renk = ("#5a2a22", "#3a3a4a", "#6a4a2a")
-        bas = (("kalpak", "#3a2a1a"), ("sarik", "#c8c0b0"), ("kalpak", "#5a3a22"))
+        bas = (("kalpak", "#3a2a1a"), ("bork", "#7a2a1a"), ("kalpak", "#5a3a22"))
         for j, x in enumerate((168, 208, 248)):
             figur(t, kisi, x, z, K, govde=renk[j], bas=bas[j][0], bas_renk=bas[j][1],
                   sakal="#2a1a12", yon=1, adim=(f + j * 0.37) % 1, silah="mesale", kol=0.0)
