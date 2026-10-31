@@ -30,3 +30,24 @@ Bütün kartlar okunuyor. Havada duran bir nesne yok. Atlı karelerde binici eye
 ## Değerlendirme (sahibe gösterilecek)
 
 Video tarzına sadık: 64-bit piksel, konturlu figürler, gece sahnelerinde de (rasathane, 1730 isyanı) her şey okunuyor. 45 kartın hepsi net, Türkçe harfler doğru ve hiçbir kart figürlerin başına değmiyor. Atlı Paris karelerinde elçi ve Said atın sırtında, eyerde oturuyor; havada duran ya da zeminden kopan bir nesne yok. Göndermeden önce iki hata düzeltilmeli. Birincisi kapakta: gemi insandan küçük çizilmiş ve elçinin eli ona değiyor, bu yüzden oyuncak kayık gibi duruyor. İkincisi 1727 fermanı karesinde: fermanı yazan kâtip elçinin aynısı. Bunlarla birlikte kapak başlığı onaylı metne ("Çelebi Mehmed Paris'te") döndürülecek ve kenarda kesilen bir yeniçeri içeri alınacak; bu dört düzeltmeden sonra kareler yeniden kontrol edilecek.
+
+## 2. tur: UYGUN
+
+**Bakılan kareler:** `scratchpad/qc-celebi-mehmed-paris/r2/` içindeki kapak, 290 (ikinci kullanımı), 297, 310, 311, 316, 317 ve 318. Hepsi yeniden render edilmiş kareler; Read ile tek tek açıldı.
+
+**Dört zorunlu düzeltme yapılmış:**
+1. **Gemi (kapak, 290, 297):** Gemi artık ufka yakın suda duruyor. Gövde altı y≈990'da, rıhtım kenarı y≈1130'da. Gemi yaklaşık 240 px, elçi 570 px; ölçek "uzak gemi" diye okunuyor. Elçinin uzanan kolu (x≈515, 297'de x≈385) ile geminin kıçı (x≈285-290) arasında açık boşluk var, hiçbir yerde örtüşme yok.
+2. **Kâtip (311):** Kahverengi kaftan, yeşil takke, kır sakal ve yeşil minder var. Mavi kaftanlı, beyaz kavuklu, koyu sakallı elçiden açıkça ayrılıyor. Soldaki beyaz giysili, fetvayı tutan figür de ayrı bir kimlik olarak okunuyor.
+3. **Kapak başlığı:** "Çelebi Mehmed / Paris'te" beyaz büyük başlık, altında altın renkte "Bak, öğren, anlat" var. Yazı okunuyor, Türkçe harfler doğru ve figürlerin başlarına değmiyor (en alt satır y≈620, kavuklar y≈735'ten başlıyor).
+4. **Yeniçeriler (297):** Çiftin sağ kenarı x≈995'te, kadrajın içinde, kesik yok. Ben bu tek kareye baktım; grafikerin 24 karelik kenar raporu kameranın son karesini de temiz gösteriyor.
+
+**Yeni sorun yok:**
+- 310: Yeni `lale` figürü kadeh biçimli ve lale gibi okunuyor. Laleler havuzun yanında zemine basıyor (y≈1300).
+- 316: Ortadaki isyancının başında kırmızı börk var, elçiyle karışmıyor. Ateş ve figürler zemine oturuyor.
+- 317: Boş taht ile yere düşmüş kavuk ve minder zemine oturuyor. Kart okunuyor ve kırmızı vurgu yerinde.
+- 318: Ön plandaki lale sırası lale gibi okunuyor, elçi de zemine basıyor.
+Hiçbir karede havada duran nesne, kesilen yazı ya da yazı bandıyla çakışma yok.
+
+**İyileştirme önerileri (red nedeni değil):**
+- 317: Düşen kavuk tahtın oturağının yarısı kadar büyük. Biraz küçültülürse ölçek daha inandırıcı olur.
+- 318: Lalelerin "solgun" hâli renkte belli oluyor ama sarkma pek seçilmiyor. Çanakları biraz daha eğmek "kapanan dönem" duygusunu güçlendirir.
