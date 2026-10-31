@@ -363,9 +363,10 @@ def portekiz_haritasi(img, x, zemin, s=1.0, tohum=1):
     y = zemin_y(zemin, x, w)
     d = _sayfa(img, x - w // 2, y - h, w, h - 1, "#e8dcc0")
     cx, cy = x + rnd.randint(-2, 2), y - h // 2
-    for k in range(8):
+    for k in range(8):                                                   # pusula hatları kâğıdın içinde kalır
         a = k * math.pi / 4
-        d.line([cx, cy, cx + math.cos(a) * w, cy + math.sin(a) * w], fill=hex2("#a85a44", 90))
+        L = min((w / 2 - 2) / max(abs(math.cos(a)), 1e-3), (h / 2 - 2) / max(abs(math.sin(a)), 1e-3))
+        d.line([cx, cy, cx + math.cos(a) * L, cy + math.sin(a) * L], fill=hex2("#a85a44", 90))
     pts = [(x - w // 2 + 2 + k * 3, y - h + 3 + rnd.randint(0, 6)) for k in range(int(w / 3))]
     d.line(pts, fill=hex2("#4a2a1a"))
     d.rectangle([x - w // 2 + 1, y - h + 1, x + w // 2 - 1, y - h + 2], fill=hex2("#5a8ab0"))
@@ -699,7 +700,7 @@ def _gemi_denetimi(s, su, w, h, x=None):
             raise RuntimeError(f"Gemi suya ulaşmıyor: alt={_bb(g)[3]}, su_y={su}")
 
 
-def _su(t, y0, renkler, f, tohum=1, dalga=1.0):
+def _su(t, y0, renkler, f, tohum=1, dalga=1.0, kopuk=True):
     """Sprite içindeki deniz: y0'dan aşağısı su bantları; dalga çizgileri f ile yana kayar (dikişsiz döngü)."""
     d = ImageDraw.Draw(t)
     for y in range(y0, t.height):
@@ -710,7 +711,7 @@ def _su(t, y0, renkler, f, tohum=1, dalga=1.0):
         kay = int(SIN(f + x / 97) * 3 * dalga)
         for k in range(rnd.randint(3, 7)):
             piksel(t, x + k + kay, y, hex2("#c8e0f0", 110))
-    for x in range(0, t.width, 2):                                       # su yüzeyindeki köpük çizgisi
+    for x in range(0, t.width if kopuk else 0, 2):                       # su yüzeyindeki köpük çizgisi
         if _esik(x + int(f * 24), y0) < 0.5:
             piksel(t, x, y0, hex2("#e8f4fc", 170))
 
@@ -813,8 +814,8 @@ def _kahire_avlu(no, gok, ova, orta_renk, kenar, ev="#c8a878", tas="#d8cdb8", ku
 
     def ekle(img, z):
         figur(img, koy_evleri, PAY + 20, PAY + 520, duz(586), 2.2, tohum=no, kerpic=ev)
-        figur(img, osmanli_camii, PAY + 360, duz(584), 1.3, tas=tas, kubbe=kubbe)
-        figur(img, osmanli_camii, PAY + 150, duz(586), 1.0, tas=tas, kubbe=kubbe, minare=False)
+        figur(img, osmanli_camii, PAY + 336, duz(586), 0.9, tas=tas, kubbe=kubbe, minare=False)
+        figur(img, osmanli_camii, PAY + 241, duz(584), 1.3, tas=tas, kubbe=kubbe)       # minare iki figürün arasında
         d = ImageDraw.Draw(img)                                             # avlu duvarı: alçak, düz zemine
         d.rectangle([0, 596, GW, 606], fill=hex2(_ac(ev, -0.2)))
         d.line([0, 596, GW, 596], fill=hex2(_ac(ev, 0.15)))
@@ -854,7 +855,7 @@ def sahne352():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, fener, 168, z, round(0.42 * K, 1), f=f)
+        figur(t, fener, 168, z, round(0.6 * K, 1), f=f)
 
     _spr2(352, DW, DH, kare, yk, esik=0.5)
 
@@ -866,7 +867,7 @@ def sahne331():
     """'Harita bugün Topkapı'da.': müze odası, çini kuşaklı duvar; ortada eğik camlı vitrin, içinde parşömen. Solda ve
     sağda bugünün iki ziyaretçisi vitrine bakar."""
     ic_mekan(331, duvar=("#2a3a3a", "#344a48", "#425a56"), kemer="#1a2a28", cini="#2a6a9a",
-             pencere=("#8ab0c8", "#c8dcec"), zemin_renk=("#6a5a4a", "#5a4c3e", "#4a3e32"), isik="#f8e0a0", hali=False)
+             pencere=("#8ab0c8", "#90b4ca"), zemin_renk=("#6a5a4a", "#5a4c3e", "#4a3e32"), isik="#f8e0a0", hali=False)
     yk = 2.8
     K = s_kisi(yk)
 
@@ -904,7 +905,7 @@ def sahne332():
     (kızıl kaftan) kıyıyı gösterir, genç Piri yanında; uzakta İspanya kıyısında kale ve bir kadırga daha."""
     _sahne_gok(332, ["#4a7ab8", "#6a94c8", "#8aacd4", "#aac4dc", "#c8d8e0"], [(120, 404, 22), (400, 410, 20)],
                ("#ffffff", "#eef2f6", "#c8d4e0"))
-    _deniz_uzak(332, None, ["#3a6a9a", "#346292", "#2e5a88"], ["#9a8a6a", "#8a7a5e"], kale=(300, 380, 0.8, "#c8b898"),
+    _deniz_uzak(332, None, ["#3a6a9a", "#346292", "#2e5a88"], ["#9a8a6a", "#8a7a5e"], kale=(300, 360, 0.55, "#c8b898"),
                 gemiler=[(160, 0.8, YELKEN, False)])
     _guverte(332)
     _bos_on(332)
@@ -916,7 +917,7 @@ def sahne332():
         figur(t, halat, 122, z, round(0.32 * K, 1))
         figur(t, fici, 286, z, round(0.4 * K, 1))
         figur(t, kisi, 168, z, round(0.95 * K, 1), **PIRI_GENC, yon=1, kol=0.03 * (1 + SIN(f)))
-        figur(t, kisi, 234, z, K, **KEMAL, yon=-1, silah="kilic", kol=0.25 + 0.05 * SIN(f))
+        figur(t, kisi, 236, z, K, **KEMAL, yon=1, kol=0.55 + 0.05 * SIN(f))           # kıyıyı gösterir
 
     _spr2(332, DW, DH, kare, yk)
 
@@ -944,7 +945,7 @@ def _deniz_sprite(no, gemiler, renkler, yk, esik=0.5, kopuk=1.0, ekle=None):
                 portekiz_gemisi(t, x, su, s_, yon, ff)
             else:
                 figur(t, gemi, x, su, s_, yon, ff, govde=GOVDE, yelken=yelken, hac=False)
-            _su(t, su, renkler, f, tohum=no + j, dalga=kopuk)
+            _su(t, su, renkler, f, tohum=no + j, dalga=kopuk, kopuk=j == len(sirali) - 1)
         if ekle:
             ekle(t, f, "on")
 
@@ -1006,8 +1007,8 @@ def sahne335():
         f = i / KARE
         kandil(t, 262, 0, f, zincir=_kz(yk))
         mumluk(t, 292, z, f, 2)
-        figur(t, oturan, 160, z, so, yon=1, el="kalem", minder="#8a2a2a", **{k: v for k, v in PIRI_1513.items()})
-        figur(t, harita_masasi, 222, z, round(0.85 * so, 1))
+        figur(t, oturan, 168, z, so, yon=1, el="kalem", minder="#8a2a2a", **PIRI_1513)
+        figur(t, harita_masasi, 168 + int(10.5 * so), z, round(0.5 * so, 1))
 
     _spr2(335, IW, IH, kare, yk)
 
@@ -1033,9 +1034,9 @@ def _yakin_masa(no, kaynak=1, el=False, vurgu=None, renk=PARSOMEN, tur="ahsap", 
             kolomb_haritasi(t, 268, duz(292, SW), 1.3, f=f)
         n = figur(t, parsomen_harita, px, z, ps, renk=renk, vurgu=vurgu, f=f, kontur="#2a1a10")
         if el:
-            hokka(t, 232, duz(298, SW), 1.0)
+            hokka(t, 234, duz(296, SW), 1.6)
             ux, uy = n["not"]
-            yazan_el(t, (ux + 2, uy + 8), 1.0, f, kol=kalem_renk)
+            yazan_el(t, (ux + 2, uy + 8), 1.6, f, kol=kalem_renk)
 
     _spr2(no, SW, SH, kare, yk, esik=esik, taban=IT, orta_bant=False)
 
@@ -1085,7 +1086,7 @@ def sahne339():
                ("#fff8ec", "#f4e4cc", "#d8c0a0"))
     img = uzak(339, ["#c8a878", "#bc9c6c"], ["#d0b080", "#c4a474"], ["#d8bc88", "#ccb07c", "#c0a470"],
                dag_y=(470, 484), tepe_y=486, ova_y=494)
-    for x, s_ in ((96, 1.2), (130, 0.8), (440, 1.0)):
+    for x, s_ in ((222, 1.2), (262, 0.8), (340, 1.0)):
         piramit(img, x, duz(494, W), s_)
     kaydet(img, "sahne339-uzak.png")
 

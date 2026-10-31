@@ -74,16 +74,15 @@ Kapanış: "Piksel Tarih / @pikseltarihim", "Yorumlara yaz, arkadaşına gönder
 | `kursu` | Konuşma kürsüsü (Akademi) | ayaklı taban zeminde | 151 |
 | `cadir` | Gezgin çadırı (A biçimi, 3/4), gergi ipleri ve kazıklar | etekler, kazıklar zeminde | 143 (orta plan) |
 | `ipek_sunan` | Elinden rüzgârda kıpırdayan ipek kumaş sarkan elçi (`kisi` + kumaş) | `kisi` gibi | 155 |
+| `fotograf_makinesi`, `basortulu`, `asker_1709`, `cin_suru` | KK revizyonunda eklendi (aşağıya bakın) | sehpa ayakları, ayaklar, sur tabanı zeminde | 144, 150, 153, 154, 140, 155 |
 
 Bilinçli kararlar:
 - Yazıt taşı gerçekte insan boyunun ~2 katı. Figürlerin kadrajın %30'u olması ve yazının üst bantta durması birlikte
   istenince taş ve insan aynı sırada gerçek oranla sığmıyor. Çözüm: insanlı sahnelerde taş **arka sırada** (zemini
   10-16 px yukarıda) duruyor, yani hem küçük hem yüksek; taş tek başına olduğunda öne geliyor ve kadrajın ~%35-38'i.
 - Bilge Kağan'ın ölümü (136) "Çin kaynaklarına göre zehirlenir" dendiği için zehir gösterilmedi: yatan kağan, başucunda hizmetkâr.
-- Poltava'da (140) askerlerin tüfeği `sopa` ile omuzda; mızrak yazı bandına uzanacağı için kullanılmadı. Şapkalar
-  kütüphanedeki `sapka` (tam üç köşe şapka yok).
-- Fin seferi (144, 150) için `kisi(silah="kamera")` tripodlu makine kullanıldı (çizimi 1941 film kamerası için yapılmıştı;
-  1890 levhalı fotoğraf makinesine yakın okunuyor).
+- Poltava (140) ve Fin seferi (144, 150) ilk çizimde kütüphanedeki `sapka` ve `kisi(silah="kamera")` ile yapılmıştı;
+  KK revizyonunda dönemine uygun yeni figürlerle değiştirildi (üç köşeli şapkalı `asker_1709`, levhalı `fotograf_makinesi`).
 - Tonyukuk taşları kaplumbağasız iki dikili taş olarak çizildi (gerçekte de kaidesiz iki taş).
 
 ## Grafiker öz denetimi
@@ -129,3 +128,35 @@ kart kutularıyla birlikte inceledim.
 - 155'te Çin şehri, 136'da kilim kadraj kenarından taşar: bunlar arka plan dokusu, figür değil.
 - Taşın üstündeki işaretler Göktürk harflerine benzeyen bir desendir, gerçek bir metin okunmaz.
 - Render ve ses hizalama bu teslimde yapılmadı (ses dosyası henüz yok; Root.tsx kaydı kod tarafında).
+
+## Görsel KK revizyonu (6-kalite-gorsel.md, 5 zorunlu düzeltme + iyileştirmeler)
+
+`OrhunYazitlari.tsx`'teki `sure` değerlerine ve kart metinlerine dokunulmadı (sese hizalı); TSX'te yalnız kapak yorumu düzeltildi.
+Bütün değişiklikler `video/piksel/orhun_yazitlari.py` içinde; ilgili sahneler yeniden çizildi, otomatik denetimler geçti.
+
+| # | Sahne | Sorun | Yapılan |
+|---|---|---|---|
+| 1 | 136 | Yatan Bilge Kağan çocuk boyunda (ölçek 0,58·K), sakal yana gaga gibi | Yatan figür ayaktaki hizmetkârla aynı ölçekte (K): baş aynı boyda, sedir boyu buna göre. Sakal çizilmedi (sırtüstü yatan). Hizmetkâr yatağın arkasında, başucunda (arka sıra, zemin −12). Kadraja sığmayan şamdan çıkarıldı; tavanda kandil kaldı |
+| 2 | 150 | Taş makinenin arkasında kalıyor, objektif kadraj dışına bakıyor | Yeni düzen: solda Radloff (taşa döner), ortada taş, açıkta (arka sıra), sağında levhalı makine, objektif taşa dönük; sağda Fin fotoğrafçı ve Rus subayı. Harfli yüzü hiçbir şey örtmüyor |
+| 3 | 144, 150 | İki makaralı sinema kamerası (1941 çizimi) 1890 için yanlış | Yeni figür `fotograf_makinesi`: üç ayaklı ahşap sehpa (ayaklar zeminde), ahşap kutu, öne uzanan körük, pirinç objektif, arkada sarkan siyah örtü. Fotoğrafçı makinenin arkasında elini makineye uzatır. `kisi(silah="kamera")` artık kullanılmıyor |
+| 4 | 130 ve kapak | Uzaktaki ovoo uçan daire gibi, havada duruyor izlenimi | Ovoo 130'dan çıkarıldı (planda yoktu); orta plan boş bozkır |
+| 5 | 153 (ve 154) | Kadının başörtüsü göz satırını örtüyor, yüz boş | Yeni figür `basortulu`: örtü yalnız alnı ve saçı örter, yüzü iki yandan çerçeveler, göz pikseli açık. 154'teki kadın da aynı figürle çizildi |
+
+İyileştirmeler:
+- 134: at başı yukarıda (bas 0,15), köşeli otlayan baş yerine okunur profil.
+- 130, 137, 152: çiçekler 0,32·K'den 0,15·K'ye (insan ölçeğinde kır çiçeği).
+- 140: yeni figür `asker_1709`: üç köşeli şapka (altın kenar), tüfek omuzda çapraz; esir Strahlenberg (mavi, silahsız) elleri sırtında bağlı, arkadaki Rus askerinin elindeki iple yürür.
+- 155: Avrupa şatosu gibi okunan `sehir` yerine yeni figür `cin_suru`: sıkıştırılmış toprak sur, mazgallar, kırmızı direkli iki katlı, kıvrık saçaklı kapı köşkü, insan boyundan büyük kapı; iki figürün arasında görünür.
+- 149, 158: masa mumu masanın içine alındı (214).
+- 151: ak sakallı dinleyici koyu sakallı yapıldı (Radloff sanılmasın).
+- 158: Petersburg odası penceresiz, yeşil duvarlı (Kopenhag odasından ayrılsın).
+- TSX kapak yorumu düzeltildi: logo/@pikseltarihim bandı yalnız kapanış kartında, kapakta etiket ve başlık var.
+
+Öz denetim (revizyon): 136, 140, 144, 150, 153, 155'in sprite karelerini (0 ve 12) büyütüp açtım; TSX dönüşümünü taklit eden
+önizlemeyle 130, 134, 136, 140, 144, 149, 150, 153, 155, 158'e sahne sonu yakınlaşmasında, kart kutularıyla baktım. Kenarda
+kesilme, yazı bandına giren nesne ve havada duran nesne yok (otomatik denetimler: taban, yazı bandı, kadraj, orta plan).
+`npx tsc --noEmit -p .` temiz. Önceki turda kare düşmeyen sahneler (132, 133, 135, 138, 139, 142, 143, 145, 147, 148, 152, 154,
+157, 159, 160, 161) bu revizyonda değişmedi (154 yalnız kadının yüzü); yeniden kontrolde bunlardan da kare alınması önerilir.
+
+Kalan bilinen sınırlar: 136'da sedir kadrajın büyük bölümünü kaplıyor (aynı ölçek kuralının sonucu); 147'nin pencerelerinde
+`ic_mekan` kar taneleri var; 149'da Thomsen hâlâ ayakta okuyor (albüme eğilme pozu kütüphanede yok).

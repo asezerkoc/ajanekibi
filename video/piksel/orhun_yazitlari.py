@@ -814,7 +814,7 @@ def sahne135():
 
 def sahne136():
     """Kart 10: Bilge Kağan'ın otağı, gece. Kağan sedirde yatar (nefes yavaşlar); yatağın arkasında, başucunda bir
-    hizmetkâr; şamdan ve kandil."""
+    hizmetkâr; tavanda kandil."""
     _oda(136, duvar=("#3a1614", "#4a1e1a", "#5a2620"), cini="#c8a040",
          zemin_renk=("#5a3a2a", "#4a3022", "#3e281c"), kemer="#2a100c", hali=True)
     yk = 2.8
@@ -826,7 +826,6 @@ def sahne136():
         # KK revizyonu: yatan kağan ayaktakiyle AYNI ölçekte (K); hizmetkâr yatağın arkasında (arka sıra), başucunda
         figur(t, kisi, 150, duz(z[0] - 12, t.width), round(0.94 * K, 1), govde="#2a2a3a", bas="bork", bas_renk="#2a1a14",
               yon=1, kol=0.02, kemer=None)
-        mumluk(t, 278, z, f, 3)
         figur(t, yatan, 200, z, K, govde="#7a1e22", bas=None, sakal=None, yon=1, ortu="#c8b890",
               nefes=0.5 + 0.5 * SIN(f))      # sırtüstü: sakal yana uzanmasın diye çizilmez
 
@@ -1090,13 +1089,13 @@ def sahne150():
     def kare(t, z, i):
         f = i / KARE
         # KK revizyonu: taş solda ve açıkta; levhalı makine taşın sağında, objektif taşa dönük
-        figur(t, avrupali, 122, z, K, govde="#3a3a46", sac="#e8e4dc", sakal="#e8e4dc", bas="kasket",
+        figur(t, avrupali, 128, z, K, govde="#3a3a46", sac="#e8e4dc", sakal="#e8e4dc", bas="kasket",
               bas_renk="#3a3a40", yon=1, silah="mektup", kol=0.3 + 0.04 * SIN(f))   # Radloff (solda, taşa döner)
-        tas(t, 172, duz(z[0] - 14, t.width), st, tohum=1)
-        figur(t, fotograf_makinesi, 222, z, K, yon=-1)                            # objektif taşa dönük
-        figur(t, avrupali, 250, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
+        tas(t, 175, duz(z[0] - 14, t.width), st, tohum=1)
+        figur(t, fotograf_makinesi, 221, z, K, yon=-1)                            # objektif taşa dönük
+        figur(t, avrupali, 246, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
               bas_renk="#3a3a2a", yon=-1, kol=0.25)                               # Fin fotoğrafçı
-        figur(t, avrupali, 280, z, K, govde="#4a5a4a", sac="#3a2a1a", bas="kalpak", bas_renk="#3a2a1a", yon=-1,
+        figur(t, avrupali, 272, z, K, govde="#4a5a4a", sac="#3a2a1a", bas="kalpak", bas_renk="#3a2a1a", yon=-1,
               silah="sopa")                                                       # Rus subayı
 
     _bitir(150, kare, yk, esik=0.75)
@@ -1183,7 +1182,7 @@ def sahne155():
     K = _K(155, yk)
 
     def ekle(img, z):
-        figur(img, cin_suru, PAY + 230, PAY + 440, duz(588), round(0.42 * K, 1))   # KK: kıvrık saçaklı Çin kapısı
+        figur(img, cin_suru, PAY + 160, PAY + 350, duz(588), round(0.42 * K, 1))   # KK: kıvrık saçaklı Çin kapısı
 
     _orta_kontrol(155, ekle, 270, 632, yk, YAZI_ALT[155])
     _dis(155, "aksam", ekle=ekle)

@@ -6,7 +6,8 @@ import { ALTIN, KIZIL, Seri, SeriVideo, T_FPS, seriSure } from "./TimurSeri";
    Kartlar 4-kalite-metin.md "Nihai ekran kartları" ile bire bir (42 kart, harfi harfine).
    Süreler tahmini (seslendirme ≈240 sn); ses/hizala_seri.py sese göre yeniden yazar. */
 // Kapak: ajans sahibi görsel vermedi. Kapak, sahne 130 katmanlarıyla yapılan ilk Bolum'dür (2 sn, sessiz);
-// logo ve @pikseltarihim alt bandını kapak bileşeni ekler. yaziY 240 olan sahnelerde kart 4-5 satırdır:
+// ekranda etiket (PİKSEL TARİHİM · ORHUN YAZITLARI) ve başlık durur; logo/@pikseltarihim bandı yalnız kapanış
+// kartındadır (seri.kapak tanımlı değil). yaziY 240 olan sahnelerde kart 4-5 satırdır:
 // yazı yukarı alınır, figürler yazının altında kalır (orhun_yazitlari.py YAZI_ALT denetimi).
 export const ORHUN_SERI: Seri = {
   etiket: "PİKSEL TARİHİM · ORHUN YAZITLARI",
