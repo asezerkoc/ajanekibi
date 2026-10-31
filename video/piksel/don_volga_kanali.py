@@ -1158,6 +1158,7 @@ def _su_orta(img, y0, renkler=("#4a6a8a", "#42627e", "#3a5a74", "#325268")):
 
 
 def _s_atli(no, yk, taban, ornek=TATAR, geri=0):
+    ornek = {k: v for k, v in ornek.items() if k != "kemer"}
     return min(s_atli(yk, 0.30), _sigdir(no, lambda t, s, z: figur(t, atli, 280, z, s, 1, dur=True, **ornek), taban, geri))
 
 
@@ -1203,13 +1204,13 @@ def sahne259():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, atli, 158, z, sa, -1, f, "#5a3a24", "#1a120c", adim=0.4, silah="mizrak" if False else None, **NOGAY)
-        figur(t, kisi, 262, z, K, **MALTSEV, yon=-1, adim=(f * 2) % 1, kol=0.12)
+        figur(t, atli, 180, z, sa, -1, f, "#5a3a24", "#1a120c", adim=0.4, silah="mizrak" if False else None, **NOGAY)
+        figur(t, kisi, 270, z, K, **MALTSEV, yon=-1, adim=(f * 2) % 1, kol=0.12)
         d = ImageDraw.Draw(t)
         ust = z[0] - int(11 * K)
-        el = (262 - int(3.5 * K), ust - int(4 * K * 0.12) + int(1 * K))
-        d.line([(186, z[0] - int(0.95 * sa * 14)), el], fill=hex2("#c8aa78"), width=_u(0.4, K))
-        hx, hy = 262 - int(0.8 * K), z[0] - int(14.6 * K)
+        el = (270 - int(3.5 * K), ust - int(4 * K * 0.12) + int(1 * K))
+        d.line([(208, z[0] - int(0.95 * sa * 14)), el], fill=hex2("#c8aa78"), width=_u(0.4, K))
+        hx, hy = 270 - int(0.8 * K), z[0] - int(14.6 * K)
         d.rectangle([hx - int(0.6 * K), hy, hx + int(0.2 * K), hy + int(0.7 * K)], fill=hex2("#a01a14"))
 
     _spr(259, DW, DH, kare, yk, esik=0.7)
@@ -1225,7 +1226,7 @@ def sahne260():
         _su_orta(img, 552)
         d = ImageDraw.Draw(img)
         d.rectangle([0, 590, img.width, img.height], fill=hex2("#7a5a3a"))                     # güverte
-        for k, yy in enumerate(range(594, img.height, 6 + k)):
+        for k, yy in enumerate(range(594, img.height, 7)):
             d.line([0, yy, img.width, yy], fill=hex2("#5e442c"))
         for xx in range(0, img.width, 22):                                                     # küpeşte direkleri
             d.rectangle([xx, 578, xx + 3, 592], fill=hex2("#5a3a22"))
@@ -1288,9 +1289,9 @@ def sahne262():
     def kare(t, z, i):
         f = i / KARE
         arka = duz(z[0] - 12, t.width)
-        for x in (150, 262):
+        for x in (168, 236):
             figur(t, atli, x, arka, round(0.86 * sa, 1), 1, 0.0, "#5a3a24", "#1a120c", dur=True, **TATAR)
-        figur(t, atli, 206, z, sa, 1, 0.0, "#e0d8c8", "#a89888", dur=True, kol=0.02 * (1 + SIN(f)), **HAN)
+        figur(t, atli, 200, z, sa, 1, 0.0, "#e0d8c8", "#a89888", dur=True, kol=0.02 * (1 + SIN(f)), **HAN)
 
     _spr(262, DW, DH, kare, yk, esik=0.7)
 
@@ -1309,7 +1310,7 @@ def sahne263():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, atli, 160, z, sa, 1, 0.0, "#e0d8c8", "#a89888", dur=True, kol=0.02 * (1 + SIN(f)), **HAN)
+        figur(t, atli, 174, z, sa, 1, 0.0, "#e0d8c8", "#a89888", dur=True, kol=0.02 * (1 + SIN(f)), **HAN)
 
     _spr(263, DW, DH, kare, yk, esik=0.7)
 
@@ -1410,11 +1411,11 @@ def sahne267():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, okuz, 132, z, round(0.55 * K, 1), -1, "#5a4030", 0.0)
-        figur(t, top_, 196, z, round(0.42 * K, 1), -1)
+        figur(t, okuz, 152, z, round(0.55 * K, 1), -1, "#5a4030", 0.0)
+        figur(t, top_, 206, z, round(0.42 * K, 1), -1)
         d = ImageDraw.Draw(t)
-        d.line([(150, z[0] - int(0.55 * K * 5)), (172, z[0] - int(0.42 * K * 3))], fill=hex2("#8a6a44"), width=_u(0.35, K))
-        figur(t, kisi, 262, z, K, **KASIM, yon=-1, kol=0.55 + 0.04 * SIN(f))
+        d.line([(170, z[0] - int(0.55 * K * 5)), (184, z[0] - int(0.42 * K * 3))], fill=hex2("#8a6a44"), width=_u(0.35, K))
+        figur(t, kisi, 258, z, K, **KASIM, yon=-1, kol=0.55 + 0.04 * SIN(f))
 
     _spr(267, DW, DH, kare, yk, esik=0.7)
 
@@ -1444,10 +1445,10 @@ def sahne269():
     yk = 2.8
 
     def ekle(img, z):
-        figur(img, harabe, PAY + 176, PAY + 250, duz(586, img.width), 1.3, tohum=1)
+        figur(img, harabe, PAY + 186, PAY + 256, duz(586, img.width), 1.3, tohum=1)
         for x in (PAY + 290, PAY + 336):
             figur(img, kon_cadir, x, duz(586, img.width), 1.2)
-    _gorunur(269, [176, 350], 270, 270, yk, pay=0)
+    _gorunur(269, [186, 350], 270, 270, yk, pay=0)
     _dis(269, "aksam", ekle=ekle)
     K = _K(269, yk, DT, ornek=AZAP[0])
 
@@ -1511,7 +1512,7 @@ def sahne272():
         for x in (PAY + 170, PAY + 214, PAY + 380):
             figur(img, kon_cadir, x, duz(586, img.width), 1.15)
     _dis(272, "gri", ekle=ekle)
-    sa = _s_atli(272, yk, DT, ornek=AZAP[0])
+    sa = _s_atli(272, yk, DT, ornek=NOGAY)
 
     def kare(t, z, i):
         f = i / KARE
@@ -1633,11 +1634,11 @@ def sahne277():
         d.line([0, 566, PAY + 230, 566], fill=hex2("#8a8470"))
         for xx in range(PAY + 230, PAY + 254, 2):
             piksel(img, xx, 566 + (xx - PAY - 230) * 20 // 22, hex2("#e8f0f0"))
-        figur(img, anadolu_kalesi, PAY + 164, PAY + 222, duz(566, img.width), 1.1)
+        figur(img, anadolu_kalesi, PAY + 172, PAY + 226, duz(566, img.width), 1.1)
         figur(img, kadirga, PAY + 300, 574, 0.6, 1, 0.3, hasar=1, tayfa=False)
         d.rectangle([PAY + 352, 566, PAY + 360, 574], fill=hex2("#5a4a3a"))
         duman(img, PAY + 356, 566, 34, 277, faz=0.4, renk="#2e2a28", ruzgar=0.3, genislik=1.6)
-    _gorunur(277, [164, 360], 270, 270, yk, pay=-8)
+    _gorunur(277, [172, 360], 270, 270, yk, pay=-8)
     _dis(277, "firtina", ekle=ekle, orta_ust=(552, 556), on_=False)
     sg = min(2.4, _sigdir(277, lambda t, s, z: figur(t, kadirga, 280, z[0] - 30, s, 1, 0.0, hasar=1), G_T - 30))
 
@@ -1696,10 +1697,9 @@ def sahne280():
 
     def kare(t, z, i):
         f = i / KARE
-        arka = duz(z[0] - 16, t.width)
-        figur(t, sapli_kazma, 206, arka, round(0.75 * K, 1), -1)
-        for x, ph in ((150, 0.0), (186, 0.3), (246, 0.6)):
-            figur(t, cicek, x, duz(z[0] - 15, t.width), round(0.3 * K, 1), (f + ph) % 1)
+        figur(t, sapli_kazma, 206, z, round(0.75 * K, 1), -1)
+        for x, ph in ((150, 0.0), (180, 0.3), (246, 0.6)):
+            figur(t, cicek, x, z, round(0.3 * K, 1), (f + ph) % 1)
 
     _spr(280, DW, 230, kare, yk, esik=0.7)
 
