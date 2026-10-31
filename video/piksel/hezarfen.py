@@ -1295,14 +1295,14 @@ def sahne381():
     _orta_deniz(381, 552, ("#3e628a", "#34567c", "#2c4c70", "#264466"))
     _on_bos(381)
     p = P[381]
-    s = s_kisi(p.yk, 0.30)
+    s = s_kisi(p.yk, 0.28)            # açık kanatlar kadraja sığsın diye (gövde ölçeği diğer sahnelere yakın)
     su = p.h - 14
 
     def kare(t, z, i):
         f = i / KARE
         _su_bandi(t, su, 552, p.taban - p.h, ("#3e628a", "#34567c", "#2c4c70", "#264466"))   # orta plandaki denizle aynı
         ayak = su - 36 + int(round(3 * SIN(f)))
-        figur(t, kanatli, p.w // 2, duz(ayak, t.width), s, yon=1, acik=0.92, cirp=0.25 * SIN(f), havada=True)
+        figur(t, kanatli, p.w // 2, duz(ayak, t.width), s, yon=1, acik=0.85, cirp=0.25 * SIN(f), havada=True)
 
     _cek(381, kare, esik=0.5)
 

@@ -139,3 +139,23 @@ Yeni figürler yalnızca `celebi_mehmed_paris.py` içinde, `ImageDraw`, `piksel`
 - Sahne sayısı 32, aralığın üst sınırında; 241 sn seslendirme için sahne başına ortalama 7,5 sn düşüyor. Kart 25, yazı odası 292'ye bilinçli bir dönüş olarak aynı sahneyi kullanıyor.
 
 **Kod tarafına not:** Render öncesi `Root.tsx` kaydı ve sesin `hizala_seri.py` ile hizalanması gerekiyor. Hizalama TSX'teki kart sürelerini değiştirdiği için `_bant_denetimi` her zaman güncel TSX'i okur; süreler bant hesabını etkilemez.
+
+## Görsel KK revizyonu (6-kalite-gorsel.md'deki 4 zorunlu düzeltme ve öneriler)
+
+TSX'teki ses hizalı `sure` değerlerine ve kart metinlerine dokunulmadı. TSX'te yalnızca üç şey değişti: kapak satırları, sahne 297'nin sprite x'i (`[290, 262]` → `[282, 262]`) ve kapak yorumu. Düzeltmelerin geri kalanı `celebi_mehmed_paris.py` içinde yapıldı.
+
+1. **Gemi ölçeği (290 ve kapağı, 297):**
+   - Gemi artık rıhtımın dibinde değil, ufka yakın uzak suda: su çizgisi 590 → 572, ölçek 2,0 → 1,2. Böylece uzak gemi olarak okunuyor. Direği yazı bandının altında kalıyor; bant denetimi kapak yazısıyla birlikte geçti.
+   - 290'da elçi 214'e, Said 270'e alındı. Elçinin uzanan kolu ile gemi arasında kapakta da açık bir boşluk var.
+   - 297'de gemi ızgara 208'de, figürler yerel 196 ve 238'de, kamera 282→262. Geminin kıçı hiçbir karede elçinin kolu ya da kavuğuyla örtüşmüyor; başlangıç ve son karelerde bakıldı.
+2. **Kâtip (311):** Kahverengi kaftan, yeşil takke, kır sakal ve yeşil minder; elçiden belirgin biçimde ayrılıyor (elçi: mavi kaftan, beyaz kavuk, koyu sakal, kırmızı minder).
+3. **Kapak:** Onaylı metin `["Çelebi Mehmed", "Paris'te", "Bak, öğren, anlat"]` kullanılıyor; boy 112, ALTIN, sure 2.0, `yaziY: 270`. Bant denetimi, yazının başlara değmediğini doğruladı. TSX'teki "logo bandını kapak bileşeni ekler" yorumu da kaldırıldı, çünkü doğru değildi.
+4. **Yeniçeriler (297):** Çift 326/342'den 322/336'ya alındı. Kenar raporu (24 kare, kameranın son yakınlığı) 297 için artık temiz.
+
+**Önerilerden yaptıklarım:**
+- **Yeni figür `lale`:** Dik sap, iki mızrak yaprak, kapalı ve uzun kadeh biçimli çanak. `solgun` parametresi sapı eğiyor, çanağı sarkıtıyor ve rengi solduruyor. 318'de solgun laleler, 310'da mesire lalesi olarak kullanıldı.
+- **316:** Ortadaki isyancının beyaz sarığı kırmızı börk oldu.
+- **306:** Şarkıcının tacı sorguçla değiştirildi; çocuk kralla karışmıyor.
+- **315:** Elçi sola, rafa ve muma dönük.
+
+**Denetim:** Değişen sahneler (290, 297, 306, 310, 311, 315, 316, 318) taban, kadraj ve yazı bandı denetimlerinden hatasız geçti. Kenar raporunda yalnızca daha önce bilerek bırakılan yapılar kaldı (291 ve 298'deki çitler, 306'daki sahne platformu). Önizleme karelerinden 290, kapak, 297 (ilk ve son kare), 311, 318, 310 ve 316'ya bakıldı. `npx tsc --noEmit -p .` temiz.
