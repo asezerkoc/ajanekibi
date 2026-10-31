@@ -268,10 +268,10 @@ export const TOULON_SERI: Seri = {
         { satirlar: ["Temmuz 1544. Lipari.", "Eolie Adaları'nda", "surlu bir katedral kenti."], sure: 4.64 }, // kart 41
       ],
     },
-    // Lipari yanar; esirler gemilere götürülür (uzaktan, şiddetsiz)
+    // Lipari yanar; esirler kıyıda sıra hâlinde bekler (uzaktan, şiddetsiz)
     {
       no: 480, yakin: 2.6, kamera: 6,
-      sprite: { w: 400, h: 220, fps: 12, x: [278, 262], taban: 632 },
+      sprite: { w: 400, h: 220, fps: 10, x: 270, taban: 632 },
       yazilar: [
         { satirlar: ["Şehir yağmalanıyor.", "Halk esir alınıyor.", "Kaç kişi?"], sure: 3.64, renk: KIZIL }, // kart 42
       ],
