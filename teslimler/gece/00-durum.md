@@ -18,7 +18,7 @@ Son: `teslimler/gece/00-yayin-paketi.md` (10 açıklama, etiket, sabit yorum).
 | 1 | orhun-yazitlari | ✅ | ✅ | ✅ | ✅ 3. tur | ✅ 4:07 |
 | 2 | matbaa-yasagi | ✅ | ✅ | ✅ | ✅ 2. tur | ✅ 4:33 |
 | 3 | raziye-sultan | ✅ | ✅ | ✅ | ✅ 3. tur | ✅ 4:18 |
-| 4 | don-volga-kanali | ✅ | ✅ | ✅ | ✅ 4. tur | ✅ 4:21 |
+| 4 | don-volga-kanali | ✅ | ✅ | ✅ | ✅ 4. tur | ✅ 4:20 |
 | 5 | celebi-mehmed-paris | ✅ | ✅ | ✅ | ✅ 2. tur | ✅ 4:08 |
 | 6 | piri-reis | ✅ | ✅ | ✅ | ✅ 3. tur | ✅ 4:30 |
 | 7 | hezarfen | ✅ | ✅ | ✅ | ✅ 2. tur | ✅ 3:55 |
