@@ -63,9 +63,13 @@ def _yuz_gozu(img, x, bas_y, s, yon, ten=None):
         gx = x + max(1, int(1.0 * s)) * yon
         d.rectangle([gx, bas_y, gx, bas_y + 1], fill=hex2("#120c0a"))
         return
+    r = max(2, int(1.7 * s))
     e = max(2, int(round(0.4 * s)))
+    ust, alt = bas_y - int(0.7 * s), bas_y + int(0.5 * s)
+    x0, x1 = sorted((x, x + (r - 1) * yon))
+    d.rectangle([x0, ust, x1, alt], fill=hex2(ten or TEN))
     gx = x + int(0.8 * s) * yon - (e - 1 if yon < 0 else 0)
-    _goz(img, gx, bas_y - int(0.5 * s), s)
+    _goz(img, gx, bas_y - int(0.4 * s), s)
 
 
 def kisi(img, x, zemin, s=1.0, *a, **kw):

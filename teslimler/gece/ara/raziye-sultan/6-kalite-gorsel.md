@@ -36,3 +36,44 @@ Tek bir nesne havada durmuyor, bütün yazılar okunuyor. Ama sahibin daha önce
 ## Değerlendirme (sahibe gösterilecek)
 
 Video tarz olarak tutarlı ve güçlü. Raziye'nin peçeli ve peçesiz hâli bütün sahnelerde tanınıyor. Fil, atlar, sikke, darphane ve mezar avlusu zemine oturuyor, havada duran nesne yok. Bütün kartlar okunaklı ve Türkçe karakterler doğru. Ancak dört karakterin yüzü gözsüz ya da okunmaz çizilmiş (Şah Terken, Altuniya, Yakut, filbaşı). Bu, daha önce reddettiğiniz bir hata. Ayrıca son sorudaki Avrupa tipi taç dönem dışı, Kaithal sahnesinde ordu görünmüyor ve zindan saray salonu gibi duruyor. Sekiz düzeltmenin hepsi küçük, figür ve sahne düzeyinde. Grafiker düzelttikten sonra aynı kareleri yeniden kontrol edeceğim.
+
+## 2. tur
+
+**Tarih:** 31 Ekim 2026 · **Girdiler:** `5-grafik.md` içindeki "Görsel KK revizyonu" bölümü, 22 sahne ortası karesi (`qc-raziye-sultan/r2/sahneNNN.png`). **Ek kareler (4, kendim render ettim):** 236'nın son karesi (10190), 220'nin başı (3840) ve sonu (4065), 237'nin başı (10215). Yüzleri 4 kat piksel yakınlaştırmasıyla kontrol ettim (227, 215, 218, 220, 234, 237).
+
+### Karar: UYGUN DEĞİL (revize_birimi: grafiker)
+
+İlk turdaki 8 düzeltmenin 8'i de yapılmış ve doğru. Ama bu turda iki yeni hata çıktı. 237'de Raziye'nin gövdesi bacaklarından kopuk, aradaki boşluktan zemin görünüyor. 220'de ise kartın öznesi Raziye sahnenin başından sonuna kalabalığın arkasında kalıyor ve yüzü görünmüyor. Sahibin "tek bir hatalı kare bile kabul değil" notu gereği iş geri dönüyor.
+
+### İlk turun 8 düzeltmesi: doğrulama
+
+| # | Sahne | Sonuç |
+|---|---|---|
+| 1 | 219, 221 Şah Terken | ✔ Örtü alından başlıyor. Göz akı ve bebek görünüyor. |
+| 2 | 219 çene altı | ✔ Saydam delik kapanmış, boyun örtüyle dolu. |
+| 3 | 235, 236, 237 Altuniya | ✔ Kalpak yukarıda. Üç sahnede de göz akı ve bebek var. |
+| 4 | 230 Yakut | ✔ Küçük sarık kaşa inmiyor. Koyu tende açık göz akı seçiliyor. Yakut ile atlı Raziye artık aynı ölçekte, emîrler ovanın gerisinde. |
+| 5 | 227 filbaşı | ✔ Yakınlaştırmada sarığın altında göz akı ve bebek görünüyor. |
+| 6 | 248 taç | ✔ Avrupa tacı kaldırılmış. Sehpada peçe ve külah yan yana, ikisi de sehpaya oturuyor. |
+| 7 | 236 ordu | ✔ Mızraklı atlılar ve yaya sırası sağ geride, at başının arkasında kalmıyor. **Son karede (10190)** ordunun tamamı kadrajda; en sağdaki atın kuyruğu x≈1050'de bitiyor, kesik figür yok. |
+| 8 | 222 zindan | ✔ Kesme taş duvar, parmaklıklı mazgal ve hücre kapısı var, saray penceresi yok. Fîrûz görünür saman yığınının üstünde oturuyor. 233'te de aynı katman kullanılmış, mazgal Raziye'nin baktığı tarafta. |
+
+Yalnızca göz ve boyun kuralı yüzünden yeniden çizilen kareler (210, 214, 215, 217, 218, 220, 238, 239) ve 216, 229, 234, 246: gözsüz yüz, havada nesne, yazı bandına giren nesne ya da dönem dışı öğe yok.
+
+### Zorunlu düzeltmeler (kare | yer | sorun | düzeltme)
+
+| # | Kare | Yer | Sorun | Düzeltme |
+|---|---|---|---|---|
+| 1 | r2/sahne237.png ve ek-10215 (sahne 237) | Raziye'nin eteği ile bacakları arası (x≈760-930, y≈1120-1140) | **Gövde bacaklardan kopuk.** Mavi tuniğin alt konturu y≈1123'te bitiyor, bacaklar y≈1143'te başlıyor. Arada yaklaşık 18 px zemin rengi var (piksel taramasıyla doğrulandı). Sahnenin başında ve ortasında aynı durum var; Raziye'nin üst gövdesi havada duruyor gibi. Yanındaki Altuniya'da bu sorun yok. | Ayakta duran `RAZ` (`kadin=True, uzun=False`, kısa tunik) kalıbı tuniği kısaltıyor ama bacakları uzatmıyor. Tuniği bacak başlangıcına kadar indir ya da bacakları yukarı uzat. Aynı kalıp 232 (x=196), 240 (x=166) ve 245 (x=222) sahnelerinde de kullanılıyor; sprite'larda aynı boşluk görünüyor, üçünü de düzelt. Gövde ile bacak arasında saydam satır bırakmayan bir denetimi betiğe ekle. |
+| 2 | r2/sahne220.png, ek-3840, ek-4065 (sahne 220) | Sol orta, kalabalığın arkası (x≈260-330, y≈870-1060) | **Kartın öznesi görünmüyor.** Kart "Raziye halka sesleniyor" diyor. Peçeli Raziye sekide ama sahnenin başında, ortasında ve sonunda yüzü önündeki kalpaklı emîrin başının arkasında kalıyor; yalnızca peçesinin kenarı görünüyor. İzleyici halka seslenen kadını görmüyor. | Raziye'yi ve sekiyi yürüyen kalabalıktan ayır. Sekiyi yükselt (Raziye'nin başı kalabalığın başlarından yukarıda olsun) ya da Raziye'yi kalabalığın boş kalan sol veya sağ ucuna al. Yüzü ve kalkık kolu sahnenin tamamında açık kalsın. `_gorunur` denetimine Raziye'nin baş kutusunun önündeki figürlerle çakışmamasını ekle. |
+
+### İyileştirme önerileri (ret nedeni değil)
+
+- **Büyük sarıklı figürler (215 İltutmış, 218 Fîrûz, 234 Behram Şah, 246 Nâsıreddin):** Göz akı sarığın alt kenarına yapışık. Krem rengi sarıkla birleşiyor, bu yüzden göz tek bir koyu nokta gibi okunuyor. Bebek görünüyor, yani gözsüz değil. Gözü 1 px aşağı alırsan yüzler 216 ve 219'daki kadar net olur.
+- **222:** Muhafızın meşalesi neredeyse kendi boyu kadar uzun (sap y≈580-990). Üçte bir kısaltmak ölçeği daha inandırıcı yapar.
+- **237:** Sağ gerideki kaçan askerin başı Raziye'nin uzattığı kolun ucuna değiyor. Askeri biraz sağa ya da uzağa al.
+- İlk turdaki kapak önerisi `RaziyeSultan.tsx`'e dokunma yasağı yüzünden yapılmadı. Not olarak geçerliliğini koruyor.
+
+### Değerlendirme (sahibe gösterilecek)
+
+İlk turda istenen sekiz düzeltmenin hepsi yapıldı. Şah Terken, Altuniya, Yakut ve filbaşının artık gözleri var, son sorudaki Avrupa tacının yerini Raziye'nin kendi külahı aldı, Kaithal'da Behram Şah'ın ordusu sahnenin sonuna kadar görünüyor ve zindan gerçekten zindan gibi duruyor. Ancak yeniden çizimde iki yeni hata çıktı. Ordugâh sahnesinde (237) Raziye'nin gövdesi bacaklarından kopuk duruyor; aynı çizim kalıbı üç sahnede daha kullanılıyor. "Raziye halka sesleniyor" sahnesinde (220) ise Raziye kalabalığın arkasında kalıyor. İkisi de tek bir figür kalıbı ve yerleşim düzeltmesi. Grafiker düzelttikten sonra 220, 232, 237, 240 ve 245'i yeniden kontrol edeceğim.
