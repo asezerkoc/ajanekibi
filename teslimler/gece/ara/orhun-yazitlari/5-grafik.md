@@ -160,3 +160,9 @@ kesilme, yazı bandına giren nesne ve havada duran nesne yok (otomatik denetiml
 
 Kalan bilinen sınırlar: 136'da sedir kadrajın büyük bölümünü kaplıyor (aynı ölçek kuralının sonucu); 147'nin pencerelerinde
 `ic_mekan` kar taneleri var; 149'da Thomsen hâlâ ayakta okuyor (albüme eğilme pozu kütüphanede yok).
+
+## Görsel KK 2. tur revizyonu
+
+- **150 (zorunlu):** Makine taştan ayrıldı. Taş solda tek başına duruyor (sol kenarı yerel x 108). Makinenin yeri ölçülerek hesaplanıyor: objektif ucu, taşın sağ kenarının 12 ızgara px (ekranda yaklaşık 60 px) sağında; aradaki çimen açık. Objektif taşa dönük, hiçbir piksel harfli yüze değmiyor. Yer açmak için Radloff ile Rus subayı fotoğrafçının arkasına, arka sıraya alındı (zemin −10). Subayın eli boş, sopa kaldırıldı. Ön sıradaki figürler bu sahnede kadrajın %27'si, taş %33'ü. Boşluğu TSX görünümünü taklit eden önizlemeyle sahne başında, ortasında ve sonunda (yakınlaşma 1,00 / 1,03 / 1,06; paralaks −1 / 0 / +1) kontrol ettim.
+- **138:** Yeni küçük figür `asali` eklendi (`kisi` ve elden zemine inen asa). Tonyukuk'un asası artık yere basıyor.
+- TSX'teki `sure` değerlerine ve kart metinlerine dokunulmadı. `npx tsc --noEmit -p .` temiz.

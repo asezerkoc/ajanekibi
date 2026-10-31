@@ -24,8 +24,8 @@ export const MATBAA_SERI: Seri = {
       no: 170, yakin: 3.0, kamera: 6,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Basılı kitap kullanana", "ölüm cezası."], sure: 2.83, renk: KIZIL }, // kart 1
-        { satirlar: ["Matbaa yasağı hikâyesinin", "bilinen en eski kaynağı", "bu cümle."], sure: 4.47 }, // kart 2
+        { satirlar: ["Basılı kitap kullanana", "ölüm cezası."], sure: 2.92, renk: KIZIL }, // kart 1
+        { satirlar: ["Matbaa yasağı hikâyesinin", "bilinen en eski kaynağı", "bu cümle."], sure: 3.69 }, // kart 2
       ],
     },
     // 171: Motif: boş rahle, kandil (fermanı gören yok)
@@ -33,7 +33,7 @@ export const MATBAA_SERI: Seri = {
       no: 171, yakin: 3.0, kamera: 4,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Ama bu cezayı koyan", "fermanı gören yok."], sure: 3.84, renk: ALTIN }, // kart 3
+        { satirlar: ["Ama bu cezayı koyan", "fermanı gören yok."], sure: 2.65, renk: ALTIN }, // kart 3
       ],
     },
     // 172: Paris, 1584: Thevet'in çalışma odası (geniş)
@@ -41,7 +41,7 @@ export const MATBAA_SERI: Seri = {
       no: 172, yakin: 2.6, kamera: 8,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Paris, 1584.", "André Thevet masasında", "Gutenberg'i yazıyor."], sure: 4.26 }, // kart 4
+        { satirlar: ["Paris, 1584.", "André Thevet masasında", "Gutenberg'i yazıyor."], sure: 4.98 }, // kart 4
       ],
     },
     // 173: Thevet'in sayfası: yanında açık Gutenberg kitabı; iddia onun kaleminden
@@ -49,7 +49,7 @@ export const MATBAA_SERI: Seri = {
       no: 173, yakin: 3.0, kamera: 6,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Araya bu cezayı sıkıştırıyor:", "İkinci Bayezid 1483'te koymuş,", "Yavuz Selim onaylamış."], sure: 6.19 }, // kart 5
+        { satirlar: ["Araya bu cezayı sıkıştırıyor:", "İkinci Bayezid 1483'te koymuş,", "Yavuz Selim onaylamış."], sure: 7.37 }, // kart 5
       ],
     },
     // 174: 1550'ler, İstanbul: gezgin Thevet yürüyor
@@ -57,7 +57,7 @@ export const MATBAA_SERI: Seri = {
       no: 174, yakin: 2.6, kamera: 8,
       sprite: { w: 400, h: 230, fps: 12, x: [225, 315], taban: 632 },
       yazilar: [
-        { satirlar: ["Thevet Osmanlı ülkesini", "gezmiş ama fermanı görmemiş."], sure: 4.04 }, // kart 6
+        { satirlar: ["Thevet Osmanlı ülkesini", "gezmiş ama fermanı görmemiş."], sure: 3.51 }, // kart 6
       ],
     },
     // 175: Bugün, İstanbul: rehber anlatıyor
@@ -65,9 +65,9 @@ export const MATBAA_SERI: Seri = {
       no: 175, yakin: 2.6, kamera: 8,
       sprite: { w: 400, h: 230, fps: 10, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Bugün bile deniyor:", "\"Osmanlı matbaayı", "270 yıl yasakladı.\""], sure: 4.33 }, // kart 7
-        { satirlar: ["Koca bir medeniyete tek damga:", "kitaptan korktu."], sure: 3.69, renk: KIZIL }, // kart 8
-        { satirlar: ["Peki doğru mu?"], sure: 2.20, renk: ALTIN }, // kart 9
+        { satirlar: ["Bugün bile deniyor:", "\"Osmanlı matbaayı", "270 yıl yasakladı.\""], sure: 4.94 }, // kart 7
+        { satirlar: ["Koca bir medeniyete tek damga:", "kitaptan korktu."], sure: 4.02, renk: KIZIL }, // kart 8
+        { satirlar: ["Peki doğru mu?"], sure: 0.90, renk: ALTIN }, // kart 9
       ],
     },
     // 176: İstanbul, 13 Aralık 1493: Nahmias kardeşlerin tahta presi
@@ -75,8 +75,8 @@ export const MATBAA_SERI: Seri = {
       no: 176, yakin: 2.8, kamera: 8,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["İstanbul, 13 Aralık 1493.", "İspanya'dan sürülmüş", "Nahmias kardeşler tezgâhta."], sure: 5.54 }, // kart 10
-        { satirlar: ["İbranice bir din hukuku", "kitabı basıyorlar.", "Son sayfaya günü yazıyorlar."], sure: 5.33 }, // kart 11
+        { satirlar: ["İstanbul, 13 Aralık 1493.", "İspanya'dan sürülmüş", "Nahmias kardeşler tezgâhta."], sure: 7.34 }, // kart 10
+        { satirlar: ["İbranice bir din hukuku", "kitabı basıyorlar.", "Son sayfaya günü yazıyorlar."], sure: 4.97 }, // kart 11
       ],
     },
     // 177: Basılmış sayfalar ipte kuruyor, kitap yığını
@@ -84,7 +84,7 @@ export const MATBAA_SERI: Seri = {
       no: 177, yakin: 2.8, kamera: 6,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Thevet'in yasağından", "on yıl sonra.", "Yasak varsa bu kitap", "nasıl basıldı?"], sure: 5.19, boy: 72, renk: KIZIL }, // kart 12
+        { satirlar: ["Thevet'in yasağından", "on yıl sonra.", "Yasak varsa bu kitap", "nasıl basıldı?"], sure: 4.78, boy: 72, renk: KIZIL }, // kart 12
       ],
     },
     // 178: 1567: kilisede Abgar ve oğlu baskıda
@@ -92,7 +92,7 @@ export const MATBAA_SERI: Seri = {
       no: 178, yakin: 2.8, kamera: 8,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["1567. Ermeni usta Abgar", "Venedik'ten tezgâh getiriyor.", "İstanbul'da bir kilisede", "oğluyla basıyor."], sure: 6.97, boy: 72 }, // kart 13
+        { satirlar: ["1567. Ermeni usta Abgar", "Venedik'ten tezgâh getiriyor.", "İstanbul'da bir kilisede", "oğluyla basıyor."], sure: 7.61, boy: 72 }, // kart 13
       ],
     },
     // 179: 1588: III. Murad fermanı veriyor
@@ -100,7 +100,7 @@ export const MATBAA_SERI: Seri = {
       no: 179, yakin: 2.8, kamera: 8,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["1588. Üçüncü Murad'ın fermanı:", "Avrupa'da basılan, dinî", "olmayan Arap harfli kitaplar", "satılabilir."], sure: 7.04, boy: 72 }, // kart 14
+        { satirlar: ["1588. Üçüncü Murad'ın fermanı:", "Avrupa'da basılan, dinî", "olmayan Arap harfli kitaplar", "satılabilir."], sure: 8.19, boy: 72 }, // kart 14
       ],
     },
     // 180: Roma baskısı Öklid, 453. sayfa: izin fermanı (yakın)
@@ -108,8 +108,8 @@ export const MATBAA_SERI: Seri = {
       no: 180, yakin: 3.0, kamera: 4,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Ferman bugün elimizde.", "Nerede?"], sure: 2.47 }, // kart 15
-        { satirlar: ["Roma'da basılmış bir Öklid'in", "453. sayfasında."], sure: 3.61, renk: ALTIN }, // kart 16
+        { satirlar: ["Ferman bugün elimizde.", "Nerede?"], sure: 2.65 }, // kart 15
+        { satirlar: ["Roma'da basılmış bir Öklid'in", "453. sayfasında."], sure: 3.59, renk: ALTIN }, // kart 16
       ],
     },
     // 181: Motif: boş rahle ve Öklid
@@ -117,7 +117,7 @@ export const MATBAA_SERI: Seri = {
       no: 181, yakin: 2.8, kamera: 4,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Yasak fermanını gören yok.", "İzin fermanı ise bir geometri", "kitabının içinde duruyor."], sure: 6.91, renk: ALTIN }, // kart 17
+        { satirlar: ["Yasak fermanını gören yok.", "İzin fermanı ise bir geometri", "kitabının içinde duruyor."], sure: 6.12, renk: ALTIN }, // kart 17
       ],
     },
     // 182: 1627, Pera: Metaksas kiralık evde basıyor
@@ -125,7 +125,7 @@ export const MATBAA_SERI: Seri = {
       no: 182, yakin: 2.8, kamera: 8,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["1627. Londra'dan gelen", "Rum rahip Metaksas", "Pera'da kiralık evde basıyor."], sure: 5.33 }, // kart 18
+        { satirlar: ["1627. Londra'dan gelen", "Rum rahip Metaksas", "Pera'da kiralık evde basıyor."], sure: 6.23 }, // kart 18
       ],
     },
     // 183: Ocak 1628, Pera: kış gecesi, makamlar kapıda
@@ -133,7 +133,7 @@ export const MATBAA_SERI: Seri = {
       no: 183, yakin: 2.6, kamera: 6, hava: 10,
       sprite: { w: 400, h: 230, fps: 8, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Ocak 1628:", "makamlar matbaayı kapatıyor."], sure: 3.11, renk: KIZIL }, // kart 19
+        { satirlar: ["Ocak 1628:", "makamlar matbaayı kapatıyor."], sure: 4.20, renk: KIZIL }, // kart 19
       ],
     },
     // 184: Cizvitlerin kışkırtması: mektup el değiştiriyor
@@ -141,7 +141,7 @@ export const MATBAA_SERI: Seri = {
       no: 184, yakin: 2.8, kamera: 8,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Yasak bu mu? Hayır.", "Arkasında Cizvitlerin", "kışkırtması var."], sure: 4.40, renk: ALTIN }, // kart 20
+        { satirlar: ["Yasak bu mu? Hayır.", "Arkasında Cizvitlerin", "kışkırtması var."], sure: 4.14, renk: ALTIN }, // kart 20
       ],
     },
     // 185: 1679, İstanbul: Marsigli yürüyor
@@ -149,7 +149,7 @@ export const MATBAA_SERI: Seri = {
       no: 185, yakin: 2.6, kamera: 8,
       sprite: { w: 400, h: 230, fps: 12, x: [225, 315], taban: 632 },
       yazilar: [
-        { satirlar: ["1679. Bolognalı Marsigli", "aylarca İstanbul'da kalıyor."], sure: 4.11 }, // kart 21
+        { satirlar: ["1679. Bolognalı Marsigli", "aylarca İstanbul'da kalıyor."], sure: 4.00 }, // kart 21
       ],
     },
     // 186: Marsigli masasında yazıyor
@@ -165,7 +165,7 @@ export const MATBAA_SERI: Seri = {
       no: 187, yakin: 2.8, kamera: 8,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Ona göre sebep: bu işten", "geçinen kopyacılar."], sure: 3.47 }, // kart 23
+        { satirlar: ["Ona göre sebep: bu işten", "geçinen kopyacılar."], sure: 2.78 }, // kart 23
       ],
     },
     // 188: İki masa: Paris'te yazan, İstanbul'da yaşamış olan
@@ -173,7 +173,7 @@ export const MATBAA_SERI: Seri = {
       no: 188, yakin: 2.6, kamera: 6,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Yasak diyen, Paris'te", "yazıyordu. Yasak yok diyen,", "İstanbul'da yaşamıştı."], sure: 5.40 }, // kart 24
+        { satirlar: ["Yasak diyen, Paris'te", "yazıyordu. Yasak yok diyen,", "İstanbul'da yaşamıştı."], sure: 5.13 }, // kart 24
       ],
     },
     // 189: Alacakaranlıkta yolda tek bir adam: onu izleyin
@@ -181,7 +181,7 @@ export const MATBAA_SERI: Seri = {
       no: 189, yakin: 2.6, kamera: 8,
       sprite: { w: 400, h: 230, fps: 12, x: [225, 315], taban: 632 },
       yazilar: [
-        { satirlar: ["Asıl soru: Müslüman Osmanlılar", "neden 1729'a kadar", "kendi kitaplarını basmadı?", "Cevap için bir adamı izleyin."], sure: 7.76, boy: 72, renk: ALTIN }, // kart 25
+        { satirlar: ["Asıl soru: Müslüman Osmanlılar", "neden 1729'a kadar", "kendi kitaplarını basmadı?", "Cevap için bir adamı izleyin."], sure: 8.73, boy: 72, renk: ALTIN }, // kart 25
       ],
     },
     // 190: Kolozsvár, 1670'ler: beşik
@@ -189,7 +189,7 @@ export const MATBAA_SERI: Seri = {
       no: 190, yakin: 2.8, kamera: 6,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Kolozsvár, Erdel, 1670'ler.", "Bir Macar çocuk doğuyor."], sure: 4.04 }, // kart 26
+        { satirlar: ["Kolozsvár, Erdel, 1670'ler.", "Bir Macar çocuk doğuyor."], sure: 4.57 }, // kart 26
       ],
     },
     // 191: Genç adam İstanbul'a geliyor
@@ -197,7 +197,7 @@ export const MATBAA_SERI: Seri = {
       no: 191, yakin: 2.6, kamera: 8,
       sprite: { w: 400, h: 230, fps: 12, x: [225, 315], taban: 632 },
       yazilar: [
-        { satirlar: ["Yıllar sonra İstanbul'a", "geliyor, Müslüman oluyor.", "Adı artık İbrahim."], sure: 5.11 }, // kart 27
+        { satirlar: ["Yıllar sonra İstanbul'a", "geliyor, Müslüman oluyor.", "Adı artık İbrahim."], sure: 4.59 }, // kart 27
       ],
     },
     // 192: Saray kapısı: müteferrika İbrahim
@@ -205,7 +205,7 @@ export const MATBAA_SERI: Seri = {
       no: 192, yakin: 2.6, kamera: 6,
       sprite: { w: 400, h: 230, fps: 10, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Saraydaki unvanı: müteferrika.", "Tarih onu bu adla tanıyor:", "İbrahim Müteferrika."], sure: 5.83, renk: ALTIN }, // kart 28
+        { satirlar: ["Saraydaki unvanı: müteferrika.", "Tarih onu bu adla tanıyor:", "İbrahim Müteferrika."], sure: 5.41, renk: ALTIN }, // kart 28
       ],
     },
     // 193: 1726: sadrazama risale
@@ -213,7 +213,7 @@ export const MATBAA_SERI: Seri = {
       no: 193, yakin: 2.8, kamera: 8,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["1726. Sadrazama bir risale:", "basılı kitabın faydaları."], sure: 4.11 }, // kart 29
+        { satirlar: ["1726. Sadrazama bir risale:", "basılı kitabın faydaları."], sure: 4.96 }, // kart 29
       ],
     },
     // 194: Paris, 1720: genç Said matbaayı izliyor
@@ -221,7 +221,7 @@ export const MATBAA_SERI: Seri = {
       no: 194, yakin: 2.8, kamera: 8,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Ortağı genç Said Efendi", "elçi babasıyla Paris'te", "matbaaları görmüş."], sure: 4.97 }, // kart 30
+        { satirlar: ["Ortağı genç Said Efendi", "elçi babasıyla Paris'te", "matbaaları görmüş."], sure: 4.60 }, // kart 30
       ],
     },
     // 195: Şeyhülislamın fetvası: olur
@@ -229,7 +229,7 @@ export const MATBAA_SERI: Seri = {
       no: 195, yakin: 3.0, kamera: 6,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Şeyhülislamın fetvası:", "\"olmaz\" değil, \"olur\".", "Sözlük, mantık, astronomi.", "Yalnız dinî kitaplar dışarıda."], sure: 8.34, boy: 72, renk: ALTIN }, // kart 31
+        { satirlar: ["Şeyhülislamın fetvası:", "\"olmaz\" değil, \"olur\".", "Sözlük, mantık, astronomi.", "Yalnız dinî kitaplar dışarıda."], sure: 6.87, boy: 72, renk: ALTIN }, // kart 31
       ],
     },
     // 196: Temmuz 1727: III. Ahmed'in beratı
@@ -237,7 +237,7 @@ export const MATBAA_SERI: Seri = {
       no: 196, yakin: 2.8, kamera: 8,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Temmuz 1727.", "Üçüncü Ahmed'in beratı.", "Bir şart daha: dört düzeltmen", "her sayfayı okuyacak."], sure: 6.47, boy: 72 }, // kart 32
+        { satirlar: ["Temmuz 1727.", "Üçüncü Ahmed'in beratı.", "Bir şart daha: dört düzeltmen", "her sayfayı okuyacak."], sure: 7.41, boy: 72 }, // kart 32
       ],
     },
     // 197: 16 Aralık 1727: Yavuz Selim semti, İbrahim'in evinde tezgâhlar
@@ -245,7 +245,7 @@ export const MATBAA_SERI: Seri = {
       no: 197, yakin: 2.6, kamera: 8,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["16 Aralık 1727.", "Yavuz Selim semti,", "İbrahim'in evi.", "Tezgâhlar çalışmaya başlıyor."], sure: 5.90, boy: 72 }, // kart 33
+        { satirlar: ["16 Aralık 1727.", "Yavuz Selim semti,", "İbrahim'in evi.", "Tezgâhlar çalışmaya başlıyor."], sure: 7.33, boy: 72 }, // kart 33
       ],
     },
     // 198: 31 Ocak 1729: iki ciltlik Vankulu, ilk sayfada ferman (yakın)
@@ -253,8 +253,8 @@ export const MATBAA_SERI: Seri = {
       no: 198, yakin: 3.0, kamera: 4,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["31 Ocak 1729. İlk kitap:", "iki ciltlik sözlük,", "Vankulu Lügati."], sure: 4.54, renk: ALTIN }, // kart 34
-        { satirlar: ["İlk sayfalarında", "padişahın fermanı", "ve fetvalar var."], sure: 3.90 }, // kart 35
+        { satirlar: ["31 Ocak 1729. İlk kitap:", "iki ciltlik sözlük,", "Vankulu Lügati."], sure: 6.77, renk: ALTIN }, // kart 34
+        { satirlar: ["İlk sayfalarında", "padişahın fermanı", "ve fetvalar var."], sure: 3.30 }, // kart 35
       ],
     },
     // 199: Pres kendi iznini basıyor: tuğralı sayfa
@@ -262,7 +262,7 @@ export const MATBAA_SERI: Seri = {
       no: 199, yakin: 3.0, kamera: 6,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Matbaa ilk iş", "kendi iznini basıyor."], sure: 3.63, renk: ALTIN }, // kart 36
+        { satirlar: ["Matbaa ilk iş", "kendi iznini basıyor."], sure: 2.14, renk: ALTIN }, // kart 36
       ],
     },
     // 200: Hattatlar rahle başında
@@ -270,7 +270,7 @@ export const MATBAA_SERI: Seri = {
       no: 200, yakin: 2.8, kamera: 8,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Kaynaklara göre hattatlar", "karşı çıkıyor.", "İbrahim yine de basıyor.", "On üç yılda on yedi kitap."], sure: 6.76, boy: 72 }, // kart 37
+        { satirlar: ["Kaynaklara göre hattatlar", "karşı çıkıyor.", "İbrahim yine de basıyor.", "On üç yılda on yedi kitap."], sure: 6.01, boy: 72 }, // kart 37
       ],
     },
     // 201: Târîh-i Hind-i Garbî: tahta baskı resim (yakın)
@@ -278,7 +278,7 @@ export const MATBAA_SERI: Seri = {
       no: 201, yakin: 3.0, kamera: 4,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Biri Amerika'yı anlatan tarih:", "13 resimle, Türkçe basılan", "ilk resimli kitap."], sure: 5.69 }, // kart 38
+        { satirlar: ["Biri Amerika'yı anlatan tarih:", "13 resimle, Türkçe basılan", "ilk resimli kitap."], sure: 6.34 }, // kart 38
       ],
     },
     // 202: 1742: tezgâhlar susuyor
@@ -286,7 +286,7 @@ export const MATBAA_SERI: Seri = {
       no: 202, yakin: 2.8, kamera: 4,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["1742'de son kitap.", "Tezgâhlar susuyor.", "Neden? Belgeler söylemiyor."], sure: 4.90, renk: KIZIL }, // kart 39
+        { satirlar: ["1742'de son kitap.", "Tezgâhlar susuyor.", "Neden? Belgeler söylemiyor."], sure: 5.73, renk: KIZIL }, // kart 39
       ],
     },
     // 203: 1745, Yalova: kâğıthane, yaşlı İbrahim ve Lehistanlı usta
@@ -294,7 +294,7 @@ export const MATBAA_SERI: Seri = {
       no: 203, yakin: 2.4, kamera: 8,
       sprite: { w: 400, h: 230, fps: 12, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["1745. Yetmişini aşmış İbrahim", "Yalova'da kâğıthane kuruyor.", "Lehistan'dan usta getirtiyor.", "Hâlâ uğraşıyor."], sure: 7.61, boy: 72 }, // kart 40
+        { satirlar: ["1745. Yetmişini aşmış İbrahim", "Yalova'da kâğıthane kuruyor.", "Lehistan'dan usta getirtiyor.", "Hâlâ uğraşıyor."], sure: 8.92, boy: 72 }, // kart 40
       ],
     },
     // 204: 1 Nisan 1747: depoda miras dökümü
@@ -302,7 +302,7 @@ export const MATBAA_SERI: Seri = {
       no: 204, yakin: 2.8, kamera: 6,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["1 Nisan 1747, miras dökümü:", "2.981 satılmamış kitap."], sure: 4.77, renk: KIZIL }, // kart 41
+        { satirlar: ["1 Nisan 1747, miras dökümü:", "2.981 satılmamış kitap."], sure: 6.34, renk: KIZIL }, // kart 41
       ],
     },
     // 205: Tozlanan raflar
@@ -310,7 +310,7 @@ export const MATBAA_SERI: Seri = {
       no: 205, yakin: 2.8, kamera: 4,
       sprite: { w: 400, h: 300, fps: 6, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Kolozsvár'dan gelen adamdan", "geriye kalan:", "tozlanan raflar."], sure: 5.20, renk: KIZIL }, // kart 42
+        { satirlar: ["Kolozsvár'dan gelen adamdan", "geriye kalan:", "tozlanan raflar."], sure: 4.46, renk: KIZIL }, // kart 42
       ],
     },
     // 206: Bugün: arşivde Kathryn Schwartz
@@ -318,8 +318,8 @@ export const MATBAA_SERI: Seri = {
       no: 206, yakin: 2.8, kamera: 6,
       sprite: { w: 400, h: 300, fps: 10, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["İşte cevap. Tarihçi", "Kathryn Schwartz", "Osmanlı fermanlarını tarıyor."], sure: 4.97 }, // kart 43
-        { satirlar: ["2017'de yazıyor:", "böyle bir ferman bulamadı.", "Fermanı gören yok."], sure: 5.49, renk: ALTIN }, // kart 44
+        { satirlar: ["İşte cevap. Tarihçi", "Kathryn Schwartz", "Osmanlı fermanlarını tarıyor."], sure: 5.02 }, // kart 43
+        { satirlar: ["2017'de yazıyor:", "böyle bir ferman bulamadı.", "Fermanı gören yok."], sure: 5.25, renk: ALTIN }, // kart 44
       ],
     },
     // 207: Sahaf tezgâhı: kopyacı satıyor, alıcı az
@@ -327,7 +327,7 @@ export const MATBAA_SERI: Seri = {
       no: 207, yakin: 2.6, kamera: 8,
       sprite: { w: 400, h: 230, fps: 10, x: 270, taban: 632 },
       yazilar: [
-        { satirlar: ["Belgeler başka şey anlatıyor:", "kopyacılar geçiniyordu,", "alıcı azdı, kutsal metne", "dokunulmuyordu."], sure: 6.90, boy: 72 }, // kart 45
+        { satirlar: ["Belgeler başka şey anlatıyor:", "kopyacılar geçiniyordu,", "alıcı azdı, kutsal metne", "dokunulmuyordu."], sure: 6.77, boy: 72 }, // kart 45
       ],
     },
     // 208: Şafak: kitaplarını alan bir alıcı yürüyor (erken gelen)
@@ -335,8 +335,8 @@ export const MATBAA_SERI: Seri = {
       no: 208, yakin: 2.6, kamera: 8,
       sprite: { w: 400, h: 230, fps: 12, x: [225, 315], taban: 632 },
       yazilar: [
-        { satirlar: ["Sabev'in hesabı: her on", "nüshadan yaklaşık yedisi", "satılmış."], sure: 4.40, renk: ALTIN }, // kart 46
-        { satirlar: ["İbrahim sadece", "erken gelmişti."], sure: 2.47, renk: ALTIN }, // kart 47
+        { satirlar: ["Sabev'in hesabı: her on", "nüshadan yaklaşık yedisi", "satılmış."], sure: 4.37, renk: ALTIN }, // kart 46
+        { satirlar: ["İbrahim sadece", "erken gelmişti."], sure: 1.87, renk: ALTIN }, // kart 47
       ],
     },
     // 209: Üç belge yan yana: tek paragraf, Öklid'deki ferman, sözlükteki fetva
@@ -344,8 +344,8 @@ export const MATBAA_SERI: Seri = {
       no: 209, yakin: 2.4, kamera: 4,
       sprite: { w: 400, h: 300, fps: 8, x: 270, taban: 634 },
       yazilar: [
-        { satirlar: ["Paris'te tek paragraf.", "Öklid'in içinde ferman,", "sözlüğün başında fetva."], sure: 5.26 }, // kart 48
-        { satirlar: ["Siz bu yasağı", "ilk kimden duydunuz?"], sure: 3.56, renk: ALTIN }, // kart 49
+        { satirlar: ["Paris'te tek paragraf.", "Öklid'in içinde ferman,", "sözlüğün başında fetva."], sure: 5.32 }, // kart 48
+        { satirlar: ["Siz bu yasağı", "ilk kimden duydunuz?"], sure: 2.91, renk: ALTIN }, // kart 49
       ],
     },
   ],
