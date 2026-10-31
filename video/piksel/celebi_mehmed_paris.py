@@ -107,6 +107,22 @@ def _bos_on(no):
     kaydet(yeni(GW, H), f"sahne{no}-on.png")
 
 
+def _yildiz_ekle(no, adet, y0, y1):
+    """Gece sahnesi: gokyuzu() yıldızları y 300'ün üstüne koyar (kamera yakınken görünmez); görünür gök şeridine
+    (y0-y1) seyrek yıldız ekler. Dosyayı yeniden işler; yatayda dikişsiz (x 0-539)."""
+    from PIL import Image
+    yol = Path(__file__).parents[1] / "public" / f"sahne{no}-gokyuzu.png"
+    img = Image.open(yol).convert("RGBA")
+    rnd = random.Random(no)
+    for _ in range(adet):
+        x, y = rnd.randrange(540), rnd.randrange(y0, y1)
+        piksel(img, x, y, hex2(rnd.choice(("#fff8e0", "#d8e0f8", "#a8b4d8"))))
+        if rnd.random() < 0.15:
+            for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                piksel(img, (x + dx) % 540, y + dy, hex2("#8890b8", 150))
+    img.save(yol)
+
+
 def _yerel(gx, sx, w):
     """Izgara x'i → sprite yerel x'i (SKILL.md: yerel = izgara − (sx − w/2))."""
     return gx - (sx - w // 2)
@@ -392,13 +408,17 @@ def kitap_rafi(img, x, zemin, s=1.0, dolu=True, tohum=1):
 def kavuk_yerde(img, x, zemin, s=1.0, renk="#f2ece0"):
     """Yeni figür: yere düşüp yan yatmış kavuk. Yuvarlak gövde zemine değer, kırmızı tepesi yana bakar."""
     d = ImageDraw.Draw(img)
-    y = zemin_y(zemin, x, 8 * s)
-    temas_golgesi(img, x, y, 9 * s)
-    d.rectangle([x + int(2.6 * s), y - int(4.4 * s), x + int(5.6 * s), y - int(1.4 * s)], fill=hex2("#a82a22"))
-    d.ellipse([x - int(4.5 * s), y - int(6 * s), x + int(3.5 * s), y - 1], fill=hex2(renk))
-    for k in (-2, 0, 2):
-        d.arc([x - int(4.5 * s) + int(k * s), y - int(6 * s), x + int(3.5 * s) + int(k * s * 0.3), y - 1], 100, 260,
-              fill=hex2(_ac(renk, -0.18)))
+    y = zemin_y(zemin, x, 10 * s)
+    temas_golgesi(img, x, y, 11 * s)
+    # kırmızı külah (kavuğun tepesi) sağa bakar: tabanı yere değer
+    d.polygon([(x + int(2.5 * s), y - int(5.2 * s)), (x + int(6.5 * s), y - int(4.2 * s)), (x + int(6.5 * s), y - 1),
+               (x + int(2.5 * s), y - 1)], fill=hex2("#a82a22"))
+    d.line([x + int(6.5 * s), y - int(4.2 * s), x + int(6.5 * s), y - 1], fill=hex2("#7a1a16"))
+    # sarık gövdesi: yan yatmış yuvarlak sargı, eğik sarım bantları
+    d.ellipse([x - int(5 * s), y - int(7 * s), x + int(3.5 * s), y - 1], fill=hex2(renk))
+    for k in range(-4, 4, 2):
+        d.line([x + int(k * s), y - int(6.6 * s), x + int((k + 2.2) * s), y - int(1.4 * s)], fill=hex2(_ac(renk, -0.2)))
+    d.arc([x - int(5 * s), y - int(7 * s), x + int(3.5 * s), y - 1], 20, 160, fill=hex2(_ac(renk, -0.3)))
 
 
 def kosk(img, x, zemin, s=1.0, iskele=False):
@@ -1110,23 +1130,23 @@ def _baski_ve_baskici(t, px, z, sp, bx, sk, f, kisi_kw):
 
 
 def sahne312():
-    """'Yahudi, Ermeni, Rum matbaaları yüz yıllardır çalışıyor.': aydınlık atölye; yan yana üç baskı tezgâhı ve baskıcıları."""
+    """'Yahudi, Ermeni, Rum matbaaları yüz yıllardır çalışıyor.': aydınlık atölye; arkada üç ayrı baskı tezgâhı, önde basılı sayfalarıyla üç baskıcı."""
     ic_mekan(312, **ATOLYE)
     yk = 2.6
     K = s_kisi(yk, 0.30)
-    sk = round(0.82 * K, 1)
-    sp = round(0.68 * sk, 1)
+    sp = round(0.42 * K, 1)
+    baskicilar = (dict(govde="#3a3a4a", bas="kalpak", bas_renk="#2a2a2a", sakal="#2a1a12", kemer=None),
+                  dict(govde="#6a2a2a", bas="takke", bas_renk="#e0d8c0", sakal="#3a2a1a", kemer=None),
+                  dict(govde="#2a4a6a", bas="kalpak", bas_renk="#5a3a22", sakal="#2a1a12", kemer=None))
 
     def kare(t, z, i):
         f = i / KARE
-        arka = duz(z[0] - 12, IW)
+        arka = duz(z[0] - 14, IW)
         kandil(t, 200, 0, f, zincir=_kz(yk))
-        _baski_ve_baskici(t, 110, arka, sp, 110 + int(15 * sp), sk, f,
-                          dict(govde="#3a3a4a", bas="kalpak", bas_renk="#2a2a2a", sakal="#2a1a12", kemer=None))
-        _baski_ve_baskici(t, 238, arka, sp, 238 + int(15 * sp), sk, (f + 0.33) % 1,
-                          dict(govde="#6a2a2a", bas="kalpak", bas_renk="#4a3a2a", sakal="#3a2a1a", kemer=None))
-        _baski_ve_baskici(t, 168, z, round(0.75 * K, 1), 168 + int(15 * 0.75 * K), K, (f + 0.66) % 1,
-                          dict(govde="#2a4a6a", bas="bork", bas_renk="#2a2a3a", sakal="#2a1a12", kemer=None))
+        for j, x in enumerate((128, 200, 272)):                                     # üç ayrı tezgâh (arkada)
+            figur(t, baski_tezgahi, x, arka, sp, faz=(f + j * 0.33) % 1)
+        for j, (x, yon) in enumerate(((140, 1), (204, -1), (262, -1))):               # baskıcılar basılı sayfa tutar
+            figur(t, kisi, x, z, K, yon=yon, silah="mektup", kol=0.30 + 0.05 * SIN(f + j * 0.3), **baskicilar[j])
 
     _spr2(312, IW, IH, kare, yk, esik=0.7)
 
