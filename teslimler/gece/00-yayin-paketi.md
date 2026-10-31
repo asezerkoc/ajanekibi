@@ -276,7 +276,7 @@ Bunu biliyor muydun? Elçinin kabul edildiği Tuileries Sarayı bugün yok: 1871
 
 ## 6. Piri Reis'in haritaları ve idamı (1513-1554)
 
-**Video dosyası:** `teslimler/video/pikseltarihim-piri-reis.mp4` (henüz render edilmedi; görsel düzeltmede)
+**Video dosyası:** `teslimler/video/pikseltarihim-piri-reis.mp4` (hazır, 4:30; görsel kalite kontrol UYGUN)
 
 **Kapak yazısı:** Haritayı / Çizen Adam / Piri Reis'in sonu
 
