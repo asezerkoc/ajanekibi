@@ -731,10 +731,10 @@ def sahne136():
     def kare(t, z, i):
         f = i / KARE
         kandil(t, 228, 0, f, zincir=_kz(yk))
-        mumluk(t, 126, z, f, 3)
-        figur(t, yatan, 176, z, round(0.62 * K, 1), govde="#7a1e22", bas=None, sakal="#2a1a12", yon=1,
+        mumluk(t, 128, z, f, 3)
+        figur(t, yatan, 188, z, round(0.58 * K, 1), govde="#7a1e22", bas=None, sakal="#2a1a12", yon=1,
               ortu="#c8b890", nefes=0.5 + 0.5 * SIN(f))
-        figur(t, kisi, 258, z, K, govde="#2a2a3a", bas="bork", bas_renk="#2a1a14", yon=-1, kol=0.02, kemer=None)
+        figur(t, kisi, 262, z, K, govde="#2a2a3a", bas="bork", bas_renk="#2a1a14", yon=-1, kol=0.02, kemer=None)
 
     _bitir(136, kare, yk, ic=True, esik=0.7)
 
@@ -803,10 +803,10 @@ def sahne140():
 
     def kare(t, z, i):
         f = i / KARE
-        for j, x in enumerate((137, 258)):
+        for j, x in enumerate((136, 252)):
             figur(t, avrupali, x, z, K, govde="#2a5a3a", sac="#3a2a1a", bas="sapka", bas_renk="#1a1a1e", yon=-1,
                   adim=(f + j * 0.5) % 1, silah="sopa")
-        figur(t, avrupali, 196, z, K, govde="#2a4a8a", sac="#5a3a22", bas="sapka", bas_renk="#1a1a1e", yon=-1,
+        figur(t, avrupali, 193, z, K, govde="#2a4a8a", sac="#5a3a22", bas="sapka", bas_renk="#1a1a1e", yon=-1,
               adim=(f + 0.25) % 1)
 
     _bitir(140, kare, yk, esik=0.75)
@@ -984,10 +984,10 @@ def sahne150():
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, avrupali, 154, z, K, govde="#4a5a4a", sac="#3a2a1a", bas="kalpak", bas_renk="#3a2a1a", yon=-1,
-              silah="sopa")                                                       # Rus subayı
-        figur(t, avrupali, 222, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
+        figur(t, avrupali, 172, z, K, govde="#3a3a46", sac="#c8a878", sakal="#c8a878", bas="sapka",
               bas_renk="#3a3a2a", yon=-1, silah="kamera", kol=0.1)              # Fin fotoğrafçı
+        figur(t, avrupali, 224, z, K, govde="#4a5a4a", sac="#3a2a1a", bas="kalpak", bas_renk="#3a2a1a", yon=-1,
+              silah="sopa")                                                       # Rus subayı
         figur(t, avrupali, 270, z, K, govde="#3a3a46", sac="#e8e4dc", sakal="#e8e4dc", bas="kasket",
               bas_renk="#3a3a40", yon=-1, silah="mektup", kol=0.3 + 0.04 * SIN(f))  # Radloff
 

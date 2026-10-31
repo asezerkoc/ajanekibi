@@ -1245,7 +1245,7 @@ def sahne381():
     def kare(t, z, i):
         f = i / KARE
         su_ve_kiyi(t, su, ("#264466",) * 4)                         # sprite'ın alt 14 satırı orta plandaki denizle aynı
-        ayak = su - 50 + int(round(3 * SIN(f)))
+        ayak = su - 36 + int(round(3 * SIN(f)))
         figur(t, kanatli, p.w // 2, duz(ayak, t.width), s, yon=1, acik=1.0, cirp=0.25 * SIN(f), havada=True)
 
     _cek(381, kare, esik=0.5)
@@ -1364,7 +1364,7 @@ def sahne386():
 
     def kare(t, z, i):
         f = i / KARE
-        _cezayir_evleri(t, 64, 336, z, 3.4, f, 386)
+        _cezayir_evleri(t, 104, 300, z, 3.4, f, 386)
         figur(t, kubbeli_cami, 214, z, 2.6, tas="#9a9aa8", kursun="#5a6070", minare=1, isik=True)
 
     _cek(386, kare)
@@ -1498,10 +1498,10 @@ def sahne392():
                             fill=hex2("#e8601c"))
             else:                                                        # patlama: kıvılcımlar açılır ve yerçekimiyle düşer
                 q = (ph - 0.45) / 0.55
-                cy = y - 88
+                cy = y - 74
                 renk = ("#ffd479", "#ffa486", "#a8e0ff")[k]
                 for a in range(0, 360, 30):
-                    r = 6 + q * 22
+                    r = 5 + q * 18
                     px_ = hx + math.cos(math.radians(a + k * 10)) * r
                     py_ = cy + math.sin(math.radians(a + k * 10)) * r + q * q * 18
                     if py_ < y - 2:
@@ -1551,7 +1551,7 @@ def sahne394():
     def kare(t, z, i):
         f = i / KARE
         figur(t, fener, 300, z, 3.0, f=f)
-        _lagari_fisekte(t, 236, z, f, 3.0, 4.0)
+        _lagari_fisekte(t, 236, z, f, 2.8, 3.6)
 
     _cek(394, kare)
 
@@ -1567,13 +1567,13 @@ def sahne395():
         x = 236
         figur(t, fener, 300, z, 3.0, f=f)
         if f < 0.4:
-            _lagari_fisekte(t, x, z, f, 3.0, 4.0, alev=0.3 + f * 1.6, kol=False)
+            _lagari_fisekte(t, x, z, f, 2.8, 3.6, alev=0.3 + f * 1.6, kol=False)
         else:
-            figur(t, fisek_sehpa, x, z, 3.0)
+            figur(t, fisek_sehpa, x, z, 2.8)
             if f < 0.8:
                 kalk = int(((f - 0.4) / 0.4) ** 1.6 * 330)
                 k = yeni(t.width, t.height + 400)
-                _lagari_fisekte(k, x, duz(z[0] + 400, t.width), f, 3.0, 4.0, kalk=kalk, alev=1.0, kol=False)
+                _lagari_fisekte(k, x, duz(z[0] + 400, t.width), f, 2.8, 3.6, kalk=kalk, alev=1.0, kol=False)
                 t.alpha_composite(k.crop((0, 400, t.width, t.height + 400)))
         for j in range(3):                                               # duman: sehpanın dibinden yükselir
             duman(t, x - 10 + j * 10, z[0] - 4, 60, 395 + j, faz=(f + j * 0.3) % 1, renk="#8a8694", ruzgar=0.3, genislik=1.2)
@@ -1678,13 +1678,13 @@ def sahne399():
 
     def kare(t, z, i):
         f = i / KARE
-        x = 150
+        x = 168
         y = z[0]
         arka = duz(y - 10, t.width)
-        for j, kx in enumerate((300, 342)):                             # ekip: bariyerin arkasında (bir sıra geride)
+        for j, kx in enumerate((262, 294)):                             # ekip: bariyerin arkasında (bir sıra geride)
             figur(t, kisi, kx, arka, round(0.85 * s, 1), yon=-1, silah="kamera" if j == 0 else None, kol=0.2 if j else 0.0,
                   govde="#2a3a5a" if j else "#5a5a52", bas="kasket", bas_renk="#2a2a30", sakal=None, kemer=None)
-        figur(t, beton_set, 280, 372, z, 3.0)
+        figur(t, beton_set, 238, 312, z, 3.0)
         if f < 0.3:                                                      # ateşleme: sehpada fişek ve oturan manken
             ot = figur(t, fisek, x, z, sf, alev=0.3 + f * 2.2)
             figur(t, manken, x, duz(ot, t.width), 3.4, yon=1)
