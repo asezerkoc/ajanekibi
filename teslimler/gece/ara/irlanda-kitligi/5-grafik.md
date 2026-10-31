@@ -137,3 +137,31 @@ tavana kadar (`_kz`). Kişi ölçeği `K(no)`: başlıksız ayakta insan kadraj 
 
 **Kontrol komutları:** `python3 -I video/piksel/irlanda_kitligi.py` (35/35 sahne, bütün denetimler geçti) ·
 `cd video && npx tsc --noEmit -p .` (temiz).
+
+## Görsel KK revizyonu (6-kalite-gorsel.md, 9 zorunlu düzeltme + iyileştirmeler)
+
+Kural: aynı derinlikteki yapı insandan belirgin büyük; olamıyorsa ufka/uzağa alınır ve arada zemin okunur. TSX'te yalnız kapak
+bloğu değişti; kapak dışı blokların süreleri, kart metinleri ve sprite ayarları sese hizalı hâliyle aynen kaldı.
+
+| # | Sahne | Düzeltme |
+|---|---|---|
+| 1 | 496 | Oyuncak kulübe kaldırıldı; yolun gerisinde bel hizasında kuru taş duvar (insan ölçeğinde, başların altında). |
+| 2 | 509 | Yeni `cephe` yardımcısı: tuğla evler insan ölçeğinde, figürlerin 5 px gerisinde; kapı insandan yüksek, üst katlar kadrajın tepesine uzanan düz tuğla duvar. |
+| 3 | 520 | Otel cephesi insan ölçeğinde; yeşil kapı insandan yüksek, plaket kapının yanında göz hizasında ve küçük. |
+| 4 | 517 | Kale ufka alındı: çayırın uzak kenarında küçük ve puslu (kralın başıyla, sancakla çakışmıyor). |
+| 4b | 494, 495, 507, 513 | Aynı gözle tarandı: 494 kahvehane ve 507 taş ambar (çifte kapı) ve 513 sıvalı ev insan ölçeğinde cepheye çevrildi; 495'teki küçük kulübe kaldırıldı. |
+| 5 | 506 | Üç gemi ayrıldı: önde solda büyük (s 2.0), ortada (1.5), en geride sağda (1.1); direk grupları birbirini kesmiyor, her biri kendi su çizgisinde. Gövde altı rıhtım kenarının üstünde suda (su yaması kenarda biter). Rıhtım babaları (koyu çıkıntı) kaldırıldı. |
+| 6 | 491 | Efsanenin üç gemisi aynı düzende ayrı ve sayılabilir; soluk, sisli palet korundu (kart 2, 31, 52). |
+| 7 | 505, 506 (513, 509) | Beyzbol şapkası gibi okunan kasket kaldırıldı: 1840'lar hamalına geniş kenarlı yumuşak keçe şapka (`kece`); `kasket` artık basık, yumuşak tepeli, çok kısa siperlikli yassı kasket (513'teki 1930'lar adamları, 509'daki gazeteci çocuk). |
+| 8 | 490, 497-500, 504, 510, 512, 515, 519, 521, 522 | Avize, kandil ve tavan lambaları kaldırıldı (yarım görünen nesne kalmadı). |
+| 9 | bütün iç mekânlar ve cepheler | `_bant` denetimi duvar katmanına genişletildi: yazı bandında satır başına en çok 5 renk (düz duvar ve deseni); pencere, perde, tablo, kapı, korniş banda girerse betik durur. `oda` pencereleri ve tabloları bandın altından başlatır, sığmayanı çizmez (490, 498'de pencere kalktı; 499, 511, 521, 503'te alçaldı). |
+
+İyileştirmeler: Abdülmecid'e kısa koyu sakal (490, 493); pencere camları titreşimsiz düz renk (kar izlenimi yok); 503'te imzalayan
+soylunun elinde tüy kalem. Kapak: Jersey yazı bileşeni bir karttaki bütün satırları en uzun satıra göre aynı boya sığdırdığı için
+alt başlık iki kısa satıra bölündü ("Bir iyilik nasıl" / "efsane olur?"); başlık 68 yerine 88 boyda, 4 satır, yaziY 215 (figürlerin
+başı yazıya değmez, denetimle doğrulandı). Gerçek boy farkı (büyük başlık, küçük alt başlık) TimurSeri.tsx'te değişiklik gerektirir;
+o dosyaya dokunulmadı.
+
+Kontrol: `python3 -I video/piksel/irlanda_kitligi.py` 35/35 sahne bütün denetimlerden geçti (kenar, taban, yazı bandı + duvar modu,
+orta plan görünürlüğü, cephe öğelerinin kadraj içinde kalması). Değişen sahnelerin önizlemesine (sahne başı ve sonu, yazı bandı
+çerçeveli) tek tek bakıldı. `cd video && npx tsc --noEmit -p .` temiz.

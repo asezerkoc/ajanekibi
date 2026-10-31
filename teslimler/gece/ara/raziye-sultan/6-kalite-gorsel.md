@@ -77,3 +77,9 @@ Yalnızca göz ve boyun kuralı yüzünden yeniden çizilen kareler (210, 214, 2
 ### Değerlendirme (sahibe gösterilecek)
 
 İlk turda istenen sekiz düzeltmenin hepsi yapıldı. Şah Terken, Altuniya, Yakut ve filbaşının artık gözleri var, son sorudaki Avrupa tacının yerini Raziye'nin kendi külahı aldı, Kaithal'da Behram Şah'ın ordusu sahnenin sonuna kadar görünüyor ve zindan gerçekten zindan gibi duruyor. Ancak yeniden çizimde iki yeni hata çıktı. Ordugâh sahnesinde (237) Raziye'nin gövdesi bacaklarından kopuk duruyor; aynı çizim kalıbı üç sahnede daha kullanılıyor. "Raziye halka sesleniyor" sahnesinde (220) ise Raziye kalabalığın arkasında kalıyor. İkisi de tek bir figür kalıbı ve yerleşim düzeltmesi. Grafiker düzelttikten sonra 220, 232, 237, 240 ve 245'i yeniden kontrol edeceğim.
+
+## 3. tur: UYGUN
+Tunik ve bacak boşluğu (232, 237, 240, 245), 220'deki görünürlük, zindan ve gözler yeni karelerde kontrol edildi, hepsi düzelmiş. Son ölçek düzeltmeleri:
+- 215: Raziye, atlıyla aynı zemin çizgisinde yetişkin kadın boyunda duruyor.
+- 220: Raziye, sekinin üstünde kalabalıktan yüksekte ve önü açık; halka seslenen sultan olarak okunuyor.
+Kalan zorunlu düzeltme yok. Video çıktısı alınabilir.

@@ -1597,10 +1597,10 @@ def sahne264():
 
     def kare(t, z, i):
         f = i / KARE
-        for j, x in enumerate((180, 238, 300, 362, 410)):
+        for j, x in enumerate((164, 254, 318, 414)):
             ph = (f + j * 0.37) % 1
             if j % 2:
-                figur(t, kurekci, x, z, K, ph, (1, -1)[j % 2 == 1], **AZAP[1])
+                figur(t, kurekci, x, z, K, ph, 1, **AZAP[1])
             else:
                 figur(t, kazici, x, z, K, ph, 1, **AZAP[(j // 2) % 3])
 
@@ -1615,16 +1615,15 @@ def _kazi_sahnesi(no, palet, xs, ot=0.0, kuru=True, renk=TOPRAK, kisiler=None, y
 
 
 def sahne265():
-    """Kart 21: öğle; hendeğin tabanında iki kazmacı ve bir kürekçi; taban kupkuru, çatlak."""
+    """Kart 21: öğle; hendeğin tabanında bir kazmacı ve bir kürekçi (aletleri birbirine değmez); taban kupkuru, çatlak."""
     yk = 2.8
     _kazi_sahnesi(265, "yaz", None)
     K = _K(265, yk, HT, ornek=AZAP[1])
 
     def kare(t, z, i):
         f = i / KARE
-        figur(t, kazici, 136, z, K, f, 1, **AZAP[0])
-        figur(t, kurekci, 206, z, K, (f + 0.4) % 1, -1, **AZAP[1])
-        figur(t, kazici, 264, z, K, (f + 0.55) % 1, -1, **AZAP[2])
+        figur(t, kazici, 140, z, K, f, 1, **AZAP[0])
+        figur(t, kurekci, 258, z, K, (f + 0.4) % 1, -1, **AZAP[1])
 
     _spr(265, DW, 230, kare, yk)
 
@@ -1979,7 +1978,7 @@ def sahne281():
         f = i / KARE
         figur(t, kisi, 146, z, kp, **PETRO, yon=1, kol=0.5 + 0.04 * SIN(f))
         figur(t, avrupali, 206, z, K, govde=PERRY["govde"], sac=PERRY["sac"], yon=-1, silah="mektup", kol=0.3)
-        figur(t, kazici, 262, z, K, f, -1, govde=MUJIK["govde"], bas="bork", bas_renk="#5a4a3a", sakal="#7a5a3a",
+        figur(t, kurekci, 264, z, K, f, -1, govde=MUJIK["govde"], bas="bork", bas_renk="#5a4a3a", sakal="#7a5a3a",
               kemer="#3a2a1a")
 
     _spr(281, DW, 230, kare, yk)

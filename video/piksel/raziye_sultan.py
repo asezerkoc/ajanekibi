@@ -1329,7 +1329,7 @@ def sahne215():
 
     _dis(no, "gun", ekle=ekle)
     A = _A(no, 0.34)
-    K = round(A * 2.6 / 2.9, 1)
+    K = round(A * 1.08, 1)         # 3. tur: yetişkin kadın atın ~%68'i (eski A·2,6/2,9 çocuk gibi okunuyordu)
 
     def kare(t, z, i):
         f = i / KARE
@@ -1421,15 +1421,15 @@ def sahne220():
     sol yarısında; yürüyenler sprite'ın sağ yarısında (yerel x 220-276) ve sahnenin başından sonuna Raziye'nin önüne
     geçmiyor. `_gorunur` Raziye'yi baştan sona kadraj içinde, ayrıca yürüyenlerle çakışmadan denetler."""
     no = 220
-    rx, rs = 228, 3.2
+    rx, rs = 224, 4.2           # 3. tur: başı öndeki yürüyenlerin başlarıyla aynı hizada (eski s 3,2 yarı boydaydı)
 
     def ekle(img, z):
         figur(img, orta_asya_sehri, PAY + 300, PAY + 560, duz(586), 1.8, tohum=220, kerpic="#c08a6a", golge="#8a5a44", kubbe="#9a9a8a")
-        u = figur(img, seki, PAY + rx - 16, PAY + rx + 16, duz(590), 7)
+        u = figur(img, seki, PAY + rx - 18, PAY + rx + 18, duz(590), 9)
         figur(img, kisi, PAY + rx, duz(u), rs, **dict(RAZ_PECE, yon=1, kol=0.75))
         kalabalik(img, duz(592), PAY + 262, PAY + 334, 9, 220, ("#5a4a3a", "#3a4a5a", "#6a5a4a"), s=2.0, yon=1, bas="sarik", adim=0.3)
 
-    _gorunur(no, [rx - 12, rx + 14], 245, 295, pay=6)
+    _gorunur(no, [rx - 13, rx + 16], 245, 295, pay=6)
     _dis(no, "gun", ekle=ekle)
     K = _K(no)
     yuruyen = (216, 242, 268)

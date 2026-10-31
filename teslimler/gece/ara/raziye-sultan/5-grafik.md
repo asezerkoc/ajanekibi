@@ -209,3 +209,10 @@ Bu turda da `RaziyeSultan.tsx` değişmedi; değişiklikler yalnızca `raziye_su
   - 237: başı (10215) ve ortası (10341);
   - 222, 232, 240, 245;
   - 215, 218, 234, 246; 234 ve 246'da göz yakınlaştırmasıyla.
+
+## Görsel KK revizyonu, 3. tur: Raziye'nin ölçeği (31 Ekim 2026, 🟢 Grafiker)
+
+- **215:** Raziye atla aynı ayak çizgisinde durduğu hâlde ölçeği A·2,6/2,9 idi; boyu atın yarısı kadar kalıyor, çocuk gibi okunuyordu. Ölçeği A·1,08'e çıkardım. Peçeli Raziye şimdi atın (başı dahil) yaklaşık %68'i boyunda; brifteki %65-70 aralığında, yetişkin bir kadın gibi okunuyor.
+- **220:** Raziye orta planda s 3,2 yerine s 4,2 ile çiziliyor. Seki biraz daha yüksek (9 px) ve geniş. Başının tepesi dünya y≈513'te; öndeki yürüyenlerin başları y≈523'te, yani Raziye'nin başı kalabalığın 10 px üstünde. Yürüyenlerle çakışmama denetimi ve `_gorunur` denetimi yeni ölçekle geçiyor.
+- **Ölçek taraması:** Raziye'nin bütün sahnelerini taradım. 210, 211, 213, 216, 217, 221, 232, 237, 240 ve 245'te Raziye, aynı derinlikteki yetişkinlerle aynı `K` ölçeğini kullanıyor. Tahtta, minderde ya da hücrede oturduğu sahnelerde ölçek yanındaki oturan figürlerle aynı. 227'de fil ile aynı insan ölçeğinde. Atlı sahnelerde (228, 230, 231, 235, 236) atlı kalıbının kendi oranı geçerli. Atla aynı ayak çizgisinde durup küçük kalan tek yer 215'ti, onu düzelttim.
+- **Denetim:** 215 ve 220 hatasız çizildi (kadraj, yazı bandı, gövde ve görünürlük denetimleri geçti). Remotion önizlemesine 215'in ortasında (2110), 220'nin başında (3870) ve sonunda (4065) baktım. `RaziyeSultan.tsx` değişmedi.
