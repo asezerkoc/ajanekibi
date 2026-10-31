@@ -172,3 +172,33 @@ DonVolga.tsx'e dokunulmadı.
 - 40 sahnenin hepsi yeniden çizildi; taban, kadraj, kenar ve yazı bandı denetimleri geçti.
 - 254, 272 ve 276'nın yüzleri yakınlaştırılarak açıldı; 250, 257, 260 ve 283'e de bakıldı.
 - `npx tsc --noEmit -p .` temiz.
+
+## Görsel KK 3. tur revizyonu
+
+DonVolga.tsx'e dokunulmadı.
+
+**Zorunlu düzeltmeler:**
+1. **268:** Ortadaki askerin kılıcı kınında; yürüyen üç asker de silahsız yürüyor.
+2. **283:** Gözcü kulesi kaldırıldı. Dikenli tel, kazan iki mahkûm ve gardiyan kaldı. Figürler de yeniden aralandı (128 / 214 / 270).
+3. **250:** Çadır kaldırıldı. Sahnede kazıcı ve Kasım Paşa var, arka plan boş bozkır.
+
+**Yeni otomatik denetim: `_alet_denetimi`.** `_spr` içinde 24 karenin hepsinde çalışıyor.
+- Kaydedilen uçlar: `kisi` sarmalayıcısındaki çekili kılıç, mızrak, sopa/tüfek, kürek ve kazma uçları; ayrıca `kazici`'nin kazma başı, ön ve arka uçları.
+- Kaydedilen gövdeler: `kisi` ve `oturan` figürlerinin gövde kutuları.
+- Bir uç başka bir figürün gövdesine 6 ızgara pikselinden (ekranda 12 piksel) yakınsa betik duruyor.
+- Denetimin yakalayıp düzelttirdikleri:
+  - 256: hacının asası oturan hacıya değiyordu; hacı deveye döndürüldü.
+  - 264: kazıcılar birbirine çok yakındı; dört figüre indirildi ve aralandı.
+  - 265: üç figür sığmıyordu; iki figür kaldı, aletleri birbirine değmiyor.
+  - 281: köylünün kazması Perry'ye değiyordu; köylüye kürek verildi.
+  - 283: kazma kürekçiye değiyordu; figürler aralandı.
+
+**Önerilerden yapılanlar:**
+- **265:** Kazmacının aleti başıyla birlikte görünüyor ve sapı kürekçiye değmiyor.
+- **276:** Arka Kazak/Çerkes atlıları 10 ızgara piksel sağa alındı; artık askerin yüzünün yanında değil, kalkanın arkasında.
+- **258:** Atlar biraz ayrıldı: arka atlı geriye (zemin −10) ve sağa alındı, ölçeği 0,88. İki at kadraja sığmak zorunda olduğu için biraz örtüşmeye devam ediyor.
+
+**Denetim:**
+- 40 sahnenin hepsi yeniden çizildi; taban, kadraj, kenar, yazı bandı ve alet denetimleri geçti.
+- 250, 256, 258, 264, 265, 268, 276, 281 ve 283'ün başlangıç ve son karelerine önizlemede bakıldı.
+- `npx tsc --noEmit -p .` temiz.

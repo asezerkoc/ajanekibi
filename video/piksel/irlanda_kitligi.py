@@ -454,7 +454,7 @@ def yelkenli(img, x, su_y, s=1.0, yon=1, faz=0.0, govde="#1e1a1a", serit="#d8d0b
         piksel(img, x + k * yon, ust + int(1.4 * s), hex2(_ac(govde, 0.1)))
     d.line([arka, ust - int(1.2 * s), on_ - 2 * s * yon, ust - int(0.6 * s)], fill=hex2(_ac(govde, 0.35)))   # küpeşte
     bc = (on_ + 1 * s * yon, ust - int(1.4 * s))
-    bu = (on_ + 8 * s * yon, ust - int(5 * s))
+    bu = (on_ + 5 * s * yon, ust - int(3.6 * s))                                 # kısa baş bodoslama (KK 2. tur)
     d.line([*bc, *bu], fill=hex2("#4a3220"), width=_u(0.7, s))                        # baş bodoslama
     ip = hex2("#3a2a1e")
     direkler = []
@@ -1738,8 +1738,9 @@ def sahne494():
 
     def kare(t, z, i):
         f = i / KARE
-        u = figur(t, peyke, 168, z, round(k * 0.62, 1))
-        figur(t, oturan_fesli, 172, duz(u, t.width), round(k * 0.8, 1), govde="#4a3a2a", sakal="#3a2a1a", yon=1, gazete=True)
+        figur(t, peyke, 160, z, round(k * 0.62, 1))                          # KK 2. tur: bağdaş "koni"si yerine ayakta okur
+        figur(t, beyefendi, 182, z, k, govde="#4a3a2a", bas="fes", bas_renk="#a01e1c", sac="#3a2a1a", sakal="#3a2a1a", yon=1,
+              gazete=True)
         figur(t, beyefendi, 250, z, k, govde="#2a3a4a", bas="fes", bas_renk="#a8201e", sac="#2a1a12", biyik="#2a1a12", yon=-1,
               kol=0.05 + 0.05 * (1 + SIN(f)))
 
@@ -2261,6 +2262,21 @@ def sahne516():
     _bitir(no, kare, duvar=True)
 
 
+def kral(img, x, zemin, s=1.0):
+    """Yeni figür (KK 2. tur): Kral John. kisi gövdesi (kızıl kaftan, mavi pelerin, kahverengi sakal) + başa oturan
+    küçük altın taç (baştan dar, üç kısa sivri; göz açık)."""
+    kisi(img, x, zemin, s, govde="#8a1e22", bas=None, sakal="#5a3a22", yon=-1, kol=0.0, pelerin="#2a3a8a")
+    d = ImageDraw.Draw(img)
+    _, by, r, _ = _bas_geo(zemin, x, s)
+    _sac(d, x, by, r, s, -1, "#5a3a22")
+    tr = int(r * 0.8)
+    d.rectangle([x - tr, by - r - _u(0.9, s), x + tr, by - r + _u(0.3, s)], fill=hex2("#e0b040"))
+    for dx in (-tr, 0, tr):
+        d.polygon([(x + dx - _u(0.45, s), by - r - _u(0.9, s)), (x + dx, by - r - _u(1.8, s)),
+                   (x + dx + _u(0.45, s), by - r - _u(0.9, s))], fill=hex2("#e0b040"))
+    piksel(img, x, by - r - _u(0.3, s), hex2("#c8302a"))
+
+
 def sahne517():
     """Kart 35-36: 13. yüzyıl. Kral John (taç, kızıl-altın kaftan, mavi pelerin, sakal) taş kalenin önünde; yanında
     eski kraliyet aslanlı sancak, elinde hilal-yıldızlı nişan kalkanı."""
@@ -2268,18 +2284,15 @@ def sahne517():
     gok(no, ["#6a8ab0", "#86a0c0", "#a4b8cc", "#c4d0d8", "#dcdcd4"], None, [(110, 420, 18), (410, 414, 20)])
     uzak_tepe(no, ("#5a7a52", "#52704a"), 540)
 
-    def ekle(img, z):
-        figur(img, kale_kapisi, PAY + 262, duz(563), 1.0, tas="#b4bac8")     # görsel KK: kale ufukta, uzakta ve puslu
-    _orta_gorunur(no, [(PAY + 262 - 13, PAY + 262 + 13)])
-    zemin_orta(no, 560, ["#6a8a4a", "#5e7e42", "#52723a", "#466632"], "cayir", ekle)
+    # görsel KK 2. tur: uzaktaki kale maket gibi okunuyordu; kaldırıldı (sahne çayır, sancak ve kral)
+    zemin_orta(no, 560, ["#6a8a4a", "#5e7e42", "#52723a", "#466632"], "cayir")
     on_cimen(no, ["#466632", "#52723a", "#5e7e42"], "#a8c870", boy=70)
     k = K(no)
 
     def kare(t, z, i):
         f = i / KARE
         figur(t, sancak, 146, z, round(k * 0.5, 1), f, "#b8201e", "aslan")
-        figur(t, kisi, 236, z, k, govde="#8a1e22", bas="tac", bas_renk="#e0b040", sakal="#5a3a22", yon=-1, kol=0.0,
-              pelerin="#2a3a8a")
+        figur(t, kral, 236, z, k)
         ex, ey = _el(236, z, k, -1, 0.0)                                      # kalkan elde, kalça hizasında tutulur
         figur(t, arma_kalkani, ex - 4, ey + int(5 * k * 0.5), k * 0.5, "hilal", "#2a4a8a")
 

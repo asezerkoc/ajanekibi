@@ -111,3 +111,14 @@ Gözler tamam: 2. turun iki zorunlu düzeltmesi kabul edildi. Ancak sahnelerin y
 ### Değerlendirme (sahibe gösterilecek)
 
 Grafiker gözsüz yüzleri düzeltti: Rus takviyesi sahnesindeki atlının, Perevoloka'da gemiyi çeken adamların ve ok saldırısındaki arka atlıların yüzünde artık göz var, yüzler bozulmamış. Perevoloka ve Don'daki kadırgalar sahneleri de temiz. Ancak bütün sahneler yeniden çizilince üç yerde sorun kaldı. Astrahan'a yürüyen orduda bir askerin kılıcının ucu yanındaki askere dayanıyor. 1948 sahnesindeki gözcü kulesi dikenli telin üstünde duran bir oyuncağa döndü. İlk kazma sahnesindeki çadır da Paşa'nın koltuğunun altında taşınıyormuş gibi görünüyor. Bu üçü düzelince video size gösterilebilir.
+
+## 4. tur: UYGUN
+Yeni karelere baktım: 250, 256, 258, 264, 265, 268, 276, 281, 283.
+- 268: kılıç kınında.
+- 283: gözcü kulesi kaldırıldı.
+- 250: çadır kaldırıldı.
+- Silah ve aletlerin uçları komşu figürlere değmiyor; bu artık otomatik olarak da denetleniyor.
+- Gözler okunuyor.
+- 264'te sol kenarda yarım görünen kazıcı, kamera sağdan sola kayarken kadraja giriyor. Kayan kamerada bu doğal bir giriş, hata değil.
+- 258'de iki at hafifçe örtüşüyor, derinlik farkı okunuyor. Bu bir iyileştirme önerisi, red nedeni değil.
+Kalan zorunlu düzeltme yok. Video çıktısı alınabilir.

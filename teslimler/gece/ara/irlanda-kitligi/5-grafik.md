@@ -165,3 +165,12 @@ o dosyaya dokunulmadı.
 Kontrol: `python3 -I video/piksel/irlanda_kitligi.py` 35/35 sahne bütün denetimlerden geçti (kenar, taban, yazı bandı + duvar modu,
 orta plan görünürlüğü, cephe öğelerinin kadraj içinde kalması). Değişen sahnelerin önizlemesine (sahne başı ve sonu, yazı bandı
 çerçeveli) tek tek bakıldı. `cd video && npx tsc --noEmit -p .` temiz.
+
+## Görsel KK 2. tur düzeltmeleri
+
+- 517 (zorunlu): uzaktaki kale maket gibi okunduğu için kaldırıldı (raporun izin verdiği seçenek); sahnede çayır, aslanlı sancak ve
+  kral kaldı. Yeni `kral` figürü: taç baştan dar, üç kısa sivri, göz açık.
+- 494: peykede bağdaş kuran figürün koni gibi duran kaftanı yerine gazeteyi ayakta okuyan fesli adam; peyke yanında boş.
+- 506 (ve aynı figürü kullanan 491, 508): baş bodoslama ve ıstralyalar kısaltıldı.
+- IrlandaKitligi.tsx'e dokunulmadı. Değişen sahneler (491, 494, 506, 508, 517) bütün denetimlerden geçti; önizlemeleri sahne başı
+  ve sonunda kontrol edildi.

@@ -92,3 +92,10 @@ Kapı (≈ 605 px) ayaktaki adamın başından yüksek, fesiyle aşağı yukarı
 ### Değerlendirme (sahibe gösterilecek)
 
 Grafiker ilk turdaki dokuz noktanın sekizini temiz biçimde düzeltti. Binalar artık insan ölçeğinde, gemi sahnelerinde üç gemi tek tek sayılıyor ve kapanış sorusunun altında da üç gemi açıkça görünüyor. Beyzbol şapkası, yarım avizeler ve yazı bandına giren pencereler kalmadı. Kalan tek sorun 517'deki kale: küçültülmüş ama ufka alınmamış, bayrakla kalkanın arasında kral boyunda bir maket gibi duruyor. Kale tepe çizgisine taşınıp soluklaştırılınca video yayına hazır.
+
+## 3. tur: UYGUN
+Yeni karelere baktım: 494, 506, 508, 517.
+- 517: kale kaldırıldı. Sahnede çayır, aslanlı sancak ve kalkanlı Kral John var; taç başa oranlı.
+- 506 ve 508: üç gemi ayrı ayrı sayılıyor, ıstralyalar kısa.
+- 494: koni gibi duran figür kaldırıldı; gazete okuyan adam ayakta.
+Kalan zorunlu düzeltme yok. Video çıktısı alınabilir.
