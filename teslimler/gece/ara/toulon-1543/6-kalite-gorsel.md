@@ -33,3 +33,37 @@ Beş sahnede, önceki işlerde reddedilen türden hatalar var: gözsüz yüz, in
 ## Değerlendirme (sahibe gösterilecek)
 
 Video genel olarak SKONSTART imzasını taşıyor. Kapak okunuyor; Türkçe karakterler bütün kartlarda doğru. Işık dili (altın saat, kızıl yangın, mavi gece) hikâyeyi taşıyor. Barbaros, Kral François, Polin ve kraliyet memuru birbirinden net ayrılıyor; Marsilya, Toulon meclisi, vaftiz ve altın sandığı sahneleri temiz. Buna karşılık beş sahnede, daha önce reddettiğimiz türden hatalar var. 458'de atlıların yüzünde göz yok. 480'de zeytin ağacı insandan kısa, evler de oyuncak gibi kalıyor. 464'te surlar kapıdaki adamdan alçak. 486'da kadırgalardan biri kenarda kesiliyor. 481'de "11000" rakamının ilk hanesi kesiliyor. Grafiker bu altı maddeyi düzeltip ilgili kareleri yeniden render ettikten sonra iş tekrar kontrol edilmeli.
+
+## 2. tur
+
+**Bakılan kareler (19):** grafikerin yeniden render ettiği 14 sahne ortası (`r2/sahne458` … `sahne486`: 458, 464, 465, 468, 469, 471, 472, 478, 479, 480, 481, 483, 485, 486) ve sahnelerin başka anlarından benim aldığım 5 ek kare (`r2ek/`): 458 kare 3588, 464 kare 6600, 480 kare 12534, 486 kare 14880 ve 15360. 481'in orta karesi kartın belirme anına denk geliyor; rakamlar net olduğu için ek kare gerekmedi.
+
+### Karar: UYGUN
+
+### Altı zorunlu düzeltme
+
+| # | Sahne | Durum |
+|---|---|---|
+| 1 | 458 | Yapıldı. İki atlının da gözü ve sakalı açıkta (yakın kesitte 2×2 göz net). Miğfer siperlikli, yüzü açık morion. Atlılar tüy ve miğfer rengiyle ayrılıyor. Kare 3588'de de aynı. |
+| 2 | 464 | Yapıldı. Sur uzak planda, kapıdaki adam onunla aynı ölçekte, kuleler adamın iki katından yüksek. Sur iki karede de kadrajın içinde bitiyor (sağ uç x ≈ 1050). Yürüyenlerle adam üst üste binmiyor. |
+| 3 | 479, 480, 483 (zeytin) | Yapıldı. Ağaç çıkarıldı, yerine duvar önünde alçak çalılar var; ölçek sorunu kalmadı. |
+| 4 | 480 Lipari | Yapıldı. Kale kayası suyun karşı kıyısında; aradaki su şeridi solda ve sağda görünüyor. Evler kayanın dibinde, uzakta okunuyor ve kadrajın içinde bitiyor. Kule yazı bandının altında. |
+| 5 | 481 | Yapıldı. "11000" bütün haneleriyle sağ sayfada, cilt çizgisine değmiyor. |
+| 6 | 486 | Yapıldı. Tek kadırga, büyütülmüş, iki karede de (14880, 15360) kadrajın içinde tam. Direkler ev boyunun iki katına yakın. Adamla ve rıhtımla arasında su var. |
+
+**Yeni hata:** Görmedim. Gözsüz yüz, havada nesne, kenarda kesilen ana nesne, yazı bandına giren nesne, figürlerin gemiye değmesi yok. 480'deki levend esirlerle aynı zemin çizgisinde; uzun görünmesinin sebebi sivri börkü, gövde boyu esirlerle aynı ve onlara değmiyor. Fener düzeltmeleri (465 el feneri, 469 duvar feneri, 486 el feneri) dönem açısından sorunu çözüyor.
+
+### Kalan zorunlu düzeltmeler
+
+Yok.
+
+### İyileştirme önerileri (reddetme nedeni değil)
+
+- **458:** Miğfer siperliğinin altında ten rengi ince bir şerit, onun altında gri bir bant var (`r2/sahne458`, y ≈ 820-840). Alın miğferin içinden görünüyormuş gibi okunuyor. Şerit kaldırılıp siperlik doğrudan alına oturtulabilir.
+- **485:** Minyatürde sağ sütundaki kadırgaların burnu mavi denizi geçip altın çerçeveye 2-4 px taşıyor (`r2/sahne485`, x ≈ 1030-1040). Sütun birkaç piksel sola alınabilir.
+- **468:** Sıralar seyreltilmiş ama orta sıranın direkleri hâlâ arka sıranın gövdelerine giriyor. Koyun kalabalığı okunuyor; sorun değil, istenirse orta sıra biraz daha aşağı alınabilir.
+- **471 / 472:** Biret basamaklı siyah bir kule gibi duruyor; dört köşe sırtları daha belirgin olursa biret olduğu daha iyi anlaşılır.
+
+### Değerlendirme (sahibe gösterilecek)
+
+İlk turda istenen altı düzeltmenin hepsi yapılmış. Atlıların artık gözü var, Toulon surları ve Lipari kalesi uzakta duruyor ve oyuncak gibi görünmüyor, kenarda kesilen kadırga ve rakam kalmadı. Düzeltmeler yeni bir hata getirmedi. Kalan notlar yalnızca küçük estetik öneriler. Video sahibin onayına sunulabilir.

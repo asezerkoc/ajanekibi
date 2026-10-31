@@ -32,6 +32,57 @@ from timur import ates, hava, ic_mekan, kandil, mumluk, ok_ucusu, su_ve_kiyi, ya
 from takiyuddin_rasathanesi import top_  # noqa: E402
 from orhun_yazitlari import avrupali, masa, masa_mumu  # noqa: E402
 
+import inspect  # noqa: E402
+import orhun_yazitlari as _oy  # noqa: E402
+import timur_figur as _tf  # noqa: E402
+
+# --------------------------------------------------------------------------
+# Görsel KK 2. tur: küçük ölçekli yüzlerde göz (timur_figur.kisi'nin tek piksellik gözü börk ile sakal arasında
+# kayboluyordu). kisi ve oturan, yalnızca bu betiğin sürecinde, aynı figürü çizip üstüne 2 piksellik (büyük ölçekte
+# 0,4·s) koyu göz ekleyen sarmalayıcıyla değiştirilir. atli (binici), kazici, kurekci, avrupali da bunu kullanır.
+# Kütüphane dosyaları değişmez; diğer seriler etkilenmez.
+# --------------------------------------------------------------------------
+_KISI_ASIL, _OTURAN_ASIL = _tf.kisi, _tf.oturan
+_KISI_IMZA, _OTURAN_IMZA = inspect.signature(_KISI_ASIL), inspect.signature(_OTURAN_ASIL)
+
+
+def _goz(img, gx, gy, s):
+    e = max(2, int(round(0.4 * s)))
+    ImageDraw.Draw(img).rectangle([gx, gy, gx + e - 1, gy + e - 1], fill=hex2("#120c0a"))
+
+
+def kisi(img, x, zemin, s=1.0, *a, **kw):
+    """timur_figur.kisi + okunur göz (bkz. üstteki not)."""
+    _KISI_ASIL(img, x, zemin, s, *a, **kw)
+    b = _KISI_IMZA.bind(img, x, zemin, s, *a, **kw)
+    b.apply_defaults()
+    yon, diz = b.arguments["yon"], b.arguments["diz"]
+    y = zemin_y(zemin, x, 6 * s)
+    egil = int(abs(math.sin((b.arguments["adim"] or 0) * 2 * math.pi)) * 0.8 * s) if (b.arguments["aksak"] and
+                                                                                        b.arguments["adim"] is not None) else 0
+    yy = y + egil + (int(3.6 * s) if diz else 0)
+    bas_y = yy - int(13.6 * s)
+    e = max(2, int(round(0.4 * s)))
+    gx = x + int(0.8 * s) * yon - (e - 1 if yon < 0 else 0)
+    _goz(img, gx, bas_y - int(0.5 * s), s)
+
+
+def oturan(img, x, zemin, s=1.0, *a, **kw):
+    """timur_figur.oturan + okunur göz."""
+    _OTURAN_ASIL(img, x, zemin, s, *a, **kw)
+    b = _OTURAN_IMZA.bind(img, x, zemin, s, *a, **kw)
+    b.apply_defaults()
+    yon = b.arguments["yon"]
+    y = zemin_y(zemin, x, 10 * s) - (int(1.6 * s) if b.arguments["minder"] else 0)
+    bas_y = y - int(9.5 * s) - int(2.6 * s)
+    e = max(2, int(round(0.4 * s)))
+    gx = x + int(0.8 * s) * yon - (e - 1 if yon < 0 else 0)
+    _goz(img, gx, bas_y - int(0.5 * s), s)
+
+
+_tf.kisi = kisi          # atli'nin binicisi timur_figur içindeki kisi'yi çağırır
+_oy.kisi = kisi          # avrupali (orhun_yazitlari) da
+
 KARE = 24      # sprite kare sayısı (SKILL.md)
 PAY = 135      # orta/ön plan yan payı (SKILL.md)
 SIN = lambda f, k=1: math.sin(f * 2 * math.pi * k)  # noqa: E731
@@ -1071,7 +1122,7 @@ def sahne250():
     yk = 2.8
 
     def ekle(img, z):
-        for x, s_ in ((PAY + 290, 1.0),):
+        for x, s_ in ((PAY + 346, 0.8),):
             figur(img, kon_cadir, x, duz(586, img.width), s_, renk="#e8e0cc", serit="#b8281e")
         d = ImageDraw.Draw(img)
         d.ellipse([PAY + 196, 637, PAY + 214, 643], fill=hex2("#5a4028"))                # ilk vuruşun çukuru
@@ -1164,11 +1215,11 @@ def sahne254():
             noktalar.append((x - int(1.2 * ks), ust + int(1 * ks)))
         d = ImageDraw.Draw(t)
         d.line(noktalar, fill=hex2("#4a3220"), width=2)
-        for kx in (232, 246):                                                     # burnun önüne dizilmiş yedek kütükler
+        for kx in (226, 239):                                                     # burnun önüne dizilmiş yedek kütükler
             r = 6
             d.ellipse([kx - r, arka[0] - 2 * r, kx + r, arka[0] - 1], fill=hex2("#c8a070"), outline=hex2("#3a2614"))
             d.ellipse([kx - 3, arka[0] - r - 3, kx + 3, arka[0] - r + 3], outline=hex2("#8a6640"))
-        figur(t, kisi, 136, z, K, **KASIM, yon=1, kol=0.03 * (1 + SIN(f)))
+        figur(t, kisi, 136, z, K, **KASIM, yon=1, kol=0.0)                     # eli yanında: gemiye değmez
 
     _spr(254, DW, DH, kare, yk)
 
@@ -1377,7 +1428,7 @@ def sahne261():
     sg = min(2.6, _sigdir(261, lambda t, s, z: figur(t, kadirga, 280, z[0] - 30, s, 1, 0.0), G_T - 30))
 
     def gemi_k(t, z, i):
-        figur(t, kadirga, 196, su, sg, 1, i / KARE)
+        figur(t, kadirga, 188, su, sg, 1, i / KARE)
 
     def kare(t, z, i):
         gemi_k(t, z, i)
@@ -1871,10 +1922,10 @@ def sahne283():
     yk = 2.8
 
     def ekle(img, z):
-        figur(img, gozcu_kulesi, PAY + 330, duz(584, img.width), 1.5)
+        figur(img, gozcu_kulesi, PAY + 303, duz(584, img.width), 1.1)
         figur(img, dikenli_tel, PAY + 140, PAY + 400, duz(596, img.width), 1.3)
         hendek_yarigi(img, PAY + 180, PAY + 362, renk="#6a5a44", tohum=283)
-    _gorunur(283, [320, 340], 270, 270, yk, pay=0)
+    _gorunur(283, [296, 310], 270, 270, yk, pay=0)
     _dis(283, "sovyet", ekle=ekle)
     K = _K(283, yk, HT, ornek=GARDIYAN)
 
