@@ -990,8 +990,7 @@ def sahne423():
         ust = figur(t, sedir, 248, z, round(0.75 * so, 1), renk="#7a4a2a", ortu="#8a1e22")
         figur(t, oturan, 248, duz(ust, t.width), so, **MURAD, yon=-1, minder="#c8a040")
         figur(t, kisi, 158, z, K, **TAKI, yon=1, diz=True, silah="mektup", kol=0.35 + 0.03 * SIN(f))
-        kitaplar(t, 128, z[0], 4.0)
-        mumluk(t, 290, z, f, 3)
+        kitaplar(t, 128, z[0], 4.0)                                         # KK: sağdaki şamdan kaldırıldı (kenarda kesiliyordu)
 
     _spr(423, 400, 300, kare, yk)
 

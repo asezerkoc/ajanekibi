@@ -127,3 +127,20 @@ Kütüphaneden: `kisi`, `oturan`, `atli`, `gemi`, `sedir`, `gur_i_emir`, `orta_a
 **d) Kart denetimi:** TSX'teki 51 kart, 4-kalite-metin.md'deki nihai kart listesinden betikle üretildi (harfi harfine, aynı sırada, kart numarası satır sonu yorumunda); en uzun satır 30 harf.
 
 **Kod tarafına not:** `Root.tsx` kaydı (`Takiyuddin`, `TAKIYUDDIN_KARE`, 1080×1920, 60 fps) ve ses geldiğinde `python3 -I video/ses/hizala_seri.py <ses.mp3> video/src/sahneler/Takiyuddin.tsx takiyuddin-rasathanesi-anlatim` kalite kontrolün görsel kapısından önce yapılmalı. Görsel kontrol için önerilen kareler: 410 (kapak + yıkım), 416 (iki alet), 417 (motif), 425-427 (kuyruklu yıldız), 435, 440, 445, 448, 449.
+
+## Görsel KK revizyonu
+
+6-kalite-gorsel.md'deki 3 zorunlu düzeltme ve ucuz iyileştirmeler yapıldı. Takiyuddin.tsx'teki `sure` değerlerine ve kart metinlerine dokunulmadı; yalnızca iki sahne ayarı değişti (446 sprite x, 448 yakin).
+
+**Zorunlu düzeltmeler**
+1. **446 (Uraniborg suyun üstünde):** Orta plana Hven adası çizildi (yeni yardımcı `_hven_adasi`): Uraniborg'un iki yanında 20'şer px taşan düz çimen şeridi, suya inen kumsal, köpük çizgisi. Uraniborg bu çimen şeridine oturuyor. Yeni fizik denetimi `_kara_denetimi`, yapının taban satırının hemen altında su rengi bulursa çizimi durduruyor. Öneri 6 için gemi yolu `x: [300, 235]` → `[256, 220]` yapıldı, Uraniborg ızgara x 298'e alındı. Yelken artık sahnenin başında binayı yalnızca kenarından örtüyor, sonra ondan uzaklaşıyor. `_gorunur` %6 yaklaşmalı son kareyle (yakin·1,06) çalıştırıldı.
+2. **448 (moloz terastan taşıyor):** `rasathane()` fonksiyonuna `sinir=(x0, x1)` eklendi. Moloz yığınları teras platformunun içine sıkıştırılıyor, kenardan boşluğa taşamıyor. 448 kendi düzeniyle çiziliyor: teras 206-306, rasathane 254, Uraniborg 142, ölçek 1.9. Öneri 5 için yakin 2.0'dan 2.2'ye çıkarıldı; iki yıkıntı son karede de görünür aralıkta (84-316) kalıyor. 417'de moloz yok, değişmedi.
+3. **439 (şamdan kenarda kesik):** Şamdan ızgarada 112'den 134'e alındı. Sokollu'nun sediri 262'den 248'e kaydı (öneri 1).
+
+**İyileştirmeler**
+- 423 ve 429: III. Murad'ın sediri 248'e alındı, sağ ucu artık kadrajda. 423'te sağ kenarda kesilen şamdan kaldırıldı; kandil yerinde duruyor.
+- 426: Ay (196, 552, r 6) içeri alındı, halesi kesilmiyor.
+- 416: armilla 280'den 270'e, Takiyüddin 228'den 222'ye alındı; kenarla arasında pay var.
+- 433: rıhtıma şaşırtmalı derzli kesme taş dokusu eklendi. Kadırgalardaki kürekler `gemi()` fonksiyonunda zaten çiziliyor, ama 1,1-1,25 ölçekte birer piksel kalıyor. Gemiler büyütülürse yelkenler yazı bandına giriyor (ilk denetimdeki ret nedeni), bu yüzden ölçek korundu.
+
+**Kontrol:** `python3 -I video/piksel/takiyuddin_rasathanesi.py 439 446 448` ve iyileştirilen sahneler (416, 423, 426, 429, 433) hatasız çizildi. 446, 448, 439 ve 423'ün sprite karelerine, ayrıca 446, 448, 439, 423, 426, 416 ve 433'ün yazılı ilk ve son karelerine önizleme betiğiyle bakıldı. Su üstünde yapı, taşan moloz, kesik şamdan ya da sedir kalmadı; yazı-figür çakışması yok. `npx tsc --noEmit -p .` temiz.
