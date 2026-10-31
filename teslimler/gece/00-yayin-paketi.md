@@ -144,7 +144,7 @@ Belleten'de yayımlanan bir makaleye göre bilinen tek belgeli dinî kitap basma
 
 ## 3. Raziye Sultan, Delhi Türk Sultanlığı'nın kadın hükümdarı (1236-1240)
 
-**Video dosyası:** `teslimler/video/pikseltarihim-raziye-sultan.mp4` (henüz render edilmedi; görsel kalite kontrolde)
+**Video dosyası:** `teslimler/video/pikseltarihim-raziye-sultan.mp4` (hazır, 4:18; görsel kalite kontrol UYGUN)
 
 **Kapak yazısı:** Oğullarımdan / İyi / Delhi tahtındaki tek kadın
 
