@@ -1,8 +1,8 @@
 # SKONSTART teslimi
 
 - **İş:** Timur'un Soyundan Kalender: Ebu'l-Kâsım Bâbür Kalender Mîrzâ'nın hikâyesi, altı beyitlik gazeliyle; 3 dakikalık dikey video (Reels/TikTok), seslendirme vcvcvc.
-- **Tarih:** 2026-10-29 20:12
-- **Durum:** ONAY BEKLİYOR
+- **Tarih:** 2026-11-01 04:35
+- **Durum:** ONAYLANDI
 - **Kalite kontrol:** revizyon sınırına ulaşıldı, son notlar aşağıda
 
 ## 🟣 Editör · Gönderi metni

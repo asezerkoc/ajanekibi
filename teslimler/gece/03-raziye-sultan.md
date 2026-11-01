@@ -1,7 +1,7 @@
 # Oğullarımdan İyi: Raziye Sultan, Delhi Türk Sultanlığı'nın kadın hükümdarı (1236-1240)
 
 - **İş:** @pikseltarihim gece serisi, video 3/10
-- **Durum:** ONAY BEKLİYOR (gece vardiyası; ajans sahibi işi önceden onayladı, son onay sahibin)
+- **Durum:** ONAYLANDI (1 Kasım 2026, ajans sahibi)
 - **Video:** `teslimler/video/pikseltarihim-raziye-sultan.mp4` (süre: 4:18; görsel kontrol 3. turda UYGUN verdi)
 - **Seslendirme:** ElevenLabs "Metin" sesi
 

@@ -1,7 +1,7 @@
 # Taş Konuşuyor: Orhun yazıtlarını çözen Danimarkalı Vilhelm Thomsen (1893)
 
 - **İş:** @pikseltarihim gece serisi, video 1/10
-- **Durum:** ONAY BEKLİYOR (gece vardiyası; ajans sahibi işi önceden onayladı, son onay sahibin)
+- **Durum:** ONAYLANDI (1 Kasım 2026, ajans sahibi)
 - **Video:** `teslimler/video/pikseltarihim-orhun-yazitlari.mp4` (hazır, 4:07)
 - **Seslendirme:** ElevenLabs "Metin" sesi
 

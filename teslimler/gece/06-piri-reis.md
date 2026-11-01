@@ -1,7 +1,7 @@
 # Haritayı Çizen Adam: Piri Reis'in haritaları ve idamı (1513-1554)
 
 - **İş:** @pikseltarihim gece serisi, video 6/10
-- **Durum:** ONAY BEKLİYOR (gece vardiyası; ajans sahibi işi önceden onayladı, son onay sahibin)
+- **Durum:** ONAYLANDI (1 Kasım 2026, ajans sahibi)
 - **Video:** `teslimler/video/pikseltarihim-piri-reis.mp4` (süre: 4:30; görsel kontrol 3. turda UYGUN verdi)
 - **Seslendirme:** ElevenLabs "Metin" sesi
 

@@ -1,7 +1,7 @@
 # Aynı Gökyüzü, İki Gözlemevi: Takiyüddin'in İstanbul Rasathanesi ve yıkılışı (1577-1580)
 
 - **İş:** @pikseltarihim gece serisi, video 8/10
-- **Durum:** ONAY BEKLİYOR (gece vardiyası; ajans sahibi işi önceden onayladı, son onay sahibin)
+- **Durum:** ONAYLANDI (1 Kasım 2026, ajans sahibi)
 - **Video:** `teslimler/video/pikseltarihim-takiyuddin-rasathanesi.mp4` (hazır, 4:02)
 - **Seslendirme:** ElevenLabs "Metin" sesi
 

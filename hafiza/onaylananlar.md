@@ -86,3 +86,65 @@ düşmeye başladı.
 - 2026-10-27: Timur 1/3 "Topal Kurt" Instagram'da yayınlandı. Sırada Timur 2 (yarın), Timur 3 (ertesi gün).
 - 2026-10-27: TikTok (@pikseltarihim) ilk video yayınlandı: Cengiz Han Bölüm 1. Sırada Kayıp Mezar (playlist "Cengiz Han").
 - 2026-10-29: Sahip "Timur'un Soyundan Kalender" (Bâbür Kalender Mîrzâ, 3 dk) editör metnini onayladı: seslendirme vcvcvc ile, grafiker sahneleri hazırlıyor. Kaynaksız olgular (kardeş katli, 1457, Meşhed) metin dışı; araştırmacı doğrularsa eklenecek. Not: Bâbür, Timur'un torununun oğlu, yani büyük torunu (Timur→Şahruh→Baysungur→Bâbür); Baysungur 1433'te öldü.
+
+## 2026-11-01 — Timur'un Soyundan Kalender: Ebu'l-Kâsım Bâbür Kalender Mîrzâ'nın hikâyesi, altı 
+
+## 1. Seslendirme metni
+
+**[Kanca, 0:00-0:10]**
+Tahtta bir hükümdar oturuyor, ama ona "Kalender" diyorlar: gezgin derviş.
+Neden?
+Damarlarında Timur'un kanı var.
+Bir elinde kılıç, öbüründe şiir.
+
+**[Herat, 0:10-0:34]**
+Her şey Herat'ta başlıyor.
+Atası Timur, dünyayı kılıçla titretmiş. Oğlu Şahruh tahtta.
+Şahruh'un oğlu Baysungur ise kılıç yerine kalemi seçiyor: kütüphanesini yaklaşık kırk ustayla bir sanat akademisine çeviriyor. Hattatlar, nakkaşlar, müzehhipler.
+Baysungur'un oğlu Bâbür, mürekkep kokan bir dünyada büyüyor.
+Sonra babası otuz yedi yaşında ölüyor.
+Bâbür daha çok genç.
+
+**[Kalender
+
+## 2026-11-01 — Piksel Tarihim (@pikseltarihim) için Reels: Cem Sultan'ın hikâyesi. Fatih'in oğl
+
+# Cem Sultan'ın Zehirli Tıraşı: Reels paketi (editör son hâli, @pikseltarihim)
+
+**Tek soru:** O tıraş gerçekten zehirli miydi?
+**Seslendirme:** 194 kelime. Kural 170-200 kelimedir; 128 kelimelik eski sürüm kullanılmadı. Süre ses üretilince ölçülecek, tahmin yaklaşık 100-120 sn.
+**Grafiker:** Piksel sahneleri kalite kontrol onayından sonra başlar.
+
+---
+
+## 1. Seslendirme metni (194 kelime)
+
+Napoli, 1495. Rivayete göre bir berber, şehzadeyi zehirli usturayla tıraş ediyor.
+
+Tıraş olan adam, Fatih'in oğlu Cem. Evi, denizin öbür yanında.
+
+Babası ölünce Cem yirmi bir, yirmi iki yaşındadır. Haziran 1
+
+## 1 Kasım 2026 · Sahibin toplu onayı (gece serisi + Kalender + Cem Sultan)
+- Sahip onay bekleyen 12 videonun hepsini onayladı. Kalender ve Cem Sultan `uv run onayla` ile, gece serisinin 10 videosu toplu olarak onaylandı.
+- Gece serisi (31 Ekim), Türk ve Osmanlı tarihinden 10 niş konu, her biri yaklaşık 4 dk, ElevenLabs "Metin" sesi:
+  - Orhun yazıtları / Thomsen
+  - Matbaa yasağı efsanesi
+  - Raziye Sultan
+  - Don-Volga kanalı
+  - Çelebi Mehmed Paris'te
+  - Piri Reis
+  - Hezarfen
+  - Takiyüddin Rasathanesi
+  - Toulon 1543
+  - İrlanda kıtlığı
+- Onaylanan biçim: 400-470 kelime, şimdiki zamanla sahne sahne anlatım, tek soru ekseni, belge ile rivayetin ayrılması. Açıklamalar ve etiketler `teslimler/gece/00-yayin-paketi.md` dosyasında, yayın takvimi 1-11 Kasım.
+- Görsel kalite kontrolde reddedilen hatalar, sonraki işlerde baştan önlenecek:
+  - gözsüz yüz
+  - oyuncak boyunda yapı ya da gemi
+  - aynı derinlikte insandan kısa ağaç ya da yapı
+  - dönem dışı kıyafet ya da eşya
+  - silah ucunun başka figüre değmesi
+  - kenarda kesilen ya da yazı bandına giren nesne
+  - havada duran gövde
+  - kalabalığın arkasında kalan ana karakter

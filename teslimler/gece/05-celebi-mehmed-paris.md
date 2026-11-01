@@ -1,7 +1,7 @@
 # Çelebi Mehmed Paris'te: Yirmisekiz Çelebi Mehmed Efendi'nin Paris sefareti (1720-21)
 
 - **İş:** @pikseltarihim gece serisi, video 5/10
-- **Durum:** ONAY BEKLİYOR (gece vardiyası; ajans sahibi işi önceden onayladı, son onay sahibin)
+- **Durum:** ONAYLANDI (1 Kasım 2026, ajans sahibi)
 - **Video:** `teslimler/video/pikseltarihim-celebi-mehmed-paris.mp4` (hazır, 4:08)
 - **Seslendirme:** ElevenLabs "Metin" sesi
 

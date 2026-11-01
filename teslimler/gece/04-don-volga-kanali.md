@@ -1,7 +1,7 @@
 # Su Akmıyor: Sokollu Mehmed Paşa'nın Don-Volga kanalı ve Astrahan seferi (1569)
 
 - **İş:** @pikseltarihim gece serisi, video 4/10
-- **Durum:** ONAY BEKLİYOR (gece vardiyası; ajans sahibi işi önceden onayladı, son onay sahibin)
+- **Durum:** ONAYLANDI (1 Kasım 2026, ajans sahibi)
 - **Video:** `teslimler/video/pikseltarihim-don-volga-kanali.mp4` (süre: 4:20; görsel kontrol 4. turda UYGUN verdi)
 - **Seslendirme:** ElevenLabs "Metin" sesi
 

@@ -1,7 +1,7 @@
 # Fermanı Gören Yok: Osmanlı'da "matbaa yasağı" efsanesi ve İbrahim Müteferrika (1727)
 
 - **İş:** @pikseltarihim gece serisi, video 2/10
-- **Durum:** ONAY BEKLİYOR (gece vardiyası; ajans sahibi işi önceden onayladı, son onay sahibin)
+- **Durum:** ONAYLANDI (1 Kasım 2026, ajans sahibi)
 - **Video:** `teslimler/video/pikseltarihim-matbaa-yasagi.mp4` (süre: 4:33; görsel kontrol 2. turda UYGUN verdi)
 - **Seslendirme:** ElevenLabs "Metin" sesi
 

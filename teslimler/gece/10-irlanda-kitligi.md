@@ -1,7 +1,7 @@
 # Defterde Bin Yazıyor: Abdülmecid'in İrlanda Büyük Kıtlığı yardımı, belge ile efsane (1847)
 
 - **İş:** @pikseltarihim gece serisi, video 10/10
-- **Durum:** ONAY BEKLİYOR (gece vardiyası; ajans sahibi işi önceden onayladı, son onay sahibin)
+- **Durum:** ONAYLANDI (1 Kasım 2026, ajans sahibi)
 - **Video:** `teslimler/video/pikseltarihim-irlanda-kitligi.mp4` (süre: 4:12; görsel kontrol 3. turda UYGUN verdi)
 - **Seslendirme:** ElevenLabs "Metin" sesi
 

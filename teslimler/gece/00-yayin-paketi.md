@@ -2,7 +2,7 @@
 
 **Hazırlayan:** 🟣 SKONSTART Editörü · 31 Ekim 2026
 **Kaynak:** Her konunun `teslimler/gece/ara/<slug>/` klasörü. Seslendirme metnini kalite kontrol `4-kalite-metin.md` dosyasında onayladı. Açıklama, etiket ve sabit yorum taslakları `3-editor.md` dosyasındaki §3-§5 bölümlerinde; kalite kontrol bunları da taradı ve önerdiği düzeltmeler aşağıya işlendi. Kapak yazıları `5-grafik.md` dosyasından ve videonun kendi kapak bloğundan (`video/src/sahneler/*.tsx`) alındı.
-**Durum:** ONAY BEKLİYOR. Paylaşma kararı ve son onay sahibin.
+**Durum:** ONAYLANDI (1 Kasım 2026, ajans sahibi). Paylaşmaya hazır.
 
 ---
 

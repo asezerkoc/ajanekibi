@@ -1,7 +1,7 @@
 # Kalması Uygun Değil: Hezarfen Ahmed Çelebi'nin uçuşu, tek kaynak Evliya Çelebi
 
 - **İş:** @pikseltarihim gece serisi, video 7/10
-- **Durum:** ONAY BEKLİYOR (gece vardiyası; ajans sahibi işi önceden onayladı, son onay sahibin)
+- **Durum:** ONAYLANDI (1 Kasım 2026, ajans sahibi)
 - **Video:** `teslimler/video/pikseltarihim-hezarfen.mp4` (hazır, 3:55)
 - **Seslendirme:** ElevenLabs "Metin" sesi
 
