@@ -235,7 +235,7 @@ class Tuval:
             val = prc["doku"](xs, ys, val)
         return ys, xs, val
 
-    def ciz(self):
+    def ciz(self, dis_kontur=True):
         n = 5
         idx = np.full((self.h, self.w), -1)
         pid = np.full((self.h, self.w), -1)
@@ -287,6 +287,8 @@ class Tuval:
             if 0 <= x < self.w and 0 <= y < self.h:
                 img[y, x, :3] = c[:3]
                 img[y, x, 3] = 255
+        if not dis_kontur:  # 3B render: kontur yerine gerçek gölge kullanılır
+            return Image.fromarray(img.astype(np.uint8), "RGBA")
         # dış kontur (sel-out): komşu rengin koyusu
         opak = img[:, :, 3] > 0
         dis = np.zeros_like(opak)

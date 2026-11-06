@@ -1,0 +1,145 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>SKONSTART voksel render</title>
+<style>html,body{margin:0;background:#000}canvas{display:block}</style>
+<script src="three.min.js"></script>
+<script>
+// Piksel figürü vokselleştirip stüdyo ışığında render eder. render.js bu sayfayı açar ve ciz(...) çağırır.
+const W = 768, H = 1056, ZEMIN = 167;
+
+function lin(c) { return Math.pow(c / 255, 2.2); }
+
+function resim(src) {
+  return new Promise((ok, hata) => { const im = new Image(); im.onload = () => ok(im); im.onerror = hata; im.src = src; });
+}
+
+function pahDokusu() {  // küp yüzü: ışık alan üst-sol kenar, gölgede alt-sağ kenar
+  const n = 32, c = document.createElement("canvas"); c.width = c.height = n;
+  const x = c.getContext("2d"), d = x.createImageData(n, n);
+  for (let j = 0; j < n; j++) for (let i = 0; i < n; i++) {
+    let v = 0.93 + 0.04 * Math.random();
+    const e = Math.min(i, j, n - 1 - i, n - 1 - j);
+    if (e < 3) {
+      const ust = (j < 3 || i < 3) && !(j > n - 4 || i > n - 4);
+      v = ust ? 1.0 : 0.74 + e * 0.05;
+    }
+    const k = (j * n + i) * 4; d.data[k] = d.data[k + 1] = d.data[k + 2] = Math.round(v * 255); d.data[k + 3] = 255;
+  }
+  x.putImageData(d, 0, 0);
+  const t = new THREE.CanvasTexture(c); t.anisotropy = 4; return t;
+}
+
+function voksel(im) {
+  const w = im.width, h = im.height, c = document.createElement("canvas"); c.width = w; c.height = h;
+  const cx = c.getContext("2d"); cx.drawImage(im, 0, 0);
+  const d = cx.getImageData(0, 0, w, h).data;
+  const opak = new Uint8Array(w * h); for (let i = 0; i < w * h; i++) opak[i] = d[i * 4 + 3] > 0 ? 1 : 0;
+  const U = new Float32Array(w * h).fill(1e9);
+  for (let i = 0; i < w * h; i++) if (!opak[i]) U[i] = 0;
+  const ag = (a, b, k) => { if (U[b] + k < U[a]) U[a] = U[b] + k; };
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) { const i = y * w + x;
+    if (x > 0) ag(i, i - 1, 1); if (y > 0) ag(i, i - w, 1); if (x > 0 && y > 0) ag(i, i - w - 1, 1.4); if (x < w - 1 && y > 0) ag(i, i - w + 1, 1.4); }
+  for (let y = h - 1; y >= 0; y--) for (let x = w - 1; x >= 0; x--) { const i = y * w + x;
+    if (x < w - 1) ag(i, i + 1, 1); if (y < h - 1) ag(i, i + w, 1); if (x < w - 1 && y < h - 1) ag(i, i + w + 1, 1.4); if (x > 0 && y < h - 1) ag(i, i + w - 1, 1.4); }
+  const K = new Int16Array(w * h).fill(-1);  // her pikselin yarı kalınlığı (voksel)
+  for (let i = 0; i < w * h; i++) if (opak[i]) K[i] = Math.round(Math.min(11, 0.3 + Math.sqrt(Math.max(0, Math.min(U[i], 200) - 1)) * 3.0));
+  const dolu = (x, y, z) => x >= 0 && y >= 0 && x < w && y < h && K[y * w + x] >= 0 && Math.abs(z) <= K[y * w + x];
+  const YON = [  // normal, yüzün dört köşesi (birim küp içinde), köşe komşuları için iki eksen
+    [[1, 0, 0], [[1, 0, 0], [1, 1, 0], [1, 1, 1], [1, 0, 1]], [0, 1, 0], [0, 0, 1]],
+    [[-1, 0, 0], [[0, 0, 1], [0, 1, 1], [0, 1, 0], [0, 0, 0]], [0, 1, 0], [0, 0, 1]],
+    [[0, 1, 0], [[0, 1, 1], [1, 1, 1], [1, 1, 0], [0, 1, 0]], [1, 0, 0], [0, 0, 1]],
+    [[0, -1, 0], [[0, 0, 0], [1, 0, 0], [1, 0, 1], [0, 0, 1]], [1, 0, 0], [0, 0, 1]],
+    [[0, 0, 1], [[0, 0, 1], [1, 0, 1], [1, 1, 1], [0, 1, 1]], [1, 0, 0], [0, 1, 0]],
+    [[0, 0, -1], [[1, 0, 0], [0, 0, 0], [0, 1, 0], [1, 1, 0]], [1, 0, 0], [0, 1, 0]],
+  ];
+  const UV = [[0, 1], [1, 1], [1, 0], [0, 0]];
+  const AO = [0.5, 0.68, 0.84, 1.0];
+  const poz = [], nor = [], renk = [], uv = [], idx = [];
+  // ızgara y'si aşağı doğru artar; dünya Y'si yukarı: Y = ZEMIN - y
+  const doluD = (X, Y, Z) => dolu(X, ZEMIN - Y, Z);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const i = y * w + x, k = K[i]; if (k < 0) continue;
+    const r = lin(d[i * 4]), g = lin(d[i * 4 + 1]), b = lin(d[i * 4 + 2]);
+    const X = x, Y = ZEMIN - y;
+    for (let z = -k; z <= k; z++) {
+      for (const [n, kose, a1, a2] of YON) {
+        if (doluD(X + n[0], Y + n[1], z + n[2])) continue;
+        const taban = poz.length / 3;
+        const arka = n[2] < 0 ? 0.8 : 1.0;
+        kose.forEach((c, j) => {
+          // köşe AO: yüzün önündeki katmanda iki yan komşu ve çapraz komşu
+          const s1 = [c[0] * 2 - 1, c[1] * 2 - 1, c[2] * 2 - 1];
+          const ax = [a1[0] * s1[0], a1[1] * s1[1], a1[2] * s1[2]], bx = [a2[0] * s1[0], a2[1] * s1[1], a2[2] * s1[2]];
+          const px = X + n[0], py = Y + n[1], pz = z + n[2];
+          const o1 = doluD(px + ax[0], py + ax[1], pz + ax[2]) ? 1 : 0;
+          const o2 = doluD(px + bx[0], py + bx[1], pz + bx[2]) ? 1 : 0;
+          const o3 = doluD(px + ax[0] + bx[0], py + ax[1] + bx[1], pz + ax[2] + bx[2]) ? 1 : 0;
+          const ao = AO[o1 && o2 ? 0 : 3 - (o1 + o2 + o3)] * arka;
+          poz.push(X - 64 + c[0] - 0.5, Y + c[1], z + c[2] - 0.5);
+          nor.push(...n); renk.push(r * ao, g * ao, b * ao); uv.push(...UV[j]);
+        });
+        idx.push(taban, taban + 1, taban + 2, taban, taban + 2, taban + 3);
+      }
+    }
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.Float32BufferAttribute(poz, 3));
+  geo.setAttribute("normal", new THREE.Float32BufferAttribute(nor, 3));
+  geo.setAttribute("color", new THREE.Float32BufferAttribute(renk, 3));
+  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
+  geo.setIndex(idx);
+  return geo;
+}
+
+function gradyan(renkler) {
+  const c = document.createElement("canvas"); c.width = 4; c.height = 512;
+  const x = c.getContext("2d"), g = x.createLinearGradient(0, 0, 0, 512);
+  renkler.forEach((r, i) => g.addColorStop(i / (renkler.length - 1), r));
+  x.fillStyle = g; x.fillRect(0, 0, 4, 512);
+  const t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding; return t;
+}
+
+function zeminDokusu(renk) {
+  const c = document.createElement("canvas"); c.width = c.height = 64; const x = c.getContext("2d");
+  for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) {
+    x.fillStyle = (i + j) % 2 ? renk[0] : renk[1]; x.fillRect(i * 4, j * 4, 4, 4);
+  }
+  const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(16, 3);
+  t.magFilter = THREE.NearestFilter; t.encoding = THREE.sRGBEncoding; return t;
+}
+
+async function ciz(src, gok, zemin, aci) {
+  const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+  renderer.setSize(W, H); renderer.setPixelRatio(1);
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.NoToneMapping;
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  document.body.appendChild(renderer.domElement);
+  const scene = new THREE.Scene();
+  scene.background = gradyan(gok);
+  const cam = new THREE.PerspectiveCamera(26, W / H, 10, 3000);
+  const uz = 420;
+  cam.position.set(Math.sin(aci) * uz, 96, Math.cos(aci) * uz); cam.lookAt(0, 86, 0);
+
+  scene.add(new THREE.HemisphereLight("#fff4e4", "#4a3a4a", 0.62));
+  const ana = new THREE.DirectionalLight("#ffe8cc", 0.95);
+  ana.position.set(-160, 260, 300); ana.castShadow = true;
+  ana.shadow.mapSize.set(2048, 2048); ana.shadow.radius = 4; ana.shadow.bias = -0.0008;
+  Object.assign(ana.shadow.camera, { left: -140, right: 140, top: 200, bottom: -40, near: 10, far: 1000 });
+  scene.add(ana);
+  const kenar = new THREE.DirectionalLight("#c8d0ff", 0.55); kenar.position.set(220, 160, -260); scene.add(kenar);
+  const dolgu = new THREE.DirectionalLight("#ffd8c0", 0.3); dolgu.position.set(260, 60, 200); scene.add(dolgu);
+
+  const zm = new THREE.Mesh(new THREE.BoxGeometry(1400, 4, 200),
+    new THREE.MeshStandardMaterial({ map: zeminDokusu(zemin), roughness: 0.95 }));
+  zm.position.set(0, -2, 40); zm.receiveShadow = true; scene.add(zm);
+
+  const im = await resim(src);
+  const mesh = new THREE.Mesh(voksel(im), new THREE.MeshStandardMaterial({ vertexColors: true, map: pahDokusu(), roughness: 0.72, metalness: 0.0 }));
+  mesh.castShadow = true; mesh.receiveShadow = true;
+  scene.add(mesh);
+  renderer.render(scene, cam);
+  return renderer.domElement.toDataURL("image/png");
+}
+window.ciz = ciz;
+</script>
