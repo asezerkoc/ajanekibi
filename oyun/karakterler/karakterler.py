@@ -655,6 +655,8 @@ def uret(cikti: Path):
         k["ciz"](t)
         fig = t.ciz()
         fig.resize((fig.width * 4, fig.height * 4), 0).save(cikti / f"{k['kod']}_sprite.png")
+        (cikti / "1x").mkdir(exist_ok=True)
+        fig.save(cikti / "1x" / f"{k['kod']}.png")  # 3B voksel görüntüleyici bu ham boyutu okur
         r = SINIF_RENK[k["sinif"]]
         kart(fig, r["gok"], r["toprak"], r["vurgu"]).save(cikti / f"{k['kod']}.png")
     return cikti

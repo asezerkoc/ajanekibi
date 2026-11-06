@@ -1,0 +1,158 @@
+<meta charset="utf-8">
+<title>Ocak Kadrosu 3B</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Alegreya+Sans:wght@400;500;700&display=swap">
+<style>
+/* Yerleşim: solda döndürülebilir voksel sahne, sağda kadro seçici. Tek (koyu) tema bilerek seçildi. */
+:root { --gece:#14111a; --yuzey:#1e1a26; --cizgi:#3a3244; --metin:#ece4d4; --soluk:#a89cb0; --altin:#d8a83a;
+  --baslik:"Jersey 10","Courier New",monospace; --govde:"Alegreya Sans","Segoe UI",sans-serif; color-scheme:dark; }
+body { background:var(--gece); color:var(--metin); font:16px/1.5 var(--govde); }
+.sarmal { max-width:1240px; margin:0 auto; padding-block:28px 48px;
+  padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px)); }
+h1 { font:400 clamp(40px,7vw,68px)/.9 var(--baslik); color:var(--altin); margin:0; }
+.giris { color:var(--soluk); max-width:64ch; margin:10px 0 20px; }
+.duzen { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:24px; align-items:start; }
+@media (max-width:820px) { .duzen { grid-template-columns:minmax(0,1fr); } }
+.sahne { position:relative; background:var(--yuzey); border:2px solid var(--cizgi); aspect-ratio:4/5; max-width:100%; touch-action:none; cursor:grab; }
+.sahne:active { cursor:grabbing; }
+.sahne canvas { width:100%; height:100%; display:block; }
+.bilgi { position:absolute; left:14px; right:14px; bottom:12px; pointer-events:none; }
+.bilgi h2 { font:400 34px/1 var(--baslik); margin:0; text-shadow:0 2px 0 #000; }
+.bilgi p { margin:4px 0 0; color:var(--metin); font-size:15px; text-shadow:0 1px 2px #000; max-width:52ch; }
+.rozet { font:400 18px/1 var(--baslik); letter-spacing:.05em; text-transform:uppercase; }
+.dugmeler { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+button { font:400 20px/1 var(--baslik); color:var(--metin); background:var(--yuzey); border:2px solid var(--cizgi); padding:8px 12px; cursor:pointer; }
+button:hover, button:focus-visible { border-color:var(--altin); outline:none; }
+button[aria-pressed="true"] { border-color:var(--altin); color:var(--altin); }
+.secici { display:grid; grid-template-columns:repeat(auto-fill,minmax(64px,1fr)); gap:8px; }
+.secici button { padding:4px; display:flex; flex-direction:column; align-items:center; gap:2px; font-size:15px; line-height:1; }
+.secici img { width:100%; height:auto; image-rendering:pixelated; aspect-ratio:128/176; object-fit:contain; }
+.secici button[aria-pressed="true"] { background:#2a2434; }
+.not { color:var(--soluk); font-size:14px; margin-top:14px; }
+</style>
+<div class="sarmal">
+  <div class="rozet" style="color:var(--soluk)">SKONSTART · Strateji oyunu</div>
+  <h1>Ocak Kadrosu 3B</h1>
+  <p class="giris">Her karakterin piksel çizimi küplere dönüştürüldü: bir piksel bir voksel. Gövde ortada kalın, kenarlarda incelir. Sürükleyerek döndür, tekerlek ya da iki parmakla yaklaş.</p>
+  <div class="duzen">
+    <div>
+      <div class="sahne" id="sahne">
+        <div class="bilgi"><span class="rozet" id="sinif"></span><h2 id="ad"></h2><p id="aciklama"></p></div>
+      </div>
+      <div class="dugmeler">
+        <button id="don" aria-pressed="true">Kendi dönsün</button>
+        <button id="on">Ön</button><button id="yan">Yan</button><button id="arka">Arka</button>
+        <button id="onceki">◀ Önceki</button><button id="sonraki">Sonraki ▶</button>
+      </div>
+    </div>
+    <div><div class="secici" id="secici"></div>
+    <p class="not">Arka yüz, ön çizimin koyulaştırılmış hâlidir; karakterlerin sırtı ayrıca tasarlanmadı.</p></div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const KADRO = [{"kod": "koylu", "ad": "Rumeli Köylüsü", "sinif": "Halk", "aciklama": "Toprağı işleyen reaya. Vergisi hazineyi, oğulları ocağı besler; zulüm görürse dağa çıkar.", "renk": "#7aa05a"}, {"kod": "koylu_kadin", "ad": "Köylü Kadın", "sinif": "Halk", "aciklama": "Köyün asıl yükünü taşıyan el. Hasat, ekmek, dokuma; köyün bereketi onun sepetinde.", "renk": "#7aa05a"}, {"kod": "cocuk", "ad": "Köy Çocuğu", "sinif": "Halk", "aciklama": "Devşirme çağındaki çocuk. Bohçası annesinin elinden; yarın bir yeniçeri, belki bir vezir.", "renk": "#7aa05a"}, {"kod": "tuccar", "ad": "Raguzalı Tüccar", "sinif": "Halk", "aciklama": "Adriyatik ile İstanbul arasında mal ve haber taşır. Defteri kılıçtan keskindir.", "renk": "#7aa05a"}, {"kod": "dervis", "ad": "Bektaşi Dervişi", "sinif": "Halk", "aciklama": "Ocağın manevi babası. Kışlada dua eder, yeniçeriye moral verir; sözü ağadan ağır basar.", "renk": "#7aa05a"}, {"kod": "hayduk", "ad": "Hayduk", "sinif": "Halk", "aciklama": "Dağların kanun tanımaz adamı. Kervan basar, köylüyü korur; yanına çekilirse değerli bir müttefik.", "renk": "#7aa05a"}, {"kod": "acemi_oglan", "ad": "Acemi Oğlan", "sinif": "Kapıkulu", "aciklama": "Devşirmeyle gelip Türk ailelerinin yanında yetişen genç. Bahçede, inşaatta çalışır; sırası gelince ocağa geçer.", "renk": "#4a7ad8"}, {"kod": "yeniceri_neferi", "ad": "Yeniçeri Neferi", "sinif": "Kapıkulu", "aciklama": "Ocağın belkemiği. Ak börkü, fitilli tüfeği ve yatağanıyla hem cephede hem kışlada söz sahibi.", "renk": "#4a7ad8"}, {"kod": "corbaci", "ad": "Yeniçeri Çorbacısı", "sinif": "Kapıkulu", "aciklama": "Bir ortanın komutanı. Askerin karnını doyurur, sesini dinler; isyan kazanı onun ortasında kaynar.", "renk": "#4a7ad8"}, {"kod": "yeniceri_agasi", "ad": "Yeniçeri Ağası", "sinif": "Kapıkulu", "aciklama": "Ocağın başı. Padişaha en yakın asker; Ocak onu severse taht sağlam, sevmezse sallantıda.", "renk": "#4a7ad8"}, {"kod": "topcu", "ad": "Topçu", "sinif": "Kapıkulu", "aciklama": "Kuşatmanın ustası. Barut lekeli önlüğü ve tokmağıyla surları dövecek topları hazırlar.", "renk": "#4a7ad8"}, {"kod": "sipahi", "ad": "Tımarlı Sipahi", "sinif": "Taşra ve Saray", "aciklama": "Tımarının geliriyle atını, zırhını, askerini besleyen süvari. Ocağın en eski rakibi.", "renk": "#d8a83a"}, {"kod": "deli", "ad": "Deli", "sinif": "Taşra ve Saray", "aciklama": "Pars postlu, kanatlı öncü süvari. Akınların en önünde; korkuyu düşmana o taşır.", "renk": "#d8a83a"}, {"kod": "kadi", "ad": "Kadı", "sinif": "Taşra ve Saray", "aciklama": "Kazanın hâkimi. Davaya bakar, vergiyi denetler; halkın şikâyeti önce onun kapısına gelir.", "renk": "#d8a83a"}, {"kod": "beylerbeyi", "ad": "Rumeli Beylerbeyi", "sinif": "Taşra ve Saray", "aciklama": "Balkanların en güçlü paşası. Sancak beylerini ve sipahileri sefere o çıkarır.", "renk": "#d8a83a"}, {"kod": "padisah", "ad": "Padişah", "sinif": "Taşra ve Saray", "aciklama": "Devletin başı. Cülus bahşişini dağıtan da, Ocağın öfkesine ilk hedef olan da odur.", "renk": "#d8a83a"}, {"kod": "saray_hanimi", "ad": "Saray Hanımı", "sinif": "Taşra ve Saray", "aciklama": "Sarayın görünmeyen gücü. Vakıf kurar, ittifak örer; bir fısıltısı sefer kararını değiştirebilir.", "renk": "#d8a83a"}, {"kod": "voyvoda", "ad": "Voyvoda", "sinif": "Karşı Cephe", "aciklama": "Tuna ötesi beyliklerin hükümdarı. Bir gün haraç öder, ertesi gün Haçlılarla yürür.", "renk": "#d0443a"}, {"kod": "macar_suvarisi", "ad": "Macar Süvarisi", "sinif": "Karşı Cephe", "aciklama": "Sınırın hızlı atlısı. Kanat biçimli kalkanı ve uzun mızrağıyla akıncıların ezelî rakibi.", "renk": "#d0443a"}, {"kod": "sovalye", "ad": "Şövalye", "sinif": "Karşı Cephe", "aciklama": "Tepeden tırnağa çelik. Haçlı ordusunun ağır vurucu gücü; yavaş ama durdurulması zor.", "renk": "#d0443a"}];
+const sahneEl = document.getElementById("sahne");
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+sahneEl.prepend(renderer.domElement);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color("#1e1a26");
+scene.fog = new THREE.Fog("#1e1a26", 260, 520);
+const camera = new THREE.PerspectiveCamera(35, 4 / 5, 1, 2000);
+scene.add(new THREE.HemisphereLight("#fff0d8", "#6a5a6a", 0.8)); scene.add(new THREE.AmbientLight("#ffffff", 0.25));
+const gunes = new THREE.DirectionalLight("#ffe2b0", 0.75); gunes.position.set(-120, 180, 160); scene.add(gunes);
+const arka = new THREE.DirectionalLight("#8aa0ff", 0.25); arka.position.set(140, 60, -160); scene.add(arka);
+// zemin: piksel çimen diski
+const zc = document.createElement("canvas"); zc.width = zc.height = 64;
+const zx = zc.getContext("2d");
+for (let y = 0; y < 64; y++) for (let x = 0; x < 64; x++) {
+  const r = Math.random(); zx.fillStyle = r < .5 ? "#4a5a32" : r < .85 ? "#3e4e2a" : "#5a6a3a"; zx.fillRect(x, y, 1, 1);
+}
+const ztex = new THREE.CanvasTexture(zc); ztex.magFilter = THREE.NearestFilter; ztex.wrapS = ztex.wrapT = THREE.RepeatWrapping; ztex.repeat.set(3, 3);
+const zemin = new THREE.Mesh(new THREE.CylinderGeometry(110, 110, 6, 48), new THREE.MeshLambertMaterial({ map: ztex }));
+zemin.position.y = -3; scene.add(zemin);
+const golge = new THREE.Mesh(new THREE.CircleGeometry(1, 32), new THREE.MeshBasicMaterial({ color: "#000", transparent: true, opacity: .35 }));
+golge.rotation.x = -Math.PI / 2; golge.position.y = 0.2; golge.scale.set(30, 12, 1); scene.add(golge);
+
+const grup = new THREE.Group(); scene.add(grup);
+let mesh = null;
+const kutu = new THREE.BoxGeometry(1, 1, 1);
+const mat = new THREE.MeshLambertMaterial();
+const onbellek = {};
+
+function resimYukle(kod) {
+  return new Promise((ok, hata) => { const im = new Image(); im.onload = () => ok(im); im.onerror = hata; im.src = "cikti/1x/" + kod + ".png"; });
+}
+function vokselle(im) {
+  const w = im.width, h = im.height, c = document.createElement("canvas"); c.width = w; c.height = h;
+  const x = c.getContext("2d"); x.drawImage(im, 0, 0);
+  const d = x.getImageData(0, 0, w, h).data;
+  const opak = new Uint8Array(w * h); for (let i = 0; i < w * h; i++) opak[i] = d[i * 4 + 3] > 0 ? 1 : 0;
+  // saydam piksele uzaklık (iki geçişli mesafe dönüşümü)
+  const U = new Float32Array(w * h).fill(1e9);
+  for (let i = 0; i < w * h; i++) if (!opak[i]) U[i] = 0;
+  const ag = (a, b, k) => { if (U[b] + k < U[a]) U[a] = U[b] + k; };
+  for (let yy = 0; yy < h; yy++) for (let xx = 0; xx < w; xx++) { const i = yy * w + xx;
+    if (xx > 0) ag(i, i - 1, 1); if (yy > 0) ag(i, i - w, 1); if (xx > 0 && yy > 0) ag(i, i - w - 1, 1.4); if (xx < w - 1 && yy > 0) ag(i, i - w + 1, 1.4); }
+  for (let yy = h - 1; yy >= 0; yy--) for (let xx = w - 1; xx >= 0; xx--) { const i = yy * w + xx;
+    if (xx < w - 1) ag(i, i + 1, 1); if (yy < h - 1) ag(i, i + w, 1); if (xx < w - 1 && yy < h - 1) ag(i, i + w + 1, 1.4); if (xx > 0 && yy < h - 1) ag(i, i + w - 1, 1.4); }
+  let n = 0; for (let i = 0; i < w * h; i++) if (opak[i]) n++;
+  const m = new THREE.InstancedMesh(kutu, mat, n * 2);
+  const o = new THREE.Object3D(), renk = new THREE.Color(); let k = 0;
+  for (let yy = 0; yy < h; yy++) for (let xx = 0; xx < w; xx++) { const i = yy * w + xx; if (!opak[i]) continue;
+    const yari = Math.min(12, 0.6 + Math.sqrt(Math.max(0, Math.min(U[i], 200) - 1)) * 3.2);  // ince sap ve namlular ince kalır
+    renk.setRGB(d[i*4] / 255, d[i*4+1] / 255, d[i*4+2] / 255).convertSRGBToLinear();
+    // ön yarı: çizimin rengi; arka yarı: koyulaşmış hâli
+    o.position.set(xx - w / 2, h - 9 - yy, yari / 2); o.scale.set(1, 1, yari); o.updateMatrix();
+    m.setMatrixAt(k, o.matrix); m.setColorAt(k++, renk);
+    o.position.z = -yari / 2; o.updateMatrix(); m.setMatrixAt(k, o.matrix); m.setColorAt(k++, renk.clone().multiplyScalar(0.8));
+  }
+  m.instanceMatrix.needsUpdate = true; m.instanceColor.needsUpdate = true;
+  return m;
+}
+let sira = 0, aci = 0.5, egim = 0.12, uzak = 330, kendiDon = true;
+async function goster(i) {
+  sira = (i + KADRO.length) % KADRO.length; const kr = KADRO[sira];
+  document.getElementById("ad").textContent = kr.ad;
+  const s = document.getElementById("sinif"); s.textContent = kr.sinif; s.style.color = kr.renk;
+  document.getElementById("aciklama").textContent = kr.aciklama;
+  document.querySelectorAll(".secici button").forEach((b, j) => b.setAttribute("aria-pressed", j === sira));
+  try {
+    if (!onbellek[kr.kod]) onbellek[kr.kod] = vokselle(await resimYukle(kr.kod));
+    if (mesh) grup.remove(mesh); mesh = onbellek[kr.kod]; grup.add(mesh);
+  } catch (e) { document.getElementById("aciklama").textContent = "Model yüklenemedi: " + kr.kod; }
+}
+const sec = document.getElementById("secici");
+KADRO.forEach((kr, j) => { const b = document.createElement("button"); b.innerHTML = '<img alt="" src="cikti/1x/' + kr.kod + '.png"><span></span>';
+  b.querySelector("span").textContent = kr.ad.split(" ").slice(-1)[0]; b.title = kr.ad; b.onclick = () => goster(j); sec.appendChild(b); });
+const donB = document.getElementById("don");
+function donAyarla(v) { kendiDon = v; donB.setAttribute("aria-pressed", v); }
+donB.onclick = () => donAyarla(!kendiDon);
+document.getElementById("on").onclick = () => { donAyarla(false); aci = 0; };
+document.getElementById("yan").onclick = () => { donAyarla(false); aci = Math.PI / 2; };
+document.getElementById("arka").onclick = () => { donAyarla(false); aci = Math.PI; };
+document.getElementById("onceki").onclick = () => goster(sira - 1);
+document.getElementById("sonraki").onclick = () => goster(sira + 1);
+// sürükleyerek döndürme ve yakınlaştırma
+const imlecler = new Map(); let ilkMesafe = 0;
+sahneEl.addEventListener("pointerdown", e => { sahneEl.setPointerCapture(e.pointerId); imlecler.set(e.pointerId, [e.clientX, e.clientY]); donAyarla(false); });
+sahneEl.addEventListener("pointermove", e => { if (!imlecler.has(e.pointerId)) return; const [px, py] = imlecler.get(e.pointerId);
+  if (imlecler.size === 1) { aci -= (e.clientX - px) * 0.01; egim = Math.max(-0.2, Math.min(0.9, egim + (e.clientY - py) * 0.006)); }
+  imlecler.set(e.pointerId, [e.clientX, e.clientY]);
+  if (imlecler.size === 2) { const [a, b] = [...imlecler.values()]; const dd = Math.hypot(a[0] - b[0], a[1] - b[1]);
+    if (ilkMesafe) uzak = Math.max(150, Math.min(520, uzak * ilkMesafe / dd)); ilkMesafe = dd; } });
+const birak = e => { imlecler.delete(e.pointerId); ilkMesafe = 0; };
+sahneEl.addEventListener("pointerup", birak); sahneEl.addEventListener("pointercancel", birak);
+sahneEl.addEventListener("wheel", e => { e.preventDefault(); uzak = Math.max(150, Math.min(520, uzak * (1 + Math.sign(e.deltaY) * 0.08))); }, { passive: false });
+addEventListener("keydown", e => { if (e.key === "ArrowRight") goster(sira + 1); if (e.key === "ArrowLeft") goster(sira - 1); });
+const azHareket = matchMedia("(prefers-reduced-motion: reduce)").matches; if (azHareket) donAyarla(false);
+function boyut() { const r = sahneEl.getBoundingClientRect(); renderer.setSize(r.width, r.height, false); camera.aspect = r.width / r.height; camera.updateProjectionMatrix(); }
+new ResizeObserver(boyut).observe(sahneEl); boyut();
+let onceki = performance.now();
+function kare(t) { const dt = (t - onceki) / 1000; onceki = t; if (kendiDon) aci += dt * 0.5;
+  const hedef = new THREE.Vector3(0, 78, 0);
+  camera.position.set(Math.sin(aci) * uzak * Math.cos(egim), 78 + Math.sin(egim) * uzak, Math.cos(aci) * uzak * Math.cos(egim));
+  camera.lookAt(hedef); renderer.render(scene, camera); requestAnimationFrame(kare); }
+goster(7); requestAnimationFrame(kare);
+</script>
