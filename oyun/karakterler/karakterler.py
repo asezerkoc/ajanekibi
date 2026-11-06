@@ -1,4 +1,4 @@
-"""Osmanlı Balkanları strateji oyunu: 20 karakterlik ilk kadro (128-bit tarzı piksel sanatı).
+"""Osmanlı Balkanları strateji oyunu: 30 karakterlik kadro (128-bit tarzı piksel sanatı).
 
 Her karakter bir fonksiyondur: Tuval alır, parçalarını ekler. KADRO listesi kart bilgisini taşır.
 Kullanım: python3 -I oyun/karakterler/karakterler.py [çıktı_klasörü]
@@ -12,7 +12,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from govde import (TEN, TEN_ACIK, TEN_ESMER, ayna, bacak, bas, biyik, cizme, gomlek_govde, kaftan,  # noqa: E402
                    kol, kurk_yaka, kusak, sac_yanlar, sakal, salvar)
-from motor import (C, E, L, P, R, Tuval, birlestir, kart, kivrim, kurk, palet,  # noqa: E402
+from motor import (CX, C, E, L, P, R, Tuval, birlestir, kart, kivrim, kurk, palet,  # noqa: E402
                    yatay_cizgi, zincir)
 
 ALTIN = "#d8a83a"
@@ -593,6 +593,232 @@ def sovalye(t):
         kol(t, CELIK, "kabza", sag=sag, ten=TEN, z=73, eldiven=DEMIR, doku=yatay_cizgi(5, 0.1), kalin=11)
 
 
+# ---------------------------------------------------------------- 30'luk kadroya eklenenler
+
+
+def sadrazam(t):
+    """Sadrazam: devletin mührünü taşıyan vezir; beyaz atlas kaftan, samur kürk, kallavi, elinde mühr-i hümayun."""
+    bas(t, TEN, sac="#b8b0a4", yas="yasli", agiz="duz")
+    biyik(t, "#b8b0a4", tur="ince")
+    sakal(t, "#b8b0a4", tur="dolgun")
+    kavuk(t, tur="kallavi", ic="#2a6a4a")
+    kaftan(t, "#e8e0d0", z=40, boy=162, etek=30, ic="#2a6a4a", desen=(["x"], ALTIN, 6, 6))
+    kurk_yaka(t, "#2a1e18", boy=162, etek=30)
+    kusak(t, "#2a6a4a", z=48, y=86, kalin=6, desen=NOKTA)
+    cizme(t, "#d8a830", z=24, kisa=True)
+    kol(t, "#e8e0d0", "gogus", ten=TEN, z=50, yen="#2a1e18", kalin=13)
+    kol(t, "#e8e0d0", "yan", sag=True, ten=TEN, z=50, yen="#2a1e18", kalin=13)
+    t.parca(53, "#a82a26", [E(52, 80, 64, 92)], golge="kure", desen=(["x."], ALTIN, 2, 2))  # mühür kesesi
+    t.parca(54, ALTIN, [C(58, 86, 3)], golge="kure", isik=0.1)
+    t.parca(53.5, ALTIN, [L((54, 80), (62, 80), w=1)], golge="duz")
+
+
+def sehzade(t):
+    """Şehzade: sancağa çıkmış genç veliaht; sorguçlu kavuk, çintemani mavi kaftan, el kılıç kabzasında."""
+    with t.olcek(0.95):
+        bas(t, TEN_ACIK, sac="#3a2418", agiz="duz")
+        biyik(t, "#3a2418", tur="ince")
+        kavuk(t, tur="yuvarlak", ic="#2a4a8a", sorguc="#f4f0e8", mucevher="#c8302a")
+        kaftan(t, "#2a4a8a", z=40, boy=162, etek=28, ic="#e0c890", desen=CINTEMANI)
+        t.parca(45, ALTIN, [L((59, 56), (56, 160), w=3), L((69, 56), (72, 160), w=3)], golge="silindir")
+        kusak(t, "#a82a26", z=48, y=86, kalin=6, desen=NOKTA)
+        kilic(t, 52, 92, z=46)
+        cizme(t, "#d8a830", z=24, kisa=True)
+        kol(t, "#2a4a8a", "kilic", ten=TEN_ACIK, z=50, yen=ALTIN)
+        kol(t, "#2a4a8a", "yan", sag=True, ten=TEN_ACIK, z=50, yen=ALTIN)
+
+
+def akinci(t):
+    """Akıncı: sınır boylarının hafif atlısı; kürk bantlı kızıl börk, kısa kaftan, yay, sadak ve pala."""
+    bas(t, TEN_ESMER, sac="#2a1a14", agiz="sert")
+    biyik(t, "#2a1a14", tur="pala")
+    sakal(t, "#2a1a14", tur="kisa")
+    t.parca(79, "#a8302a", [P((56, 24), (72, 24), (76, 6), (70, -2), (62, 0))], golge="silindir", doku=kivrim(4, 0.1))
+    kalpak(t, renk="#4a3a2a", boy=7, doku_tohum=31)
+    kaftan(t, "#8a5a2a", z=40, boy=128, etek=24, ic="#d8c8a0")
+    salvar(t, "#3a4a6a", z=22, ust=114, alt=156)
+    cizme(t, "#d8a830", z=24)
+    kusak(t, "#a8302a", z=48, y=86, kalin=6)
+    kilic(t, 52, 92, z=46)
+    t.parca(47, "#6a3a1e", [P((80, 82), (89, 80), (95, 120), (86, 122))], golge="silindir", desen=(["x."], ALTIN, 2, 3))  # sadak
+    for x in (83, 86, 89):
+        t.parca(46.5, "#e8e0d0", [P((x - 2, 72), (x + 1, 72), (x + 1, 82), (x - 1, 82))], golge="duz")  # ok tüyleri
+    kol(t, "#8a5a2a", "direk", ten=TEN_ESMER, z=50, yen="#d8c8a0")
+    kol(t, "#8a5a2a", "yan", sag=True, ten=TEN_ESMER, z=50, yen="#d8c8a0")
+    t.parca(49, "#5a3a1e", [L((30, 56), (24, 70), (26, 90), (31, 97), (26, 104), (24, 124), (30, 138), w=3)], golge="silindir")  # yay
+    t.parca(49.2, ALTIN, [R(29, 94, 33, 100)], golge="duz")
+    t.cizgi(30, 57, 30, 137, "#e8e0d0", z=900)
+
+
+def avci(t):
+    """Doğancı avcı: eldivenli elinde doğan, yeşil av kaftanı, av torbası ve boru."""
+    bas(t, TEN, sac="#4a2a1a", yas="orta", agiz="gulus")
+    biyik(t, "#4a2a1a", tur="pala")
+    sakal(t, "#4a2a1a", tur="kisa")
+    t.parca(80, "#4a5a2a", [P((52, 32), (76, 32), (74, 22), (68, 16), (58, 16), (54, 22))], golge="kure", doku=kivrim(3, 0.1))
+    t.parca(81, "#6a4a2a", [R(53, 28, 75, 32)], golge="yatay")
+    t.parca(81.5, "#c83a30", [P((72, 24), (82, 8), (84, 2), (78, 14), (74, 26))], golge="silindir")  # tüy
+    kaftan(t, "#3a5a2a", z=40, boy=134, etek=24, ic="#c8b890")
+    bacak(t, "#6a5a3a", z=22, ust=118, alt=156)
+    cizme(t, "#5a3a22", z=24)
+    kusak(t, "#6a4a2a", z=48, y=86, kalin=6)
+    t.parca(47, "#8a6a3a", [E(70, 92, 90, 116)], golge="kure", doku=yatay_cizgi(4, 0.1))  # av torbası
+    t.parca(47.5, "#e8dcc0", [L((52, 98), (44, 108), (48, 112), w=4)], golge="silindir")  # av borusu
+    kol(t, "#3a5a2a", "kus", ten=TEN, z=50, eldiven="#8a6a3a", yen="#8a6a3a")
+    kol(t, "#3a5a2a", "yan", sag=True, ten=TEN, z=50)
+    # doğan: eldivenin üstüne konmuş
+    t.parca(60, "#6a4a32", [P((24, 60), (36, 60), (36, 46), (32, 40), (26, 40), (22, 48))], golge="kure",
+            desen=([".x.", "..."], "#3a2a1e", 3, 2))
+    t.parca(60.5, "#e8dcc4", [E(28, 46, 35, 58)], golge="kure", desen=(["x.."], "#6a4a32", 3, 2))  # göğüs
+    t.parca(61, "#4a3428", [C(31, 39, 4)], golge="kure")
+    t.parca(59, "#5a3a28", [P((23, 58), (30, 58), (28, 70), (22, 68))], golge="silindir", doku=yatay_cizgi(2, 0.15))  # kuyruk
+    t.px(33, 38, "#f0d040", z=1001)
+    t.px(34, 40, "#e8b040", z=1001)
+    t.px(35, 41, "#3a2a1e", z=1001)
+
+
+def hain(t):
+    """Hain: düşmana bilgi satan bey; bir elinde mühürlü mektup, öbüründe rüşvet kesesi, gözü yanda."""
+    bas(t, TEN, sac="#1e1612", yas="orta", agiz="gulus")
+    for gx in (59, 67):  # gözler yana kaçmış
+        t.px(gx, 36, "#2a1a14", z=1001)
+        t.px(gx + 1, 36, "#f2ece0", z=1001)
+    biyik(t, "#1e1612", tur="burma")
+    sakal(t, "#1e1612", tur="sivri")
+    kavuk(t, tur="yuvarlak", renk="#d8d0c0", ic="#3a2a4a")
+    kaftan(t, "#2a3a2a", z=40, boy=162, etek=28, ic="#5a3a5a", doku=kivrim(5, 0.14))
+    kusak(t, "#5a3a5a", z=48, y=86, kalin=6)
+    cizme(t, "#3a2a20", z=24, kisa=True)
+    kol(t, "#2a3a2a", "gogus", ten=TEN, z=50, yen="#5a3a5a")
+    kol(t, "#2a3a2a", "one", sag=True, ten=TEN, z=50, yen="#5a3a5a")
+    t.parca(52, "#efe2c4", [P((50, 80), (64, 78), (66, 92), (52, 94))], golge="duz", doku=yatay_cizgi(3, 0.08))  # mektup
+    t.parca(53, "#a82a26", [C(58, 87, 3)], golge="kure")  # düşman mührü
+    t.px(58, 86, "#f0d0a0", z=1001)
+    t.parca(51, "#c8a050", [E(76, 100, 90, 116)], golge="kure", desen=(["x"], "#fff0b0", 3, 3))  # altın kesesi
+    t.parca(51.5, "#6a4a2a", [L((80, 100), (86, 100), w=2)], golge="duz")
+    t.parca(52, ALTIN, [C(78, 120, 2), C(84, 124, 2)], golge="kure", isik=0.1)  # dökülen altınlar
+
+
+def casus(t):
+    """Düşman casusu: kukuletalı koyu pelerin, yüzü örtülü, elinde gizli harita, belde hançer."""
+    bas(t, TEN_ACIK, sac="#2a1a14", agiz="duz")
+    t.parca(12, "#2a2a34", [P((46, 50), (82, 50), (94, 162), (34, 162))], golge="silindir", doku=kivrim(8, 0.15))  # pelerin
+    t.parca(62, "#2a2a34", [P((52, 50), (51, 30), (55, 20), (64, 15), (73, 20), (77, 30), (76, 50), (72, 44), (72, 32), (64, 28),
+                              (56, 32), (56, 44))], golge="kure", doku=kivrim(4, 0.1))  # kukuleta
+    t.parca(64, "#1e1e26", [P((55, 40), (73, 40), (72, 48), (64, 51), (56, 48))], golge="kure")  # yüz örtüsü
+    gomlek_govde(t, "#3a3a44", z=40, alt=118)
+    t.parca(44, "#2a2a34", [P((44, 56), (56, 50), (60, 140), (40, 146)), P((84, 56), (72, 50), (68, 140), (88, 146))],
+            golge="silindir", doku=kivrim(6, 0.14))  # pelerinin önü
+    bacak(t, "#2a2a30", z=22, ust=112, alt=158)
+    cizme(t, "#1e1a1a", z=24)
+    kusak(t, "#4a3a2a", z=46, y=88, kalin=4)
+    kol(t, "#2a2a34", "gogus", ten=TEN_ACIK, z=50, eldiven="#3a2a22")
+    kol(t, "#2a2a34", "yan", sag=True, ten=TEN_ACIK, z=50, eldiven="#3a2a22")
+    t.parca(52, "#d8c8a0", [P((50, 84), (66, 82), (68, 96), (52, 98))], golge="duz", doku=kivrim(3, 0.1))  # harita
+    t.cizgi(54, 88, 62, 92, "#a82a26", z=1001)
+    t.cizgi(56, 94, 64, 86, "#5a4a3a", z=1001)
+    t.parca(47, CELIK, [P((72, 92), (74, 92), (75, 112), (73, 116), (71, 112))], golge="silindir")  # hançer
+    t.parca(47.5, "#3a2a22", [R(70, 86, 76, 92)], golge="duz")
+
+
+def casit(t):
+    """Çaşıt: düşman topraklarında köylü kılığında dolaşan Osmanlı gözcüsü; heybe, değnek, uyanık bakış."""
+    bas(t, TEN_ESMER, sac="#3a2a1e", yas="orta", agiz="sert")
+    biyik(t, "#3a2a1e", tur="pala")
+    sakal(t, "#3a2a1e", tur="kisa")
+    kalpak(t, renk="#5a4a3a", boy=10, doku_tohum=41)
+    t.parca(12, "#7a6a4a", [P((60, 60), (88, 56), (92, 108), (68, 112))], golge="kure", doku=kivrim(4, 0.12))  # sırttaki heybe
+    gomlek_govde(t, "#d8ccb0", z=40, alt=116)
+    t.parca(44, "#6a4a32", [P((43, 58), (48, 52), (56, 50), (72, 50), (80, 52), (85, 58), (88, 128), (40, 128))], golge="silindir",
+            doku=birlestir(kivrim(6, 0.12), yatay_cizgi(9, 0.08)))  # kepenek
+    t.parca(45, "#d8ccb0", [P((58, 52), (70, 52), (68, 128), (60, 128))], golge="silindir")
+    t.parca(46, "#5a3a22", [L((74, 52), (54, 100), w=3)], golge="silindir")  # heybe kayışı
+    kusak(t, "#8a2a22", z=47, y=92, kalin=4)
+    t.parca(47.5, CELIK, [P((60, 96), (62, 96), (62, 104), (61, 106), (60, 104))], golge="silindir")  # kuşakta saklı bıçak ucu
+    bacak(t, "#a89a7a", z=22, ust=120, alt=160, doku=yatay_cizgi(3, 0.16))
+    cizme(t, "#6a4a2e", z=24, kisa=True)
+    kol(t, "#6a4a32", "yan", ten=TEN_ESMER, z=50)
+    kol(t, "#6a4a32", "direk", sag=True, ten=TEN_ESMER, z=50)
+    t.parca(49, "#8a6a42", [L((97, 54), (97, 166), w=3)], golge="silindir")
+    t.parca(49.5, "#8a6a42", [L((97, 54), (92, 48), w=3)], golge="silindir")
+
+
+def ermin(t, z, sekiller, golge="silindir"):
+    t.parca(z, "#f0ece4", sekiller, golge=golge, desen=(["x...", "....", "..x.", "...."], "#1a1418", 4, 4))
+
+
+def kral(t):
+    """Macar kralı: kapalı kemerli taç, kakım kürklü kırmızı kral pelerini, asa ve küre."""
+    bas(t, TEN_ACIK, sac="#6a4a2a", yas="orta", agiz="sert")
+    sac_yanlar(t, "#6a4a2a", uzun=True)
+    t.parca(30, "#6a4a2a", [P((52, 30), (76, 30), (78, 56), (50, 56))], golge="silindir", doku=kivrim(2, 0.12))
+    biyik(t, "#6a4a2a", tur="ince")
+    sakal(t, "#6a4a2a", tur="dolgun")
+    t.parca(80, ALTIN, [P((54, 30), (74, 30), (74, 24), (54, 24))], golge="yatay")  # taç bandı
+    t.parca(79, ALTIN, [L((55, 25), (58, 14), (64, 10), (70, 14), (73, 25), w=3)], golge="silindir")  # kemer
+    t.parca(78.5, "#a82a26", [P((57, 24), (71, 24), (69, 15), (64, 12), (59, 15))], golge="kure")
+    t.parca(81, ALTIN, [R(63, 2, 65, 10), R(61, 4, 67, 6)], golge="duz")  # eğik haç
+    for x, r in ((58, "#2a8a5a"), (64, "#c8302a"), (70, "#2a4a8a")):
+        t.parca(81, r, [C(x, 27, 1.6)], golge="kure", isik=0.15)
+    t.parca(14, "#a82a26", [P((42, 52), (86, 52), (100, 164), (28, 164))], golge="silindir", doku=kivrim(9, 0.14))  # pelerin
+    kaftan(t, "#2a3a7a", z=40, boy=162, etek=26, ic=ALTIN, ic_genis=4, desen=([".x.", "xxx", ".x."], ALTIN, 8, 8))
+    ermin(t, 46, [P((42, 50), (86, 50), (84, 64), (64, 70), (44, 64))], golge="kure")  # kakım yaka
+    kusak(t, ALTIN, z=48, y=88, kalin=4)
+    cizme(t, "#3a2a20", z=24, kisa=True)
+    kol(t, "#a82a26", "gogus", ten=TEN_ACIK, z=50, yen="#f0ece4")
+    kol(t, "#a82a26", "direk", sag=True, ten=TEN_ACIK, z=50, yen="#f0ece4")
+    t.parca(54, ALTIN, [C(58, 82, 6)], golge="kure")  # küre
+    t.parca(54.5, ALTIN, [R(57, 72, 59, 78), R(55, 74, 61, 75)], golge="duz")
+    t.parca(54.4, "#a82a26", [R(52, 81, 64, 82)], golge="duz", kontur=False)
+    t.parca(49, ALTIN, [R(96, 50, 98, 112)], golge="silindir")  # asa
+    t.parca(49.5, ALTIN, [P((97, 40), (102, 48), (97, 54), (92, 48))], golge="kure")
+    t.parca(49.6, "#c8302a", [C(97, 47, 1.5)], golge="kure", isik=0.15)
+
+
+def prens(t):
+    """Prens: tüylü kadife bere, sırmalı kısa ceket, tek omuza atılmış kısa pelerin, ince kılıç."""
+    with t.olcek(0.96):
+        bas(t, TEN_ACIK, sac="#c8a050", agiz="duz")
+        sac_yanlar(t, "#c8a050", uzun=True)
+        t.parca(30, "#c8a050", [P((52, 30), (76, 30), (78, 52), (50, 52))], golge="silindir", doku=kivrim(2, 0.12))
+        t.parca(80, "#2a1e2a", [E(48, 18, 80, 30)], golge="kure")  # bere
+        t.parca(81, "#f4f0e8", [P((72, 22), (88, 12), (92, 6), (84, 18), (74, 26))], golge="silindir", doku=kivrim(2, 0.15))
+        t.parca(81.5, ALTIN, [C(72, 24, 2)], golge="kure")
+        t.parca(14, "#5a1e3a", [P((40, 52), (66, 52), (60, 120), (32, 116))], golge="silindir", doku=kivrim(6, 0.14))  # kısa pelerin
+        gomlek_govde(t, "#2a5a3a", z=40, alt=106, desen=([".x", "x."], ALTIN, 6, 6))
+        t.parca(41, "#2a5a3a", [P((46, 100), (82, 100), (86, 116), (42, 116))], golge="silindir", doku=kivrim(4, 0.12))  # etek
+        t.parca(46, ALTIN, [L((52, 54), (64, 66), (76, 54), w=2)], golge="duz")  # altın zincir
+        t.parca(46.5, ALTIN, [C(64, 68, 2.5)], golge="kure")
+        kusak(t, "#3a2a20", z=48, y=96, kalin=4)
+        bacak(t, "#a82a3a", z=22, ust=110, alt=154)
+        cizme(t, "#2a1e1a", z=24)
+        kilic(t, 76, 98, z=46, sag=True, kin="#2a1e1a")
+        kol(t, "#2a5a3a", "bel", ten=TEN_ACIK, z=50, yen=ALTIN)
+        kol(t, "#2a5a3a", "kilic", sag=True, ten=TEN_ACIK, z=50, yen=ALTIN)
+
+
+def prenses(t):
+    """Prenses: duvaklı uzun hennin, inci gerdanlık, sırmalı mavi gelinlik, elinde dua kitabı."""
+    with t.olcek(0.95):
+        bas(t, TEN_ACIK, sac="#a8783a", kadin=True, agiz="gulus")
+        t.parca(10, "#f4f0f4", [P((76, -12), (90, 20), (94, 90), (82, 140), (74, 60), (68, 20))], golge="silindir",
+                doku=kivrim(5, 0.14), isik=0.1)  # duvak
+        t.parca(58, "#a8783a", [P((55, 34), (56, 27), (64, 25), (72, 27), (73, 34), (74, 50), (71, 34), (57, 34), (54, 50))],
+                golge="kure", doku=kivrim(2, 0.1))
+        t.parca(80, "#2a3a7a", [P((56, 30), (72, 30), (80, -14), (75, -16), (60, 18))], golge="silindir",
+                desen=(["x"], ALTIN, 4, 5))  # hennin
+        t.parca(81, ALTIN, [P((55, 26), (73, 26), (73, 31), (55, 31))], golge="yatay", desen=(["x."], "#f4f0ec", 2, 1))
+        for x, y in ((58, 56), (61, 59), (64, 60), (67, 59), (70, 56)):
+            t.parca(60, "#f4f0ec", [C(x, y, 1.3)], golge="kure", isik=0.2)
+        kaftan(t, "#2a3a7a", z=40, boy=164, etek=34, ic=ALTIN, ic_genis=6, desen=(["x"], ALTIN, 5, 5))
+        t.parca(41, "#2a3a7a", [P((CX - 34, 156), (CX + 34, 156), (CX + 38, 166), (CX - 38, 166))], golge="yatay")  # yere değen etek
+        ermin(t, 44, [P((48, 52), (80, 52), (78, 58), (64, 64), (50, 58))], golge="kure")
+        kusak(t, ALTIN, z=48, y=78, kalin=4, desen=(["x."], "#c8302a", 2, 1))
+        kol(t, "#2a3a7a", "gogus", ten=TEN_ACIK, z=50, yen="#f0ece4")
+        kol(t, "#2a3a7a", "gogus", sag=True, ten=TEN_ACIK, z=50, yen="#f0ece4")
+        kitap(t, 64, 92, z=52, renk="#a82a26")
+
+
 KADRO = [
     # HALK
     dict(ad="Rumeli Köylüsü", kod="koylu", ciz=koylu, sinif="Halk",
@@ -607,6 +833,8 @@ KADRO = [
          aciklama="Ocağın manevi babası. Kışlada dua eder, yeniçeriye moral verir; sözü ağadan ağır basar."),
     dict(ad="Hayduk", kod="hayduk", ciz=hayduk, sinif="Halk",
          aciklama="Dağların kanun tanımaz adamı. Kervan basar, köylüyü korur; yanına çekilirse değerli bir müttefik."),
+    dict(ad="Doğancı Avcı", kod="avci", ciz=avci, sinif="Halk",
+         aciklama="Ormanı ve dağı en iyi bilen adam. Doğanıyla saraya av getirir, yolları ve geçitleri bilir."),
     # KAPIKULU
     dict(ad="Acemi Oğlan", kod="acemi_oglan", ciz=acemi_oglan, sinif="Kapıkulu",
          aciklama="Devşirmeyle gelip Türk ailelerinin yanında yetişen genç. Bahçede, inşaatta çalışır; sırası gelince ocağa geçer."),
@@ -623,12 +851,18 @@ KADRO = [
          aciklama="Tımarının geliriyle atını, zırhını, askerini besleyen süvari. Ocağın en eski rakibi."),
     dict(ad="Deli", kod="deli", ciz=deli, sinif="Taşra ve Saray",
          aciklama="Pars postlu, kanatlı öncü süvari. Akınların en önünde; korkuyu düşmana o taşır."),
+    dict(ad="Akıncı", kod="akinci", ciz=akinci, sinif="Taşra ve Saray",
+         aciklama="Uç beylerinin hafif atlısı. Yayı ve palasıyla sınırın ötesine dalar, ganimetle döner."),
     dict(ad="Kadı", kod="kadi", ciz=kadi, sinif="Taşra ve Saray",
          aciklama="Kazanın hâkimi. Davaya bakar, vergiyi denetler; halkın şikâyeti önce onun kapısına gelir."),
     dict(ad="Rumeli Beylerbeyi", kod="beylerbeyi", ciz=beylerbeyi, sinif="Taşra ve Saray",
          aciklama="Balkanların en güçlü paşası. Sancak beylerini ve sipahileri sefere o çıkarır."),
+    dict(ad="Sadrazam", kod="sadrazam", ciz=sadrazam, sinif="Taşra ve Saray",
+         aciklama="Padişahın mutlak vekili. Mühr-i hümayun onda; divanı o toplar, seferde serdar o olur."),
     dict(ad="Padişah", kod="padisah", ciz=padisah, sinif="Taşra ve Saray",
          aciklama="Devletin başı. Cülus bahşişini dağıtan da, Ocağın öfkesine ilk hedef olan da odur."),
+    dict(ad="Şehzade", kod="sehzade", ciz=sehzade, sinif="Taşra ve Saray",
+         aciklama="Sancakta yetişen veliaht. Ocak onu tutarsa taht onundur; tutmazsa kardeşi."),
     dict(ad="Saray Hanımı", kod="saray_hanimi", ciz=saray_hanimi, sinif="Taşra ve Saray",
          aciklama="Sarayın görünmeyen gücü. Vakıf kurar, ittifak örer; bir fısıltısı sefer kararını değiştirebilir."),
     # HAÇLI CEPHESİ
@@ -638,6 +872,19 @@ KADRO = [
          aciklama="Sınırın hızlı atlısı. Kanat biçimli kalkanı ve uzun mızrağıyla akıncıların ezelî rakibi."),
     dict(ad="Şövalye", kod="sovalye", ciz=sovalye, sinif="Karşı Cephe",
          aciklama="Tepeden tırnağa çelik. Haçlı ordusunun ağır vurucu gücü; yavaş ama durdurulması zor."),
+    dict(ad="Kral", kod="kral", ciz=kral, sinif="Karşı Cephe",
+         aciklama="Macar tacının sahibi. Haçlı ittifakının başı; soyluları birleştirebildiği kadar güçlü."),
+    dict(ad="Prens", kod="prens", ciz=prens, sinif="Karşı Cephe",
+         aciklama="Tahtın genç varisi. Şövalye romanlarıyla büyümüş; savaşı henüz bir turnuva sanıyor."),
+    dict(ad="Prenses", kod="prenses", ciz=prenses, sinif="Karşı Cephe",
+         aciklama="Bir evlilikle iki krallığı birleştirebilir. Barış masasında en değerli koz onun elinde."),
+    # GÖLGELER
+    dict(ad="Hain", kod="hain", ciz=hain, sinif="Gölgeler",
+         aciklama="Divandaki kulak, düşmana açılan kapı. Altın kesesi dolu, sadakati satılık."),
+    dict(ad="Casus", kod="casus", ciz=casus, sinif="Gölgeler",
+         aciklama="Venedik ya da Viyana için çalışan gizli göz. Kalelerin planını çizer, ordunun yolunu satar."),
+    dict(ad="Çaşıt", kod="casit", ciz=casit, sinif="Gölgeler",
+         aciklama="Osmanlı'nın gözcüsü. Köylü kılığında düşman ülkesini gezer, ordunun gücünü ve yolunu haber verir."),
 ]
 
 SINIF_RENK = {
@@ -645,6 +892,7 @@ SINIF_RENK = {
     "Kapıkulu": dict(gok=("#1e2a44", "#3a4a6a", "#7a6a7a", "#d8a070"), toprak="#5a4a32", vurgu="#3a6ac8"),
     "Taşra ve Saray": dict(gok=("#2a1a2a", "#5a2a3a", "#a85a3a", "#e8b060"), toprak="#5a4430", vurgu="#d8a83a"),
     "Karşı Cephe": dict(gok=("#1a1a24", "#2a2a3a", "#5a4a5a", "#a87a6a"), toprak="#4a4038", vurgu="#c8302a"),
+    "Gölgeler": dict(gok=("#0e0c16", "#1e1a30", "#3a2a4a", "#6a4a5a"), toprak="#3a3238", vurgu="#9a5ac8"),
 }
 
 
