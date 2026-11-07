@@ -293,12 +293,13 @@ def site_calistir(gorev: str, etkilesimli: bool) -> Path:
 def site():
     """
     Give the team a website job: uv run site_iskeleti "<the job>"
+    (Console scripts must return None: a returned value becomes the exit status.)
     """
     gorev = " ".join(sys.argv[1:]).strip() or input("SKONSTART - site işi: ").strip()
     if not gorev:
         raise Exception('Kullanım: uv run site_iskeleti "site işi"')
     try:
-        return site_calistir(gorev, etkilesimli=sys.stdin.isatty())
+        site_calistir(gorev, etkilesimli=sys.stdin.isatty())
     except Exception as e:
         raise Exception(f"An error occurred while building the site: {e}")
 
@@ -322,7 +323,7 @@ def gunluk():
     Daily run for a scheduler: the team picks today's topic itself and the result waits for approval.
     """
     try:
-        return calistir(GUNLUK_GOREV, etkilesimli=False)
+        calistir(GUNLUK_GOREV, etkilesimli=False)
     except Exception as e:
         raise Exception(f"An error occurred while running the daily crew: {e}")
 
@@ -335,7 +336,7 @@ def onayla():
         raise Exception("Kullanım: uv run onayla teslimler/<dosya>.md")
     yol = Path(sys.argv[1])
     durum, rapor = _yukle(yol)
-    return _onayla(durum, rapor, yol)
+    _onayla(durum, rapor, yol)
 
 
 def revize():
@@ -352,7 +353,6 @@ def revize():
         raise Exception(f"An error occurred while revising: {e}")
     yol = _kaydet(durum, rapor, "ONAY BEKLİYOR", yol)
     print(f"\nRevize edildi, onayını bekliyor: {yol}")
-    return yol
 
 
 def _kontrol_sayfalari(kareler: list[Path], hedef: Path) -> list[Path]:

@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKONSTART | 64-bit Piksel Sanatı Animasyon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700&family=Jersey+10&display=swap" rel="stylesheet">
+<style>
+:root{
+  --zemin:#14111a;
+  --yuzey:#1e1a26;
+  --cizgi:#3a3244;
+  --metin:#ece4d4;
+  --soluk:#a89cb0;
+  --altin:#d8a83a;
+  --rol-arastirmaci:#3B82F6;
+  --rol-metin-yazari:#F97316;
+  --rol-editor:#8B5CF6;
+  --rol-grafiker:#22C55E;
+  --rol-kalite:#EF4444;
+  --rol-web:#EAB308;
+  --font-baslik:"Jersey 10","Courier New",Courier,monospace;
+  --font-govde:"Alegreya Sans","Segoe UI",Tahoma,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{
+  margin:0;background:var(--zemin);color:var(--metin);
+  font-family:var(--font-govde);font-size:1.125rem;line-height:1.6;
+  overflow-wrap:anywhere;
+}
+img,svg,canvas{image-rendering:pixelated;max-width:100%}
+h1,h2,h3{font-family:var(--font-baslik);font-weight:400;margin:0;text-rendering:optimizeSpeed}
+p{margin:0 0 12px}
+a{color:var(--altin)}
+:focus-visible{outline:3px solid var(--altin);outline-offset:3px}
+.kap{width:min(100% - 32px,1120px);margin-inline:auto}
+.gizli-odak{position:absolute;left:-9999px;top:0;background:var(--altin);color:var(--zemin);padding:10px 16px;z-index:100;font-family:var(--font-baslik);font-size:1.3rem}
+.gizli-odak:focus{left:16px;top:8px}
+
+/* Üst menü */
+.ust{position:sticky;top:0;z-index:50;background:var(--zemin);border-bottom:2px solid var(--cizgi)}
+.ust-ic{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 12px;padding:10px 0}
+.marka{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--altin);font-family:var(--font-baslik);font-size:2rem;line-height:1}
+.marka .kutu{width:88px;height:44px;padding:2px;font-size:.7rem;line-height:1.1;flex:none;border-width:2px}
+.marka .kutu::after{display:none}
+.menu-onay{position:absolute;opacity:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.menu-tus{display:inline-block;border:2px solid var(--altin);color:var(--altin);padding:6px 14px;font-family:var(--font-baslik);font-size:1.4rem;line-height:1.1;cursor:pointer;user-select:none}
+.menu-onay:focus-visible + .menu-tus{outline:3px solid var(--altin);outline-offset:3px}
+.menu-onay:checked + .menu-tus{background:var(--altin);color:var(--zemin)}
+.menu{display:none;flex:1 1 100%}
+.menu-onay:checked ~ .menu{display:flex;flex-direction:column;gap:4px;padding:8px 0 6px}
+.menu a{display:block;padding:10px 12px;border-left:4px solid var(--cizgi);color:var(--metin);text-decoration:none;font-size:1rem;line-height:1.3}
+.menu a:hover{border-left-color:var(--altin);color:var(--altin)}
+.menu a.dugme{border-left:2px solid var(--altin);color:var(--zemin);margin-top:8px}
+.menu a.dugme:hover{color:var(--zemin)}
+
+/* Düğmeler */
+.dugme{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 20px;background:var(--altin);color:var(--zemin);border:2px solid var(--altin);font-family:var(--font-baslik);font-size:1.45rem;line-height:1.1;text-align:center;text-decoration:none;box-shadow:4px 4px 0 #000;transition:background-color .2s,border-color .2s,color .2s}
+.dugme:hover{background:var(--metin);border-color:var(--metin);color:var(--zemin)}
+.dugme.ikincil{background:transparent;color:var(--altin)}
+.dugme.ikincil:hover{background:var(--altin);color:var(--zemin);border-color:var(--altin)}
+.dugme-sira{display:flex;flex-wrap:wrap;gap:16px;margin-top:24px}
+
+/* Bölümler */
+.bolum{padding:64px 0}
+.bolum.zit{background:var(--yuzey);border-block:2px solid var(--cizgi)}
+section[id]{scroll-margin-top:84px}
+.bolum-bas{margin-bottom:32px;max-width:720px}
+.bolum-bas h2{font-size:clamp(2.2rem,8vw,3.4rem);line-height:1.05;color:var(--altin);margin-bottom:18px}
+.bolum-bas h2::after{content:"";display:block;width:96px;height:6px;margin-top:12px;background:repeating-linear-gradient(90deg,var(--altin) 0 12px,transparent 12px 18px)}
+.bolum-bas p{color:var(--soluk);font-size:1.2rem}
+
+/* Yer tutucu görsel kutusu */
+.kutu{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;background:var(--yuzey);border:2px dashed var(--soluk);color:var(--soluk);text-align:center;padding:12px;font-size:.95rem;line-height:1.3;overflow:hidden;image-rendering:pixelated}
+.kutu::after{content:attr(data-doldur);font-size:.72rem;opacity:.75}
+.kutu img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;image-rendering:pixelated}
+.zit .kutu{background:var(--zemin)}
+.o-kare{aspect-ratio:1/1}
+.o-genis{aspect-ratio:4/3}
+.o-dikey{aspect-ratio:9/16}
+.o-portre{aspect-ratio:3/4}
+.o-ikon{width:96px;aspect-ratio:1/1;padding:4px;font-size:.72rem;margin-bottom:16px}
+.o-ikon::after{font-size:.6rem}
+
+/* Kartlar */
+.kart{background:var(--yuzey);border:2px solid var(--cizgi);padding:20px;box-shadow:4px 4px 0 #000;transition:border-color .2s,box-shadow .2s;min-width:0}
+.zit .kart{background:var(--zemin)}
+.kart:hover,.kart:focus-within{border-color:var(--altin);box-shadow:0 0 0 2px var(--altin),4px 4px 0 2px #000}
+.kart h3{font-size:1.75rem;line-height:1.1;color:var(--metin);margin:0 0 10px}
+.kart p{color:var(--soluk);margin:0}
+.kart .kutu{margin-bottom:16px}
+.izgara-3{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+.iz-isler{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.iz-galeri{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.is-kart .o-dikey{max-width:320px;margin-inline:auto}
+.galeri-kart .kutu{max-width:320px;margin-inline:auto}
+.plat{display:inline-block;border:2px solid var(--altin);color:var(--altin);font-family:var(--font-baslik);font-size:1.15rem;line-height:1.1;padding:2px 8px;margin-bottom:10px}
+.is-kart a.baglanti{display:inline-block;margin-top:12px;font-weight:700}
+.ozellikler{margin-top:32px}
+
+/* Giriş */
+.giris{padding:48px 0 64px;border-bottom:2px solid var(--cizgi)}
+.giris-izgara{display:grid;grid-template-columns:minmax(0,1fr);gap:32px;align-items:center}
+.etiket{display:inline-block;font-family:var(--font-baslik);font-size:1.3rem;line-height:1.2;color:var(--zemin);background:var(--altin);padding:2px 10px;margin-bottom:18px}
+.giris h1{font-size:clamp(2.6rem,11vw,4.8rem);line-height:1;color:var(--metin);margin-bottom:18px}
+.giris .alt{font-size:1.35rem;margin-bottom:14px}
+.giris .par{color:var(--soluk)}
+.hero-kutu{aspect-ratio:1/1;background:#2a2236;background-image:repeating-conic-gradient(#2a2236 0 25%,#1e1a26 0 50%);background-size:8px 8px;border:2px dashed var(--altin);color:var(--metin)}
+.hero-kutu .panel{position:relative;z-index:2;background:var(--yuzey);border:2px solid var(--cizgi);padding:10px 14px}
+.hero-kutu::after{position:relative;z-index:2;background:var(--yuzey);padding:2px 8px;border:2px solid var(--cizgi)}
+.kat{position:absolute;left:-30px;right:-30px;z-index:0}
+.kat.t1{bottom:20%;height:36%;background:#352c47;clip-path:polygon(0 62%,10% 62%,10% 42%,24% 42%,24% 22%,38% 22%,38% 40%,54% 40%,54% 58%,68% 58%,68% 30%,84% 30%,84% 50%,100% 50%,100% 100%,0 100%);animation:kay 14s steps(7) infinite alternate}
+.kat.t2{bottom:11%;height:30%;background:#2b2339;clip-path:polygon(0 55%,14% 55%,14% 35%,30% 35%,30% 60%,46% 60%,46% 40%,62% 40%,62% 25%,78% 25%,78% 55%,100% 55%,100% 100%,0 100%);animation:kay 9s steps(7) infinite alternate-reverse}
+.kat.zemin{bottom:0;height:15%;background:#3a3244;border-top:4px solid var(--altin)}
+.gunes{position:absolute;z-index:0;top:10%;right:12%;width:48px;height:48px;background:var(--altin);clip-path:polygon(25% 0,75% 0,75% 12%,88% 12%,88% 25%,100% 25%,100% 75%,88% 75%,88% 88%,75% 88%,75% 100%,25% 100%,25% 88%,12% 88%,12% 75%,0 75%,0 25%,12% 25%,12% 12%,25% 12%)}
+.yildiz{position:absolute;z-index:0;width:4px;height:4px;background:var(--metin);animation:parilti 3s steps(2) infinite}
+@keyframes kay{from{transform:translateX(-14px)}to{transform:translateX(14px)}}
+@keyframes parilti{0%,100%{opacity:.9}50%{opacity:.2}}
+
+/* Süreç */
+.adimlar{list-style:none;margin:0;padding:0;counter-reset:adim;display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+.adim{counter-increment:adim;background:var(--zemin);border:2px solid var(--cizgi);border-top:6px solid var(--rol,var(--altin));padding:20px;box-shadow:4px 4px 0 #000;min-width:0;transition:border-color .2s}
+.adim::before{content:counter(adim);display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:var(--rol,var(--altin));color:var(--zemin);font-family:var(--font-baslik);font-size:1.8rem;line-height:1;margin-bottom:14px}
+.adim h3{font-size:1.65rem;line-height:1.1;margin-bottom:10px}
+.adim p{color:var(--soluk);margin:0}
+.adim:hover{border-color:var(--rol,var(--altin))}
+
+/* Ekip */
+.r-arastirmaci{--rol:var(--rol-arastirmaci)}
+.r-metin{--rol:var(--rol-metin-yazari)}
+.r-editor{--rol:var(--rol-editor)}
+.r-grafiker{--rol:var(--rol-grafiker)}
+.r-kalite{--rol:var(--rol-kalite)}
+.r-web{--rol:var(--rol-web)}
+.izgara-ekip{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+.ekip-kart{border-top:6px solid var(--rol)}
+.ekip-kart .kutu{border-color:var(--rol);max-width:320px;margin-inline:auto}
+.ekip-kart:hover,.ekip-kart:focus-within{border-color:var(--rol);box-shadow:0 0 0 2px var(--rol),4px 4px 0 2px #000}
+.rozet{display:inline-block;background:var(--rol);color:var(--zemin);font-family:var(--font-baslik);font-size:1.5rem;line-height:1.1;padding:3px 12px;margin:0 0 10px}
+
+/* İletişim */
+.iletisim-izgara{display:grid;grid-template-columns:minmax(0,1fr);gap:28px}
+.eposta{border:2px dashed var(--soluk);padding:10px 12px;margin:16px 0;color:var(--soluk)}
+.eposta b{color:var(--metin)}
+.sosyal{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:12px}
+.sosyal a{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;padding:12px 14px;border:2px solid var(--cizgi);background:var(--yuzey);color:var(--metin);text-decoration:none;transition:border-color .2s}
+.zit .sosyal a{background:var(--zemin)}
+.sosyal a:hover{border-color:var(--altin)}
+.sosyal .ad{font-family:var(--font-baslik);font-size:1.5rem;line-height:1;color:var(--altin)}
+.alan{display:block;margin-bottom:16px}
+.alan label{display:block;font-weight:700;margin-bottom:6px}
+.alan input,.alan textarea{display:block;width:100%;background:var(--zemin);color:var(--metin);border:2px solid var(--soluk);border-radius:0;padding:10px 12px;font:inherit;font-size:1rem;line-height:1.4}
+.alan textarea{min-height:140px;resize:vertical}
+.alan input:focus-visible,.alan textarea:focus-visible{border-color:var(--altin);outline:3px solid var(--altin);outline-offset:2px}
+.basari{border:2px dashed var(--soluk);padding:10px 12px;color:var(--soluk);margin:16px 0 0}
+form .dugme{width:100%;cursor:pointer;font-family:var(--font-baslik)}
+
+/* Alt bilgi */
+.alt-bilgi{padding:40px 0;border-top:2px solid var(--altin);background:var(--zemin)}
+.alt-izgara{display:grid;grid-template-columns:minmax(0,1fr);gap:24px}
+.alt-marka{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.alt-marka .kutu{width:88px;height:44px;padding:2px;font-size:.7rem;line-height:1.1}
+.alt-marka .kutu::after{display:none}
+.alt-marka p{margin:0;color:var(--soluk);flex:1 1 200px}
+.alt-nav{display:flex;flex-wrap:wrap;gap:8px 20px}
+.alt-nav a{color:var(--metin);padding:6px 0}
+.alt-nav a:hover{color:var(--altin)}
+.telif{margin:0;color:var(--soluk);font-size:.95rem;border-top:2px solid var(--cizgi);padding-top:16px}
+
+/* Geniş ekranlar */
+@media (min-width:600px){
+  .iz-isler{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .iz-galeri{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .izgara-ekip{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (min-width:860px){
+  .giris-izgara{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px}
+  .hero-kutu{aspect-ratio:4/5}
+  .izgara-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .iz-galeri{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .iletisim-izgara{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+  .alt-izgara{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:center}
+  .telif{grid-column:1/-1}
+  .bolum{padding:88px 0}
+  .two-col{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:center}
+}
+@media (min-width:960px){
+  .iz-isler{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .izgara-ekip{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .adimlar{grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+}
+@media (min-width:1100px){
+  .menu-tus{display:none}
+  .menu,.menu-onay:checked ~ .menu{display:flex;flex-direction:row;flex-wrap:wrap;flex:1 1 0;min-width:0;justify-content:flex-end;align-items:center;gap:4px 6px;padding:0}
+  .menu a{padding:8px 10px;font-size:.9rem;border-left:0;border-bottom:3px solid transparent}
+  .menu a:hover{border-bottom-color:var(--altin)}
+  .menu a.dugme{border:2px solid var(--altin);margin:0 0 0 8px;font-size:1.3rem;min-height:44px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<a class="gizli-odak" href="#icerik">İçeriğe geç</a>
+
+<header class="ust">
+  <div class="kap ust-ic">
+    <a class="marka" href="#giris" aria-label="SKONSTART ana sayfa">
+      <span class="kutu" data-doldur="menu-logo">[Görsel: SKONSTART logosu]</span>
+      <span>SKONSTART</span>
+    </a>
+    <input type="checkbox" id="menu-ac" class="menu-onay" aria-label="Menüyü aç veya kapat">
+    <label for="menu-ac" class="menu-tus">Menü</label>
+    <nav class="menu" aria-label="Ana menü">
+      <a href="#hakkimizda" data-doldur="menu-baglanti-1">[Menü 1 — sonra doldurulacak]</a>
+      <a href="#hizmetler" data-doldur="menu-baglanti-2">[Menü 2 — sonra doldurulacak]</a>
+      <a href="#konular" data-doldur="menu-baglanti-3">[Menü 3 — sonra doldurulacak]</a>
+      <a href="#isler" data-doldur="menu-baglanti-4">[Menü 4 — sonra doldurulacak]</a>
+      <a href="#surec" data-doldur="menu-baglanti-5">[Menü 5 — sonra doldurulacak]</a>
+      <a href="#iletisim" data-doldur="menu-baglanti-6">[Menü 6 — sonra doldurulacak]</a>
+      <a class="dugme" href="#iletisim" data-doldur="menu-dugme">[Eylem çağrısı — sonra doldurulacak]</a>
+    </nav>
+  </div>
+</header>
+
+<main id="icerik">
+
+  <!-- Giriş -->
+  <section class="giris" id="giris">
+    <div class="kap giris-izgara">
+      <div>
+        <span class="etiket" data-doldur="giris-etiket">[Etiket — sonra doldurulacak]</span>
+        <h1 data-doldur="giris-baslik">[Giriş başlığı — sonra doldurulacak]</h1>
+        <p class="alt" data-doldur="giris-altbaslik">[Giriş alt başlığı — sonra doldurulacak]</p>
+        <p class="par" data-doldur="giris-paragraf">[Giriş paragrafı — sonra doldurulacak]</p>
+        <div class="dugme-sira">
+          <a class="dugme" href="#isler" data-doldur="giris-dugme-1-baglanti"><span data-doldur="giris-dugme-1-yazi">[Birincil düğme — sonra doldurulacak]</span></a>
+          <a class="dugme ikincil" href="#iletisim" data-doldur="giris-dugme-2-baglanti"><span data-doldur="giris-dugme-2-yazi">[İkincil düğme — sonra doldurulacak]</span></a>
+        </div>
+      </div>
+      <div class="kutu hero-kutu" data-doldur="giris-gorsel">
+        <span class="yildiz" style="top:6%;left:8%"></span>
+        <span class="yildiz" style="top:14%;left:30%;animation-delay:.6s"></span>
+        <span class="yildiz" style="top:8%;left:52%;animation-delay:1.2s"></span>
+        <span class="yildiz" style="top:22%;left:12%;animation-delay:1.8s"></span>
+        <span class="yildiz" style="top:30%;left:40%;animation-delay:.3s"></span>
+        <span class="yildiz" style="top:18%;left:68%;animation-delay:2.1s"></span>
+        <span class="yildiz" style="top:34%;left:84%;animation-delay:.9s"></span>
+        <span class="yildiz" style="top:5%;left:90%;animation-delay:1.5s"></span>
+        <span class="gunes"></span>
+        <span class="kat t1"></span>
+        <span class="kat t2"></span>
+        <span class="kat zemin"></span>
+        <span class="panel">[Görsel: katmanlı piksel sanatı sahne — gökyüzü, uzak plan, orta plan, karakter, ön plan]</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hakkımızda -->
+  <section class="bolum" id="hakkimizda">
+    <div class="kap">
+      <div class="bolum-bas">
+        <h2 data-doldur="hakkimizda-baslik">[Hakkımızda başlığı — sonra doldurulacak]</h2>
+        <p data-doldur="hakkimizda-altbaslik">[Hakkımızda alt başlığı — sonra doldurulacak]</p>
+      </div>
+      <div class="two-col">
+        <div>
+          <p data-doldur="hakkimizda-paragraf-1">[Hakkımızda paragraf 1 — sonra doldurulacak]</p>
+          <p data-doldur="hakkimizda-paragraf-2">[Hakkımızda paragraf 2 — sonra doldurulacak]</p>
+        </div>
+        <div class="kutu o-genis" data-doldur="hakkimizda-gorsel">[Görsel: piksel sanatı illüstrasyon]</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hizmetler -->
+  <section class="bolum zit" id="hizmetler">
+    <div class="kap">
+      <div class="bolum-bas">
+        <h2 data-doldur="hizmetler-baslik">[Hizmetler başlığı — sonra doldurulacak]</h2>
+        <p data-doldur="hizmetler-altbaslik">[Hizmetler alt başlığı — sonra doldurulacak]</p>
+      </div>
+      <div class="izgara-3">
+        <article class="kart">
+          <div class="kutu o-ikon" data-doldur="hizmet-1-ikon">[Görsel: piksel ikon]</div>
+          <h3 data-doldur="hizmet-1-baslik">[Hizmet 1 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="hizmet-1-metin">[Hizmet 1 metni — sonra doldurulacak]</p>
+        </article>
+        <article class="kart">
+          <div class="kutu o-ikon" data-doldur="hizmet-2-ikon">[Görsel: piksel ikon]</div>
+          <h3 data-doldur="hizmet-2-baslik">[Hizmet 2 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="hizmet-2-metin">[Hizmet 2 metni — sonra doldurulacak]</p>
+        </article>
+        <article class="kart">
+          <div class="kutu o-ikon" data-doldur="hizmet-3-ikon">[Görsel: piksel ikon]</div>
+          <h3 data-doldur="hizmet-3-baslik">[Hizmet 3 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="hizmet-3-metin">[Hizmet 3 metni — sonra doldurulacak]</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Konular -->
+  <section class="bolum" id="konular">
+    <div class="kap">
+      <div class="bolum-bas">
+        <h2 data-doldur="konular-baslik">[Konular başlığı — sonra doldurulacak]</h2>
+        <p data-doldur="konular-altbaslik">[Konular alt başlığı — sonra doldurulacak]</p>
+      </div>
+      <div class="izgara-3">
+        <article class="kart">
+          <div class="kutu o-genis" data-doldur="konu-1-gorsel">[Görsel: piksel sanatı küçük sahne]</div>
+          <h3 data-doldur="konu-1-baslik">[Konu 1 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="konu-1-metin">[Konu 1 metni — sonra doldurulacak]</p>
+        </article>
+        <article class="kart">
+          <div class="kutu o-genis" data-doldur="konu-2-gorsel">[Görsel: piksel sanatı küçük sahne]</div>
+          <h3 data-doldur="konu-2-baslik">[Konu 2 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="konu-2-metin">[Konu 2 metni — sonra doldurulacak]</p>
+        </article>
+        <article class="kart">
+          <div class="kutu o-genis" data-doldur="konu-3-gorsel">[Görsel: piksel sanatı küçük sahne]</div>
+          <h3 data-doldur="konu-3-baslik">[Konu 3 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="konu-3-metin">[Konu 3 metni — sonra doldurulacak]</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- İşler -->
+  <section class="bolum zit" id="isler">
+    <div class="kap">
+      <div class="bolum-bas">
+        <h2 data-doldur="isler-baslik">[İşler başlığı — sonra doldurulacak]</h2>
+        <p data-doldur="isler-altbaslik">[İşler alt başlığı — sonra doldurulacak]</p>
+      </div>
+      <div class="iz-isler">
+        <article class="kart is-kart">
+          <div class="kutu o-dikey" data-doldur="is-1-kapak">[Görsel: dikey 9:16 kapak]</div>
+          <span class="plat" data-doldur="is-1-platform">[Platform — sonra doldurulacak]</span>
+          <h3 data-doldur="is-1-baslik">[İş 1 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="is-1-aciklama">[İş 1 açıklaması — sonra doldurulacak]</p>
+          <a class="baglanti" href="#isler" data-doldur="is-1-baglanti">[Video bağlantısı — sonra doldurulacak]</a>
+        </article>
+        <article class="kart is-kart">
+          <div class="kutu o-dikey" data-doldur="is-2-kapak">[Görsel: dikey 9:16 kapak]</div>
+          <span class="plat" data-doldur="is-2-platform">[Platform — sonra doldurulacak]</span>
+          <h3 data-doldur="is-2-baslik">[İş 2 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="is-2-aciklama">[İş 2 açıklaması — sonra doldurulacak]</p>
+          <a class="baglanti" href="#isler" data-doldur="is-2-baglanti">[Video bağlantısı — sonra doldurulacak]</a>
+        </article>
+        <article class="kart is-kart">
+          <div class="kutu o-dikey" data-doldur="is-3-kapak">[Görsel: dikey 9:16 kapak]</div>
+          <span class="plat" data-doldur="is-3-platform">[Platform — sonra doldurulacak]</span>
+          <h3 data-doldur="is-3-baslik">[İş 3 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="is-3-aciklama">[İş 3 açıklaması — sonra doldurulacak]</p>
+          <a class="baglanti" href="#isler" data-doldur="is-3-baglanti">[Video bağlantısı — sonra doldurulacak]</a>
+        </article>
+        <article class="kart is-kart">
+          <div class="kutu o-dikey" data-doldur="is-4-kapak">[Görsel: dikey 9:16 kapak]</div>
+          <span class="plat" data-doldur="is-4-platform">[Platform — sonra doldurulacak]</span>
+          <h3 data-doldur="is-4-baslik">[İş 4 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="is-4-aciklama">[İş 4 açıklaması — sonra doldurulacak]</p>
+          <a class="baglanti" href="#isler" data-doldur="is-4-baglanti">[Video bağlantısı — sonra doldurulacak]</a>
+        </article>
+      </div>
+      <div class="dugme-sira">
+        <a class="dugme" href="https://www.instagram.com/pikseltarihim/" target="_blank" rel="noopener" data-doldur="isler-dugme-baglanti"><span data-doldur="isler-dugme-yazi">[Tümü düğmesi — sonra doldurulacak]</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- İmza tarz ve karakter galerisi -->
+  <section class="bolum" id="galeri">
+    <div class="kap">
+      <div class="bolum-bas">
+        <h2 data-doldur="galeri-baslik">[Galeri başlığı — sonra doldurulacak]</h2>
+        <p data-doldur="galeri-altbaslik">[Galeri alt başlığı — sonra doldurulacak]</p>
+      </div>
+      <div class="iz-galeri">
+        <article class="kart galeri-kart">
+          <div class="kutu o-portre" data-doldur="galeri-kart-1-gorsel">[Görsel: piksel karakter, şeffaf arka plan]</div>
+          <h3 data-doldur="galeri-kart-1-ad">[Karakter 1 adı — sonra doldurulacak]</h3>
+          <p data-doldur="galeri-kart-1-not">[Karakter 1 notu — sonra doldurulacak]</p>
+        </article>
+        <article class="kart galeri-kart">
+          <div class="kutu o-portre" data-doldur="galeri-kart-2-gorsel">[Görsel: piksel karakter, şeffaf arka plan]</div>
+          <h3 data-doldur="galeri-kart-2-ad">[Karakter 2 adı — sonra doldurulacak]</h3>
+          <p data-doldur="galeri-kart-2-not">[Karakter 2 notu — sonra doldurulacak]</p>
+        </article>
+        <article class="kart galeri-kart">
+          <div class="kutu o-portre" data-doldur="galeri-kart-3-gorsel">[Görsel: piksel karakter, şeffaf arka plan]</div>
+          <h3 data-doldur="galeri-kart-3-ad">[Karakter 3 adı — sonra doldurulacak]</h3>
+          <p data-doldur="galeri-kart-3-not">[Karakter 3 notu — sonra doldurulacak]</p>
+        </article>
+        <article class="kart galeri-kart">
+          <div class="kutu o-portre" data-doldur="galeri-kart-4-gorsel">[Görsel: piksel karakter, şeffaf arka plan]</div>
+          <h3 data-doldur="galeri-kart-4-ad">[Karakter 4 adı — sonra doldurulacak]</h3>
+          <p data-doldur="galeri-kart-4-not">[Karakter 4 notu — sonra doldurulacak]</p>
+        </article>
+        <article class="kart galeri-kart">
+          <div class="kutu o-portre" data-doldur="galeri-kart-5-gorsel">[Görsel: piksel karakter, şeffaf arka plan]</div>
+          <h3 data-doldur="galeri-kart-5-ad">[Karakter 5 adı — sonra doldurulacak]</h3>
+          <p data-doldur="galeri-kart-5-not">[Karakter 5 notu — sonra doldurulacak]</p>
+        </article>
+        <article class="kart galeri-kart">
+          <div class="kutu o-portre" data-doldur="galeri-kart-6-gorsel">[Görsel: piksel karakter, şeffaf arka plan]</div>
+          <h3 data-doldur="galeri-kart-6-ad">[Karakter 6 adı — sonra doldurulacak]</h3>
+          <p data-doldur="galeri-kart-6-not">[Karakter 6 notu — sonra doldurulacak]</p>
+        </article>
+      </div>
+      <div class="izgara-3 ozellikler">
+        <article class="kart">
+          <h3 data-doldur="galeri-ozellik-1-baslik">[Tarz özelliği 1 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="galeri-ozellik-1-metin">[Tarz özelliği 1 metni — sonra doldurulacak]</p>
+        </article>
+        <article class="kart">
+          <h3 data-doldur="galeri-ozellik-2-baslik">[Tarz özelliği 2 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="galeri-ozellik-2-metin">[Tarz özelliği 2 metni — sonra doldurulacak]</p>
+        </article>
+        <article class="kart">
+          <h3 data-doldur="galeri-ozellik-3-baslik">[Tarz özelliği 3 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="galeri-ozellik-3-metin">[Tarz özelliği 3 metni — sonra doldurulacak]</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Çalışma süreci -->
+  <section class="bolum zit" id="surec">
+    <div class="kap">
+      <div class="bolum-bas">
+        <h2 data-doldur="surec-baslik">[Süreç başlığı — sonra doldurulacak]</h2>
+        <p data-doldur="surec-altbaslik">[Süreç alt başlığı — sonra doldurulacak]</p>
+      </div>
+      <ol class="adimlar">
+        <li class="adim r-arastirmaci">
+          <h3 data-doldur="surec-adim-1-baslik">[Adım 1 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="surec-adim-1-metin">[Adım 1 metni — sonra doldurulacak]</p>
+        </li>
+        <li class="adim r-metin">
+          <h3 data-doldur="surec-adim-2-baslik">[Adım 2 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="surec-adim-2-metin">[Adım 2 metni — sonra doldurulacak]</p>
+        </li>
+        <li class="adim r-editor">
+          <h3 data-doldur="surec-adim-3-baslik">[Adım 3 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="surec-adim-3-metin">[Adım 3 metni — sonra doldurulacak]</p>
+        </li>
+        <li class="adim r-grafiker">
+          <h3 data-doldur="surec-adim-4-baslik">[Adım 4 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="surec-adim-4-metin">[Adım 4 metni — sonra doldurulacak]</p>
+        </li>
+        <li class="adim r-kalite">
+          <h3 data-doldur="surec-adim-5-baslik">[Adım 5 başlığı — sonra doldurulacak]</h3>
+          <p data-doldur="surec-adim-5-metin">[Adım 5 metni — sonra doldurulacak]</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Ekip -->
+  <section class="bolum" id="ekip">
+    <div class="kap">
+      <div class="bolum-bas">
+        <h2 data-doldur="ekip-baslik">[Ekip başlığı — sonra doldurulacak]</h2>
+        <p data-doldur="ekip-altbaslik">[Ekip alt başlığı — sonra doldurulacak]</p>
+      </div>
+      <div class="izgara-ekip">
+        <article class="kart ekip-kart r-arastirmaci">
+          <div class="kutu o-portre" data-doldur="ekip-uye-1-gorsel">[Görsel: piksel karakter portresi]</div>
+          <h3 class="rozet" data-doldur="ekip-uye-1-rol">Araştırmacı</h3>
+          <p data-doldur="ekip-uye-1-metin">[Üye 1 açıklaması — sonra doldurulacak]</p>
+        </article>
+        <article class="kart ekip-kart r-metin">
+          <div class="kutu o-portre" data-doldur="ekip-uye-2-gorsel">[Görsel: piksel karakter portresi]</div>
+          <h3 class="rozet" data-doldur="ekip-uye-2-rol">Metin Yazarı</h3>
+          <p data-doldur="ekip-uye-2-metin">[Üye 2 açıklaması — sonra doldurulacak]</p>
+        </article>
+        <article class="kart ekip-kart r-editor">
+          <div class="kutu o-portre" data-doldur="ekip-uye-3-gorsel">[Görsel: piksel karakter portresi]</div>
+          <h3 class="rozet" data-doldur="ekip-uye-3-rol">Editör</h3>
+          <p data-doldur="ekip-uye-3-metin">[Üye 3 açıklaması — sonra doldurulacak]</p>
+        </article>
+        <article class="kart ekip-kart r-grafiker">
+          <div class="kutu o-portre" data-doldur="ekip-uye-4-gorsel">[Görsel: piksel karakter portresi]</div>
+          <h3 class="rozet" data-doldur="ekip-uye-4-rol">Grafiker</h3>
+          <p data-doldur="ekip-uye-4-metin">[Üye 4 açıklaması — sonra doldurulacak]</p>
+        </article>
+        <article class="kart ekip-kart r-kalite">
+          <div class="kutu o-portre" data-doldur="ekip-uye-5-gorsel">[Görsel: piksel karakter portresi]</div>
+          <h3 class="rozet" data-doldur="ekip-uye-5-rol">Kalite Kontrol</h3>
+          <p data-doldur="ekip-uye-5-metin">[Üye 5 açıklaması — sonra doldurulacak]</p>
+        </article>
+        <article class="kart ekip-kart r-web">
+          <div class="kutu o-portre" data-doldur="ekip-uye-6-gorsel">[Görsel: piksel karakter portresi]</div>
+          <h3 class="rozet" data-doldur="ekip-uye-6-rol">Web Tasarımcısı</h3>
+          <p data-doldur="ekip-uye-6-metin">[Üye 6 açıklaması — sonra doldurulacak]</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- İletişim -->
+  <section class="bolum zit" id="iletisim">
+    <div class="kap">
+      <div class="bolum-bas">
+        <h2 data-doldur="iletisim-baslik">[İletişim başlığı — sonra doldurulacak]</h2>
+        <p data-doldur="iletisim-altbaslik">[İletişim alt başlığı — sonra doldurulacak]</p>
+      </div>
+      <div class="iletisim-izgara">
+        <div>
+          <p data-doldur="iletisim-paragraf">[İletişim açıklaması — sonra doldurulacak]</p>
+          <p class="eposta"><b>E-posta:</b> <span data-doldur="iletisim-eposta">[E-posta adresi — sonra doldurulacak]</span></p>
+          <ul class="sosyal">
+            <li>
+              <a href="https://www.instagram.com/pikseltarihim/" target="_blank" rel="noopener" data-doldur="sosyal-instagram-baglanti">
+                <span class="ad">Instagram</span>
+                <span data-doldur="sosyal-instagram-etiket">@pikseltarihim</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.tiktok.com/@pikseltarihim" target="_blank" rel="noopener" data-doldur="sosyal-tiktok-baglanti">
+                <span class="ad">TikTok</span>
+                <span data-doldur="sosyal-tiktok-etiket">@pikseltarihim</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="kart">
+          <form onsubmit="return false;" aria-label="İletişim formu">
+            <div class="alan">
+              <label for="f-ad" data-doldur="form-ad-etiket">[Ad alanı etiketi — sonra doldurulacak]</label>
+              <input type="text" id="f-ad" name="ad" autocomplete="name">
+            </div>
+            <div class="alan">
+              <label for="f-eposta" data-doldur="form-eposta-etiket">[E-posta alanı etiketi — sonra doldurulacak]</label>
+              <input type="email" id="f-eposta" name="eposta" autocomplete="email">
+            </div>
+            <div class="alan">
+              <label for="f-konu" data-doldur="form-konu-etiket">[Konu alanı etiketi — sonra doldurulacak]</label>
+              <input type="text" id="f-konu" name="konu">
+            </div>
+            <div class="alan">
+              <label for="f-mesaj" data-doldur="form-mesaj-etiket">[Mesaj alanı etiketi — sonra doldurulacak]</label>
+              <textarea id="f-mesaj" name="mesaj"></textarea>
+            </div>
+            <button type="submit" class="dugme" data-doldur="form-dugme-yazi">[Gönder düğmesi — sonra doldurulacak]</button>
+            <p class="basari" role="status" data-doldur="form-basari-mesaji">[Gönderim sonrası mesaj — sonra doldurulacak]</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Alt bilgi -->
+<footer class="alt-bilgi">
+  <div class="kap alt-izgara">
+    <div class="alt-marka">
+      <span class="kutu" data-doldur="alt-logo">[Görsel: SKONSTART logosu]</span>
+      <p data-doldur="alt-metin">[Alt bilgi metni — sonra doldurulacak]</p>
+    </div>
+    <nav class="alt-nav" aria-label="Alt bağlantılar">
+      <a href="#hakkimizda" data-doldur="alt-baglanti-1">[Alt bağlantı 1 — sonra doldurulacak]</a>
+      <a href="#isler" data-doldur="alt-baglanti-2">[Alt bağlantı 2 — sonra doldurulacak]</a>
+      <a href="#iletisim" data-doldur="alt-baglanti-3">[Alt bağlantı 3 — sonra doldurulacak]</a>
+    </nav>
+    <p class="telif" data-doldur="alt-telif">[Telif satırı — sonra doldurulacak]</p>
+  </div>
+</footer>
+</body>
+</html>
