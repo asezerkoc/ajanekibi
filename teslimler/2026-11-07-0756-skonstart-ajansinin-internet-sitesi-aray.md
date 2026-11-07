@@ -1,7 +1,7 @@
 # SKONSTART teslimi · İnternet sitesi
 
 - **İş:** SKONSTART ajansının internet sitesi arayüzü. Görünüm, oyun karakter galerilerimizle aynı tarzda olsun (koyu zemin, altın vurgu, piksel başlıklar). İçerik boş olsun, sonra dolduracağız.
-- **Tarih:** 2026-11-07 08:44
+- **Tarih:** 2026-11-07 09:13
 - **Durum:** ONAY BEKLİYOR
 - **Kalite kontrol:** uygun
 - **Site dosyası:** `2026-11-07-0756-skonstart-ajansinin-internet-sitesi-aray.html`
@@ -157,17 +157,21 @@
 
 ## 🔴 Kalite Kontrol · Kalite kontrol notu
 
-ONAY. Ajans sahibinin kontrol listesi madde madde incelendi.
+ONAY. Kod eksiksiz: '<!doctype html>' ile başlıyor, '</html>' ile bitiyor, kapanmamış etiket görünmüyor. lang="tr" ve viewport var. Harici kaynak yalnızca Google Fonts (Pixelify Sans, Rubik); dokular satır içi SVG olarak gömülü.
 
-1) Plan ve anahtar uyumu: Plandaki 11 bölümün tamamı kodda var (üst menü, giriş, hakkımızda, hizmetler, konular, işler, galeri, süreç, ekip, iletişim, alt bilgi). Plandaki 146 doldurma anahtarının hepsi data-doldur olarak bulunuyor. Bölüm bazında sayım: menü 8, giriş 9, hakkımızda 5, hizmetler 11, konular 11, işler 24, galeri 26, süreç 12, ekip 20, iletişim 14, alt bilgi 6. Eksik ya da fazladan anahtar yok.
+1) Plan uyumu: Plandaki 146 anahtarın tamamı data-doldur olarak kodda var. Menü 8, Giriş 9, Hakkımızda 5, Hizmetler 11, Konular 11, İşler 24, Galeri 26, Süreç 12, Ekip 20, İletişim 14, Alt bilgi 6 anahtar. Bölüm sırası plandaki gibi.
 
-2) İçerik boş mu: Boş alanlar köşeli parantezli yer tutucularla duruyor. Uydurma metin, müşteri adı, yorum, rakam, fiyat, e-posta, telefon, adres ya da kuruluş yılı yok. E-posta alanı "sahibi verince doldurulacak" yer tutucusunda kalmış. Bağlantılar "#" ve uydurma URL yok. Yalnızca profilde ve kayıtlarda var olan veriler kullanılmış: @pikseltarihim (Instagram ve TikTok) ile altı rol adı.
+2) İçerik kuralı: İçerik boş, yer tutucular '[... — sonra doldurulacak]' biçiminde. Uydurma metin, müşteri adı, rakam, yorum, telefon, adres veya e-posta yok. Kodda yalnızca profilde kayıtlı veriler var: SKONSTART adı, @pikseltarihim hesapları, ekip rol adları. Sosyal düğmeler gerçek adreslere gidiyor: instagram.com/pikseltarihim ve tiktok.com/@pikseltarihim.
 
-3) Görsel dil: Yasaklı unsur yok. Jersey 10 ve Alegreya Sans kullanılmamış (Pixelify Sans ve Rubik). Mor-gri zemin yok (koyu lacivert-teal zemin). Altın vurgu yok (teal, mercan ve limon). Kesik çizgili kutu yok. Bölümler kart yığınına dönmüyor, düzenler birbirinden farklı: hakkımızda iki sütun, hizmetler yatay şeritler, konular kademeli üç sütun, işler dikey 9:16 kapaklar, galeri yapışkan sol sütun ve karakter ızgarası, süreç merdiven, ekip ızgara, iletişim iki sütun. Gövde yazısı 18px (1.125rem). Piksel yazı yalnızca h1, h2 ve büyük süreç numaralarında; h3, menü ve gövde Rubik. Piksel sertliği korunmuş: bulanıklık yok, gölgeler 0 blur, köşeler keskin, görsellerde image-rendering: pixelated, geçişler steps(). Ekip rozet ve çerçeve renkleri doğru: Araştırmacı #3B82F6, Metin Yazarı #F97316, Editör #8B5CF6, Grafiker #22C55E, Kalite Kontrol #EF4444, Web Tasarımcısı #EAB308. Rozet yazı renkleri okunuyor.
+3) Görsel dil: Yasaklı kalıplar yok: Jersey 10, Alegreya Sans, mor-gri zemin, altın vurgu, kesik çizgili kutular. Gövde yazısı Rubik 1.125rem (18px). Piksel yazı tipi büyük başlıklarda, logoda ve rakam/mühür süslerinde kullanılmış. Bölüm düzenleri birbirinden farklı: yatay şerit, kademeli üçlü, kurdeleli dört kapak, yapışkan sütunlu galeri, rota çizgili süreç. Her bölüm kart kalıbına bölünmemiş. Kenarlarda bulanıklık yok, gölgeler sert ofsetli, görsellerde image-rendering:pixelated var.
 
-4) Teknik: Kod <!doctype html> ile başlıyor, </html> ile bitiyor, kapanmamış etiket yok. Harici kaynak yalnızca Google Fonts. lang="tr" ve viewport var. 560px altında tüm ızgaralar tek sütun, yani 400px genişlikte tek sütuna iniyor. Menü 1200px altında hamburger. Atla bağlantısı, odak çerçevesi ve prefers-reduced-motion desteği var.
+4) Ekip rengi: Araştırmacı #3B82F6, Metin Yazarı #F97316, Editör #8B5CF6, Grafiker #22C55E, Kalite Kontrol #EF4444, Web Tasarımcısı #EAB308 doğru eşleşmiş. Rol etiketlerindeki siyah yazı okunuyor.
 
-Revizyon gerekmiyor.
+5) Sahip notu: Tarihi dokuların hepsi var: parşömen şerit ve tane dokusu, sekiz köşeli yıldız/kafes (çini, kündekâri esinli) desenler, harita çizgileri (süreç bölümü), taş plaka (galeri), ahşap bordür, minyatür çerçeveler (.cerceve), 'SK' mühür rozetleri. Dokuların opaklığı düşük, yazı kontrastı yeterli (beyaz yazı kobalt ve kırmızıda yaklaşık 5,4-7:1). Menü bağlantıları ve düğmesi white-space:nowrap, masaüstü eşiği 1240px. Galeri başlığı overflow-wrap/word-break normal ve hyphens none, kelime ortasından bölünmüyor.
+
+6) Duyarlılık: 400px genişlikte giriş, hakkımızda, konular, işler, galeri, ekip, iletişim ve alt bilgi tek sütuna iniyor. Karakter ızgarası 368px içinde tek sütun. Hizmet ve süreç satırlarında numara/mühür ile görsel yan yana, metin altta. Hareket azaltma tercihi (prefers-reduced-motion) destekleniyor. Bulutlar yalnızca alt sahne alanında kalıyor, yazı bandına girmiyor.
+
+Gelecek için küçük not (revize gerektirmez): İçerik dolunca menü etiketleri uzarsa 1240-1300px aralığında taşma olmadığı kontrol edilmeli.
 
 ## 🔵 Araştırmacı · Site planı
 
