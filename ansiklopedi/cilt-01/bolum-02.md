@@ -2,7 +2,7 @@
 
 > **Künye**
 > - **Yer:** Türk Tarihi Ansiklopedisi, Cilt I (Giriş, Yöntem ve Erken Bozkır), Bölüm 2
-> - **Durum:** **TASLAK — ONAY BEKLİYOR**
+> - **Durum:** **ONAYLANDI** (sahibin onayı: 7 Kasım 2026)
 > - **Tarih:** 7 Kasım 2026
 > - **Dayandığı notlar:** `ansiklopedi/notlar/bolum-02/` altında
 >   - `a-orta-cag-osmanli.md` (orta çağ İslam dünyası, Timurlu-Çağatay ve Osmanlı tarih yazımı, c. 9. yy – 1850),
