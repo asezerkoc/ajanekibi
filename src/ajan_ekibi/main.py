@@ -7,7 +7,7 @@ import warnings
 from datetime import datetime
 from pathlib import Path
 
-from ajan_ekibi.crew import AjanEkibi, KaliteRaporu
+from ajan_ekibi.crew import AJAN_RENKLERI, GOREV_BIRIMI, AjanEkibi, KaliteRaporu, SiteKaliteRaporu, etiket
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
@@ -26,6 +26,10 @@ REVIZYON_ZINCIRI = {
     "editor": ["editor", "grafik"],
     "grafiker": ["grafik"],
 }
+
+# Site işlerinde kalite kontrol yalnızca web tasarımcısına geri gönderir
+SITE_ZINCIRI = {"web_tasarimci": ["site"]}
+SITE_KLASORU = KOK / "site"
 
 GUNLUK_GOREV = (
     "Bugünün günlük gönderisi. Ajans profilindeki konulardan, geçmişte işlenmemiş "
@@ -47,11 +51,13 @@ def _ekle(yol: Path, metin: str) -> None:
 
 
 def _adim(gorev_adi: str, durum: dict) -> str:
+    print(f"\n{etiket(GOREV_BIRIMI[gorev_adi], renkli=sys.stdout.isatty())} çalışıyor...\n")
     sonuc = AjanEkibi().tek_gorev(gorev_adi).kickoff(inputs=durum)
     return sonuc.raw
 
 
 def _kalite(durum: dict) -> KaliteRaporu:
+    print(f"\n{etiket('kalite_kontrol', renkli=sys.stdout.isatty())} çalışıyor...\n")
     sonuc = AjanEkibi().tek_gorev("kalite_gorevi").kickoff(inputs=durum)
     rapor = sonuc.pydantic
     if not isinstance(rapor, KaliteRaporu):
@@ -77,11 +83,65 @@ def _kalite_dongusu(durum: dict) -> KaliteRaporu:
             return rapor
         if tur == MAKS_REVIZYON:
             break
-        print(f"\n[Kalite kontrol] Revizyon {tur + 1}: {rapor.revize_birimi} -> {rapor.notlar}\n")
+        print(f"\n{etiket('kalite_kontrol')} Revizyon {tur + 1}: {etiket(rapor.revize_birimi)} -> {rapor.notlar}\n")
         durum["revizyon_notu"] = rapor.notlar
         _zinciri_calistir(REVIZYON_ZINCIRI[rapor.revize_birimi], durum)
         durum["revizyon_notu"] = ""
     return rapor
+
+
+def _ekip_metni() -> str:
+    return "\n".join(f"- {r['emoji']} {r['ad']} ({birim}): {r['renk']} {r['hex']}" for birim, r in AJAN_RENKLERI.items())
+
+
+def _html_ayikla(ham: str) -> str:
+    """The designer must return only HTML; strip any fences or chatter around it."""
+    m = re.search(r"<!doctype html|<html", ham, re.I)
+    son = ham.lower().rfind("</html>")
+    if not m or son < 0:
+        return ham.strip()
+    return ham[m.start():son + len("</html>")].strip() + "\n"
+
+
+def _site_kalite(durum: dict) -> SiteKaliteRaporu:
+    print(f"\n{etiket('kalite_kontrol', renkli=sys.stdout.isatty())} siteyi kontrol ediyor...\n")
+    sonuc = AjanEkibi().tek_gorev("site_kalite_gorevi").kickoff(inputs=durum)
+    rapor = sonuc.pydantic
+    if not isinstance(rapor, SiteKaliteRaporu):
+        rapor = SiteKaliteRaporu.model_validate_json(sonuc.raw)
+    return rapor
+
+
+def _site_dongusu(durum: dict) -> SiteKaliteRaporu:
+    """Quality control checks the site and sends it back to the web designer until it passes."""
+    for tur in range(MAKS_REVIZYON + 1):
+        rapor = _site_kalite(durum)
+        durum["sahip_notu"] = ""
+        if rapor.uygun or rapor.revize_birimi == "yok":
+            return rapor
+        if tur == MAKS_REVIZYON:
+            break
+        print(f"\n{etiket('kalite_kontrol')} Revizyon {tur + 1}: {etiket(rapor.revize_birimi)} -> {rapor.notlar}\n")
+        durum["revizyon_notu"] = rapor.notlar
+        durum["site_html"] = _html_ayikla(_adim("site_gorevi", durum))
+        durum["revizyon_notu"] = ""
+    return rapor
+
+
+def _site_teslim_metni(durum: dict, rapor, onay_durumu: str, html_adi: str) -> str:
+    anahtarlar = sorted(set(re.findall(r'data-doldur="([^"]+)"', durum.get("site_html", ""))))
+    return (
+        f"# SKONSTART teslimi · İnternet sitesi\n\n"
+        f"- **İş:** {durum['gorev']}\n"
+        f"- **Tarih:** {datetime.now():%Y-%m-%d %H:%M}\n"
+        f"- **Durum:** {onay_durumu}\n"
+        f"- **Kalite kontrol:** {'uygun' if rapor.uygun else 'revizyon sınırına ulaşıldı, son notlar aşağıda'}\n"
+        f"- **Site dosyası:** `{html_adi}`\n\n"
+        f"## {etiket('web_tasarimci')} · Doldurulacak alanlar ({len(anahtarlar)})\n\n"
+        + ("\n".join(f"- `{a}`" for a in anahtarlar) or "Yok.") + "\n\n"
+        f"## {etiket('kalite_kontrol')} · Kalite kontrol notu\n\n{rapor.notlar}\n\n"
+        f"## {etiket('arastirmaci')} · Site planı\n\n{durum['site_plani']}\n"
+    )
 
 
 def _teslim_metni(durum: dict, rapor: KaliteRaporu, onay_durumu: str) -> str:
@@ -91,10 +151,12 @@ def _teslim_metni(durum: dict, rapor: KaliteRaporu, onay_durumu: str) -> str:
         f"- **Tarih:** {datetime.now():%Y-%m-%d %H:%M}\n"
         f"- **Durum:** {onay_durumu}\n"
         f"- **Kalite kontrol:** {'uygun' if rapor.uygun else 'revizyon sınırına ulaşıldı, son notlar aşağıda'}\n\n"
-        f"## Gönderi metni\n\n{durum['duzenlenmis_metin']}\n\n"
-        f"## Animasyon ve grafik\n\n{durum['grafik']}\n\n"
-        f"## Kalite kontrol notu\n\n{rapor.notlar}\n\n"
-        f"## Araştırma\n\n{durum['arastirma']}\n"
+        f"## {etiket('editor')} · Gönderi metni\n\n{durum['duzenlenmis_metin']}\n\n"
+        f"## {etiket('grafiker')} · Animasyon ve grafik\n\n{durum['grafik']}\n\n"
+        f"## {etiket('kalite_kontrol')} · Kalite kontrol notu\n\n{rapor.notlar}\n\n"
+        + (f"## {etiket('kalite_kontrol')} · Görsel kontrol (render edilen kareler)\n\n{durum['gorsel_kontrol']}\n\n"
+           if durum.get("gorsel_kontrol") else "")
+        + f"## {etiket('arastirmaci')} · Araştırma\n\n{durum['arastirma']}\n"
     )
 
 
@@ -105,7 +167,11 @@ def _kaydet(durum: dict, rapor: KaliteRaporu, onay_durumu: str, yol: Path | None
         kisa_ad = durum["gorev"].translate(str.maketrans("çğıöşüÇĞİÖŞÜ", "cgiosuCGIOSU")).lower()
         kisa_ad = re.sub(r"[^a-z0-9]+", "-", kisa_ad)[:40].strip("-") or "is"
         yol = TESLIMLER / f"{datetime.now():%Y-%m-%d-%H%M}-{kisa_ad}.md"
-    yol.write_text(_teslim_metni(durum, rapor, onay_durumu), encoding="utf-8")
+    if durum.get("tur") == "site":
+        yol.with_suffix(".html").write_text(durum["site_html"], encoding="utf-8")
+        yol.write_text(_site_teslim_metni(durum, rapor, onay_durumu, yol.with_suffix(".html").name), encoding="utf-8")
+    else:
+        yol.write_text(_teslim_metni(durum, rapor, onay_durumu), encoding="utf-8")
     yol.with_suffix(".json").write_text(
         json.dumps({"durum": durum, "rapor": rapor.model_dump()}, ensure_ascii=False, indent=2),
         encoding="utf-8",
@@ -115,7 +181,8 @@ def _kaydet(durum: dict, rapor: KaliteRaporu, onay_durumu: str, yol: Path | None
 
 def _yukle(yol: Path) -> tuple[dict, KaliteRaporu]:
     veri = json.loads(yol.with_suffix(".json").read_text(encoding="utf-8"))
-    return veri["durum"], KaliteRaporu.model_validate(veri["rapor"])
+    model = SiteKaliteRaporu if veri["durum"].get("tur") == "site" else KaliteRaporu
+    return veri["durum"], model.model_validate(veri["rapor"])
 
 
 def _gecmis() -> str:
@@ -131,15 +198,23 @@ def _sahip_notunu_uygula(durum: dict, not_: str) -> KaliteRaporu:
     _ekle(GERI_BILDIRIMLER, f"- {datetime.now():%Y-%m-%d} ({durum['gorev'][:60]}): {not_}\n")
     durum["gecmis"] = _gecmis()
     durum["sahip_notu"] = not_
+    if durum.get("tur") == "site":
+        durum["site_html"] = _html_ayikla(_adim("site_gorevi", durum))
+        durum["sahip_notu"] = not_
+        return _site_dongusu(durum)
     return _kalite_dongusu(durum)
 
 
 def _onayla(durum: dict, rapor: KaliteRaporu, yol: Path | None = None) -> Path:
     yol = _kaydet(durum, rapor, "ONAYLANDI", yol)
-    _ekle(
-        ONAYLANANLAR,
-        f"\n## {datetime.now():%Y-%m-%d} — {durum['gorev'][:80]}\n\n{durum['duzenlenmis_metin'][:600]}\n",
-    )
+    if durum.get("tur") == "site":
+        # The approved site becomes the live copy the team fills in later
+        SITE_KLASORU.mkdir(parents=True, exist_ok=True)
+        (SITE_KLASORU / "index.html").write_text(durum["site_html"], encoding="utf-8")
+        ozet = f"İnternet sitesi arayüzü onaylandı (site/index.html).\n\n{durum['site_plani'][:600]}"
+    else:
+        ozet = durum["duzenlenmis_metin"][:600]
+    _ekle(ONAYLANANLAR, f"\n## {datetime.now():%Y-%m-%d} — {durum['gorev'][:80]}\n\n{ozet}\n")
     print(f"\nOnaylandı ve kaydedildi: {yol}")
     return yol
 
@@ -183,6 +258,52 @@ def calistir(gorev: str, etkilesimli: bool) -> Path:
     return _onayla(durum, rapor)
 
 
+def site_calistir(gorev: str, etkilesimli: bool) -> Path:
+    """A website job: the researcher plans it, the web designer codes it, quality control checks it, the owner approves."""
+    durum = {
+        "tur": "site",
+        "gorev": gorev,
+        "current_year": str(datetime.now().year),
+        "profil": _oku(PROFIL),
+        "gecmis": _gecmis(),
+        "ekip": _ekip_metni(),
+        "site_plani": "",
+        "site_html": "",
+        "revizyon_notu": "",
+        "sahip_notu": "",
+    }
+    durum["site_plani"] = _adim("site_plani_gorevi", durum)
+    durum["site_html"] = _html_ayikla(_adim("site_gorevi", durum))
+    rapor = _site_dongusu(durum)
+
+    yol = _kaydet(durum, rapor, "ONAY BEKLİYOR")
+    if not etkilesimli:
+        print(f"\nSite onayını bekliyor: {yol} (sayfa: {yol.with_suffix('.html')})")
+        return yol
+    while True:
+        print(f"\nSite hazır: {yol.with_suffix('.html')} (tarayıcıda aç)")
+        cevap = input("Onaylıyorsan Enter'a bas. Değişiklik istiyorsan ne değişsin, yaz: ").strip()
+        if not cevap:
+            break
+        rapor = _sahip_notunu_uygula(durum, cevap)
+        yol = _kaydet(durum, rapor, "ONAY BEKLİYOR", yol)
+    return _onayla(durum, rapor, yol)
+
+
+def site():
+    """
+    Give the team a website job: uv run site_iskeleti "<the job>"
+    (Console scripts must return None: a returned value becomes the exit status.)
+    """
+    gorev = " ".join(sys.argv[1:]).strip() or input("SKONSTART - site işi: ").strip()
+    if not gorev:
+        raise Exception('Kullanım: uv run site_iskeleti "site işi"')
+    try:
+        site_calistir(gorev, etkilesimli=sys.stdin.isatty())
+    except Exception as e:
+        raise Exception(f"An error occurred while building the site: {e}")
+
+
 def run():
     """
     Run the agency. The job comes from the command line or is asked for.
@@ -202,7 +323,7 @@ def gunluk():
     Daily run for a scheduler: the team picks today's topic itself and the result waits for approval.
     """
     try:
-        return calistir(GUNLUK_GOREV, etkilesimli=False)
+        calistir(GUNLUK_GOREV, etkilesimli=False)
     except Exception as e:
         raise Exception(f"An error occurred while running the daily crew: {e}")
 
@@ -215,7 +336,7 @@ def onayla():
         raise Exception("Kullanım: uv run onayla teslimler/<dosya>.md")
     yol = Path(sys.argv[1])
     durum, rapor = _yukle(yol)
-    return _onayla(durum, rapor, yol)
+    _onayla(durum, rapor, yol)
 
 
 def revize():
@@ -232,7 +353,81 @@ def revize():
         raise Exception(f"An error occurred while revising: {e}")
     yol = _kaydet(durum, rapor, "ONAY BEKLİYOR", yol)
     print(f"\nRevize edildi, onayını bekliyor: {yol}")
-    return yol
+
+
+def _kontrol_sayfalari(kareler: list[Path], hedef: Path) -> list[Path]:
+    """Puts the frames on labelled 2x2 sheets: crewai marks every image for caching and Anthropic allows only 4."""
+    from PIL import Image, ImageDraw, ImageFont
+
+    hedef.mkdir(parents=True, exist_ok=True)
+    yazi = ImageFont.load_default(size=40)
+    sayfalar = []
+    for s in range(0, min(len(kareler), 12), 4):
+        resimler = [Image.open(p).convert("RGB") for p in kareler[s:s + 4]]
+        w, h = 540, int(540 * resimler[0].height / resimler[0].width)
+        sayfa = Image.new("RGB", (w * 2, (h + 60) * 2), "white")
+        for i, (p, im) in enumerate(zip(kareler[s:s + 4], resimler)):
+            x, y = (i % 2) * w, (i // 2) * (h + 60)
+            ImageDraw.Draw(sayfa).text((x + 10, y + 8), p.stem, fill="black", font=yazi)
+            sayfa.paste(im.resize((w, h)), (x, y + 60))
+        yol = hedef / f"sayfa-{s // 4 + 1}.png"
+        sayfa.save(yol)
+        sayfalar.append(yol)
+    return sayfalar
+
+
+def gorsel_kontrol():
+    """
+    Quality control looks at the rendered frames of a delivery's video:
+    uv run gorsel_kontrol teslimler/<file>.md <folder of frame images>
+    """
+    import tempfile
+
+    from crewai_files import ImageFile
+
+    if len(sys.argv) < 3:
+        raise Exception("Kullanım: uv run gorsel_kontrol teslimler/<dosya>.md <karelerin klasörü>")
+    yol = Path(sys.argv[1])
+    kareler = sorted(p for p in Path(sys.argv[2]).iterdir() if p.suffix.lower() in (".png", ".jpg", ".jpeg"))
+    if not kareler:
+        raise Exception(f"Klasörde kare yok: {sys.argv[2]}")
+    durum, _ = _yukle(yol)
+    print(f"\n{etiket('kalite_kontrol', renkli=sys.stdout.isatty())} {min(len(kareler), 12)} kareye bakıyor...\n")
+    sayfalar = _kontrol_sayfalari(kareler, Path(tempfile.mkdtemp(prefix="gorsel-kontrol-")))
+    gorev = AjanEkibi().tek_gorev("gorsel_kontrol_gorevi")
+    sonuc = gorev.kickoff(inputs=durum, input_files={p.stem: ImageFile(source=p) for p in sayfalar})
+    rapor = sonuc.pydantic
+    if not isinstance(rapor, KaliteRaporu):
+        rapor = KaliteRaporu.model_validate_json(sonuc.raw)
+    karar = "uygun" if rapor.uygun else f"UYGUN DEĞİL, düzeltecek birim: {etiket(rapor.revize_birimi)}"
+    durum["gorsel_kontrol"] = f"**Karar:** {karar}\n\n{rapor.notlar}"
+    # The owner still approves last; the delivery keeps waiting with the visual check written in
+    _kaydet(durum, rapor, "ONAY BEKLİYOR", yol)
+    print(f"\nGörsel kontrol: {karar}\n{rapor.notlar}\n\nTeslime yazıldı: {yol}")
+
+
+def tanis():
+    """
+    Each agent introduces itself and its job to the owner: uv run tanis
+    """
+    ekip = AjanEkibi()
+    akis = " → ".join(etiket(b) for b in AJAN_RENKLERI) + " → ajans sahibinin onayı"
+    satirlar = ["# SKONSTART ekibi\n", f"**İş akışı:** {akis}\n"]
+    for birim, r in AJAN_RENKLERI.items():
+        ajan = getattr(ekip, birim)()
+        cevap = ajan.kickoff(
+            "Ajans sahibine kendini tanıt. Türkçe, en fazla 5 cümle: kimsin, ekipte "
+            "hangi adımdan sorumlusun, işi kimden alıp kime veriyorsun ve sahibin "
+            f"senden ne bekleyebileceği. Ekibin iş akışı: {akis}. Kalite kontrol "
+            "uygun bulmadığı işi metin yazarına, editöre ya da grafikere geri "
+            f"gönderir. Ekipteki renk kodun {r['renk']} ({r['hex']})."
+        ).raw.strip()
+        print(f"\n{etiket(birim, renkli=sys.stdout.isatty())} ({r['renk']} {r['hex']})\n{cevap}\n")
+        satirlar.append(f"## {etiket(birim)} · {r['renk']} `{r['hex']}`\n\n{cevap}\n")
+    yol = KOK / "ekip" / "tanisma.md"
+    yol.parent.mkdir(parents=True, exist_ok=True)
+    yol.write_text("\n".join(satirlar), encoding="utf-8")
+    print(f"Tanışma kaydedildi: {yol}")
 
 
 def _ornek_girdiler() -> dict:
@@ -247,6 +442,9 @@ def _ornek_girdiler() -> dict:
         "grafik": "",
         "revizyon_notu": "",
         "sahip_notu": "",
+        "ekip": _ekip_metni(),
+        "site_plani": "",
+        "site_html": "",
     }
 
 

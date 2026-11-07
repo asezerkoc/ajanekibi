@@ -7,6 +7,45 @@ from pydantic import BaseModel, Field
 
 from ajan_ekibi.tools.custom_tool import SkillOkumaAraci
 
+# crewai 1.15.30 only recognises Claude 3 and 4 as vision models; Claude 5 sees images too,
+# and quality control needs that to look at rendered frames (gorsel_kontrol)
+from crewai.llms.providers.anthropic.completion import AnthropicCompletion
+
+_eski_multimodal = AnthropicCompletion.supports_multimodal
+AnthropicCompletion.supports_multimodal = lambda self: (  # type: ignore[method-assign]
+    _eski_multimodal(self) or "claude-" in self.model.lower() and "-5" in self.model.lower()
+)
+
+
+# Each unit's visual color code: shown in the terminal while it works and on the deliveries
+AJAN_RENKLERI = {
+    "arastirmaci": {"ad": "Araştırmacı", "emoji": "🔵", "renk": "Mavi", "hex": "#3B82F6", "ansi": "\033[94m"},
+    "metin_yazari": {"ad": "Metin Yazarı", "emoji": "🟠", "renk": "Turuncu", "hex": "#F97316", "ansi": "\033[38;5;208m"},
+    "editor": {"ad": "Editör", "emoji": "🟣", "renk": "Mor", "hex": "#8B5CF6", "ansi": "\033[95m"},
+    "grafiker": {"ad": "Grafiker", "emoji": "🟢", "renk": "Yeşil", "hex": "#22C55E", "ansi": "\033[92m"},
+    "kalite_kontrol": {"ad": "Kalite Kontrol", "emoji": "🔴", "renk": "Kırmızı", "hex": "#EF4444", "ansi": "\033[91m"},
+    "web_tasarimci": {"ad": "Web Tasarımcısı", "emoji": "🟡", "renk": "Sarı", "hex": "#EAB308", "ansi": "\033[93m"},
+}
+
+GOREV_BIRIMI = {
+    "arastirma_gorevi": "arastirmaci",
+    "metin_gorevi": "metin_yazari",
+    "editor_gorevi": "editor",
+    "grafik_gorevi": "grafiker",
+    "kalite_gorevi": "kalite_kontrol",
+    "gorsel_kontrol_gorevi": "kalite_kontrol",
+    "site_plani_gorevi": "arastirmaci",
+    "site_gorevi": "web_tasarimci",
+    "site_kalite_gorevi": "kalite_kontrol",
+}
+
+
+def etiket(birim: str, renkli: bool = False) -> str:
+    """The unit's badge, e.g. '🔵 Araştırmacı'; colored for a terminal when renkli is True."""
+    r = AJAN_RENKLERI[birim]
+    metin = f"{r['emoji']} {r['ad']}"
+    return f"{r['ansi']}{metin}\033[0m" if renkli else metin
+
 
 class KaliteRaporu(BaseModel):
     """Kalite kontrolün kararı. Revizyonun hangi birime gideceğini kod buna göre seçer."""
@@ -14,6 +53,16 @@ class KaliteRaporu(BaseModel):
     uygun: bool = Field(description="İş hedef kitleye ve ajans standartlarına uygunsa true")
     revize_birimi: Literal["metin_yazari", "editor", "grafiker", "yok"] = Field(
         description="Uygun değilse sorunu düzeltecek birim, uygunsa 'yok'"
+    )
+    notlar: str = Field(description="Değerlendirme ya da somut revizyon notları")
+
+
+class SiteKaliteRaporu(BaseModel):
+    """Kalite kontrolün site kararı: site işlerinde revizyon yalnızca web tasarımcısına gider."""
+
+    uygun: bool = Field(description="Site plana, ajansın görsel diline ve içerik kuralına uygunsa true")
+    revize_birimi: Literal["web_tasarimci", "yok"] = Field(
+        description="Uygun değilse 'web_tasarimci', uygunsa 'yok'"
     )
     notlar: str = Field(description="Değerlendirme ya da somut revizyon notları")
 
@@ -61,6 +110,13 @@ class AjanEkibi():
             verbose=True
         )
 
+    @agent
+    def web_tasarimci(self) -> Agent:
+        return Agent(
+            config=self.agents_config['web_tasarimci'], # type: ignore[index]
+            verbose=True
+        )
+
     @task
     def arastirma_gorevi(self) -> Task:
         return Task(
@@ -90,6 +146,28 @@ class AjanEkibi():
         return Task(
             config=self.tasks_config['kalite_gorevi'], # type: ignore[index]
             output_pydantic=KaliteRaporu
+        )
+
+    # Not a @task: it needs rendered frames, so it is run on its own by main.gorsel_kontrol
+    def gorsel_kontrol_gorevi(self) -> Task:
+        return Task(
+            config=self.tasks_config['gorsel_kontrol_gorevi'], # type: ignore[index]
+            agent=self.kalite_kontrol(),
+            output_pydantic=KaliteRaporu
+        )
+
+    # Site işleri ayrı bir akıştır (main.site): @task değiller, günlük içerik akışına karışmazlar
+    def site_plani_gorevi(self) -> Task:
+        return Task(config=self.tasks_config['site_plani_gorevi'], agent=self.arastirmaci())  # type: ignore[index]
+
+    def site_gorevi(self) -> Task:
+        return Task(config=self.tasks_config['site_gorevi'], agent=self.web_tasarimci())  # type: ignore[index]
+
+    def site_kalite_gorevi(self) -> Task:
+        return Task(
+            config=self.tasks_config['site_kalite_gorevi'], # type: ignore[index]
+            agent=self.kalite_kontrol(),
+            output_pydantic=SiteKaliteRaporu
         )
 
     @crew
