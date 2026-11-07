@@ -25,7 +25,7 @@
 | Yazılış | Asıl "Fezâilü'l-Etrâk" kısmı Mu'tasım-Billâh döneminde (833–842) yazıldı, ama halifeye sunulamadı; sonra başına Hilâfet Ordusu'nun unsurlarına dair iki mukaddime eklenerek Feth b. Hâkân'a sunuldu. Eserin bütünü 225–245 (840–859) arasına tarihlenir | DİA, Şeşen 1995, "Fezâilü'l-Etrâk", XII, 531–532 (TM) | [Güçlü]; kesin yıl tartışmalı |
 | Adları | *Menâkıbü cündi'l-hilâfe ve fezâilü'l-Etrâk*, *Menâkıbü't-Türk ve âmmeti cündi'l-hilâfe* | aynı yer | [Kesin] |
 | Dil | Arapça | — | [Kesin] |
-| Temel anlatı | Türkler Abbasi ordusunun (Horasanlılar, Türkler, Mevâlî, Araplar, *Ebnâ*) bir unsurudur; halifeye yakınlıkta öbürleriyle eşit şereftedir. Türk aleyhine dolaşan hadis ve rivayetlere ("Benî Kantûrâ" haberleri) karşı Türkleri "İslam'ın yardımcısı, halifelerin hâmisi" olarak savunur. Ünlü genelleme: Yunanlılar felsefe ve bilimde, Araplar edebiyatta, Çinliler sanatta, Türkler askerlikte üstündür. Öteki yargılar: "Bir Türk başlı başına bir millettir"; Türk ömrünün at üstünde geçen günleri oturarak geçenlerden fazladır; Türklerde vatan sevgisi fazladır | DİA, Şeşen 1995 (Hârûn neşri s. 75; Şeşen trc. s. 68, 77, 78, 85 aktarımıyla) (TM) | Metnin içeriği [Kesin]; Türkler hakkındaki yargılar [Modern yorum değil, çağdaş yorum]: olgu olarak alınmaz |
+| Temel anlatı | Türkler Abbasi ordusunun (Horasanlılar, Türkler, Mevâlî, Araplar, *Ebnâ*) bir unsurudur; halifeye yakınlıkta öbürleriyle eşit şereftedir. Türk aleyhine dolaşan hadis ve rivayetlere ("Benî Kantûrâ" haberleri) karşı Türkleri "İslam'ın yardımcısı, halifelerin hâmisi" olarak savunur. Ünlü genelleme: Yunanlılar felsefe ve bilimde, Araplar edebiyatta, Çinliler sanatta, Türkler askerlikte üstündür. Öteki yargılar: "Bir Türk başlı başına bir millettir"; Türk ömrünün at üstünde geçen günleri oturarak geçenlerden fazladır; Türklerde vatan sevgisi fazladır | DİA, Şeşen 1995 (Hârûn neşri s. 75; Şeşen trc. s. 68, 77, 78, 85 aktarımıyla) (TM) | Metnin içeriği [Kesin]; Türkler hakkındaki yargılar 9. yüzyıl yazarının kendi değerlendirmesidir (etiket dışı: çağdaş görüş), olgu olarak alınmaz |
 | Kaynakları | Kendi gözlemleri ve Cehm b. Safvân, Humeyd b. Abdülhamîd et-Tûsî, Sümâme b. Eşres gibi komutan ve âlimlerden nakiller | DİA, Şeşen 1995 (TM) | [Güçlü] |
 | Taraflılık | Eser bir **saray ve ordu savunmasıdır**: Mu'tasım'ın Türk askerî birliklerine dayanan politikasını ve hamisi Feth b. Hâkân'ı desteklemek için yazıldı. DİA "tarafsız davranmaya çalışmıştır" der; bu bir yorumdur. Hoyland'ın yeni çevirisinin yayıncı tanıtımı eseri "Abbasi askerî politikasının savunusu" ve hamisiyle bir hasım arasında kurgulanmış bir tartışma olarak tanıtır | DİA, Şeşen 1995 (TM); Hoyland 2025 yayıncı ve katalog tanıtımları (AÖ) | [Modern yorum] |
 | Neşir ve çeviri | Neşirler: G. van Vloten (Leiden 1903; de Goeje tamamladı), Sâsî (Kahire 1325), Abdüsselâm M. Hârûn, *Resâilü'l-Câhiz* (Kahire 1964). Çeviriler: C. T. Harley Walker, İngilizce, *JRAS* (bkz. not); O. Rescher, Almanca muhtasar (İstanbul 1925); Ramazan Şeşen, *Hilâfet Ordusunun Menkıbeleri ve Türkler'in Fazîletleri* (Ankara 1967, 1988); R. G. Hoyland, *The Turks and the Caliphal Army* (NYU Press, Library of Arabic Literature, 2025; Arapça metin ve İngilizce çeviri) | DİA, Şeşen 1995 (TM); Cambridge Core künyesi ve Hoyland katalog kayıtları (AÖ) | [Güçlü] |
@@ -39,7 +39,7 @@
 
 **Genel çerçeve.** Barthold'a göre "Türk" adını, karşılaştıkları bütün Türkçe konuşan göçebelere vererek yayan, Müslüman yazarlardır; İslam dünyası dışında ad yaygın değildi. Golden bunu kısmen kabul eder: İslam dünyasında ve İslamlaşan Türk toplulukları arasında adın yayılmasında Müslüman yazarların rolü vardır; ama Uygur Maniheist metinlerinde ve Hazarlar için Çin, Bizans, Gürcü ve Arap kaynaklarında da "Türk" kullanıldığı için bu yalnız İslam coğrafyasının bir alışkanlığı değildir (Golden 1992, 115) [Modern yorum; TM]. İslam coğrafyacıları "Türk" adını bir **dil ve yaşam tarzı topluluğu** için kullanır: İstahrî Tokuz Oğuz, Kırgız, Kimek, Oğuz ve Karluk için "dilleri birdir, birbirlerini anlarlar" der; Ya'kûbî "Türkistan" kabilelerinin her birinin ayrı ülkesi olduğunu, kalıcı yurt ve kaleleri olmadığını, keçe çadırlarda yaşadıklarını anlatır (Golden 1992, 195–196, İstahrî, nşr. de Goeje, s. 9 aktarımıyla) [Güçlü: kaynakta geçiş; TM].
 
-Golden'ın verdiği 9.–10. yüzyıl kaynak listesi: İbn Hurdâzbih, İbn Rüste, el-Bekrî, İstahrî, İbn Havkal, İbnü'l-Fakîh, Kudâme b. Ca'fer, İbn Fadlân, *Hudûdü'l-Âlem*, Ya'kûbî, Mes'ûdî, Mukaddesî, Gerdîzî; derleme çeviriler: Volin ve diğ., *Materialy* (Rusça) ve **Ramazan Şeşen, *İslâm Coğrafyacılarına Göre Türkler ve Türk Ülkeleri*** (Türkçe; Ankara 1985, 2. bs. 2001) (Golden 1992, 195 dn. 27) (TM).
+Golden'ın verdiği 9.–10. yüzyıl kaynak listesi: İbn Hurdâzbih, İbn Rüste, İstahrî, İbn Havkal, İbnü'l-Fakîh, Kudâme b. Ca'fer, İbn Fadlân, *Hudûdü'l-Âlem*, Ya'kûbî, Mes'ûdî, Mukaddesî, Gerdîzî; derleme çeviriler: Volin ve diğ., *Materialy* (Rusça) ve **Ramazan Şeşen, *İslâm Coğrafyacılarına Göre Türkler ve Türk Ülkeleri*** (Türkçe; Ankara; DİA "Mes'ûdî" kaynakçası 2001 baskısını anar) (Golden 1992, 195 dn. 27) (TM).
 
 #### a) İbn Hurdâzbih, *Kitâbü'l-Mesâlik ve'l-memâlik*
 - **Yazar:** Ebü'l-Kâsım Ubeydullah b. Abdullah b. Hurdâzbih (ö. 300/912–13), dedesi Mecûsîlikten dönmüş, babası Me'mûn döneminde Taberistan valisi; Cibâl ve sonra Bağdat–Sâmerrâ posta ve istihbarat (*berîd*) müdürü (DİA, S. Maqbul Ahmad 1999, "İbn Hurdâzbih", XX, 78–79; TM) [Güçlü].
@@ -148,10 +148,10 @@ Golden'ın verdiği 9.–10. yüzyıl kaynak listesi: İbn Hurdâzbih, İbn Rüs
 - **Yazılış tarihi tartışması** [Tartışmalı]:
   1. **13. yy sonu – 14. yy başı, Turfan:** DİA (Bayat 2019) destanın "yaklaşık XIII. yüzyılın sonları ile XIV. yüzyılın başlarında Turfan'da asıl nüshadan Uygur alfabesiyle yazıya geçirildiğini" yazar (TM).
   2. **Metin c. 1300, yazma 15. yy kopyası:** *Encyclopaedia Iranica*'nın Oğuz Han maddesinde, Şçerbak'a göre Paris yazmasının 13./14. yüzyıl dönümüne giden ve büyük olasılıkla Turfan'da yazılmış bir metnin 15. yüzyıl kopyası olduğu aktarılır (AÖ: iranicaonline.org bot engeli nedeniyle açılamadı).
-  3. **14.–15. yy:** Demirbilek, Ercilasun'a dayanarak destanı "XIV.–XV. yüzyılla" tarihler (Demirbilek 2020, *Millî Folklor* 125, 79; TM). Pala de resimlerin "müellif tarafından mı yoksa XIV. veya XV. asırdaki müstensihi tarafından mı" çizildiğinin bilinmediğini yazar (Pala 2022, *Millî Folklor* 133, 6; TM).
+  3. **14.–15. yy:** Demirbilek, Ercilasun'a dayanarak destanı "XIV.–XV. yüzyılla" tarihler (Demirbilek 2020, *Millî Folklor* 125, 68; TM). Pala de resimlerin "müellif tarafından mı yoksa XIV. veya XV. asırdaki müstensihi tarafından mı" çizildiğinin bilinmediğini yazar (Pala 2022, *Millî Folklor* 133, 5; TM).
   4. **Kesin değil:** Danka 2017'de yazmanın kesin tarihlenmediğini, 14. yüzyıla konduğunu söyler; 2019 kitabının yayıncı tanıtımı "kaydın tam yeri ve zamanı bilinmiyor; filolojik ve dilbilimsel çözümlemeyle tahmin ediliyor" der (AÖ: harrassowitz-verlag.de açılamadı; arama özeti).
   - **Sonuç:** Yazmanın bugünkü biçimi 14.–15. yüzyıldan önceye konamaz; arkasındaki metnin c. 1300 civarına ait olması güçlü bir görüştür, ama kesin değildir. Destanın "çok eski" (ör. Hun ya da Göktürk çağı) olduğu iddiaları metnin kendisiyle kanıtlanamaz [Tartışmalı].
-- **Uygur harfli sürüm ile İslami sürüm farkı:** Uygur harfli metinde İslami unsur yoktur; Oğuz'un annesi ve eşleri gökten inen ışık ve ağaç kovuğundaki kızla ilgilidir, gök kurt yol gösterir; Reşîdüddin'de ise Oğuz doğuştan Müslümandır ve soy Yâfes'e bağlanır (Işık 2020, 251; Bayat 2019; Demirbilek 2020; TM) [Efsane]. Hangisinin daha eski bir geleneği yansıttığı tartışmalıdır; Uygur harfli metnin "pagan" görünüşü kendiliğinden daha eski olduğunu kanıtlamaz [Modern yorum].
+- **Uygur harfli sürüm ile İslami sürüm farkı:** Uygur harfli metinde "Kök Tanrı" inancı dışında bir dinî etki yoktur (Işık 2020, 251); Oğuz yolunu şaşırdığında ona kurt yol gösterir, Gök ve yer kutsal bir bütündür (Demirbilek 2020, 60; TM). Reşîdüddin'de ise Oğuz doğuştan Müslümandır ve soy Yâfes'e bağlanır (Bayat 2019; TM) [Efsane]. Hangisinin daha eski bir geleneği yansıttığı tartışmalıdır; Uygur harfli metnin "pagan" görünüşü kendiliğinden daha eski olduğunu kanıtlamaz [Modern yorum].
 - **Öteki sürümler:** İbnü'd-Devâdârî'nin (14. yy başı, Memlük) *Dürerü't-tîcân*'ında aktarılan kayıp bir Türkçe Oğuznâme; Yazıcızâde Ali (§4.1); Uzunköprü sürümü; Ebulgazi (§5.2); *Dede Korkut* (DİA, Bayat 2019; Işık 2020; TM) [Güçlü: sürümlerin varlığı].
 - **İdeolojik okuma uyarısı (G.2.8):** DİA "Oğuznâme" maddesi (Bayat 2019) Oğuznâme yazımının "V. yüzyılda başladığını", bir Oğuz destanının "VI. yüzyılda Büzürgmihr tarafından Farsçaya çevrildiğini" ve Sima Qian'ın yıllığının "tarihî Oğuznâme'nin doğu varyantı" olduğunu ileri sürer (TM). Bu iddialar için maddede birincil kaynak gösterilmez; bu çalışmada başka bir kaynakla desteklenmedi [Modern yorum; dayanaksız, kullanılmamalı].
 
@@ -220,3 +220,198 @@ Golden'ın verdiği 9.–10. yüzyıl kaynak listesi: İbn Hurdâzbih, İbn Rüs
 - **Edirneli Rûhî:** Yazıcıoğlu'nun Kayı yakıştırmasını alan ilk tarihçilerdendir (DİA, Sümer, "Kayı"); neşir: H. E. Cengiz – Y. Yücel, *Belgeler* XIV/18 (1992) [Güçlü].
 
 ---
+
+## 5. Timurlu ve Çağatay geleneği (15.–17. yy)
+
+### 5.1. Şerefeddin Ali Yezdî, *Zafernâme*
+- **Yazar:** Yezd yakınındaki Teft'te doğdu; lakabı "Mahdûm", mahlası "Şeref"; Şahruh'un oğlu Mirza İbrâhim Sultan'ın nedimi; Şahruh'un emriyle esir Moğol hanı Yûnus Han'ın (Bâbür'ün anne tarafından dedesi) eğitimini on iki yıl üstlendi; 858/1454'te Teft'te öldü (DİA, Kaan Dilek 2010, "Şerefeddin Ali Yezdî", XXXVIII, 550–552; TM) [Güçlü].
+- **Yazılış, dil:** Mirza İbrâhim Sultan'ın isteğiyle dört yıllık çalışmayla **828 (1425)**'te tamamlandı; **Farsça**, süslü inşâ üslubu. Mukaddimesi ayrıca *Târîh-i Cihângîrî* (*Mukaddime-i Zafernâme*, 822/1419) adıyla bilinir (aynı yer) [Güçlü].
+- **Kaynakları:** Esas olarak Nizâmeddîn-i Şâmî'nin Timur'un emriyle yazılmış ve Şevval 806 / Nisan 1404'e kadar gelen *Zafernâme*'sinin genişletilmiş bir tekrarı; ayrıca Mirza İbrâhim'in topladığı bilgiler, Timur dönemi vakanüvisleri ve **bahşıların** (Uygur harfli Türkçe kayıt tutan kâtipler) kayıtları (aynı yer) [Güçlü].
+- **Türklere ve Moğollara dair anlatı:** Timur'u, Cengiz'le ortak bir ataya bağlanan Barlas soyunun büyük hükümdarı olarak sunar. Golden'a göre Timur Cengizoğlu olmadığı için "Küregen" (damat) ve "Emîr-i kebîr" unvanından yükseğini alamamış, ama "coşkulu propagandacıları Cengizî kan imaları" yapmıştır (Golden 1992, 309; TM) [Modern yorum]. John E. Woods, "Timur's Genealogy" (*Intellectual Studies on Islam: Essays Written in Honor of Martin B. Dickson*, Salt Lake City 1990, 85–125) Timur soy kütüğünün siyasi amaçla düzenlendiğini savunur (AÖ: künye arama özetinden, makale açılamadı).
+- **Taraflılık:** Timurlu hanedan propagandası; Timur'un ve Şahruh'un egemenlik iddialarının meşrulaştırılması [Modern yorum]. Osmanlı tarih yazımı açısından önemi: Kayı soy kütüğünü doğuran **Timurlu–Osmanlı soy rekabetinin** öteki tarafının resmî tarihidir (bkz. §4.2) [Modern yorum].
+- **Neşir ve çeviri:** M. İlâhdâd (Kalküta 1885–88); M. Abbâsî (Tahran 1336 hş./1958, 2 cilt); A. Urunbayev tıpkıbasımı (Taşkent 1972); A. Nevâyî – S. Mîr Muhammed Sâdık (Tahran 1387 hş.); Şeybânî döneminde Muhammed Ali b. Dervîş Ali el-Buhârî'nin Türkçe çevirisi (Nuruosmaniye 3268); Tâc es-Selmânî'nin zeyli ve birçok özet (DİA, Dilek 2010; TM) [Güçlü]. (Pétis de la Croix'nın 18. yy Fransızca çevirisi literatürde anılır; bu çalışmada doğrulanmadı.)
+
+### 5.2. Ebulgazi Bahadır Han, *Şecere-i Terâkime* ve *Şecere-i Türk*
+- **Yazar:** Rebîülevvel 1012 / Ağustos 1603'te doğdu; Şiban (Şeybânî) soyundan, baba ve anne tarafından Cengiz'e bağlanır; on yıl İran'da Safevî sarayında, Türkmenler, Kazaklar ve Kalmuklar arasında yaşadı; 1642'de han ilan edildi, 1645'ten Hîve hanı; 1663'te oğlu lehine çekildi ve kısa süre sonra öldü (DİA, Mustafa Kafalı 1994, "Ebülgazi Bahadır Han", X, 358–360; TM) [Güçlü].
+- **Taraflılık bağlamı:** Ebulgazi Türkmenlerle kanlı bir çatışma içindeydi: 1646'da Hezâresb'de ziyafet bahanesiyle 2000 kadar Türkmen ileri gelenini öldürttü; ardından Türkmenlerle yıllarca savaştı (DİA, Kafalı; TM) [Güçlü]. *Şecere-i Terâkime*'yi yine de "Türkmen ileri gelenlerinin ricası üzerine" yazdığını söyler; eser, Türkmenleri Hîve hanlığına bağlayan bir **soy ve meşruiyet metni** olarak okunmalıdır [Modern yorum].
+- ***Şecere-i Terâkime*** (Türkmenlerin Soy Kütüğü): **1659**'da (1070/1659–60) tamamlandı; "herkesin anlaması için" Arapça ve Farsçadan uzak **sade Çağatay Türkçesiyle** yazıldığını kendisi belirtir. Oğuz Han ve nesli, damgalar ve ongun kuşları; "âdeta bir Oğuznâme". **Kaynakları:** Türkmen boyları arasında dolaşan rivayetler, beylerin ve hocaların elindeki şecereler ve özellikle Reşîdüddin'in Oğuznâme kısmı; ama Câmiu't-Tevârîh'te olmayan bilgiler de içerir. Nüshalar birbirine uymaz, çünkü "her müstensih kendi bildiği rivayeti esere ilave etmiş"tir (DİA, Kafalı 1994; TM) [Güçlü]. Golden de 24 Oğuz boyu ve Kıl Barak savaşı için Ebulgazi'yi (Kononov neşri) Reşîdüddin'in yanında ayrı bir tanık olarak kullanır ve Ebulgazi'nin Reşîdüddin'i izlediğini belirtir (Golden 1992, 207–208 dn. 109, 111; TM).
+  - **Neşir:** Leningrad nüshası tıpkıbasımı (TDK, Ankara 1937); **A. N. Kononov, *Rodoslovnaya turkmen*** (Moskva–Leningrad 1958; Taşkent nüshası esas, Rusça çeviri ve gramer); Muharrem Ergin, *Türklerin Soy Kütüğü* (İstanbul, ts.); Tumanskiy Rusçası (Aşkabat 1892) (DİA, Kafalı; TM) [Kesin].
+- ***Şecere-i Türk*** (*Şecere-i Türkî*): Şiban Özbek hanlarının tarihi; baş kısımları için Reşîdüddin, öbür kısımlar için Timurlu dönemi anonim *Muizzü'l-ensâb*; Ebulgazi 1663'e kadar getirdi, oğlu Enûşe Bahadır tamamladı (DİA, Kafalı; TM) [Güçlü].
+  - **Batı'ya geçişi (Türkoloji'nin doğuşu için kritik):** 1717'de Sibirya'da esir İsveçli Strahlenberg buldu; 1721'de Almancaya, sonra Fransızcaya çevrildi: *Histoire généalogique des Tatars* (La Haye/Leiden 1726); Almanca 1780 (Göttingen); asıl metin Frähn ve İbrâhim Halfin tarafından Kazan'da 1825'te basıldı; **Ahmed Vefik Paşa'nın Osmanlıca çevirisi *Tasvîr-i Efkâr*'da 1863–64'te tefrika edildi ve 1864'te kitap oldu**; Desmaisons'un tenkitli neşri ve Fransızca çevirisi: *Histoire des Mogols et des Tatares* (St. Petersburg 1871–74) (DİA, Kafalı; TM) [Kesin]. Bu, Bölüm 2'nin 19. yüzyıl kısmına köprüdür: Avrupa Türkolojisinin (de Guignes vb.) ve Osmanlı Türkçülüğünün erken "Türk tarihi" bilgisinin bir kısmı Ebulgazi'den gelir [Modern yorum; diğer kısımla birlikte doğrulanmalı].
+- **Ebulgazi'nin kendi iddiası:** Kendisinin ilk tarihçi hükümdar olduğunu söyler; ama 1550'de tarih yazan atası Dost Sultan'ı ve 1551'de eserini bitiren Ötemiş Hacı'yı görmediği anlaşılır (DİA, Kafalı) [Güçlü].
+- **Değerlendirme:** DİA "destanî mahiyette olmakla birlikte Orta Asya Türk tarihi ve Türklerin soyuyla ilgili çok değerli" der (Kafalı 1994) [Modern yorum]. Soy kütükleri [Efsane]; 16.–17. yüzyıl Hârizm olayları için birinci el tanıklık [Güçlü].
+
+### 5.3. Bâbür, *Bâbürnâme* (*Vekāyi'*)
+- **Yazar:** Zahîrüddin Muhammed Bâbür (d. 6 Muharrem 888 / 14 Şubat 1483, Fergana; ö. 1530); babası Timur torunlarından Fergana hâkimi Ömer Şeyh Mirza, annesi Cengiz soyundan Yûnus Han'ın kızı Kutluğ Nigâr Hanım (DİA, Enver Konukçu – Ömer Faruk Akün, "Bâbür"; TM) [Kesin]. Özbek Şeybânî Han karşısında Maveraünnehir'i kaybetti, Kâbil'e (1504) ve Hindistan'a geçti; Babürlü (Mughal) hanedanını kurdu (1526) (aynı yer; Golden 1992, 333; TM) [Kesin].
+- **Yazılış ve dil:** **Çağatay Türkçesi**; 1519–1530 arasında kısım kısım yazıldı; 5 Ramazan 899 / 9 Haziran 1494 – 3 Muharrem 936 / 7 Eylül 1529 arasını kapsar, ama 1503–04, 1509–1519, 1520–1525 ve 1529–30 boşlukları vardır; Bâbür eserini *Vekāyi'* diye anar; Tahran'daki 931 (1524–25) tarihli külliyatta Bâbür hayattayken yazılmış bir nüsha bulunur (DİA, Ömer Faruk Akün 1991, "Bâbürnâme", IV, 404–408; TM) [Kesin].
+- **Türklere dair:** Bir tarih değil otobiyografidir; Fergana, Kâbil ve Hindistan'ın ayrıntılı coğrafi, idari ve etnik tasvirlerini verir (*Vekāyi'*, I, 1–5; II, 136–158, 304–332). Kendi doğruluk ilkesini açıkça koyar: "her sözün hakikati ve her işin olduğu gibi yazılması iltizam edildiği için ... baba ve büyük kardeşten iyi ve kötü ne şâyi olmuşsa onları söyledim" (*Vekāyi'*, II, 221–222; DİA, Akün 1991; TM) [Kesin: metinde geçiş]. Timurlu ve Cengizli çifte soy, onun kimliğinin temelidir; ama "Türk" ve "Moğol"u ayrı topluluklar olarak anar (DİA, Konukçu: "Az sayıdaki Türk ve Moğollar'la birlikte" Kâbil'e indi) [Güçlü].
+- **Taraflılık:** Hükümdar hatıratıdır; DİA ve Batı edebiyatı onun "samimiyetini" öne çıkarır ve onu "Doğu'nun Jül Sezar'ı" sayar (DİA, Akün 1991) [Modern yorum: övgü; kendi yenilgilerini de yazdığı olgu].
+- **Neşir ve çeviri:** 16. yüzyılda Farsçaya çevrildi (DİA, Akün 1991); çevirinin Abdürrahîm Hanıhanan'a aidiyeti tartışmalıdır (A. S. Beveridge, "Was 'Abdu'r-Rahim the translator of Bābar's memoirs into Persian", 1900; DİA kaynakçası); N. İlminskiy (Kazan 1857); Pavet de Courteille (Paris 1871, Çağataycadan ilk Batı çevirisi); A. S. Beveridge, Haydarabad nüshası tıpkıbasımı (Leiden–London 1905) ve *The Bābur-nāma in English* (London 1912–21; 1922); **R. R. Arat, *Vekāyi': Babur'un Hatıratı*, I–II (Ankara 1943–46)**; J.-L. Bacqué-Grammont, Fransızca (1980, 1985) (DİA, Akün 1991; TM) [Kesin].
+
+---
+
+## 6. Osmanlı'da sonraki dönem (17. yy – 19. yy başı)
+
+### 6.1. Kâtib Çelebi (1609–1657)
+- **Yazar:** Mustafa b. Abdullah, Kâtib Çelebi / Hacı Halife; 27 Zilhicce 1067 / 6 Ekim 1657'de öldü (DİA, Orhan Şaik Gökyay, "Kâtib Çelebi", XXV, 36–40; TM) [Kesin].
+- **Tarih eserleri:** *Fezleketü'l-tevârîh* (Arapça, yaratılıştan 1051/1641'e umumi tarih; tek müellif nüshası Beyazıt 10318); *Fezleke* (Türkçe, 1000–1065 / 1592–1654 vekayinamesi; İstanbul 1286–87); ***Takvîmü't-tevârîh*** (Âdem'den 1648'e kronoloji cetvelleri; iki ayda yazdığını söyler; Müteferrika'da 1146/1733–34'te basıldı; Ali Suâvi, Paris 1291/1874); *Cihannümâ* (coğrafya; Batılıların ve Yunanlıların bu alanda İslam coğrafyacılarından ileride olduğunu belirterek yazdı); *Keşfü'z-zunûn* (bibliyografya); Carion'un *Chronicle*'ının çevirisi (*Târîh-i Frengî*), Mercator–Hondius *Atlas Minor*'u (*Levâmiu'n-nûr*) (DİA, Gökyay; TM) [Kesin].
+- **Türk tarihi yazımı bakımından önemi:** (a) *Takvîm*, Türk hanedanlarını da içeren bir dünya kronolojisi çerçevesi verdi ve 18. yüzyıldan itibaren basılı olarak yayıldı [Güçlü: basım; içerikteki Türk hanedanları listesi bu çalışmada açılmadı]; (b) *Keşfü'z-zunûn*'da Âşıkpaşazâde'yi biraz hafife alması, onun uzun süre unutulmasına katkı yapmış olabilir (DİA, Özcan 1991, "Âşıkpaşazâde") [Modern yorum]; (c) Avrupa kaynaklarını Osmanlı tarih yazımına sokan ilk kişilerdendir (DİA, Gökyay) [Güçlü]. Kâtib Çelebi'nin Türklerin kökeni hakkında özel bir görüş geliştirdiğine dair bir kayıt bu çalışmada bulunamadı (açık soru).
+
+### 6.2. Hezarfen Hüseyin Efendi (ö. 1103/1691?)
+- **Yazar:** İstanköylü Hüseyin b. Ca'fer; IV. Mehmed'e tarih hocalığı yaptı; Fâzıl Ahmed Paşa'nın himayesinde Girit seferine katıldı; Grekçe ve Latince bildi; Marsigli, Cantemir, Pétis de la Croix ve Galland'la tanıştı; ölümü 1089/1678 ya da daha sağlam rivayetle 1103/1691 (DİA, Mücteba İlgürel 1998, "Hüseyin Efendi, Hezarfen", XVIII, 544–546; TM) [Güçlü].
+- ***Tenkîhu tevârîhi'l-mülûk*:** Giriş, dokuz bölüm ve iki hatimeden oluşan muhtasar umumi tarih; IV. Mehmed'e tarih hocalığı yaptığı sırada hazırlandı. Grek, Roma ve Bizans kısımları için Grekçe ve Latince kaynaklar (Panayot Efendi ve Ali Ufkî'nin yardımıyla); **İslam ve Türk devletleri** için Mîrhând'ın *Ravzatü's-safâ*'sı, Cenâbî'nin *el-Aylemü'z-zâhir*'i, Âlî'nin *Künhü'l-ahbâr*'ı ve Kâtib Çelebi'nin *Cihannümâ*'sı. Konular: İran, Sâsânîler, Batlamyuslar, İslam tarihi, Fâtımîler, Osmanlılar, Roma ve Bizans, Çin-Maçin, Hıtay ve Hoten, Amerika'nın keşfi; ikinci hatimede İbn Haldûn'un "tavırlar nazariyesi"ni benimser. Dânişmendliler bölümünü Mordtmann kısmen Almancaya çevirdi (DİA, İlgürel 1998; TM) [Güçlü]. DİA'ya göre geleneksel kronolojik tarihçilikten ayrılan "sistematik" bir eserdir [Modern yorum]. Yazılış yılı (1084/1673 olarak anılır) bu çalışmada doğrulanamadı (AÖ).
+- **Türk tarihi bakımından:** Türk hanedanlarını Fars-İslam derleme geleneği (Mîrhând) üzerinden aktarır; Orta Asya (Hıtay, Hoten) için ise Kâtib Çelebi'nin coğrafyasına dayanır [Modern yorum].
+
+### 6.3. Müneccimbaşı Ahmed Dede, *Câmiu'd-düvel*
+- **Yazar:** Selanik'te 1041/1631'de doğdu; Mevlevî; 1078/1668'de müneccimbaşı; IV. Mehmed'in musahibi; 1099/1687'de azledildi; 29 Ramazan 1113 / 27 Şubat 1702'de Mekke'de öldü (DİA, Ahmet Ağırakça 2006, "Müneccimbaşı Ahmed Dede", XXXII, 4–6; TM) [Kesin].
+- **Yazılış, dil:** **Arapça** umumi tarih; Merzifonlu Kara Mustafa Paşa'nın emriyle; yaratılıştan **1081 (1670)**'e kadar; müellif hattı nüshası Nuruosmaniye 3171–3172. *Câmiu'd-düvel* adı, müellif ölümünden dört yıl sonraki nüshada muhtemelen müstensihçe eklendi; Türkçe çevirisi *Sahâifü'l-ahbâr* diye bilinir (aynı yer) [Güçlü].
+- **Türk devletlerine ayrılan kısımlar:** I. ciltte dört halifeden sonra "Yunanlılar, Amâlika, Kıptîler, Hindular, **Türk ve Tatarlar, Türkmen kabileleri**, Çinliler, **Bulgarlar**, Ruslar ve Gürcüler"; **Selçuklular I. ciltte, Anadolu beylikleri II. ciltte**; sonda Osmanlı tarihi ve IV. Mehmed dönemi; tertip karışıktır, kronolojik sıra izlenmez; "birçok tarihçinin eserinde yer almayan hanedanların, hatta kısa ömürlü irili ufaklı kabilelerin tarihlerine bile yer vermiştir" (aynı yer) [Kesin: içerik]. Modern çevirilerden anlaşılan Türk hanedanı kısımları: **Karahanlılar** (M. N. Lugal), **Anadolu Selçukluları** (H. F. Turgal 1935), Büyük Selçuklular (S. A. Hasan, Cambridge doktora tezi 1959), Horasan–Irak, Kirman ve Suriye Selçukluları (A. Öngül, İzmir 2000), Selçuklular ve Anadolu Beylikleri (Öngül, doktora 1986) (aynı yer) [Kesin].
+- **Kaynakları:** Mukaddimede 72 kaynak sayar: 47 Arapça, 17 Farsça, 8 Türkçe; örnek aldıkları: İbn Haldûn, **Reşîdüddin**, Hâfız-ı Ebrû, Muslihuddîn-i Lârî, Cenâbî (aynı yer) [Kesin]. İbn Bîbî'den en çok yararlanan Osmanlı tarihçisi odur (DİA, Özaydın 1999, "İbn Bîbî") ve Neşrî'yi kullanmıştır (DİA, Özcan 2007, "Neşrî") [Güçlü: üç ayrı DİA maddesi, üç müellif].
+- **Konum:** "Nakilcilikten sıyrılıp tenkitçi tarihçiliğe yönelen ilk müelliflerden biri" (DİA, Ağırakça) [Modern yorum].
+- **18. yüzyıla geçiş:** Telifinden yaklaşık otuz yıl sonra Nevşehirli Damad İbrâhim Paşa'nın desteğiyle **Nedîm başkanlığında bir heyet** Türkçeye çevirdi (*Sahâifü'l-ahbâr*; yalnız baş tarafı Nedîm'in); çeviri kısaltmalıdır; İstanbul'da 3 cilt basıldı (1285/1868) (DİA, Ağırakça; TM) [Kesin]. Yani Karahanlılar, Selçuklular ve beylikler dahil "Osmanlı öncesi Türk devletleri" bilgisinin Osmanlı okuruna en derli toplu biçimde ulaştığı metin, Lâle Devri'nin bu çevirisidir [Modern yorum].
+- **Modern neşir ve çeviri:** Atsız, Turgal ve Lugal, *Müneccimbaşı ... Câmiü'd-düvel Adlı Eserinden Karahanlılar ve Anadolu Selçükleri* (İstanbul 1940); İ. E. Erünsal (Osmanlı kısmı, İstanbul 1975); V. Minorsky (Şeddâdîler 1953; Şirvan ve Bâbülebvâb 1958, Cambridge); A. Ağırakça (Osmanlı 1299–1481, İstanbul 1995) (DİA, Ağırakça; TM) [Kesin].
+
+### 6.4. 18. yüzyıl – 19. yüzyıl başı: kısa not
+- **Matbaa:** Müteferrika matbaası Kâtib Çelebi'nin *Tuhfetü'l-kibâr*'ını (1141/1729) ve *Takvîmü't-tevârîh*'ini (1146/1733–34) bastı (DİA, Gökyay; TM) [Kesin]. Böylece Türk ve İslam hanedanlarının kronolojisi ilk kez basılı olarak dolaşıma girdi [Modern yorum].
+- **Oğuznâme geleneğinin sürmesi:** Seyyid Lokmân'ın Yazıcızâde özeti (1009/1600–01) ve Bayburtlu Osman'ın *Tevârîh-i Cedîd-i Mir'ât-ı Cihân*'ı (16. yy) gibi metinler Oğuz şeceresini Osmanlı saray tarih yazımında canlı tuttu (DİA 2011, "Târîh-i Âl-i Selçûk"; DİA, Bayat 2019; TM) [Güçlü].
+- **Dışarıdan gelen yeni bilgi:** 18. yüzyılda Ebulgazi'nin Avrupa çevirileri (1726, 1780) ve de Guignes'in Hun tarihi gibi eserlerle "Türk" tarihi Hunlara ve Çin kaynaklarına bağlanmaya başladı; bu bilginin Osmanlı'ya geçişi ise büyük ölçüde 1850 sonrasıdır (Ahmed Vefik Paşa 1863–64) (DİA, Kafalı; de Guignes için Bölüm 2'nin 19. yy kısmının notları) [Güçlü: Ebulgazi çevirileri; Modern yorum: genel değerlendirme].
+- **Bu çalışmada araştırılmayan ve açık kalan 18.–19. yy başı Osmanlı metinleri:** Naîmâ'nın mukaddimesi (İbn Haldûncu tarih görüşü), Şehrîzâde Mehmed Said'in *Târîh-i Nevpeydâ*'sı (Oruç b. Âdil'i ilk kullanan; DİA, Özcan 2007, "Oruç b. Âdil"), Kemalpaşazâde ve Hoca Sâdeddin'deki köken anlatıları. Bunlar sonraki turda ele alınmalı.
+
+---
+
+## 7. Doğrulama tablosu (plan G.5)
+
+Erişim: **TM** = tam metin okundu; **AÖ** = erişilemedi, arama özetinden. "Bağımsız" sütun kuralı: aynı müellifin iki DİA maddesi tek kaynak sayıldı.
+
+| # | İddia | Etiket | Kaynak 1 | Kaynak 2 | Çelişki / not | Erişim |
+|---|---|---|---|---|---|---|
+| 1 | Câhiz'in *Fezâilü'l-Etrâk*'ı 225–245 (840–859) arasında yazıldı; asıl kısmı Mu'tasım döneminde; Feth b. Hâkân'a sunuldu | Güçlü | DİA, Şeşen 1995, XII, 531–532 | Hoyland 2025 katalog tanıtımı (hamisi Feth b. Hâkân ile hasım arasında tartışma) | Kesin yıl yok; Bölüm 1 tablosu "861'den önce" der, uyumlu | TM / AÖ |
+| 2 | Câhiz'e göre Türkler askerlikte, Yunanlılar bilimde, Araplar edebiyatta, Çinliler sanatta üstündür | Kesin (metinde geçiş) | DİA, Şeşen 1995 (Şeşen trc. 1967 aktarımıyla) | DİA, Taşağıl/Özaydın, "Türk" (s. 85 aktarımı, "İslâm'ın yardımcısı") | İkinci kaynak aynı çeviriye dayanır; birincil metin açılmadı | TM |
+| 3 | Walker'ın İngilizce çevirisi *JRAS* 1915'te çıktı (DİA "1925, s. 63–97" der) | Tartışmalı | Cambridge Core kaydı (arama özeti) | DİA, Şeşen 1995 | DİA'da muhtemel dizgi hatası; basılı JRAS'tan kontrol | AÖ / TM |
+| 4 | İbn Hurdâzbih eserini c. 232/846–47'de yazdı, 272/885'ten önce yeniden düzenledi | Güçlü | DİA, Maqbul Ahmad 1999, XX, 78–79 | Golden 1992, 273 ("mid-late 9th century") | — | TM |
+| 5 | İbn Hurdâzbih'e göre Tokuz Oğuz "Türklerin en geniş ülkesi"dir | Kesin (metinde geçiş) | Golden 1992, 273–274 (nşr. de Goeje, s. 31) | *Hudûdü'l-Âlem* §12 aynı yargı (Minorsky 1937, 94) | İkincisi muhtemelen ortak geleneğe dayanır; bağımsız değil | TM |
+| 6 | İbn Fadlân heyeti 21 Haziran 921'de Bağdat'tan çıktı, 12 Mayıs 922'de Bulgar karargâhına vardı | Kesin (olay) / Güçlü (gün) | DİA, Aliev 1999, XIX, 477–479 | Golden 1992, 209–211 (Togan neşrine atıf; tarihler verilmez) | Hicrî–miladî dönüşüm bağımsız kontrol edilmedi (G.2.5) | TM |
+| 7 | İbn Fadlân yazmasını Togan 1923'te Meşhed'de buldu; neşri Leipzig 1939 | Kesin | DİA, Aliev 1999 | Golden 1992 ("Ibn Faḍlān/Togan") | — | TM |
+| 8 | Mes'ûdî *Mürûc*'u 332/943'te Fustat'ta yazdı; 336 ve 345'te gözden geçirdi | Güçlü | DİA, Avcı 2004, XXIX, 353–355 | — (ikinci bağımsız kaynak bulunamadı) | Tek kaynak | TM |
+| 9 | *Hudûdü'l-Âlem* 372/982–83'te Farsça yazıldı, Ferîgûnî emîrine sunuldu | Kesin | DİA, Kurtuluş 1998, XVIII, 304 | Minorsky 1937 (çeviri ve giriş) | Yazarın İbn Ferîgûn olduğu Minorsky'nin önerisi: Tartışmalı | TM |
+| 10 | *Hudûd* Türk ülkelerini §12–21'de ayrı ayrı sınıflar; Oğuzları "kibirli, kavgacı" diye niteler | Kesin | Minorsky 1937, 94–101 | Golden 1992, 209 (aynı yeri aktarır) | — | TM |
+| 11 | Gerdîzî *Zeynü'l-ahbâr*'ı c. 442/1050'de Farsça yazdı; Türk bölümü Ceyhânî'ye dayanır | Güçlü | DİA, Bilgin 1996, XIV, 29–30 | Golden 1992, 196, 202–204 (Gardizi/Martinez) | — | TM |
+| 12 | İslam tefsir-tarih geleneğinde Türkler Yâfes soyundandır | Rivayet (gelenek) / Kesin (geleneğin varlığı) | DİA, Harman 2013, XLIII, 174–175 (Taberî, *Târîh* I, 191, 193) | Kâşgarlı, Atalay 1939, I, 28 ve 350 | Kâşgarlı aynı şemayı kullanır, tam bağımsız değil | TM |
+| 13 | Kâşgarlı'da Türk bir yerde Yâfes'in oğlu, bir yerde Nuh'un oğlu | Kesin (metinde geçiş) | Atalay 1939, I, 28 | Atalay 1939, I, 350 | Aynı eser; iç çelişki | TM |
+| 14 | Kâşgarlı "Türk dilini öğreniniz" sözünü isnatla aktarır ve sahihliği konusunda temkinlidir | Kesin (geçiş) / Rivayet (hadis) | Atalay 1939, I, önsöz | DİA, Akün, "Kâşgarlı Mahmud" | Atalay OCR'de sayfa numarası okunamadı | TM |
+| 15 | *Kutadgu Bilig* 462/1069–70'te tamamlanıp Tavgaç Uluğ Buğra Han'a sunuldu | Kesin | DİA, "Kutadgu Bilig" | Kaçar 2026 ("1069–1070") | — | TM |
+| 16 | Kutadgu Bilig ve Kâşgarlı Efrâsiyâb'ı Alp Er Tonga ile özdeşleştirir | Kesin (geçiş) | Kaçar 2026, 34 (KB 2016 bs. s. 42; DLT I, 150, 159) | Atalay 1939, I (Afrasyab geçişleri, OCR) | KB birincil metni açılmadı | TM (ikincil) |
+| 17 | Râvendî *Râhatü's-sudûr*'u 599/1202–03'te başlayıp c. 1205'te bitirdi; II. Süleyman Şah, sonra I. Keyhusrev'e ithaf | Kesin | DİA, Özaydın 2007, XXXIV, 471–472 | Balıkçıoğlu 2013, 350–351 | — | TM |
+| 18 | Yazıcızâde'nin *Tevârîh-i Âl-i Selçuk*'unun 2. bölümü Râvendî'nin çevirisi | Kesin | DİA, Özaydın 2007 | Balıkçıoğlu 2013, 349 | Balıkçıoğlu "kelime kelime", şiirler değiştirilmiş | TM |
+| 19 | İbn Bîbî *el-Evâmir*'i 679/1281'de bitirip Cüveynî'ye sundu | Güçlü | DİA, Özaydın 1999, XIX, 379–382 | Duda (EI²) 680 başı der (DİA aktarımıyla) | Bir yıl fark; ikinci görüş bağımsız değil | TM |
+| 20 | Yazıcızâde İbn Bîbî'yi çevirirken Cüveynî övgülerini II. Murad'a çevirdi ve emîrlerin Oğuz boylarını ekledi | Kesin | DİA, Özaydın 1999 | DİA 2011, "Târîh-i Âl-i Selçûk", XL, 72–73 | İki ayrı müellif | TM |
+| 21 | Reşîdüddin 17 Temmuz 1318'de idam edildi | Kesin | DİA, Özgüdenli 2008, XXXV, 19–21 | — | Bölüm 2 için ayrıntı; ikinci kaynak aranmadı | TM |
+| 22 | *Câmiu't-Tevârîh* 1. versiyon 1306–07, 2. versiyon 1310 | Güçlü | DİA, Şeşen 1993, VII, 132–134 | — | Tek kaynak | TM |
+| 23 | Reşîdüddin'de 24 Oğuz boyu Bozok ve Üçok'a ayrılır; boy–oğul dağılımı | Efsane (soy ağacı) / Kesin (metinde) | DİA, Sümer 2007, XXXIII, 325–330 | Golden 1992, 208 | — | TM |
+| 24 | Sonraki bütün 24 boy listeleri doğrudan ya da dolaylı *Câmiu't-Tevârîh*'e dayanır | Güçlü | DİA, Sümer 2007 | Golden 1992, 208 dn. 111 (Ebulgazi Reşîdüddin'i izler; Neşrî listeyi "yeniden işler") | — | TM |
+| 25 | Uygur harfli *Oğuz Kağan Destanı*'nın tek yazması BnF Suppl. turc 1001 | Kesin | Sertkaya (çev. Üzüm) 2021, 224 | Iranica, "Oghuz Khan" (arama özeti) | — | TM / AÖ |
+| 26 | Uygur harfli destanın yazılış tarihi | Tartışmalı | DİA, Bayat 2019 (13. yy sonu–14. yy başı, Turfan) | Demirbilek 2020, 68 (Ercilasun'a göre 14.–15. yy); Iranica/Şçerbak (15. yy kopyası, c. 1300 metni; AÖ) | Danka 2019 "bilinmiyor" (AÖ) | TM / AÖ |
+| 27 | DİA "Oğuznâme": Oğuznâme yazımı 5. yy'da başladı; Büzürgmihr 6. yy'da çevirdi | Modern yorum, dayanaksız | DİA, Bayat 2019 | — | Destekleyen bağımsız kaynak yok; kullanılmamalı | TM |
+| 28 | Yazıcızâde'nin eseri 827/1424 ya da 840/1436–37'de tamamlandı | Güçlü (1436–37) / Tartışmalı (1424) | DİA 2011, XL, 72–73 | DİA, İnalcık, "Osman I" (840/1436–37); Balıkçıoğlu 2013, 352 (c. 1436) | — | TM |
+| 29 | Osmanlı hanedanını Kayı'ya bağlayan ilk metin Yazıcızâde'ninkidir | Güçlü | DİA, Sümer, "Kayı", XXV, 77–78 | DİA, İnalcık, "Osman I", XXXIII, 443–453 | Kafadar 1995, 122 de aynı yönde (AÖ) | TM |
+| 30 | Âşıkpaşazâde, Şükrullah, Neşrî ve Enverî'nin silsilelerinde Kayı halkası yoktur (Gökalp, Kayaalp, Süleyman Şah vb.) | Kesin (metinlerde) | DİA, İnalcık, "Osman I" | DİA, Sümer, "Kayı" (Şükrullah'ın Kayı'yı Gökalp'e bağladığını söyler) | **Çelişki:** İnalcık'ın verdiği Şükrullah silsilesinde "Kayaalp" var, Sümer Şükrullah'ın "Kayı Han"ı Gökalp'e bağladığını yazar; birincil metne bakılmalı | TM |
+| 31 | Timur Yıldırım Bayezid'i "kayıkçı Türkmen soyundan" diye aşağıladı; Kadı Burhâneddin 1380'lerde benzer söz söyledi | Güçlü | DİA, İnalcık, "Osman I" | DİA, Özcan 2011, "Tevârîh-i Âl-i Osmân" (Timurluların küçümseyici ifadeleri) | Mektubun birincil metni bu çalışmada açılmadı | TM |
+| 32 | II. Murad sikkelerine Kayı damgası koydurdu; ondan önce yoktu | Güçlü | DİA, Sümer, "Kayı" | DİA, İnalcık, "Osman I" (damganın sikkelerde egemenlik sembolü olarak kullanıldığı) | Numismatik katalogla doğrulanmalı | TM |
+| 33 | Kayı soy kütüğü II. Murad'ın Timurlulara karşı meşruiyet politikasının parçasıdır | Modern yorum (Tartışmalı) | DİA, İnalcık, "Murad II", XXXI, 164–172 ve "Osman I" | DİA, Emecen 2007, "Osmanlılar", XXXIII, 487–496 (Şahruh etkisi "ileri sürülür", ama "tabii bir seyrin" öne çıkarılması) | Wittek: uydurma (DİA aktarımı); Kafadar: "yaratıcı yeniden keşif" (AÖ) | TM / AÖ |
+| 34 | Osman'ın babası Ertuğrul, dedesi Gündüz Alp; ötesi tarihî değer taşımaz | Güçlü | DİA, Emecen 2007 | DİA, İnalcık, "Osman I" (Enverî silsilesinde Gündüz Alp) | Sikke ve belge kanıtı bu çalışmada görülmedi | TM |
+| 35 | Şükrullah'a 1448'de Cihan Şah'ın meclisinde "Moğol yazısıyla" bir kitaptan Osmanlıların Gökalp b. Oğuz'a çıktığı gösterildi | Kesin (anekdotun metinde varlığı) / Rivayet (içerik) | DİA, Demiroğlu 1992, V, 349–350 | DİA, Yıldız 2010, XXXIX, 257–258 | İki ayrı müellif | TM |
+| 36 | Âşıkpaşazâde Yahşi Fakih'in menâkıbnâmesini 1413'te Geyve'de okuyup esas aldı | Kesin | DİA, Şahin 2013, XLIII, 180–182 (Âşıkpaşazâde, s. 35) | DİA, Özcan 1991, IV, 6–7 | — | TM |
+| 37 | Neşrî eserini 890–898 (1485–1493) arasında tamamladı; Yazıcızâde'yi kaynak olarak kullandı | Güçlü | DİA, Özcan 2007, XXXIII, 20–22 | — (Wittek'in 1512 sonrası görüşü aynı maddede) | — | TM |
+| 38 | Yezdî *Zafernâme*'yi 828/1425'te tamamladı; esas olarak Nizâmeddîn-i Şâmî'ye dayanır | Güçlü | DİA, Dilek 2010, XXXVIII, 550–552 | — | Tek kaynak | TM |
+| 39 | Timur Cengizoğlu olmadığı için "Küregen" unvanıyla yetindi; propagandacıları Cengizî kan iması yaptı | Modern yorum (Güçlü) | Golden 1992, 309 | Woods 1990 (AÖ) | — | TM / AÖ |
+| 40 | Ebulgazi *Şecere-i Terâkime*'yi 1659'da Türkmen ileri gelenlerinin ricasıyla sade Türkçe yazdı; kaynağı Reşîdüddin ve sözlü şecereler | Güçlü | DİA, Kafalı 1994, X, 358–360 | Golden 1992, 207–208 (Ebulgazi Reşîdüddin'i izler) | Plan "1659–60" der: 1070 h. = 1659–60, uyumlu | TM |
+| 41 | *Şecere-i Türk* 1726'da Fransızca basıldı; Ahmed Vefik Paşa 1863–64'te Osmanlıcaya çevirdi | Kesin | DİA, Kafalı 1994 | DİA, Akün, "Ahmed Vefik Paşa", II, 151 (Kafalı'nın atfı; madde ayrıca okunmadı) | İkinci kaynak 19. yy kısmında doğrulanmalı | TM |
+| 42 | *Bâbürnâme* Çağatay Türkçesiyle 1519–1530 arasında yazıldı; 1494–1529'u kapsar | Kesin | DİA, Akün 1991, IV, 404–408 | Golden 1992, 333 (Bâbür ö. 1530, Babürlü hanedanı 1526) | — | TM |
+| 43 | Müneccimbaşı *Câmiu'd-düvel*'i Arapça, 1081/1670'e kadar; Türk ve Tatarlar, Türkmenler, Bulgarlar, Selçuklular, beylikler bölümleri | Kesin | DİA, Ağırakça 2006, XXXII, 4–6 | Modern kısmi çeviriler (Lugal, Turgal, Öngül, Hasan) aynı maddede | Bağımsız ikinci kaynak aranmalı | TM |
+| 44 | *Câmiu'd-düvel* Nedîm başkanlığında Türkçeye çevrildi (*Sahâifü'l-ahbâr*), 1285/1868'de basıldı | Kesin | DİA, Ağırakça 2006 | — | Tek kaynak | TM |
+| 45 | Kâtib Çelebi'nin *Takvîmü't-tevârîh*'i Müteferrika'da 1146'da basıldı | Kesin | DİA, Gökyay, XXV, 36–40 | — | Tek kaynak | TM |
+
+---
+
+## 8. Açık sorular ve sonraki tur için öneriler
+
+1. **Kafadar 1995**'in Kayı konusundaki sözleri ve sayfası (122) yalnız arama özetinden geldi. Kitap (archive.org `betweentwoworlds0000kafa`) ödünç kısıtlı. Basılı nüsha ya da Türkçe çevirisi (*İki Cihan Âresinde*, 2010) ile kontrol edilmeli.
+2. **İnalcık, "The Rise of Ottoman Historiography" (1962) / "Osmanlı Tarihçiliğinin Doğuşu" (2000)** doğrudan okunmadı; İnalcık'ın görüşü burada DİA maddelerinden alındı.
+3. **Emecen'in** Kayı meselesine ayrıca eğildiği müstakil çalışması (ör. *İlk Osmanlılar ve Batı Anadolu Beylikler Dünyası*, 2001) görülmedi; burada yalnız DİA "Osmanlılar" maddesindeki görüşü var.
+4. **Şükrullah'ın silsilesi:** İnalcık (Oğuz–Gökalp–Kızıl Boğa–Kayaalp–Süleyman Şah–Ertuğrul) ile Sümer (Kayı Han'ı Gökalp'e bağlar) farklı okuyor; Atsız 1949 çevirisinden kontrol.
+5. **Timur'un Bayezid'e mektubu** ("kayıkçı Türkmen") ve Şahruh yazışmalarının birincil metni (Ferîdun Bey, *Münşeâtü's-selâtîn*) açılmadı.
+6. **Kayı damgalı II. Murad sikkeleri:** numismatik katalogdan (ör. Pere, *Osmanlılarda Madenî Paralar*, 1968) doğrulanmalı.
+7. **Mes'ûdî'nin Türk soy kütüğü** (Yâfes'e bağlanan ara halkalar) ve **Taberî, *Târîh* I, 191, 193** birincil metinden okunmalı.
+8. **Râvendî'nin Türk övgüsü** pasajı (Ateş çevirisi, I) bulunup okunmalı; literatürde sık alıntılanır ama burada doğrulanamadı.
+9. **Uygur harfli Oğuz Kağan Destanı:** Pelliot 1930 (*T'oung Pao* XXVII, 247–358; altaica.ru PDF'i açılamadı), Şçerbak 1959 ve Danka 2019'un tarihleme gerekçeleri doğrudan okunmalı. iranicaonline.org bot engeli nedeniyle açılmadı.
+10. **Walker çevirisinin yılı** (1915 mi, DİA'daki 1925 mi): JRAS basılı künyesi.
+11. **Hezarfen'in *Tenkîh*'inin yazılış yılı** (1084/1673 diye anılır) doğrulanmadı.
+12. **Kâtib Çelebi'nin Türklerin kökenine dair görüşü** (ör. *Cihannümâ*'nın Türkistan bölümü, *Takvîm*'deki Türk hanedanları cetveli) bu çalışmada açılmadı.
+13. **Reşîdüddin Oğuz destanı Türkçe çevirisi:** Togan, *Oğuz Destanı: Reşideddin Oğuznâmesi* (İstanbul 1972) künyesi ayrıca doğrulanmalı.
+14. **Ağ erişimi:** cambridge.org, iranicaonline.org, harrassowitz-verlag.de, altaica.ru, cdn.comu.edu.tr, archive.org depolama sunucuları (ia*.us.archive.org) bu oturumda açılmadı. Bunlar açılırsa §1.1, §3.4, §4.2 ve §5.1'deki (AÖ) işaretli bilgiler doğrulanabilir.
+15. **Kapsam dışı kalanlar:** Kemalpaşazâde, Hoca Sâdeddin, Âlî, Naîmâ ve Şehrîzâde'nin köken anlatıları; Seyyid Lokmân'ın *Oğuznâme*'si; Memlük Kıpçak tarih yazımı (İbnü'd-Devâdârî); Altın Orda ve Kazan geleneği (Ötemiş Hacı, *Cengiznâme*); Karakoyunlu–Akkoyunlu Oğuz şecereleri (Ebû Bekr-i Tihrânî, *Kitâb-ı Diyârbekriyye*). Bölüm metninde en azından anılmalı.
+
+---
+
+## 9. Kaynakça
+
+### 9.1. DİA maddeleri (TDV İslâm Ansiklopedisi; hepsi 7 Kasım 2026'da curl ile açıldı)
+- Ağırakça, Ahmet. "Müneccimbaşı Ahmed Dede". XXXII, İstanbul 2006, 4–6. https://islamansiklopedisi.org.tr/muneccimbasi-ahmed-dede
+- Akün, Ömer Faruk. "Bâbürnâme". IV, İstanbul 1991, 404–408. https://islamansiklopedisi.org.tr/baburname
+- Akün, Ömer Faruk. "Kâşgarlı Mahmud". https://islamansiklopedisi.org.tr/kasgarli-mahmud
+- Aliev, Saleh Muhammedoğlu. "İbn Fadlân". XIX, İstanbul 1999, 477–479. https://islamansiklopedisi.org.tr/ibn-fadlan
+- Avcı, Casim. "Mes'ûdî, Ali b. Hüseyin". XXIX, Ankara 2004, 353–355. https://islamansiklopedisi.org.tr/mesudi-ali-b-huseyin
+- Bayat, Fuzuli. "Oğuznâme". EK-2, Ankara 2019, 371–372. https://islamansiklopedisi.org.tr/oguzname
+- Bilgin, Orhan. "Gerdîzî". XIV, İstanbul 1996, 29–30. https://islamansiklopedisi.org.tr/gerdizi
+- Demiroğlu, Ayla. "Behcetü't-tevârîh". V, İstanbul 1992, 349–350. https://islamansiklopedisi.org.tr/behcetut-tevarih
+- Dilek, Kaan. "Şerefeddin Ali Yezdî". XXXVIII, İstanbul 2010, 550–552. https://islamansiklopedisi.org.tr/serefeddin-ali-yezdi
+- Emecen, Feridun ve diğ. "Osmanlılar" (I. Siyasî Tarih, A. Klasik Dönem). XXXIII, İstanbul 2007, 487–496. https://islamansiklopedisi.org.tr/osmanlilar
+- Gökyay, Orhan Şaik. "Kâtib Çelebi". XXV, 36–40 (çevrimiçi künye 2022 baskısı). https://islamansiklopedisi.org.tr/katib-celebi
+- Harman, Ömer Faruk. "Yâfes". XLIII, İstanbul 2013, 174–175. https://islamansiklopedisi.org.tr/yafes
+- İlgürel, Mücteba. "Hüseyin Efendi, Hezarfen". XVIII, İstanbul 1998, 544–546. https://islamansiklopedisi.org.tr/huseyin-efendi-hezarfen
+- İnalcık, Halil. "Murad II". XXXI, 164–172 (çevrimiçi künye 2020 baskısı). https://islamansiklopedisi.org.tr/murad-ii
+- İnalcık, Halil. "Osman I". XXXIII, İstanbul 2007, 443–453 (son güncelleme 18.01.2020). https://islamansiklopedisi.org.tr/osman-i
+- Kafalı, Mustafa. "Ebülgazi Bahadır Han". X, İstanbul 1994, 358–360. https://islamansiklopedisi.org.tr/ebulgazi-bahadir-han
+- Kaçalin, Mustafa S. "Dîvânü Lugāti't-Türk". https://islamansiklopedisi.org.tr/divanu-lugatit-turk
+- Konukçu, Enver – Akün, Ömer Faruk. "Bâbür". https://islamansiklopedisi.org.tr/babur
+- Kurtuluş, Rıza. "Hudûdü'l-Âlem". XVIII, İstanbul 1998, 304. https://islamansiklopedisi.org.tr/hududul-alem
+- Maqbul Ahmad, Sayyid. "İbn Hurdâzbih". XX, İstanbul 1999, 78–79. https://islamansiklopedisi.org.tr/ibn-hurdazbih
+- Özaydın, Abdülkerim. "İbn Bîbî". XIX, İstanbul 1999, 379–382. https://islamansiklopedisi.org.tr/ibn-bibi
+- Özaydın, Abdülkerim. "Râvendî, Muhammed b. Ali". XXXIV, İstanbul 2007, 471–472. https://islamansiklopedisi.org.tr/ravendi-muhammed-b-ali
+- Özcan, Abdülkadir. "Âşıkpaşazâde". IV, İstanbul 1991, 6–7. https://islamansiklopedisi.org.tr/asikpasazade
+- Özcan, Abdülkadir. "Neşrî". XXXIII, İstanbul 2007, 20–22. https://islamansiklopedisi.org.tr/nesri
+- Özcan, Abdülkadir. "Oruç b. Âdil". XXXIII, İstanbul 2007, 425–426. https://islamansiklopedisi.org.tr/oruc-b-adil
+- Özcan, Abdülkadir. "Tevârîh-i Âl-i Osmân". XL, İstanbul 2011, 579–581. https://islamansiklopedisi.org.tr/tevarih-i-al-i-osman
+- Özgüdenli, Osman Gazi. "Reşîdüddin Fazlullah-ı Hemedânî". XXXV, İstanbul 2008, 19–21. https://islamansiklopedisi.org.tr/residuddin-fazlullah-i-hemedani
+- [DİA künye alanında müellif: Osman Gazi Özgüdenli]. "Târîh-i Âl-i Selçûk" (Yazıcıoğlu Ali'nin eseri). XL, İstanbul 2011, 72–73. https://islamansiklopedisi.org.tr/tarih-i-al-i-selcuk (müellif adı basılı ciltten kontrol edilmeli)
+- Sümer, Faruk. "Kayı". XXV, 77–78 (çevrimiçi künye 2022 baskısı). https://islamansiklopedisi.org.tr/kayi
+- Sümer, Faruk. "Oğuzlar". XXXIII, İstanbul 2007, 325–330. https://islamansiklopedisi.org.tr/oguzlar
+- Şahin, Haşim. "Yahşi Fakih". XLIII, İstanbul 2013, 180–182. https://islamansiklopedisi.org.tr/yahsi-fakih
+- Şeşen, Ramazan. "Câmiu't-tevârîh". VII, İstanbul 1993, 132–134. https://islamansiklopedisi.org.tr/camiut-tevarih
+- Şeşen, Ramazan. "Fezâilü'l-Etrâk". XII, İstanbul 1995, 531–532. https://islamansiklopedisi.org.tr/fezailul-etrak
+- Şeşen, Ramazan – Yavuz, Yusuf Şevki. "Câhiz". https://islamansiklopedisi.org.tr/cahiz
+- Taşağıl, Ahmet ve diğ. "Türk". https://islamansiklopedisi.org.tr/turk
+- Yıldız, Sara Nur. "Şükrullah". XXXIX, İstanbul 2010, 257–258. https://islamansiklopedisi.org.tr/sukrullah
+- (Müellifsiz künye) "Kutadgu Bilig". https://islamansiklopedisi.org.tr/kutadgu-bilig
+
+### 9.2. Birincil kaynak neşir ve çevirileri (okunanlar)
+- Atalay, Besim (trc.). *Divanü Lûgat-it-Türk Tercümesi*, I. Ankara: TDK, 1939. archive.org `divan-1939` (OCR; https://archive.org/details/divan-1939). TM.
+- Minorsky, V. (trc.). *Ḥudūd al-ʿĀlam: "The Regions of the World", a Persian Geography 372 A.H. – 982 A.D.* London: Luzac, 1937. archive.org `in.ernet.dli.2015.281514`. TM.
+
+### 9.3. Akademik ikincil kaynaklar
+- Balıkçıoğlu, Efe Murat. "Poetry in the Text: The Use and Function of Poetry in Rāwandī's Rāḥat al-ṣudūr and Yazıcızāde 'Alī's Translation of the Same Work in Tevārīkh-i Âl-i Selçūk". *Osmanlı Araştırmaları / The Journal of Ottoman Studies* XLII (2013): 349–371. https://dergipark.org.tr/en/download/article-file/112153. TM.
+- Demirbilek, Salih. "Uygur Harfli Oğuz Kağan Destanı ile Orhon Yazıtlarında Bozkır Kültürüne Ait Unsurlar". *Millî Folklor* 125 (2020): 60–70. https://dergipark.org.tr/en/download/article-file/1030705. TM.
+- Golden, Peter B. *An Introduction to the History of the Turkic Peoples*. Wiesbaden: Harrassowitz, 1992. archive.org `golden_202303` (OCR). TM (115, 193–196, 202–211, 273–274, 309, 333).
+- Işık, Utku. "[Değerlendirme] Danka, B. *The 'Pagan' Oɣuz-namä*, Wiesbaden 2019". *JOTS* 4/1 (2020): 251–261. https://dergipark.org.tr/en/download/article-file/948158. TM.
+- Kaçar, Yasin. "Efrâsiyâb Anlatısında Göçebelik ve Yönetim". *Memleket Siyaset Yönetim* 21/46 (Haziran 2026): 27–53. DOI 10.56524/msydergi.1647530. https://dergipark.org.tr/tr/download/article-file/4644037. TM.
+- Pala, Ayhan. "Oğuz Kağan'ın Adı Meselesi". *Millî Folklor* 133 (2022): 5–12. https://dergipark.org.tr/en/download/article-file/1886180. TM.
+- Sertkaya, Osman Fikri (çev. Melike Üzüm). "Oğuz Kağan Destanı Üzerine Bazı Yeni Okuma ve Yorumlama Önerileri". *Dil Araştırmaları* 29 (2021): 223–231. https://dergipark.org.tr/tr/download/article-file/1878691. TM.
+
+### 9.4. Erişilemeyen, yalnız arama özetinden bilinen kaynaklar (AÖ)
+- Danka, Balázs. *The 'Pagan' Oġuz-nāmä: A Philological and Linguistic Analysis*. Turcologica 113. Wiesbaden: Harrassowitz, 2019.
+- Hoyland, Robert G. (nşr. ve trc.). al-Jāḥiẓ, *The Turks and the Caliphal Army*. Library of Arabic Literature. New York: NYU Press, 2025.
+- Kafadar, Cemal. *Between Two Worlds: The Construction of the Ottoman State*. Berkeley: University of California Press, 1995 (s. 122).
+- Pelliot, Paul. "Sur la légende d'Uγuz-khan en écriture ouigoure". *T'oung Pao* XXVII (1930): 247–358 (künye TM: Sertkaya 2021'den; içerik AÖ).
+- Walker, C. T. Harley (trc.). "Jāḥiẓ of Baṣra to al-Fatḥ ibn Khāqān on the 'Exploits of the Turks and the Army of the Khalifate in General'". *Journal of the Royal Asiatic Society* 1915.
+- Woods, John E. "Timur's Genealogy". *Intellectual Studies on Islam: Essays Written in Honor of Martin B. Dickson*, ed. M. M. Mazzaoui – V. B. Moreen. Salt Lake City 1990, 85–125.
+- *Encyclopaedia Iranica*, "Oghuz Khan" maddesi (iranicaonline.org, bot engeli).
