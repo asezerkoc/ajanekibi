@@ -1,7 +1,7 @@
 # SKONSTART teslimi · İnternet sitesi
 
 - **İş:** SKONSTART ajansının internet sitesi arayüzü. Görünüm, oyun karakter galerilerimizle aynı tarzda olsun (koyu zemin, altın vurgu, piksel başlıklar). İçerik boş olsun, sonra dolduracağız.
-- **Tarih:** 2026-11-07 07:56
+- **Tarih:** 2026-11-07 08:44
 - **Durum:** ONAY BEKLİYOR
 - **Kalite kontrol:** uygun
 - **Site dosyası:** `2026-11-07-0756-skonstart-ajansinin-internet-sitesi-aray.html`
@@ -157,7 +157,17 @@
 
 ## 🔴 Kalite Kontrol · Kalite kontrol notu
 
-Site onaylandı. 1) Plan ve anahtarlar: Planın 11 bölümünün hepsi kodda var (menü, giriş, hakkımızda, hizmetler, konular, işler, galeri, süreç, ekip, iletişim, alt bilgi). 146 doldurma anahtarının hepsi data-doldur olarak kodda tek tek bulundu: menü 8, giriş 9, hakkımızda 5, hizmetler 11, konular 11, işler 24, galeri 26, süreç 12, ekip 20, iletişim 14, alt bilgi 6. Eksik ya da yanlış adlı anahtar yok. 2) İçerik kuralı: Sayfada uydurulmuş metin, müşteri, rakam, yorum, fiyat, kuruluş yılı, telefon, adres ya da e-posta yok. Tüm alanlar '[... — sonra doldurulacak]' yer tutucusuyla boş. E-posta alanı boş. Dolu görünen tek veriler kaynaklı: Instagram ve TikTok @pikseltarihim (profil ve geçmiş işler notu) ile ekip rol adları (profil listesi). Menü düğmesi 'Menü', 'İçeriğe geç' bağlantısı ve 'E-posta:' etiketi arayüz öğesidir, uydurma içerik sayılmaz. 3) Görsel dil: Koyu zemin (#14111a), altın vurgu, Jersey 10 başlıklar ve Alegreya Sans gövde yazısı kullanılmış. Köşeler keskin (border-radius yok), gölgeler bulanıksız sert piksel gölgesi, görsellerde image-rendering:pixelated var. Hero katmanları (gökyüzü, güneş, iki uzak plan katmanı, zemin) steps() ile basamaklı hareket ediyor, azaltılmış hareket tercihi de destekleniyor. Ekip rozetleri ve süreç adımı renkleri doğru: Araştırmacı #3B82F6, Metin Yazarı #F97316, Editör #8B5CF6, Grafiker #22C55E, Kalite Kontrol #EF4444, Web Tasarımcısı #EAB308. Süreç adımları da aynı sırayla ilk beş rolün rengini taşıyor. 4) Teknik: Kod '<!doctype html>' ile başlayıp '</html>' ile bitiyor, kapanmamış etiket görülmedi. lang='tr' ve viewport meta var. Harici kaynak yalnızca Google Fonts (Jersey 10 ve Alegreya Sans). 400px genişlikte tüm ızgaralar tek sütun (iki sütun 600px'ten sonra, mobil menü açılır düğmeli) ve taşmaları kutu overflow, minmax(0,1fr) ve overflow-wrap ile önlenmiş. Odak halkaları, atlama bağlantısı ve etiketli form alanları erişilebilirlik için yerinde. Revizyon gerekmiyor.
+ONAY. Ajans sahibinin kontrol listesi madde madde incelendi.
+
+1) Plan ve anahtar uyumu: Plandaki 11 bölümün tamamı kodda var (üst menü, giriş, hakkımızda, hizmetler, konular, işler, galeri, süreç, ekip, iletişim, alt bilgi). Plandaki 146 doldurma anahtarının hepsi data-doldur olarak bulunuyor. Bölüm bazında sayım: menü 8, giriş 9, hakkımızda 5, hizmetler 11, konular 11, işler 24, galeri 26, süreç 12, ekip 20, iletişim 14, alt bilgi 6. Eksik ya da fazladan anahtar yok.
+
+2) İçerik boş mu: Boş alanlar köşeli parantezli yer tutucularla duruyor. Uydurma metin, müşteri adı, yorum, rakam, fiyat, e-posta, telefon, adres ya da kuruluş yılı yok. E-posta alanı "sahibi verince doldurulacak" yer tutucusunda kalmış. Bağlantılar "#" ve uydurma URL yok. Yalnızca profilde ve kayıtlarda var olan veriler kullanılmış: @pikseltarihim (Instagram ve TikTok) ile altı rol adı.
+
+3) Görsel dil: Yasaklı unsur yok. Jersey 10 ve Alegreya Sans kullanılmamış (Pixelify Sans ve Rubik). Mor-gri zemin yok (koyu lacivert-teal zemin). Altın vurgu yok (teal, mercan ve limon). Kesik çizgili kutu yok. Bölümler kart yığınına dönmüyor, düzenler birbirinden farklı: hakkımızda iki sütun, hizmetler yatay şeritler, konular kademeli üç sütun, işler dikey 9:16 kapaklar, galeri yapışkan sol sütun ve karakter ızgarası, süreç merdiven, ekip ızgara, iletişim iki sütun. Gövde yazısı 18px (1.125rem). Piksel yazı yalnızca h1, h2 ve büyük süreç numaralarında; h3, menü ve gövde Rubik. Piksel sertliği korunmuş: bulanıklık yok, gölgeler 0 blur, köşeler keskin, görsellerde image-rendering: pixelated, geçişler steps(). Ekip rozet ve çerçeve renkleri doğru: Araştırmacı #3B82F6, Metin Yazarı #F97316, Editör #8B5CF6, Grafiker #22C55E, Kalite Kontrol #EF4444, Web Tasarımcısı #EAB308. Rozet yazı renkleri okunuyor.
+
+4) Teknik: Kod <!doctype html> ile başlıyor, </html> ile bitiyor, kapanmamış etiket yok. Harici kaynak yalnızca Google Fonts. lang="tr" ve viewport var. 560px altında tüm ızgaralar tek sütun, yani 400px genişlikte tek sütuna iniyor. Menü 1200px altında hamburger. Atla bağlantısı, odak çerçevesi ve prefers-reduced-motion desteği var.
+
+Revizyon gerekmiyor.
 
 ## 🔵 Araştırmacı · Site planı
 
