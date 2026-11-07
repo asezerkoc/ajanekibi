@@ -47,13 +47,13 @@ Derleme tarihleri: Gülnar Kara 2015, s. 542-543, dn. 1 (*Zhoushu*'nun Linghu De
 > "Sonra [başa geçen] Tumen (Bumın) zamanında kabile biraz güçlendi. Sınıra ipek ve pamuklu almaya gelmeye, Çin'le ilişki kurmaya başladılar. Datong 11. yılında (545) Taizu (Yuwen Tai), Jiuquan'lı *hu* (Soğdlu) An Nuopantuo'yu elçi olarak gönderdi. Ülkelerinde herkes 'Büyük devletin elçisi geldi, devletimiz yükselecek' diye sevindi. 12. yılda (546) Tumen de elçi gönderip yerli mallar sundu."
 
 - *Beishi* 99 aynı metni verir. Farkı, gönderen olarak "Batı Wei Datong 11. yıl, Zhou Wendi" demesidir: 「西魏大統十一年，周文帝遣酒泉胡安諾槃陀使焉」. Wendi, Yuwen Tai'nin ölümünden sonra verilen unvandır. İki metin aynı kişiyi kastediyor.
-- Türkçe çeviri: Gülnar Kara 2015, s. 545-546 (Datong 11 = 545, Datong 12 = 546). Golden 1992, s. 127: "The Western Wei Emperor, seeking an ally, in 545 turned to Bumin". Golden ayrıca Klyaštornyj ve Livšic'e dayanarak 545 elçisinin Soğdlu olduğunu vurgular (s. 122).
+- Türkçe çeviri: Gülnar Kara 2015, s. 545-546 (Datong 11 = 545, Datong 12 = 546). Golden 1992, s. 79: "The Western Wei Emperor, seeking an ally, in 545 turned to Bumin". Golden ayrıca Klyaštornyj ve Livšic'e dayanarak 545 elçisinin Soğdlu olduğunu vurgular (s. 122).
 - Elçinin adının "Nakbanda / Nopanda" diye Soğdça okunması bir yorumdur [Modern yorum]. Bu çalışmada birincil dayanağı görülmedi.
 - **Etiket:** 545 elçiliği ve 546 karşılık elçiliği [Kesin].
 
 ### 1.4. 552: Bumın'ın Juan-juanları yenmesi
 *Zhoushu* 50: 「魏廢帝元年正月，土門發兵擊茹茹，大破之於懷荒北。阿那瓌自殺……土門遂自號伊利可汗」. Yani "Wei Feidi'nin 1. yılı (552), 1. ay: Tumen Ruru'ya (Juan-juan) asker gönderip onları Huaihuang'ın kuzeyinde ağır yenilgiye uğrattı. Anagui intihar etti… Tumen kendine İli (İl) Kağan unvanını verdi." Tam metin okundu.
-- Kara 2015, s. 546 (Fei-di 1. yılı = 552). DİA (Taşağıl): "Bumın, Juan-Juan Devleti'ni yıktı ve yerine bağımsız Göktürk Devleti kuruldu (552)". Golden 1992, s. 127 de 552'yi verir.
+- Kara 2015, s. 546 (Fei-di 1. yılı = 552). DİA (Taşağıl): "Bumın, Juan-Juan Devleti'ni yıktı ve yerine bağımsız Göktürk Devleti kuruldu (552)". Golden 1992, s. 79-80 de 552'yi verir.
 - **Etiket:** [Kesin].
 
 ### 1.5. "Miğfer" (兜鍪 *doumou*) etimolojisi
@@ -75,10 +75,10 @@ Gülnar Kara (s. 542, dn. 1) Julien'in Fransızca, Bichurin'in Rusça, Liu Mau-t
 ## 2. Yerli en eski geçişler: Bugut ve Hüis Tolgoi
 
 ### 2.1. Bugut yazıtı (Arhangay, Moğolistan)
-- **Dil ve yazı:** Üç yüzde Soğd harfli Soğdça metin vardır. Dördüncü yüz Brahmi harflidir; dili önce Sanskritçe sanıldı, bugün Moğolca tipli bir dil kabul edilir. Kaynaklar: Alyılmaz (DergiPark), s. 12-13; Golden 1992, s. 122 ve 141. 1956'da Ts. Dorjsüren buldu. Soğdça olduğu 1969-1970'te Sovyet bilginlerince tespit edildi (Wikipedia, ipucu).
+- **Dil ve yazı:** Üç yüzde Soğd harfli Soğdça metin vardır. Dördüncü yüz Brahmi harflidir; dili önce Sanskritçe sanıldı, bugün Moğolca tipli bir dil kabul edilir. Kaynaklar: Alyılmaz (DergiPark), s. 12-13; Golden 1992, s. 122 ve 150. 1956'da Ts. Dorjsüren buldu. Soğdça olduğu 1969-1970'te Sovyet bilginlerince tespit edildi (Wikipedia, ipucu).
 - **Tarih:** Kaynaklar farklı tarihler veriyor [Tartışmalı].
   - Alyılmaz: 582. Olaylar 572-580 arasını kapsar.
-  - Golden 1992, s. 141: "570'ler ya da 580'ler", "Türk Kağanlığının en eski resmî yazıtı".
+  - Golden 1992, s. 150: "570'ler ya da 580'ler"; s. 122: "Türk Kağanlığının en eski resmî yazıtı".
   - Wikipedia: 584, en geç 587 (ipucu).
   - Ōsawa 2012'ye göre Nivar Kağan, Tatpar'ın ölümü üzerine diktirmiştir. Bu bilgi erişilemedi (tdkbelleten), arama özetinden geldi.
   - Ana çerçeve 581–587 arasıdır. Taspar/Tatpar 581'de öldü (DİA). Nivar, Çince Shetu/Işbara'dır, 581–587 (Golden 1992, s. 122).
@@ -247,12 +247,12 @@ DİA (Maqbul Ahmad, tam metin okundu): "Müellif kitabı 232 (846-47) yılı civ
 | İddia | Etiket | Kaynak 1 | Kaynak 2 | Çelişki / not | Erişim durumu |
 |---|---|---|---|---|---|
 | *Zhoushu* 27'de Datong 8 (542) yılı için Tujue akınları kayıtlıdır | Kesin (kayıt) / Tartışmalı (adın 542'de kullanımı) | *Zhoushu* 27, Yuwen Ce biyografisi (KR2a0022_027) | DİA "TÜRK" (Taşağıl): "542'de tarih sahnesinde" | 636 tarihli geriye dönük metin. 534 iddiası doğrulanamadı | Çince tam metin; DİA tam metin |
-| 545'te An Nuopantuo Türklere elçi gönderildi; 546'da Tumen elçi yolladı | Kesin | *Zhoushu* 50 | *Beishi* 99; Kara 2015, s. 545-546; Golden 1992, s. 127 | *Zhoushu* "Taizu", *Beishi* "Zhou Wendi" der; aynı kişi | Tam metin |
-| 552'de Tumen Juan-juanları yendi, İl Kağan unvanını aldı | Kesin | *Zhoushu* 50 | DİA (Taşağıl); Golden 1992, s. 127 | — | Tam metin |
+| 545'te An Nuopantuo Türklere elçi gönderildi; 546'da Tumen elçi yolladı | Kesin | *Zhoushu* 50 | *Beishi* 99; Kara 2015, s. 545-546; Golden 1992, s. 79 | *Zhoushu* "Taizu", *Beishi* "Zhou Wendi" der; aynı kişi | Tam metin |
+| 552'de Tumen Juan-juanları yendi, İl Kağan unvanını aldı | Kesin | *Zhoushu* 50 | DİA (Taşağıl); Golden 1992, s. 79-80 | — | Tam metin |
 | Çin kaynaklarına göre *Tujue* "miğfer" demektir; Altın Dağ miğfere benzer | Kesin (kayıt) / Efsane (etimoloji) | *Zhoushu* 50 | *Suishu* 84; *Beishi* 99; Golden 1992, s. 120 | Halk etimolojisi; Türkçede bu anlam yok | Tam metin |
 | 突厥 Juan-juan çoğulu *Türküt*'ü yansıtır (Pelliot 1915) | Tartışmalı / Modern yorum | Golden 1992, s. 116-117 | Pelliot 1915, *T'oung Pao* 16 | Karşı görüş: Pulleyblank 1965 (doğrudan *Türk*) | Golden tam metin; Pelliot ve Pulleyblank erişilemedi, arama özetinden |
 | Bugut'ta (Soğdça) *trʼwkt* ve "Türk efendisi Nivar Kağan" geçer | Güçlü | Golden 1992, s. 116 (*trʼwkt*) | Alyılmaz (DergiPark): "Türk /Bilge/ Kaganı Nivar"; Kljaštornyj ve Livšic 1972 (Wikipedia aktarımı) | KL 1972 açılmadı | Golden ve Alyılmaz tam metin; KL 1972 erişilemedi |
-| Bugut'un tarihi ~581-587 | Tartışmalı | Alyılmaz: 582 | Golden 1992, s. 141: "570'ler/580'ler"; Wikipedia: 584 | Yoshida'nın "Tatpar" okuması tarihlendirmeyi etkiler | Tam metin; Ōsawa 2012 erişilemedi |
+| Bugut'un tarihi ~581-587 | Tartışmalı | Alyılmaz: 582 | Golden 1992, s. 150: "570'ler/580'ler"; Wikipedia: 584 | Yoshida'nın "Tatpar" okuması tarihlendirmeyi etkiler | Tam metin; Ōsawa 2012 erişilemedi |
 | Hüis Tolgoi'da *türüg kagan* geçer | Güçlü- (tek okuma zinciri) | Maue transliterasyonu (Tütüncü 2017 aracılığıyla, Wikipedia) | Vovin'in deneme çevirisi (Wikipedia) | Birincil neşir görülmedi; dil Moğolca mı Türkçe mi tartışmalı (Ünal 2024) | Erişilemedi, Wikipedia ve arama özetinden |
 | Orhon yazıtlarında *kök türük*, *türük bodun*, *türük teŋrisi* geçer | Kesin | Mert, *Türk Dünyası* 42 (Tekin 2006 okuması) | Golden 1992, s. 117; DİA "ORHON YAZITLARI" | Okunuş Türük, Türk ya da Türkü (Tekin, Clauson) | Tam metin |
 | Köl Tigin yazıtı 732, Bilge Kağan yazıtı 735 | Güçlü | DİA (Kaçalin) | Bağdat Üniversitesi makalesi (21 Ağustos 732; arama özeti) | Günler tahmini | DİA tam metin; ikinci kaynak arama özeti |
@@ -311,7 +311,7 @@ DİA (Maqbul Ahmad, tam metin okundu): "Müellif kitabı 232 (846-47) yılı civ
 - Mert, Osman. "Köl Tigin ve Bilge Kağan Yazıtlarının Ortak Metinlerinde Anlamlı Elemanlar Düzeyinde Karşılaşılan Farklılıklar." *Türk Dünyası* 42. https://dergipark.org.tr/en/download/article-file/263058
 
 **İkincil kaynaklar ve başvuru eserleri:**
-- Golden, Peter B. *An Introduction to the History of the Turkic Peoples*. Wiesbaden: Harrassowitz, 1992, özellikle s. 115-122 ve 127-129. (archive.org: golden_202303)
+- Golden, Peter B. *An Introduction to the History of the Turkic Peoples*. Wiesbaden: Harrassowitz, 1992, özellikle s. 79-80, 115-122, 128-129 ve 150. (archive.org: golden_202303)
 - Alyılmaz, Cengiz. "Bugut Yazıtı ve Anıt Mezar Külliyesi Üzerine." https://dergipark.org.tr/en/download/article-file/258166
 - Mori, Masao. "Soğdluların Orta-Asya'daki Faaliyetleri." *Belleten*. https://belleten.gov.tr/tam-metin/1785/tur
 - Kirilen, Gürhan. "Wujing Zongyao Adlı Esere Göre 'Altın Dağın' Konumu Üzerine." *DTCF Dergisi* 64/2 (2024): 944-1001. https://dergipark.org.tr/en/download/article-file/4245147 (yalnız özet ve başlık okundu)
