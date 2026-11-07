@@ -2,7 +2,7 @@
 
 > **Künye**
 > - **Yer:** Türk Tarihi Ansiklopedisi, Cilt I (Giriş, Yöntem ve Erken Bozkır), Bölüm 1
-> - **Durum:** **TASLAK — ONAY BEKLİYOR**
+> - **Durum:** **ONAYLANDI** (sahibin onayı: 7 Kasım 2026)
 > - **Tarih:** 7 Kasım 2026
 > - **Dayandığı notlar:** `ansiklopedi/notlar/bolum-01/` altında
 >   - `a-birincil-kaynaklar.md` (adın birincil kaynaklardaki ilk geçişleri),
