@@ -20,6 +20,10 @@ export type KineticCaptionsProps = {
   perPage?: number;
   highlight?: string;
   fontSize?: number;
+  /** true: only words already spoken take space, so the line stays centred while words appear. */
+  onlyVisible?: boolean;
+  /** Scale a word pops in from (0.6 = big pop; closer to 1 keeps sizes even). */
+  popFrom?: number;
 };
 
 /** TikTok-style captions: words pop in as they are spoken, the current word is highlighted. */
@@ -28,6 +32,8 @@ export const KineticCaptions: React.FC<KineticCaptionsProps> = ({
   perPage = 4,
   highlight = "#ffe600",
   fontSize = 96,
+  onlyVisible = false,
+  popFrom = 0.6,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -57,6 +63,7 @@ export const KineticCaptions: React.FC<KineticCaptionsProps> = ({
         }}
       >
         {page.map((w, i) => {
+          if (onlyVisible && ms < w.startMs) return null;
           const startFrame = (w.startMs / 1000) * fps;
           const pop = spring({ frame: frame - startFrame, fps, config: { damping: 12, mass: 0.5 } });
           const active = ms >= w.startMs && ms < w.endMs;
@@ -68,7 +75,7 @@ export const KineticCaptions: React.FC<KineticCaptionsProps> = ({
                 display: "inline-block",
                 color: active ? highlight : "white",
                 opacity: visible ? 1 : 0,
-                transform: `scale(${visible ? interpolate(pop, [0, 1], [0.6, active ? 1.06 : 1]) : 0.6}) translateY(${interpolate(pop, [0, 1], [20, 0])}px)`,
+                transform: `scale(${visible ? interpolate(pop, [0, 1], [popFrom, active ? 1.06 : 1]) : popFrom}) translateY(${interpolate(pop, [0, 1], [20, 0])}px)`,
                 WebkitTextStroke: "6px black",
                 paintOrder: "stroke fill",
                 textShadow: "0 8px 0 rgba(0,0,0,0.35)",
