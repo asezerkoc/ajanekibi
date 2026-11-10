@@ -253,3 +253,138 @@ gorsel_kontrol_gorevi:
     grafiker, metin sorunlarında metin_yazari ya da editor, uygunsa yok) ve notlar
     (her sorun için kare, yer, sorun ve nasıl düzeltileceği; uygunsa kısa bir
     değerlendirme).
+
+site_plani_gorevi:
+  description: >
+    İş: {gorev}
+
+    Ajans profili:
+    {profil}
+
+    Ajansın ekibi ve renk kodları:
+    {ekip}
+
+    Onaylanan geçmiş işler ve ajans sahibinin geri bildirimleri:
+    {gecmis}
+
+    Ajans sahibinin notu (boşsa yoktur; varsa mutlaka uygula):
+    {sahip_notu}
+
+    Bu iş bir internet sitesi arayüzüdür. Web tasarımcısı için site planı
+    hazırla: hangi sayfa ya da bölümler olacak, hangi sırayla, her bölümde
+    hangi içerik alanları (başlık, alt başlık, paragraf, görsel, düğme, kart
+    listesi) bulunacak ve her alanın kısa, benzersiz bir doldurma anahtarı
+    (ör. giris-baslik, hizmet-1-metin). İş içeriğin boş kalmasını istiyorsa
+    metin yazma; yalnızca alanı ve ne tür içerik bekleneceğini tarif et.
+    Bir ajans sitesinde beklenen bölümleri ajans profiline göre seç (ör. üst
+    menü, giriş, hizmetler, ekip, işler, çalışma süreci, iletişim, alt bilgi)
+    ve neden seçtiğini bir cümleyle yaz. Uydurma müşteri, rakam ya da yorum
+    önerme.
+  expected_output: >
+    Türkçe site planı: sıralı bölüm listesi; her bölüm için amacı, içerik
+    alanları, her alanın doldurma anahtarı ve beklenen içerik türü; en sonda
+    bütün doldurma anahtarlarının tek liste hâli.
+  agent: arastirmaci
+
+site_gorevi:
+  description: >
+    İş: {gorev}
+
+    Ajans profili:
+    {profil}
+
+    Ajansın ekibi ve renk kodları:
+    {ekip}
+
+    Araştırmacının site planı:
+    {site_plani}
+
+    Kalite kontrolün revizyon notu (boşsa yoktur; varsa mutlaka uygula):
+    {revizyon_notu}
+
+    Ajans sahibinin notu (boşsa yoktur; varsa mutlaka uygula):
+    {sahip_notu}
+
+    Site planındaki bütün bölümleri tek bir HTML dosyası olarak kodla.
+
+    Görsel dil: "modern oyun stüdyosu" (ajans sahibinin seçimi). Sahibin
+    reddettiği ilk sürümden ders al: "her şey kutu/kart", "yazılar okunaksız",
+    "sıkıcı, ruhsuz", "koyu mor-gri zemin ve altın vurgu" istenmiyor.
+    - Yazı tipleri yalnızca Google Fonts'tan. Başlıklarda okunaklı, modern bir
+      piksel yazı tipi (ör. "Pixelify Sans") yalnızca büyük başlıklarda;
+      gövde ve arayüz yazılarında sade, çok okunaklı bir sans (ör. "Rubik").
+      Türkçe karakterleri (ğ, ş, ı, İ) destekleyen yazı tipi seç. Jersey 10 ve
+      Alegreya Sans kullanma. Gövde yazısı en az 18px, satır uzunluğu en fazla
+      70 karakter, başlıklar iri ve kalın.
+    - Renk: yeni, canlı bir palet seç ve :root içinde CSS değişkeni yap. Mor-gri
+      zemin ve altın vurgu yok. Büyük, düz renk blokları (tam genişlikte renkli
+      bölümler) ve güçlü kontrast kullan; ekip rozetlerinde her ajanın kendi
+      renk kodu kalır.
+    - Kutu ve kart en aza: bölümleri kenarlıklı kartlarla değil, tam genişlikte
+      renk bantları, büyük tipografi ve boşlukla ayır. Kesik çizgili kutu yok.
+      Boş görsel alanı, piksel desenli düz bir renk bloğu olarak durur ve
+      içinde küçük, soluk bir "[Görsel: ...]" etiketi taşır.
+    - Ruh: giriş tam ekran genişliğinde, büyük ve vurucu olsun (oyun ana
+      menüsü gibi); bölümlerin düzeni birbirini tekrar etmesin (biri iki
+      sütun, biri yatay şerit, biri büyük tek görsel gibi). Az ama anlamlı
+      hareket (giriş sahnesinde basamaklı piksel animasyonu, düğmelerde
+      basılma efekti); prefers-reduced-motion'a uy.
+    - Keskin köşeler, görsellerde image-rendering: pixelated.
+    - Duyarlı: 400px telefon genişliğinde tek sütun, yatay kaydırma yok,
+      yanlarda en az 16px boşluk. Klavye odağı görünür olmalı.
+
+    İçerik kuralı: iş içeriğin boş kalmasını istiyorsa hiçbir gerçek metin
+    yazma. Her metin alanına köşeli parantezli yer tutucu yaz (ör. "[Giriş
+    başlığı — sonra doldurulacak]"), her görsel alanı için kesik çizgili boş
+    bir kutu koy ve içine "[Görsel: ne olacağı]" yaz. Her doldurulacak
+    öğeye planındaki anahtarla data-doldur="anahtar" özniteliği ver. Ajansın
+    adı (SKONSTART) ve ekipteki ajanların adları ile renkleri gerçek bilgidir,
+    yazılabilir. Uydurma müşteri, rakam, yorum, iletişim bilgisi yazma.
+
+    Teknik: tek dosya, CSS <style> içinde, JavaScript gerekmez (gerekirse
+    küçük ve satır içi). <html lang="tr">, <meta charset="utf-8">, viewport
+    meta, anlamlı <title>. Harici görsel ya da CDN kullanma.
+  expected_output: >
+    Yalnızca eksiksiz HTML kodu: "<!doctype html>" ile başlayıp "</html>" ile
+    biter. Önünde ya da arkasında açıklama, markdown ya da ``` işareti yoktur.
+  agent: web_tasarimci
+
+site_kalite_gorevi:
+  description: >
+    İş: {gorev}
+
+    Ajans profili:
+    {profil}
+
+    Ajansın ekibi ve renk kodları:
+    {ekip}
+
+    Araştırmacının site planı:
+    {site_plani}
+
+    Web tasarımcısının HTML kodu:
+    {site_html}
+
+    Ajans sahibinin notu (boşsa yoktur; varsa mutlaka uygulanmalı ve iş uygun
+    sayılmamalı):
+    {sahip_notu}
+
+    Siteyi kontrol et:
+    - Plandaki her bölüm ve her doldurma anahtarı kodda var mı (data-doldur)?
+    - İş içeriğin boş kalmasını istiyorsa: sayfada uydurulmuş gerçek metin,
+      müşteri, rakam, yorum ya da iletişim bilgisi var mı? Varsa iş uygun değil.
+    - Görsel dil site görevindeki "modern oyun stüdyosu" kurallarına uyuyor mu:
+      Jersey 10, Alegreya Sans, mor-gri zemin, altın vurgu, kesik çizgili
+      kutular ya da her bölümün kartlara bölünmesi varsa iş uygun değildir.
+      Gövde yazısı en az 18px mi, piksel yazı yalnızca büyük başlıklarda mı,
+      bölüm düzenleri birbirinden farklı mı, ekip rozetlerinde doğru renk
+      kodları var mı?
+    - Kod eksiksiz mi ("<!doctype html>" ile başlayıp "</html>" ile bitiyor,
+      kapanmamış etiket yok), Google Fonts dışında harici kaynak yok mu,
+      400px genişlikte tek sütuna iniyor mu, lang="tr" ve viewport var mı?
+    Uygunsa onayla. Uygun değilse web_tasarimci birimini seç ve neyin nasıl
+    düzeltileceğini somut yaz.
+  expected_output: >
+    Kalite raporu: uygun (true/false), revize_birimi (web_tasarimci ya da
+    uygunsa yok) ve notlar.
+  agent: kalite_kontrol
